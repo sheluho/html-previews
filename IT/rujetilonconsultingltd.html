@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rujetilon Consulting | Design d'Interni & Arredamento</title>
+    <meta name="description" content="Consulenza d'arredo esclusiva e progettazione d'interni. Trasforma la tua casa con lo stile unico di Rujetilon Consulting.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* VAR D: Palette - Teal for Consulting/Design balance */
+            --primary: #0d9488; 
+            /* VAR C: Surface - Pure White (ASCII 'l' % 3 = 0) */
+            --surface: #ffffff;
+            /* VAR A: Geometry - Soft 12px (Len 28 % 3 = 1) */
+            --radius: 12px;
+            /* VAR B: Physics - Flat Border (ASCII 'r' % 3 = 0) */
+            --shadow: 0 0 0 1px #e5e7eb;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        
+        .dna-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 700;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(13, 148, 136, 0.2);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary-light { background-color: rgba(13, 148, 136, 0.1); }
+        
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.active {
+            max-height: 400px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="text-2xl font-bold text-gray-800 tracking-tight">
+                    Rujetilon<span class="text-primary">Consulting</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Servizi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm">Richiedi Consulenza</a>
+                </div>
+
+                <!-- Mobile Button -->
+                <button onclick="toggleMenu()" class="md:hidden text-gray-600 focus:outline-none p-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white border-b border-gray-100">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#features" class="block py-3 text-gray-600 font-medium border-b border-gray-50" onclick="toggleMenu()">Servizi</a>
+                <a href="#reviews" class="block py-3 text-gray-600 font-medium border-b border-gray-50" onclick="toggleMenu()">Recensioni</a>
+                <a href="#faq" class="block py-3 text-gray-600 font-medium border-b border-gray-50" onclick="toggleMenu()">FAQ</a>
+                <a href="#contact" class="block py-3 text-primary font-bold mt-2" onclick="toggleMenu()">Richiedi Consulenza</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 text-white py-24 md:py-32">
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                alt="Interior Design Luxury" 
+                class="w-full h-full object-cover opacity-40"
+                referrerpolicy="no-referrer"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-gray-900 opacity-80"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-semibold mb-6 tracking-wide uppercase">
+                Design & Progettazione 2026
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                L'Arredamento come <br class="hidden md:block"/> <span class="text-primary">Investimento di Stile</span>.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto font-light">
+                Trasformiamo gli spazi in esperienze abitative. Consulenza d'arredo su misura per chi cerca l'eccellenza, in partnership con Mobili Sancassano.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="btn-primary text-lg px-8 py-4">Inizia il Progetto</a>
+                <a href="#features" class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl font-bold hover:bg-white/20 transition text-white">
+                    Scopri i Servizi
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST SECTION -->
+    <section class="py-10 bg-white border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm text-gray-400 font-semibold tracking-widest uppercase mb-6">Partner di fiducia per arredamenti di prestigio</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale">
+                <span class="text-xl font-bold font-serif text-gray-600">Sancassano</span>
+                <span class="text-xl font-bold font-sans text-gray-600">LUBE Cucine</span>
+                <span class="text-xl font-bold font-mono text-gray-600">Calligaris</span>
+                <span class="text-xl font-bold font-serif text-gray-600">Natuzzi</span>
+                <span class="text-xl font-bold font-sans text-gray-600">Scavolini</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES / SERVICES SECTION -->
+    <section id="features" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Eccellenza nel Design</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Non vendiamo solo mobili, creiamo ambienti. La nostra metodologia di consulenza garantisce che ogni pezzo sia perfettamente integrato nel tuo stile di vita.
+                </p>
+            </div>
+
+            <!-- Service 1 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2 h-64 md:h-auto overflow-hidden rounded-lg">
+                    <img 
+                        src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                        alt="Progettazione Cucine Moderne" 
+                        class="w-full h-full object-cover transform hover:scale-105 transition duration-500"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                    >
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-4 text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Living & Cucine su Misura</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Il cuore della casa merita un'attenzione particolare. Progettiamo zone living e cucine che uniscono funzionalità ergonomica ed estetica raffinata, utilizzando i migliori marchi italiani.
+                    </p>
+                    <ul class="space-y-2 mb-6 text-gray-500">
+                        <li class="flex items-center"><span class="text-primary mr-2">✓</span> Design Ergonomico</li>
+                        <li class="flex items-center"><span class="text-primary mr-2">✓</span> Materiali di Pregio</li>
+                        <li class="flex items-center"><span class="text-primary mr-2">✓</span> Rendering 3D</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="w-full md:w-1/2 h-64 md:h-auto overflow-hidden rounded-lg">
+                    <img 
+                        src="https://images.pexels.com/photos/3659683/pexels-photo-3659683.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                        alt="Zona Notte e Relax" 
+                        class="w-full h-full object-cover transform hover:scale-105 transition duration-500"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                    >
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-4 text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Zona Notte & Comfort</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Il riposo è essenziale. Creiamo camere da letto che sono veri santuari di pace, selezionando letti, armadiature e complementi che garantiscono il massimo comfort acustico e visivo.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Richiedi un preventivo &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2 h-64 md:h-auto overflow-hidden rounded-lg">
+                    <img 
+                        src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                        alt="Interior Design Consulting" 
+                        class="w-full h-full object-cover transform hover:scale-105 transition duration-500"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                    >
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-4 text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Consulenza d'Interni Completa</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Dalla planimetria alla scelta dei tessuti. I nostri consulenti ti guidano in ogni fase, assicurando che ogni dettaglio rifletta la tua personalità e ottimizzi lo spazio disponibile.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-10 px-4 bg-gray-50">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Cosa dicono i nostri clienti</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Review 1 -->
+                <div class="dna-card p-8">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-600 mb-6 italic">"Un servizio impeccabile. Hanno trasformato il mio vecchio salotto in uno spazio moderno e luminoso. La consulenza di Rujetilon è stata fondamentale."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 font-bold mr-3">LB</div>
+                        <div>
+                            <p class="font-bold text-gray-800">Luca Bianchi</p>
+                            <p class="text-xs text-gray-500">Milano</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="dna-card p-8">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-600 mb-6 italic">"Professionalità e cortesia. I mobili sono di altissima qualità e il montaggio è stato perfetto. Consiglio vivamente per chi cerca stile."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 font-bold mr-3">GR</div>
+                        <div>
+                            <p class="font-bold text-gray-800">Giulia Rossi</p>
+                            <p class="text-xs text-gray-500">Torino</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="dna-card p-8">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-600 mb-6 italic">"Finalmente una consulenza vera, non solo vendita. Mi hanno aiutato a ottimizzare gli spazi della mia cucina piccola con soluzioni geniali."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 font-bold mr-3">MV</div>
+                        <div>
+                            <p class="font-bold text-gray-800">Marco Verdi</p>
+                            <p class="text-xs text-gray-500">Genova</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-20 px-4">
+        <div class="max-w-3xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">Domande Frequenti</h2>
+            <div class="space-y-4">
+                
+                <details class="group border-b border-gray-100 pb-4">
+                    <summary class="flex justify-between items-center cursor-pointer font-medium text-gray-800 list-none">
+                        <span>Offrite servizio di progettazione 3D?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                        Sì, offriamo un servizio completo di rendering 3D per aiutarti a visualizzare il risultato finale prima dell'acquisto, garantendo che ogni dettaglio sia perfetto.
+                    </p>
+                </details>
+
+                <details class="group border-b border-gray-100 pb-4">
+                    <summary class="flex justify-between items-center cursor-pointer font-medium text-gray-800 list-none">
+                        <span>Quali sono i tempi di consegna?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                        I tempi variano in base al prodotto e alla personalizzazione richiesta. Generalmente, per mobili su misura, i tempi si aggirano tra le 4 e le 8 settimane.
+                    </p>
+                </details>
+
+                <details class="group border-b border-gray-100 pb-4">
+                    <summary class="flex justify-between items-center cursor-pointer font-medium text-gray-800 list-none">
+                        <span>Effettuate consegne in tutta Italia?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                        Sì, organizziamo spedizioni e montaggio in tutto il territorio nazionale tramite partner logistici specializzati nel trasporto di arredamento.
+                    </p>
+                </details>
+
+                <details class="group border-b border-gray-100 pb-4">
+                    <summary class="flex justify-between items-center cursor-pointer font-medium text-gray-800 list-none">
+                        <span>Offrite garanzia sui prodotti?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                        Assolutamente. Tutti i nostri prodotti sono coperti da garanzia legale di 2 anni, con estensioni disponibili su specifici marchi e componenti.
+                    </p>
+                </details>
+
+                <details class="group pb-4">
+                    <summary class="flex justify-between items-center cursor-pointer font-medium text-gray-800 list-none">
+                        <span>È possibile richiedere un appuntamento?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                        Certamente. Consigliamo di prenotare un appuntamento tramite il modulo di contatto qui sotto per garantire la disponibilità di un nostro consulente dedicato.
+                    </p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Inizia il Tuo Progetto</h2>
+                <p class="text-gray-600">Compila il modulo per una consulenza gratuita senza impegno.</p>
+            </div>
+
+            <div class="dna-card">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    
+                    <!-- Contact Info -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-6 text-gray-800">Rujetilon Consulting</h3>
+                        <p class="text-gray-600 mb-6">
+                            Siamo qui per rispondere a tutte le tue domande sull'arredamento e il design d'interni.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="text-primary mt-1 mr-3">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-800">Sede Operativa</p>
+                                    <p class="text-gray-600">Italia (Servizio Online & Showroom Partner)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-primary mt-1 mr-3">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-800">Orari di Consulenza</p>
+                                    <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
+                                    <p class="text-gray-600">Sab: 09:00 - 13:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form -->
+                    <div>
+                        <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                                <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Telefono</label>
+                                <input type="tel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tipo di Progetto</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition">
+                                    <option>Cucina</option>
+                                    <option>Soggiorno / Living</option>
+                                    <option>Camera da Letto</option>
+                                    <option>Arredamento Completo</option>
+                                    <option>Altro</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Messaggio</label>
+                                <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"></textarea>
+                            </div>
+                            <button type="submit" class="w-full btn-primary mt-2">Invia Richiesta</button>
+                        </form>
+
+                        <!-- Success Message -->
+                        <div id="success-msg" class="hidden text-center py-10">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Messaggio Inviato!</h3>
+                            <p class="text-gray-600">Grazie per averci contattato. Un nostro consulente ti risponderà entro 24 ore lavorative.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-white text-lg font-bold mb-4">Rujetilon Consulting</h3>
+                    <p class="text-sm leading-relaxed mb-4">
+                        Questo è un sito promozionale indipendente gestito da Rujetilon Consulting, che agisce come affiliato marketing per Mobili Sancassano. Il nostro obiettivo è connettere i clienti con le migliori soluzioni di arredamento.
+                    </p>
+                    <p class="text-xs">&copy; 2026 Rujetilon Consulting. Tutti i diritti riservati.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Link Rapidi</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#features" class="hover:text-primary transition">Servizi</a></li>
+                        <li><a href="#reviews" class="hover:text-primary transition">Recensioni</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition">Contatti</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <div class="space-y-2 text-sm">
+                        <!-- PRIVACY POLICY -->
+                        <details class="cursor-pointer">
+                            <summary class="hover:text-white transition">Privacy Policy</summary>
+                            <div class="mt-2 p-4 bg-gray-800 rounded text-xs leading-relaxed absolute left-4 right-4 md:static md:w-96 z-50">
+                                <strong class="block text-white mb-2">Informativa sulla Privacy</strong>
+                                Rujetilon Consulting si impegna a proteggere la tua privacy. Questa Informativa spiega come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali. Raccogliamo informazioni come nome e numero di telefono solo quando le fornisci volontariamente tramite i nostri moduli di contatto.
+                                <br><br>
+                                <strong>Utilizzo dei Dati:</strong> Utilizziamo i tuoi dati esclusivamente per rispondere alle tue richieste di consulenza e per migliorare i nostri servizi. Non vendiamo, scambiamo o trasferiamo a terzi le tue informazioni personali identificabili, eccetto per i partner di fiducia che ci assistono nell'operatività del nostro sito web (es. Mobili Sancassano), a condizione che tali parti accettino di mantenere riservate queste informazioni.
+                                <br><br>
+                                <strong>Sicurezza:</strong> Implementiamo una varietà di misure di sicurezza per mantenere la sicurezza dei tuoi dati personali. Utilizziamo crittografia e protocolli sicuri.
+                                <br><br>
+                                <strong>I Tuoi Diritti:</strong> Hai il diritto di accedere, rettificare o cancellare i tuoi dati in qualsiasi momento. Per esercitare questi diritti, ti preghiamo di contattarci tramite il modulo sul sito.
+                                <br><br>
+                                <strong>Modifiche:</strong> Ci riserviamo il diritto di aggiornare questa policy in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina.
+                            </div>
+                        </details>
+
+                        <!-- TERMS OF SERVICE -->
+                        <details class="cursor-pointer">
+                            <summary class="hover:text-white transition">Termini di Servizio</summary>
+                            <div class="mt-2 p-4 bg-gray-800 rounded text-xs leading-relaxed absolute left-4 right-4 md:static md:w-96 z-50">
+                                <strong class="block text-white mb-2">Termini e Condizioni</strong>
+                                Benvenuto su Rujetilon Consulting. Utilizzando questo sito, accetti di rispettare i seguenti termini e condizioni. Se non sei d'accordo con una qualsiasi parte di questi termini, ti preghiamo di non utilizzare il nostro sito web.
+                                <br><br>
+                                <strong>Uso del Sito:</strong> Il contenuto delle pagine di questo sito web è per tua informazione generale e uso. È soggetto a modifiche senza preavviso. Né noi né terzi forniamo alcuna garanzia o dichiarazione circa l'accuratezza, la tempestività, le prestazioni, la completezza o l'idoneità delle informazioni e dei materiali trovati o offerti su questo sito.
+                                <br><br>
+                                <strong>Limitazione di Responsabilità:</strong> Rujetilon Consulting non sarà responsabile per eventuali danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito.
+                                <br><br>
+                                <strong>Proprietà Intellettuale:</strong> Questo sito contiene materiale che è di nostra proprietà o concesso in licenza a noi. Questo materiale include, ma non è limitato a, il design, il layout, l'aspetto e la grafica. La riproduzione è vietata se non in conformità con l'avviso di copyright.
+                                <br><br>
+                                <strong>Legge Applicabile:</strong> L'uso di questo sito web e qualsiasi controversia derivante da tale uso del sito web è soggetto alle leggi dello stato in cui operiamo.
+                            </div>
+                        </details>
+
+                        <!-- REFUND POLICY -->
+                        <details class="cursor-pointer">
+                            <summary class="hover:text-white transition">Politica Rimborsi</summary>
+                            <div class="mt-2 p-4 bg-gray-800 rounded text-xs leading-relaxed absolute left-4 right-4 md:static md:w-96 z-50">
+                                <strong class="block text-white mb-2">Politica di Reso e Rimborso</strong>
+                                Rujetilon Consulting agisce come intermediario di consulenza. Per i prodotti fisici acquistati tramite i nostri partner (Mobili Sancassano), si applicano le politiche di reso del venditore originale e le leggi a tutela del consumatore vigenti.
+                                <br><br>
+                                <strong>Diritto di Recesso:</strong> Conformemente alla normativa vigente, il cliente ha il diritto di recedere dal contratto di acquisto per qualsiasi motivo, senza necessità di fornire spiegazioni e senza alcuna penalità, entro 14 giorni dalla consegna dei prodotti.
+                                <br><br>
+                                <strong>Procedura:</strong> Per esercitare tale diritto, il cliente dovrà inviare una comunicazione scritta. Una volta pervenuta la suddetta comunicazione di recesso, il Servizio Clienti provvederà rapidamente a comunicare al cliente le istruzioni sulla modalità di restituzione della merce.
+                                <br><br>
+                                <strong>Condizioni:</strong> Il diritto di recesso è comunque sottoposto alle seguenti condizioni: il diritto si applica al prodotto acquistato nella sua interezza; il bene acquistato dovrà essere integro e restituito nella confezione originale, completa in tutte le sue parti.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 border-t border-gray-700 transform translate-y-full transition duration-300">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-center md:text-left">
+                Utilizziamo i cookie per migliorare la tua esperienza. Continuando a navigare accetti la nostra 
+                <span class="text-primary cursor-pointer hover:underline">Privacy Policy</span>.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="bg-primary text-white px-6 py-2 rounded text-sm font-bold hover:opacity-90 transition">Accetta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        }
+
+        // 2. Form Handling
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('lead-form');
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+
+            btn.innerText = 'Invio in corso...';
+            btn.disabled = true;
+
+            // Simulate API latency
+            setTimeout(() => {
+                form.style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+                // Optional: Reset form logic could go here
+            }, 1500);
+        }
+
+        // 3. Smooth Scroll Intercept
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    toggleMenu(); // Close mobile menu if open
+                    // Close menu logic if needed explicitly
+                    if(document.getElementById('mobile-menu').classList.contains('active')) {
+                         document.getElementById('mobile-menu').classList.remove('active');
+                    }
+                    
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to contact if ID not found
+                    console.warn('Section not found:', targetId, 'Redirecting to #contact');
+                    const contactSection = document.querySelector('#contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // 4. Cookie Banner Logic
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
