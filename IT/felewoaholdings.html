@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felewoa Holdings - Formazione & Sviluppo Capitale Umano</title>
+    <meta name="description" content="Il miglior investimento per il tuo futuro professionale. Scopri i migliori corsi e percorsi formativi selezionati per te.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        /* DNA CALCULATIONS:
+           Domain: corsidia.com (12 chars)
+           VAR A (Geometry): 12 % 3 = 0 -> 0px (Sharp)
+           VAR B (Physics): 'c' (code 99) % 3 = 0 -> Flat (Border separation)
+           VAR C (Surface): 'm' (code 109) % 3 = 1 -> Warm (#fffdf5)
+           VAR D (Palette): Education/Niche -> Teal (#0d9488)
+        */
+
+        :root {
+            --primary: #0d9488; /* Teal-600 */
+            --surface: #fffdf5; /* Cream White */
+            --radius: 0px;      /* Sharp edges */
+            --shadow: 0 0 0 1px #e5e7eb; /* Flat Border look */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            background-color: #0f766e; /* Darker Teal */
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* LEGAL & DETAILS */
+        details summary {
+            cursor: pointer;
+            padding: 1rem;
+            background: rgba(0,0,0,0.02);
+            font-weight: 600;
+            list-style: none;
+            position: relative;
+        }
+        details summary::after {
+            content: '+';
+            position: absolute;
+            right: 1rem;
+        }
+        details[open] summary::after {
+            content: '-';
+        }
+        details[open] div {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* NAVIGATION */
+        .nav-link {
+            position: relative;
+            font-weight: 600;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 hidden">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm">Utilizziamo i cookie per migliorare la tua esperienza formativa. Continuando, accetti la nostra politica.</p>
+            <div class="flex gap-2">
+                <button onclick="acceptCookies()" class="bg-white text-gray-900 px-4 py-2 text-sm font-bold uppercase" style="border-radius: var(--radius);">Accetta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold tracking-tighter text-gray-900">
+                        FELEWOA<span class="text-primary">HOLDINGS</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-primary nav-link">Corsi & Master</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary nav-link">Testimonianze</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary nav-link">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm px-6 py-2">Richiedi Info</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Corsi & Master</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Testimonianze</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Domande Frequenti</a>
+                <a href="#contact" class="block w-full text-center px-3 py-3 mt-4 btn-primary">Contattaci</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Logic Bridge) -->
+    <div class="relative bg-gray-900 h-screen-3/4 flex items-center justify-center text-center px-4 overflow-hidden">
+        <!-- Overlay & Image -->
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920" 
+                alt="Formazione professionale meeting" 
+                class="w-full h-full object-cover opacity-40"
+                referrerpolicy="no-referrer"
+            >
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto mt-12 mb-12">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+                Il miglior <span class="text-primary">investimento</span> per il tuo futuro è la competenza.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Felewoa Holdings seleziona i percorsi formativi più autorevoli per trasformare il tuo potenziale in capitale professionale concreto.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#features" class="btn-primary text-lg">Trova il Tuo Corso</a>
+                <a href="#contact" class="bg-white text-gray-900 font-bold py-4 px-8 border border-white hover:bg-gray-100 transition-colors" style="border-radius: var(--radius);">Parla con un Esperto</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRUST LOGOS (Simulated) -->
+    <div class="bg-white border-b border-gray-200 py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-6">Partner Didattici di Eccellenza</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale">
+                <span class="text-xl font-bold text-gray-700">DigitalAcademy</span>
+                <span class="text-xl font-bold text-gray-700">TechMaster Institute</span>
+                <span class="text-xl font-bold text-gray-700">NextGen Skills</span>
+                <span class="text-xl font-bold text-gray-700">GlobalLearning</span>
+                <span class="text-xl font-bold text-gray-700">FutureWork Lab</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURES / SERVICES SECTION -->
+    <section id="features" class="py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Sblocca il Tuo Potenziale</h2>
+                <p class="text-lg text-gray-600">Accesso esclusivo ai migliori percorsi formativi selezionati per ogni esigenza di carriera.</p>
+            </div>
+
+            <!-- Service 1 -->
+            <div class="dna-card flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Programmazione e Coding" 
+                         class="w-full h-64 object-cover" 
+                         style="border-radius: var(--radius);"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Corsi Professionalizzanti</h3>
+                    <p class="text-gray-600 mb-6">
+                        Dall'IT al Digital Marketing, passando per il Design e la gestione aziendale. Trova il corso che ti fornirà le competenze tecniche immediatamente spendibili nel mercato del lavoro. Programmi aggiornati per le richieste reali delle aziende.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Scopri i cataloghi &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="dna-card flex flex-col md:flex-row-reverse gap-8 items-center">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/5940721/pexels-photo-5940721.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Consulenza e Orientamento" 
+                         class="w-full h-64 object-cover" 
+                         style="border-radius: var(--radius);"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Orientamento alla Carriera</h3>
+                    <p class="text-gray-600 mb-6">
+                        Non sai quale strada prendere? I nostri esperti ti aiuteranno ad analizzare le tue inclinazioni e le tendenze del mercato per indirizzarti verso il percorso di studi più fruttuoso per il tuo futuro lavorativo.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Prenota una consulenza &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="dna-card flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Formazione Finanziata" 
+                         class="w-full h-64 object-cover" 
+                         style="border-radius: var(--radius);"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Formazione Finanziata e Master</h3>
+                    <p class="text-gray-600 mb-6">
+                        Accedi a corsi finanziati o a Master di alto livello. Collaboriamo con enti accreditati per offrirti opportunità di apprendimento a condizioni vantaggiose o completamente gratuite per specifiche categorie.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Verifica idoneità &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="reviews" class="py-12">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Cosa dicono i nostri studenti</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="dna-card p-6">
+                    <div class="text-primary mb-4 text-2xl">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Grazie a Felewoa Holdings ho trovato il master in Project Management perfetto. Oggi lavoro in una multinazionale a Milano."</p>
+                    <div class="font-bold text-gray-900">- Marco Rossi</div>
+                    <div class="text-sm text-gray-500">Project Manager</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="dna-card p-6">
+                    <div class="text-primary mb-4 text-2xl">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"L'orientamento è stato fondamentale. Ero confusa su quale linguaggio di programmazione imparare, mi hanno indirizzato benissimo."</p>
+                    <div class="font-bold text-gray-900">- Giulia Bianchi</div>
+                    <div class="text-sm text-gray-500">Junior Developer</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="dna-card p-6">
+                    <div class="text-primary mb-4 text-2xl">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Un servizio serio e puntuale. Mi hanno aiutato a trovare un corso finanziato dalla regione che non conoscevo."</p>
+                    <div class="font-bold text-gray-900">- Luca Verdi</div>
+                    <div class="text-sm text-gray-500">Libero Professionista</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-12">
+        <div class="max-w-5xl mx-auto px-4 dna-card">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Domande Frequenti</h2>
+            
+            <details class="mb-4">
+                <summary class="text-gray-800">I corsi sono interamente online?</summary>
+                <div class="text-gray-600 mt-2">
+                    La maggior parte dei corsi promossi offre modalità e-learning o live streaming, ma disponiamo anche di partnership con scuole che offrono lezioni in presenza a Milano, Roma e altre città.
+                </div>
+            </details>
+
+            <details class="mb-4">
+                <summary class="text-gray-800">Rilasciate certificazioni riconosciute?</summary>
+                <div class="text-gray-600 mt-2">
+                    Noi agiamo come connettori, ma i nostri partner formativi rilasciano certificazioni valide a livello europeo o attestati di frequenza, a seconda del tipo di corso scelto.
+                </div>
+            </details>
+
+            <details class="mb-4">
+                <summary class="text-gray-800">Quanto costano i servizi di consulenza?</summary>
+                <div class="text-gray-600 mt-2">
+                    Il servizio di ricerca corsi base è gratuito per l'utente. Alcuni percorsi di coaching personalizzato potrebbero prevedere un investimento, che verrà comunicato in trasparenza.
+                </div>
+            </details>
+
+            <details class="mb-4">
+                <summary class="text-gray-800">Ci sono corsi gratuiti per disoccupati?</summary>
+                <div class="text-gray-600 mt-2">
+                    Sì, monitoriamo costantemente i bandi regionali e i fondi interprofessionali (es. FormaTemp) per segnalare opportunità di formazione finanziata completamente gratuita.
+                </div>
+            </details>
+
+            <details>
+                <summary class="text-gray-800">Come posso iscrivermi?</summary>
+                <div class="text-gray-600 mt-2">
+                    Compila il modulo di contatto qui sotto specificando il tuo interesse. Un nostro consulente ti contatterà per fornirti tutte le informazioni necessarie per l'iscrizione presso l'ente erogatore.
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card flex flex-col md:flex-row gap-12">
+                
+                <!-- Contact Info -->
+                <div class="w-full md:w-1/3">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Contattaci</h3>
+                    <p class="text-gray-600 mb-6">Il nostro team è pronto ad aiutarti a scegliere il percorso giusto per la tua crescita.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span class="text-gray-700">Via G.B. Pergolesi, 2A<br>20124 Milano (MI)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span class="text-gray-700">Lun - Ven: 09:00 - 18:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="w-full md:w-2/3 bg-gray-50 p-6 rounded" style="border-radius: var(--radius);">
+                    <form id="lead-form" onsubmit="handleForm(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Nome</label>
+                                <input type="text" required class="w-full p-3 border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Mario Rossi" style="border-radius: var(--radius);">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Telefono</label>
+                                <input type="tel" required class="w-full p-3 border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="+39 333 ..." style="border-radius: var(--radius);">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Area di Interesse</label>
+                            <select class="w-full p-3 border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none" style="border-radius: var(--radius);">
+                                <option>Scegli un settore...</option>
+                                <option>Informatica & Web</option>
+                                <option>Marketing & Comunicazione</option>
+                                <option>Amministrazione & Contabilità</option>
+                                <option>Design & Grafica</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Messaggio</label>
+                            <textarea rows="4" class="w-full p-3 border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Descrivi i tuoi obiettivi..." style="border-radius: var(--radius);"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-white font-bold py-3 text-lg mt-2">INVIA RICHIESTA GRATUITA</button>
+                        <p class="text-xs text-gray-500 mt-2">I tuoi dati sono al sicuro. Non inviamo spam.</p>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-12">
+                        <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Messaggio Inviato!</h3>
+                        <p class="text-gray-600">Grazie per averci contattato. Un nostro consulente formativo ti risponderà entro 24 ore lavorative.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-auto">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-8">
+                <h4 class="text-white text-lg font-bold mb-2">FELEWOA HOLDINGS</h4>
+                <p class="text-sm">Il tuo partner strategico per l'evoluzione professionale.</p>
+                <p class="text-xs text-gray-500 mt-4 max-w-2xl mx-auto">
+                    Questo è un sito promozionale indipendente gestito da Felewoa Holdings, che agisce in qualità di affiliato e partner marketing per Corsidia. Tutti i marchi registrati appartengono ai rispettivi proprietari.
+                </p>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 space-y-4">
+                
+                <!-- PRIVACY POLICY -->
+                <details>
+                    <summary class="text-xs uppercase tracking-widest text-gray-500 hover:text-white">Informativa sulla Privacy</summary>
+                    <div class="text-xs text-justify p-4 bg-gray-800 rounded mt-2">
+                        <p class="mb-2">La tua privacy è fondamentale per Felewoa Holdings. La presente Informativa sulla Privacy descrive come raccogliamo, utilizziamo, proteggiamo e condividiamo le tue informazioni personali quando visiti il nostro sito web o utilizzi i nostri servizi. Accedendo al nostro sito, accetti le pratiche descritte in questa informativa. Raccogliamo informazioni che ci fornisci volontariamente, come il tuo nome, numero di telefono e preferenze formative attraverso i moduli di contatto. Utilizziamo questi dati esclusivamente per fornirti le informazioni richieste sui corsi di formazione, per migliorare la qualità del nostro servizio e per adempiere agli obblighi legali.</p>
+                        <p class="mb-2">Non vendiamo né affittiamo i tuoi dati personali a terzi per scopi di marketing senza il tuo esplicito consenso. Tuttavia, potremmo condividere i tuoi dati con i nostri partner di formazione (inclusa Corsidia e le scuole affiliate) esclusivamente al fine di facilitare la tua iscrizione o richiesta di informazioni relativa ai corsi di tuo interesse. Implementiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, alterazioni o distruzioni. I tuoi dati vengono conservati solo per il tempo necessario a soddisfare le finalità per cui sono stati raccolti, salvo diversamente richiesto dalla legge.</p>
+                        <p>Hai il diritto di accedere, rettificare, cancellare o limitare il trattamento dei tuoi dati personali in qualsiasi momento. Per esercitare tali diritti, ti preghiamo di contattarci attraverso i canali ufficiali indicati sul sito. Utilizziamo cookie tecnici per garantire il funzionamento del sito e cookie analitici per monitorare il traffico in forma anonima. Continuando la navigazione, acconsenti all'uso dei cookie. Ci riserviamo il diritto di modificare questa informativa in qualsiasi momento; le modifiche saranno pubblicate su questa pagina con la data di aggiornamento.</p>
+                    </div>
+                </details>
+
+                <!-- TERMS OF SERVICE -->
+                <details>
+                    <summary class="text-xs uppercase tracking-widest text-gray-500 hover:text-white">Termini e Condizioni</summary>
+                    <div class="text-xs text-justify p-4 bg-gray-800 rounded mt-2">
+                        <p class="mb-2">Benvenuto su Felewoa Holdings. L'utilizzo di questo sito web è regolato dai seguenti Termini e Condizioni. Accedendo e utilizzando il sito, accetti di essere vincolato da questi termini. Il contenuto di questo sito è fornito a scopo informativo e promozionale per presentare opportunità di formazione e corsi professionali offerti da terze parti. Felewoa Holdings agisce come intermediario pubblicitario e non è l'ente erogatore diretto dei corsi, a meno che non sia specificato diversamente. Sebbene ci impegniamo a mantenere le informazioni aggiornate e corrette, non garantiamo l'accuratezza, la completezza o l'idoneità delle informazioni relative ai corsi, alle date o ai prezzi, che sono soggetti a modifiche da parte degli enti organizzatori.</p>
+                        <p class="mb-2">L'utente accetta di utilizzare il sito solo per scopi leciti e di non violare i diritti di proprietà intellettuale di Felewoa Holdings o di terzi. Tutti i contenuti, inclusi testi, grafica, loghi e immagini, sono protetti dalle leggi sul copyright. È vietata la riproduzione non autorizzata. Felewoa Holdings non sarà responsabile per eventuali danni diretti, indiretti o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito o i servizi collegati. I collegamenti a siti web di terzi sono forniti per comodità e non implicano l'approvazione dei contenuti di tali siti.</p>
+                        <p>Ci riserviamo il diritto di modificare o interrompere il servizio in qualsiasi momento senza preavviso. In caso di controversie legali derivanti dall'uso di questo sito, esse saranno regolate dalle leggi dello stato in cui ha sede Felewoa Holdings. L'invio di dati attraverso i moduli di contatto costituisce una richiesta esplicita di essere ricontattati per scopi informativi. L'utente dichiara di aver letto, compreso e accettato integralmente questi termini.</p>
+                    </div>
+                </details>
+
+                <!-- REFUND POLICY (Adaptation) -->
+                <details>
+                    <summary class="text-xs uppercase tracking-widest text-gray-500 hover:text-white">Politica di Rimborso e Cancellazione</summary>
+                    <div class="text-xs text-justify p-4 bg-gray-800 rounded mt-2">
+                        <p class="mb-2">Poiché Felewoa Holdings agisce principalmente come piattaforma di connessione tra utenti ed enti di formazione, le politiche di rimborso e cancellazione applicabili sono quelle specifiche dell'ente che eroga il corso scelto. Felewoa Holdings non incassa direttamente pagamenti per i corsi elencati, salvo diversa specifica per servizi di consulenza premium diretti. Si consiglia vivamente agli utenti di leggere attentamente i termini contrattuali forniti dalla scuola o dall'istituto di formazione prima di finalizzare qualsiasi iscrizione o pagamento.</p>
+                        <p class="mb-2">In generale, la maggior parte degli istituti prevede il diritto di recesso entro 14 giorni dalla sottoscrizione del contratto, come previsto dalla normativa sui consumatori, a meno che il corso non sia già iniziato o sia stato interamente fruito. Per i servizi direttamente forniti da Felewoa Holdings (es. consulenze one-to-one), eventuali richieste di rimborso devono essere presentate per iscritto entro 7 giorni dall'acquisto, a condizione che il servizio non sia stato ancora erogato. Non sono previsti rimborsi per servizi già usufruiti o per mancata partecipazione dell'utente senza preavviso.</p>
+                        <p>Felewoa Holdings non è responsabile per cancellazioni, rinvii o modifiche ai programmi dei corsi decise dagli enti organizzatori terzi. In tali casi, l'utente dovrà rivolgersi direttamente all'ente formativo per ottenere eventuali rimborsi o voucher. Ci impegniamo comunque a fornire assistenza e mediazione per garantire la migliore esperienza possibile ai nostri utenti, pur non assumendo responsabilità finanziaria diretta per le transazioni avvenute tra utente ed ente terzo.</p>
+                    </div>
+                </details>
+
+            </div>
+
+            <div class="text-center pt-8 text-xs text-gray-600">
+                &copy; 2026 Felewoa Holdings. Tutti i diritti riservati.
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // Smooth Scroll & Routing Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to contact if section missing
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth'});
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Form Simulation Logic
+        function handleForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Invio in corso...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+
+            setTimeout(() => {
+                document.getElementById('lead-form').style.display = 'none';
+                document.getElementById('success-msg').classList.remove('hidden');
+                document.getElementById('success-msg').style.display = 'block';
+            }, 1500);
+        }
+
+        // Cookie Banner Logic
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
