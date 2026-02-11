@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tegaza Civeex Group | Arquitectura y Diseño Interior</title>
+    <meta name="description" content="Expertos en reformas integrales y diseño de interiores. Tegaza Civeex Group transforma su vivienda en un activo de valor y confort.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* DESIGN DNA MIXING 
+           Target: homespace.es
+           Length: 12 % 3 = 0 -> Sharp (0px)
+           First Char: 'h' (104) % 3 = 2 -> Hard (Neo-Brutalist Shadow)
+           Last Char: 's' (115) % 3 = 1 -> Warm Surface (#fffdf5)
+           Niche: Interior Design/Construction -> Primary: Teal (#0f766e)
+        */
+        :root {
+            --primary: #0f766e;
+            --surface: #fffdf5;
+            --radius: 0px;
+            --shadow: 4px 4px 0px 0px #1f2937;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Gray background for contrast */
+            color: #1f2937;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #1f2937; /* Adjusted border for Neo-Brutalist look */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            border: 2px solid #1f2937;
+        }
+
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #1f2937;
+        }
+
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #1f2937;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* Legal & Details */
+        details {
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            background: white;
+            margin-bottom: 0.5rem;
+            border-radius: var(--radius);
+        }
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary {
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 text-white p-4 z-50 hidden border-t-4 border-teal-700">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm mb-4 md:mb-0">Utilizamos cookies para garantizar la mejor experiencia en nuestro sitio web. Al continuar, acepta nuestro uso de cookies.</p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="bg-white text-gray-900 px-6 py-2 font-bold uppercase hover:bg-gray-100 transition" style="box-shadow: 4px 4px 0px 0px #0f766e;">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-white border-b-2 border-gray-800 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-black text-gray-900 uppercase tracking-tighter">TEGAZA CIVEEX <span class="text-teal-700">GROUP</span></span>
+                </div>
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-900 hover:text-teal-700 font-bold uppercase text-sm px-3 py-2">Servicios</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-teal-700 font-bold uppercase text-sm px-3 py-2">Proyectos</a>
+                    <a href="#faq" class="text-gray-900 hover:text-teal-700 font-bold uppercase text-sm px-3 py-2">Preguntas</a>
+                </nav>
+                <!-- CTA -->
+                <div class="hidden md:flex">
+                    <a href="#contact" class="btn-primary text-sm">Consulta Gratuita</a>
+                </div>
+                <!-- Mobile Button -->
+                <div class="flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-gray-600 focus:outline-none p-2">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t-2 border-gray-800 p-4">
+            <div class="space-y-2">
+                <a href="#features" class="block text-gray-900 font-bold px-3 py-2 hover:bg-gray-200">Servicios</a>
+                <a href="#reviews" class="block text-gray-900 font-bold px-3 py-2 hover:bg-gray-200">Proyectos</a>
+                <a href="#contact" class="block text-teal-700 font-bold px-3 py-2 hover:bg-gray-200">Contactar</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Interiorismo moderno y reformas" loading="lazy">
+            <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center lg:text-left">
+            <div class="lg:w-2/3">
+                <h1 class="text-4xl tracking-tight font-black text-white sm:text-5xl md:text-6xl mb-6">
+                    <span class="block">TRANSFORMAR SU HOGAR ES</span>
+                    <span class="block text-teal-400">LA INVERSIÓN MÁS SEGURA</span>
+                </h1>
+                <p class="mt-3 max-w-md mx-auto text-lg text-gray-300 sm:text-xl md:mt-5 md:max-w-3xl lg:mx-0 font-medium">
+                    En <strong>Tegaza Civeex Group</strong>, fusionamos la funcionalidad arquitectónica con el diseño emocional. Elevamos su calidad de vida mediante reformas integrales y optimización de espacios.
+                </p>
+                <div class="mt-10 sm:flex sm:justify-center lg:justify-start gap-4">
+                    <a href="#contact" class="btn-primary text-center">Planificar Mi Proyecto</a>
+                    <a href="#features" class="bg-white text-gray-900 border-2 border-gray-900 font-bold py-4 px-8 uppercase tracking-wide hover:bg-gray-100 transition shadow-lg text-center" style="box-shadow: 4px 4px 0px 0px #fff;">
+                        Ver Soluciones
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGO CLOUD (Trust) -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold uppercase text-gray-500 tracking-wider mb-6">Estándares de calidad respaldados por</p>
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-4 items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="flex justify-center text-xl font-bold text-gray-400">GRUPO PORCELANOSA</div>
+                <div class="flex justify-center text-xl font-bold text-gray-400">ROCA CERÁMICA</div>
+                <div class="flex justify-center text-xl font-bold text-gray-400">SIMON ELECTRIC</div>
+                <div class="flex justify-center text-xl font-bold text-gray-400">COSENTINO</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURES / SERVICES -->
+    <section id="features" class="py-16">
+        <div class="max-w-5xl mx-auto dna-card relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-teal-700 font-bold tracking-wide uppercase text-sm mb-2">Nuestros Servicios</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Excelencia en Cada Metro Cuadrado
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    No solo renovamos espacios; redefinimos la forma en que interactúa con su entorno.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center p-6 border border-gray-100 bg-white rounded-none hover:bg-gray-50 transition duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 text-teal-700 mx-auto mb-4 border-2 border-teal-700">
+                        <i class="fa-solid fa-house-chimney text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg leading-6 font-bold text-gray-900 mb-2 uppercase">Reformas Integrales</h3>
+                    <p class="text-gray-500">
+                        Gestión completa de obra desde la demolición hasta los acabados finales. Coordinación de gremios, electricidad, fontanería y albañilería bajo una única supervisión técnica.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="text-center p-6 border border-gray-100 bg-white rounded-none hover:bg-gray-50 transition duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 text-teal-700 mx-auto mb-4 border-2 border-teal-700">
+                        <i class="fa-solid fa-pencil-ruler text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg leading-6 font-bold text-gray-900 mb-2 uppercase">Diseño de Interiores</h3>
+                    <p class="text-gray-500">
+                        Proyectos de interiorismo personalizados. Selección de mobiliario, estudios de iluminación y paletas cromáticas para crear ambientes únicos y acogedores.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="text-center p-6 border border-gray-100 bg-white rounded-none hover:bg-gray-50 transition duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 text-teal-700 mx-auto mb-4 border-2 border-teal-700">
+                        <i class="fa-solid fa-couch text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg leading-6 font-bold text-gray-900 mb-2 uppercase">Decoración y Estilismo</h3>
+                    <p class="text-gray-500">
+                        El toque final que marca la diferencia. Asesoramiento en textiles, arte y accesorios para dotar a su hogar de personalidad y elegancia atemporal.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="py-12">
+        <div class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10 uppercase">Experiencias Reales</h2>
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 border-l-4 border-teal-700 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-teal-500">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Transformaron mi piso antiguo en un loft moderno increíble. La gestión de la obra fue impecable y cumplieron los plazos, algo raro en este sector."</p>
+                    <div class="font-bold text-gray-900">- Alejandro M.</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-white p-6 border-l-4 border-teal-700 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-teal-500">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Contratamos el servicio de diseño de interiores para nuestra nueva casa. Tegaza Civeex entendió perfectamente nuestro estilo y necesidades."</p>
+                    <div class="font-bold text-gray-900">- Carmen R.</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-white p-6 border-l-4 border-teal-700 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-teal-500">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Profesionalidad desde el primer presupuesto hasta la entrega de llaves. La calidad de los acabados ha revalorizado nuestra propiedad."</p>
+                    <div class="font-bold text-gray-900">- Javier S.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-12">
+        <div class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center uppercase">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span>¿Ofrecen presupuestos cerrados sin sorpresas?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 px-4 pb-4">
+                        Sí, trabajamos con presupuestos detallados por partidas. Una vez aprobado el diseño y los materiales, el precio es fijo salvo que usted solicite cambios adicionales durante la obra.
+                    </div>
+                </details>
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span>¿Se encargan de tramitar las licencias de obra?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 px-4 pb-4">
+                        Absolutamente. Nuestro equipo técnico gestiona todos los permisos y licencias necesarios con el ayuntamiento para que su obra cumpla con toda la normativa legal vigente.
+                    </div>
+                </details>
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span>¿Cuánto tiempo tarda una reforma integral promedio?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 px-4 pb-4">
+                        Depende de la envergadura del proyecto y los metros cuadrados, pero una reforma integral de una vivienda estándar suele oscilar entre 2 y 4 meses. Establecemos un cronograma al inicio.
+                    </div>
+                </details>
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span>¿Puedo ver ejemplos de trabajos anteriores?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 px-4 pb-4">
+                        Por supuesto. Contamos con un dossier de proyectos realizados que podemos mostrarle en nuestra primera reunión para que evalúe la calidad de nuestros acabados.
+                    </div>
+                </details>
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span>¿Realizan también pequeñas reformas o solo integrales?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 px-4 pb-4">
+                        Nuestro foco principal son las reformas integrales y el diseño de interiores completo, ya que es donde aportamos mayor valor, pero estudiamos cada caso, especialmente reformas de cocinas y baños de alta gama.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & FORM -->
+    <section id="contact" class="py-12 pb-24">
+        <div class="max-w-5xl mx-auto dna-card bg-gray-50">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Info -->
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 uppercase mb-6">Contáctenos</h2>
+                    <p class="text-gray-600 mb-8 text-lg">
+                        ¿Listo para dar el siguiente paso? Rellene el formulario y un arquitecto de nuestro equipo analizará su caso sin compromiso.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <span class="flex items-center justify-center h-12 w-12 rounded bg-teal-100 text-teal-700 border-2 border-teal-700">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-bold text-gray-900 uppercase">Oficina Principal</h3>
+                                <p class="text-gray-500">Calle Velázquez, Madrid, España</p>
+                                <p class="text-xs text-gray-400 mt-1">*Cita previa requerida</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <span class="flex items-center justify-center h-12 w-12 rounded bg-teal-100 text-teal-700 border-2 border-teal-700">
+                                    <i class="fas fa-clock"></i>
+                                </span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-bold text-gray-900 uppercase">Horario</h3>
+                                <p class="text-gray-500">Lunes - Viernes: 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-teal-50 border-l-4 border-teal-700 text-sm text-teal-800">
+                        <strong>Nota:</strong> Debido a la alta demanda, estamos agendando nuevas visitas técnicas con 7 días de antelación.
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-white p-8 border border-gray-200 shadow-xl" style="box-shadow: 6px 6px 0px 0px #e5e7eb;">
+                    <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); btn.innerHTML = '<i class=\'fas fa-spinner fa-spin\'></i> Enviando...'; btn.disabled = true; setTimeout(()=>{this.style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2 uppercase text-sm" for="name">Nombre Completo</label>
+                            <input class="w-full px-3 py-3 border-2 border-gray-200 focus:outline-none focus:border-teal-700 transition-colors bg-gray-50" id="name" type="text" required placeholder="Su nombre">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2 uppercase text-sm" for="phone">Teléfono</label>
+                            <input class="w-full px-3 py-3 border-2 border-gray-200 focus:outline-none focus:border-teal-700 transition-colors bg-gray-50" id="phone" type="tel" required placeholder="+34 ...">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2 uppercase text-sm" for="service">Interesado en</label>
+                            <select class="w-full px-3 py-3 border-2 border-gray-200 focus:outline-none focus:border-teal-700 transition-colors bg-gray-50" id="service">
+                                <option>Reforma Integral</option>
+                                <option>Diseño de Interiores</option>
+                                <option>Decoración</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2 uppercase text-sm" for="message">Detalles del Proyecto</label>
+                            <textarea class="w-full px-3 py-3 border-2 border-gray-200 focus:outline-none focus:border-teal-700 transition-colors bg-gray-50 h-32" id="message" required placeholder="Describa brevemente su idea..."></textarea>
+                        </div>
+                        <button class="w-full btn-primary" type="submit">
+                            Solicitar Presupuesto
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="text-center py-10 hidden">
+                        <div class="h-16 w-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-check text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">¡Solicitud Recibida!</h3>
+                        <p class="text-gray-600">Nuestro equipo ha recibido sus datos correctamente. Nos pondremos en contacto con usted en un plazo máximo de 24 horas laborables.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6 border-t-8 border-teal-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold uppercase mb-4">Tegaza Civeex Group</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+                        Especialistas en la creación de espacios habitables de alto standing. Su socio de confianza para reformas y diseño interior en España.
+                    </p>
+                    <p class="mt-4 text-xs text-gray-500 italic">
+                        Este es un sitio promocional independiente gestionado por Tegaza Civeex Group, actuando como afiliado de Homespace.
+                    </p>
+                </div>
+                <div class="text-sm text-gray-400">
+                    <h4 class="font-bold text-white uppercase mb-4">Información Legal</h4>
+                    <!-- LEGAL MODULES -->
+                    <div class="space-y-2">
+                        <details class="bg-gray-800 border-gray-700 rounded-none">
+                            <summary class="text-gray-300 hover:text-white">Política de Privacidad</summary>
+                            <div class="p-4 text-xs text-gray-400 leading-relaxed">
+                                <p class="mb-2">En Tegaza Civeex Group, nos tomamos muy en serio la privacidad de sus datos personales. Esta política de privacidad describe cómo recopilamos, utilizamos y protegemos la información que usted nos proporciona a través de nuestro sitio web. Al utilizar nuestros servicios, usted acepta las prácticas descritas en esta política.</p>
+                                <p class="mb-2">Recopilamos información personal, como su nombre y número de teléfono, únicamente con el fin de gestionar su solicitud de presupuesto o consulta. No compartimos, vendemos ni alquilamos su información personal a terceros no relacionados sin su consentimiento expreso, excepto cuando sea necesario para cumplir con la ley o proteger nuestros derechos.</p>
+                                <p class="mb-2">Implementamos medidas de seguridad técnicas y organizativas adecuadas para proteger sus datos personales contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Sin embargo, tenga en cuenta que ninguna transmisión de datos a través de Internet es completamente segura.</p>
+                                <p class="mb-2">Conservamos su información personal solo durante el tiempo necesario para cumplir con los fines para los que fue recopilada, a menos que la ley exija o permita un período de retención más largo. Usted tiene derecho a acceder, corregir o eliminar su información personal en cualquier momento poniéndose en contacto con nosotros a través de los canales oficiales.</p>
+                                <p>Nos reservamos el derecho de modificar esta política de privacidad en cualquier momento. Cualquier cambio entrará en vigor inmediatamente después de su publicación en el sitio web. Le recomendamos que revise periódicamente esta política para estar informado sobre cómo protegemos su información.</p>
+                            </div>
+                        </details>
+
+                        <details class="bg-gray-800 border-gray-700 rounded-none">
+                            <summary class="text-gray-300 hover:text-white">Términos y Condiciones</summary>
+                            <div class="p-4 text-xs text-gray-400 leading-relaxed">
+                                <p class="mb-2">Bienvenido a Tegaza Civeex Group. Al acceder y utilizar nuestro sitio web, usted acepta cumplir y estar sujeto a los siguientes términos y condiciones de uso. Si no está de acuerdo con alguna parte de estos términos, le rogamos que no utilice nuestro sitio web.</p>
+                                <p class="mb-2">El contenido de las páginas de este sitio web es para su información general y uso. Está sujeto a cambios sin previo aviso. Ni nosotros ni terceros ofrecemos ninguna garantía en cuanto a la exactitud, puntualidad, rendimiento, integridad o idoneidad de la información y los materiales encontrados u ofrecidos en este sitio web para cualquier propósito particular.</p>
+                                <p class="mb-2">El uso de cualquier información o material en este sitio web es bajo su propio riesgo, por lo cual no seremos responsables. Será su propia responsabilidad asegurarse de que cualquier producto, servicio o información disponible a través de este sitio web cumpla con sus requisitos específicos.</p>
+                                <p class="mb-2">Este sitio web contiene material que es propiedad nuestra o tiene licencia para nosotros. Este material incluye, pero no se limita a, el diseño, la maquetación, el aspecto, la apariencia y los gráficos. La reproducción está prohibida salvo de conformidad con el aviso de derechos de autor, que forma parte de estos términos y condiciones.</p>
+                                <p>El uso no autorizado de este sitio web puede dar lugar a una reclamación por daños y perjuicios y/o ser un delito penal. Su uso de este sitio web y cualquier disputa que surja de ese uso del sitio web están sujetos a las leyes de España.</p>
+                            </div>
+                        </details>
+
+                        <details class="bg-gray-800 border-gray-700 rounded-none">
+                            <summary class="text-gray-300 hover:text-white">Política de Servicios</summary>
+                            <div class="p-4 text-xs text-gray-400 leading-relaxed">
+                                <p class="mb-2">Tegaza Civeex Group se compromete a proporcionar servicios de intermediación y diseño de alta calidad. Sin embargo, es importante aclarar la naturaleza de nuestra relación contractual con los clientes y proveedores finales de los servicios de construcción.</p>
+                                <p class="mb-2">Todos los presupuestos facilitados a través de esta plataforma son estimaciones iniciales basadas en la información proporcionada por el usuario. El coste final de los servicios puede variar tras una inspección técnica in situ y la definición detallada de los materiales y acabados seleccionados.</p>
+                                <p class="mb-2">No nos hacemos responsables de los retrasos causados por terceros, proveedores de materiales o circunstancias de fuerza mayor. Nos esforzamos por cumplir los plazos acordados, pero estos deben entenderse como aproximaciones sujetas a la realidad técnica de la obra.</p>
+                                <p class="mb-2">Cualquier reclamación sobre la ejecución material de las obras deberá dirigirse a la empresa constructora o instaladora asignada, si bien Tegaza Civeex Group podrá actuar como mediador para facilitar una solución satisfactoria para todas las partes.</p>
+                                <p>La contratación de nuestros servicios implica la aceptación de estas condiciones y la renuncia a reclamaciones que excedan el ámbito de nuestra responsabilidad directa como consultores de diseño y gestión.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500">
+                &copy; 2026 Tegaza Civeex Group. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPTS -->
+    <script>
+        // Smooth Scroll Logic with "Self-Healing" Routing
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to Contact if ID missing
+                    console.warn(`Target ID #${targetId} not found. Redirecting to #contact.`);
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Cookie Logic
+        function acceptCookies() {
+            document.getElementById('cookie-banner').style.display = 'none';
+            localStorage.setItem('cookiesAccepted', 'true');
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+            }
+        };
+    </script>
+
+</body>
+</html>
