@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Samoma Analytics offre consulenza strategica per l'apertura e la gestione di palestre low cost in Italia. Analisi dati per il tuo successo nel fitness.">
+    <title>Samoma Analytics | Sviluppo Business Fitness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- 
+    🎨 CHAMELEON DESIGN DNA 
+    VAR A (Geometry): Length 63 % 3 = 0 -> Sharp (0px)
+    VAR B (Physics): 'h' (104) % 3 = 2 -> Hard (Neo-Brutalist)
+    VAR C (Surface): 'a' (97) % 3 = 1 -> Warm (#fffdf5)
+    VAR D (Palette): Business/Analytics -> Cobalt Blue (#2563EB)
+    -->
+    <style>
+        :root {
+            --primary: #2563EB;
+            --surface: #fffdf5;
+            --radius: 0px;
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Adjusted for Brutalist Logic */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            border: 2px solid #000;
+        }
+        .btn-primary:hover {
+            opacity: 1;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* LEGAL & DETAILS */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 1rem;
+            background: #eee;
+            margin-bottom: 0.5rem;
+            border: 1px solid #000;
+        }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] > summary { background: var(--surface); border-bottom: none; }
+        details > p, details > div {
+            padding: 1rem;
+            border: 1px solid #000;
+            border-top: none;
+            background: #fff;
+        }
+
+        /* FORM INPUTS */
+        input, textarea, select {
+            border: 2px solid #000;
+            border-radius: var(--radius);
+            padding: 0.75rem;
+            width: 100%;
+            background: #fff;
+            margin-bottom: 1rem;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 4px 4px 0 0 var(--primary);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-black text-black tracking-tighter uppercase">
+                        Samoma <span class="text-primary">Analytics</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-900 font-bold hover:text-primary transition">Servizi</a>
+                    <a href="#reviews" class="text-gray-900 font-bold hover:text-primary transition">Successi</a>
+                    <a href="#faq" class="text-gray-900 font-bold hover:text-primary transition">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm">Richiedi Consulenza</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 p-2 border-2 border-black focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black p-4">
+            <a href="#features" class="block py-2 text-gray-900 font-bold">Servizi</a>
+            <a href="#reviews" class="block py-2 text-gray-900 font-bold">Successi</a>
+            <a href="#faq" class="block py-2 text-gray-900 font-bold">FAQ</a>
+            <a href="#contact" class="block py-2 mt-2 text-primary font-black">CONTATTACI ORA</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <!-- Pexels Image: Gym/Business context -->
+            <img class="w-full h-full object-cover opacity-40" 
+                 src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Modern Gym Interior Strategy"
+                 loading="lazy"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Fitness+Business+Analytics'">
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center lg:text-left">
+            <h1 class="text-4xl tracking-tight font-black text-white sm:text-5xl md:text-6xl lg:w-2/3 border-l-8 border-blue-600 pl-6 shadow-xl bg-black bg-opacity-50 p-4">
+                COSTRUISCI IL TUO IMPERO FITNESS SU <span class="text-blue-400">DATI SOLIDI</span>.
+            </h1>
+            <p class="mt-4 max-w-2xl text-xl text-gray-200 lg:mx-0 bg-black bg-opacity-40 p-2 inline-block">
+                Trasformiamo le opportunità del settore Low Cost in profitti reali. Samoma Analytics ti offre l'intelligenza di mercato per lanciare la tua palestra con sicurezza.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 lg:justify-start justify-center">
+                <a href="#contact" class="btn-primary text-center">Analizza il tuo Progetto</a>
+                <a href="#features" class="px-8 py-3 bg-white text-black font-bold border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] transition">Scopri Come</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8">
+        
+        <!-- TRUST INDICATORS -->
+        <div class="max-w-5xl mx-auto mb-16 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Partner strategici per il successo</p>
+            <div class="flex flex-wrap justify-center gap-8 opacity-60 grayscale">
+                <span class="text-2xl font-black text-gray-800">FITNESS<span class="text-gray-400">PRO</span></span>
+                <span class="text-2xl font-black text-gray-800">GYM<span class="text-gray-400">GROWTH</span></span>
+                <span class="text-2xl font-black text-gray-800">MARKET<span class="text-gray-400">LAB</span></span>
+                <span class="text-2xl font-black text-gray-800">REAL<span class="text-gray-400">ESTATE</span></span>
+            </div>
+        </div>
+
+        <!-- FEATURES / SERVICES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-gray-900 uppercase">Soluzioni Integrate</h2>
+                <p class="mt-4 text-lg text-gray-600">Dall'idea all'apertura, forniamo il supporto analitico e operativo necessario.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center p-4 border-2 border-gray-100 hover:border-black transition duration-300">
+                    <div class="h-12 w-12 mx-auto bg-blue-100 text-blue-600 flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_#000] mb-4">
+                        <i class="fas fa-chart-line text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Analisi di Mercato</h3>
+                    <p class="mt-2 text-gray-600 text-sm">Identifichiamo le zone ad alto potenziale in Italia, analizzando demografia e concorrenza per minimizzare i rischi.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="text-center p-4 border-2 border-gray-100 hover:border-black transition duration-300">
+                    <div class="h-12 w-12 mx-auto bg-blue-100 text-blue-600 flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_#000] mb-4">
+                        <i class="fas fa-building text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Sviluppo Franchising</h3>
+                    <p class="mt-2 text-gray-600 text-sm">Ti guidiamo nella selezione e nell'affiliazione ai migliori brand di palestre low cost (es. FitExpress, GimFIVE).</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="text-center p-4 border-2 border-gray-100 hover:border-black transition duration-300">
+                    <div class="h-12 w-12 mx-auto bg-blue-100 text-blue-600 flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_#000] mb-4">
+                        <i class="fas fa-coins text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Business Plan</h3>
+                    <p class="mt-2 text-gray-600 text-sm">Elaboriamo proiezioni finanziarie dettagliate e piani di rientro dell'investimento ottimizzati per il settore fitness.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 text-center uppercase">Cosa Dicono Gli Imprenditori</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="p-6 bg-white border border-gray-200 shadow-sm">
+                    <div class="flex text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Grazie all'analisi di Samoma Analytics abbiamo evitato una location rischiosa e ne abbiamo trovata una molto più redditizia a Torino."</p>
+                    <p class="font-bold text-gray-900">- Marco R., Investitore</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="p-6 bg-white border border-gray-200 shadow-sm">
+                    <div class="flex text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"La loro conoscenza del mondo franchising low cost è impareggiabile. Ci hanno guidato passo dopo passo nell'apertura."</p>
+                    <p class="font-bold text-gray-900">- Elena Bianchi, Imprenditrice</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="p-6 bg-white border border-gray-200 shadow-sm">
+                    <div class="flex text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Un approccio basato sui numeri, non solo sulle sensazioni. Fondamentale per chi vuole fare business seriamente."</p>
+                    <p class="font-bold text-gray-900">- Giovanni D., Sviluppatore Immobiliare</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 text-center uppercase">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>Qual è l'investimento minimo per una palestra low cost?</summary>
+                    <p>L'investimento varia significativamente in base alla metratura e al marchio scelto. Generalmente, si parte da 150.000€ fino a oltre 400.000€ per strutture complete. Samoma Analytics ti aiuta a stimare i costi precisi per la tua zona.</p>
+                </details>
+                <details>
+                    <summary>In quanto tempo si raggiunge il Break-Even Point?</summary>
+                    <p>Con una buona gestione e una posizione strategica, molte palestre low cost raggiungono il punto di pareggio operativo tra il 6° e il 12° mese. I nostri modelli predittivi ti aiuteranno a capire le tempistiche realistiche.</p>
+                </details>
+                <details>
+                    <summary>Fornite supporto anche per la ricerca dei locali?</summary>
+                    <p>Sì, collaboriamo con agenzie immobiliari specializzate per individuare location che rispettino i parametri tecnici e demografici necessari per il successo di un'attività fitness.</p>
+                </details>
+                <details>
+                    <summary>È necessaria esperienza pregressa nel settore?</summary>
+                    <p>Non necessariamente. Il modello franchising è studiato per supportare anche chi non viene dal mondo del fitness, fornendo formazione e procedure operative standardizzate.</p>
+                </details>
+                <details>
+                    <summary>Operate in tutta Italia?</summary>
+                    <p>Sì, Samoma Analytics offre i suoi servizi di consulenza e analisi su tutto il territorio nazionale, dalle grandi città ai centri di provincia.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-black text-gray-900 mb-4 uppercase">Parliamo del tuo progetto</h2>
+                    <p class="text-gray-600 mb-6">Compila il modulo per ricevere una valutazione preliminare gratuita. Il nostro team di analisti ti contatterà al più presto.</p>
+                    
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-primary mt-1"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-900">Sede Operativa</h4>
+                                <p class="text-gray-600">Via del Fitness, Milano, Italia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-clock text-primary mt-1"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-900">Orari</h4>
+                                <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                        <!-- NOTE: Phone number removed as per protocol (not reliably found in source) -->
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" required placeholder="Mario Rossi">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Città di Interesse</label>
+                            <input type="text" required placeholder="Es. Roma, Quartiere X">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Telefono</label>
+                            <input type="tel" required placeholder="+39 333 1234567">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Messaggio (Opzionale)</label>
+                            <textarea rows="3" placeholder="Vorrei aprire una palestra di 500mq..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-center mt-4">
+                            RICHIEDI ANALISI GRATUITA
+                        </button>
+                    </form>
+                    
+                    <!-- SUCCESS MESSAGE -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="mb-4 text-green-500">
+                            <i class="fas fa-check-circle text-5xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Messaggio Inviato!</h3>
+                        <p class="text-gray-600 mt-2">Grazie per aver contattato Samoma Analytics. Un nostro consulente analizzerà la tua richiesta e ti ricontatterà entro 24 ore lavorative.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6 border-t-8 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-black text-white uppercase mb-4">Samoma Analytics</h3>
+                    <p class="text-gray-400 text-sm max-w-md">
+                        Questo è un sito promozionale indipendente gestito da Samoma Analytics, che agisce come affiliato per Vitalowcost e partner del settore. Non siamo l'azienda proprietaria diretta dei marchi citati ma offriamo consulenza e mediazione.
+                    </p>
+                </div>
+                <div class="md:text-right">
+                    <p class="text-gray-400 text-sm">© 2026 Samoma Analytics. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+
+            <!-- LEGAL DETAILS -->
+            <div class="border-t border-gray-800 pt-8 text-gray-400 text-sm">
+                <details class="mb-2">
+                    <summary class="bg-gray-800 text-gray-200 border-none rounded">Informativa sulla Privacy</summary>
+                    <div class="text-gray-800 bg-white">
+                        <h4 class="font-bold mb-2">1. Introduzione</h4>
+                        <p class="mb-2">Samoma Analytics si impegna a proteggere la privacy degli utenti. Questa informativa descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali in conformità con il GDPR e le leggi italiane vigenti.</p>
+                        <h4 class="font-bold mb-2">2. Raccolta Dati</h4>
+                        <p class="mb-2">Raccogliamo dati forniti volontariamente tramite i moduli di contatto, come nome, numero di telefono e informazioni sul progetto. Raccogliamo anche dati tecnici come indirizzi IP e dati di navigazione per scopi di sicurezza e analisi.</p>
+                        <h4 class="font-bold mb-2">3. Utilizzo dei Dati</h4>
+                        <p class="mb-2">I dati vengono utilizzati esclusivamente per rispondere alle richieste di consulenza, fornire preventivi e migliorare i nostri servizi. Non vendiamo i tuoi dati a terzi non autorizzati. Potremmo condividere i dati con partner operativi (es. Vitalowcost) solo se strettamente necessario per erogare il servizio richiesto.</p>
+                        <h4 class="font-bold mb-2">4. Sicurezza</h4>
+                        <p class="mb-2">Adottiamo misure di sicurezza tecniche e organizzative per prevenire la perdita, l'uso improprio o l'alterazione dei tuoi dati personali.</p>
+                        <h4 class="font-bold mb-2">5. Diritti dell'Utente</h4>
+                        <p>Hai il diritto di accedere, rettificare o cancellare i tuoi dati in qualsiasi momento. Per esercitare tali diritti, ti preghiamo di contattarci tramite i canali ufficiali indicati sul sito.</p>
+                    </div>
+                </details>
+                
+                <details class="mb-2">
+                    <summary class="bg-gray-800 text-gray-200 border-none rounded">Termini e Condizioni</summary>
+                    <div class="text-gray-800 bg-white">
+                        <h4 class="font-bold mb-2">1. Accettazione</h4>
+                        <p class="mb-2">Utilizzando il sito web di Samoma Analytics, accetti di essere vincolato dai presenti Termini e Condizioni. Se non accetti parte di questi termini, ti invitiamo a non utilizzare i nostri servizi.</p>
+                        <h4 class="font-bold mb-2">2. Servizi Offerti</h4>
+                        <p class="mb-2">Samoma Analytics offre servizi di consulenza e analisi di mercato per il settore fitness. Le informazioni fornite sul sito hanno scopo puramente informativo e non costituiscono garanzia di guadagno o successo commerciale.</p>
+                        <h4 class="font-bold mb-2">3. Proprietà Intellettuale</h4>
+                        <p class="mb-2">Tutti i contenuti, inclusi testi, grafica, loghi e software, sono proprietà di Samoma Analytics o dei suoi fornitori di contenuti e sono protetti dalle leggi sul copyright.</p>
+                        <h4 class="font-bold mb-2">4. Limitazione di Responsabilità</h4>
+                        <p class="mb-2">Samoma Analytics non sarà responsabile per danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare i nostri servizi. Non garantiamo l'accuratezza o la completezza delle informazioni fornite da terzi.</p>
+                        <h4 class="font-bold mb-2">5. Modifiche</h4>
+                        <p>Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. L'uso continuato del sito dopo le modifiche costituisce accettazione dei nuovi termini.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="bg-gray-800 text-gray-200 border-none rounded">Politica di Rimborso</summary>
+                    <div class="text-gray-800 bg-white">
+                        <h4 class="font-bold mb-2">1. Servizi di Consulenza</h4>
+                        <p class="mb-2">Per i servizi di consulenza personalizzata già erogati, non è previsto alcun rimborso data la natura intellettuale e non restituibile della prestazione.</p>
+                        <h4 class="font-bold mb-2">2. Cancellazione Anticipata</h4>
+                        <p class="mb-2">Se un cliente desidera annullare un contratto di consulenza prima dell'inizio dei lavori, può avere diritto a un rimborso parziale o totale, a discrezione dell'azienda e in base alle spese amministrative già sostenute.</p>
+                        <h4 class="font-bold mb-2">3. Prodotti Digitali</h4>
+                        <p class="mb-2">Per eventuali report digitali acquistati e scaricati, non si applica il diritto di recesso, in conformità con la normativa vigente sui contenuti digitali fruiti immediatamente.</p>
+                        <h4 class="font-bold mb-2">4. Contestazioni</h4>
+                        <p>Eventuali reclami riguardanti la qualità del servizio devono essere presentati per iscritto entro 14 giorni dalla fornitura del servizio stesso. Samoma Analytics si impegna a risolvere amichevolmente qualsiasi controversia.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t-4 border-primary p-4 shadow-lg z-50 hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <p class="text-gray-700 text-sm mb-4 md:mb-0 mr-4">
+                Utilizziamo i cookie per analizzare il traffico e migliorare la tua esperienza. Continuando a navigare accetti l'uso dei cookie.
+            </p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="bg-primary text-white px-6 py-2 rounded-none font-bold shadow-[2px_2px_0px_0px_#000]">ACCETTA</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 hover:text-gray-800 px-4 py-2 font-bold">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // SMART ROUTING: Self-healing anchor tags
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if section missing
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookie_consent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+        
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('cookie_consent')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
