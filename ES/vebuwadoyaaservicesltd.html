@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vebu Services Ltd - Diseño y Decoración de Vanguardia</title>
+    <meta name="description" content="Descubre soluciones de mobiliario y decoración que transforman espacios. Diseño exclusivo a precios accesibles para el hogar moderno.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons (Optional for visuals, adhering to restrictions) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* PHASE 2: DESIGN DNA & VARIABLES */
+        /* 
+           Analysis of https://www.sklum.com/es/ 
+           - VAR A (Geometry): Length 5 ("sklum") % 3 = 2 -> Pill (24px)
+           - VAR B (Physics): 's' (115) % 3 = 1 -> Material Shadow
+           - VAR C (Surface): 'm' (109) % 3 = 1 -> Warm (#fffdf5)
+           - VAR D (Palette): Furniture/Design Niche -> Deep Teal/Sage
+        */
+        :root {
+            --primary: #0f766e; /* Deep Teal/Sage for Interior Design elegance */
+            --surface: #fffdf5; /* Warm Cream */
+            --radius: 24px;     /* Pill Shape */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Material */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base */
+            color: #1f2937;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .dna-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+             background-color: var(--primary);
+             color: #ffffff !important;
+             border-radius: var(--radius);
+             box-shadow: var(--shadow);
+             padding: 1rem 2.5rem;
+             transition: all 0.2s;
+             font-weight: 700;
+             letter-spacing: 0.5px;
+             display: inline-block;
+             text-decoration: none;
+             border: none;
+             cursor: pointer;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+
+        /* BRAND COMPONENT: Secondary Button (Outline) */
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.9rem 2.4rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover { background-color: var(--primary); color: white; }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* COMPONENT: Form Inputs */
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid #d1d5db;
+            background-color: #ffffff;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            ring: 2px var(--primary);
+        }
+
+        /* LEGAL TEXT ACCORDION */
+        details summary {
+            cursor: pointer;
+            padding: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* IMAGE LOADING SKELETON */
+        img {
+            background-color: #e5e7eb;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* MOBILE MENU */
+        #mobile-menu {
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-800 tracking-tight">Vebu Services Ltd</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="text-gray-600 hover:text-primary font-medium transition">Inicio</a>
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Colecciones</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Opiniones</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">Ayuda</a>
+                    <a href="#contact" class="btn-primary">Contacto</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#hero" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Inicio</a>
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Colecciones</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Opiniones</a>
+                <a href="#contact" class="block w-full text-center px-5 py-3 mt-4 btn-primary">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Full Width Exception) -->
+    <div id="hero" class="relative bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <!-- Source: Pexels - Interior Design / Furniture -->
+            <img class="w-full h-full object-cover opacity-60" 
+                 src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Diseño de interiores moderno"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Interior+Design+Concept'">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 flex flex-col justify-center min-h-[600px]">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6 shadow-sm">
+                Gestión Integral de Estilo:<br>
+                <span class="text-green-300">Tu Hogar, Tu Mejor Inversión</span>
+            </h1>
+            <p class="mt-6 text-xl text-gray-200 max-w-2xl mb-10 leading-relaxed">
+                Vebu Services Ltd revoluciona la forma en que equipas tu espacio. Conectamos la funcionalidad con las últimas tendencias de diseño para crear ambientes únicos que inspiran vida.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#features" class="btn-primary text-center">Explorar Catálogo</a>
+                <a href="#contact" class="px-8 py-4 bg-white text-gray-900 rounded-full font-bold shadow-lg hover:bg-gray-100 transition text-center" style="border-radius: var(--radius);">Solicitar Asesoría</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRUST INDICATORS -->
+    <div class="bg-white py-8 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold text-gray-400 tracking-wider uppercase mb-6">Marcas y estilos que inspiran nuestros servicios</p>
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-4">
+                <div class="col-span-1 flex justify-center md:col-span-1 text-gray-400 font-bold text-xl">NORDIC HOME</div>
+                <div class="col-span-1 flex justify-center md:col-span-1 text-gray-400 font-bold text-xl">VOGUE LIVING</div>
+                <div class="col-span-1 flex justify-center md:col-span-1 text-gray-400 font-bold text-xl">INDUSTRIAL CO.</div>
+                <div class="col-span-1 flex justify-center md:col-span-1 text-gray-400 font-bold text-xl">MODERN SPACE</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 space-y-16">
+
+        <!-- FEATURES / SERVICES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card relative">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Nuestras Áreas de <span class="text-primary">Especialización</span>
+                </h2>
+                <p class="mt-4 text-lg text-gray-500">
+                    Seleccionamos y gestionamos lo mejor del diseño internacional para que tú solo te preocupes de disfrutarlo.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="flex flex-col rounded-lg overflow-hidden group">
+                    <div class="h-48 bg-gray-200 w-full overflow-hidden rounded-t-[24px]"> <!-- Manually applying radius variable visually -->
+                        <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+                             src="https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                             alt="Mobiliario de Diseño" loading="lazy">
+                    </div>
+                    <div class="p-6 bg-white flex-1 rounded-b-[24px] border border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mobiliario de Vanguardia</h3>
+                        <p class="text-gray-600 mb-4">Sillas, mesas, sofás y taburetes que definen tendencias. Piezas icónicas adaptadas a la vida moderna con materiales duraderos.</p>
+                        <a href="#contact" class="text-primary font-semibold hover:underline">Consultar catálogo &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex flex-col rounded-lg overflow-hidden group">
+                    <div class="h-48 bg-gray-200 w-full overflow-hidden rounded-t-[24px]">
+                        <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+                             src="https://images.pexels.com/photos/6636248/pexels-photo-6636248.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                             alt="Decoración Textil" loading="lazy">
+                    </div>
+                    <div class="p-6 bg-white flex-1 rounded-b-[24px] border border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Decoración y Textiles</h3>
+                        <p class="text-gray-600 mb-4">Desde alfombras que aportan calidez hasta accesorios decorativos únicos. El toque final que personaliza cualquier estancia.</p>
+                        <a href="#contact" class="text-primary font-semibold hover:underline">Ver detalles &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex flex-col rounded-lg overflow-hidden group">
+                    <div class="h-48 bg-gray-200 w-full overflow-hidden rounded-t-[24px]">
+                        <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+                             src="https://images.pexels.com/photos/1123262/pexels-photo-1123262.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                             alt="Iluminación" loading="lazy">
+                    </div>
+                    <div class="p-6 bg-white flex-1 rounded-b-[24px] border border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Iluminación de Diseño</h3>
+                        <p class="text-gray-600 mb-4">Lámparas de techo, pie y mesa que no solo iluminan, sino que decoran. Crea la atmósfera perfecta con nuestra selección lumínica.</p>
+                        <a href="#contact" class="text-primary font-semibold hover:underline">Explorar luces &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold text-center mb-10 text-gray-900">Lo que dicen nuestros <span class="text-primary">Clientes</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-2xl relative">
+                    <div class="text-primary text-2xl absolute top-4 right-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Vebu Services Ltd me ayudó a encontrar el sofá perfecto para mi salón. La calidad de los materiales y el diseño superaron mis expectativas. El servicio fue impecable."</p>
+                    <div class="font-bold text-gray-900">— María G., Madrid</div>
+                    <div class="text-sm text-gray-500">Renovación de Salón</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-2xl relative">
+                    <div class="text-primary text-2xl absolute top-4 right-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Equipamos toda nuestra oficina con sillas y mesas gestionadas a través de su plataforma. La relación calidad-precio es insuperable en el mercado actual."</p>
+                    <div class="font-bold text-gray-900">— Carlos R., Barcelona</div>
+                    <div class="text-sm text-gray-500">Proyecto Corporativo</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-2xl relative">
+                    <div class="text-primary text-2xl absolute top-4 right-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Buscaba decoración estilo nórdico y encontré exactamente lo que quería. El proceso de pedido y la atención fueron muy profesionales."</p>
+                    <div class="font-bold text-gray-900">— Lucía P., Valencia</div>
+                    <div class="text-sm text-gray-500">Decoración de Hogar</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/3">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Preguntas Frecuentes</h2>
+                    <p class="text-gray-500">Resolvemos tus dudas sobre nuestros servicios de mobiliario y decoración antes de que tomes una decisión.</p>
+                </div>
+                <div class="md:w-2/3 space-y-4">
+                    <details class="group bg-white p-4 rounded-xl border border-gray-200">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-900">
+                            <span>¿Realizan envíos a toda la península?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Sí, gestionamos la logística para entregar en cualquier punto de la península y Baleares. Los plazos varían según el volumen del pedido y la disponibilidad del stock.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white p-4 rounded-xl border border-gray-200">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-900">
+                            <span>¿Qué política de devoluciones tienen?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Disponemos de un periodo de desistimiento de 14 días naturales desde la recepción del producto, siempre que se conserve el embalaje original y el artículo no haya sido montado o utilizado.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white p-4 rounded-xl border border-gray-200">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-900">
+                            <span>¿Ofrecen servicios para profesionales?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Absolutamente. Vebu Services Ltd cuenta con un departamento dedicado a interioristas, arquitectos y empresas (B2B) con condiciones especiales.
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-white p-4 rounded-xl border border-gray-200">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-900">
+                            <span>¿Los muebles requieren montaje?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            La mayoría de nuestros productos se envían desmontados para garantizar su seguridad durante el transporte y reducir costes. Incluyen instrucciones detalladas y herramientas básicas.
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-white p-4 rounded-xl border border-gray-200">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-900">
+                            <span>¿Qué garantía tienen los productos?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Todos nuestros productos cuentan con la garantía legal vigente de 3 años contra defectos de fabricación, conforme a la normativa europea de consumo.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION (No fake map, no fake phone) -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card bg-gray-50">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Contáctanos</h2>
+                    <p class="text-gray-600 text-lg">
+                        ¿Tienes un proyecto en mente? ¿Necesitas asesoramiento sobre alguna pieza en particular? Rellena el formulario y nuestro equipo de diseño te contactará a la brevedad.
+                    </p>
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                        <h4 class="font-bold text-gray-900 mb-2">Oficina Central</h4>
+                        <p class="text-gray-600">Polígono 4, 18<br>46722 Beniarjo<br>Valencia, España</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 text-blue-800 text-sm">
+                        <strong>Nota:</strong> Atendemos todas las consultas exclusivamente a través de nuestro formulario online para garantizar un seguimiento eficiente de su caso.
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-[24px] shadow-lg"> <!-- Manual radius variable applied -->
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Enviando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+                        <input type="text" class="form-input" required placeholder="Tu nombre">
+                        
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Categoría de Interés</label>
+                        <select class="form-input">
+                            <option>Mobiliario Interior</option>
+                            <option>Decoración</option>
+                            <option>Iluminación</option>
+                            <option>Proyecto Integral</option>
+                            <option>Atención al Cliente</option>
+                        </select>
+                        
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+                        <textarea rows="4" class="form-input" required placeholder="Cuéntanos qué necesitas..."></textarea>
+                        
+                        <button type="submit" class="btn-primary w-full mt-2 text-lg">Enviar Solicitud</button>
+                    </form>
+                    
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">¡Mensaje Enviado!</h3>
+                        <p class="text-gray-600 mt-2">Gracias por contactar con Vebu Services Ltd. Un especialista revisará tu solicitud y te responderá en breve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-gray-300 py-12 border-t border-gray-700 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="text-2xl font-bold text-white tracking-tight">Vebu Services Ltd</span>
+                <p class="mt-2 text-sm text-gray-400">Transformando espacios, mejorando vidas.</p>
+            </div>
+            
+            <div class="bg-gray-700 rounded-lg p-4 mb-8 text-center text-xs text-gray-300">
+                <strong>DESCARGO DE RESPONSABILIDAD:</strong> Este es un sitio promocional independiente gestionado por Vebu Services Ltd, actuando como afiliado para Sklum. Todas las marcas comerciales, logotipos e imágenes de productos son propiedad de sus respectivos dueños.
+            </div>
+
+            <!-- LEGAL ACCORDION -->
+            <div class="space-y-4 text-xs text-justify text-gray-400 border-t border-gray-600 pt-6">
+                
+                <details>
+                    <summary>Política de Privacidad</summary>
+                    <p class="mt-2 p-2 bg-gray-900 rounded">
+                        En Vebu Services Ltd, nos tomamos muy en serio la privacidad de nuestros usuarios. Esta política describe cómo recopilamos, usamos y protegemos su información personal. Al utilizar nuestro sitio web, usted acepta las prácticas descritas en esta política. Recopilamos información que usted nos proporciona directamente, como nombre y datos de contacto a través de formularios. Esta información se utiliza exclusivamente para responder a sus consultas y mejorar nuestros servicios. No vendemos, intercambiamos ni transferimos su información personal a terceros sin su consentimiento, excepto cuando sea necesario para cumplir con la ley o proteger nuestros derechos. Implementamos medidas de seguridad técnicas y organizativas para proteger sus datos contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Tenga en cuenta que ninguna transmisión por Internet es 100% segura. Utilizamos cookies para mejorar la experiencia del usuario, como se detalla en nuestra política de cookies. Usted tiene derecho a acceder, rectificar o eliminar sus datos personales en cualquier momento poniéndose en contacto con nosotros a través de los canales oficiales. Nos reservamos el derecho de modificar esta política en cualquier momento, publicando los cambios en esta página. Es su responsabilidad revisar periódicamente esta política. El uso continuado del sitio tras la publicación de cambios constituye su aceptación de los mismos. Para más detalles sobre el tratamiento de datos, consulte la legislación local aplicable en materia de protección de datos.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Términos y Condiciones</summary>
+                    <p class="mt-2 p-2 bg-gray-900 rounded">
+                        Bienvenido a Vebu Services Ltd. Al acceder y utilizar este sitio web, usted acepta cumplir y estar sujeto a los siguientes términos y condiciones de uso. Si no está de acuerdo con alguna parte de estos términos, no debe utilizar nuestro sitio web. El contenido de las páginas de este sitio web es para su información y uso general únicamente; está sujeto a cambios sin previo aviso. Ni nosotros ni terceros ofrecemos ninguna garantía en cuanto a la exactitud, puntualidad, rendimiento, integridad o idoneidad de la información y los materiales encontrados u ofrecidos en este sitio web para cualquier propósito particular. Usted reconoce que dicha información y materiales pueden contener inexactitudes o errores y excluimos expresamente la responsabilidad por tales inexactitudes o errores en la máxima medida permitida por la ley. El uso de cualquier información o material en este sitio web es bajo su propio riesgo, por lo que no seremos responsables. Será su propia responsabilidad asegurarse de que cualquier producto, servicio o información disponible a través de este sitio web cumpla con sus requisitos específicos. Este sitio web contiene material que es propiedad nuestra o de nuestros proveedores afiliados. Este material incluye, pero no se limita a, el diseño, la disposición, la apariencia y los gráficos. Queda prohibida la reproducción salvo de conformidad con el aviso de copyright, que forma parte de estos términos y condiciones. El uso no autorizado de este sitio web puede dar lugar a una reclamación por daños y perjuicios y/o ser un delito penal. Estos términos se regirán e interpretarán de acuerdo con las leyes vigentes en España.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Política de Devoluciones y Reembolsos</summary>
+                    <p class="mt-2 p-2 bg-gray-900 rounded">
+                        Nuestra política de devoluciones y reembolsos está diseñada para garantizar la satisfacción del cliente en cumplimiento con la normativa de consumo vigente. Usted tiene derecho a desistir de su compra en un plazo de 14 días naturales sin necesidad de justificación. El plazo de desistimiento expirará a los 14 días del día en que usted o un tercero por usted indicado, distinto del transportista, adquirió la posesión material de los bienes. Para ejercer el derecho de desistimiento, deberá notificarnos su decisión de desistir del contrato a través de una declaración inequívoca. En caso de desistimiento por su parte, le devolveremos todos los pagos recibidos de usted, incluidos los gastos de entrega (con la excepción de los gastos adicionales resultantes de la elección por su parte de una modalidad de entrega diferente a la modalidad menos costosa de entrega ordinaria que ofrezcamos) sin ninguna demora indebida. Procederemos a efectuar dicho reembolso utilizando el mismo medio de pago empleado por usted para la transacción inicial, a no ser que haya usted dispuesto expresamente lo contrario. Podremos retener el reembolso hasta haber recibido los bienes. Usted deberá devolvernos o entregarnos directamente los bienes sin ninguna demora indebida y, en cualquier caso, a más tardar en el plazo de 14 días naturales a partir de la fecha en que nos comunique su decisión de desistimiento del contrato. Se considerará cumplido el plazo si efectúa la devolución de los bienes antes de que haya concluido dicho plazo. Solo será usted responsable de la disminución de valor de los bienes resultante de una manipulación distinta a la necesaria para establecer la naturaleza, las características y el funcionamiento de los bienes.
+                    </p>
+                </details>
+            </div>
+            
+            <div class="mt-8 text-center text-sm text-gray-500">
+                &copy; 2026 Vebu Services Ltd. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50 transform transition-transform duration-300 translate-y-full">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-sm">
+                Utilizamos cookies propias y de terceros para mejorar su experiencia y analizar el uso de nuestro sitio. Al continuar navegando, acepta nuestra política de privacidad.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="bg-white text-gray-900 px-6 py-2 rounded-full text-sm font-bold hover:bg-gray-200 transition">Aceptar</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-400 hover:text-white text-sm underline">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // SMART ROUTING: SELF-HEALING NAVIGATION
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    console.warn(`ID #${targetId} not found. Redirecting to #contact.`);
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('vebu_consent', 'true');
+            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
+        }
+
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('vebu_consent')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
