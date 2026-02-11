@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hahucuhaon Group | Ristrutturazioni e Design a Roma</title>
+    <meta name="description" content="Servizi di ristrutturazione chiavi in mano, interior design e pratiche edilizie. Hahucuhaon Group seleziona l'eccellenza per la tua casa.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        /* DNA VARIABLES CALCULATION */
+        /* VAR A (Geometry): URL Length ~64 % 3 = 1 -> Soft: 12px */
+        /* VAR B (Physics): 'h' (104) % 3 = 2 -> Hard: 4px 4px 0px 0px #000 */
+        /* VAR C (Surface): 'a' (97) % 3 = 1 -> Warm: #fffdf5 */
+        /* VAR D (Palette): Renovation Niche -> Navy Blue #1e3a8a */
+
+        :root {
+            --primary: #1e3a8a;
+            --surface: #fffdf5;
+            --radius: 12px;
+            --shadow: 4px 4px 0px 0px #000000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Gray base for contrast */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 2px solid #000000; /* Adjusted for Hard Shadow logic visibility */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            border: 2px solid #000000;
+        }
+        
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000000;
+        }
+
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* Accordion Style */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1rem;
+            background: rgba(0,0,0,0.02);
+            border-radius: var(--radius);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: background 0.2s;
+        }
+        details > summary:hover {
+            background: rgba(0,0,0,0.05);
+        }
+        details[open] > summary {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-black text-gray-900 tracking-tighter">
+                        HAHUCUHAON<span class="text-primary">GROUP</span>
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-900 hover:text-primary font-medium">Servizi</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary font-medium">Recensioni</a>
+                    <a href="#faq" class="text-gray-900 hover:text-primary font-medium">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm">Richiedi Preventivo</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-primary p-2 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t-2 border-black">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-200">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-200">Recensioni</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold">Richiedi Preventivo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-gray-900">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover opacity-40" 
+                 src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Interni di lusso ristrutturati"
+                 referrerpolicy="no-referrer" loading="lazy"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Ristrutturazione+Roma'">
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center lg:text-left">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl drop-shadow-md">
+                La Ristrutturazione è il Miglior <span class="text-yellow-400">Investimento</span> per la Tua Casa
+            </h1>
+            <p class="mt-6 text-xl text-gray-200 max-w-3xl drop-shadow-sm">
+                Hahucuhaon Group, in partnership con Gruppo Menichini Roma, ti offre l'eccellenza nell'architettura d'interni. Soluzioni "Chiavi in Mano" che uniscono design moderno, burocrazia zero e realizzazione impeccabile.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="#contact" class="btn-primary border-white bg-white text-blue-900 hover:bg-gray-100">
+                    Sopralluogo Gratuito
+                </a>
+                <a href="#features" class="px-8 py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-black transition shadow-lg">
+                    Scopri i Servizi
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRUST STRIP -->
+    <div class="bg-white border-b border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold uppercase text-gray-500 tracking-wide mb-4">Partner di eccellenza nel settore edilizio</p>
+            <div class="flex justify-center space-x-8 md:space-x-16 opacity-70 grayscale hover:grayscale-0 transition duration-500">
+                <span class="text-xl font-bold text-gray-800">Menichini Group</span>
+                <span class="text-xl font-bold text-gray-800">EdilRoma</span>
+                <span class="text-xl font-bold text-gray-800">Domus Design</span>
+                <span class="text-xl font-bold text-gray-800">Architetti Associati</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-base text-primary font-bold tracking-wide uppercase">I Nostri Servizi</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Dalla Carta al Cantiere, Pensiamo a Tutto Noi
+                </p>
+            </div>
+
+            <div class="dna-card">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="space-y-4">
+                        <div class="h-48 rounded-lg overflow-hidden border-2 border-black">
+                            <img src="https://images.pexels.com/photos/534151/pexels-photo-534151.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                                 alt="Ristrutturazione Chiavi in Mano" 
+                                 class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Ristrutturazioni "Chiavi in Mano"</h3>
+                        <p class="text-gray-600">
+                            Un unico interlocutore per trasformare completamente il tuo immobile. Coordinamento completo di demolizioni, impiantistica e finiture per un risultato garantito senza stress.
+                        </p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="space-y-4">
+                        <div class="h-48 rounded-lg overflow-hidden border-2 border-black">
+                            <img src="https://images.pexels.com/photos/3797991/pexels-photo-3797991.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                                 alt="Interior Design" 
+                                 class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Architettura & Interior Design</h3>
+                        <p class="text-gray-600">
+                            Progettazione sartoriale degli spazi. I nostri architetti studiano la luce, i materiali e l'ergonomia per creare ambienti che rispecchiano il tuo stile di vita.
+                        </p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="space-y-4">
+                        <div class="h-48 rounded-lg overflow-hidden border-2 border-black">
+                            <img src="https://images.pexels.com/photos/8297478/pexels-photo-8297478.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                                 alt="Gestione Burocrazia" 
+                                 class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Pratiche Burocratiche (CILA/SCIA)</h3>
+                        <p class="text-gray-600">
+                            Dimentica la fila agli uffici. Ci occupiamo di tutte le pratiche amministrative, permessi comunali, variazioni catastali e certificazioni energetiche necessarie.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-4">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Cosa Dicono i Nostri Clienti</h2>
+            <div class="dna-card bg-white">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 flex">★★★★★</div>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"Hanno trasformato il mio appartamento al centro di Roma in soli 3 mesi. Professionalità rara e gestione impeccabile di ogni imprevisto."</p>
+                        <p class="font-bold text-sm">- Marco V., Roma</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 flex">★★★★★</div>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"Il servizio chiavi in mano è stato reale. Non ho dovuto preoccuparmi di nulla, nemmeno delle pratiche comunali. Consigliatissimi."</p>
+                        <p class="font-bold text-sm">- Giulia R., Parioli</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 flex">★★★★★</div>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"Grande attenzione ai dettagli e materiali di prima scelta. Il progetto dell'architetto ha valorizzato la luce naturale in modo incredibile."</p>
+                        <p class="font-bold text-sm">- Stefano L., EUR</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-4">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Domande Frequenti</h2>
+            <div class="dna-card">
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                        <span>Quali sono i tempi medi per una ristrutturazione completa?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 px-4 pb-4">
+                        I tempi variano in base alla metratura e all'entità degli interventi. Per un appartamento standard di 100mq, una ristrutturazione completa chiavi in mano richiede generalmente dai 60 ai 90 giorni lavorativi dalla data di inizio lavori.
+                    </p>
+                </details>
+                <details class="group mt-4">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                        <span>Vi occupate anche delle pratiche per le detrazioni fiscali?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 px-4 pb-4">
+                        Assolutamente sì. Il nostro team tecnico e amministrativo predispone tutta la documentazione necessaria per accedere ai bonus fiscali vigenti per ristrutturazioni e risparmio energetico.
+                    </p>
+                </details>
+                <details class="group mt-4">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                        <span>Il preventivo è gratuito?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 px-4 pb-4">
+                        Sì, offriamo un primo sopralluogo e un preventivo di massima gratuiti e senza impegno. Questo ci permette di valutare lo stato dell'immobile e comprendere le tue esigenze specifiche.
+                    </p>
+                </details>
+                <details class="group mt-4">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                        <span>Fornite assistenza nella scelta dei materiali?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 px-4 pb-4">
+                        Certo. I nostri interior designer ti accompagneranno nella selezione di pavimenti, rivestimenti, infissi e sanitari presso i nostri showroom partner, garantendo qualità estetica e durata nel tempo.
+                    </p>
+                </details>
+                <details class="group mt-4">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                        <span>Lavorate solo a Roma città?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 px-4 pb-4">
+                        Operiamo principalmente su tutto il territorio di Roma Capitale e nell'area della città metropolitana, garantendo la stessa qualità di servizio e supervisione del cantiere.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-12 mb-12">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card relative overflow-hidden">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6 text-gray-900">Parliamo del Tuo Progetto</h2>
+                        <p class="text-gray-600 mb-8">
+                            Non rimandare il sogno della tua casa ideale. Compila il modulo per essere ricontattato da un nostro esperto per una consulenza gratuita.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <svg class="h-6 w-6 text-primary mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <div>
+                                    <h4 class="font-bold">Sede Operativa</h4>
+                                    <p class="text-gray-600">Roma (RM), Italia</p>
+                                    <p class="text-xs text-gray-400 mt-1">Si riceve solo su appuntamento</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <svg class="h-6 w-6 text-primary mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <div>
+                                    <h4 class="font-bold">Orari</h4>
+                                    <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Nome e Cognome</label>
+                                    <input type="text" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border focus:border-blue-500 focus:ring-blue-500" placeholder="Mario Rossi">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Telefono</label>
+                                    <input type="tel" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border focus:border-blue-500 focus:ring-blue-500" placeholder="+39 333 000 0000">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Tipo di Intervento</label>
+                                    <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border focus:border-blue-500 focus:ring-blue-500">
+                                        <option>Ristrutturazione Completa</option>
+                                        <option>Ristrutturazione Bagno/Cucina</option>
+                                        <option>Interior Design</option>
+                                        <option>Altro</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Messaggio (Opzionale)</label>
+                                    <textarea rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border focus:border-blue-500 focus:ring-blue-500"></textarea>
+                                </div>
+                                <button type="submit" class="w-full btn-primary text-center justify-center flex">
+                                    Invia Richiesta
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <!-- Success Message -->
+                        <div id="success-msg" style="display:none" class="text-center py-10">
+                            <svg class="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Inviata!</h3>
+                            <p class="text-gray-600">Grazie per averci contattato. Un nostro consulente ti chiamerà entro 24 ore lavorative per discutere il tuo progetto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="text-2xl font-black text-white tracking-tighter">
+                        HAHUCUHAON<span class="text-blue-500">GROUP</span>
+                    </span>
+                    <p class="mt-4 text-sm text-gray-500">
+                        Esperti in ristrutturazioni e design. Valorizziamo il patrimonio immobiliare attraverso interventi di qualità superiore e gestione "senza pensieri".
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Servizi</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>Ristrutturazioni Chiavi in Mano</li>
+                        <li>Progettazione Architettonica</li>
+                        <li>Pratiche CILA / SCIA</li>
+                        <li>Interior Design</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Note Legali</h3>
+                    <p class="text-xs text-gray-500 mb-2">
+                        Questo è un sito promozionale indipendente gestito da Hahucuhaon Group, che agisce in qualità di affiliato per Gruppo Menichini Roma. Tutti i marchi citati appartengono ai legittimi proprietari.
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 space-y-4">
+                <!-- LEGAL DROPDOWNS -->
+                <details class="text-xs cursor-pointer">
+                    <summary class="hover:text-white">Informativa sulla Privacy</summary>
+                    <div class="mt-2 p-4 bg-gray-800 rounded text-gray-300 leading-relaxed">
+                        <p class="mb-2"><strong>1. Titolare del Trattamento:</strong> Il trattamento dei dati personali raccolti su questo sito è gestito da Hahucuhaon Group, nel pieno rispetto del Regolamento UE 2016/679 (GDPR).</p>
+                        <p class="mb-2"><strong>2. Tipologia di Dati:</strong> Raccogliamo esclusivamente i dati forniti volontariamente dall'utente tramite il modulo di contatto (nome, telefono, email). Non raccogliamo dati sensibili o giudiziari.</p>
+                        <p class="mb-2"><strong>3. Finalità del Trattamento:</strong> I dati sono trattati esclusivamente per rispondere alle richieste di preventivo o informazioni sui servizi di ristrutturazione. Non verranno utilizzati per marketing aggressivo o ceduti a terzi non autorizzati.</p>
+                        <p class="mb-2"><strong>4. Base Giuridica:</strong> Il trattamento si basa sul consenso espresso dell'interessato al momento dell'invio del modulo. L'utente ha il diritto di revocare il consenso in qualsiasi momento.</p>
+                        <p class="mb-2"><strong>5. Conservazione dei Dati:</strong> I dati personali saranno conservati per il tempo strettamente necessario a gestire la richiesta e, successivamente, per i termini previsti dalla legge per finalità amministrative.</p>
+                        <p class="mb-2"><strong>6. Diritti dell'Interessato:</strong> L'utente ha diritto di accedere, rettificare, cancellare i propri dati o limitarne il trattamento. Per esercitare tali diritti, è sufficiente contattare l'amministratore del sito.</p>
+                        <p class="mb-2"><strong>7. Sicurezza:</strong> Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i dati da accessi non autorizzati, perdita o distruzione accidentale.</p>
+                        <p class="mb-2"><strong>8. Cookie:</strong> Questo sito utilizza cookie tecnici essenziali per il funzionamento e cookie analitici anonimizzati per statistiche aggregate. Non utilizziamo cookie di profilazione.</p>
+                        <p class="mb-2"><strong>9. Trasferimento Dati:</strong> I dati non vengono trasferiti al di fuori dell'Unione Europea, salvo che per servizi tecnici che garantiscano il rispetto delle clausole contrattuali standard approvate dalla Commissione Europea.</p>
+                        <p class="mb-2"><strong>10. Modifiche:</strong> La presente informativa può subire aggiornamenti. La versione più recente sarà sempre disponibile in questa sezione.</p>
+                        <p class="mb-2"><strong>11. Contatti:</strong> Per qualsiasi dubbio relativo alla privacy, è possibile fare riferimento ai canali di contatto ufficiali indicati sul sito.</p>
+                        <p><strong>12. Affiliazione:</strong> I dati potrebbero essere condivisi con il partner fornitore del servizio (Gruppo Menichini Roma) al solo fine di elaborare il preventivo richiesto.</p>
+                    </div>
+                </details>
+
+                <details class="text-xs cursor-pointer">
+                    <summary class="hover:text-white">Termini e Condizioni</summary>
+                    <div class="mt-2 p-4 bg-gray-800 rounded text-gray-300 leading-relaxed">
+                        <p class="mb-2"><strong>1. Oggetto:</strong> Il presente sito ha scopo puramente informativo e promozionale per servizi di ristrutturazione edilizia.</p>
+                        <p class="mb-2"><strong>2. Ruolo dell'Operatore:</strong> Hahucuhaon Group opera come intermediario marketing. La responsabilità dell'esecuzione dei lavori ricade interamente sull'impresa esecutrice.</p>
+                        <p class="mb-2"><strong>3. Accuratezza:</strong> Ci impegniamo a mantenere le informazioni aggiornate, ma non garantiamo che tutte le descrizioni dei servizi siano prive di errori o complete.</p>
+                        <p class="mb-2"><strong>4. Preventivi:</strong> I preventivi forniti tramite il sito sono stime preliminari e non costituiscono offerta vincolante fino alla stipula di un contratto formale dopo sopralluogo.</p>
+                        <p class="mb-2"><strong>5. Proprietà Intellettuale:</strong> Tutti i contenuti, testi e immagini presenti sul sito sono protetti da copyright e non possono essere riprodotti senza autorizzazione.</p>
+                        <p class="mb-2"><strong>6. Limitazione di Responsabilità:</strong> Hahucuhaon Group non è responsabile per danni diretti o indiretti derivanti dall'uso del sito o dall'affidamento sulle informazioni in esso contenute.</p>
+                        <p class="mb-2"><strong>7. Link Esterni:</strong> Il sito potrebbe contenere link a siti terzi. Non ci assumiamo responsabilità per i contenuti o le pratiche privacy di tali siti.</p>
+                        <p class="mb-2"><strong>8. Modifiche ai Termini:</strong> Ci riserviamo il diritto di modificare i presenti termini in qualsiasi momento senza preavviso.</p>
+                        <p class="mb-2"><strong>9. Legge Applicabile:</strong> I presenti termini sono regolati dalla legge italiana. Per qualsiasi controversia è competente il foro di riferimento.</p>
+                        <p class="mb-2"><strong>10. Uso Improprio:</strong> È vietato utilizzare il modulo di contatto per inviare spam o contenuti illegali.</p>
+                        <p class="mb-2"><strong>11. Disponibilità:</strong> Non garantiamo che il sito sia sempre accessibile senza interruzioni o errori tecnici.</p>
+                        <p><strong>12. Accettazione:</strong> L'uso del sito implica l'accettazione integrale dei presenti Termini e Condizioni.</p>
+                    </div>
+                </details>
+
+                <div class="flex justify-between items-center pt-8">
+                    <p class="text-xs">© 2026 Hahucuhaon Group. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-black p-4 z-50 shadow-2xl flex flex-col sm:flex-row justify-between items-center transform translate-y-full transition-transform duration-300">
+        <p class="text-sm text-gray-700 mb-4 sm:mb-0 text-center sm:text-left mr-4">
+            Utilizziamo cookie tecnici per garantire la migliore esperienza. Continuando a navigare accetti la nostra 
+            <a href="#" onclick="document.querySelector('details').open=true" class="underline font-bold text-primary">Privacy Policy</a>.
+        </p>
+        <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-xs whitespace-nowrap">
+            Accetto Tutto
+        </button>
+    </div>
+
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        // Smooth Scroll & Gravity Well Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                // Fallback Logic
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close Mobile Menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Cookie Logic
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
+        }
+
+        // Show Cookie Banner on Load if not accepted
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').style.transform = 'translateY(0)';
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
