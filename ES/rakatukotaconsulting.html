@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rakatukota Consulting - Transformando espacios con diseño inteligente y mobiliario contemporáneo.">
+    <title>Rakatukota Consulting | Diseño y Confort</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* DESIGN DNA variables calculated from source 'https://www.miliboo.es' */
+        :root {
+            /* VAR D: Palette -> Deep Teal for Modern Interior/Architecture */
+            --primary: #0f766e; 
+            /* VAR C: Surface (Last letter 's' % 3 = 1) -> Warm */
+            --surface: #fffdf5;
+            /* VAR A: Geometry (Length 22 % 3 = 1) -> Soft */
+            --radius: 12px;
+            /* VAR B: Physics (First letter 'm' % 3 = 1) -> Material */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base for contrast */
+            color: #1f2937;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 700;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* LEGAL & COOKIES */
+        .legal-details summary {
+            cursor: pointer;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .legal-content {
+            font-size: 0.85rem;
+            color: #4b5563;
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-top: 0.5rem;
+            border: 1px solid #e5e7eb;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1f2937;
+            color: white;
+            padding: 1rem;
+            z-index: 50;
+            display: none;
+        }
+        
+        /* Smooth Scroll Behavior */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-900">Rakatukota<span class="text-primary">Consulting</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary transition">Soluciones</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary transition">Opiniones</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary transition">FAQ</a>
+                    <a href="#contact" class="btn-primary py-2 px-4 text-sm">Consultar Ahora</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Soluciones</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Opiniones</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold">Consultar Ahora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 pt-32 pb-40 min-h-[600px] flex items-center">
+        <!-- Image Failsafe: using generic furniture/interior design context -->
+        <img 
+            src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+            onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Interior+Design'"
+            alt="Interiorismo Moderno" 
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+        >
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+                El diseño inteligente es la mejor <br class="hidden md:block"/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-white">consultoría para tu hogar.</span>
+            </h1>
+            <p class="mt-4 text-xl text-gray-200 max-w-2xl">
+                Expertos en la selección de mobiliario contemporáneo. Asesoramos tu estilo de vida con piezas que unen funcionalidad, confort y la estética de vanguardia.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                <a href="#contact" class="btn-primary text-center">Solicitar Asesoramiento</a>
+                <a href="#features" class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm border border-white text-white font-bold py-4 px-8 rounded-xl hover:bg-white hover:text-gray-900 transition text-center" style="border-radius: var(--radius);">
+                    Ver Colecciones
+                </a>
+            </div>
+            <!-- Trust Proof -->
+            <div class="mt-10 pt-6 border-t border-gray-700">
+                <p class="text-sm text-gray-400 mb-4 uppercase tracking-wider">Estándares de calidad reconocidos por:</p>
+                <div class="flex flex-wrap gap-6 text-gray-300 font-bold opacity-70">
+                    <span>MUEBLE.ES</span>
+                    <span>HOGAR VIVA</span>
+                    <span>DESIGN FORUM</span>
+                    <span>INTERIOR+</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- FEATURES SECTION (Wrapped in Card) -->
+    <section id="features" class="py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="dna-card text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Nuestra Consultoría de Espacios</h2>
+                <p class="mt-4 text-lg text-gray-500">Seleccionamos las mejores piezas del mercado para crear ambientes únicos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="dna-card transform transition duration-500 hover:scale-105 p-0 overflow-hidden">
+                    <img src="https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Sofás de Diseño" 
+                         class="w-full h-48 object-cover" 
+                         loading="lazy" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Sofas'"
+                    >
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-100 text-primary mb-4 mx-auto md:mx-0">
+                            <i class="fas fa-couch text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Confort de Vanguardia</h3>
+                        <p class="text-gray-500">Sofás y sillones diseñados no solo para decorar, sino para vivir. Estilos nórdicos e industriales seleccionados para maximizar tu descanso.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="dna-card transform transition duration-500 hover:scale-105 p-0 overflow-hidden">
+                    <img src="https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Mobiliario de Oficina" 
+                         class="w-full h-48 object-cover" 
+                         loading="lazy" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Oficina'"
+                    >
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-100 text-primary mb-4 mx-auto md:mx-0">
+                            <i class="fas fa-laptop-house text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Oficina Profesional</h3>
+                        <p class="text-gray-500">Transformamos tu zona de trabajo con escritorios ergonómicos y sillas operativas que fusionan salud postural con elegancia ejecutiva.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="dna-card transform transition duration-500 hover:scale-105 p-0 overflow-hidden">
+                    <img src="https://images.pexels.com/photos/5696195/pexels-photo-5696195.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Comedor Moderno" 
+                         class="w-full h-48 object-cover" 
+                         loading="lazy" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Comedor'"
+                    >
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-100 text-primary mb-4 mx-auto md:mx-0">
+                            <i class="fas fa-chair text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Espacios de Reunión</h3>
+                        <p class="text-gray-500">Mesas y sillas de comedor que invitan a compartir. Materiales nobles como madera maciza y metal para durabilidad y estilo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-12">
+        <div class="max-w-5xl mx-auto dna-card bg-white">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">Lo que dicen nuestros clientes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-4">
+                    <div class="flex justify-center mb-4 text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Rakatukota Consulting me ayudó a elegir el sofá perfecto. No solo es precioso, sino increíblemente cómodo. La calidad se nota al tacto."</p>
+                    <p class="font-bold text-gray-900">- Carla M., Madrid</p>
+                </div>
+                <div class="text-center p-4 border-l border-r border-gray-100">
+                    <div class="flex justify-center mb-4 text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Buscaba un escritorio para teletrabajar que no desentonara en mi salón. Su asesoramiento fue clave. Muy profesionales."</p>
+                    <p class="font-bold text-gray-900">- Jorge L., Barcelona</p>
+                </div>
+                <div class="text-center p-4">
+                    <div class="flex justify-center mb-4 text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Excelentes sillas de comedor. Llegaron rápido y el diseño es idéntico a lo que buscábamos. Renovación total del ambiente."</p>
+                    <p class="font-bold text-gray-900">- Elena R., Valencia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-12">
+        <div class="max-w-4xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-8">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 rounded-lg">
+                        <span>¿Ofrecen servicio de montaje para los muebles?</span>
+                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-4">
+                        Sí, dependiendo del producto seleccionado. La mayoría de nuestros muebles vienen con instrucciones detalladas y fáciles de seguir, pero disponemos de opciones de montaje premium en ciertas referencias.
+                    </div>
+                </details>
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 rounded-lg">
+                        <span>¿Cuál es el plazo de entrega habitual?</span>
+                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-4">
+                        El plazo estándar es de 5 a 10 días laborables para productos en stock. Para piezas bajo pedido o personalizadas, el tiempo puede variar. Consulte los detalles específicos en la confirmación.
+                    </div>
+                </details>
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 rounded-lg">
+                        <span>¿Tienen garantía los productos?</span>
+                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-4">
+                        Absolutamente. Todos nuestros muebles cuentan con una garantía mínima de 2 a 3 años contra defectos de fabricación, asegurando su inversión en diseño y calidad.
+                    </div>
+                </details>
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 rounded-lg">
+                        <span>¿Puedo devolver un mueble si no encaja con mi decoración?</span>
+                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-4">
+                        Dispone de un periodo de desistimiento de 14 días tras la recepción del pedido. El producto debe estar en su embalaje original y en perfectas condiciones.
+                    </div>
+                </details>
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 rounded-lg">
+                        <span>¿Realizan asesoramiento personalizado de interiorismo?</span>
+                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-4">
+                        Esa es la especialidad de Rakatukota Consulting. No solo vendemos muebles; le ayudamos a seleccionar las piezas que mejor se adapten a la arquitectura y luz de su espacio.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-5xl mx-auto dna-card bg-white overflow-hidden flex flex-col md:flex-row">
+            <div class="md:w-1/2 p-8 bg-gray-50">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Contacte con Nosotros</h3>
+                <p class="text-gray-600 mb-8">
+                    ¿Listo para renovar su espacio? Rellene el formulario y un especialista en diseño se pondrá en contacto para asesorarle sobre el mobiliario ideal.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-map-marker-alt mt-1 text-primary mr-3"></i>
+                        <div>
+                            <p class="font-bold text-gray-900">Oficina Central</p>
+                            <p class="text-gray-600">Servicio Online a toda España</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-clock mt-1 text-primary mr-3"></i>
+                        <div>
+                            <p class="font-bold text-gray-900">Horario de Atención</p>
+                            <p class="text-gray-600">Lunes - Viernes: 09:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2 p-8">
+                <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Enviando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nombre Completo</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-green-600" id="name" type="text" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">Teléfono</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-green-600" id="phone" type="tel" required>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="interest">Interés Principal</label>
+                        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-green-600" id="interest">
+                            <option>Sofás y Sillones</option>
+                            <option>Muebles de Oficina</option>
+                            <option>Mesas y Sillas</option>
+                            <option>Decoración General</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary w-full" type="submit">
+                        Enviar Consulta
+                    </button>
+                </form>
+                
+                <div id="success-msg" class="text-center py-10" style="display:none">
+                    <div class="text-green-500 text-5xl mb-4"><i class="fas fa-check-circle"></i></div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">¡Mensaje Recibido!</h4>
+                    <p class="text-gray-600">Un consultor de diseño revisará su solicitud y le contactará en breve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Rakatukota<span class="text-primary">Consulting</span></h3>
+                    <p class="text-sm text-gray-400">
+                        Expertos en conectar personas con el diseño interior que merecen. Transformamos casas en hogares a través de una selección meticulosa de mobiliario y confort.
+                    </p>
+                </div>
+                <div class="text-sm">
+                    <p class="mb-4 text-yellow-500 font-semibold">
+                        Aviso Legal Importante:
+                    </p>
+                    <p class="italic text-gray-400">
+                        Este es un sitio promocional independiente gestionado por Rakatukota Consulting, actuando como afiliado para Miliboo. Todos los productos mostrados son propiedad de sus respectivos fabricantes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 space-y-4">
+                
+                <!-- Privacy Policy -->
+                <details class="legal-details">
+                    <summary>Política de Privacidad</summary>
+                    <div class="legal-content">
+                        <p class="mb-2"><strong>1. Responsable del Tratamiento:</strong> Rakatukota Consulting se compromete a proteger su privacidad. Esta política detalla cómo recopilamos, usamos y protegemos sus datos personales.</p>
+                        <p class="mb-2"><strong>2. Datos Recopilados:</strong> Solo recopilamos los datos necesarios para la prestación del servicio de asesoramiento, incluyendo nombre y número de teléfono proporcionados voluntariamente en nuestro formulario de contacto.</p>
+                        <p class="mb-2"><strong>3. Finalidad:</strong> La finalidad principal es gestionar su solicitud de información sobre mobiliario y contactarle para ofrecerle el asesoramiento requerido.</p>
+                        <p class="mb-2"><strong>4. Legitimación:</strong> La base legal es el consentimiento expreso del usuario al enviar el formulario.</p>
+                        <p class="mb-2"><strong>5. Destinatarios:</strong> Sus datos no serán cedidos a terceros salvo obligación legal. No realizamos transferencias internacionales de datos.</p>
+                        <p class="mb-2"><strong>6. Derechos:</strong> Usted tiene derecho a acceder, rectificar y suprimir sus datos, así como a limitar u oponerse a su tratamiento, contactando con nosotros a través de los canales oficiales.</p>
+                        <p class="mb-2"><strong>7. Seguridad:</strong> Implementamos medidas técnicas y organizativas para proteger sus datos contra el acceso no autorizado, pérdida o alteración.</p>
+                        <p class="mb-2"><strong>8. Conservación:</strong> Los datos se conservarán mientras dure la relación comercial o durante los años necesarios para cumplir con las obligaciones legales.</p>
+                        <p class="mb-2"><strong>9. Cambios:</strong> Nos reservamos el derecho de modificar esta política para adaptarla a novedades legislativas.</p>
+                        <p class="mb-2"><strong>10. Cookies:</strong> Utilizamos cookies técnicas necesarias para el funcionamiento del sitio.</p>
+                        <p class="mb-2"><strong>11. Aceptación:</strong> El uso de este sitio implica la aceptación de esta política.</p>
+                        <p class="mb-2"><strong>12. Reclamaciones:</strong> Puede presentar una reclamación ante la Agencia Española de Protección de Datos si considera vulnerados sus derechos.</p>
+                        <p class="mb-2"><strong>13. Contacto:</strong> Para cualquier duda sobre privacidad, utilice nuestro formulario de contacto.</p>
+                        <p class="mb-2"><strong>14. Menores:</strong> Este sitio no está dirigido a menores de 18 años.</p>
+                        <p><strong>15. Exactitud:</strong> El usuario garantiza que los datos aportados son verdaderos, exactos, completos y actualizados.</p>
+                    </div>
+                </details>
+
+                <!-- Terms of Service -->
+                <details class="legal-details">
+                    <summary>Términos y Condiciones</summary>
+                    <div class="legal-content">
+                        <p class="mb-2"><strong>1. Objeto:</strong> Estas condiciones regulan el uso del sitio web Rakatukota Consulting y los servicios de información ofrecidos.</p>
+                        <p class="mb-2"><strong>2. Usuario:</strong> El acceso al sitio atribuye la condición de usuario e implica la aceptación plena de estas condiciones.</p>
+                        <p class="mb-2"><strong>3. Uso del Sitio:</strong> El usuario se compromete a utilizar el sitio de conformidad con la ley, la moral y el orden público.</p>
+                        <p class="mb-2"><strong>4. Propiedad Intelectual:</strong> Todo el contenido del sitio, incluyendo textos y diseño, está protegido por derechos de propiedad intelectual.</p>
+                        <p class="mb-2"><strong>5. Exención de Responsabilidad:</strong> Rakatukota Consulting no se hace responsable de los errores u omisiones en los contenidos ni de la falta de disponibilidad del sitio.</p>
+                        <p class="mb-2"><strong>6. Enlaces Externos:</strong> Este sitio puede contener enlaces a sitios de terceros (como el proveedor del producto). No asumimos responsabilidad por el contenido de dichos sitios.</p>
+                        <p class="mb-2"><strong>7. Modificaciones:</strong> Nos reservamos el derecho de modificar el contenido y las condiciones del sitio en cualquier momento.</p>
+                        <p class="mb-2"><strong>8. Servicios de Terceros:</strong> Rakatukota Consulting actúa como intermediario informativo y afiliado; la venta final y logística del mueble corresponde al proveedor original.</p>
+                        <p class="mb-2"><strong>9. Precios:</strong> Los precios mostrados son orientativos y pueden variar en la web del proveedor final.</p>
+                        <p class="mb-2"><strong>10. Legislación:</strong> Estas condiciones se rigen por la ley española.</p>
+                        <p class="mb-2"><strong>11. Jurisdicción:</strong> Para cualquier controversia, las partes se someten a los juzgados del domicilio del usuario.</p>
+                        <p class="mb-2"><strong>12. Nulidad:</strong> Si alguna cláusula fuera declarada nula, el resto de cláusulas permanecerán vigentes.</p>
+                        <p class="mb-2"><strong>13. Integridad:</strong> Estas condiciones constituyen el acuerdo íntegro entre las partes.</p>
+                        <p class="mb-2"><strong>14. Prohibiciones:</strong> Queda prohibido el uso del sitio para fines ilícitos o lesivos contra terceros.</p>
+                        <p><strong>15. Vigencia:</strong> Estas condiciones estarán vigentes indefinidamente hasta su modificación.</p>
+                    </div>
+                </details>
+
+                <!-- Refund Policy -->
+                <details class="legal-details">
+                    <summary>Política de Devoluciones (Información)</summary>
+                    <div class="legal-content">
+                        <p class="mb-2"><strong>1. Intermediación:</strong> Rakatukota Consulting informa que la venta final se realiza a través del proveedor Miliboo.</p>
+                        <p class="mb-2"><strong>2. Derecho de Desistimiento:</strong> De acuerdo con la normativa vigente, el consumidor dispone de 14 días naturales para desistir de la compra.</p>
+                        <p class="mb-2"><strong>3. Procedimiento:</strong> Para ejercer el derecho de devolución, el cliente debe contactar directamente con el servicio de atención al cliente del vendedor final.</p>
+                        <p class="mb-2"><strong>4. Estado del Producto:</strong> El producto debe devolverse en perfectas condiciones y en su embalaje original.</p>
+                        <p class="mb-2"><strong>5. Gastos de Devolución:</strong> Salvo defecto de fábrica, los gastos de devolución suelen correr a cargo del cliente.</p>
+                        <p class="mb-2"><strong>6. Reembolso:</strong> Una vez recibido y verificado el producto, el vendedor procederá al reembolso mediante el mismo método de pago.</p>
+                        <p class="mb-2"><strong>7. Excepciones:</strong> No se admiten devoluciones de productos personalizados o confeccionados a medida.</p>
+                        <p class="mb-2"><strong>8. Garantía Legal:</strong> Todos los productos tienen garantía legal de conformidad.</p>
+                        <p class="mb-2"><strong>9. Plazos de Garantía:</strong> La garantía cubre defectos de origen durante el plazo legal establecido.</p>
+                        <p class="mb-2"><strong>10. Gestión de Garantía:</strong> Rakatukota Consulting puede asesorar en el proceso, pero la responsabilidad final recae en el vendedor.</p>
+                        <p class="mb-2"><strong>11. Productos Dañados:</strong> Si el producto llega dañado, debe notificarse en las primeras 24-48 horas.</p>
+                        <p class="mb-2"><strong>12. Prueba de Compra:</strong> Es imprescindible conservar la factura o comprobante de compra para tramitar devoluciones.</p>
+                        <p class="mb-2"><strong>13. Transporte:</strong> Se recomienda revisar la mercancía en el momento de la entrega antes de firmar el albarán.</p>
+                        <p class="mb-2"><strong>14. Reclamaciones:</strong> Las reclamaciones sobre devoluciones deben dirigirse a los canales oficiales del vendedor.</p>
+                        <p><strong>15. Asesoramiento:</strong> Nuestro equipo puede orientarle sobre los pasos a seguir en caso de incidencia.</p>
+                    </div>
+                </details>
+
+                <div class="text-center pt-8 text-sm text-gray-500">
+                    &copy; 2026 Rakatukota Consulting. Todos los derechos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm">Utilizamos cookies propias para mejorar su experiencia de navegación. Al continuar, acepta nuestro uso de cookies.</p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="bg-green-500 text-white px-4 py-2 rounded text-sm font-bold">Aceptar</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="bg-gray-600 text-white px-4 py-2 rounded text-sm">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Smooth Scroll Fallback
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to contact if ID not found
+                    e.preventDefault();
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Cookie Banner Logic
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
