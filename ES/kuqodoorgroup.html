@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuqodoor Group | Tu Puerta al Mundo</title>
+    <meta name="description" content="Descubre paquetes vacacionales exclusivos, hoteles de lujo y experiencias de viaje inolvidables con Kuqodoor Group.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* PHASE 2: DESIGN SYSTEM (DNA MIXING) 
+           Source: muchoviaje.com
+           VAR A (Geometry): Length 14 % 3 = 2 -> Pill (24px)
+           VAR B (Physics): First 'm' (13) % 3 = 1 -> Material Shadow
+           VAR C (Surface): Last 'm' (13) % 3 = 1 -> Warm (#fffdf5)
+           VAR D (Palette): Travel Niche -> Tropical Teal (#0891b2)
+        */
+        :root {
+            --primary: #0891b2;
+            --surface: #fffdf5;
+            --radius: 24px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #f3f4f6; /* Global Gray Base */
+            color: #1f2937;
+            font-family: var(--font-main);
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Subtle lift on desktop only */
+        @media(min-width: 1024px) {
+            .dna-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2.5rem;
+            transition: all 0.3s;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+        .border-primary { border-color: var(--primary); }
+
+        /* Smooth Anchor Scroll Padding */
+        html { scroll-behavior: smooth; }
+        section { scroll-margin-top: 100px; }
+
+        /* FAQ Detail Animation */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-extrabold tracking-tight text-gray-900">
+                        Kuqodoor<span class="text-primary">Group</span>
+                    </span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-semibold transition">Servicios</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-semibold transition">Opiniones</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-semibold transition">Preguntas</a>
+                    <a href="#contact" class="btn-primary py-2 px-6 text-sm">Reservar</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button type="button" class="text-gray-600 hover:text-gray-900 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4">
+            <a href="#features" class="block py-2 text-gray-700 font-semibold">Servicios</a>
+            <a href="#reviews" class="block py-2 text-gray-700 font-semibold">Opiniones</a>
+            <a href="#faq" class="block py-2 text-gray-700 font-semibold">Preguntas</a>
+            <a href="#contact" class="block mt-4 text-center btn-primary">Reservar Ahora</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <!-- Source: Pexels (Tropical Beach) -->
+            <img class="w-full h-full object-cover opacity-60" 
+                 src="https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Playa paradisíaca tropical"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Viajes+y+Aventuras'">
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center lg:text-left">
+            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
+                Abre la puerta a tu próxima <br class="hidden lg:block"> 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-200">aventura inolvidable</span>
+            </h1>
+            <p class="mt-4 max-w-2xl text-xl text-gray-100 lg:mx-0">
+                El mundo te espera. En Kuqodoor Group, transformamos tus sueños de viaje en realidades tangibles con las mejores ofertas en vuelos, hoteles y circuitos exclusivos.
+            </p>
+            <div class="mt-10 sm:flex sm:justify-center lg:justify-start gap-4">
+                <a href="#contact" class="btn-primary text-lg px-8 py-4">
+                    Planificar Mi Viaje
+                </a>
+                <a href="#features" class="bg-white text-gray-900 rounded-3xl shadow-lg px-8 py-4 font-bold hover:bg-gray-100 transition flex items-center justify-center">
+                    Ver Destinos
+                </a>
+            </div>
+            <!-- Trust Proof -->
+            <div class="mt-8 flex flex-wrap gap-6 items-center justify-center lg:justify-start text-gray-400 text-sm font-semibold uppercase tracking-wider">
+                <span>Certificados por:</span>
+                <span class="text-gray-300">IATA</span>
+                <span class="text-gray-300">•</span>
+                <span class="text-gray-300">Confianza Online</span>
+                <span class="text-gray-300">•</span>
+                <span class="text-gray-300">Seguros de Viaje VIP</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8">
+
+        <!-- FEATURES SECTION (Services) -->
+        <section id="features" class="max-w-5xl mx-auto dna-card relative overflow-hidden">
+            <div class="text-center mb-12">
+                <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Nuestros Servicios</h2>
+                <h3 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Experiencias Diseñadas para Ti
+                </h3>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Desde escapadas de fin de semana hasta grandes expediciones transatlánticas.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="flex flex-col text-center md:text-left">
+                    <div class="rounded-2xl overflow-hidden mb-6 h-48 shadow-sm">
+                        <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Hoteles de lujo y resorts" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Hoteles & Resorts</h4>
+                    <p class="text-gray-600 mb-4 flex-grow">
+                        Accede a una selección premium de alojamientos. Desde resorts todo incluido en el Caribe hasta apartamentos boutique en capitales europeas.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline self-start">Buscar Alojamiento &rarr;</a>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex flex-col text-center md:text-left">
+                    <div class="rounded-2xl overflow-hidden mb-6 h-48 shadow-sm">
+                        <img src="https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Paquetes de Vuelo mas Hotel" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Paquetes Vuelo + Hotel</h4>
+                    <p class="text-gray-600 mb-4 flex-grow">
+                        Maximiza tu presupuesto combinando transporte y estancia. Gestionamos la logística para que solo te preocupes de hacer la maleta.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline self-start">Configurar Paquete &rarr;</a>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex flex-col text-center md:text-left">
+                    <div class="rounded-2xl overflow-hidden mb-6 h-48 shadow-sm">
+                        <img src="https://images.pexels.com/photos/843633/pexels-photo-843633.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Circuitos y Grandes Viajes" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Grandes Circuitos</h4>
+                    <p class="text-gray-600 mb-4 flex-grow">
+                        Rutas organizadas por los destinos más exóticos. Japón, Tailandia, o safaris en África con guías expertos en español.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline self-start">Ver Circuitos &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOCIAL PROOF / REVIEWS -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card bg-white">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Lo que dicen nuestros viajeros</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            ★★★★★
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Reservamos nuestro viaje de novios a Riviera Maya con Kuqodoor y fue impecable. Los traslados y el hotel superaron nuestras expectativas."</p>
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold">LM</div>
+                        <div class="ml-3">
+                            <p class="text-sm font-bold text-gray-900">Lucía Martínez</p>
+                            <p class="text-xs text-gray-500">Viaje al Caribe</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            ★★★★★
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"La atención personalizada para organizar nuestro circuito por Italia fue excelente. Todo estaba perfectamente coordinado."</p>
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold">AR</div>
+                        <div class="ml-3">
+                            <p class="text-sm font-bold text-gray-900">Antonio Ruiz</p>
+                            <p class="text-xs text-gray-500">Circuito Europeo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            ★★★★★
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Buscaba un hotel específico en Madrid para negocios y aquí encontré el mejor precio. Rápido y seguro."</p>
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold">CS</div>
+                        <div class="ml-3">
+                            <p class="text-sm font-bold text-gray-900">Carla Sánchez</p>
+                            <p class="text-xs text-gray-500">Estancia Urbana</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details class="group bg-white rounded-2xl p-6 border border-gray-100 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg text-gray-800">
+                        ¿Cómo recibo mi documentación de viaje?
+                        <span class="transform group-open:rotate-180 transition-transform text-primary">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">
+                        Una vez confirmada la reserva y realizado el pago, recibirás todos los bonos, billetes electrónicos y la documentación necesaria directamente en formato digital. Te recomendamos llevar una copia accesible en tu móvil.
+                    </p>
+                </details>
+
+                <details class="group bg-white rounded-2xl p-6 border border-gray-100 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg text-gray-800">
+                        ¿Ofrecen seguros de cancelación?
+                        <span class="transform group-open:rotate-180 transition-transform text-primary">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">
+                        Sí, durante el proceso de reserva ofrecemos la opción de añadir seguros de asistencia y cancelación para proteger tu inversión ante imprevistos justificados.
+                    </p>
+                </details>
+
+                <details class="group bg-white rounded-2xl p-6 border border-gray-100 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg text-gray-800">
+                        ¿Puedo financiar mi viaje?
+                        <span class="transform group-open:rotate-180 transition-transform text-primary">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">
+                        Disponemos de opciones de pago flexible para ciertos paquetes vacacionales. Consulta las condiciones específicas al momento de solicitar tu presupuesto en el formulario.
+                    </p>
+                </details>
+                
+                <details class="group bg-white rounded-2xl p-6 border border-gray-100 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg text-gray-800">
+                        ¿Qué incluye el régimen "Todo Incluido"?
+                        <span class="transform group-open:rotate-180 transition-transform text-primary">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">
+                        Generalmente incluye alojamiento, todas las comidas, bebidas (nacionales e internacionales según el hotel), actividades diurnas y espectáculos nocturnos. Los servicios específicos varían según el resort seleccionado.
+                    </p>
+                </details>
+
+                <details class="group bg-white rounded-2xl p-6 border border-gray-100 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg text-gray-800">
+                        ¿Gestionan viajes para grupos grandes?
+                        <span class="transform group-open:rotate-180 transition-transform text-primary">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">
+                        Absolutamente. Tenemos un departamento especializado en grupos (empresas, estudiantes, eventos familiares) para coordinar logística compleja y obtener tarifas especiales.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card bg-gray-50 border-primary border-t-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Empieza tu viaje hoy</h2>
+                    <p class="text-gray-600 mb-8 text-lg">
+                        Rellena el formulario y uno de nuestros expertos en viajes se pondrá en contacto contigo para ofrecerte la mejor opción al mejor precio.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <!-- Removed Phone Icon per instructions (no generic found) -->
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-bold text-gray-900">Oficina Central</h3>
+                                <p class="text-gray-600">
+                                    Calle de Julián Camarillo, 4<br>
+                                    28037 Madrid, España
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-bold text-gray-900">Horario de Atención Online</h3>
+                                <p class="text-gray-600">
+                                    Lunes a Viernes: 09:00 - 20:00<br>
+                                    Fines de Semana: Consultas Web 24h
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-lg">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Enviando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                                <input type="text" id="name" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label for="destination" class="block text-sm font-medium text-gray-700">Destino de Interés</label>
+                                <input type="text" id="destination" required placeholder="Ej: Punta Cana, París..." class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label for="dates" class="block text-sm font-medium text-gray-700">Fechas Aproximadas</label>
+                                <input type="text" id="dates" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label for="contact-info" class="block text-sm font-medium text-gray-700">Teléfono de Contacto</label>
+                                <input type="tel" id="contact-info" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:ring-primary focus:border-primary">
+                            </div>
+                            <div class="flex items-start">
+                                <input id="privacy" type="checkbox" required class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="privacy" class="ml-2 block text-xs text-gray-500">
+                                    Acepto la política de privacidad y el procesamiento de mis datos para la gestión del viaje.
+                                </label>
+                            </div>
+                            <button type="submit" class="w-full btn-primary text-center">
+                                Solicitar Presupuesto Gratuito
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                            <svg class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">¡Solicitud Recibida!</h3>
+                        <p class="text-gray-600">Nuestro equipo está revisando las mejores tarifas para ti. Te contactaremos en breve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-gray-800 pb-8">
+                <span class="text-2xl font-bold mb-4 md:mb-0">Kuqodoor<span class="text-blue-400">Group</span></span>
+                <div class="flex space-x-6 text-sm text-gray-400">
+                    <span>© 2026 Kuqodoor Group. Todos los derechos reservados.</span>
+                </div>
+            </div>
+            
+            <p class="text-center text-xs text-gray-500 mb-8 max-w-3xl mx-auto">
+                Este es un sitio promocional independiente gestionado por Kuqodoor Group, actuando como afiliado para Muchoviaje. Todas las reservas y transacciones finales son procesadas por el proveedor del servicio.
+            </p>
+
+            <div class="space-y-4 text-xs text-gray-500 max-w-4xl mx-auto text-justify">
+                <!-- Legal Details -->
+                <details>
+                    <summary class="cursor-pointer hover:text-white transition">Política de Privacidad</summary>
+                    <div class="pt-4 space-y-2">
+                        <p>En Kuqodoor Group, nos comprometemos firmemente a proteger la privacidad y seguridad de sus datos personales. Esta Política de Privacidad describe cómo recopilamos, utilizamos y salvaguardamos su información cuando visita nuestro sitio web o utiliza nuestros servicios de intermediación turística. Al utilizar nuestro sitio, usted acepta las prácticas descritas en este documento.</p>
+                        <p>Recopilamos información personal que usted nos proporciona voluntariamente, como su nombre, número de teléfono y preferencias de viaje a través de nuestros formularios de contacto. Estos datos se utilizan exclusivamente para gestionar sus solicitudes, proporcionar presupuestos personalizados y mejorar su experiencia de usuario. No vendemos ni alquilamos su información personal a terceros no relacionados con la prestación del servicio solicitado.</p>
+                        <p>Implementamos medidas de seguridad técnicas y organizativas adecuadas para proteger sus datos contra el acceso no autorizado, la alteración, divulgación o destrucción. Sin embargo, ninguna transmisión de datos a través de Internet es completamente segura. Usted tiene derecho a acceder, rectificar o eliminar sus datos personales en cualquier momento contactándonos a través de los canales oficiales provistos en este sitio web. Conservaremos sus datos solo durante el tiempo necesario para cumplir con los fines para los que fueron recopilados o según lo exija la ley aplicable.</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary class="cursor-pointer hover:text-white transition">Términos y Condiciones</summary>
+                    <div class="pt-4 space-y-2">
+                        <p>El uso de este sitio web, operado por Kuqodoor Group, está sujeto a los siguientes Términos y Condiciones. Al acceder y navegar por este sitio, usted acepta estar sujeto a estos términos. El contenido de este sitio es solo para fines informativos generales y promocionales. Nos esforzamos por mantener la información actualizada y precisa, pero no garantizamos la integridad o exactitud de la información sobre precios y disponibilidad de terceros.</p>
+                        <p>Kuqodoor Group actúa como un intermediario de marketing y afiliado. No somos una agencia de viajes final ni operamos los tours, hoteles o vuelos directamente. Toda contratación final se realiza con el proveedor del servicio (Muchoviaje u otros), y estará sujeta a los términos y condiciones específicos de dicho proveedor. No nos hacemos responsables de cancelaciones, cambios de horario, o discrepancias en los servicios prestados por terceros.</p>
+                        <p>Queda prohibido el uso de este sitio web para fines ilícitos o no autorizados. Nos reservamos el derecho de modificar estos términos en cualquier momento sin previo aviso. Es su responsabilidad revisar estos términos periódicamente. La jurisdicción aplicable para cualquier disputa relacionada con este sitio web serán los tribunales competentes del domicilio del titular de Kuqodoor Group.</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary class="cursor-pointer hover:text-white transition">Política de Reembolsos y Cancelaciones</summary>
+                    <div class="pt-4 space-y-2">
+                        <p>Dado que Kuqodoor Group actúa como intermediario publicitario, no procesamos cobros directos por paquetes turísticos ni gestionamos fondos de los clientes para reservas finales. Por lo tanto, cualquier solicitud de reembolso, cambio o cancelación debe dirigirse directamente al proveedor de servicios turísticos con el que se formalizó la reserva final.</p>
+                        <p>Recomendamos encarecidamente leer las políticas de cancelación específicas de cada oferta (hotel, vuelo o paquete) antes de confirmar su compra con el proveedor. Muchos proveedores ofrecen tarifas no reembolsables a cambio de precios más bajos, mientras que otras tarifas permiten flexibilidad. Kuqodoor Group no tiene autoridad para anular estas políticas de terceros ni para autorizar devoluciones en nombre de los operadores turísticos.</p>
+                        <p>En el caso de servicios de consultoría o gestión que Kuqodoor Group pudiera cobrar directamente (si aplicase), las cancelaciones deben notificarse con un mínimo de 48 horas de antelación para optar a un reembolso. Sin embargo, esto no se aplica a los costos del viaje en sí.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 inset-x-0 bg-white shadow-2xl border-t border-gray-200 p-4 transform translate-y-full transition-transform duration-300 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-sm text-gray-600">
+                Utilizamos cookies para mejorar su experiencia de navegación y ofrecer ofertas personalizadas. Al continuar, acepta nuestra política de cookies.
+            </div>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Aceptar Todo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Smooth Scroll Fallback Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback if ID doesn't exist
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close Mobile Menu on Click
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Cookie Banner Logic
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
+        }
+
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').style.transform = 'translateY(0)';
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
