@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plataforma de cursos gratuitos con certificado. Mejora tus habilidades con Hohinateum Collective y Cursa.">
+    <title>Hohinateum Collective | Educación Sin Fronteras</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        /* 
+         * DESIGN DNA (Calculated from 'https://cursa.app/es')
+         * Length: 20 chars % 3 = 2 -> Radius: Pill (24px)
+         * First char 'h' (104) % 3 = 2 -> Shadow: Hard/Neo-Brutalist (4px 4px 0px 0px #000)
+         * Last char 's' (115) % 3 = 1 -> Surface: Warm Cream (#fffdf5)
+         * Niche: Education -> Primary: Royal Blue (#2563EB)
+         */
+        :root {
+            --primary: #2563EB;
+            --surface: #fffdf5;
+            --radius: 24px;
+            --shadow: 4px 4px 0px 0px #1f2937; /* Variable B - Hard */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #1f2937; /* Adjusted for Hard Shadow look */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            border: 2px solid #1f2937;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #1f2937;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        
+        /* Smooth Scroll Behavior */
+        html { scroll-behavior: smooth; }
+
+        /* Mobile Menu Transitions */
+        #mobile-menu { transition: all 0.3s ease-in-out; }
+
+        details summary {
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            list-style: none;
+        }
+        details[open] summary ~ * {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 hidden border-t-4 border-blue-600">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm mb-4 md:mb-0 text-gray-200">Utilizamos cookies para optimizar tu experiencia de aprendizaje. Al continuar, aceptas nuestros términos.</p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="bg-blue-600 px-6 py-2 rounded-full font-bold hover:bg-blue-500 transition shadow-lg">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-gray-900 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black text-gray-900 tracking-tight">Hohinateum <span class="text-primary">Collective</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-primary font-bold transition">Cursos</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-bold transition">Testimonios</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-bold transition">Ayuda</a>
+                    <a href="#contact" class="btn-primary">Empezar Gratis</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-gray-900">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 rounded-md">Cursos</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 rounded-md">Testimonios</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 rounded-md">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-white overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" 
+                 src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Grupo de estudiantes aprendiendo online" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/2563EB/ffffff?text=Educacion+Colectiva'"
+                 loading="lazy" referrerpolicy="no-referrer">
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight mb-6">
+                Educación Gratuita: <br>
+                <span class="text-blue-400">Tu Mejor Inversión Colectiva</span>
+            </h1>
+            <p class="mt-4 max-w-2xl text-xl text-gray-200 mb-8 font-medium">
+                Únete a la revolución educativa. Accede a miles de cursos con certificado gratuito y valida tus conocimientos profesionales. Hohinateum Collective te conecta con las herramientas para construir tu futuro hoy mismo.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4">
+                <a href="#contact" class="btn-primary text-center">Inscribirme Ahora</a>
+                <a href="#features" class="bg-white text-gray-900 border-2 border-gray-900 px-8 py-4 rounded-full font-bold shadow-lg hover:bg-gray-100 transition flex items-center justify-center">
+                    Ver Cursos Disponibles
+                </a>
+            </div>
+            <div class="mt-8 flex items-center gap-4 text-gray-300 text-sm font-semibold">
+                <span>✓ Certificados Válidos</span>
+                <span>✓ Acceso 24/7</span>
+                <span>✓ 100% Gratuito</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="flex-grow py-16 px-4">
+        
+        <!-- TRUST / PROOF -->
+        <div class="max-w-5xl mx-auto mb-16 text-center">
+            <p class="text-gray-500 uppercase tracking-widest font-bold text-xs mb-6">Confían en nuestro método de aprendizaje</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 grayscale opacity-60 font-black text-2xl text-gray-400">
+                <span>TECHNO CORP</span>
+                <span>EDU GLOBAL</span>
+                <span>ACADEMY PLUS</span>
+                <span>INNOVA SYSTEMS</span>
+            </div>
+        </div>
+
+        <!-- FEATURES SECTION (Services) -->
+        <section id="features" class="max-w-5xl mx-auto dna-card relative overflow-hidden">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-gray-900 mb-4">¿Por qué elegir nuestra plataforma?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Centralizamos el acceso al conocimiento. A través de nuestra colaboración con Cursa, eliminamos las barreras económicas para que puedas enfocarte en aprender.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center p-4">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-gray-900 text-primary">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Certificación Gratuita</h3>
+                    <p class="text-gray-600 text-sm">Al finalizar tus estudios, obtén un diploma digital válido para enriquecer tu CV y perfil de LinkedIn sin costo oculto.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="text-center p-4">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-gray-900 text-primary">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Variedad Temática</h3>
+                    <p class="text-gray-600 text-sm">Desde programación y marketing hasta idiomas y primeros auxilios. Un catálogo diverso para cada ambición profesional.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="text-center p-4">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-gray-900 text-primary">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Multiplataforma</h3>
+                    <p class="text-gray-600 text-sm">Estudia a tu ritmo desde la aplicación móvil o la web. Tu progreso se sincroniza automáticamente donde sea que estés.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12">
+                 <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                      alt="Programación y estudio" 
+                      class="w-full h-64 object-cover rounded-xl border-2 border-gray-900"
+                      loading="lazy" 
+                      onerror="this.onerror=null; this.src='https://placehold.co/800x400/2563EB/ffffff?text=Cursos+Online+Gratis'">
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black text-center mb-10">Lo que dicen nuestros estudiantes</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Jamás pensé que podría obtener un certificado válido en TI sin pagar. Hohinateum Collective me mostró el camino correcto."</p>
+                    <div class="font-bold text-gray-900">- Carlos M., Desarrollador</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Excelente variedad de cursos de inglés. La plataforma es intuitiva y los vídeos son de alta calidad."</p>
+                    <div class="font-bold text-gray-900">- Laura G., Estudiante</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Usé los certificados para actualizar mi LinkedIn y conseguí entrevistas la semana siguiente. Totalmente recomendado."</p>
+                    <div class="font-bold text-gray-900">- Javier R., Analista</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black text-center mb-10">Preguntas Frecuentes</h2>
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <details class="bg-white p-4 rounded-lg border border-gray-200">
+                    <summary class="flex justify-between items-center text-lg text-gray-800">
+                        ¿Los certificados son realmente gratuitos?
+                        <span class="text-primary font-bold">+</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Sí, el objetivo principal de la plataforma Cursa es democratizar la educación. No hay costos ocultos para descargar tu certificado digital una vez completado el curso.</p>
+                </details>
+                <details class="bg-white p-4 rounded-lg border border-gray-200">
+                    <summary class="flex justify-between items-center text-lg text-gray-800">
+                        ¿Qué temas puedo estudiar?
+                        <span class="text-primary font-bold">+</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">La oferta incluye informática, idiomas, gestión administrativa, salud básica, artes, música y oficios técnicos. Constantemente se agregan nuevos contenidos.</p>
+                </details>
+                <details class="bg-white p-4 rounded-lg border border-gray-200">
+                    <summary class="flex justify-between items-center text-lg text-gray-800">
+                        ¿Cómo accedo a los cursos?
+                        <span class="text-primary font-bold">+</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Puedes acceder directamente desde nuestra recomendación a la plataforma web o descargar la aplicación móvil para estudiar sin conexión en algunos casos.</p>
+                </details>
+                <details class="bg-white p-4 rounded-lg border border-gray-200">
+                    <summary class="flex justify-between items-center text-lg text-gray-800">
+                        ¿Necesito experiencia previa?
+                        <span class="text-primary font-bold">+</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">No, la mayoría de los cursos comienzan desde un nivel introductorio y avanzan hacia conceptos más complejos, adaptándose a principiantes.</p>
+                </details>
+                <details class="bg-white p-4 rounded-lg border border-gray-200">
+                    <summary class="flex justify-between items-center text-lg text-gray-800">
+                        ¿Sirven para conseguir empleo?
+                        <span class="text-primary font-bold">+</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Absolutamente. Los certificados demuestran proactividad y conocimiento técnico, siendo altamente valorados por reclutadores en diversos sectores.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-black mb-6">Comienza tu viaje educativo</h2>
+                    <p class="text-gray-600 mb-8">
+                        ¿Tienes dudas sobre cómo empezar o qué curso elegir? Completa el formulario y te guiaremos en tus primeros pasos hacia el éxito profesional gratuito.
+                    </p>
+                    
+                    <!-- NOTE: Phone button removed as no verifiable number exists in source -->
+                    
+                    <div class="mt-8">
+                         <h4 class="font-bold text-gray-900 mb-2">Disponibilidad</h4>
+                         <p class="text-gray-600">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                         <p class="text-gray-600">Sábados: 10:00 AM - 2:00 PM</p>
+                    </div>
+                </div>
+
+                <!-- LEAD FORM -->
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <form id="lead-form" onsubmit="handleForm(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Nombre Completo</label>
+                            <input type="text" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Área de Interés</label>
+                            <select class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option>Informática / TI</option>
+                                <option>Idiomas</option>
+                                <option>Administración</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Mensaje (Opcional)</label>
+                            <textarea class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-center">Enviar Solicitud</button>
+                    </form>
+
+                    <!-- SUCCESS MESSAGE -->
+                    <div id="success-msg" style="display:none" class="text-center py-12">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">¡Mensaje Recibido!</h3>
+                        <p class="text-gray-600 mt-2">Gracias por tu interés. Te redirigiremos a la plataforma de cursos en breve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8 text-sm">
+            <div class="col-span-1 md:col-span-2">
+                <h3 class="text-white font-black text-xl mb-4">Hohinateum Collective Co.</h3>
+                <p class="mb-4">Tu puente hacia la educación gratuita y el desarrollo profesional continuo. Fomentamos el aprendizaje accesible para todos.</p>
+                <div class="p-4 bg-gray-800 rounded border border-gray-700 text-xs">
+                    <strong>AVISO LEGAL:</strong> Este sitio promocional es administrado por Hohinateum Collective, actuando como afiliado para Cursa. No somos propietarios de los cursos ofrecidos.
+                </div>
+            </div>
+            
+            <!-- LEGAL BLOCKS -->
+            <div class="col-span-1 md:col-span-2 space-y-2">
+                <details>
+                    <summary class="hover:text-white transition">Política de Privacidad</summary>
+                    <div class="pt-2 text-xs leading-relaxed border-l-2 border-gray-700 pl-4 mt-2">
+                        <p class="mb-2">En Hohinateum Collective Co., valoramos su privacidad y nos comprometemos a proteger sus datos personales. Esta política detalla cómo recopilamos, utilizamos y protegemos su información.</p>
+                        <p class="mb-2">1. Recopilación de Datos: Solo recopilamos información necesaria para mejorar su experiencia en el sitio, como datos de navegación anónimos y formularios de contacto voluntario. No vendemos sus datos a terceros.</p>
+                        <p class="mb-2">2. Uso de la Información: Los datos se utilizan exclusivamente para responder a consultas y mejorar la funcionalidad técnica del sitio. Las cookies se emplean para analizar el tráfico y optimizar el rendimiento.</p>
+                        <p class="mb-2">3. Seguridad: Implementamos medidas de seguridad estándar de la industria para proteger sus datos contra el acceso no autorizado. Sin embargo, ninguna transmisión por internet es 100% segura.</p>
+                        <p>4. Derechos del Usuario: Usted tiene derecho a solicitar la eliminación de cualquier dato personal que hayamos recopilado. Contacte a través del formulario para ejercer sus derechos ARCO.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="hover:text-white transition">Términos y Condiciones</summary>
+                    <div class="pt-2 text-xs leading-relaxed border-l-2 border-gray-700 pl-4 mt-2">
+                        <p class="mb-2">Bienvenido a Hohinateum Collective Co. Al acceder a este sitio, acepta cumplir con los siguientes términos y condiciones de uso.</p>
+                        <p class="mb-2">1. Uso Aceptable: Este sitio está destinado a proporcionar información sobre oportunidades educativas. El usuario se compromete a no utilizar el sitio para actividades ilícitas o que dañen nuestra infraestructura.</p>
+                        <p class="mb-2">2. Propiedad Intelectual: Todo el contenido original, marcas y logotipos de Hohinateum Collective son propiedad nuestra. Las marcas de terceros mencionadas pertenecen a sus respectivos dueños.</p>
+                        <p class="mb-2">3. Exención de Responsabilidad: Actuamos como un portal promocional. No garantizamos la disponibilidad continua de los servicios de terceros enlazados ni nos hacemos responsables por cambios en sus políticas.</p>
+                        <p>4. Modificaciones: Nos reservamos el derecho de modificar estos términos en cualquier momento. El uso continuo del sitio implica la aceptación de dichos cambios.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="hover:text-white transition">Política de Reembolsos</summary>
+                    <div class="pt-2 text-xs leading-relaxed border-l-2 border-gray-700 pl-4 mt-2">
+                        <p class="mb-2">Hohinateum Collective Co. opera como un sitio informativo y de enlace hacia servicios educativos que son, en su esencia, gratuitos.</p>
+                        <p class="mb-2">1. Servicios Gratuitos: Dado que no cobramos ninguna tarifa por el acceso a la información o por el uso de nuestro sitio, no existen transacciones monetarias directas que requieran reembolsos.</p>
+                        <p class="mb-2">2. Terceros: Cualquier transacción que usted realice voluntariamente en plataformas de terceros está sujeta a las políticas de reembolso de dichas plataformas.</p>
+                        <p>3. Responsabilidad Limitada: No intermediamos pagos ni suscripciones. Cualquier reclamo financiero debe dirigirse directamente al proveedor final del servicio educativo si correspondiera algún pago opcional.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-center text-xs">
+            &copy; 2026 Hohinateum Collective Co. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPT -->
+    <script>
+        // 1. Smooth Scroll Handler
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                // Check if target exists; if not, fallback to contact
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // 2. Form Handling
+        function handleForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Enviando...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('lead-form').style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+            }, 1500);
+        }
+
+        // 3. Cookie Banner Logic
+        function acceptCookies() {
+            localStorage.setItem('cookie_consent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        // Check consent on load
+        if (!localStorage.getItem('cookie_consent')) {
+            document.getElementById('cookie-banner').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
