@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gizowin Services | Arredamento e Design d'Interni su Misura</title>
+    <meta name="description" content="Servizi di arredamento completi, cucine su misura e progettazione d'interni. Trasforma la tua casa con Gizowin Services.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* 
+         * DESIGN DNA CALCULATOR
+         * Host: gizowinexexservices.digital (Length 25)
+         * VAR A (Geometry): 25 % 3 = 1 -> Soft (12px)
+         * VAR B (Physics): 'g' (103) % 3 = 1 -> Material
+         * VAR C (Surface): 'l' (108) % 3 = 0 -> Clean (#ffffff)
+         * VAR D (Palette): Niche (Interior Design) -> Deep Teal (#0f766e)
+         */
+        :root {
+            --primary: #0f766e;
+            --primary-hover: #115e59;
+            --surface: #ffffff;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .dna-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 700;
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover { 
+            background-color: var(--primary-hover);
+            opacity: 0.95; 
+            transform: translateY(-1px); 
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+
+        /* HERO OVERLAY */
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5));
+        }
+
+        /* FORM STYLING */
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: var(--radius);
+            border: 1px solid #d1d5db;
+            margin-bottom: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--primary);
+            ring: 2px solid var(--primary);
+        }
+
+        /* LEGAL DROPDOWN */
+        details > summary {
+            cursor: pointer;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: var(--radius);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        details[open] > summary {
+            background: #e5e7eb;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-gray-800"><span class="text-primary">Gizowin</span> Services</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#services" class="text-gray-600 hover:text-primary font-medium transition">Servizi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">Domande</a>
+                    <a href="#contact" class="btn-primary py-2 px-6">Contattaci</a>
+                </div>
+                <!-- Mobile button -->
+                <div class="md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 absolute w-full shadow-lg">
+            <a href="#services" class="block py-2 text-gray-700 font-medium">Servizi</a>
+            <a href="#reviews" class="block py-2 text-gray-700 font-medium">Recensioni</a>
+            <a href="#faq" class="block py-2 text-gray-700 font-medium">FAQ</a>
+            <a href="#contact" class="block py-2 text-primary font-bold">Richiedi Preventivo</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 text-white py-24 lg:py-32">
+        <div class="absolute inset-0">
+            <img 
+                src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+                alt="Arredamento interni lusso" 
+                class="w-full h-full object-cover"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Modern+Interior'"
+            >
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                La gestione perfetta dei tuoi spazi inizia con <br>
+                <span class="text-teal-400">il giusto arredamento.</span>
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-10">
+                Soluzioni d'arredo complete, dalla cucina alla zona notte. Gizowin Services seleziona il meglio per trasformare la tua casa in un ambiente unico e funzionale.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="btn-primary text-lg px-8 py-4">
+                    Richiedi Progetto Gratuito
+                </a>
+                <a href="#services" class="bg-white text-gray-900 rounded-lg px-8 py-4 font-bold shadow-lg hover:bg-gray-100 transition duration-200">
+                    Esplora i Servizi
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST BADGES -->
+    <div class="bg-white border-b py-8">
+        <div class="max-w-6xl mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale">
+            <span class="text-xl font-bold text-gray-500">SAMSUNG HOME</span>
+            <span class="text-xl font-bold text-gray-500">LUBE CUCINE</span>
+            <span class="text-xl font-bold text-gray-500">NATUZZI</span>
+            <span class="text-xl font-bold text-gray-500">CALLIGARIS</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8">
+        
+        <!-- SERVICES SECTION -->
+        <section id="services" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-primary font-bold uppercase tracking-wide text-sm mb-2">I Nostri Servizi</h2>
+                <h3 class="text-3xl font-extrabold text-gray-900">Soluzioni Integrate per la Casa</h3>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Non vendiamo solo mobili. Offriamo un servizio completo di consulenza, progettazione e assistenza per ogni ambiente domestico.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="text-center group">
+                    <div class="h-48 overflow-hidden rounded-lg mb-6 relative">
+                        <img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=800" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" alt="Cucine su misura">
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Cucine su Misura</h4>
+                    <p class="text-gray-600">Progettazione personalizzata di cucine moderne e classiche. Ottimizzazione degli spazi e scelta di materiali durevoli.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="text-center group">
+                    <div class="h-48 overflow-hidden rounded-lg mb-6 relative">
+                        <img src="https://images.pexels.com/photos/3753969/pexels-photo-3753969.jpeg?auto=compress&cs=tinysrgb&w=800" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" alt="Zona Living e Notte">
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Zona Living & Notte</h4>
+                    <p class="text-gray-600">Soluzioni per soggiorni accoglienti e camere da letto rilassanti. Design che unisce estetica e massimo comfort.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="text-center group">
+                    <div class="h-48 overflow-hidden rounded-lg mb-6 relative">
+                        <img src="https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=800" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" alt="Arredo Bagno">
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Arredo Bagno & Finiture</h4>
+                    <p class="text-gray-600">Dalle composizioni bagno ai complementi d'arredo. Curiamo ogni dettaglio per valorizzare lo stile della tua abitazione.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h3 class="text-3xl font-extrabold text-gray-900 mb-10 text-center">Cosa dicono i nostri clienti</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex text-sm">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Grazie a Gizowin Services abbiamo trovato la cucina perfetta. La consulenza per i colori e i materiali ha fatto la differenza."</p>
+                    <p class="font-bold text-gray-900">- Marco Rossi</p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex text-sm">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Professionalità e cortesia. Hanno arredato la nostra camera da letto rispettando il budget e consegnando in anticipo."</p>
+                    <p class="font-bold text-gray-900">- Laura Bianchi</p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex text-sm">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Servizio eccellente. Ci hanno seguito passo passo nella scelta dei mobili per il soggiorno. Consigliatissimi."</p>
+                    <p class="font-bold text-gray-900">- Giuseppe Verdi</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h3 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti</h3>
+            <div class="space-y-4">
+                <details class="group">
+                    <summary class="list-none flex justify-between items-center font-medium text-gray-900">
+                        <span>Offrite il servizio di montaggio?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 px-4 pb-4">
+                        Sì, i nostri tecnici specializzati si occupano del trasporto e del montaggio a regola d'arte di tutti i mobili acquistati, garantendo precisione e pulizia.
+                    </div>
+                </details>
+                
+                <details class="group">
+                    <summary class="list-none flex justify-between items-center font-medium text-gray-900">
+                        <span>Posso personalizzare le misure della cucina?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 px-4 pb-4">
+                        Assolutamente. La personalizzazione è il nostro punto di forza. Realizziamo progetti su misura per adattarsi perfettamente agli spazi della tua casa.
+                    </div>
+                </details>
+
+                <details class="group">
+                    <summary class="list-none flex justify-between items-center font-medium text-gray-900">
+                        <span>Quali sono i tempi di consegna?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 px-4 pb-4">
+                        I tempi variano in base al prodotto e alla personalizzazione. Generalmente, per mobili su misura, la consegna avviene entro 4-6 settimane dall'ordine.
+                    </div>
+                </details>
+
+                <details class="group">
+                    <summary class="list-none flex justify-between items-center font-medium text-gray-900">
+                        <span>Offrite garanzie sui prodotti?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 px-4 pb-4">
+                        Tutti i nostri prodotti sono coperti da garanzia legale di 2 anni. Alcuni brand specifici offrono estensioni di garanzia che saremo lieti di illustrarvi.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card bg-white">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-3xl font-extrabold text-gray-900 mb-4">Contattaci Ora</h3>
+                    <p class="text-gray-600 mb-8">Compila il modulo per richiedere una consulenza gratuita o vieni a trovarci nel nostro showroom.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-primary text-2xl mt-1"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-900">Showroom</h4>
+                                <p class="text-gray-600">Via Torino 15,<br>20063 Cernusco sul Naviglio (MI)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-phone text-primary text-2xl mt-1"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-900">Telefono</h4>
+                                <a href="tel:+39029232054" class="text-gray-600 hover:text-primary transition">+39 02 923 2054</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-clock text-primary text-2xl mt-1"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-900">Orari</h4>
+                                <p class="text-gray-600">Lun - Sab: 09:30 - 19:30<br>Domenica: Chiuso</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                    <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); btn.disabled = true; btn.innerHTML = '<i class=\'fas fa-spinner fa-spin\'></i> Invio...'; setTimeout(()=>{this.style.display='none';document.getElementById('success-msg').style.display='block'; window.scrollTo(0, document.getElementById('contact').offsetTop);}, 1500);">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nome e Cognome</label>
+                            <input type="text" required placeholder="Inserisci il tuo nome">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Telefono</label>
+                            <input type="tel" required placeholder="Il tuo numero di cellulare">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Interessato a:</label>
+                            <select>
+                                <option>Cucina su Misura</option>
+                                <option>Camera da Letto</option>
+                                <option>Soggiorno / Living</option>
+                                <option>Arredo Completo</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-center mt-2">
+                            Richiedi Preventivo Gratuito
+                        </button>
+                    </form>
+                    
+                    <!-- Success Message -->
+                    <div id="success-msg" style="display:none" class="text-center py-10">
+                        <i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Grazie!</h4>
+                        <p class="text-gray-600">Abbiamo ricevuto la tua richiesta. Un nostro consulente ti contatterà al più presto per confermare l'appuntamento.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-400 py-12 text-sm border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-white mb-2">Gizowin Services</h2>
+                <p class="mb-4">Esperti nell'arredamento di interni.</p>
+                <p class="text-xs text-gray-500 max-w-2xl mx-auto border-t border-gray-800 pt-4">
+                    *Questo è un sito promozionale indipendente gestito da Gizowin Services, che opera in qualità di affiliato e promotore digitale per Mobilissimo Srl. Tutti i servizi di vendita, consegna e garanzia sono erogati direttamente dal fornitore originale.
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                
+                <!-- Privacy Policy -->
+                <details>
+                    <summary>Informativa sulla Privacy</summary>
+                    <div class="p-4 bg-gray-800 rounded-lg text-xs leading-relaxed text-gray-300">
+                        <p class="mb-2"><strong>1. Titolare del Trattamento</strong><br>Il trattamento dei dati personali raccolti su questo sito è effettuato da Gizowin Services, in conformità con il Regolamento (UE) 2016/679 (GDPR). Ci impegniamo a proteggere la tua privacy e a garantire la sicurezza delle tue informazioni personali.</p>
+                        <p class="mb-2"><strong>2. Tipologia di Dati Raccolti</strong><br>Raccogliamo esclusivamente i dati forniti volontariamente dall'utente attraverso il modulo di contatto, quali: nome, cognome e numero di telefono. Non raccogliamo dati sensibili o finanziari diretti tramite questo modulo.</p>
+                        <p class="mb-2"><strong>3. Finalità del Trattamento</strong><br>I dati sono utilizzati esclusivamente per rispondere alle richieste di informazioni o preventivi riguardo ai servizi di arredamento. I dati potranno essere trasmessi al fornitore del servizio (Mobilissimo) esclusivamente per la gestione dell'appuntamento o della richiesta commerciale.</p>
+                        <p class="mb-2"><strong>4. Conservazione dei Dati</strong><br>I dati personali verranno conservati per il tempo strettamente necessario a gestire la richiesta dell'utente. Successivamente, verranno cancellati o resi anonimi, salvo obblighi di legge.</p>
+                        <p class="mb-2"><strong>5. Diritti dell'Interessato</strong><br>L'utente ha il diritto di accedere ai propri dati, richiederne la rettifica, la cancellazione o la limitazione del trattamento in qualsiasi momento. Non utilizziamo processi decisionali automatizzati o profilazione senza consenso esplicito.</p>
+                    </div>
+                </details>
+
+                <!-- Terms of Service -->
+                <details>
+                    <summary>Termini e Condizioni</summary>
+                    <div class="p-4 bg-gray-800 rounded-lg text-xs leading-relaxed text-gray-300">
+                        <p class="mb-2"><strong>1. Accettazione dei Termini</strong><br>L'accesso e l'uso di questo sito web implicano l'accettazione integrale dei presenti Termini e Condizioni. Se non si accettano tali termini, si prega di interrompere la navigazione.</p>
+                        <p class="mb-2"><strong>2. Ruolo di Gizowin Services</strong><br>Gizowin Services opera come intermediario di marketing e non è responsabile diretto della produzione, consegna o installazione dei beni di arredamento. Il contratto finale di vendita avverrà tra l'utente e il fornitore (Mobilissimo).</p>
+                        <p class="mb-2"><strong>3. Limitazione di Responsabilità</strong><br>Non ci assumiamo responsabilità per errori, omissioni o inesattezze nelle descrizioni dei prodotti fornite da terzi. Le immagini sono a scopo puramente illustrativo.</p>
+                        <p class="mb-2"><strong>4. Modifiche al Servizio</strong><br>Ci riserviamo il diritto di modificare, sospendere o interrompere il servizio o parti di esso in qualsiasi momento senza preavviso.</p>
+                        <p class="mb-2"><strong>5. Legge Applicabile</strong><br>I presenti termini sono regolati dalla legge italiana. Per qualsiasi controversia sarà competente il foro di residenza dell'operatore del sito, salvo diverse disposizioni di legge imperative.</p>
+                    </div>
+                </details>
+
+                <!-- Refund Policy -->
+                <details>
+                    <summary>Politica di Reso e Rimborsi</summary>
+                    <div class="p-4 bg-gray-800 rounded-lg text-xs leading-relaxed text-gray-300">
+                        <p class="mb-2"><strong>1. Beni su Misura</strong><br>Si informa l'utente che, ai sensi dell'art. 59 del Codice del Consumo, il diritto di recesso è escluso per la fornitura di beni confezionati su misura o chiaramente personalizzati (es. cucine progettate su specifici spazi).</p>
+                        <p class="mb-2"><strong>2. Beni Standard</strong><br>Per i prodotti non personalizzati, il consumatore ha diritto di recedere dal contratto entro 14 giorni dalla consegna, previa comunicazione e restituzione del bene integro.</p>
+                        <p class="mb-2"><strong>3. Prodotti Difettosi</strong><br>In caso di difetti di conformità, si applica la garanzia legale di 24 mesi. L'utente ha diritto al ripristino della conformità del bene mediante riparazione o sostituzione.</p>
+                        <p class="mb-2"><strong>4. Procedura di Reclamo</strong><br>Eventuali reclami relativi a merce danneggiata o non conforme devono essere indirizzati direttamente al venditore finale (Mobilissimo) indicato nel contratto di acquisto.</p>
+                        <p class="mb-2"><strong>5. Ruolo dell'Affiliato</strong><br>Gizowin Services, in qualità di promotore, non gestisce direttamente rimborsi o resi finanziari, ma fornirà assistenza nel mettere in contatto il cliente con il servizio clienti del fornitore.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-8 text-center border-t border-gray-800 pt-8">
+                <p>&copy; 2026 Gizowin Services. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-2xl p-4 z-50 transform translate-y-full transition-transform duration-300" style="display: none;">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-600">
+                Utilizziamo cookie tecnici per garantire la migliore esperienza sul nostro sito. Continuando la navigazione accetti i nostri termini.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 text-sm hover:underline">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        // 1. SCROLL SPY & SMOOTH SCROLL (Self-Healing)
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Smooth scroll to existing ID
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        // Close mobile menu if open
+                        document.getElementById('mobile-menu').classList.add('hidden');
+                    } else {
+                        // Fallback: Scroll to contact if ID missing
+                        console.warn(`Target #${targetId} not found. Redirecting to #contact.`);
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // 2. COOKIE LOGIC
+            setTimeout(() => {
+                if (!localStorage.getItem('cookieConsent')) {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.style.display = 'block';
+                    setTimeout(() => banner.classList.remove('translate-y-full'), 100);
+                }
+            }, 1000);
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => banner.style.display = 'none', 300);
+        }
+    </script>
+
+</body>
+</html>
