@@ -1,33 +1,31 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CiseFowuex Holdings - Pianificazione strategica per le tue esperienze di viaggio e vacanze da sogno.">
-    <title>CiseFowuex Holdings | Investi nelle Tue Emozioni</title>
+    <title>Cise Holdings | Esperienze di Viaggio Premium</title>
+    <meta name="description" content="Investi nei tuoi ricordi. Cise Holdings seleziona le migliori offerte di viaggio e pacchetti vacanza esclusivi.">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     
     <!-- PHASE 2: DESIGN SYSTEM INJECTION -->
-    <!-- DNA CALCULATION:
-         Source: piratinviaggio.it (Length 17 -> Mod 3 = 2 -> Pill Radius)
-         First Letter: p (112) -> Mod 3 = 1 -> Material Shadow
-         Last Letter: t (116) -> Mod 3 = 2 -> Cool Surface (#f8fafc)
-         Palette: Travel/Deals -> Teal/Cyan (#0e7490)
-    -->
     <style>
         :root {
-            --primary: #0e7490; /* Teal 700 - Professional & Travel-friendly */
-            --surface: #f8fafc; /* Slate 50 - Cool Surface */
-            --radius: 24px;     /* Pill Radius */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Material Shadow */
+            /* VAR D: Palette -> Travel Sky Blue */
+            --primary: #0ea5e9;
+            /* VAR C: Surface -> Cool (Slate White) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry -> Soft (16 % 3 = 1) */
+            --radius: 12px;
+            /* VAR B: Physics -> Material (112 % 3 = 1) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6; /* Light gray base */
+            background-color: #f3f4f6;
             color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
 
         /* BRAND COMPONENT: The DNA Card */
@@ -38,8 +36,6 @@
             padding: 2.5rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
         }
 
         /* BRAND COMPONENT: Primary Button */
@@ -49,422 +45,389 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: 1rem 2rem;
-            transition: all 0.3s ease;
-            font-weight: 700;
+            transition: all 0.2s;
+            font-weight: bold;
             display: inline-block;
-            text-align: center;
-        }
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translateY(-2px); 
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        /* UTILITY: Text Accent */
-        .text-primary { color: var(--primary); }
-
-        /* LEGAL & DETAILS STYLING */
-        details summary {
             cursor: pointer;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
+            border: none;
         }
-        details[open] summary {
-            margin-bottom: 1rem;
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
+
+        /* UTILITY */
+        .text-primary { color: var(--primary); }
+        .bg-primary-light { background-color: rgba(14, 165, 233, 0.1); }
         
-        /* MOBILE MENU TRANSITION */
+        /* Mobile Menu Transition */
         #mobile-menu {
-            transition: max-height 0.3s ease-in-out;
+            transition: height 0.3s ease-in-out;
+        }
+
+        /* Form Success Message */
+        .success-animation {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen">
 
     <!-- NAVIGATION -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
+    <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold text-gray-800">CiseFowuex<span class="text-primary">Holdings</span></span>
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-800">Cise<span class="text-primary">Holdings</span></span>
                 </div>
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium">Servizi</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium">Recensioni</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium">FAQ</a>
+                    <a href="#features" class="text-gray-600 hover:text-primary transition">Servizi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary transition">FAQ</a>
                     <a href="#contact" class="btn-primary">Richiedi Preventivo</a>
                 </div>
+                <!-- Mobile Button -->
                 <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-primary focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md">Servizi</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md">Recensioni</a>
-                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md">FAQ</a>
-                <a href="#contact" class="block mt-4 btn-primary text-center">Richiedi Preventivo</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md">Recensioni</a>
+                <a href="#faq" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md">FAQ</a>
+                <a href="#contact" class="block w-full text-center px-3 py-4 mt-2 bg-gray-50 text-primary font-bold">Contattaci</a>
             </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <header class="relative bg-gray-900 h-screen-3/4 min-h-[600px] flex items-center">
-        <!-- Background Image with Overlay -->
-        <img src="https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=1920" 
-             class="absolute inset-0 w-full h-full object-cover" 
-             alt="Luxury Travel Landscape" 
-             loading="eager"
-             referrerpolicy="no-referrer">
-        <div class="absolute inset-0 bg-black opacity-50"></div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white z-10">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-                Il Miglior Investimento per il Tuo Futuro: <br>
-                <span class="text-cyan-400">Esperienze di Viaggio Indimenticabili</span>
-            </h1>
-            <p class="mt-4 text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-10">
-                CiseFowuex Holdings analizza il mercato globale per offrirti pacchetti vacanza, voli strategici e soggiorni esclusivi. Massimizza il valore del tuo tempo libero.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contact" class="btn-primary border-2 border-transparent text-lg">Pianifica Ora</a>
-                <a href="#features" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 rounded-full px-8 py-4 text-lg font-bold transition duration-300 shadow-lg">Scopri le Offerte</a>
-            </div>
+    <div class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                alt="Tropical travel landscape" 
+                class="w-full h-full object-cover"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Premium+Travel'"
+            >
+            <div class="absolute inset-0 bg-black opacity-50"></div>
         </div>
-    </header>
 
-    <!-- TRUST STRIP -->
-    <div class="bg-white py-8 border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-wide mb-4">Partner di fiducia nel settore turistico</p>
-            <div class="flex justify-center space-x-8 md:space-x-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <span class="text-xl md:text-2xl font-bold text-gray-500">TRAVEL<span class="text-gray-800">PRO</span></span>
-                <span class="text-xl md:text-2xl font-bold text-gray-500">Global<span class="text-gray-800">Wings</span></span>
-                <span class="text-xl md:text-2xl font-bold text-gray-500">OCEAN<span class="text-gray-800">LUX</span></span>
-                <span class="text-xl md:text-2xl font-bold text-gray-500">Sky<span class="text-gray-800">Connect</span></span>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+                Il Miglior Investimento?<br>
+                <span class="text-primary">I Tuoi Ricordi nel Mondo.</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200">
+                Cise Holdings capitalizza sulle opportunità globali per offrirti viaggi, voli e soggiorni esclusivi. Trasforma il tuo tempo libero in un asset indimenticabile.
+            </p>
+            <div class="mt-10">
+                <a href="#features" class="btn-primary text-lg px-8 py-4">
+                    Esplora le Opportunità
+                </a>
+            </div>
+            <!-- Trust Proof -->
+            <div class="mt-12 flex justify-center space-x-8 text-gray-400 font-semibold uppercase tracking-wider text-sm">
+                <span>Partner Affidabili</span>
+                <span>•</span>
+                <span>Assistenza Dedicata</span>
+                <span>•</span>
+                <span>Prezzi Competitivi</span>
             </div>
         </div>
     </div>
 
-    <!-- MAIN CONTENT WRAPPER -->
-    <main class="py-16 px-4 sm:px-6 lg:px-8">
-
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8">
+        
         <!-- SERVICES / FEATURES SECTION -->
-        <section id="features" class="max-w-5xl mx-auto">
+        <div id="features" class="max-w-5xl mx-auto dna-card">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-900">Le Nostre Strategie di Viaggio</h2>
-                <p class="mt-4 text-lg text-gray-500">
-                    Selezioniamo solo le migliori opportunità per garantirti il massimo comfort al miglior prezzo di mercato.
-                </p>
+                <h2 class="text-3xl font-bold text-gray-900">Le Nostre Soluzioni di Viaggio</h2>
+                <p class="mt-4 text-gray-600">Analizziamo il mercato per garantirti il miglior rapporto qualità-esperienza.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="dna-card p-0 hover:shadow-xl transition-shadow duration-300">
-                    <img src="https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=800" class="w-full h-48 object-cover rounded-t-[24px]" alt="Voli Aerei" loading="lazy">
-                    <div class="p-8">
-                        <div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center text-primary mb-4">
-                            <i class="fas fa-plane-departure text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Analisi Voli Low Cost</h3>
-                        <p class="text-gray-600 mb-4">
-                            Individuiamo le tariffe aeree più vantaggiose e gli "error fare" per permetterti di volare in tutto il mondo risparmiando fino al 70%.
-                        </p>
+                <div class="text-center p-4">
+                    <div class="h-48 w-full mb-6 rounded-lg overflow-hidden shadow-sm relative group">
+                        <img 
+                            src="https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Voli Low Cost" 
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                            loading="lazy"
+                        >
                     </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Connettività Aerea Smart</h3>
+                    <p class="text-gray-600 text-sm">
+                        Individuiamo le migliori tariffe aeree e le tratte più convenienti. Voli low-cost e di linea verso le principali capitali e mete esotiche.
+                    </p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="dna-card p-0 hover:shadow-xl transition-shadow duration-300">
-                    <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800" class="w-full h-48 object-cover rounded-t-[24px]" alt="Resort" loading="lazy">
-                    <div class="p-8">
-                        <div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center text-primary mb-4">
-                            <i class="fas fa-umbrella-beach text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Pacchetti All-Inclusive</h3>
-                        <p class="text-gray-600 mb-4">
-                            Pacchetti vacanza completi e accuratamente selezionati. Resort, trasferimenti e attività inclusi per un'esperienza senza pensieri.
-                        </p>
+                <div class="text-center p-4">
+                    <div class="h-48 w-full mb-6 rounded-lg overflow-hidden shadow-sm relative group">
+                        <img 
+                            src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Hotel e Resort" 
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                            loading="lazy"
+                        >
                     </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Soggiorni Esclusivi</h3>
+                    <p class="text-gray-600 text-sm">
+                        Dal boutique hotel nel centro città al resort sulla spiaggia. Selezioniamo strutture con le recensioni migliori per garantirti comfort assoluto.
+                    </p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="dna-card p-0 hover:shadow-xl transition-shadow duration-300">
-                    <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=800" class="w-full h-48 object-cover rounded-t-[24px]" alt="Hotel e Relax" loading="lazy">
-                    <div class="p-8">
-                        <div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center text-primary mb-4">
-                            <i class="fas fa-bed text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Soggiorni Esclusivi</h3>
-                        <p class="text-gray-600 mb-4">
-                            Accordi preferenziali con catene alberghiere di lusso per offrirti upgrade di camera e servizi premium a tariffe standard.
-                        </p>
+                <div class="text-center p-4">
+                    <div class="h-48 w-full mb-6 rounded-lg overflow-hidden shadow-sm relative group">
+                        <img 
+                            src="https://images.pexels.com/photos/2245292/pexels-photo-2245292.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Pacchetti Vacanze" 
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                            loading="lazy"
+                        >
                     </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Pacchetti All-Inclusive</h3>
+                    <p class="text-gray-600 text-sm">
+                        Gestione completa della tua esperienza. Volo + Hotel + Esperienze in loco. Massima resa, minimo stress organizzativo.
+                    </p>
                 </div>
             </div>
-        </section>
+            
+            <div class="mt-12 text-center">
+                <a href="#contact" class="text-primary font-bold hover:underline">Richiedi un itinerario personalizzato &rarr;</a>
+            </div>
+        </div>
 
-        <!-- REVIEWS SECTION -->
-        <section id="reviews" class="max-w-5xl mx-auto mt-20">
-            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Cosa Dicono i Nostri Viaggiatori</h2>
-            <div class="dna-card bg-white">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-                    
-                    <div class="p-4">
-                        <div class="flex text-yellow-400 mb-3">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"Grazie a CiseFowuex Holdings ho prenotato un viaggio alle Maldive che pensavo fosse fuori dal mio budget. Organizzazione impeccabile."</p>
-                        <p class="font-bold text-gray-900">- Marco Rossi, Milano</p>
+        <!-- SOCIAL PROOF / REVIEWS -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card mt-12">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Cosa dicono i nostri viaggiatori</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
                     </div>
-
-                    <div class="p-4">
-                        <div class="flex text-yellow-400 mb-3">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"Un servizio che analizza davvero il mercato. Non è il solito sito di prenotazione, qui c'è vera consulenza dietro ogni offerta."</p>
-                        <p class="font-bold text-gray-900">- Laura Bianchi, Roma</p>
+                    <p class="text-gray-600 italic mb-4">"Non avevo mai trovato un volo per New York a questo prezzo. Servizio impeccabile e suggerimenti utilissimi."</p>
+                    <p class="font-bold text-gray-900">- Marco R.</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
                     </div>
-
-                    <div class="p-4">
-                        <div class="flex text-yellow-400 mb-3">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"Voli trovati a prezzi incredibili. Il team di supporto è stato rapidissimo nel consigliarmi le date migliori."</p>
-                        <p class="font-bold text-gray-900">- Giuseppe Verdi, Napoli</p>
+                    <p class="text-gray-600 italic mb-4">"Il pacchetto per le Maldive era esattamente come descritto. Cise Holdings ha reso la mia vacanza un sogno accessibile."</p>
+                    <p class="font-bold text-gray-900">- Sara L.</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★☆</div>
                     </div>
-
+                    <p class="text-gray-600 italic mb-4">"Ottima selezione di hotel. Mi piace l'approccio professionale e la facilità di trovare offerte last minute."</p>
+                    <p class="font-bold text-gray-900">- Giovanni T.</p>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- FAQ SECTION -->
-        <section id="faq" class="max-w-3xl mx-auto mt-16">
-            <div class="dna-card">
-                <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti</h2>
-                <div class="space-y-4">
-                    <details class="bg-gray-50 p-4 rounded-lg group">
-                        <summary class="list-none flex justify-between items-center text-lg">
-                            Come trovate prezzi così bassi?
-                            <span class="transition group-open:rotate-180">
-                                <i class="fas fa-chevron-down text-sm"></i>
-                            </span>
-                        </summary>
-                        <p class="text-gray-600 mt-2 pl-4 border-l-2 border-primary">
-                            Utilizziamo algoritmi avanzati e monitoraggio costante per individuare offerte lampo, errori di prezzo delle compagnie aeree e pacchetti promozionali esclusivi prima che si esauriscano.
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 p-4 rounded-lg group">
-                        <summary class="list-none flex justify-between items-center text-lg">
-                            I pacchetti includono l'assicurazione?
-                            <span class="transition group-open:rotate-180">
-                                <i class="fas fa-chevron-down text-sm"></i>
-                            </span>
-                        </summary>
-                        <p class="text-gray-600 mt-2 pl-4 border-l-2 border-primary">
-                            Dipende dall'offerta specifica. Molti dei nostri pacchetti premium includono l'assicurazione base, ma consigliamo sempre di verificare i dettagli in fase di prenotazione o di richiederla come extra.
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 p-4 rounded-lg group">
-                        <summary class="list-none flex justify-between items-center text-lg">
-                            Posso cancellare la prenotazione?
-                            <span class="transition group-open:rotate-180">
-                                <i class="fas fa-chevron-down text-sm"></i>
-                            </span>
-                        </summary>
-                        <p class="text-gray-600 mt-2 pl-4 border-l-2 border-primary">
-                            Le politiche di cancellazione variano in base al fornitore (compagnia aerea o hotel). Ci impegniamo a evidenziare chiaramente le condizioni di flessibilità per ogni offerta proposta.
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 p-4 rounded-lg group">
-                        <summary class="list-none flex justify-between items-center text-lg">
-                            Offrite supporto per viaggi di gruppo?
-                            <span class="transition group-open:rotate-180">
-                                <i class="fas fa-chevron-down text-sm"></i>
-                            </span>
-                        </summary>
-                        <p class="text-gray-600 mt-2 pl-4 border-l-2 border-primary">
-                            Assolutamente sì. Abbiamo un dipartimento dedicato alla gestione di viaggi per gruppi numerosi, eventi aziendali e matrimoni all'estero.
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 p-4 rounded-lg group">
-                        <summary class="list-none flex justify-between items-center text-lg">
-                            Quanto tempo prima devo prenotare?
-                            <span class="transition group-open:rotate-180">
-                                <i class="fas fa-chevron-down text-sm"></i>
-                            </span>
-                        </summary>
-                        <p class="text-gray-600 mt-2 pl-4 border-l-2 border-primary">
-                            Per le offerte "Last Minute", la prenotazione è immediata. Per pianificazioni strategiche a lungo raggio, consigliamo di contattarci almeno 3-6 mesi prima della partenza desiderata.
-                        </p>
-                    </details>
-                </div>
+        <div id="faq" class="max-w-5xl mx-auto dna-card mt-12">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <details class="bg-white border rounded-lg p-4 cursor-pointer">
+                    <summary class="font-bold text-gray-800">Come funziona il servizio di ricerca voli?</summary>
+                    <p class="mt-2 text-gray-600">Scansioniamo centinaia di compagnie aeree e siti di prenotazione per trovare le combinazioni di prezzo più vantaggiose in tempo reale.</p>
+                </details>
+                <details class="bg-white border rounded-lg p-4 cursor-pointer">
+                    <summary class="font-bold text-gray-800">I prezzi mostrati sono finali?</summary>
+                    <p class="mt-2 text-gray-600">Sì, ci impegniamo a mostrare prezzi trasparenti. Eventuali tasse di soggiorno locali sono indicate nelle condizioni specifiche dell'offerta.</p>
+                </details>
+                <details class="bg-white border rounded-lg p-4 cursor-pointer">
+                    <summary class="font-bold text-gray-800">Posso prenotare pacchetti last minute?</summary>
+                    <p class="mt-2 text-gray-600">Assolutamente. Siamo specializzati nelle offerte "ultimo minuto" per chi ama viaggiare d'impulso risparmiando.</p>
+                </details>
+                <details class="bg-white border rounded-lg p-4 cursor-pointer">
+                    <summary class="font-bold text-gray-800">È possibile cancellare la prenotazione?</summary>
+                    <p class="mt-2 text-gray-600">Le politiche di cancellazione dipendono dal fornitore specifico (compagnia aerea o hotel). Queste informazioni sono sempre chiaramente indicate prima della conferma.</p>
+                </details>
+                <details class="bg-white border rounded-lg p-4 cursor-pointer">
+                    <summary class="font-bold text-gray-800">Offrite assicurazioni di viaggio?</summary>
+                    <p class="mt-2 text-gray-600">Sì, consigliamo sempre di includere un'assicurazione di viaggio nei nostri pacchetti per garantire la massima serenità.</p>
+                </details>
             </div>
-        </section>
+        </div>
 
         <!-- CONTACT SECTION -->
-        <section id="contact" class="max-w-5xl mx-auto mt-16 mb-20">
-            <div class="dna-card grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div id="contact" class="max-w-5xl mx-auto dna-card mt-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Inizia il Tuo Viaggio</h2>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Contattaci</h2>
                     <p class="text-gray-600 mb-8">
-                        Compila il modulo per ricevere una consulenza gratuita su voli e pacchetti vacanza. I nostri esperti analizzeranno le migliori opzioni per il tuo budget.
+                        Sei pronto a partire? Compila il modulo per ricevere offerte personalizzate o assistenza sulla tua prossima destinazione. Il nostro team digitale è a tua disposizione.
                     </p>
                     
                     <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center text-primary">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
+                        <!-- Note: Phone number omitted as per protocol (Donor site has no direct phone support) -->
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-primary-light p-3 rounded-full text-primary">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900">Sede Operativa</h3>
-                                <p class="text-gray-600">Servizi Digitali Online<br>CiseFowuex Holdings</p>
-                            </div>
-                        </div>
-                        
-                        <!-- NOTE: No phone number found in source, removed per instructions -->
-                        
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center text-primary">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900">Orari di Risposta</h3>
-                                <p class="text-gray-600">Lun - Ven: 09:00 - 18:00<br>Risposta garantita entro 24h</p>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Orari Supporto Online</h4>
+                                <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-gray-50 p-6 rounded-[24px]">
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<i class=\'fas fa-spinner fa-spin\'></i> Elaborazione...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div class="space-y-4">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo</label>
-                                <input type="text" id="name" required class="mt-1 block w-full px-4 py-3 bg-white border border-gray-300 rounded-[24px] focus:ring-primary focus:border-primary">
-                            </div>
-                            <div>
-                                <label for="destination" class="block text-sm font-medium text-gray-700">Destinazione Desiderata</label>
-                                <input type="text" id="destination" required class="mt-1 block w-full px-4 py-3 bg-white border border-gray-300 rounded-[24px] focus:ring-primary focus:border-primary">
-                            </div>
-                            <div>
-                                <label for="budget" class="block text-sm font-medium text-gray-700">Budget Stimato</label>
-                                <select id="budget" class="mt-1 block w-full px-4 py-3 bg-white border border-gray-300 rounded-[24px] focus:ring-primary focus:border-primary">
-                                    <option>€500 - €1.000</option>
-                                    <option>€1.000 - €2.500</option>
-                                    <option>€2.500 - €5.000</option>
-                                    <option>Oltre €5.000</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700">Dettagli Aggiuntivi</label>
-                                <textarea id="message" rows="4" class="mt-1 block w-full px-4 py-3 bg-white border border-gray-300 rounded-[24px] focus:ring-primary focus:border-primary"></textarea>
-                            </div>
-                            <button type="submit" class="w-full btn-primary text-lg">Invia Richiesta</button>
+                <!-- LEAD FORM -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nome Completo</label>
+                            <input class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Mario Rossi" required>
                         </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="dest">Destinazione Desiderata</label>
+                            <input class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="dest" type="text" placeholder="es. Caraibi, Parigi..." required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Dettagli Viaggio</label>
+                            <textarea class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="message" rows="4" placeholder="Periodo, numero di persone, budget..." required></textarea>
+                        </div>
+                        <button class="w-full btn-primary" type="submit">
+                            Invia Richiesta
+                        </button>
+                        <p class="text-xs text-gray-500 mt-4 text-center">I tuoi dati sono sicuri. Non inviamo spam.</p>
                     </form>
 
-                    <div id="success-msg" class="hidden text-center py-10">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-500 mx-auto mb-4">
-                            <i class="fas fa-check text-2xl"></i>
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10 success-animation">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+                            <svg class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">Richiesta Inviata!</h3>
-                        <p class="text-gray-600 mt-2">Un nostro Travel Planner analizzerà la tua richiesta e ti contatterà a breve.</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Richiesta Ricevuta!</h3>
+                        <p class="text-gray-600">Un nostro consulente di viaggio elaborerà la tua richiesta e ti contatterà a breve.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
     </main>
 
-    <!-- FOOTER & LEGAL -->
-    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div>
-                    <h3 class="text-white text-lg font-bold mb-4">CiseFowuex Holdings</h3>
-                    <p class="text-sm leading-relaxed max-w-sm">
-                        La tua piattaforma di riferimento per investire nel tempo libero. Offerte di viaggio esclusive e pacchetti vacanza strategici.
-                    </p>
-                    <p class="mt-4 text-xs border-t border-gray-800 pt-4">
-                        *Questo è un sito promozionale indipendente gestito da CiseFowuex Holdings, che agisce in qualità di affiliato per PiratinViaggio (HolidayPirates Group).
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="text-2xl font-bold text-white">Cise<span class="text-primary">Holdings</span></span>
+                    <p class="mt-4 text-sm text-gray-400 max-w-sm">
+                        La tua porta d'accesso alle migliori esperienze di viaggio globali. Semplifichiamo la ricerca della tua prossima avventura con professionalità e passione.
                     </p>
                 </div>
                 <div>
-                    <h3 class="text-white text-lg font-bold mb-4">Note Legali</h3>
-                    
-                    <!-- PRIVACY POLICY -->
-                    <details class="mb-2">
-                        <summary class="text-sm hover:text-white transition">Informativa sulla Privacy</summary>
-                        <div class="text-xs text-gray-500 mt-2 space-y-2 p-2 bg-gray-800 rounded">
-                            <p><strong>1. Introduzione</strong><br>La presente Informativa sulla Privacy descrive come CiseFowuex Holdings raccoglie, utilizza e protegge i dati personali degli utenti in conformità con il Regolamento (UE) 2016/679 (GDPR). La tua privacy è una nostra priorità.</p>
-                            <p><strong>2. Dati Raccolti</strong><br>Raccogliamo solo i dati necessari per fornire i nostri servizi di consulenza turistica, inclusi nome e preferenze di viaggio forniti volontariamente tramite i moduli di contatto. Non raccogliamo dati sensibili senza esplicito consenso.</p>
-                            <p><strong>3. Finalità del Trattamento</strong><br>I dati sono utilizzati esclusivamente per rispondere alle richieste di informazioni, fornire preventivi di viaggio personalizzati e migliorare l'esperienza utente sul nostro sito web.</p>
-                            <p><strong>4. Condivisione dei Dati</strong><br>Non vendiamo né affittiamo i tuoi dati personali a terzi. I dati possono essere condivisi con partner tecnici strettamente necessari per l'erogazione del servizio (es. hosting provider) o se richiesto dalla legge.</p>
-                            <p><strong>5. Sicurezza</strong><br>Adottiamo misure tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, perdite o alterazioni. Utilizziamo protocolli crittografati per la trasmissione dei dati.</p>
-                            <p><strong>6. Diritti dell'Utente</strong><br>Hai il diritto di accedere, rettificare o cancellare i tuoi dati personali in qualsiasi momento. Puoi anche opporti al trattamento o richiederne la limitazione. Per esercitare questi diritti, contattaci tramite il modulo sul sito.</p>
-                            <p><strong>7. Conservazione dei Dati</strong><br>I tuoi dati saranno conservati solo per il tempo necessario a soddisfare le finalità per cui sono stati raccolti, salvo obblighi di legge contrari.</p>
-                            <p><strong>8. Modifiche</strong><br>Ci riserviamo il diritto di aggiornare questa informativa. Le modifiche saranno pubblicate su questa pagina.</p>
-                        </div>
-                    </details>
-
-                    <!-- TERMS OF SERVICE -->
-                    <details class="mb-2">
-                        <summary class="text-sm hover:text-white transition">Termini e Condizioni</summary>
-                        <div class="text-xs text-gray-500 mt-2 space-y-2 p-2 bg-gray-800 rounded">
-                            <p><strong>1. Accettazione</strong><br>Utilizzando questo sito, l'utente accetta integralmente i presenti Termini e Condizioni. Se non si accettano tali termini, si prega di non utilizzare il sito.</p>
-                            <p><strong>2. Servizi Offerti</strong><br>CiseFowuex Holdings opera come aggregatore e promotore di offerte di viaggio. Non agiamo come agenzia di viaggi diretta e non siamo responsabili per l'esecuzione dei servizi prenotati tramite terze parti.</p>
-                            <p><strong>3. Limitazione di Responsabilità</strong><br>Le informazioni sui prezzi e le disponibilità sono fornite "così come sono" e possono variare rapidamente. Non garantiamo l'accuratezza o la completezza delle offerte di terze parti visualizzate.</p>
-                            <p><strong>4. Proprietà Intellettuale</strong><br>Tutti i contenuti presenti su questo sito, inclusi testi, grafiche e loghi (esclusi quelli di terze parti), sono di proprietà di CiseFowuex Holdings e sono protetti dalle leggi sul copyright.</p>
-                            <p><strong>5. Uso del Sito</strong><br>È vietato utilizzare il sito per scopi illegali o non autorizzati. L'utente si impegna a non compromettere la sicurezza del sito o accedere a aree riservate.</p>
-                            <p><strong>6. Collegamenti a Terzi</strong><br>Il sito può contenere link a siti esterni. Non siamo responsabili per i contenuti o le pratiche sulla privacy di tali siti. L'accesso avviene a rischio dell'utente.</p>
-                            <p><strong>7. Modifiche ai Termini</strong><br>CiseFowuex Holdings si riserva il diritto di modificare i presenti termini in qualsiasi momento. L'uso continuato del sito costituisce accettazione delle modifiche.</p>
-                            <p><strong>8. Legge Applicabile</strong><br>I presenti termini sono regolati dalla legge italiana. Per qualsiasi controversia sarà competente il foro di riferimento della sede legale.</p>
-                        </div>
-                    </details>
-
-                    <!-- REFUND POLICY -->
-                    <details class="mb-2">
-                        <summary class="text-sm hover:text-white transition">Politica Rimborsi</summary>
-                        <div class="text-xs text-gray-500 mt-2 space-y-2 p-2 bg-gray-800 rounded">
-                            <p><strong>1. Ruolo di Intermediario</strong><br>CiseFowuex Holdings fornisce servizi di consulenza e informazione. Le prenotazioni effettive di voli e hotel avvengono tramite fornitori terzi.</p>
-                            <p><strong>2. Rimborsi Diretti</strong><br>Poiché i pagamenti per i viaggi non vengono elaborati direttamente da noi, qualsiasi richiesta di rimborso relativa a biglietti aerei, hotel o pacchetti deve essere indirizzata al fornitore del servizio specifico.</p>
-                            <p><strong>3. Assistenza</strong><br>Sebbene non possiamo elaborare rimborsi monetari direttamente, il nostro team fornirà assistenza e guida su come avviare le procedure di reclamo con le compagnie aeree o i tour operator coinvolti.</p>
-                            <p><strong>4. Cancellazioni</strong><br>Le cancellazioni sono soggette ai termini e condizioni del fornitore finale. Consigliamo vivamente di leggere attentamente le clausole di cancellazione prima di completare qualsiasi acquisto.</p>
-                        </div>
-                    </details>
+                    <h3 class="text-white font-bold mb-4">Link Rapidi</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#features" class="hover:text-primary transition">Servizi</a></li>
+                        <li><a href="#reviews" class="hover:text-primary transition">Recensioni</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Legale</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" onclick="return false;" class="hover:text-primary transition">Cookie Policy</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="text-center border-t border-gray-800 pt-8">
-                <p class="text-sm">&copy; 2026 CiseFowuex Holdings. Tutti i diritti riservati.</p>
+            
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p>&copy; 2026 Cise Holdings. Tutti i diritti riservati.</p>
+                <p class="mt-2 text-xs text-gray-500 italic">
+                    Questo è un sito promozionale indipendente gestito da Cise Holdings, che opera come affiliato per PiratinViaggio. Tutti i marchi registrati appartengono ai rispettivi proprietari.
+                </p>
+            </div>
+
+            <!-- COMPLIANCE LEGAL TEXT BLOCKS -->
+            <div class="mt-8 space-y-4 text-xs text-gray-500 text-left border-t border-gray-700 pt-4">
+                
+                <details>
+                    <summary class="cursor-pointer hover:text-white mb-2">Politica sulla Privacy (Clicca per espandere)</summary>
+                    <div class="pl-4 border-l-2 border-gray-600 bg-gray-900 p-4 rounded">
+                        <p class="mb-2"><strong>1. Titolare del Trattamento:</strong> Cise Holdings si impegna a proteggere la privacy dei propri utenti. La presente informativa descrive le modalità di gestione dei dati personali.</p>
+                        <p class="mb-2"><strong>2. Tipologia di Dati:</strong> Raccogliamo dati forniti volontariamente dall'utente tramite i moduli di contatto, quali nome e dettagli della richiesta, necessari per fornire i servizi di preventivazione viaggi.</p>
+                        <p class="mb-2"><strong>3. Finalità del Trattamento:</strong> I dati vengono utilizzati esclusivamente per rispondere alle richieste, formulare preventivi e migliorare l'esperienza utente sul sito.</p>
+                        <p class="mb-2"><strong>4. Condivisione dei Dati:</strong> I dati personali non vengono venduti a terzi. Possono essere condivisi con partner tecnici strettamente necessari per l'erogazione del servizio richiesto (es. fornitori turistici diretti).</p>
+                        <p class="mb-2"><strong>5. Sicurezza:</strong> Adottiamo misure di sicurezza adeguate per proteggere i dati da accessi non autorizzati o perdite accidentali.</p>
+                        <p class="mb-2"><strong>6. Diritti dell'Utente:</strong> Gli utenti hanno il diritto di richiedere l'accesso, la rettifica o la cancellazione dei propri dati in qualsiasi momento contattandoci tramite i canali ufficiali.</p>
+                        <p class="mb-2"><strong>7. Modifiche:</strong> Cise Holdings si riserva il diritto di modificare questa policy. Le modifiche saranno pubblicate su questa pagina.</p>
+                        <p><strong>8. Base Giuridica:</strong> Il trattamento è basato sul consenso dell'utente e sull'esecuzione di misure precontrattuali richieste dallo stesso.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="cursor-pointer hover:text-white mb-2">Termini e Condizioni</summary>
+                    <div class="pl-4 border-l-2 border-gray-600 bg-gray-900 p-4 rounded">
+                        <p class="mb-2"><strong>1. Accettazione:</strong> L'utilizzo di questo sito costituisce accettazione integrale dei presenti Termini e Condizioni.</p>
+                        <p class="mb-2"><strong>2. Servizio:</strong> Cise Holdings agisce come intermediario informativo e promozionale. Non siamo un tour operator diretto ma un aggregatore di offerte.</p>
+                        <p class="mb-2"><strong>3. Limitazione di Responsabilità:</strong> Cise Holdings non è responsabile per discrepanze nei prezzi, cancellazioni di voli o modifiche apportate dai fornitori terzi (es. PiratinViaggio).</p>
+                        <p class="mb-2"><strong>4. Uso del Sito:</strong> È vietato utilizzare il sito per scopi illegali o non autorizzati. L'utente si impegna a fornire dati veritieri.</p>
+                        <p class="mb-2"><strong>5. Proprietà Intellettuale:</strong> Tutti i contenuti, testi e design presenti sul sito sono proprietà di Cise Holdings o dei suoi licenziatari.</p>
+                        <p class="mb-2"><strong>6. Link Esterni:</strong> Il sito può contenere link a siti terzi. Cise Holdings non controlla tali siti e non è responsabile per i loro contenuti.</p>
+                        <p class="mb-2"><strong>7. Legge Applicabile:</strong> I presenti termini sono regolati dalla legge vigente. Qualsiasi controversia sarà devoluta al foro competente.</p>
+                        <p><strong>8. Contatti:</strong> Per qualsiasi dubbio relativo ai termini, invitiamo a utilizzare il modulo di contatto presente sul sito.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="cursor-pointer hover:text-white">Politica sui Rimborsi</summary>
+                    <div class="pl-4 border-l-2 border-gray-600 bg-gray-900 p-4 rounded">
+                        <p class="mb-2"><strong>1. Natura del Servizio:</strong> Cise Holdings offre un servizio di consulenza e intermediazione gratuita per l'utente finale sul sito.</p>
+                        <p class="mb-2"><strong>2. Rimborsi di Viaggio:</strong> Poiché i pagamenti per voli e hotel vengono effettuati direttamente ai fornitori terzi, le richieste di rimborso devono essere indirizzate direttamente a loro (compagnie aeree, hotel, ecc.).</p>
+                        <p class="mb-2"><strong>3. Assistenza:</strong> Sebbene non gestiamo direttamente i fondi, forniremo tutta l'assistenza informativa necessaria per guidare l'utente nella procedura di rimborso con il fornitore.</p>
+                        <p class="mb-2"><strong>4. Eccezioni:</strong> Eventuali servizi di consulenza premium pagati direttamente a Cise Holdings sono rimborsabili solo se il servizio non è stato erogato secondo contratto.</p>
+                        <p class="mb-2"><strong>5. Tempistiche:</strong> I rimborsi da parte di fornitori terzi seguono le loro specifiche politiche e tempistiche, su cui Cise Holdings non ha controllo.</p>
+                        <p><strong>6. Clausola Finale:</strong> Raccomandiamo vivamente l'acquisto di assicurazioni di viaggio che coprano cancellazioni per motivi di salute o forza maggiore.</p>
+                    </div>
+                </details>
+
             </div>
         </div>
     </footer>
 
     <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] p-6 z-50 transform translate-y-full transition-transform duration-300">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-sm text-gray-600">
-                Utilizziamo i cookie per migliorare la tua esperienza di navigazione. Continuando accetti la nostra <a href="#" class="underline text-primary">Privacy Policy</a>.
-            </p>
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50 transform translate-y-full transition-transform duration-300">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <p class="text-sm mb-4 sm:mb-0 mr-4">Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il traffico.</p>
             <div class="flex space-x-4">
-                <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-sm">Accetta</button>
-                <button onclick="document.getElementById('cookie-banner').classList.add('translate-y-full')" class="text-gray-500 text-sm hover:text-gray-800">Chiudi</button>
+                <button onclick="acceptCookies()" class="bg-primary text-white px-4 py-2 rounded text-sm font-bold hover:opacity-90">Accetta</button>
+                <button onclick="acceptCookies()" class="bg-gray-700 text-gray-300 px-4 py-2 rounded text-sm hover:bg-gray-600">Rifiuta</button>
             </div>
         </div>
     </div>
 
-    <!-- JS LOGIC -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Smooth Scrolling Fallback logic
+        // SMART SCROLL SYSTEM
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -472,32 +435,36 @@
                 const targetElement = document.getElementById(targetId);
 
                 if (targetElement) {
+                    // Smooth scroll to target
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    // Fallback to contact if section missing
+                    // Fallback to contact if ID missing
+                    console.warn(`ID #${targetId} not found. Redirecting to #contact.`);
                     const contactSection = document.getElementById('contact');
                     if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
                 }
                 
                 // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
             });
         });
 
-        // Cookie Banner Logic
+        // COOKIE BANNER LOGIC
         function acceptCookies() {
             localStorage.setItem('cookieConsent', 'true');
-            document.getElementById('cookie-banner').classList.add('translate-y-full');
+            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
         }
 
         window.addEventListener('load', () => {
             if (!localStorage.getItem('cookieConsent')) {
                 setTimeout(() => {
-                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                    document.getElementById('cookie-banner').style.transform = 'translateY(0)';
                 }, 1000);
             }
         });
     </script>
-
 </body>
 </html>
