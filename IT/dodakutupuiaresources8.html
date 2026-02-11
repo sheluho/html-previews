@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doda Resources - Soluzioni Premium per la Tua Auto</title>
-    <meta name="description" content="Accessori auto di alta qualità e soluzioni eco-friendly. Doda Resources seleziona il meglio per la manutenzione e il comfort del tuo veicolo.">
+    <title>Puia Resources - Soluzioni per Mobilità Elettrica</title>
+    <meta name="description" content="Accessori premium per veicoli elettrici: cavi di ricarica, wallbox e risorse essenziali per la tua guida sostenibile.">
     
-    <!-- Tailwind CSS (CDN) -->
+    <!-- Tailwind CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     
-    <!-- DESIGN SYSTEM / DNA MIXING -->
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- DESIGN DNA INJECTION -->
     <style>
         :root {
-            /* VAR D: Palette (Eco/Car Niche -> Emerald Green) */
-            --primary: #059669; 
-            /* VAR C: Surface (Last Letter Code % 3 = 1 -> Warm Cream) */
-            --surface: #fffdf5; 
-            /* VAR A: Geometry (Length 11 % 3 = 2 -> Pill/Round) */
-            --radius: 24px; 
-            /* VAR B: Physics (First Letter 'e' 101 % 3 = 2 -> Hard Neo-Brutalist) */
-            --shadow: 4px 4px 0px 0px #000; 
+            /* Calculated DNA Variables */
+            --primary: #059669; /* Emerald Green for Eco Niche */
+            --surface: #f8fafc; /* Cool Slate White (Last char % 3 = 2) */
+            --radius: 12px;     /* Soft Radius (Length % 3 = 1) */
+            --shadow: 4px 4px 0px 0px #000; /* Hard Neo-Brutalist Shadow (First char % 3 = 2) */
         }
 
         /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6; /* Light gray base for contrast */
+            background-color: #f3f4f6;
             color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
         }
 
         /* BRAND COMPONENT: The DNA Card */
@@ -37,7 +37,12 @@
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
-            border: 2px solid #000000; /* Increased border for brutalist pop */
+            border: 2px solid #000; /* Added border to match hard shadow style */
+            transition: transform 0.2s ease;
+        }
+        
+        .dna-card:hover {
+            transform: translateY(-2px);
         }
 
         /* BRAND COMPONENT: Primary Button */
@@ -49,282 +54,302 @@
             padding: 1rem 2rem;
             transition: all 0.2s;
             font-weight: 800;
-            border: 2px solid #000000;
-            display: inline-block;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.95;
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px 0px #000;
-        }
-
-        /* UTILITY: Text Accent */
-        .text-primary { color: var(--primary); }
-        
-        /* HEADER & HERO OVERLAYS */
-        .hero-bg {
-            background-image: url('https://images.pexels.com/photos/10323363/pexels-photo-10323363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .overlay {
-            background: rgba(0, 0, 0, 0.65);
-        }
-
-        /* FORM INPUTS */
-        input, textarea {
             border: 2px solid #000;
-            border-radius: 12px;
-            padding: 0.75rem;
-            width: 100%;
-            background-color: #fff;
-            margin-bottom: 1rem;
+            display: inline-block;
         }
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 4px 4px 0px #000;
+
+        .btn-primary:hover { 
+            opacity: 0.95; 
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #000 !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            border: 2px solid #000;
         }
         
-        /* LEGAL DETAILS */
-        details {
+        .btn-secondary:hover {
+             transform: translate(-2px, -2px);
+             box-shadow: 6px 6px 0px 0px #000;
+        }
+
+        /* UTILITY */
+        .text-primary { color: var(--primary); }
+        .bg-primary-light { background-color: #d1fae5; }
+        
+        /* Smooth Details Summary */
+        details summary {
             cursor: pointer;
             padding: 1rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            margin-top: 0.5rem;
-            background: white;
+            background: #e5e7eb;
+            border-radius: var(--radius);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            list-style: none;
         }
-        summary { font-weight: bold; }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary {
+            background: var(--primary);
+            color: white;
+        }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen">
 
     <!-- NAVIGATION -->
     <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="font-black text-2xl tracking-tighter uppercase">Doda<span class="text-primary">Resources</span></span>
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fas fa-leaf text-3xl text-green-600"></i>
+                    <span class="font-black text-2xl tracking-tight">PUIA<span class="text-green-600">RESOURCES</span></span>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-900 hover:text-primary font-bold transition">Soluzioni</a>
-                    <a href="#reviews" class="text-gray-900 hover:text-primary font-bold transition">Recensioni</a>
-                    <a href="#faq" class="text-gray-900 hover:text-primary font-bold transition">FAQ</a>
-                    <a href="#contact" class="btn-primary">Contattaci</a>
+                    <a href="#features" class="font-bold hover:text-green-600 transition">Prodotti</a>
+                    <a href="#reviews" class="font-bold hover:text-green-600 transition">Recensioni</a>
+                    <a href="#faq" class="font-bold hover:text-green-600 transition">Supporto</a>
+                    <a href="#contact" class="btn-primary py-2 px-4 text-sm">Contattaci</a>
                 </div>
-                <!-- Mobile button -->
-                <div class="-mr-2 flex md:hidden">
-                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:bg-gray-100 focus:outline-none ring-2 ring-black">
-                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-black hover:text-gray-600 focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div class="hidden md:hidden bg-white border-b-2 border-black p-4" id="mobile-menu">
+        <div class="hidden md:hidden border-t-2 border-black bg-gray-50 p-4" id="mobile-menu">
             <div class="flex flex-col space-y-4">
-                <a href="#features" class="text-gray-900 font-bold block px-3 py-2 rounded-md hover:bg-gray-100">Soluzioni</a>
-                <a href="#reviews" class="text-gray-900 font-bold block px-3 py-2 rounded-md hover:bg-gray-100">Recensioni</a>
-                <a href="#contact" class="btn-primary text-center">Contattaci</a>
+                <a href="#features" class="font-bold block p-2 hover:bg-gray-200 rounded">Prodotti</a>
+                <a href="#reviews" class="font-bold block p-2 hover:bg-gray-200 rounded">Recensioni</a>
+                <a href="#contact" class="btn-primary text-center">Richiedi Preventivo</a>
             </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <div class="relative hero-bg">
-        <div class="absolute inset-0 overlay"></div>
-        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6 shadow-black drop-shadow-lg">
-                Le Migliori Risorse per <br><span class="text-primary">La Tua Auto</span>
+    <header class="relative bg-gray-900 text-white pt-24 pb-32">
+        <div class="absolute inset-0 overflow-hidden">
+            <img src="https://images.pexels.com/photos/9799995/pexels-photo-9799995.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Ricarica veicolo elettrico" 
+                 class="w-full h-full object-cover opacity-40"
+                 loading="lazy"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Mobilità+Elettrica'">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-6 tracking-tight leading-tight">
+                Potenzia la Tua Guida: <br>
+                <span class="text-green-400">Risorse Premium</span> per Veicoli Elettrici
             </h1>
-            <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-100 font-medium">
-                Trasformiamo il modo in cui ti prendi cura del tuo veicolo. Accessori innovativi e soluzioni eco-friendly per guidare verso il futuro.
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto font-medium">
+                La transizione ecologica non aspetta. Forniamo accessori certificati, cavi ad alte prestazioni e soluzioni di ricarica per la tua mobilità quotidiana.
             </p>
-            <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                <a href="#contact" class="btn-primary text-lg px-8 py-4">
-                    Richiedi Catalogo
-                </a>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="btn-primary text-lg">Scopri il Catalogo 2026</a>
+                <a href="#features" class="btn-secondary text-lg">Esplora Categorie</a>
+            </div>
+            
+            <div class="mt-12 flex justify-center items-center gap-8 opacity-80 text-sm md:text-base text-gray-400 font-bold uppercase tracking-wider">
+                <span><i class="fas fa-check-circle mr-2 text-green-400"></i> Certificazione UE</span>
+                <span><i class="fas fa-shipping-fast mr-2 text-green-400"></i> Spedizioni Veloci</span>
+                <span><i class="fas fa-shield-alt mr-2 text-green-400"></i> Garanzia Estesa</span>
             </div>
         </div>
-    </div>
+    </header>
 
-    <!-- MAIN CONTENT WRAPPER -->
-    <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8">
-        
-        <!-- TRUST INDICATORS -->
-        <div class="max-w-5xl mx-auto mb-16 text-center grayscale opacity-60">
-            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Partner di fiducia per la qualità</p>
-            <div class="flex justify-center gap-8 flex-wrap font-bold text-xl text-gray-400">
-                <span>ECO-TECH</span>
-                <span>AUTO ITALIA</span>
-                <span>CLEAN DRIVE</span>
-                <span>GREEN GEAR</span>
-            </div>
-        </div>
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
 
-        <!-- FEATURES SECTION -->
+        <!-- FEATURES / SERVICES SECTION -->
         <div id="features" class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-10">
-                <h2 class="text-base text-primary font-black tracking-wide uppercase">I Nostri Servizi</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Eccellenza per la tua Guida
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-gray-900 mb-4">La Nostra Gamma Accessori</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    In collaborazione con i leader del settore come Eco Car Italy, Puia Resources seleziona solo componenti affidabili per garantire la massima efficienza al tuo veicolo.
                 </p>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div class="text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-primary mx-auto mb-4 border-2 border-black shadow-md">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                <div class="p-6 bg-white border-2 border-gray-100 rounded-lg hover:border-green-500 transition-colors duration-300">
+                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4 border-2 border-black" style="box-shadow: 2px 2px 0 #000;">
+                        <i class="fas fa-charging-station text-green-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-lg leading-6 font-bold text-gray-900 mb-2">Accessori Premium</h3>
-                    <p class="text-gray-600">
-                        Una selezione curata di tappetini, organizer e gadget tecnologici progettati per migliorare il comfort e l'estetica degli interni.
+                    <h3 class="text-xl font-bold mb-3">Cavi di Ricarica</h3>
+                    <p class="text-gray-600 mb-4">
+                        Cavi Tipo 2 e adattatori universali progettati per resistere all'usura. Alta conduttività e isolamento termico per ricariche sicure ovunque ti trovi.
                     </p>
+                    <a href="#contact" class="text-green-600 font-bold hover:underline">Vedi specifiche &rarr;</a>
                 </div>
+
                 <!-- Service 2 -->
-                <div class="text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-primary mx-auto mb-4 border-2 border-black shadow-md">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016zM12 9v2m0 4h.01" /></svg>
+                <div class="p-6 bg-white border-2 border-gray-100 rounded-lg hover:border-green-500 transition-colors duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4 border-2 border-black" style="box-shadow: 2px 2px 0 #000;">
+                        <i class="fas fa-plug text-blue-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-lg leading-6 font-bold text-gray-900 mb-2">Protezione e Cura</h3>
-                    <p class="text-gray-600">
-                        Prodotti specifici per la pulizia e il mantenimento della carrozzeria e degli interni, per preservare il valore della tua auto nel tempo.
+                    <h3 class="text-xl font-bold mb-3">Caricatori Portatili</h3>
+                    <p class="text-gray-600 mb-4">
+                        Soluzioni di ricarica flessibili per chi è sempre in movimento. Dispositivi compatti compatibili con prese domestiche standard e industriali.
                     </p>
+                    <a href="#contact" class="text-green-600 font-bold hover:underline">Vedi modelli &rarr;</a>
                 </div>
+
                 <!-- Service 3 -->
-                <div class="text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-primary mx-auto mb-4 border-2 border-black shadow-md">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <div class="p-6 bg-white border-2 border-gray-100 rounded-lg hover:border-green-500 transition-colors duration-300">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-full flex items-center justify-center mb-4 border-2 border-black" style="box-shadow: 2px 2px 0 #000;">
+                        <i class="fas fa-solar-panel text-yellow-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-lg leading-6 font-bold text-gray-900 mb-2">Soluzioni Eco-Friendly</h3>
-                    <p class="text-gray-600">
-                        Impegnati per un futuro verde, offriamo una gamma di prodotti biodegradabili e a basso impatto ambientale per la cura dell'auto.
+                    <h3 class="text-xl font-bold mb-3">Eco-Accessori</h3>
+                    <p class="text-gray-600 mb-4">
+                        Dalle custodie ergonomiche ai prodotti per la cura dell'auto biodegradabili. Mantieni il tuo veicolo in condizioni perfette nel rispetto dell'ambiente.
                     </p>
+                    <a href="#contact" class="text-green-600 font-bold hover:underline">Vedi catalogo &rarr;</a>
                 </div>
             </div>
-        </div>
-
-        <!-- IMAGE BREAK -->
-        <div class="max-w-5xl mx-auto mb-8 rounded-2xl overflow-hidden border-2 border-black shadow-lg">
-             <img src="https://images.pexels.com/photos/4489749/pexels-photo-4489749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                  alt="Cura dell'auto" 
-                  class="w-full h-64 object-cover" 
-                  loading="lazy" 
-                  referrerpolicy="no-referrer"
-                  onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Auto+Resources'">
         </div>
 
         <!-- REVIEWS SECTION -->
-        <div id="reviews" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-8">Cosa Dicono i Nostri Clienti</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl border border-gray-200">
-                    <div class="flex text-primary mb-2">★★★★★</div>
-                    <p class="text-gray-600 italic mb-4">"I prodotti per la pulizia sono eccezionali. Ho finalmente trovato una soluzione ecologica che funziona davvero."</p>
-                    <p class="font-bold text-gray-900">- Marco Rossi</p>
+        <div id="reviews" class="max-w-5xl mx-auto dna-card mt-12">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 text-center">Cosa dicono i nostri clienti</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Ho acquistato un cavo di ricarica per la mia nuova auto. La qualità costruttiva è impressionante e i tempi di spedizione sono stati velocissimi. Consigliatissimo per chi cerca accessori EV seri."</p>
+                    <p class="font-bold text-gray-900">- Marco R., Milano</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl border border-gray-200">
-                    <div class="flex text-primary mb-2">★★★★★</div>
-                    <p class="text-gray-600 italic mb-4">"Spedizione rapida e accessori di ottima fattura. Il tappetino organizer ha cambiato il modo in cui viaggio."</p>
-                    <p class="font-bold text-gray-900">- Giulia Bianchi</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-gray-200">
-                    <div class="flex text-primary mb-2">★★★★★</div>
-                    <p class="text-gray-600 italic mb-4">"Professionalità e cortesia. Doda Resources mi ha consigliato il miglior kit per la mia nuova auto."</p>
-                    <p class="font-bold text-gray-900">- Luca Verdi</p>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Cercavo un caricatore portatile affidabile. Puia Resources mi ha indirizzato verso il prodotto giusto. Ottima assistenza pre-vendita."</p>
+                    <p class="font-bold text-gray-900">- Elena S., Torino</p>
                 </div>
             </div>
         </div>
 
         <!-- FAQ SECTION -->
-        <div id="faq" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Domande Frequenti</h2>
+        <div id="faq" class="max-w-5xl mx-auto dna-card mt-12">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 text-center">Domande Frequenti (FAQ)</h2>
             <div class="space-y-4">
                 <details>
-                    <summary class="text-lg font-medium text-gray-900">Quali tipi di pagamenti accettate?</summary>
-                    <p class="mt-2 text-gray-600 p-2">Accettiamo tutte le principali carte di credito, PayPal e bonifici bancari diretti tramite i nostri partner.</p>
+                    <summary>I cavi sono compatibili con tutte le auto elettriche?</summary>
+                    <div class="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+                        La maggior parte dei nostri cavi utilizza lo standard Tipo 2, che è lo standard europeo per la maggior parte dei veicoli elettrici e ibridi plug-in moderni. Verificare sempre il manuale del proprio veicolo.
+                    </div>
                 </details>
                 <details>
-                    <summary class="text-lg font-medium text-gray-900">I prodotti sono ecologici?</summary>
-                    <p class="mt-2 text-gray-600 p-2">Sì, una grande parte del nostro catalogo è dedicata a prodotti biodegradabili ed ecosostenibili, nel rispetto dell'ambiente.</p>
+                    <summary>Quali sono i tempi di spedizione in Italia?</summary>
+                    <div class="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+                        Generalmente elaboriamo gli ordini entro 24 ore lavorative. Le spedizioni standard in Italia impiegano 2-3 giorni lavorativi.
+                    </div>
                 </details>
                 <details>
-                    <summary class="text-lg font-medium text-gray-900">Effettuate spedizioni in tutta Italia?</summary>
-                    <p class="mt-2 text-gray-600 p-2">Assolutamente sì. Copriamo tutto il territorio nazionale, isole comprese, con corrieri espressi affidabili.</p>
+                    <summary>Offrite garanzia sui prodotti?</summary>
+                    <div class="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+                        Sì, tutti i nostri prodotti elettronici come cavi e caricatori sono coperti da garanzia legale di conformità di 24 mesi per i consumatori privati, come previsto dalla normativa italiana.
+                    </div>
                 </details>
                 <details>
-                    <summary class="text-lg font-medium text-gray-900">Come posso richiedere un reso?</summary>
-                    <p class="mt-2 text-gray-600 p-2">Se il prodotto non soddisfa le tue aspettative, puoi contattare il nostro supporto entro 14 giorni dalla ricezione per avviare la procedura di reso.</p>
+                    <summary>Posso richiedere un preventivo per forniture aziendali?</summary>
+                    <div class="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+                        Assolutamente. Per ordini di grandi volumi o per flotte aziendali, vi preghiamo di contattarci tramite il modulo sottostante specificando le vostre esigenze.
+                    </div>
                 </details>
                 <details>
-                    <summary class="text-lg font-medium text-gray-900">Fornite assistenza per l'installazione?</summary>
-                    <p class="mt-2 text-gray-600 p-2">Includiamo manuali dettagliati con tutti gli accessori. Per installazioni complesse, consigliamo sempre di rivolgersi a un professionista.</p>
+                    <summary>Come scelgo la lunghezza giusta del cavo?</summary>
+                    <div class="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+                        Consigliamo di valutare dove parcheggiate abitualmente. Un cavo da 5 metri è standard, ma se la colonnina è spesso distante o l'accesso è scomodo, raccomandiamo versioni da 7 o 10 metri.
+                    </div>
                 </details>
             </div>
         </div>
 
         <!-- CONTACT SECTION -->
-        <div id="contact" class="max-w-5xl mx-auto dna-card">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div id="contact" class="max-w-5xl mx-auto dna-card mt-12 mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Contattaci</h2>
-                    <p class="text-lg text-gray-600 mb-6">
-                        Hai bisogno di consigli su quale accessorio scegliere? Il nostro team è pronto ad aiutarti. Compila il modulo per ricevere informazioni.
+                    <h2 class="text-3xl font-black text-gray-900 mb-6">Contattaci</h2>
+                    <p class="text-gray-600 mb-8">
+                        Hai domande su un prodotto o bisogno di assistenza per un ordine? Compila il modulo e il nostro team ti risponderà nel più breve tempo possibile.
                     </p>
                     
-                    <div class="mt-6 space-y-4">
+                    <div class="space-y-4">
+                        <!-- ADDRESS from source or standard format -->
                         <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
+                            <i class="fas fa-map-marker-alt mt-1 mr-4 text-green-600 text-xl"></i>
+                            <div>
+                                <h4 class="font-bold">Sede Operativa</h4>
+                                <p class="text-gray-600">Via Roma 10, Italia (Riferimento Logistico)</p>
                             </div>
-                            <div class="ml-3 text-base text-gray-700">
-                                <p>Sede Operativa:</p>
-                                <p class="font-semibold">Via dei Trasporti, Italia</p>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-clock mt-1 mr-4 text-green-600 text-xl"></i>
+                            <div>
+                                <h4 class="font-bold">Orari di Ufficio</h4>
+                                <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="mt-8 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                        <p class="text-sm text-blue-800">
+                            <strong>Nota Bene:</strong> Siamo un distributore indipendente. Per questioni tecniche specifiche sul veicolo, contattare il produttore dell'auto.
+                        </p>
+                    </div>
                 </div>
 
-                <!-- LEAD FORM -->
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Inviato!'; this.querySelector('button').classList.add('opacity-50'); setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                <div>
+                    <!-- SIMULATION FORM -->
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; this.querySelector('button').disabled=true; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-4">
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
-                            <input type="text" required placeholder="Mario Rossi">
+                            <label class="block text-sm font-bold mb-2">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 border-2 border-gray-300 rounded focus:border-green-500 focus:ring-0 transition" placeholder="Mario Rossi">
                         </div>
-                        <div class="mt-4">
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Telefono</label>
-                            <input type="tel" required placeholder="+39 333 1234567">
-                        </div>
-                        <div class="mt-4">
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Richiesta</label>
-                            <select class="w-full p-3 border-2 border-black rounded-xl mb-4 bg-white" required>
-                                <option value="" disabled selected>Seleziona interesse...</option>
-                                <option>Accessori Interni</option>
-                                <option>Pulizia & Cura</option>
-                                <option>Informazioni Generali</option>
+                        
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Oggetto</label>
+                            <select class="w-full px-4 py-3 border-2 border-gray-300 rounded focus:border-green-500 focus:ring-0 bg-white">
+                                <option>Informazioni Prodotto</option>
+                                <option>Stato Ordine</option>
+                                <option>Richiesta Preventivo</option>
+                                <option>Altro</option>
                             </select>
                         </div>
-                        <div class="mt-6">
-                            <button type="submit" class="w-full btn-primary text-center">Invia Richiesta</button>
+                        
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Messaggio</label>
+                            <textarea required rows="4" class="w-full px-4 py-3 border-2 border-gray-300 rounded focus:border-green-500 focus:ring-0 transition" placeholder="Scrivi qui la tua richiesta..."></textarea>
                         </div>
+                        
+                        <div class="flex items-start gap-2">
+                            <input type="checkbox" required id="privacy" class="mt-1">
+                            <label for="privacy" class="text-sm text-gray-600">Ho letto e accetto la <a href="#privacy-policy" class="text-green-600 underline">Privacy Policy</a>.</label>
+                        </div>
+                        
+                        <button type="submit" class="w-full btn-primary text-lg">Invia Richiesta</button>
                     </form>
-                    
-                    <!-- SUCCESS MESSAGE -->
-                    <div id="success-msg" style="display:none" class="text-center py-10">
-                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
-                            <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900">Grazie!</h3>
-                        <p class="text-gray-600 mt-2">La tua richiesta è stata ricevuta. Un nostro consulente ti contatterà a breve.</p>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-12 bg-green-50 rounded-lg border border-green-200">
+                        <div class="text-green-500 text-5xl mb-4"><i class="fas fa-check-circle"></i></div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Messaggio Inviato!</h3>
+                        <p class="text-gray-600">Grazie per averci contattato. Ti risponderemo a breve.</p>
+                        <button onclick="location.reload()" class="mt-6 text-green-700 font-bold underline">Torna al modulo</button>
                     </div>
                 </div>
             </div>
@@ -333,107 +358,136 @@
     </main>
 
     <!-- FOOTER & LEGAL -->
-    <footer class="bg-white border-t-2 border-black">
-        <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-            <p class="text-center text-base text-gray-500 font-bold mb-4">
-                &copy; 2026 Doda Resources. Tutti i diritti riservati.
-            </p>
-            <p class="text-center text-sm text-gray-400 mb-8 max-w-2xl mx-auto">
-                Questo è un sito promozionale indipendente gestito da Doda Resources, che agisce in qualità di affiliato per EcoCar Italy. Tutti i marchi registrati appartengono ai rispettivi proprietari.
-            </p>
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-green-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-black text-xl mb-4">PUIA<span class="text-green-500">RESOURCES</span></h3>
+                    <p class="text-sm">
+                        La tua fonte di fiducia per l'accessoriistica EV. Uniamo qualità, sicurezza e sostenibilità per guidare il cambiamento.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Navigazione</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#features" class="hover:text-white transition">Prodotti</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition">Dicono di noi</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">Contatti</a></li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-2">
+                    <div class="p-4 bg-gray-800 rounded border border-gray-700">
+                        <p class="text-xs text-gray-400 mb-2">DISCLAIMER:</p>
+                        <p class="text-sm text-gray-300">
+                            Questo è un sito promozionale indipendente gestito da Puia Resources, che agisce in qualità di affiliato per Eco Car Italy. Tutti i marchi registrati appartengono ai legittimi proprietari.
+                        </p>
+                    </div>
+                </div>
+            </div>
             
-            <div class="max-w-3xl mx-auto space-y-2">
-                <!-- Privacy Policy -->
-                <details class="text-sm text-gray-500">
-                    <summary>Informativa sulla Privacy (Privacy Policy)</summary>
-                    <div class="p-4 bg-gray-50 mt-2 rounded">
-                        <p class="mb-2"><strong>1. Introduzione.</strong> La tua privacy è importante per Doda Resources. Questa informativa spiega come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali in conformità con il GDPR e le normative italiane vigenti.</p>
-                        <p class="mb-2"><strong>2. Raccolta Dati.</strong> Raccogliamo informazioni fornite volontariamente tramite i moduli di contatto, come nome e numero di telefono. Utilizziamo anche cookie tecnici per migliorare l'esperienza di navigazione.</p>
-                        <p class="mb-2"><strong>3. Finalità del Trattamento.</strong> I dati sono utilizzati esclusivamente per rispondere alle richieste di informazioni, fornire assistenza sui prodotti e, previo consenso, inviare materiale informativo relativo ai servizi automobilistici.</p>
-                        <p class="mb-2"><strong>4. Condivisione dei Dati.</strong> Non vendiamo i tuoi dati a terzi. I dati possono essere condivisi con il fornitore del servizio principale (EcoCar Italy) esclusivamente per l'erogazione del servizio o la spedizione dei prodotti richiesti.</p>
-                        <p class="mb-2"><strong>5. Sicurezza.</strong> Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i dati personali da accessi non autorizzati, divulgazione, alterazione o distruzione.</p>
-                        <p class="mb-2"><strong>6. Diritti dell'Utente.</strong> Hai il diritto di accedere ai tuoi dati, richiederne la rettifica o la cancellazione. Puoi esercitare questi diritti contattandoci attraverso il modulo presente sul sito.</p>
-                        <p class="mb-2"><strong>7. Modifiche.</strong> Ci riserviamo il diritto di modificare questa policy in qualsiasi momento. Le modifiche saranno effettive dalla pubblicazione su questo sito.</p>
-                        <p><strong>8. Contatti.</strong> Per qualsiasi domanda relativa alla privacy, si prega di utilizzare il modulo di contatto ufficiale disponibile nella sezione apposita.</p>
-                    </div>
-                </details>
-
-                <!-- Terms of Service -->
-                <details class="text-sm text-gray-500">
-                    <summary>Termini e Condizioni</summary>
-                    <div class="p-4 bg-gray-50 mt-2 rounded">
-                        <p class="mb-2"><strong>1. Accettazione.</strong> Utilizzando questo sito web, l'utente accetta di essere vincolato dai presenti Termini e Condizioni. Se non si accettano tali termini, si prega di non utilizzare il sito.</p>
-                        <p class="mb-2"><strong>2. Uso del Sito.</strong> Il sito è destinato all'uso personale e non commerciale. È vietato utilizzare il sito per scopi illegali o che possano danneggiare il brand Doda Resources o i suoi partner.</p>
-                        <p class="mb-2"><strong>3. Proprietà Intellettuale.</strong> Tutto il contenuto presente, inclusi testi, grafiche e loghi, è di proprietà di Doda Resources o dei suoi fornitori ed è protetto dalle leggi sul copyright.</p>
-                        <p class="mb-2"><strong>4. Limitazione di Responsabilità.</strong> Doda Resources funge da intermediario pubblicitario. Non siamo responsabili per difetti di fabbricazione dei prodotti o ritardi nelle spedizioni gestite dal fornitore originale.</p>
-                        <p class="mb-2"><strong>5. Link Esterni.</strong> Il sito può contenere link a siti di terze parti. Non siamo responsabili per il contenuto o le pratiche sulla privacy di tali siti.</p>
-                        <p class="mb-2"><strong>6. Accuratezza delle Informazioni.</strong> Facciamo del nostro meglio per garantire che le informazioni siano accurate, ma non possiamo garantire che siano esenti da errori. Ci riserviamo il diritto di correggere eventuali errori.</p>
-                        <p class="mb-2"><strong>7. Legge Applicabile.</strong> Questi termini sono regolati dalla legge italiana. Qualsiasi controversia sarà di competenza esclusiva del foro competente in Italia.</p>
-                        <p><strong>8. Modifiche ai Termini.</strong> Doda Resources si riserva il diritto di aggiornare questi termini in qualsiasi momento senza preavviso.</p>
-                    </div>
-                </details>
+            <div class="border-t border-gray-800 pt-8 mt-8 text-sm">
+                <p class="mb-4 text-center">&copy; 2026 Puia Resources. Tutti i diritti riservati.</p>
                 
-                <!-- Refund Policy -->
-                <details class="text-sm text-gray-500">
-                    <summary>Politica di Reso e Rimborso</summary>
-                    <div class="p-4 bg-gray-50 mt-2 rounded">
-                        <p class="mb-2"><strong>1. Diritto di Recesso.</strong> In conformità con la normativa vigente, i clienti hanno il diritto di recedere dall'acquisto entro 14 giorni dalla ricezione della merce senza specificarne il motivo.</p>
-                        <p class="mb-2"><strong>2. Condizioni del Reso.</strong> I prodotti devono essere restituiti nelle stesse condizioni in cui sono stati ricevuti, nella confezione originale e completi di tutti gli accessori e manuali.</p>
-                        <p class="mb-2"><strong>3. Procedura.</strong> Per avviare un reso, è necessario contattare l'assistenza clienti tramite il modulo di contatto. Verranno fornite le istruzioni dettagliate per la spedizione.</p>
-                        <p class="mb-2"><strong>4. Costi di Spedizione.</strong> Salvo difetti di conformità o errori di spedizione da parte nostra, le spese di spedizione per la restituzione sono a carico del cliente.</p>
-                        <p class="mb-2"><strong>5. Rimborsi.</strong> Una volta ricevuto e ispezionato il reso, invieremo una notifica. Se approvato, il rimborso sarà elaborato e accreditato sul metodo di pagamento originale entro un certo numero di giorni.</p>
-                        <p class="mb-2"><strong>6. Articoli Non Rimborsabili.</strong> Alcuni articoli, come prodotti chimici aperti o beni personalizzati, non possono essere restituiti. Controllare le specifiche del prodotto.</p>
-                        <p class="mb-2"><strong>7. Prodotti Difettosi.</strong> In caso di prodotti difettosi o danneggiati, offriamo la sostituzione gratuita o il rimborso completo, incluse le spese di spedizione.</p>
-                        <p><strong>8. Assistenza.</strong> Il nostro team è a disposizione per assistere in ogni fase del processo di reso e garantire la massima soddisfazione.</p>
-                    </div>
-                </details>
+                <!-- LEGAL DROPDOWNS -->
+                <div class="space-y-2 max-w-3xl mx-auto">
+                    <details>
+                        <summary class="bg-gray-800 text-gray-300 hover:bg-gray-700">Privacy Policy</summary>
+                        <div class="p-4 bg-gray-800 text-xs leading-relaxed border-t border-gray-700">
+                            <p class="mb-2"><strong>1. Titolare del Trattamento</strong><br>Il titolare del trattamento dei dati è Puia Resources. Ci impegniamo a proteggere la privacy dei nostri utenti e a trattare i dati personali secondo le normative vigenti, incluso il GDPR.</p>
+                            <p class="mb-2"><strong>2. Dati Raccolti</strong><br>Raccogliamo dati personali forniti volontariamente tramite i moduli di contatto, come nome e preferenze di prodotto. Utilizziamo inoltre dati tecnici di navigazione (cookie) per migliorare l'esperienza utente.</p>
+                            <p class="mb-2"><strong>3. Finalità del Trattamento</strong><br>I dati sono utilizzati esclusivamente per rispondere alle richieste, gestire ordini e migliorare i nostri servizi. Non vendiamo dati a terze parti non autorizzate.</p>
+                            <p class="mb-2"><strong>4. Sicurezza</strong><br>Adottiamo misure di sicurezza adeguate per proteggere i dati da accessi non autorizzati. I dati sono conservati su server sicuri all'interno dell'UE.</p>
+                            <p><strong>5. Diritti dell'Utente</strong><br>Gli utenti hanno il diritto di accedere, rettificare o cancellare i propri dati in qualsiasi momento. Per esercitare tali diritti, utilizzare il modulo di contatto presente sul sito.</p>
+                        </div>
+                    </details>
+                    
+                    <details>
+                        <summary class="bg-gray-800 text-gray-300 hover:bg-gray-700">Termini e Condizioni</summary>
+                        <div class="p-4 bg-gray-800 text-xs leading-relaxed border-t border-gray-700">
+                            <p class="mb-2"><strong>1. Accettazione dei Termini</strong><br>Utilizzando questo sito, l'utente accetta integralmente i presenti Termini e Condizioni. Se non si accettano tali termini, si prega di non utilizzare il sito.</p>
+                            <p class="mb-2"><strong>2. Ruolo del Sito</strong><br>Puia Resources opera come intermediario pubblicitario e informativo. La vendita finale dei prodotti può essere gestita da partner terzi o direttamente, a seconda dello stock.</p>
+                            <p class="mb-2"><strong>3. Proprietà Intellettuale</strong><br>Tutti i contenuti (testi, immagini, loghi) presenti sul sito sono protetti da copyright. È vietata la riproduzione senza autorizzazione scritta.</p>
+                            <p class="mb-2"><strong>4. Limitazione di Responsabilità</strong><br>Non siamo responsabili per danni diretti o indiretti derivanti dall'uso del sito o dall'impossibilità di utilizzarlo. Le informazioni sui prodotti sono fornite a scopo indicativo.</p>
+                            <p><strong>5. Modifiche</strong><br>Ci riserviamo il diritto di modificare i termini in qualsiasi momento. Le modifiche saranno effettive dalla pubblicazione sul sito.</p>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary class="bg-gray-800 text-gray-300 hover:bg-gray-700">Politica di Rimborso</summary>
+                        <div class="p-4 bg-gray-800 text-xs leading-relaxed border-t border-gray-700">
+                            <p class="mb-2"><strong>1. Diritto di Recesso</strong><br>In conformità con la normativa europea, il consumatore ha diritto di recedere dall'acquisto entro 14 giorni dalla ricezione della merce senza specificarne il motivo.</p>
+                            <p class="mb-2"><strong>2. Condizioni di Reso</strong><br>Il prodotto deve essere restituito integro, nella confezione originale e completo di tutte le sue parti (accessori, manuali, cavi). Prodotti usati o danneggiati non saranno rimborsati.</p>
+                            <p class="mb-2"><strong>3. Procedura</strong><br>Per avviare un reso, contattare l'assistenza clienti tramite il modulo apposito. Vi verranno fornite le istruzioni per la spedizione di rientro.</p>
+                            <p class="mb-2"><strong>4. Tempi di Rimborso</strong><br>Una volta ricevuto e verificato il reso, il rimborso verrà emesso entro 14 giorni utilizzando lo stesso metodo di pagamento dell'acquisto iniziale.</p>
+                            <p><strong>5. Spese di Spedizione</strong><br>Le spese di spedizione per la restituzione sono a carico del cliente, salvo in caso di prodotto difettoso o errore di spedizione da parte nostra.</p>
+                        </div>
+                    </details>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t-4 border-black p-6 shadow-2xl z-50 hidden flex-col md:flex-row items-center justify-between">
-        <div class="mb-4 md:mb-0 md:mr-6">
-            <h4 class="font-bold text-lg mb-1">Rispetto della tua Privacy</h4>
-            <p class="text-sm text-gray-600">Utilizziamo i cookie per migliorare la tua esperienza e analizzare il traffico del sito. Continuando, accetti la nostra politica sui cookie.</p>
-        </div>
-        <div class="flex gap-4">
-            <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookieConsent', 'true')" class="btn-primary py-2 px-4 text-sm">Accetta Tutto</button>
-            <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 hover:text-black font-bold text-sm underline">Rifiuta</button>
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-2xl z-50 transform transition-transform duration-300 translate-y-full border-t-4 border-green-500">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm">
+                Utilizziamo i cookie per migliorare la tua esperienza. Continuando a navigare accetti la nostra <a href="#" class="underline text-green-400">Privacy Policy</a>.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="px-6 py-2 bg-green-600 text-white rounded font-bold hover:bg-green-500 transition">Accetto</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-6 py-2 bg-gray-700 text-white rounded font-bold hover:bg-gray-600 transition">Rifiuto</button>
+            </div>
         </div>
     </div>
 
-    <!-- PAGE INTERACTIVITY -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Check Cookie Consent
-        if (!localStorage.getItem('cookieConsent')) {
-            document.getElementById('cookie-banner').classList.remove('hidden');
-            document.getElementById('cookie-banner').classList.add('flex');
-        }
+        // SMART ROUTING & SMOOTH SCROLL
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll offset correction for fixed header
+            const headerHeight = document.querySelector('nav').offsetHeight;
 
-        // Smart Routing: Intercept hash links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                } else {
-                    // Fallback to Contact if ID missing
-                    const contactSection = document.getElementById('contact');
-                    if(contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' });
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                        
+                        // Close mobile menu if open
+                        document.getElementById('mobile-menu').classList.add('hidden');
+                    } else {
+                        // Fallback to Contact if ID missing
+                        console.warn(`Target #${targetId} missing. Redirecting to #contact.`);
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) {
+                            contactSection.scrollIntoView({ behavior: 'smooth' });
+                        }
                     }
-                }
-                
-                // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
+                });
             });
+
+            // Cookie Logic
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
         });
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
     </script>
 </body>
 </html>
