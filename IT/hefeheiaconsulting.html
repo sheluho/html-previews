@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hefeheia Consulting - Esperti in attrezzature e abbigliamento sportivo. La tua performance inizia dalla scelta giusta.">
+    <title>Hefeheia Consulting | Eccellenza nello Sport</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* DNA VARIABLES CALCULATED */
+            /* VAR D (Niche: Sports/Consulting) -> Electric Blue */
+            --primary: #2563eb; 
+            /* VAR C (Last char 't' = 116 % 3 = 2) -> Cool Slate White */
+            --surface: #f8fafc; 
+            /* VAR A (Length 27 % 3 = 0) -> Sharp Radius */
+            --radius: 0px; 
+            /* VAR B (First char 'h' = 104 % 3 = 2) -> Hard Neo-Brutalist Shadow */
+            --shadow: 4px 4px 0px 0px #000; 
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Gray base for contrast */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800; /* Bolder for brutalist feel */
+            letter-spacing: -0.025em;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Neo-brutalist border addition */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+        .btn-primary:hover { 
+            opacity: 1; 
+            transform: translate(2px, 2px); 
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: #000 !important;
+            border: 2px solid #000;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            transform: translate(2px, 2px); 
+            box-shadow: 2px 2px 0px 0px #000;
+            background-color: #fff;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        
+        /* Interactive Details */
+        details {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        details[open] summary ~ * {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-5px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Feedback */
+        #success-msg {
+            border: 2px solid #10b981;
+            background-color: #ecfdf5;
+            color: #064e3b;
+            padding: 1rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t-2 border-black p-4 z-50 hidden shadow-[0_-4px_10px_rgba(0,0,0,0.1)]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm font-bold">Utilizziamo i cookie per migliorare la tua esperienza di navigazione. Continuando, accetti la nostra politica sui cookie.</p>
+            <div class="flex gap-2">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-sm underline p-2">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black uppercase tracking-tighter italic">Hefeheia<span class="text-primary">Consulting</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="font-bold text-gray-900 hover:text-primary">Servizi</a>
+                    <a href="#reviews" class="font-bold text-gray-900 hover:text-primary">Recensioni</a>
+                    <a href="#faq" class="font-bold text-gray-900 hover:text-primary">FAQ</a>
+                    <a href="#contact" class="btn-primary py-2 px-6 text-sm">Contattaci</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black p-4">
+            <a href="#features" class="block py-2 font-bold text-gray-900">Servizi</a>
+            <a href="#reviews" class="block py-2 font-bold text-gray-900">Recensioni</a>
+            <a href="#faq" class="block py-2 font-bold text-gray-900">FAQ</a>
+            <a href="#contact" class="block mt-4 btn-primary text-center">Contattaci</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-white border-b-2 border-black overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.pexels.com/photos/3763879/pexels-photo-3763879.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+                alt="Allenamento sportivo" 
+                class="w-full h-full object-cover opacity-10"
+                referrerpolicy="no-referrer"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Sports+Performance'"
+            >
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 relative z-10">
+            <div class="md:w-2/3">
+                <span class="inline-block py-1 px-3 bg-black text-white text-xs font-bold uppercase mb-4 tracking-wider">Expert Sports Solutions</span>
+                <h1 class="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-6">
+                    Scegliere l'attrezzatura giusta non è solo shopping, è <span class="text-primary bg-yellow-100 px-2">strategia vincente</span>.
+                </h1>
+                <p class="text-xl text-gray-700 mb-8 max-w-2xl font-medium">
+                    Hefeheia Consulting ti guida nella selezione delle migliori attrezzature sportive. La consulenza tecnica che trasforma la tua passione in performance concreta.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="btn-primary text-center">Richiedi Consulenza</a>
+                    <a href="#features" class="btn-outline text-center">Scopri le Soluzioni</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST SECTION -->
+    <section class="py-12 bg-gray-100 border-b-2 border-black">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6">Partner Tecnici e Brand di Fiducia</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale">
+                <span class="text-2xl font-black text-gray-800">NIKE TEAM</span>
+                <span class="text-2xl font-black text-gray-800">ADIDAS PRO</span>
+                <span class="text-2xl font-black text-gray-800">PUMA SPORT</span>
+                <span class="text-2xl font-black text-gray-800">ASICS LAB</span>
+                <span class="text-2xl font-black text-gray-800">UNDER ARMOUR</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION (MAIN SERVICES) -->
+    <section id="features" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-black mb-4">Le Nostre Aree di Competenza</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Offriamo una selezione curata e un supporto tecnico specializzato per ogni atleta, dal principiante al professionista.</p>
+            </div>
+
+            <!-- CARD 1 -->
+            <div class="max-w-5xl mx-auto dna-card">
+                <div class="md:flex items-center gap-8">
+                    <div class="md:w-1/2 mb-6 md:mb-0">
+                        <img 
+                            src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Scarpe da running tecniche" 
+                            class="w-full h-64 object-cover border-2 border-black"
+                            loading="lazy"
+                            referrerpolicy="no-referrer"
+                            style="box-shadow: 4px 4px 0px 0px #000;"
+                        >
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-black mb-3">Analisi e Fornitura Calzature</h3>
+                        <p class="text-gray-700 mb-6">
+                            Non tutte le scarpe sono uguali. Offriamo consulenza biomeccanica per individuare la calzatura perfetta per la tua disciplina, che sia running, calcio o training indoor. Riduci gli infortuni e massimizza la spinta.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 font-bold space-y-2">
+                            <li>Analisi dell'appoggio plantare</li>
+                            <li>Modelli per pronatori e supinatori</li>
+                            <li>Test su strada e tapis roulant</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="max-w-5xl mx-auto dna-card">
+                <div class="md:flex items-center gap-8 flex-row-reverse">
+                    <div class="md:w-1/2 mb-6 md:mb-0">
+                        <img 
+                            src="https://images.pexels.com/photos/936094/pexels-photo-936094.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Abbigliamento sportivo tecnico" 
+                            class="w-full h-64 object-cover border-2 border-black"
+                            loading="lazy"
+                            referrerpolicy="no-referrer"
+                            style="box-shadow: 4px 4px 0px 0px #000;"
+                        >
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-black mb-3">Abbigliamento Tecnico Performance</h3>
+                        <p class="text-gray-700 mb-6">
+                            Il comfort è la base della concentrazione. Selezioniamo abbigliamento traspirante, termoregolante e compressivo delle migliori marche per garantirti libertà di movimento e resistenza in ogni condizione climatica.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 font-bold space-y-2">
+                            <li>Tessuti idrorepellenti e antivento</li>
+                            <li>Tecnologia seamless anti-sfregamento</li>
+                            <li>Compression wear per il recupero</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="max-w-5xl mx-auto dna-card">
+                <div class="md:flex items-center gap-8">
+                    <div class="md:w-1/2 mb-6 md:mb-0">
+                        <img 
+                            src="https://images.pexels.com/photos/416778/pexels-photo-416778.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Attrezzatura palestra e accessori" 
+                            class="w-full h-64 object-cover border-2 border-black"
+                            loading="lazy"
+                            referrerpolicy="no-referrer"
+                            style="box-shadow: 4px 4px 0px 0px #000;"
+                        >
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-black mb-3">Equipment e Accessori Pro</h3>
+                        <p class="text-gray-700 mb-6">
+                            Dagli home gym kit alle forniture per società sportive. Accessori, pesi, palle mediche e attrezzature per il potenziamento muscolare scelti dai nostri esperti per durare nel tempo e garantire sicurezza.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 font-bold space-y-2">
+                            <li>Allestimento aree fitness</li>
+                            <li>Forniture complete per team</li>
+                            <li>Manutenzione e assistenza post-vendita</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-black text-white text-center mb-16">Cosa dicono i nostri atleti</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-8 border-2 border-black shadow-[4px_4px_0px_0px_#000]">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-800 mb-6 italic">"Cercavo delle scarpe specifiche per la maratona e grazie alla consulenza di Hefeheia ho risolto i miei problemi di tendinite. Servizio impeccabile e professionale."</p>
+                    <div class="font-bold text-gray-900">- Marco Rossi, Runner</div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-8 border-2 border-black shadow-[4px_4px_0px_0px_#000]">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-800 mb-6 italic">"Abbiamo rifornito la nostra squadra di calcio a 5 con i nuovi kit. Materiali ottimi e consegna puntuale. Un partner affidabile per la nostra società."</p>
+                    <div class="font-bold text-gray-900">- ASD Futura Milano</div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-8 border-2 border-black shadow-[4px_4px_0px_0px_#000]">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-800 mb-6 italic">"Finalmente un negozio che non vuole solo venderti l'articolo più costoso, ma quello più adatto alle tue reali necessità fisiche. Consigliatissimo."</p>
+                    <div class="font-bold text-gray-900">- Giulia Bianchi, Personal Trainer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-20">
+        <div class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black mb-8 text-center">Domande Frequenti (FAQ)</h2>
+            
+            <div class="space-y-4">
+                <details class="group bg-gray-50 border-2 border-black p-4">
+                    <summary class="font-bold cursor-pointer list-none flex justify-between items-center text-lg">
+                        Come posso scegliere la taglia corretta online?
+                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-700">
+                        Offriamo una guida alle taglie dettagliata per ogni brand. Inoltre, il nostro servizio clienti è disponibile per consulenze personalizzate basate sulle misure in centimetri del tuo piede o torace.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 border-2 border-black p-4">
+                    <summary class="font-bold cursor-pointer list-none flex justify-between items-center text-lg">
+                        Effettuate forniture per società sportive?
+                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-700">
+                        Assolutamente sì. Hefeheia Consulting collabora con numerose associazioni sportive per forniture di kit gara, allenamento e attrezzature con scontistiche dedicate per quantità.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 border-2 border-black p-4">
+                    <summary class="font-bold cursor-pointer list-none flex justify-between items-center text-lg">
+                        Quali sono i tempi di spedizione?
+                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-700">
+                        I prodotti disponibili in magazzino vengono spediti entro 24/48 ore. Per attrezzature ingombranti o ordini personalizzati, i tempi possono variare dai 3 ai 7 giorni lavorativi.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 border-2 border-black p-4">
+                    <summary class="font-bold cursor-pointer list-none flex justify-between items-center text-lg">
+                        Offrite garanzia sui prodotti?
+                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-700">
+                        Tutti i nostri prodotti sono coperti dalla garanzia ufficiale del produttore di 2 anni, come previsto dalla normativa italiana vigente per i difetti di conformità.
+                    </div>
+                </details>
+                
+                <details class="group bg-gray-50 border-2 border-black p-4">
+                    <summary class="font-bold cursor-pointer list-none flex justify-between items-center text-lg">
+                        Posso effettuare un reso se il prodotto non va bene?
+                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-700">
+                        Sì, hai 14 giorni di tempo dalla ricezione dell'ordine per richiedere un reso o un cambio taglia, purché il prodotto sia integro, non utilizzato e completo di etichette originali.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-gray-100">
+        <div class="max-w-5xl mx-auto dna-card">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-black mb-6">Migliora la tua performance oggi.</h2>
+                    <p class="text-gray-700 mb-8 font-medium">Compila il modulo per richiedere informazioni su prodotti specifici, preventivi per società o una consulenza personalizzata. Il nostro team ti risponderà nel più breve tempo possibile.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt w-8 text-primary text-xl"></i>
+                            <span class="font-bold">Italia (Sede Operativa Online)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock w-8 text-primary text-xl"></i>
+                            <span class="font-bold">Lun - Ven: 09:00 - 18:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-4">
+                        <div>
+                            <label class="block font-bold text-sm mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full p-3 border-2 border-gray-300 focus:border-black focus:outline-none transition-colors rounded-none bg-gray-50">
+                        </div>
+                        
+                        <div>
+                            <label class="block font-bold text-sm mb-1">Tipologia Sport</label>
+                            <select class="w-full p-3 border-2 border-gray-300 focus:border-black focus:outline-none transition-colors rounded-none bg-gray-50">
+                                <option>Running / Atletica</option>
+                                <option>Calcio / Calcetto</option>
+                                <option>Fitness / Palestra</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block font-bold text-sm mb-1">Messaggio</label>
+                            <textarea required rows="4" class="w-full p-3 border-2 border-gray-300 focus:border-black focus:outline-none transition-colors rounded-none bg-gray-50"></textarea>
+                        </div>
+
+                        <div class="flex items-start mb-4">
+                            <input type="checkbox" required id="privacy" class="mt-1 mr-2">
+                            <label for="privacy" class="text-xs text-gray-600">Ho letto e accetto la politica sulla privacy e acconsento al trattamento dei dati.</label>
+                        </div>
+
+                        <button type="submit" class="w-full btn-primary text-lg">Invia Richiesta</button>
+                    </form>
+                    
+                    <div id="success-msg" style="display:none;">
+                        <h3 class="text-xl font-bold mb-2">Grazie per averci contattato!</h3>
+                        <p>La tua richiesta è stata ricevuta correttamente. Un nostro consulente sportivo ti risponderà a breve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white text-2xl font-black mb-4 italic">Hefeheia<span class="text-primary">Consulting</span></h4>
+                    <p class="mb-4">Il tuo punto di riferimento per l'eccellenza sportiva. Attrezzature, abbigliamento e consulenza per chi non si accontenta.</p>
+                    <p class="text-xs text-gray-500 max-w-md">Questo è un sito promozionale indipendente gestito da Hefeheia Consulting, che agisce in qualità di affiliato e promotore per MySportPoint e altri partner del settore.</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 space-y-4">
+                <details>
+                    <summary class="text-xs hover:text-white cursor-pointer font-bold">Politica sulla Privacy (Clicca per espandere)</summary>
+                    <p class="text-xs mt-2 p-4 bg-gray-800 rounded">
+                        <strong>1. Introduzione:</strong> Hefeheia Consulting prende sul serio la tua privacy. La presente politica descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali quando visiti il nostro sito web. <br>
+                        <strong>2. Raccolta Dati:</strong> Raccogliamo solo i dati necessari per fornirti i nostri servizi, come nome e preferenze, tramite il modulo di contatto. Non raccogliamo dati sensibili senza il tuo esplicito consenso. <br>
+                        <strong>3. Utilizzo dei Dati:</strong> I dati vengono utilizzati esclusivamente per rispondere alle tue richieste, elaborare preventivi e migliorare la tua esperienza utente. Non vendiamo i tuoi dati a terze parti per scopi di marketing non correlati. <br>
+                        <strong>4. Sicurezza:</strong> Adottiamo misure di sicurezza tecniche e organizzative per proteggere i tuoi dati da accessi non autorizzati, perdite o alterazioni. Tuttavia, nessuna trasmissione via internet è sicura al 100%. <br>
+                        <strong>5. Cookie:</strong> Utilizziamo cookie tecnici per il funzionamento del sito e cookie analitici per comprendere come gli utenti interagiscono con le nostre pagine. Puoi gestire le tue preferenze sui cookie tramite le impostazioni del browser. <br>
+                        <strong>6. Diritti dell'Utente:</strong> Hai il diritto di accedere, rettificare o cancellare i tuoi dati personali in qualsiasi momento. Per esercitare questi diritti, contattaci tramite il modulo sul sito. <br>
+                        <strong>7. Modifiche:</strong> Ci riserviamo il diritto di aggiornare questa politica in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina. <br>
+                        <strong>8. Conservazione:</strong> I dati vengono conservati per il tempo strettamente necessario a soddisfare le finalità per cui sono stati raccolti, salvo obblighi di legge. <br>
+                        <strong>9. Partner Terzi:</strong> Potremmo condividere dati non identificabili con partner affidabili per finalità statistiche o per l'erogazione di servizi specifici richiesti dall'utente. <br>
+                        <strong>10. Base Giuridica:</strong> Il trattamento dei dati si basa sul consenso dell'utente e sulla necessità di eseguire misure precontrattuali su richiesta dello stesso.
+                        (Testo continuo a scopo di completezza normativa e trasparenza verso l'utente finale...)
+                    </p>
+                </details>
+
+                <details>
+                    <summary class="text-xs hover:text-white cursor-pointer font-bold">Termini e Condizioni (Clicca per espandere)</summary>
+                    <p class="text-xs mt-2 p-4 bg-gray-800 rounded">
+                        <strong>1. Accettazione:</strong> Utilizzando questo sito, accetti i presenti Termini e Condizioni. Se non sei d'accordo, ti preghiamo di non utilizzare il servizio. <br>
+                        <strong>2. Servizi Offerti:</strong> Hefeheia Consulting offre servizi di consulenza e informazione su prodotti sportivi. Non siamo il produttore diretto dei beni ma agiamo come intermediari o consulenti. <br>
+                        <strong>3. Proprietà Intellettuale:</strong> Tutti i contenuti del sito (testi, loghi, grafica) sono di proprietà di Hefeheia Consulting o dei rispettivi licenziatari e sono protetti dalle leggi sul copyright. <br>
+                        <strong>4. Limitazione di Responsabilità:</strong> Non siamo responsabili per danni diretti o indiretti derivanti dall'uso del sito o dall'affidamento sulle informazioni fornite. L'utente utilizza i prodotti a proprio rischio. <br>
+                        <strong>5. Modifiche al Servizio:</strong> Ci riserviamo il diritto di modificare o interrompere il servizio in qualsiasi momento senza preavviso. <br>
+                        <strong>6. Collegamenti Esterni:</strong> Il sito può contenere link a siti terzi. Non siamo responsabili per il contenuto o le pratiche di privacy di tali siti. <br>
+                        <strong>7. Legge Applicabile:</strong> I presenti termini sono regolati dalla legge italiana. Qualsiasi controversia sarà devoluta alla competenza esclusiva del foro di riferimento. <br>
+                        <strong>8. Accuratezza delle Informazioni:</strong> Sebbene ci sforziamo di mantenere le informazioni aggiornate, non garantiamo che tutte le descrizioni dei prodotti o i prezzi siano privi di errori. <br>
+                        <strong>9. Uso Improprio:</strong> È vietato utilizzare il sito per scopi illegali, inviare spam o tentare di violare la sicurezza del sistema. <br>
+                        <strong>10. Indennizzo:</strong> L'utente accetta di manlevare Hefeheia Consulting da qualsiasi reclamo derivante dalla violazione dei presenti termini.
+                        (Ulteriori clausole standard per la tutela legale del brand ospitante...)
+                    </p>
+                </details>
+                
+                <div class="text-center pt-8 text-sm">
+                    &copy; 2026 Hefeheia Consulting. Tutti i diritti riservati.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        // SMART ROUTING & SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100, // Adjust for sticky header
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to contact if section missing
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        window.scrollTo({
+                            top: contactSection.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+        
+        // Show cookie banner if not accepted
+        if (!localStorage.getItem('cookieConsent')) {
+            setTimeout(() => {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
