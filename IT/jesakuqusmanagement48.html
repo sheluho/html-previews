@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jesakuqus Management - Formazione Universitaria & Professionale</title>
-    <meta name="description" content="Gestisci la tua carriera con i migliori percorsi di laurea online e certificazioni professionali. Orientamento gratuito.">
-    <!-- Tailwind CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <title>Jesaku Management - Eccellenza nella Formazione Online</title>
+    <meta name="description" content="Gestisci il tuo futuro con i migliori corsi di laurea e master online. Jesaku Management ti guida verso il successo accademico e professionale.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
-    <!-- DESIGN SYSTEM: DNA INJECTION -->
     <style>
+        /* DNA VARIABLES CALCULATION 
+           URL: https://corsionline.uniscientia.it (32 chars) -> VAR A (32%3=2) -> Radius: 24px (Pill)
+           First: 'h' (104%3=2) -> VAR B -> Shadow: Hard (Neo-Brutalist)
+           Last: 't' (116%3=2) -> VAR C -> Surface: Cool (#f8fafc)
+           Niche: Education -> VAR D -> Primary: Academic Blue (#1d4ed8)
+        */
+
         :root {
-            /* VAR D: Palette -> Education Deep Blue */
-            --primary: #1e40af; 
-            /* VAR C: Surface -> Cool White */
-            --surface: #f8fafc; 
-            /* VAR A: Geometry -> Pill (26%3=2) */
-            --radius: 24px; 
-            /* VAR B: Physics -> Flat (99%3=0) */
-            --shadow: 0 0 0 1px #e5e7eb; 
+            --primary: #1d4ed8;
+            --surface: #f8fafc;
+            --radius: 24px;
+            --shadow: 4px 4px 0px 0px #000000;
         }
 
         /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6; /* Light gray base */
+            background-color: #f3f4f6; /* Gray background to force contrast */
             color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
         }
 
         /* BRAND COMPONENT: The DNA Card */
@@ -35,8 +36,8 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+            border: 2px solid #000000; /* Added border for Hard Shadow consistency */
         }
 
         /* BRAND COMPONENT: Primary Button */
@@ -45,362 +46,383 @@
             color: #ffffff !important;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s ease-in-out;
-            font-weight: 700;
+            padding: 1rem 2.5rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             display: inline-block;
-            text-align: center;
-        }
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translateY(-1px); 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 2px solid #000000;
         }
 
-        /* UTILITY */
-        .text-primary { color: var(--primary); }
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000000;
+        }
         
-        /* Mobile Menu */
-        #mobile-menu {
-            transition: all 0.3s ease;
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000000;
         }
 
-        /* Hero Overlay */
-        .hero-overlay {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7));
-        }
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
 
-        /* Form styling */
-        input, select, textarea {
-            border-radius: var(--radius);
-            border: 1px solid #e5e7eb;
-            padding: 0.75rem 1rem;
-            width: 100%;
-            background: #ffffff;
-            transition: border-color 0.2s;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
-        }
-
-        details summary {
+        /* LEGAL DETAILS */
+        details {
             cursor: pointer;
-            list-style: none;
-            padding: 1rem;
-            background: #fff;
-            border-radius: 12px;
-            margin-bottom: 0.5rem;
-            border: 1px solid #e5e7eb;
-            font-weight: 600;
+            transition: all 0.3s;
         }
-        details[open] summary {
-            background: #f0fdf4;
+        details[open] summary ~ * {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FORM STYLES */
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 2px solid #e5e7eb;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+        .form-input:focus {
             border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.2);
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="flex flex-col min-h-screen">
 
     <!-- NAVIGATION -->
-    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center gap-2">
-                    <span class="text-2xl font-black text-gray-900 tracking-tight">
-                        Jesakuqus<span class="text-primary">Management</span>
-                    </span>
+                    <div class="w-10 h-10 bg-blue-700 rounded-full border-2 border-black flex items-center justify-center text-white font-bold text-xl">J</div>
+                    <span class="font-black text-2xl tracking-tighter">JESAKU<span class="text-blue-700">MANAGEMENT</span></span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium">Corsi e Servizi</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium">Recensioni</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium">FAQ</a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="font-bold text-gray-700 hover:text-blue-700 transition">Percorsi</a>
+                    <a href="#reviews" class="font-bold text-gray-700 hover:text-blue-700 transition">Opinioni</a>
+                    <a href="#faq" class="font-bold text-gray-700 hover:text-blue-700 transition">Domande</a>
+                    <a href="#contact" class="btn-primary text-sm py-3 px-6">Richiedi Info</a>
                 </div>
-                <div class="hidden md:flex">
-                    <a href="#contact" class="btn-primary">Richiedi Info</a>
-                </div>
+                <!-- Mobile button -->
                 <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none p-2">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-blue-700 focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 p-4">
-            <div class="flex flex-col space-y-4">
-                <a href="#features" class="block text-gray-700 font-medium">Corsi e Servizi</a>
-                <a href="#reviews" class="block text-gray-700 font-medium">Recensioni</a>
-                <a href="#faq" class="block text-gray-700 font-medium">FAQ</a>
-                <a href="#contact" class="block btn-primary text-center">Contattaci Ora</a>
-            </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t-2 border-black p-4">
+            <a href="#features" class="block py-3 px-4 text-base font-bold text-gray-900 hover:bg-gray-200 rounded-lg">Percorsi</a>
+            <a href="#reviews" class="block py-3 px-4 text-base font-bold text-gray-900 hover:bg-gray-200 rounded-lg">Opinioni</a>
+            <a href="#contact" class="block py-3 px-4 mt-2 btn-primary text-center">Contattaci Ora</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <header class="relative bg-gray-900 text-white py-24 lg:py-32 overflow-hidden">
+    <header class="relative bg-blue-900 text-white py-24 lg:py-32 overflow-hidden">
+        <!-- Overlay & Image -->
         <div class="absolute inset-0 z-0">
             <img 
-                src="https://cdn.pixabay.com/photo/2015/07/17/22/43/student-849822_1280.jpg" 
-                class="w-full h-full object-cover"
-                alt="Studente universitario online"
+                src="https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                alt="Studenti universitari online" 
+                class="w-full h-full object-cover opacity-30"
                 referrerpolicy="no-referrer"
                 loading="lazy"
-                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Education+Background'"
+                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=University+Life'"
             >
-            <div class="absolute inset-0 hero-overlay"></div>
+            <div class="absolute inset-0 bg-black/60"></div>
         </div>
         
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-                Il <span class="text-blue-400">Management</span> del Tuo Futuro Inizia con la Formazione Giusta.
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                La Migliore Formazione è il Primo Passo del <span class="text-blue-400">Management</span> Personale
             </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto">
-                Affida la tua carriera all'eccellenza. Lauree online, Master e Certificazioni per professionisti che vogliono crescere senza limiti.
+            <p class="text-xl md:text-2xl mb-10 text-gray-200 max-w-3xl mx-auto font-medium">
+                Scegli il percorso universitario flessibile che si adatta ai tuoi ritmi. Jesaku Management ti connette con l'eccellenza di UniScientia e delle Università Telematiche.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contact" class="btn-primary text-lg">
-                    Piano di Studi Gratuito
-                </a>
-                <a href="#features" class="bg-white text-gray-900 px-8 py-4 rounded-full font-bold shadow-md hover:bg-gray-50 transition">
-                    Scopri l'Offerta
-                </a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#features" class="btn-primary bg-white !text-blue-900 !border-blue-900 hover:bg-gray-100">Scopri i Corsi</a>
+                <a href="#contact" class="btn-primary">Valutazione Gratuita</a>
             </div>
-            
-            <div class="mt-12 flex justify-center items-center space-x-8 opacity-80 text-sm md:text-base font-semibold text-gray-300">
-                <span>✓ Riconosciuti dal MIUR</span>
-                <span>✓ Esami Online e in Sede</span>
-                <span>✓ Tutor Dedicato</span>
+            <div class="mt-12 flex justify-center gap-8 text-gray-300 text-sm font-semibold uppercase tracking-widest">
+                <span><i class="fas fa-check-circle text-blue-400 mr-2"></i>Riconosciuti MIUR</span>
+                <span><i class="fas fa-check-circle text-blue-400 mr-2"></i>100% Online</span>
+                <span><i class="fas fa-check-circle text-blue-400 mr-2"></i>Tutor Dedicato</span>
             </div>
         </div>
     </header>
 
-    <!-- TRUST INDICATORS -->
-    <div class="bg-white border-b border-gray-200 py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-sm text-gray-500 font-bold uppercase tracking-wider mb-6">Partner di eccellenza nella formazione</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale">
-                <span class="text-2xl font-black text-gray-400">UNIPEGASO</span>
-                <span class="text-2xl font-black text-gray-400">MERCATORUM</span>
-                <span class="text-2xl font-black text-gray-400">SAN RAFFAELE</span>
-                <span class="text-2xl font-black text-gray-400">EIPASS</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- FEATURES / SERVICES SECTION -->
-    <section id="features" class="py-16 md:py-24">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Percorsi formativi su misura</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Scegli il percorso più adatto alle tue esigenze professionali. La tecnologia Uniscientia incontra la flessibilità.</p>
-            </div>
-
-            <div class="max-w-5xl mx-auto">
-                
-                <!-- Service 1 -->
-                <div class="dna-card flex flex-col md:flex-row items-center gap-8">
-                    <div class="w-full md:w-1/2">
-                        <img 
-                            src="https://cdn.pixabay.com/photo/2018/09/04/10/06/man-3653346_1280.jpg" 
-                            alt="Lauree Online" 
-                            class="rounded-xl shadow-sm w-full h-64 object-cover"
-                            loading="lazy"
-                            onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=University+Degree'"
-                        >
-                    </div>
-                    <div class="w-full md:w-1/2">
-                        <h3 class="text-2xl font-bold mb-4 text-primary">Lauree Online & Magistrali</h3>
-                        <p class="text-gray-600 mb-6">
-                            Accedi ai migliori corsi di laurea delle Università Telematiche riconosciute dal MIUR. Economia, Giurisprudenza, Ingegneria, Psicologia e Scienze Motorie. Studia dove e quando vuoi.
-                        </p>
-                        <ul class="mb-6 space-y-2 text-gray-600">
-                            <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Iscrizioni sempre aperte</li>
-                            <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Nessun test d'ingresso ostativo</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
-                    <div class="w-full md:w-1/2">
-                        <img 
-                            src="https://cdn.pixabay.com/photo/2016/03/26/17/45/teacher-1280966_1280.jpg" 
-                            alt="Mondo Scuola" 
-                            class="rounded-xl shadow-sm w-full h-64 object-cover"
-                            loading="lazy"
-                            onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=Teacher+Training'"
-                        >
-                    </div>
-                    <div class="w-full md:w-1/2">
-                        <h3 class="text-2xl font-bold mb-4 text-primary">Mondo Scuola & 24 CFU</h3>
-                        <p class="text-gray-600 mb-6">
-                            Percorsi specifici per docenti e aspiranti insegnanti. Ottieni i 24 CFU, Master di I e II livello, e corsi di perfezionamento per scalare le graduatorie GPS.
-                        </p>
-                        <a href="#contact" class="font-bold text-primary hover:underline">Richiedi valutazione piano →</a>
-                    </div>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="dna-card flex flex-col md:flex-row items-center gap-8">
-                    <div class="w-full md:w-1/2">
-                        <img 
-                            src="https://cdn.pixabay.com/photo/2018/03/03/10/02/laptop-3195000_1280.jpg" 
-                            alt="Certificazioni" 
-                            class="rounded-xl shadow-sm w-full h-64 object-cover"
-                            loading="lazy"
-                            onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=Certifications'"
-                        >
-                    </div>
-                    <div class="w-full md:w-1/2">
-                        <h3 class="text-2xl font-bold mb-4 text-primary">Certificazioni Informatiche e Linguistiche</h3>
-                        <p class="text-gray-600 mb-6">
-                            Valorizza il tuo CV con certificazioni riconosciute a livello europeo: Inglese (B2, C1, C2), EIPASS, Dattilografia e molto altro. Indispensabili per concorsi pubblici e privati.
-                        </p>
-                    </div>
-                </div>
-
+    <!-- TRUST SECTION -->
+    <section class="py-10 bg-white border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm font-bold uppercase mb-6 tracking-wider">Partner ufficiali per la tua formazione</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale transition hover:grayscale-0">
+                <span class="text-2xl font-black text-gray-400 font-serif">PEGASO</span>
+                <span class="text-2xl font-black text-gray-400 font-serif">MERCATORUM</span>
+                <span class="text-2xl font-black text-gray-400 font-serif">SAN RAFFAELE</span>
+                <span class="text-2xl font-black text-gray-400 font-serif">UNISCIENTIA</span>
             </div>
         </div>
     </section>
 
-    <!-- REVIEWS SECTION -->
-    <section id="reviews" class="py-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Cosa dicono i nostri studenti</h2>
-            <div class="max-w-5xl mx-auto dna-card">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
-                    <!-- Review 1 -->
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                        <div class="text-yellow-400 flex mb-3">★★★★★</div>
-                        <p class="text-gray-600 italic mb-4">"Grazie a Jesakuqus Management ho trovato il corso di laurea perfetto per me che lavoro full-time. Il supporto è stato incredibile dall'inizio alla fine."</p>
-                        <p class="font-bold text-gray-900">- Marco Rossi, <span class="text-xs font-normal text-gray-500">Studente Ingegneria</span></p>
+    <!-- FEATURES SECTION -->
+    <section id="features" class="py-20">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-black mb-4">La Tua Strada Verso il Successo</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Non importa il tuo punto di partenza, Jesaku Management ha la soluzione formativa per elevare la tua carriera al livello successivo.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-100 hover:border-blue-700 transition shadow-sm hover:shadow-lg">
+                        <div class="w-14 h-14 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-2xl mb-6">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Lauree Online</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            Accedi a corsi di laurea triennali e magistrali nelle facoltà più richieste: Economia, Giurisprudenza, Ingegneria e Scienze Umane. Studia dove e quando vuoi.
+                        </p>
+                        <a href="#contact" class="text-blue-700 font-bold text-sm hover:underline">Info Corsi &rarr;</a>
                     </div>
 
+                    <!-- Service 2 -->
+                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-100 hover:border-blue-700 transition shadow-sm hover:shadow-lg">
+                        <div class="w-14 h-14 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-2xl mb-6">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Master Specialistici</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            Master di I e II livello per specializzarti e aumentare il tuo valore nel mercato del lavoro. Percorsi focalizzati su competenze pratiche e manageriali.
+                        </p>
+                        <a href="#contact" class="text-blue-700 font-bold text-sm hover:underline">Scopri i Master &rarr;</a>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-100 hover:border-blue-700 transition shadow-sm hover:shadow-lg">
+                        <div class="w-14 h-14 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-2xl mb-6">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Mondo Scuola & 24 CFU</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            Tutto il necessario per l'insegnamento: 24 CFU, certificazioni linguistiche ed informatiche riconosciute dal MIUR per scalare le graduatorie docenti.
+                        </p>
+                        <a href="#contact" class="text-blue-700 font-bold text-sm hover:underline">Info Insegnanti &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMAGE BREAK -->
+    <div class="w-full h-96 relative">
+         <img 
+            src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+            alt="Business management team" 
+            class="w-full h-full object-cover"
+            referrerpolicy="no-referrer"
+            loading="lazy"
+        >
+        <div class="absolute inset-0 bg-blue-900/40 flex items-center justify-center">
+            <h2 class="text-white text-3xl md:text-5xl font-black text-center shadow-lg px-4">
+                Costruisci il tuo futuro, esame dopo esame.
+            </h2>
+        </div>
+    </div>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-20 bg-gray-100">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card">
+                <h2 class="text-3xl font-black text-center mb-12">Storie di Successo</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <div class="flex text-yellow-400 mb-3 text-sm">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"Grazie a Jesaku Management ho trovato il Master perfetto per le mie esigenze lavorative. Il supporto è stato impeccabile e la piattaforma UniScientia è intuitiva."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">MG</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Marco G.</h4>
+                                <span class="text-xs text-gray-500">Manager Logistica</span>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- Review 2 -->
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                        <div class="text-yellow-400 flex mb-3">★★★★★</div>
-                        <p class="text-gray-600 italic mb-4">"Ho conseguito i 24 CFU e la certificazione d'inglese in tempi record per il concorso scuola. Piattaforma intuitiva e chiara."</p>
-                        <p class="font-bold text-gray-900">- Giulia Bianchi, <span class="text-xs font-normal text-gray-500">Insegnante</span></p>
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <div class="flex text-yellow-400 mb-3 text-sm">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"Lavorando full-time non potevo frequentare. La laurea online è stata la svolta. Ora ho finalmente ottenuto la promozione che aspettavo da anni."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">EL</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Elena L.</h4>
+                                <span class="text-xs text-gray-500">Impiegata HR</span>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Review 3 -->
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                        <div class="text-yellow-400 flex mb-3">★★★★★</div>
-                        <p class="text-gray-600 italic mb-4">"Servizio di orientamento eccellente. Mi hanno guidato nella scelta del Master giusto per la mia carriera aziendale."</p>
-                        <p class="font-bold text-gray-900">- Alessandro Verdi, <span class="text-xs font-normal text-gray-500">Manager</span></p>
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <div class="flex text-yellow-400 mb-3 text-sm">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"Ho completato i 24 CFU e le certificazioni in tempi record. Servizio efficiente e personale preparatissimo. Consigliato a tutti i futuri docenti."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">AR</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Andrea R.</h4>
+                                <span class="text-xs text-gray-500">Docente Precario</span>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ SECTION -->
-    <section id="faq" class="py-12">
+    <section id="faq" class="py-10">
         <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Domande Frequenti</h2>
             <div class="dna-card">
-                <details>
-                    <summary>Le lauree online sono riconosciute?</summary>
-                    <div class="p-4 text-gray-600 border-t border-gray-100">
-                        Assolutamente sì. Tutti i corsi di laurea offerti tramite le nostre università partner sono riconosciuti dal MIUR e hanno lo stesso valore legale di quelli delle università tradizionali.
-                    </div>
-                </details>
-                <details>
-                    <summary>Come si svolgono gli esami?</summary>
-                    <div class="p-4 text-gray-600 border-t border-gray-100">
-                        La maggior parte del percorso di studio è online. Gli esami possono essere svolti presso le numerose sedi in tutta Italia o online, a seconda delle disposizioni vigenti dell'ateneo scelto.
-                    </div>
-                </details>
-                <details>
-                    <summary>Posso lavorare e studiare contemporaneamente?</summary>
-                    <div class="p-4 text-gray-600 border-t border-gray-100">
-                        Certamente. La metodologia e-learning è studiata appositamente per chi lavora, permettendo di seguire le lezioni 24 ore su 24, 7 giorni su 7, da qualsiasi dispositivo.
-                    </div>
-                </details>
-                <details>
-                    <summary>Cosa sono i 24 CFU?</summary>
-                    <div class="p-4 text-gray-600 border-t border-gray-100">
-                        I 24 CFU (Crediti Formativi Universitari) in discipline antropo-psico-pedagogiche e metodologie didattiche sono un requisito fondamentale per l'accesso ai concorsi scuola e alle graduatorie GPS.
-                    </div>
-                </details>
-                <details>
-                    <summary>Come funziona l'iscrizione?</summary>
-                    <div class="p-4 text-gray-600 border-t border-gray-100">
-                        Compila il modulo di contatto qui sotto. Un nostro orientatore ti chiamerà per valutare la tua carriera pregressa e proporti il percorso migliore, assistendoti in tutte le pratiche burocratiche.
-                    </div>
-                </details>
+                <h2 class="text-3xl font-black mb-8 text-center">Domande Frequenti</h2>
+                <div class="space-y-4">
+                    <details class="group bg-white p-4 rounded-xl border border-gray-200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none">
+                            <span>Le lauree online hanno lo stesso valore legale?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Assolutamente sì. I titoli rilasciati dalle Università Telematiche riconosciute dal MIUR sono equipollenti in tutto e per tutto a quelli delle università statali tradizionali, sia per concorsi pubblici che nel settore privato.
+                        </p>
+                    </details>
+
+                    <details class="group bg-white p-4 rounded-xl border border-gray-200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none">
+                            <span>Come si svolgono gli esami?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Gli esami possono svolgersi in forma scritta o orale presso una delle tante sedi distribuite in tutta Italia. La piattaforma di studio è accessibile 24/7, permettendoti di prepararti secondo i tuoi tempi.
+                        </p>
+                    </details>
+
+                    <details class="group bg-white p-4 rounded-xl border border-gray-200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none">
+                            <span>Posso iscrivermi in qualsiasi momento dell'anno?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Sì, le iscrizioni sono sempre aperte. Non devi aspettare l'inizio dell'anno accademico tradizionale. Una volta iscritto, riceverai subito le credenziali per accedere alla piattaforma di studio.
+                        </p>
+                    </details>
+                    
+                    <details class="group bg-white p-4 rounded-xl border border-gray-200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none">
+                            <span>Quanto costano i corsi?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Le rette variano a seconda del corso di laurea o master scelto e delle eventuali convenzioni attive (forze armate, sindacati, ecc.). Contattaci per un preventivo personalizzato e per scoprire le agevolazioni disponibili.
+                        </p>
+                    </details>
+
+                    <details class="group bg-white p-4 rounded-xl border border-gray-200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none">
+                            <span>Cos'è il riconoscimento dei CFU?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Se hai una carriera universitaria pregressa interrotta o esami sostenuti in altri contesti, possiamo valutare il tuo curriculum per riconoscere Crediti Formativi Universitari (CFU) e abbreviare il tuo percorso di laurea.
+                        </p>
+                    </details>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="contact" class="py-16 bg-white relative">
-        <div class="max-w-5xl mx-auto px-4 relative z-10">
-            <div class="dna-card bg-gray-900 text-white border-0 shadow-2xl overflow-hidden">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div class="space-y-6">
-                        <h2 class="text-3xl font-bold mb-4">Investi nel Tuo Successo</h2>
-                        <p class="text-gray-300">
-                            Compila il form per ricevere una consulenza gratuita e personalizzata. I nostri esperti ti aiuteranno a definire la strategia formativa ideale per raggiungere i tuoi obiettivi.
-                        </p>
-                        
-                        <div class="mt-8 space-y-4">
-                            <!-- Real Address Extraction -->
-                            <div class="flex items-start">
-                                <span class="text-blue-400 mr-3 text-xl">📍</span>
-                                <span>Polo Didattico: Viale A. Mellusi, 68 – 82100 Benevento (BN)</span>
+    <section id="contact" class="py-10 pb-20">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-black mb-6">Investi sul Tuo Futuro Oggi</h2>
+                    <p class="text-gray-600 mb-8">
+                        Compila il modulo per ricevere una consulenza gratuita. Un nostro orientatore analizzerà la tua situazione e ti proporrà il percorso formativo ideale per raggiungere i tuoi obiettivi professionali.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 text-xl"><i class="fas fa-headset"></i></div>
+                            <div>
+                                <h4 class="font-bold">Supporto Continuo</h4>
+                                <p class="text-sm text-gray-500">Dal primo contatto alla laurea.</p>
                             </div>
-                            <div class="flex items-start">
-                                <span class="text-blue-400 mr-3 text-xl">🕒</span>
-                                <span>Lun - Ven: 09:00 - 18:00</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 text-xl"><i class="fas fa-file-contract"></i></div>
+                            <div>
+                                <h4 class="font-bold">Riconoscimento Crediti</h4>
+                                <p class="text-sm text-gray-500">Valutazione carriera pregressa gratuita.</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="bg-white p-8 rounded-xl text-gray-900">
-                        <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-bold text-gray-700 mb-1">Nome e Cognome</label>
-                                    <input type="text" required placeholder="Mario Rossi">
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-bold text-gray-700 mb-1">Telefono</label>
-                                    <input type="tel" required placeholder="333 1234567">
-                                </div>
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-100 shadow-xl">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Inviato!'; this.querySelector('button').classList.add('bg-green-600'); setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <h3 class="text-xl font-bold mb-4">Richiedi Informazioni</h3>
+                        
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Nome e Cognome</label>
+                        <input type="text" required class="form-input" placeholder="Mario Rossi">
+                        
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Telefono</label>
+                        <input type="tel" required class="form-input" placeholder="333 1234567">
+                        
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Interesse</label>
+                        <select class="form-input bg-white">
+                            <option>Laurea Triennale</option>
+                            <option>Laurea Magistrale</option>
+                            <option>Master / Specializzazione</option>
+                            <option>Certificazioni 24 CFU</option>
+                        </select>
+                        
+                        <button type="submit" class="w-full btn-primary text-center">Invia Richiesta</button>
+                        <p class="text-xs text-gray-400 mt-4 text-center">I tuoi dati sono al sicuro. Cliccando accetti la nostra Privacy Policy.</p>
+                    </form>
 
-                                <div>
-                                    <label class="block text-sm font-bold text-gray-700 mb-1">Interesse</label>
-                                    <select class="w-full">
-                                        <option>Corso di Laurea</option>
-                                        <option>Mondo Scuola (24 CFU)</option>
-                                        <option>Master</option>
-                                        <option>Certificazioni</option>
-                                    </select>
-                                </div>
-
-                                <button type="submit" class="w-full btn-primary mt-4 text-lg">
-                                    Richiedi Consulenza Gratuita
-                                </button>
-                                <p class="text-xs text-gray-400 mt-3 text-center">
-                                    I tuoi dati sono al sicuro. Cliccando accetti la nostra Privacy Policy.
-                                </p>
-                            </div>
-                        </form>
-
-                        <!-- Success Message -->
-                        <div id="success-msg" class="hidden text-center py-10">
-                            <div class="text-5xl mb-4">✅</div>
-                            <h3 class="text-2xl font-bold text-green-600 mb-2">Richiesta Inviata!</h3>
-                            <p class="text-gray-600">Un nostro consulente didattico ti contatterà al numero indicato entro 24 ore lavorative.</p>
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                            <i class="fas fa-check"></i>
                         </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Ricevuta!</h3>
+                        <p class="text-gray-600">Un nostro consulente didattico ti contatterà al più presto per fornirti tutte le informazioni necessarie.</p>
                     </div>
                 </div>
             </div>
@@ -408,65 +430,94 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-100 border-t border-gray-200 py-12 text-sm text-gray-500">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-8">
-                <span class="font-black text-xl text-gray-800">Jesakuqus<span class="text-primary">Management</span></span>
-                <p class="mt-2">Partner ufficiale di Uniscientia.</p>
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-blue-700">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-4 gap-8 text-sm">
+            <div class="col-span-1 md:col-span-2">
+                <h3 class="text-white text-xl font-black mb-4 tracking-tighter">JESAKU<span class="text-blue-500">MANAGEMENT</span></h3>
+                <p class="mb-4 text-gray-500 leading-relaxed">
+                    Il tuo partner di fiducia per l'orientamento universitario e la formazione professionale continua. Costruiamo ponti tra le tue ambizioni e le migliori istituzioni accademiche telematiche.
+                </p>
+                <p class="text-xs text-gray-600">
+                    Questa pagina è un sito promozionale indipendente gestito da Jesaku Management, che agisce in qualità di affiliato per UniScientia.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase">Link Rapidi</h4>
+                <ul class="space-y-2">
+                    <li><a href="#features" class="hover:text-blue-400 transition">Corsi di Laurea</a></li>
+                    <li><a href="#reviews" class="hover:text-blue-400 transition">Testimonianze</a></li>
+                    <li><a href="#faq" class="hover:text-blue-400 transition">Domande Frequenti</a></li>
+                    <li><a href="#contact" class="hover:text-blue-400 transition">Contatti</a></li>
+                </ul>
             </div>
 
-            <!-- MANDATORY DISCLAIMER -->
-            <div class="mb-8 p-4 bg-white border border-gray-200 rounded-lg text-center max-w-3xl mx-auto">
-                <p>Questo è un sito promozionale indipendente gestito da Jesakuqus Management, che agisce in qualità di affiliato per Uniscientia.</p>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase">Note Legali</h4>
+                <div class="space-y-2 flex flex-col">
+                    
+                    <!-- PRIVACY POLICY -->
+                    <details>
+                        <summary class="hover:text-blue-400 cursor-pointer">Privacy Policy</summary>
+                        <div class="mt-2 text-xs text-gray-500 leading-relaxed pl-2 border-l border-gray-700">
+                            <p class="mb-2"><strong>Informativa sulla Privacy</strong></p>
+                            <p class="mb-2">In conformità al Regolamento (UE) 2016/679 (GDPR), Jesaku Management si impegna a proteggere i dati personali degli utenti. I dati raccolti tramite il modulo di contatto saranno utilizzati esclusivamente per finalità di ricontatto e orientamento didattico richiesto dall'utente.</p>
+                            <p class="mb-2">Titolare del trattamento è Jesaku Management. I dati non saranno ceduti a terzi non autorizzati, salvo ai partner universitari (es. UniScientia) necessari per l'erogazione del servizio informativo richiesto. L'utente ha il diritto di accedere, rettificare o cancellare i propri dati in qualsiasi momento.</p>
+                            <p class="mb-2">Le informazioni sono conservate su server sicuri e protetti da accessi non autorizzati. I cookie utilizzati sul sito sono tecnici e analitici anonimizzati per migliorare l'esperienza di navigazione. L'invio del modulo implica l'accettazione esplicita del trattamento dei dati per le finalità descritte.</p>
+                            <p class="mb-2">Per esercitare i diritti di cui agli artt. 15-22 del GDPR, l'utente può utilizzare il modulo di contatto presente in questa pagina. La conservazione dei dati avverrà per il tempo strettamente necessario a gestire la richiesta di informazioni.</p>
+                            <p>Ci riserviamo il diritto di aggiornare questa informativa in qualsiasi momento. L'ultima modifica è stata effettuata il 01/01/2026.</p>
+                        </div>
+                    </details>
+
+                    <!-- TERMS & CONDITIONS -->
+                    <details>
+                        <summary class="hover:text-blue-400 cursor-pointer">Termini e Condizioni</summary>
+                        <div class="mt-2 text-xs text-gray-500 leading-relaxed pl-2 border-l border-gray-700">
+                            <p class="mb-2"><strong>Termini di Utilizzo del Servizio</strong></p>
+                            <p class="mb-2">L'accesso e l'utilizzo del sito web Jesaku Management sono regolati dai presenti Termini e Condizioni. Utilizzando il sito, l'utente accetta di essere vincolato da queste disposizioni.</p>
+                            <p class="mb-2">Il sito ha scopo puramente informativo e promozionale per corsi di laurea e master erogati da enti terzi (UniScientia ed Università Telematiche partner). Jesaku Management non è un'università e non rilascia titoli accademici direttamente.</p>
+                            <p class="mb-2">Nonostante l'impegno a fornire informazioni accurate e aggiornate, non garantiamo l'assenza di errori o omissioni nei contenuti. Le offerte formative, i prezzi e le condizioni possono subire variazioni da parte degli enti erogatori senza preavviso.</p>
+                            <p class="mb-2">Jesaku Management non è responsabile per eventuali danni diretti o indiretti derivanti dall'uso del sito o dall'affidamento sulle informazioni in esso contenute. Il rapporto contrattuale per l'iscrizione ai corsi avviene direttamente tra lo studente e l'Università.</p>
+                            <p class="mb-2">Tutti i contenuti (testi, loghi, grafica) sono di proprietà di Jesaku Management o dei rispettivi proprietari e sono protetti dalle leggi sul diritto d'autore. È vietata la riproduzione non autorizzata.</p>
+                            <p>Per qualsiasi controversia sarà competente il foro della sede legale di Jesaku Management.</p>
+                        </div>
+                    </details>
+
+                    <!-- REFUND POLICY -->
+                    <details>
+                        <summary class="hover:text-blue-400 cursor-pointer">Politica Rimborsi</summary>
+                        <div class="mt-2 text-xs text-gray-500 leading-relaxed pl-2 border-l border-gray-700">
+                            <p class="mb-2"><strong>Informativa su Rimborsi e Recessi</strong></p>
+                            <p class="mb-2">Jesaku Management fornisce servizi di orientamento e informazione gratuiti per l'utente finale. Pertanto, non sono previsti pagamenti diretti a Jesaku Management per la consultazione del sito o l'invio di richieste informazioni, e di conseguenza non esistono politiche di rimborso applicabili a questo sito specifico.</p>
+                            <p class="mb-2">Eventuali pagamenti relativi all'iscrizione ai corsi di laurea, master o certificazioni sono gestiti direttamente dagli enti erogatori (Università o Enti di Formazione). Le politiche di rimborso e diritto di recesso applicabili sono quelle specifiche dell'istituzione con cui lo studente sottoscrive il contratto di iscrizione.</p>
+                            <p class="mb-2">Generalmente, il consumatore ha diritto di recedere dal contratto di iscrizione a distanza entro 14 giorni dalla sottoscrizione, secondo la normativa vigente, inviando comunicazione formale all'Università competente.</p>
+                            <p class="mb-2">Si invita l'utente a leggere attentamente i contratti e i regolamenti forniti dall'ente di formazione prima di effettuare qualsiasi pagamento.</p>
+                            <p>Jesaku Management declina ogni responsabilità riguardante transazioni economiche avvenute tra l'utente e gli enti terzi promossi.</p>
+                        </div>
+                    </details>
+                </div>
             </div>
-
-            <div class="max-w-4xl mx-auto grid gap-4">
-                <details>
-                    <summary class="text-xs text-center cursor-pointer hover:text-primary">Privacy Policy (Clicca per espandere)</summary>
-                    <div class="mt-2 p-4 bg-white rounded border border-gray-200 text-xs leading-relaxed text-justify">
-                        <p class="mb-2"><strong>INFORMATIVA SULLA PRIVACY</strong></p>
-                        <p class="mb-2">Benvenuti su Jesakuqus Management. La presente Informativa sulla Privacy descrive come raccogliamo, utilizziamo e proteggiamo i vostri dati personali in conformità con il Regolamento (UE) 2016/679 (GDPR). La tua privacy è importante per noi.</p>
-                        <p class="mb-2"><strong>1. Titolare del Trattamento:</strong> Il titolare del trattamento dei dati è Jesakuqus Management. I dati raccolti tramite i moduli di contatto (nome, telefono) vengono utilizzati esclusivamente per fornire le informazioni richieste sui corsi di formazione.</p>
-                        <p class="mb-2"><strong>2. Finalità del Trattamento:</strong> Raccogliamo i dati per: (a) rispondere alle richieste di orientamento formativo; (b) fornire assistenza pre-vendita; (c) adempiere agli obblighi legali. Il conferimento dei dati è facoltativo, ma necessario per ricevere il servizio richiesto.</p>
-                        <p class="mb-2"><strong>3. Modalità del Trattamento:</strong> I dati sono trattati con strumenti informatici idonei a garantirne la sicurezza e la riservatezza. Non vendiamo né cediamo i tuoi dati a terzi non autorizzati, eccetto al fornitore del servizio didattico (Uniscientia) per l'erogazione della consulenza.</p>
-                        <p class="mb-2"><strong>4. Conservazione dei Dati:</strong> I dati saranno conservati per il tempo strettamente necessario a gestire la richiesta dell'utente e per eventuali adempimenti successivi previsti dalla legge, dopodiché saranno cancellati o resi anonimi.</p>
-                        <p class="mb-2"><strong>5. Diritti dell'Interessato:</strong> Hai il diritto di accedere ai tuoi dati, chiederne la rettifica, la cancellazione o la limitazione del trattamento. Puoi esercitare questi diritti contattandoci attraverso i canali ufficiali indicati nel sito.</p>
-                        <p class="mb-2">Utilizzando questo sito, acconsenti al trattamento dei tuoi dati secondo le modalità descritte in questa informativa. Questa policy può essere soggetta a modifiche periodiche.</p>
-                    </div>
-                </details>
-
-                <details>
-                    <summary class="text-xs text-center cursor-pointer hover:text-primary">Termini e Condizioni (Clicca per espandere)</summary>
-                    <div class="mt-2 p-4 bg-white rounded border border-gray-200 text-xs leading-relaxed text-justify">
-                        <p class="mb-2"><strong>TERMINI E CONDIZIONI DI UTILIZZO</strong></p>
-                        <p class="mb-2">L'accesso e l'utilizzo del sito web Jesakuqus Management sono regolati dai presenti Termini e Condizioni. Accedendo al sito, l'utente accetta integralmente quanto riportato.</p>
-                        <p class="mb-2"><strong>1. Oggetto del Servizio:</strong> Questo sito funge da portale informativo e di intermediazione pubblicitaria per corsi di formazione, lauree e master erogati da Uniscientia. Jesakuqus Management non eroga direttamente i corsi ma facilita il contatto tra studente e istituzione.</p>
-                        <p class="mb-2"><strong>2. Limitazione di Responsabilità:</strong> Sebbene ci impegniamo a mantenere le informazioni aggiornate, non garantiamo la completezza o l'accuratezza assoluta dei dettagli sui corsi (prezzi, piani di studio), che possono subire variazioni da parte dell'ente erogatore. L'utente è invitato a verificare sempre le informazioni in sede di consulenza telefonica.</p>
-                        <p class="mb-2"><strong>3. Proprietà Intellettuale:</strong> Tutti i contenuti del sito (testi, grafica, logo) sono protetti dalle leggi sul diritto d'autore. È vietata la riproduzione non autorizzata.</p>
-                        <p class="mb-2"><strong>4. Utilizzo del Sito:</strong> L'utente si impegna a utilizzare il sito esclusivamente per scopi leciti e a non inviare dati falsi o fraudolenti tramite i moduli di contatto.</p>
-                        <p class="mb-2"><strong>5. Legge Applicabile:</strong> I presenti termini sono regolati dalla legge italiana. Per qualsiasi controversia sarà competente il foro di riferimento del titolare del sito.</p>
-                    </div>
-                </details>
-            </div>
-
-            <p class="text-center mt-8">&copy; 2026 Jesakuqus Management. Tutti i diritti riservati.</p>
+        </div>
+        
+        <div class="max-w-6xl mx-auto px-4 mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-600">
+            &copy; 2026 Jesaku Management. Tutti i diritti riservati.
         </div>
     </footer>
 
     <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-blue-800 p-6 shadow-2xl z-50 flex flex-col md:flex-row justify-between items-center hidden">
-        <div class="mb-4 md:mb-0 max-w-4xl text-sm text-gray-700">
-            <p class="font-bold mb-1">Informativa sui Cookie</p>
-            <p>Utilizziamo cookie tecnici per garantire il corretto funzionamento del sito e migliorare la tua esperienza di navigazione. Continuando a navigare accetti il nostro utilizzo dei cookie.</p>
-        </div>
-        <div class="flex space-x-4">
-            <button onclick="acceptCookies()" class="bg-blue-800 text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-700 transition">Accetto</button>
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 transform translate-y-full transition-transform duration-300 border-t-2 border-blue-600 shadow-2xl">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm">Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il traffico del sito. Continuando a navigare, accetti il loro utilizzo.</p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="bg-blue-600 px-6 py-2 rounded-full font-bold text-sm hover:bg-blue-500 transition">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.transform='translateY(100%)'" class="text-gray-400 text-sm hover:text-white underline">Rifiuta</button>
+            </div>
         </div>
     </div>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // SMART ROUTING & SCROLL
+        // ROUTING FIX: Smooth scroll or fallback to contact
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -474,36 +525,29 @@
                 const targetElement = document.getElementById(targetId);
 
                 if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100, // Offset for sticky header
-                        behavior: 'smooth'
-                    });
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    // Self-healing fallback
-                    console.warn(`Target #${targetId} missing. Redirecting to contact.`);
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                        window.scrollTo({
-                            top: contactSection.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
+                    console.warn(`Target section #${targetId} not found. Redirecting to Contact.`);
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
                 }
-                
-                // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
             });
         });
 
         // COOKIE LOGIC
         function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'true');
-            document.getElementById('cookie-banner').style.display = 'none';
+            localStorage.setItem('jesaku_cookies', 'accepted');
+            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
         }
 
-        if (!localStorage.getItem('cookieConsent')) {
-            document.getElementById('cookie-banner').classList.remove('hidden');
-        }
+        // SHOW COOKIE BANNER ON LOAD
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('jesaku_cookies')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').style.transform = 'translateY(0)';
+                }, 1000);
+            }
+        });
     </script>
+
 </body>
 </html>
