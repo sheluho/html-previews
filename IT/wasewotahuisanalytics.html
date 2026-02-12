@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasewotahuis Analytics | Servizi di Pulizia Professionale</title>
+    <meta name="description" content="Servizi di pulizia domestica analizzati e ottimizzati per la tua casa. Affidati agli esperti del pulito.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Design System Injection -->
+    <style>
+        :root {
+            /* VAR D: Palette -> Clinical Teal for Hygiene/Analysis */
+            --primary: #008da6;
+            /* VAR C: Surface -> Clean White (Calculated: 0) */
+            --surface: #ffffff;
+            /* VAR A: Geometry -> Pill (Calculated: 2) */
+            --radius: 24px;
+            /* VAR B: Physics -> Hard Neo-Brutalist (Calculated: 2) */
+            --shadow: 4px 4px 0px 0px #1f2937;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Gray base for contrast */
+            color: #1f2937;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1, h2, h3 {
+            letter-spacing: -0.025em;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #1f2937; /* Neo-brutalist border */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            border: 2px solid #1f2937;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #1f2937;
+        }
+        
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #1f2937;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary {
+            color: var(--primary);
+        }
+
+        /* Form Styling */
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 2px solid #e5e7eb;
+            background-color: #f9fafb;
+            margin-bottom: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+        }
+
+        /* Details Summary Styling */
+        details summary {
+            cursor: pointer;
+            padding: 1rem;
+            background-color: #f9fafb;
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            list-style: none;
+        }
+        details[open] summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        
+        /* Smooth Fade for Hero Overlay */
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7));
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-white border-b-2 border-gray-800 py-4 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-black text-gray-800 tracking-tighter">
+                WASEWOTAHUIS <span class="text-primary">ANALYTICS</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 font-bold">
+                <a href="#features" class="hover:text-primary transition-colors">Servizi</a>
+                <a href="#reviews" class="hover:text-primary transition-colors">Recensioni</a>
+                <a href="#faq" class="hover:text-primary transition-colors">FAQ</a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="#contact" class="btn-primary text-sm py-2 px-6">Preventivo</a>
+            </div>
+
+            <!-- Mobile Button -->
+            <button class="md:hidden text-gray-800 font-bold border-2 border-gray-800 rounded-lg p-2" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                MENU
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 p-4 border-t-2 border-gray-800">
+            <a href="#features" class="block py-2 font-bold hover:text-primary">Servizi</a>
+            <a href="#reviews" class="block py-2 font-bold hover:text-primary">Recensioni</a>
+            <a href="#contact" class="block mt-4 btn-primary text-center">Richiedi Preventivo</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 text-white py-24 md:py-32">
+        <img src="https://images.pexels.com/photos/4108715/pexels-photo-4108715.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+             alt="Salotto pulito e ordinato" 
+             class="absolute inset-0 w-full h-full object-cover opacity-60"
+             referrerpolicy="no-referrer"
+             loading="eager">
+        <div class="hero-overlay absolute inset-0"></div>
+        
+        <div class="relative max-w-5xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                La Precisione dell'Analisi <br>al Servizio dell'<span class="text-primary">Igiene Domestica</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-gray-200 font-medium">
+                Ottimizziamo il tempo e massimizziamo i risultati. Il metodo analitico per una casa pulita, sanificata e accogliente.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="btn-primary text-lg">Inizia Ora</a>
+                <a href="#features" class="bg-white text-gray-900 font-bold py-4 px-8 rounded-3xl border-2 border-gray-900 shadow-[4px_4px_0px_0px_#ffffff] hover:translate-y-1 transition-all">
+                    Scopri i Servizi
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST SIGNALS -->
+    <section class="bg-white border-b border-gray-200 py-6">
+        <div class="max-w-6xl mx-auto px-4 flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70 grayscale">
+            <span class="font-bold text-xl flex items-center gap-2"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> Professionisti Verificati</span>
+            <span class="font-bold text-xl flex items-center gap-2"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 100% Soddisfatti</span>
+            <span class="font-bold text-xl flex items-center gap-2"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg> Prenotazione Rapida</span>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="py-16 md:py-24">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">Soluzioni di Pulizia <span class="text-primary">Calibrate</span></h2>
+                <p class="text-gray-600 text-lg">Ogni casa ha le sue variabili. Offriamo servizi modulari adatti alle tue esigenze specifiche.</p>
+            </div>
+
+            <!-- Card 1 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <img src="https://images.pexels.com/photos/4099469/pexels-photo-4099469.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                     alt="Pulizia Profonda" 
+                     class="w-full md:w-1/3 rounded-xl border-2 border-gray-200 h-64 object-cover shadow-sm"
+                     loading="lazy"
+                     onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Pulizia+Profonda'">
+                <div class="flex-1 text-left">
+                    <h3 class="text-2xl font-bold mb-3">Pulizie Domestiche a Ore</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Flessibilità totale. Scegli il numero di ore necessarie e i nostri professionisti si occuperanno di spolverare, lavare pavimenti, bagni e cucine con precisione metodica. Ideale per la manutenzione ordinaria.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Richiedi disponibilità &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
+                <img src="https://images.pexels.com/photos/5591645/pexels-photo-5591645.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                     alt="Pulizie di Fondo" 
+                     class="w-full md:w-1/3 rounded-xl border-2 border-gray-200 h-64 object-cover shadow-sm"
+                     loading="lazy"
+                     onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Sanificazione'">
+                <div class="flex-1 text-left">
+                    <h3 class="text-2xl font-bold mb-3">Pulizie di Fondo e Post-Ristrutturazione</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Un intervento radicale per rimuovere lo sporco ostinato. Perfetto dopo lavori edili, traslochi o per il "cambio stagione". Analizziamo ogni angolo per garantire un ambiente salubre.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Pianifica intervento &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <img src="https://images.pexels.com/photos/5255239/pexels-photo-5255239.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                     alt="Stiratura a Domicilio" 
+                     class="w-full md:w-1/3 rounded-xl border-2 border-gray-200 h-64 object-cover shadow-sm"
+                     loading="lazy"
+                     onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Servizio+Stiro'">
+                <div class="flex-1 text-left">
+                    <h3 class="text-2xl font-bold mb-3">Servizi Speciali e Stiratura</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Non solo pulizie. Offriamo servizi di stiratura a domicilio, pulizia vetri specifica e supporto per la gestione domestica, permettendoti di recuperare tempo prezioso.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Scopri le tariffe &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-10">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-black mb-8 text-center">Cosa dicono i nostri clienti</h2>
+            <div class="dna-card grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-left">
+                    <div class="text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 mb-4 italic">"Ho trovato una professionista eccezionale in poche ore. La casa non è mai stata così pulita. Servizio preciso e puntuale."</p>
+                    <p class="font-bold text-gray-900">- Laura Moretti, Milano</p>
+                    <p class="text-xs text-gray-400 mt-1">Febbraio 2026</p>
+                </div>
+                <div class="text-left md:border-l md:border-gray-200 md:pl-8">
+                    <div class="text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 mb-4 italic">"Ottimo per le pulizie di fine locazione. Hanno fatto un lavoro meticoloso e il proprietario è rimasto molto soddisfatto."</p>
+                    <p class="font-bold text-gray-900">- Marco Rossi, Roma</p>
+                    <p class="text-xs text-gray-400 mt-1">Gennaio 2026</p>
+                </div>
+                <div class="text-left md:border-l md:border-gray-200 md:pl-8">
+                    <div class="text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 mb-4 italic">"Uso Wasewotahuis Analytics per trovare aiuto domestico ricorrente. Affidabilità e professionalità garantite."</p>
+                    <p class="font-bold text-gray-900">- Giulia Bianchi, Torino</p>
+                    <p class="text-xs text-gray-400 mt-1">Marzo 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-10">
+        <div class="max-w-5xl mx-auto px-4 dna-card">
+            <h2 class="text-3xl font-black mb-8 text-center">Domande Frequenti (FAQ)</h2>
+            
+            <details class="group">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                    <span>Quanto costa un servizio di pulizia?</span>
+                    <span class="transition group-open:rotate-180">
+                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                </summary>
+                <div class="text-gray-600 mt-3 group-open:animate-fadeIn px-4 pb-4">
+                    Il prezzo varia in base alla città e al tipo di servizio richiesto. In genere, le tariffe orarie partono da cifre competitive. Compilando il modulo potrai ricevere fino a 4 preventivi gratuiti e senza impegno.
+                </div>
+            </details>
+
+            <details class="group mt-4">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                    <span>Devo fornire io i prodotti per la pulizia?</span>
+                    <span class="transition group-open:rotate-180">
+                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                </summary>
+                <div class="text-gray-600 mt-3 group-open:animate-fadeIn px-4 pb-4">
+                    Dipende dall'accordo. Puoi scegliere se fornire tu i prodotti o richiedere al professionista di portarli. Questo dettaglio può essere specificato in fase di richiesta preventivo.
+                </div>
+            </details>
+
+            <details class="group mt-4">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                    <span>I professionisti sono assicurati?</span>
+                    <span class="transition group-open:rotate-180">
+                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                </summary>
+                <div class="text-gray-600 mt-3 group-open:animate-fadeIn px-4 pb-4">
+                    Molti professionisti sulla nostra piattaforma affiliata dispongono di assicurazione per responsabilità civile. Ti consigliamo di verificare questo dettaglio direttamente con il professionista scelto prima di iniziare il lavoro.
+                </div>
+            </details>
+
+            <details class="group mt-4">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                    <span>Quanto tempo prima devo prenotare?</span>
+                    <span class="transition group-open:rotate-180">
+                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                </summary>
+                <div class="text-gray-600 mt-3 group-open:animate-fadeIn px-4 pb-4">
+                    Consigliamo di richiedere il servizio con almeno 48 ore di anticipo per garantire la disponibilità dei migliori professionisti nella tua zona.
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-16 bg-gray-200">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card max-w-2xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-black mb-2">Richiedi un Preventivo Gratuito</h2>
+                    <p class="text-gray-600">Compila il modulo per ricevere le migliori offerte per la pulizia della tua casa.</p>
+                </div>
+
+                <div id="success-msg" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-8 rounded text-center">
+                    <h3 class="font-bold text-xl mb-2">Richiesta Inviata con Successo!</h3>
+                    <p>I nostri professionisti analizzeranno la tua richiesta e ti contatteranno a breve con un preventivo su misura.</p>
+                </div>
+
+                <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'; window.scrollTo(0, document.getElementById('contact').offsetTop);}, 1500);">
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Nome Completo</label>
+                        <input type="text" required placeholder="Mario Rossi">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Codice Postale</label>
+                        <input type="text" required placeholder="00100">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Tipo di Servizio</label>
+                        <select required>
+                            <option value="">Seleziona un'opzione...</option>
+                            <option value="pulizia-base">Pulizia Ordinaria</option>
+                            <option value="pulizia-profonda">Pulizia di Fondo</option>
+                            <option value="stiratura">Stiratura</option>
+                            <option value="trasloco">Pulizia Post-Trasloco</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Note Aggiuntive</label>
+                        <textarea rows="3" placeholder="Specificare metri quadri, presenza animali, ecc."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full text-center">Invia Richiesta</button>
+                    
+                    <p class="text-xs text-gray-500 mt-4 text-center">
+                        Cliccando su invia accetti i nostri Termini di Servizio e la Privacy Policy. I tuoi dati sono al sicuro.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            
+            <p class="font-bold text-white text-xl mb-4">Wasewotahuis Analytics</p>
+            
+            <p class="mb-8 text-sm max-w-2xl mx-auto">
+                "La precisione dell'analisi al servizio dell'igiene domestica."
+            </p>
+
+            <div class="mb-8 p-4 bg-gray-800 rounded-lg text-sm border border-gray-700 max-w-3xl mx-auto">
+                <strong>DISCLAIMER IMPORTANTE:</strong> Questo è un sito promozionale indipendente gestito da Wasewotahuis Analytics, che agisce come affiliato per Cronoshare. Tutti i marchi registrati appartengono ai rispettivi proprietari. Non siamo fornitori diretti del servizio ma facilitiamo il contatto tra domanda e offerta.
+            </div>
+
+            <div class="space-y-4 text-xs text-left max-w-4xl mx-auto">
+                <details>
+                    <summary>Privacy Policy (Espandi)</summary>
+                    <div class="pt-2 text-gray-500">
+                        <p class="mb-2"><strong>1. Introduzione:</strong> Wasewotahuis Analytics si impegna a proteggere la tua privacy. Questa informativa spiega come raccogliamo e utilizziamo i tuoi dati. Non vendiamo i tuoi dati a terzi non autorizzati.</p>
+                        <p class="mb-2"><strong>2. Raccolta Dati:</strong> Raccogliamo informazioni come nome, codice postale e preferenze di servizio solo attraverso il modulo di contatto volontario. Non utilizziamo tracker invasivi.</p>
+                        <p class="mb-2"><strong>3. Uso dei Dati:</strong> I dati vengono utilizzati esclusivamente per facilitare il preventivo richiesto e per comunicazioni di servizio relative alla richiesta in corso. Nessuna email di spam verrà inviata.</p>
+                        <p class="mb-2"><strong>4. Sicurezza:</strong> Adottiamo misure di sicurezza tecniche per proteggere i tuoi dati da accessi non autorizzati. I dati sono conservati su server sicuri e criptati.</p>
+                        <p class="mb-2"><strong>5. Cookie:</strong> Utilizziamo cookie tecnici essenziali per il funzionamento del sito e per salvare le preferenze dell'utente. Puoi gestire i cookie dalle impostazioni del browser.</p>
+                        <p class="mb-2"><strong>6. Diritti:</strong> Hai il diritto di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati personali in qualsiasi momento contattandoci tramite i canali ufficiali.</p>
+                        <p class="mb-2"><strong>7. Terze Parti:</strong> I dati potrebbero essere condivisi con il fornitore del servizio finale (Cronoshare) esclusivamente per l'erogazione del servizio richiesto. Non siamo responsabili per le policy di terze parti.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Termini e Condizioni (Espandi)</summary>
+                    <div class="pt-2 text-gray-500">
+                        <p class="mb-2"><strong>1. Accettazione:</strong> Utilizzando questo sito, accetti i presenti Termini e Condizioni. Se non sei d'accordo, ti invitiamo a non utilizzare il servizio.</p>
+                        <p class="mb-2"><strong>2. Servizio:</strong> Wasewotahuis Analytics funge da intermediario promozionale. Non eseguiamo direttamente i lavori di pulizia e non siamo responsabili per la qualità del lavoro svolto dai professionisti terzi.</p>
+                        <p class="mb-2"><strong>3. Responsabilità:</strong> Non ci assumiamo responsabilità per danni diretti o indiretti derivanti dall'uso delle informazioni presenti su questo sito o dai servizi prestati dai fornitori terzi.</p>
+                        <p class="mb-2"><strong>4. Modifiche:</strong> Ci riserviamo il diritto di modificare i contenuti e i termini del sito in qualsiasi momento senza preavviso. È responsabilità dell'utente verificare periodicamente eventuali aggiornamenti.</p>
+                        <p class="mb-2"><strong>5. Proprietà Intellettuale:</strong> Tutto il contenuto del sito è protetto da copyright. È vietata la riproduzione non autorizzata dei testi e delle immagini.</p>
+                        <p class="mb-2"><strong>6. Legge Applicabile:</strong> Questi termini sono regolati dalla legge vigente nel territorio di operatività. Per qualsiasi controversia sarà competente il foro esclusivo di riferimento.</p>
+                        <p class="mb-2"><strong>7. Uso Improprio:</strong> È vietato utilizzare il sito per scopi illegali, fraudolenti o dannosi. Ci riserviamo il diritto di bloccare l'accesso agli utenti che violano tali regole.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Politica di Rimborso (Espandi)</summary>
+                    <div class="pt-2 text-gray-500">
+                        <p class="mb-2"><strong>1. Natura del Servizio:</strong> Poiché Wasewotahuis Analytics offre un servizio di intermediazione gratuito per l'utente finale (richiesta preventivo), non esistono transazioni finanziarie dirette su questo sito.</p>
+                        <p class="mb-2"><strong>2. Disputa con il Fornitore:</strong> Qualsiasi richiesta di rimborso relativa al servizio di pulizia effettivo deve essere discussa e gestita direttamente con il professionista o l'azienda che ha eseguito il lavoro.</p>
+                        <p class="mb-2"><strong>3. Esonero:</strong> Wasewotahuis Analytics non gestisce pagamenti per conto dei pulitori e non può emettere rimborsi per servizi non prestati o non soddisfacenti da parte di terzi.</p>
+                        <p class="mb-2"><strong>4. Supporto:</strong> Anche se non siamo responsabili per i rimborsi, incoraggiamo gli utenti a segnalare comportamenti scorretti da parte dei professionisti per migliorare la qualità della rete di affiliati.</p>
+                    </div>
+                </details>
+            </div>
+
+            <p class="mt-8 text-sm">© 2026 Wasewotahuis Analytics. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 p-4 border-t-2 border-primary z-50 text-white flex flex-col md:flex-row justify-between items-center shadow-2xl hidden">
+        <p class="text-sm mb-4 md:mb-0 mr-4">
+            Utilizziamo cookie tecnici per migliorare la tua esperienza analitica sul nostro sito. Continuando la navigazione accetti il nostro utilizzo dei cookie.
+        </p>
+        <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookieConsent','true')" class="bg-white text-gray-900 font-bold py-2 px-6 rounded-full hover:bg-gray-100 transition">
+            Accetto
+        </button>
+    </div>
+
+    <!-- Smart Logic Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check Cookie Consent
+            if(!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+            }
+
+            // Smart Routing (Anchor Protection)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Offset for sticky nav
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        // Fallback to Contact if ID missing
+                        console.log(`Target #${targetId} not found, redirecting to #contact`);
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) {
+                            window.scrollTo({
+                                top: contactSection.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
