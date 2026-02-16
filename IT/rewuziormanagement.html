@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewuzior Management - Fitness & Benessere</title>
+    <meta name="description" content="Gestione completa del tuo benessere fisico. Palestre all'avanguardia, corsi e wellness accessibile.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* PHASE 1: Design DNA Calculation
+           - Domain: https://www.webfit.it (Length 21) -> VAR A (21 % 3 = 0) -> Sharp (0px)
+           - First Letter: 'h' (104) -> VAR B (104 % 3 = 2) -> Hard Shadow
+           - Last Letter: 't' (116) -> VAR C (116 % 3 = 2) -> Cool Surface
+           - Palette: Fitness Niche -> Energy Green
+        */
+        :root {
+            --primary: #16a34a; /* Green-600 */
+            --surface: #f8fafc; /* Cool White (Slate-50) */
+            --radius: 0px;      /* Sharp edges */
+            --shadow: 4px 4px 0px 0px #000000; /* Neo-Brutalist Hard Shadow */
+            --text-main: #1f2937;
+        }
+
+        body {
+            font-family: 'Chivo', sans-serif;
+            background-color: #f3f4f6; /* Gray background for contrast */
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000000; /* Thicker border for Brutalist feel */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2.5rem;
+            transition: all 0.2s;
+            font-weight: 900;
+            border: 2px solid #000;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000000;
+        }
+
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000000;
+        }
+
+        /* UTILITY */
+        .text-primary { color: var(--primary); }
+        
+        /* DETAILS/SUMMARY STYLING */
+        details {
+            border-bottom: 2px solid #e5e7eb;
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        summary {
+            font-weight: 700;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        details[open] summary::after {
+            content: '-';
+        }
+
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            padding: 1.5rem;
+            box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.1);
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 4px solid var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="sticky top-0 z-40 bg-white border-b-2 border-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black uppercase tracking-tighter">Rewuzior<span class="text-primary">MGT</span></span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="font-bold hover:text-green-600 transition">Servizi</a>
+                    <a href="#reviews" class="font-bold hover:text-green-600 transition">Recensioni</a>
+                    <a href="#contact" class="btn-primary">Prenota Ora</a>
+                </div>
+                <!-- Mobile Button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-2 border-2 border-black">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-b-2 border-black p-4">
+            <a href="#features" class="block py-2 font-bold">Servizi</a>
+            <a href="#reviews" class="block py-2 font-bold">Recensioni</a>
+            <a href="#contact" class="block py-2 font-bold text-green-700">Prenota Ora</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 text-white py-32 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+                 alt="Palestrafitness background" 
+                 class="w-full h-full object-cover opacity-40"
+                 loading="lazy"
+                 referrerpolicy="no-referrer">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start justify-center h-full">
+            <h1 class="text-4xl md:text-6xl font-black uppercase mb-6 leading-none max-w-3xl">
+                Investi nel tuo futuro: <br>
+                <span class="text-primary bg-white bg-opacity-10 px-2">Gestione Completa</span> del tuo Benessere Fisico.
+            </h1>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl font-medium">
+                Rewuzior Management ti connette alle strutture più avanzate d'Italia. Tecnologia, comfort e prezzi accessibili per massimizzare il rendimento del tuo corpo.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#contact" class="btn-primary text-center">Richiedi Offerta</a>
+                <a href="#features" class="bg-transparent border-2 border-white text-white px-8 py-4 font-bold uppercase tracking-wider hover:bg-white hover:text-black transition flex items-center justify-center">
+                    Scopri di più
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST INDICATORS -->
+    <div class="bg-white border-b-2 border-black py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Partner di eccellenza nel fitness</p>
+            <div class="flex justify-center flex-wrap gap-8 opacity-70 grayscale">
+                <span class="text-2xl font-black text-gray-800">TECHNOGYM</span>
+                <span class="text-2xl font-black text-gray-800">MATRIX</span>
+                <span class="text-2xl font-black text-gray-800">LES MILLS</span>
+                <span class="text-2xl font-black text-gray-800">PANATTA</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4">
+        
+        <!-- SERVICES / FEATURES -->
+        <section id="features" class="max-w-5xl mx-auto dna-card relative">
+            <div class="absolute -top-6 -left-6 bg-black text-white px-4 py-1 font-bold transform -rotate-2">
+                COSA OFFRIAMO
+            </div>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black uppercase">Soluzioni Fitness a 360°</h2>
+                <p class="mt-4 text-lg text-gray-600">Accesso illimitato e tecnologie all'avanguardia per i tuoi obiettivi.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-left border-2 border-gray-100 p-4 hover:border-black transition duration-300">
+                    <img src="https://images.pexels.com/photos/416246/pexels-photo-416246.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Sala Pesi" 
+                         class="w-full h-48 object-cover mb-4 border border-black grayscale hover:grayscale-0 transition"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                    <h3 class="text-xl font-bold mb-2">Cardio & Isotonico</h3>
+                    <p class="text-gray-600">Macchinari di ultima generazione per l'allenamento di forza e resistenza. Spazi ampi e climatizzati.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="text-left border-2 border-gray-100 p-4 hover:border-black transition duration-300">
+                    <img src="https://images.pexels.com/photos/866023/pexels-photo-866023.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Corsi Virtual" 
+                         class="w-full h-48 object-cover mb-4 border border-black grayscale hover:grayscale-0 transition"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                    <h3 class="text-xl font-bold mb-2">Corsi Virtual & Live</h3>
+                    <p class="text-gray-600">Le migliori lezioni Les Mills e corsi di gruppo per motivarti. Spinning, Yoga, Pilates e Pump.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="text-left border-2 border-gray-100 p-4 hover:border-black transition duration-300">
+                    <img src="https://images.pexels.com/photos/6648559/pexels-photo-6648559.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Area Wellness" 
+                         class="w-full h-48 object-cover mb-4 border border-black grayscale hover:grayscale-0 transition"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                    <h3 class="text-xl font-bold mb-2">Wellness & Bevande</h3>
+                    <p class="text-gray-600">Completa il tuo allenamento con bevande vitaminiche incluse, docce solari e pedane vibranti.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black uppercase mb-10 text-center">La voce dei nostri iscritti</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 border-l-4 border-black">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Cercavo una palestra che mi permettesse di allenarmi in modo professionale senza spendere una fortuna. Qui ho trovato attrezzature top e un ambiente pulitissimo."</p>
+                    <p class="font-bold text-black">- Alessandro R.</p>
+                </div>
+                <div class="bg-gray-50 p-6 border-l-4 border-black">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Il concetto 'low cost, high quality' è reale. I corsi virtuali sono comodissimi per i miei orari e l'accesso con QR code è veloce. Consigliatissimo."</p>
+                    <p class="font-bold text-black">- Francesca M.</p>
+                </div>
+                <div class="bg-gray-50 p-6 border-l-4 border-black md:col-span-2">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Ottima gestione. Mi sono iscritta online e il giorno dopo mi stavo già allenando. Apprezzo molto la trasparenza dei costi."</p>
+                    <p class="font-bold text-black">- Luca V.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-2xl font-black uppercase mb-6">Domande Frequenti</h2>
+            
+            <details>
+                <summary>Come funziona l'iscrizione online?</summary>
+                <div class="pt-4 text-gray-600">
+                    È molto semplice. Compila il modulo di contatto qui sotto. Verrai indirizzato alle migliori offerte disponibili per la tua zona e potrai completare la registrazione in pochi click.
+                </div>
+            </details>
+            
+            <details>
+                <summary>Le docce e le bevande sono incluse?</summary>
+                <div class="pt-4 text-gray-600">
+                    Sì, la maggior parte dei nostri pacchetti "All Inclusive" prevede l'accesso illimitato ai distributori di bevande vitaminiche e l'uso delle docce senza gettoni aggiuntivi.
+                </div>
+            </details>
+
+            <details>
+                <summary>Posso frequentare tutte le sedi?</summary>
+                <div class="pt-4 text-gray-600">
+                    Sì, con l'abbonamento appropriato hai accesso a tutte le sedi del circuito (es. Webfit) senza costi aggiuntivi, ideale per chi viaggia spesso nel Triveneto.
+                </div>
+            </details>
+
+            <details>
+                <summary>Esiste un periodo di prova?</summary>
+                <div class="pt-4 text-gray-600">
+                    Spesso offriamo giornate di prova o promozioni speciali per i nuovi iscritti. Contattaci tramite il form per sapere se ci sono offerte attive oggi.
+                </div>
+            </details>
+
+            <details>
+                <summary>Come posso disdire l'abbonamento?</summary>
+                <div class="pt-4 text-gray-600">
+                    Le modalità di disdetta sono indicate chiaramente nel contratto. Generalmente è richiesto un preavviso di 30 giorni tramite raccomandata o area riservata.
+                </div>
+            </details>
+        </section>
+
+        <!-- CONTACT FORM -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card bg-gray-900 text-white" style="border-color: #333;">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-black uppercase mb-6 text-white">Inizia la tua trasformazione</h2>
+                    <p class="mb-8 text-gray-400">Compila il form per bloccare l'offerta attuale. I posti per le promozioni speciali sono limitati.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="font-bold text-primary mr-2">INDIRIZZO:</div>
+                            <p>Gestiamo l'accesso a strutture a Trieste, Udine e in tutto il Triveneto.</p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="font-bold text-primary mr-2">ORARI:</div>
+                            <p>Lun - Ven: 06:00 - 23:00<br>Sab - Dom: 09:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 text-black rounded-none shadow-none">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-xs font-bold uppercase mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full p-3 bg-gray-100 border-2 border-gray-200 focus:border-black outline-none transition rounded-none">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-xs font-bold uppercase mb-1">Telefono</label>
+                            <input type="tel" required class="w-full p-3 bg-gray-100 border-2 border-gray-200 focus:border-black outline-none transition rounded-none">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-xs font-bold uppercase mb-1">Città di interesse</label>
+                            <select class="w-full p-3 bg-gray-100 border-2 border-gray-200 focus:border-black outline-none transition rounded-none">
+                                <option>Trieste</option>
+                                <option>Udine</option>
+                                <option>Gorizia</option>
+                                <option>Altro (FVG)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary w-full text-center">Richiedi Info Gratuitamente</button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="text-center py-10 hidden">
+                        <div class="text-5xl mb-4 text-green-500">✓</div>
+                        <h3 class="text-2xl font-bold mb-2">Richiesta Ricevuta!</h3>
+                        <p class="text-gray-600">Un nostro consulente ti contatterà al più presto per confermare la disponibilità.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 border-t-2 border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-8">
+                <span class="text-xl font-black uppercase">Rewuzior<span class="text-primary">Management</span></span>
+                <p class="text-sm text-gray-500 mt-2">© 2026 Rewuzior Management. Tutti i diritti riservati.</p>
+                <p class="text-xs text-gray-400 mt-2 italic max-w-2xl mx-auto">
+                    "Questo è un sito promozionale indipendente gestito da Rewuzior Management, che agisce come affiliato per Webfit."
+                </p>
+            </div>
+
+            <!-- LEGAL DETAILS -->
+            <div class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto text-sm text-gray-500 text-left">
+                
+                <details>
+                    <summary class="text-xs uppercase font-bold text-gray-700">Informativa sulla Privacy</summary>
+                    <div class="mt-2 p-4 bg-white border border-gray-200">
+                        <p class="mb-2">La tua privacy è fondamentale per Rewuzior Management. Questa informativa descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali in conformità con il GDPR e le leggi italiane vigenti.</p>
+                        <p class="mb-2"><strong>1. Raccolta Dati:</strong> Raccogliamo solo i dati necessari per fornirti i servizi richiesti, come nome, numero di telefono e preferenze di fitness. Questi dati vengono inseriti volontariamente tramite i moduli di contatto.</p>
+                        <p class="mb-2"><strong>2. Utilizzo dei Dati:</strong> I dati raccolti vengono utilizzati esclusivamente per ricontattarti in merito alle offerte promozionali, gestire le prenotazioni o rispondere alle tue domande. Non vendiamo i tuoi dati a terzi non autorizzati.</p>
+                        <p class="mb-2"><strong>3. Sicurezza:</strong> Adottiamo misure di sicurezza tecniche e organizzative per proteggere i tuoi dati da accessi non autorizzati, perdite o alterazioni. I server sono situati in aree sicure.</p>
+                        <p class="mb-2"><strong>4. Cookie:</strong> Utilizziamo cookie tecnici per migliorare l'esperienza di navigazione. Puoi gestire le preferenze sui cookie tramite le impostazioni del tuo browser.</p>
+                        <p class="mb-2"><strong>5. Diritti dell'Utente:</strong> Hai il diritto di accedere, rettificare o cancellare i tuoi dati in qualsiasi momento. Per esercitare tali diritti, puoi contattarci tramite i canali ufficiali indicati sul sito.</p>
+                        <p class="mb-2"><strong>6. Conservazione:</strong> I dati vengono conservati per il tempo strettamente necessario a erogare il servizio o come richiesto dalla legge.</p>
+                        <p class="mb-2"><strong>7. Modifiche:</strong> Ci riserviamo il diritto di modificare questa policy. Le modifiche saranno pubblicate su questa pagina.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="text-xs uppercase font-bold text-gray-700">Termini e Condizioni</summary>
+                    <div class="mt-2 p-4 bg-white border border-gray-200">
+                        <p class="mb-2">L'accesso e l'utilizzo di questo sito web sono soggetti ai seguenti Termini e Condizioni. Utilizzando il sito, accetti pienamente tali termini.</p>
+                        <p class="mb-2"><strong>1. Scopo del Sito:</strong> Questo sito è una landing page promozionale gestita da Rewuzior Management per presentare offerte relative ai servizi di fitness di partner terzi (es. Webfit).</p>
+                        <p class="mb-2"><strong>2. Esclusione di Responsabilità:</strong> Rewuzior Management non è il fornitore diretto dei servizi di palestra, ma agisce come intermediario pubblicitario. Non siamo responsabili per variazioni di orari, chiusure o disservizi presso le strutture fisiche.</p>
+                        <p class="mb-2"><strong>3. Proprietà Intellettuale:</strong> Tutti i contenuti, testi e layout presenti su questo sito sono proprietà di Rewuzior Management o utilizzati su licenza. È vietata la riproduzione non autorizzata.</p>
+                        <p class="mb-2"><strong>4. Accuratezza delle Informazioni:</strong> Facciamo il possibile per mantenere le informazioni aggiornate, ma non garantiamo che tutte le offerte siano sempre disponibili o prive di errori.</p>
+                        <p class="mb-2"><strong>5. Limitazione di Responsabilità:</strong> In nessun caso Rewuzior Management sarà responsabile per danni diretti, indiretti o consequenziali derivanti dall'uso di questo sito.</p>
+                        <p class="mb-2"><strong>6. Link Esterni:</strong> Il sito può contenere link a siti esterni. Non siamo responsabili per i contenuti o le politiche di tali siti terzi.</p>
+                        <p class="mb-2"><strong>7. Legge Applicabile:</strong> Questi termini sono regolati dalla legge italiana. Qualsiasi controversia sarà di competenza del foro locale di riferimento.</p>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <div class="text-sm mr-4">
+            Utilizziamo i cookie per migliorare la tua esperienza su Rewuzior Management. Continuando a navigare accetti la nostra policy.
+        </div>
+        <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookieConsent', 'true')" class="btn-primary text-xs py-2 px-4">
+            ACCETTA
+        </button>
+    </div>
+
+    <!-- JS LOGIC -->
+    <script>
+        // Check Cookie Consent
+        if (localStorage.getItem('cookieConsent') === 'true') {
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        // Smart Routing (Scroll Spy / Smooth Scroll)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100, // Offset for sticky nav
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to Contact if section missing
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        window.scrollTo({
+                            top: contactSection.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                // Close Mobile Menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
