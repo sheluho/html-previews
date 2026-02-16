@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomipi Systems | Formación Profesional en Belleza</title>
+    <meta name="description" content="Domina el arte del maquillaje y la belleza con un sistema de aprendizaje de élite. Accede a masterclasses exclusivas a través de Nomipi Systems.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* VAR D: Palette - Niche: Beauty/Education -> Pink 700 */
+            --primary: #be185d; 
+            /* VAR C: Surface - Last Letter 'm' (109 % 3 = 1) -> Warm Cream */
+            --surface: #fffdf5; 
+            /* VAR A: Geometry - Length 22 (22 % 3 = 1) -> Soft 12px */
+            --radius: 12px; 
+            /* VAR B: Physics - First Letter 'h' (104 % 3 = 2) -> Hard/Neo-Brutalist */
+            --shadow: 4px 4px 0px 0px #000; 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Adjusted border for Neo-Brutalist shadow match */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            border: 2px solid #000;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        .btn-secondary {
+            background-color: #ffffff;
+            color: #1f2937;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            border: 2px solid #000;
+        }
+
+        .btn-secondary:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* UTILITY */
+        .text-primary { color: var(--primary); }
+        
+        details summary {
+            cursor: pointer;
+            padding: 1rem;
+            font-weight: 600;
+            list-style: none;
+            position: relative;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary {
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1rem;
+        }
+        
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            border-top: 2px solid #000;
+            padding: 1.5rem;
+            z-index: 50;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-extrabold tracking-tighter uppercase italic">Nomipi<span class="text-primary">Systems</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-900 hover:text-primary font-bold transition">Metodología</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary font-bold transition">Testimonios</a>
+                    <a href="#faq" class="text-gray-900 hover:text-primary font-bold transition">Ayuda</a>
+                    <a href="#contact" class="btn-primary py-2 px-4 text-sm">Empezar Ahora</a>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:bg-gray-100 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white border-t-2 border-black" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-bold text-gray-900 hover:bg-gray-50">Metodología</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-bold text-gray-900 hover:bg-gray-50">Testimonios</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary hover:bg-gray-50">Empezar Ahora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" src="https://images.pexels.com/photos/2113855/pexels-photo-2113855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Maquillaje profesional" referrerpolicy="no-referrer">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6">
+                Sistematiza tu Talento: <br>
+                <span class="text-primary bg-white px-2 mt-2 inline-block transform -skew-x-6">La Plataforma Definitiva de Belleza</span>
+            </h1>
+            <p class="mt-6 text-xl text-gray-100 max-w-3xl mx-auto font-medium">
+                Nomipi Systems integra la formación de élite mundial en una experiencia digital accesible. Convierte tu pasión por el maquillaje en una carrera sólida con la estructura que necesitas.
+            </p>
+            <div class="mt-10 flex justify-center gap-4 flex-col sm:flex-row">
+                <a href="#features" class="btn-primary">Descubrir Masterclasses</a>
+                <a href="#reviews" class="btn-secondary">Ver Resultados</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        <!-- TRUST PROOF -->
+        <div class="text-center mb-16">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Metodología de confianza respaldada por expertos</p>
+            <div class="flex justify-center space-x-8 opacity-60 grayscale">
+                <span class="text-2xl font-bold text-gray-400">VOGUE</span>
+                <span class="text-2xl font-bold text-gray-400">HARPERS</span>
+                <span class="text-2xl font-bold text-gray-400">ELLE</span>
+                <span class="text-2xl font-bold text-gray-400">GLAMOUR</span>
+            </div>
+        </div>
+
+        <!-- FEATURES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-gray-900">La Arquitectura de tu Éxito en Belleza</h2>
+                <p class="mt-4 text-lg text-gray-600">No solo enseñamos trucos; implementamos sistemas de aprendizaje profesional.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="text-center">
+                    <div class="h-48 w-full bg-gray-200 rounded-lg mb-6 overflow-hidden border-2 border-black">
+                        <img src="https://images.pexels.com/photos/2657594/pexels-photo-2657594.jpeg?auto=compress&cs=tinysrgb&w=800" class="w-full h-full object-cover" alt="Clase de maquillaje">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Instrucción de Élite</h3>
+                    <p class="text-gray-600">Aprende directamente de los artistas que definen las tendencias globales. Acceso exclusivo a sus técnicas patentadas y secretos de industria.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="text-center">
+                    <div class="h-48 w-full bg-gray-200 rounded-lg mb-6 overflow-hidden border-2 border-black">
+                        <img src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg" class="w-full h-full object-cover" alt="Certificado profesional">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Acceso de Por Vida</h3>
+                    <p class="text-gray-600">Tu educación no caduca. Nuestra plataforma te permite revisitar lecciones complejas y dominar cada habilidad a tu propio ritmo.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="text-center">
+                    <div class="h-48 w-full bg-gray-200 rounded-lg mb-6 overflow-hidden border-2 border-black">
+                        <img src="https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=800" class="w-full h-full object-cover" alt="Kit de maquillaje profesional">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Certificación Validada</h3>
+                    <p class="text-gray-600">Al completar tus sistemas de módulos, recibe acreditaciones que validan tu competencia técnica ante clientes y salones.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card mt-12">
+            <h2 class="text-3xl font-extrabold text-center mb-10 text-gray-900">Resultados Reales de Estudiantes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 border-l-4 border-purple-600 rounded shadow-sm">
+                    <p class="text-gray-600 italic mb-4">"Llevaba años intentando aprender por YouTube, pero todo estaba desordenado. Nomipi Systems estructuró mi aprendizaje. Ahora tengo mi propia cartera de clientes de bodas."</p>
+                    <div class="flex items-center">
+                        <div class="font-bold text-gray-900">- Elena Ramírez, Madrid</div>
+                        <div class="text-yellow-400 ml-auto">★★★★★</div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 border-l-4 border-purple-600 rounded shadow-sm">
+                    <p class="text-gray-600 italic mb-4">"La calidad de imagen y la cercanía de los instructores es increíble. Es como tener al maquillador de las estrellas en tu salón. Totalmente recomendado."</p>
+                    <div class="flex items-center">
+                        <div class="font-bold text-gray-900">- Carla Mendizábal, CDMX</div>
+                        <div class="text-yellow-400 ml-auto">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 border-l-4 border-purple-600 rounded shadow-sm mt-8 mx-auto md:w-2/3">
+                <p class="text-gray-600 italic mb-4">"Invertir aquí fue la mejor decisión para mi carrera. No es solo maquillaje, es entender el negocio y la técnica profesional. El retorno de inversión ha sido inmediato."</p>
+                <div class="flex items-center">
+                    <div class="font-bold text-gray-900">- Sofía V., Freelancer</div>
+                    <div class="text-yellow-400 ml-auto">★★★★★</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card mt-12">
+            <h2 class="text-3xl font-extrabold text-center mb-8 text-gray-900">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details class="bg-white border border-gray-200 rounded">
+                    <summary class="text-lg text-gray-800">¿Necesito experiencia previa en maquillaje?</summary>
+                    <div class="p-4 text-gray-600 border-t border-gray-100">
+                        No. Nuestros sistemas están diseñados para guiarte desde los fundamentos básicos hasta técnicas avanzadas. Hay cursos para todos los niveles, desde entusiastas hasta profesionales que buscan reciclaje.
+                    </div>
+                </details>
+                <details class="bg-white border border-gray-200 rounded">
+                    <summary class="text-lg text-gray-800">¿Recibo un certificado al finalizar?</summary>
+                    <div class="p-4 text-gray-600 border-t border-gray-100">
+                        Sí. Al completar el 100% de las lecciones y ejercicios prácticos de un curso, se genera automáticamente un certificado digital nominativo que acredita tu formación a través de la plataforma asociada.
+                    </div>
+                </details>
+                <details class="bg-white border border-gray-200 rounded">
+                    <summary class="text-lg text-gray-800">¿Cuánto tiempo tengo para ver los cursos?</summary>
+                    <div class="p-4 text-gray-600 border-t border-gray-100">
+                        El acceso es ilimitado de por vida. Una vez adquieres un masterclass, puedes volver a verlo tantas veces como necesites, incluyendo futuras actualizaciones del contenido.
+                    </div>
+                </details>
+                <details class="bg-white border border-gray-200 rounded">
+                    <summary class="text-lg text-gray-800">¿Qué materiales necesito?</summary>
+                    <div class="p-4 text-gray-600 border-t border-gray-100">
+                        Cada curso incluye una lista detallada de productos recomendados. Sin embargo, siempre aconsejamos comenzar con lo que ya tienes e ir adquiriendo herramientas profesionales a medida que avanzas en el temario.
+                    </div>
+                </details>
+                <details class="bg-white border border-gray-200 rounded">
+                    <summary class="text-lg text-gray-800">¿Cómo funciona la garantía de satisfacción?</summary>
+                    <div class="p-4 text-gray-600 border-t border-gray-100">
+                        Estamos seguros de la calidad de nuestro contenido. Si tienes problemas técnicos o el curso no cumple con lo prometido, contáctanos dentro del plazo estipulado en los términos para revisar tu caso.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card mt-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Contáctanos</h2>
+                    <p class="text-gray-600 mb-8">¿Tienes dudas sobre qué masterclass es ideal para ti? Nuestro equipo de asesoramiento está listo para ayudarte a diseñar tu ruta de aprendizaje.</p>
+                    
+                    <div class="space-y-4">
+                        <!-- Address derived conceptually if not explicit in source, removed placeholders per instruction to rely on forms primarily -->
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                </svg>
+                            </div>
+                            <div class="ml-3 text-base text-gray-600">
+                                <p>Soporte Digital 24/7</p>
+                                <p>Operando globalmente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg border-2 border-gray-100 shadow-inner">
+                    <form id="lead-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                            <input type="text" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 bg-gray-50 px-4 py-2 border">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Tema de Interés</label>
+                            <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 bg-gray-50 px-4 py-2 border">
+                                <option>Maquillaje Social</option>
+                                <option>Maquillaje Nupcial</option>
+                                <option>Técnicas Avanzadas</option>
+                                <option>Certificación Profesional</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Mensaje</label>
+                            <textarea rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 bg-gray-50 px-4 py-2 border"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary">Solicitar Información</button>
+                    </form>
+                    
+                    <div id="success-msg" class="hidden text-center p-6 bg-green-50 rounded-lg border border-green-200">
+                        <svg class="h-12 w-12 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <h3 class="text-lg font-bold text-green-800">¡Mensaje Recibido!</h3>
+                        <p class="text-green-700 mt-2">Un asesor académico se pondrá en contacto contigo pronto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t-2 border-black mt-12 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <span class="text-xl font-extrabold tracking-tighter uppercase italic">Nomipi<span class="text-primary">Systems</span></span>
+                    <p class="mt-4 text-gray-500 text-sm max-w-md">
+                        Transformamos la educación en belleza. Nuestra misión es democratizar el acceso a las mejores técnicas mundiales mediante sistemas digitales innovadores.
+                    </p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-400">© 2026 Nomipi Systems. Todos los derechos reservados.</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-8 text-xs text-gray-500 text-center mb-6">
+                <p class="font-bold">Aviso Importante:</p>
+                <p>Este es un sitio promocional independiente gestionado por Nomipi Systems, actuando como afiliado para Klasoo.</p>
+            </div>
+
+            <!-- LEGAL DETAILS -->
+            <div class="border-t border-gray-200 pt-8 space-y-4">
+                <details>
+                    <summary class="text-xs text-gray-500 hover:text-gray-900 transition">Política de Privacidad</summary>
+                    <div class="p-4 text-xs text-gray-600 bg-gray-50 rounded mt-2">
+                        <p class="mb-2">En Nomipi Systems, valoramos su privacidad y nos comprometemos a proteger sus datos personales. Esta Política de Privacidad explica cómo recopilamos, utilizamos y salvaguardamos su información cuando visita nuestro sitio web o utiliza nuestros servicios de intermediación digital.</p>
+                        <p class="mb-2">Recopilamos información personal que usted nos proporciona voluntariamente a través de formularios de contacto, como su nombre y preferencias de servicio, únicamente con el fin de mejorar su experiencia y responder a sus consultas. No vendemos ni compartimos sus datos con terceros no autorizados.</p>
+                        <p class="mb-2">Utilizamos cookies y tecnologías similares para analizar el tráfico y mejorar la funcionalidad del sitio. Usted tiene derecho a desactivar estas cookies en su navegador, aunque esto podría limitar ciertas funciones de nuestra plataforma. Sus datos de navegación se tratan de forma anónima siempre que es posible.</p>
+                        <p class="mb-2">Nos adherimos a las regulaciones locales e internacionales de protección de datos. Mantenemos medidas de seguridad técnicas y organizativas para prevenir el acceso no autorizado, la pérdida o alteración de sus datos personales. Revisamos periódicamente nuestros protocolos de seguridad.</p>
+                        <p class="mb-2">Usted tiene derecho a acceder, rectificar o eliminar su información personal en cualquier momento. Para ejercer estos derechos, por favor utilice el formulario de contacto disponible en nuestro sitio web. Responderemos a su solicitud en el plazo legalmente establecido.</p>
+                        <p>Esta política puede ser actualizada periódicamente para reflejar cambios en nuestras prácticas o en la legislación vigente. Le recomendamos revisar esta sección regularmente. El uso continuado de nuestro sitio implica la aceptación de estas condiciones.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="text-xs text-gray-500 hover:text-gray-900 transition">Términos y Condiciones</summary>
+                    <div class="p-4 text-xs text-gray-600 bg-gray-50 rounded mt-2">
+                        <p class="mb-2">Bienvenido a Nomipi Systems. Al acceder y utilizar este sitio web, usted acepta cumplir y estar sujeto a los siguientes términos y condiciones de uso, que junto con nuestra política de privacidad rigen la relación de Nomipi Systems con usted en relación a este sitio web.</p>
+                        <p class="mb-2">El contenido de las páginas de este sitio web es para su información general y uso exclusivo. Está sujeto a cambios sin previo aviso. Ni nosotros ni terceros ofrecemos ninguna garantía en cuanto a la exactitud, puntualidad, rendimiento, integridad o idoneidad de la información y los materiales encontrados u ofrecidos en este sitio web para cualquier propósito particular.</p>
+                        <p class="mb-2">Usted reconoce que dicha información y materiales pueden contener inexactitudes o errores y excluimos expresamente la responsabilidad por tales inexactitudes o errores en la máxima medida permitida por la ley. El uso de cualquier información o material en este sitio web es bajo su propio riesgo, por lo cual no seremos responsables.</p>
+                        <p class="mb-2">Este sitio web contiene material que es propiedad nuestra o licenciado a nosotros. Este material incluye, pero no se limita a, el diseño, la maquetación, el aspecto, la apariencia y los gráficos. La reproducción está prohibida salvo de conformidad con el aviso de copyright, que forma parte de estos términos y condiciones.</p>
+                        <p class="mb-2">El uso no autorizado de este sitio web puede dar lugar a una reclamación por daños y perjuicios y/o constituir un delito penal. Este sitio web también puede incluir enlaces a otros sitios web. Estos enlaces se proporcionan para su conveniencia para proporcionar más información. No significan que respaldamos el sitio web(s).</p>
+                        <p>Nos reservamos el derecho de restringir el acceso a ciertas áreas de nuestro sitio web, o a todo nuestro sitio web, a nuestra discreción. Si le proporcionamos una identificación de usuario y una contraseña para permitirle acceder a áreas restringidas de nuestro sitio web, debe asegurarse de que dicha información se mantenga confidencial.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="text-xs text-gray-500 hover:text-gray-900 transition">Política de Reembolsos</summary>
+                    <div class="p-4 text-xs text-gray-600 bg-gray-50 rounded mt-2">
+                        <p class="mb-2">Nomipi Systems actúa como promotor e intermediario de servicios educativos digitales. Dado que el servicio final es proporcionado por la plataforma proveedora (Klasoo), las políticas de reembolso están sujetas principalmente a los términos y condiciones del proveedor original del servicio.</p>
+                        <p class="mb-2">No obstante, nos esforzamos por garantizar la satisfacción de nuestros usuarios referidos. Si usted ha adquirido un acceso a través de nuestros enlaces y considera que el servicio no cumple con la descripción promocionada, le recomendamos contactar primero con el soporte del proveedor directo.</p>
+                        <p class="mb-2">En general, los productos digitales y cursos online que han sido accedidos o descargados no son elegibles para reembolso, debido a la naturaleza irrevocable de la propiedad intelectual digital. Excepciones pueden aplicarse si se demuestra un fallo técnico persistente que impida el acceso al contenido.</p>
+                        <p class="mb-2">Cualquier solicitud de reembolso gestionada directamente con nosotros será evaluada caso por caso. Deberá presentarse dentro de los primeros 14 días posteriores a la compra, adjuntando prueba de pago y una explicación detallada del motivo de la insatisfacción.</p>
+                        <p class="mb-2">Nos reservamos el derecho de rechazar solicitudes de reembolso si detectamos un abuso de esta política, como el consumo completo del contenido del curso antes de solicitar la devolución. El reembolso, si es aprobado, se procesará mediante el método de pago original.</p>
+                        <p>Esta política es adicional a sus derechos legales como consumidor. Para iniciar una consulta sobre un reembolso, utilice nuestro formulario de contacto especificando en el asunto "Solicitud de Reembolso" y proporcionando todos los detalles pertinentes para agilizar el proceso.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <p class="text-sm text-gray-700 mb-4 md:mb-0 mr-4">
+                Utilizamos cookies propias y de terceros para mejorar nuestros servicios. Si continúa navegando, consideramos que acepta su uso.
+            </p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-xs">Aceptar</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 underline text-xs">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // SMART ROUTING
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100, // Offset for sticky header
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to contact
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) {
+                        window.scrollTo({
+                            top: contactSection.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // FORM HANDLING
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Enviando...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                this.style.display = 'none';
+                document.getElementById('success-msg').classList.remove('hidden');
+                document.getElementById('success-msg').style.display = 'block'; // Ensure visibility
+            }, 1500);
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('nomipi_cookies', 'accepted');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('nomipi_cookies')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>
