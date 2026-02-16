@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuxuveia Solutions | Innovación en Electrónica y Hardware</title>
+    <meta name="description" content="Tuxuveia Solutions ofrece la mejor selección de componentes electrónicos, herramientas y gadgets tecnológicos. Calidad y precio para tus proyectos.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DESIGN DNA INJECTION -->
+    <style>
+      :root {
+        /* VAR D: Palette -> Electric Blue for Tech/Electronics */
+        --primary: #2563eb; 
+        /* VAR C: Surface -> Warm White (from Last Letter 'm' % 3 = 1) */
+        --surface: #fffdf5; 
+        /* VAR A: Geometry -> Sharp (from Length 21 % 3 = 0) */
+        --radius: 0px; 
+        /* VAR B: Physics -> Hard Shadow (from First Letter 'e' code 101 % 3 = 2) */
+        --shadow: 4px 4px 0px 0px #000;
+      }
+
+      /* GLOBAL CONTRAST BASE */
+      body {
+        background-color: #f3f4f6; /* Always light gray to make white cards pop */
+        color: #1f2937;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+
+      /* BRAND COMPONENT: The DNA Card */
+      .dna-card {
+        background-color: var(--surface);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 2px solid #000; /* Added border to match the Hard Shadow style */
+      }
+
+      /* BRAND COMPONENT: Primary Button */
+      .btn-primary {
+         background-color: var(--primary);
+         color: #ffffff !important;
+         border-radius: var(--radius);
+         box-shadow: var(--shadow);
+         padding: 1rem 2rem;
+         transition: all 0.2s;
+         font-weight: bold;
+         border: 2px solid #000; /* Neo-brutalist border */
+         display: inline-block;
+         text-align: center;
+         cursor: pointer;
+      }
+      .btn-primary:hover { 
+          transform: translate(-2px, -2px);
+          box-shadow: 6px 6px 0px 0px #000;
+      }
+      .btn-primary:active {
+          transform: translate(2px, 2px);
+          box-shadow: 0px 0px 0px 0px #000;
+      }
+
+      /* UTILITY: Text Accent */
+      .text-primary { color: var(--primary); }
+
+      /* NAVBAR */
+      .nav-link {
+          position: relative;
+          color: #374151;
+          font-weight: 600;
+          text-decoration: none;
+      }
+      .nav-link:hover { color: var(--primary); }
+
+      /* IMAGE UTILS */
+      img {
+          border-radius: var(--radius);
+      }
+      
+      /* FAQ DETAILS */
+      details > summary {
+          list-style: none;
+          outline: none;
+          cursor: pointer;
+          font-weight: bold;
+          padding: 1rem;
+          background: #f9fafb;
+          border: 1px solid #e5e7eb;
+          margin-bottom: 0.5rem;
+      }
+      details[open] > summary {
+          border-bottom: 1px solid #e5e7eb;
+      }
+      details > div {
+          padding: 1rem;
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-top: none;
+      }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-black text-gray-900 tracking-tighter">TUXUVEIA<span class="text-primary">SOLUTIONS</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="nav-link">Servicios</a>
+                    <a href="#reviews" class="nav-link">Opiniones</a>
+                    <a href="#faq" class="nav-link">Preguntas</a>
+                    <a href="#contact" class="btn-primary py-2 px-4 text-sm">Cotizar Ahora</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t-2 border-black p-4">
+            <a href="#features" class="block py-2 text-gray-800 font-bold">Servicios</a>
+            <a href="#reviews" class="block py-2 text-gray-800 font-bold">Opiniones</a>
+            <a href="#contact" class="block py-2 text-primary font-bold">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gray-900 text-white overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Pexels Image: Circuit Board / Technology -->
+            <img src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Fondo de tecnología electrónica" 
+                 class="w-full h-full object-cover opacity-30"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Electronics+Innovation'">
+        </div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 py-24 sm:py-32 flex flex-col items-center text-center">
+            <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 mb-4 uppercase tracking-widest border-2 border-white" style="box-shadow: 4px 4px 0px 0px rgba(255,255,255,0.5);">
+                Innovación & Hardware
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-black leading-tight mb-6">
+                La mejor inversión tecnológica para tu <span class="text-blue-400">confort digital</span> y desarrollo.
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                En Tuxuveia Solutions, transformamos componentes en posibilidades. Desde aficionados hasta ingenieros, proveemos el hardware que impulsa el futuro.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#contact" class="btn-primary border-white">Iniciar Proyecto</a>
+                <a href="#features" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-colors" style="box-shadow: 4px 4px 0px 0px #ffffff;">
+                    Explorar Catálogo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BADGES -->
+    <div class="bg-white border-b border-gray-200 py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm text-gray-500 font-bold uppercase tracking-widest mb-6">Empresas e Instituciones que confían en nosotros</p>
+            <div class="flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <span class="text-xl font-bold text-gray-400">TechInstute</span>
+                <span class="text-xl font-bold text-gray-400">FabLab Global</span>
+                <span class="text-xl font-bold text-gray-400">Robotix Center</span>
+                <span class="text-xl font-bold text-gray-400">MakerSpace ES</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURES SECTION (MAIN PRODUCTS) -->
+    <section id="features" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-gray-900 mb-4">Soluciones Integrales en Electrónica</h2>
+                <p class="text-gray-600 max-w-xl mx-auto">Calidad profesional a precios accesibles. Cubrimos todas las necesidades de hardware y reparación.</p>
+            </div>
+
+            <!-- Service 1 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Componentes electrónicos y sensores" 
+                         class="w-full h-64 object-cover border-2 border-black shadow-lg"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Componentes y Prototipado</h3>
+                    <p class="text-gray-600 mb-6">
+                        Disponemos de un amplio stock de sensores, módulos Arduino, Raspberry Pi y semiconductores esenciales para estudiantes y desarrolladores de IoT. Garantizamos autenticidad y durabilidad en cada pieza.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Microcontroladores
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Sensores y Actuadores
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/3921868/pexels-photo-3921868.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Herramientas de laboratorio electrónica" 
+                         class="w-full h-64 object-cover border-2 border-black shadow-lg"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Herramientas de Precisión</h3>
+                    <p class="text-gray-600 mb-6">
+                        Equipa tu taller con soldadores, multímetros, fuentes de alimentación y osciloscopios de marcas reconocidas. La herramienta adecuada es la mejor inversión para asegurar resultados profesionales.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Instrumentación de Laboratorio
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Kits de Soldadura
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/3394658/pexels-photo-3394658.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Gadgets y accesorios de audio" 
+                         class="w-full h-64 object-cover border-2 border-black shadow-lg"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Audio y Conectividad</h3>
+                    <p class="text-gray-600 mb-6">
+                        Soluciones para el consumidor final: desde cables de alta fidelidad y adaptadores difíciles de encontrar, hasta componentes de audio para reparaciones caseras y mejoras de sistemas de sonido.
+                    </p>
+                    <div class="mt-4">
+                        <a href="#contact" class="text-primary font-bold hover:underline">Consultar disponibilidad &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-10 px-4">
+        <div class="max-w-5xl mx-auto dna-card bg-white">
+            <h2 class="text-3xl font-black text-center mb-12">Lo que dicen nuestros clientes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="p-6 bg-gray-50 border border-gray-200 shadow-sm">
+                    <div class="text-primary text-xl mb-4">★★★★★</div>
+                    <p class="text-gray-600 mb-4 text-sm">"Encontré componentes para mi proyecto de final de carrera que no estaban en ningún otro sitio. El envío fue rápido y todo llegó bien protegido."</p>
+                    <p class="font-bold text-gray-900">— Carlos M., Estudiante de Ingeniería</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="p-6 bg-gray-50 border border-gray-200 shadow-sm">
+                    <div class="text-primary text-xl mb-4">★★★★★</div>
+                    <p class="text-gray-600 mb-4 text-sm">"Excelente relación calidad-precio en las herramientas de soldadura. Tuxuveia Solutions es ahora mi proveedor principal para el taller."</p>
+                    <p class="font-bold text-gray-900">— Javier R., Técnico de Reparación</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="p-6 bg-gray-50 border border-gray-200 shadow-sm">
+                    <div class="text-primary text-xl mb-4">★★★★★</div>
+                    <p class="text-gray-600 mb-4 text-sm">"El servicio de atención al cliente me ayudó a elegir el módulo correcto para mi sistema domótico. Muy recomendados."</p>
+                    <p class="font-bold text-gray-900">— Elena S., Maker</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-10 px-4">
+        <div class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black text-center mb-10">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>¿Hacen envíos a todo el país?</summary>
+                    <div>Sí, realizamos envíos a todo el territorio nacional a través de empresas de paquetería certificadas para garantizar que sus componentes electrónicos lleguen en perfecto estado.</div>
+                </details>
+                <details>
+                    <summary>¿Ofrecen garantía en los componentes?</summary>
+                    <div>Todos nuestros productos cuentan con garantía contra defectos de fabricación. Si un componente llega dañado, lo reemplazamos sin coste adicional tras una rápida verificación.</div>
+                </details>
+                <details>
+                    <summary>¿Tienen descuentos para compras al por mayor?</summary>
+                    <div>Ofrecemos tarifas especiales para centros educativos, laboratorios y compras por volumen. Por favor, utilice el formulario de contacto para solicitar un presupuesto personalizado.</div>
+                </details>
+                <details>
+                    <summary>¿Puedo solicitar componentes que no están en stock?</summary>
+                    <div>Trabajamos con una amplia red de proveedores. Si necesita un chip o herramienta específica, podemos gestionarlo bajo pedido especial.</div>
+                </details>
+                <details>
+                    <summary>¿Cuáles son los métodos de pago aceptados?</summary>
+                    <div>Aceptamos transferencias bancarias y tarjetas de crédito/débito principales. Todos los pagos se procesan a través de pasarelas seguras.</div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto dna-card">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-black mb-6">Contacta con Tuxuveia Solutions</h2>
+                    <p class="text-gray-600 mb-8">
+                        ¿Tienes dudas sobre un componente o necesitas asesoramiento técnico? Completa el formulario y nuestro equipo de expertos te responderá a la brevedad.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="ml-3 text-gray-700">
+                                <p class="font-bold">Horario de Atención Online:</p>
+                                <p>Lunes a Viernes: 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORM SIMULATION -->
+                <div class="bg-white p-6 border-2 border-gray-100 shadow-sm">
+                    <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); btn.innerText = 'Enviando...'; btn.style.opacity = '0.7'; setTimeout(() => { this.style.display='none'; document.getElementById('success-msg').style.display='block'; }, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Nombre Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 border-2 border-gray-200 focus:border-primary focus:outline-none bg-gray-50" placeholder="Ej. Juan Pérez">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Asunto</label>
+                            <select class="w-full px-4 py-3 border-2 border-gray-200 focus:border-primary focus:outline-none bg-gray-50">
+                                <option>Consulta General</option>
+                                <option>Presupuesto</option>
+                                <option>Soporte Técnico</option>
+                                <option>Estado de Pedido</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2">Mensaje</label>
+                            <textarea required rows="4" class="w-full px-4 py-3 border-2 border-gray-200 focus:border-primary focus:outline-none bg-gray-50" placeholder="Describe lo que necesitas..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-lg">Enviar Mensaje</button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" style="display:none;" class="text-center py-10">
+                        <div class="mb-4 text-green-500 flex justify-center">
+                            <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">¡Mensaje Recibido!</h3>
+                        <p class="text-gray-600">Gracias por contactar con Tuxuveia Solutions. Nuestro equipo técnico revisará tu consulta y te responderá en las próximas 24 horas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-primary">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div>
+                <span class="text-2xl font-black text-white tracking-tighter">TUXUVEIA<span class="text-primary">SOLUTIONS</span></span>
+                <p class="mt-4 text-sm max-w-sm">
+                    Facilitando el acceso a la tecnología y la electrónica. Somos tu puente hacia la innovación y el desarrollo de hardware de calidad.
+                </p>
+                <p class="mt-4 text-xs text-gray-500">
+                    Este es un sitio promocional independiente gestionado por Tuxuveia Solutions, actuando como afiliado para electronicabarata.com.
+                </p>
+            </div>
+            <div class="text-sm">
+                <h4 class="text-white font-bold uppercase mb-4">Información Legal</h4>
+                <div class="space-y-2">
+                    
+                    <!-- Privacy Policy -->
+                    <details class="cursor-pointer">
+                        <summary class="hover:text-white">Política de Privacidad</summary>
+                        <div class="mt-2 p-4 bg-gray-800 rounded text-xs leading-relaxed">
+                            <p class="mb-2">En Tuxuveia Solutions, nos tomamos muy en serio la privacidad de sus datos personales. Esta política describe cómo recopilamos, utilizamos y protegemos su información cuando visita nuestro sitio web. Al utilizar nuestros servicios, usted acepta las prácticas descritas en este documento.</p>
+                            <p class="mb-2">Recopilamos información que usted nos proporciona voluntariamente, como su nombre y detalles de contacto a través de nuestros formularios. Esta información se utiliza exclusivamente para responder a sus consultas y gestionar sus pedidos. No compartimos, vendemos ni alquilamos su información personal a terceros con fines comerciales sin su consentimiento explícito.</p>
+                            <p class="mb-2">Implementamos medidas de seguridad técnicas y organizativas para proteger sus datos contra el acceso no autorizado, la alteración, divulgación o destrucción. Sin embargo, ninguna transmisión de datos por Internet es completamente segura, por lo que no podemos garantizar la seguridad absoluta.</p>
+                            <p class="mb-2">Utilizamos cookies para mejorar su experiencia de navegación. Usted tiene derecho a acceder, rectificar o eliminar sus datos personales en cualquier momento. Para ejercer estos derechos, por favor contáctenos a través de nuestro formulario web.</p>
+                            <p>Nos reservamos el derecho de actualizar esta política en cualquier momento. Las modificaciones serán efectivas inmediatamente después de su publicación en el sitio web. Se recomienda revisar esta página periódicamente para estar informado sobre cómo protegemos su información.</p>
+                        </div>
+                    </details>
+
+                    <!-- Terms of Service -->
+                    <details class="cursor-pointer">
+                        <summary class="hover:text-white">Términos y Condiciones</summary>
+                        <div class="mt-2 p-4 bg-gray-800 rounded text-xs leading-relaxed">
+                            <p class="mb-2">Bienvenido a Tuxuveia Solutions. Al acceder y utilizar este sitio web, usted acepta cumplir y estar sujeto a los siguientes términos y condiciones de uso, que junto con nuestra política de privacidad rigen nuestra relación con usted en relación a este sitio web.</p>
+                            <p class="mb-2">El contenido de las páginas de este sitio web es para su información general y uso exclusivamente. Está sujeto a cambios sin previo aviso. Ni nosotros ni terceros ofrecemos ninguna garantía en cuanto a la exactitud, puntualidad, rendimiento, integridad o idoneidad de la información y los materiales encontrados u ofrecidos en este sitio para cualquier propósito particular.</p>
+                            <p class="mb-2">El uso de cualquier información o material en este sitio web es bajo su propio riesgo, por lo cual no seremos responsables. Será su propia responsabilidad asegurarse de que cualquier producto, servicio o información disponible a través de este sitio web cumpla con sus requisitos específicos.</p>
+                            <p class="mb-2">Este sitio web contiene material que es propiedad nuestra o licenciado a nosotros. Este material incluye, pero no se limita a, el diseño, la disposición, el aspecto, la apariencia y los gráficos. La reproducción está prohibida salvo de conformidad con el aviso de copyright, que forma parte de estos términos y condiciones.</p>
+                            <p>El uso no autorizado de este sitio web puede dar lugar a una reclamación por daños y perjuicios y/o constituir un delito. Su uso de este sitio web y cualquier disputa que surja de ese uso del sitio web está sujeto a las leyes vigentes.</p>
+                        </div>
+                    </details>
+
+                    <!-- Refund Policy -->
+                    <details class="cursor-pointer">
+                        <summary class="hover:text-white">Política de Devoluciones</summary>
+                        <div class="mt-2 p-4 bg-gray-800 rounded text-xs leading-relaxed">
+                            <p class="mb-2">Nuestra política de devoluciones tiene una duración de 30 días. Si han pasado 30 días desde su compra, desafortunadamente no podemos ofrecerle un reembolso ni un cambio. Para ser elegible para una devolución, su artículo debe estar sin usar y en las mismas condiciones en que lo recibió. También debe estar en su embalaje original.</p>
+                            <p class="mb-2">Varios tipos de bienes están exentos de ser devueltos. Productos perecederos, materiales peligrosos, o líquidos y gases inflamables no pueden ser devueltos. Además, no aceptamos devoluciones de componentes electrónicos que hayan sido soldados o modificados de alguna manera por el usuario.</p>
+                            <p class="mb-2">Para completar su devolución, requerimos un recibo o prueba de compra. Por favor no envíe su compra de retorno al fabricante sin antes contactarnos para recibir instrucciones específicas y un número de autorización de devolución.</p>
+                            <p class="mb-2">Una vez que su devolución es recibida e inspeccionada, le enviaremos una notificación. También le notificaremos la aprobación o rechazo de su reembolso. Si es aprobado, entonces su reembolso será procesado y un crédito será automáticamente aplicado a su tarjeta de crédito o método original de pago, dentro de una cierta cantidad de días.</p>
+                            <p>Solo se pueden reembolsar los artículos de precio regular, desafortunadamente los artículos en oferta no pueden ser reembolsados. Si el artículo fue marcado como un regalo cuando fue comprado y enviado directamente a usted, recibirá un crédito de regalo por el valor de su devolución.</p>
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+        </div>
+        <div class="text-center pt-8 border-t border-gray-800 text-xs">
+            &copy; 2026 Tuxuveia Solutions. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-primary p-4 shadow-lg z-50 hidden">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-700">
+                Utilizamos cookies para asegurar que damos la mejor experiencia al usuario en nuestra web. Si sigues utilizando este sitio asumiremos que estás de acuerdo.
+            </p>
+            <button onclick="acceptCookies()" class="btn-primary text-xs py-2 px-6">
+                Aceptar y Cerrar
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Smooth Scrolling Logic with Fallback
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to contact if section missing
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // Cookie Banner Logic
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>
