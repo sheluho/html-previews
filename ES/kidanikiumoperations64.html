@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kidanikium Operations - Soluciones avanzadas en domótica, integración de sistemas y hogares inteligentes.">
+    <title>Kidanikium Operations | Integración Domótica y Hogar Inteligente</title>
+    <!-- Tailwind CSS (v2.2.19) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* PHASE 2: DESIGN DNA */
+        :root {
+            /* VAR D: Tech Blue for Automation/Operations niche */
+            --primary: #3b82f6; 
+            /* VAR C: Last Letter 's' (115%3=1) -> Warm Cream */
+            --surface: #fffdf5;
+            /* VAR A: Length 13 (13%3=1) -> Soft Radius */
+            --radius: 12px;
+            /* VAR B: First Letter 'h' (104%3=2) -> Hard/Brutalist Shadow */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Gray background for contrast */
+            color: #1f2937;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Added border to match Brutalist shadow style */
+            transition: transform 0.3s ease;
+        }
+
+        .dna-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover { 
+            background-color: #2563eb;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        /* UTILITY */
+        .text-primary { color: var(--primary); }
+        
+        /* Form Inputs */
+        .input-field {
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 2px solid #e5e7eb;
+            background-color: white;
+            transition: all 0.3s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        /* Details/Summary Animation */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 1rem;
+            background-color: rgba(0,0,0,0.03);
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+        }
+        details[open] > summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            margin-bottom: 0;
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        details > p, details > div {
+            padding: 1rem;
+            border: 1px solid rgba(0,0,0,0.03);
+            border-top: none;
+            border-bottom-left-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Brand -->
+                <div class="flex items-center">
+                    <a href="#" class="text-xl md:text-2xl font-black uppercase tracking-tighter text-gray-900">
+                        <span class="text-primary">Kidanikium</span> Operations
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 font-bold">
+                    <a href="#features" class="hover:text-primary transition">Soluciones</a>
+                    <a href="#reviews" class="hover:text-primary transition">Opiniones</a>
+                    <a href="#contact" class="hover:text-primary transition">Contacto</a>
+                    <a href="#contact" class="btn-primary py-2 px-6 text-sm">Presupuesto</a>
+                </div>
+
+                <!-- Mobile Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t-2 border-black p-4">
+            <a href="#features" class="block py-2 font-bold text-gray-800">Soluciones</a>
+            <a href="#reviews" class="block py-2 font-bold text-gray-800">Opiniones</a>
+            <a href="#contact" class="block py-2 font-bold text-gray-800">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 text-white pt-24 pb-32">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                class="w-full h-full object-cover opacity-60" 
+                alt="Smart Home Living Room"
+                referrerpolicy="no-referrer"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Smart+Home+Tech'"
+            >
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Kidanikium Operations: La Precisión Técnica detrás de su <span class="text-blue-400">Hogar Inteligente</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 text-gray-200 max-w-3xl mx-auto font-medium">
+                Transformar su vivienda es la operación más crítica para su confort. Integramos domótica, audiovisuales y redes con ejecución milimétrica.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#contact" class="btn-primary text-lg">
+                    Solicitar Auditoría
+                </a>
+                <a href="#features" class="bg-white text-gray-900 border-2 border-black px-8 py-4 rounded-xl shadow-[4px_4px_0px_0px_#000] font-bold uppercase hover:bg-gray-100 transition transform hover:-translate-y-0.5">
+                    Ver Tecnologías
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST BADGES (Text Based) -->
+    <div class="bg-white border-b border-gray-200 py-6">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Tecnologías Integradas</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale font-bold text-xl text-gray-400">
+                <span>KNX</span>
+                <span>CRESTRON</span>
+                <span>LUTRON</span>
+                <span>CONTROL4</span>
+                <span>SAVANT</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow py-16 px-4">
+        
+        <!-- SERVICES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black mb-4">Operaciones de Integración</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    No solo instalamos dispositivos; diseñamos ecosistemas operativos que responden a sus necesidades.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="text-left">
+                    <div class="h-48 mb-6 overflow-hidden rounded-lg border-2 border-gray-100 relative">
+                        <img 
+                            src="https://images.pexels.com/photos/3356064/pexels-photo-3356064.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                            class="w-full h-full object-cover transform hover:scale-110 transition duration-500" 
+                            alt="Domótica Iluminación"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=Control+Total'"
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Control Total y Climatización</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Sistemas domóticos (KNX) que centralizan iluminación, persianas y clima en una sola interfaz intuitiva. Eficiencia energética automatizada.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="text-left">
+                    <div class="h-48 mb-6 overflow-hidden rounded-lg border-2 border-gray-100 relative">
+                        <img 
+                            src="https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                            class="w-full h-full object-cover transform hover:scale-110 transition duration-500" 
+                            alt="Cine en Casa"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=Multimedia'"
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Cine y Audio Multiroom</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Diseño acústico y visual para salas de cine dedicadas. Audio distribuido de alta fidelidad invisible en todas las estancias de su hogar.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="text-left">
+                    <div class="h-48 mb-6 overflow-hidden rounded-lg border-2 border-gray-100 relative">
+                        <img 
+                            src="https://images.pexels.com/photos/5955073/pexels-photo-5955073.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                            class="w-full h-full object-cover transform hover:scale-110 transition duration-500" 
+                            alt="Seguridad Digital"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=Seguridad'"
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Seguridad y Redes IP</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Infraestructuras de red de nivel empresarial para hogares grandes. Videovigilancia IP, videoporteros remotos y ciberseguridad doméstica.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black mb-8 text-center">Resultados Verificados</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Buscábamos alguien que entendiera el sistema KNX antiguo de la casa. El equipo operó con una precisión quirúrgica para modernizarlo todo."</p>
+                    <p class="font-bold text-sm">- Carlos M., Madrid</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"La integración del cine en casa es espectacular. Kidanikium Operations coordinó todo el proyecto sin fallos."</p>
+                    <p class="font-bold text-sm">- Elena R., Arquitecta</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Soporte técnico inigualable. Por fin el Wi-Fi llega al jardín y las cámaras se ven en el móvil sin retrasos."</p>
+                    <p class="font-bold text-sm">- Javier L., Barcelona</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black mb-8">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>¿Qué tipo de instalaciones realizáis?</summary>
+                    <p class="text-gray-600">Somos especialistas en domótica (estándar KNX), redes informáticas de alto rendimiento, sistemas audiovisuales multiroom y seguridad electrónica avanzada para viviendas residenciales y oficinas.</p>
+                </details>
+                <details>
+                    <summary>¿Se pueden integrar equipos de diferentes marcas?</summary>
+                    <p class="text-gray-600">Sí. Nuestra filosofía de "operaciones abiertas" busca la interoperabilidad. Utilizamos pasarelas y controladores que permiten que la iluminación de una marca se comunique con la seguridad de otra bajo una misma app.</p>
+                </details>
+                <details>
+                    <summary>¿Es necesario hacer obra para la instalación?</summary>
+                    <p class="text-gray-600">Depende del alcance. Para sistemas cableados (KNX) en obra nueva o reforma integral, sí. Para viviendas terminadas, disponemos de soluciones inalámbricas profesionales muy estables que no requieren regatas.</p>
+                </details>
+                <details>
+                    <summary>¿Ofrecen mantenimiento post-instalación?</summary>
+                    <p class="text-gray-600">Absolutamente. Un sistema inteligente requiere supervisión. Ofrecemos contratos de mantenimiento para actualizaciones de firmware, revisión de servidores y ajustes de programación.</p>
+                </details>
+                <details>
+                    <summary>¿Trabajan con arquitectos o decoradores?</summary>
+                    <p class="text-gray-600">Sí, colaboramos habitualmente con estudios de arquitectura e interiorismo para planificar la tecnología desde la fase de plano, asegurando que la estética no se vea comprometida.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card bg-blue-50 border-blue-100">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-black mb-4">Inicie la Operación</h2>
+                    <p class="text-gray-600 mb-8">
+                        Rellene el formulario para agendar una consultoría técnica. Analizaremos su infraestructura y propondremos la solución más eficiente.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center border border-gray-200">
+                                <i class="fas fa-check text-green-500"></i>
+                            </div>
+                            <span class="font-medium text-gray-700">Asesoramiento personalizado</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center border border-gray-200">
+                                <i class="fas fa-check text-green-500"></i>
+                            </div>
+                            <span class="font-medium text-gray-700">Presupuestos sin compromiso</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center border border-gray-200">
+                                <i class="fas fa-check text-green-500"></i>
+                            </div>
+                            <span class="font-medium text-gray-700">Cobertura nacional</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); btn.innerText='Enviando Operación...'; btn.disabled=true; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Nombre Completo</label>
+                            <input type="text" required class="input-field" placeholder="Su nombre">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Teléfono</label>
+                            <input type="tel" required class="input-field" placeholder="Su teléfono">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Tipo de Proyecto</label>
+                            <select class="input-field">
+                                <option>Vivienda Nueva</option>
+                                <option>Reforma Integral</option>
+                                <option>Mejora de Instalación Existente</option>
+                                <option>Oficina / Local</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Detalles</label>
+                            <textarea class="input-field h-24" placeholder="Describa brevemente qué necesita..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full text-center">
+                            Enviar Solicitud
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="text-center py-10" style="display:none">
+                        <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">¡Solicitud Recibida!</h3>
+                        <p class="text-gray-600">Nuestro equipo de operaciones analizará sus datos y le contactará en menos de 24h.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white text-lg font-black uppercase mb-4">Kidanikium Operations</h4>
+                    <p class="text-sm max-w-sm mb-4">
+                        Este es un sitio promocional independiente gestionado por Kidanikium Operations, actuando como afiliado para Home Server. Nuestra misión es conectar a propietarios exigentes con las mejores soluciones de tecnología doméstica.
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        &copy; 2026 Kidanikium Operations. Todos los derechos reservados.
+                    </p>
+                </div>
+                
+                <div class="text-sm space-y-2 md:text-right">
+                    <!-- LEGAL ACCORDIONS -->
+                    <details class="cursor-pointer group">
+                        <summary class="list-none hover:text-white transition">Política de Privacidad</summary>
+                        <div class="text-left bg-gray-800 p-4 mt-2 rounded text-xs text-gray-300">
+                            <p class="mb-2">En Kidanikium Operations, nos tomamos muy en serio la privacidad de sus datos. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos la información personal que usted proporciona a través de este sitio web. Al utilizar nuestro sitio, usted acepta las prácticas descritas en esta política. Recopilamos información personal únicamente cuando usted la proporciona voluntariamente a través de nuestros formularios de contacto, como su nombre, número de teléfono y detalles del proyecto. Esta información se utiliza exclusivamente para gestionar su solicitud de servicio y ponerle en contacto con los técnicos especialistas de Home Server.</p>
+                            <p class="mb-2">No vendemos, alquilamos ni compartimos su información personal con terceros ajenos a la prestación del servicio solicitado, salvo que sea requerido por ley. Implementamos medidas de seguridad técnicas y organizativas para proteger sus datos contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Usted tiene derecho a acceder, rectificar o eliminar sus datos personales en cualquier momento poniéndose en contacto con nosotros.</p>
+                            <p>Utilizamos cookies y tecnologías similares para mejorar su experiencia en nuestro sitio web. Puede configurar su navegador para rechazar todas las cookies o para indicar cuándo se envía una cookie. Sin embargo, si no acepta cookies, es posible que no pueda utilizar algunas partes de nuestro sitio. Nos reservamos el derecho de actualizar esta política de privacidad en cualquier momento. Le recomendamos que revise esta página periódicamente para estar informado de cualquier cambio.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="cursor-pointer group">
+                        <summary class="list-none hover:text-white transition">Términos y Condiciones</summary>
+                        <div class="text-left bg-gray-800 p-4 mt-2 rounded text-xs text-gray-300">
+                            <p class="mb-2">Bienvenido a Kidanikium Operations. Al acceder y utilizar este sitio web, usted acepta cumplir y estar sujeto a los siguientes Términos y Condiciones de uso. Si no está de acuerdo con alguna parte de estos términos, por favor no utilice nuestro sitio web. El contenido de las páginas de este sitio web es para su información general y uso exclusivamente. Está sujeto a cambios sin previo aviso. Ni nosotros ni terceros ofrecemos ninguna garantía en cuanto a la exactitud, puntualidad, rendimiento, integridad o idoneidad de la información y los materiales encontrados u ofrecidos en este sitio web para cualquier propósito particular.</p>
+                            <p class="mb-2">El uso de cualquier información o material en este sitio web es bajo su propio riesgo, por lo cual no seremos responsables. Será su propia responsabilidad asegurarse de que cualquier producto, servicio o información disponible a través de este sitio web cumpla con sus requisitos específicos. Este sitio web contiene material que es propiedad nuestra o tiene licencia para nosotros. Este material incluye, pero no se limita a, el diseño, la disposición, el aspecto, la apariencia y los gráficos. La reproducción está prohibida salvo de acuerdo con el aviso de derechos de autor, que forma parte de estos términos y condiciones.</p>
+                            <p>Kidanikium Operations actúa como un intermediario de marketing independiente y no es el proveedor final de los servicios de instalación domótica. La responsabilidad contractual de la instalación y garantía de los equipos recae exclusivamente sobre el proveedor de servicios, Home Server. Estos términos se regirán e interpretarán de acuerdo con las leyes vigentes en España.</p>
+                        </div>
+                    </details>
+
+                    <details class="cursor-pointer group">
+                        <summary class="list-none hover:text-white transition">Política de Cancelación y Reembolsos</summary>
+                        <div class="text-left bg-gray-800 p-4 mt-2 rounded text-xs text-gray-300">
+                            <p class="mb-2">En Kidanikium Operations valoramos la satisfacción del cliente. Sin embargo, dado que nuestra función principal es la de conectar clientes con proveedores de servicios técnicos, nuestra política de reembolsos se limita a nuestras operaciones directas. Los servicios de consultoría o instalación contratados directamente con Home Server estarán sujetos a sus propios términos y condiciones de cancelación y reembolso, los cuales deben ser consultados directamente con el proveedor antes de iniciar cualquier trabajo.</p>
+                            <p class="mb-2">Si usted ha realizado un depósito por una visita técnica a través de nuestra plataforma y desea cancelar, puede hacerlo sin penalización hasta 24 horas antes de la cita programada. En tal caso, se procederá al reembolso íntegro del importe abonado en un plazo máximo de 14 días naturales. Las cancelaciones realizadas con menos de 24 horas de antelación pueden estar sujetas a cargos administrativos.</p>
+                            <p>Para productos de hardware o software adquiridos como parte de la instalación, las garantías y devoluciones se regirán por la Ley General para la Defensa de los Consumidores y Usuarios y las políticas específicas del fabricante o instalador autorizado. Kidanikium Operations no asume responsabilidad directa por fallos de hardware o instalaciones defectuosas realizadas por terceros, aunque mediará para facilitar una resolución amistosa siempre que sea posible.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t-2 border-black p-4 z-50 transform translate-y-full transition-transform duration-300 shadow-2xl">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm text-gray-700 mb-4 md:mb-0 mr-4">
+                Utilizamos cookies para optimizar nuestras operaciones y mejorar su experiencia. 
+                Al continuar navegando, acepta nuestra política de datos.
+            </p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-xs">
+                    Aceptar Operaciones
+                </button>
+                <button onclick="document.getElementById('cookie-banner').style.transform='translateY(100%)'" class="text-gray-500 text-xs underline hover:text-gray-800">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Smooth Scroll Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Normal smooth scroll
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                } else {
+                    // Fallback to Contact if ID not found (Self-Healing)
+                    e.preventDefault();
+                    console.log('Target section missing, rerouting to #contact');
+                    const contactSection = document.querySelector('#contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Cookie Logic
+        function acceptCookies() {
+            localStorage.setItem('kidanikium_consent', 'true');
+            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
+        }
+
+        // Show Cookie Banner on Load if not accepted
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('kidanikium_consent')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').style.transform = 'translateY(0)';
+                }, 1000);
+            }
+        });
+    </script>
+
+</body>
+</html>
