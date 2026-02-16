@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="El mejor asesoramiento para encontrar paquetes vacacionales, vuelos y hoteles al mejor precio. Inversión en descanso.">
+    <title>Cikewu Advisory | Expertos en Paquetes Vacacionales</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: VISUAL DNA -->
+    <style>
+        :root {
+            /* VAR D: Palette (Travel/Advisory Mix -> Ocean Teal) */
+            --primary: #008080; 
+            /* VAR C: Surface (Warm Cream -> Last Letter 'm' % 3 = 1) */
+            --surface: #fffdf5;
+            /* VAR A: Geometry (Length 26 % 3 = 2 -> Pill) */
+            --radius: 24px;
+            /* VAR B: Physics (First Letter 'c' code 99 % 3 = 0 -> Flat Border) */
+            --shadow: 0 0 0 1px #e5e7eb;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .dna-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        
+        /* FORM INPUT STYLES */
+        input, textarea, select {
+            border-radius: var(--radius);
+            border: 1px solid #d1d5db;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            margin-bottom: 1rem;
+            background-color: white;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            ring: 2px solid var(--primary);
+        }
+
+        /* DETAILS SUMMARY FOR FAQ/LEGAL */
+        details {
+            cursor: pointer;
+        }
+        details > summary {
+            list-style: none;
+            font-weight: 600;
+            padding: 1rem 0;
+            outline: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased relative pb-20">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-gray-800 tracking-tight">Cikewu<span class="text-primary">Advisory</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-600 hover:text-primary transition font-medium">Servicios</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary transition font-medium">Experiencias</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary transition font-medium">Preguntas</a>
+                    <!-- NOTE: No phone button rendered as no source phone number was verified -->
+                    <a href="#contact" class="btn-primary">Consultar Viaje</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white border-t border-gray-200" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Servicios</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Experiencias</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-primary bg-gray-50">Consultar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden mt-10">
+        <!-- Abstract image of vacation planning/resort -->
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" src="https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Playa paradisiaca vacaciones" loading="lazy" referrerpolicy="no-referrer">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
+                El asesoramiento experto para tus próximas <span class="text-primary">vacaciones perfectas</span>.
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 mb-10">
+                La mejor inversión es un recuerdo inolvidable. Cikewu Advisory te guía hacia las mejores ofertas en vuelos y hoteles combinados, garantizando calidad y ahorro.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#features" class="btn-primary text-lg">Descubrir Destinos</a>
+                <a href="#contact" class="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-full shadow-lg font-bold transition transform hover:-translate-y-1">Planificar Ahora</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST SECTION -->
+    <div class="bg-white py-8 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-gray-500 tracking-wider uppercase mb-4">Analizamos las mejores opciones del mercado</p>
+            <div class="flex justify-center space-x-8 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                <span class="text-xl font-bold text-gray-400">AirLines Global</span>
+                <span class="text-xl font-bold text-gray-400">HotelChain Elite</span>
+                <span class="text-xl font-bold text-gray-400">ResortFinder</span>
+                <span class="text-xl font-bold text-gray-400">TravelSecure</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8">
+        
+        <!-- SERVICES / FEATURES SECTION (Card) -->
+        <div id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Nuestra Experiencia</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Más que un viaje, una gestión integral
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Optimizamos la búsqueda de paquetes vacacionales (Vuelo + Hotel) para asegurar que cada euro invertido mejore tu experiencia de descanso.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-primary mx-auto mb-4">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Ahorro Combinado</h3>
+                    <p class="mt-2 text-base text-gray-500">
+                        Al gestionar vuelo y hotel conjuntamente, conseguimos tarifas exclusivas que no están disponibles al reservar por separado.
+                    </p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-primary mx-auto mb-4">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Destinos Globales</h3>
+                    <p class="mt-2 text-base text-gray-500">
+                        Desde escapadas urbanas en Europa hasta retiros exóticos en Asia. Analizamos todas las opciones para encontrar tu lugar ideal.
+                    </p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-primary mx-auto mb-4">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Flexibilidad Total</h3>
+                    <p class="mt-2 text-base text-gray-500">
+                        Entendemos que los planes cambian. Buscamos opciones con políticas de cancelación claras y coberturas de viaje robustas.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-10">
+                <img src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-64 object-cover rounded-2xl shadow-sm" alt="Hotel de lujo piscina" loading="lazy">
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION (Card) -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card mt-12">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">Opiniones de Viajeros (2026)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <div class="h-10 w-10 rounded-full bg-blue-200 flex items-center justify-center text-blue-700 font-bold">MR</div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-900">María Rodríguez</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">"Cikewu Advisory encontró una combinación de vuelo y hotel para Nueva York que me ahorró casi un 30%. El servicio fue impecable."</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <div class="h-10 w-10 rounded-full bg-green-200 flex items-center justify-center text-green-700 font-bold">PL</div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-900">Pablo López</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">"Excelente gestión. Quería un paquete para Maldivas y me ofrecieron opciones que no encontraba en ningún otro buscador. Muy recomendados."</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <div class="h-10 w-10 rounded-full bg-purple-200 flex items-center justify-center text-purple-700 font-bold">CS</div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-900">Carla Sánchez</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">"Rápidos y eficientes. La herramienta de búsqueda que utilizan es superior. Mis vacaciones en familia salieron perfectas gracias a su asesoría."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION (Card) -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card mt-12">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Preguntas Frecuentes</h2>
+            
+            <div class="divide-y divide-gray-200">
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800 hover:text-primary">
+                        <span>¿Es más barato reservar vuelo y hotel juntos?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 mb-4 group-open:animate-fadeIn">
+                        Sí, generalmente las aerolíneas y hoteles ofrecen tarifas opacas (no públicas) cuando se venden como paquete, lo que permite un ahorro significativo frente a la reserva por separado.
+                    </p>
+                </details>
+
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800 hover:text-primary">
+                        <span>¿Puedo elegir los horarios de los vuelos?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 mb-4 group-open:animate-fadeIn">
+                        Absolutamente. Nuestro sistema prioriza tu comodidad, permitiéndote filtrar por horarios de salida y llegada para maximizar tu tiempo en el destino.
+                    </p>
+                </details>
+
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800 hover:text-primary">
+                        <span>¿Incluyen traslados del aeropuerto al hotel?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 mb-4 group-open:animate-fadeIn">
+                        Depende del paquete seleccionado. Muchas de nuestras ofertas premium incluyen traslados, pero siempre se especificará claramente en los detalles de la oferta antes de la confirmación.
+                    </p>
+                </details>
+                
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800 hover:text-primary">
+                        <span>¿Qué protección tengo si la aerolínea cancela?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 mb-4 group-open:animate-fadeIn">
+                        Trabajamos exclusivamente con proveedores que cumplen con las normativas europeas de protección al viajero. Si hay una cancelación, te asistiremos para obtener el reembolso o la reubicación según tus derechos.
+                    </p>
+                </details>
+
+                <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800 hover:text-primary">
+                        <span>¿Cómo recibo mi documentación?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 mb-4 group-open:animate-fadeIn">
+                        Toda la gestión es 100% digital. Recibirás tus billetes electrónicos y bonos de hotel directamente en tu correo electrónico tras la confirmación de la reserva.
+                    </p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION (Card) -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card mt-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Empieza tu viaje hoy</h2>
+                    <p class="text-gray-600 mb-8">
+                        Déjanos tus datos y las preferencias de tu viaje. Un especialista analizará las bases de datos para encontrarte la mejor combinación posible.
+                    </p>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h4 class="font-bold text-gray-800 mb-2">Información de Operaciones</h4>
+                        <p class="text-sm text-gray-500 mb-4">Cikewu Advisory - Oficina Digital</p>
+                        <p class="text-sm text-gray-500">Horario de atención: 24/7 (Plataforma Online)</p>
+                    </div>
+                    <img src="https://images.pexels.com/photos/1008155/pexels-photo-1008155.jpeg?auto=compress&cs=tinysrgb&w=800" class="mt-6 rounded-2xl w-full h-48 object-cover" alt="Agente de viajes" loading="lazy">
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-2xl">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Procesando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+                        <input type="text" required placeholder="Tu nombre">
+                        
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Destino Deseado</label>
+                        <input type="text" required placeholder="Ej: Bali, París, Cancún">
+                        
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Fechas Aproximadas</label>
+                        <select required>
+                            <option value="">Selecciona una temporada</option>
+                            <option value="verano">Verano 2026</option>
+                            <option value="invierno">Invierno 2026</option>
+                            <option value="flexible">Fechas Flexibles</option>
+                        </select>
+                        
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Detalles Adicionales</label>
+                        <textarea rows="4" placeholder="¿Preferencia de hotel? ¿Vuelos directos?"></textarea>
+                        
+                        <button type="submit" class="btn-primary w-full mt-4">Solicitar Presupuesto Gratuito</button>
+                        <p class="text-xs text-gray-400 mt-4 text-center">Al enviar, aceptas nuestros términos de servicio. No compartimos tus datos.</p>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="text-center py-10" style="display:none">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                            <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">¡Solicitud Recibida!</h3>
+                        <p class="text-gray-600">Un asesor especializado analizará tu ruta y te contactaremos en breve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <span class="text-2xl font-bold text-white tracking-tight">Cikewu<span class="text-primary">Advisory</span></span>
+                    <p class="mt-4 text-sm max-w-xs">
+                        Tu socio estratégico para maximizar el valor de tus vacaciones. Conectamos viajeros con las mejores oportunidades del mercado global.
+                    </p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm">© 2026 Cikewu Advisory. Todos los derechos reservados.</p>
+                    <p class="text-xs mt-2 text-gray-500 font-bold">
+                        IMPORTANTE: Este es un sitio promocional independiente gestionado por Cikewu Advisory, actuando como afiliado para Skyscanner.
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 space-y-4">
+                
+                <!-- Privacy Policy -->
+                <details>
+                    <summary class="text-sm hover:text-white">Política de Privacidad</summary>
+                    <div class="mt-4 text-xs leading-relaxed text-gray-500 space-y-2">
+                        <p>En Cikewu Advisory, nos comprometemos a proteger su privacidad con el máximo rigor. Esta política describe cómo recopilamos, usamos y salvaguardamos su información personal al visitar nuestro sitio web. Al utilizar nuestros servicios, usted acepta las prácticas descritas en esta política.</p>
+                        <p>Recopilamos información limitada únicamente para facilitar la búsqueda de paquetes vacacionales y mejorar su experiencia de usuario. No vendemos, alquilamos ni compartimos su información personal con terceros no afiliados con fines de marketing directo sin su consentimiento expreso.</p>
+                        <p>Utilizamos medidas de seguridad técnicas y organizativas para proteger sus datos contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Sin embargo, ninguna transmisión por Internet es 100% segura, por lo que no podemos garantizar una seguridad absoluta.</p>
+                        <p>Usted tiene derecho a acceder, corregir o eliminar su información personal en cualquier momento. Para ejercer estos derechos, por favor utilice los canales de contacto proporcionados en este sitio web. Conservaremos sus datos solo durante el tiempo necesario para cumplir con los fines para los que fueron recopilados.</p>
+                        <p>Nuestro sitio web puede contener enlaces a sitios de terceros, como proveedores de viajes y aerolíneas. No nos hacemos responsables de las prácticas de privacidad de dichos sitios y le recomendamos leer sus políticas de privacidad antes de proporcionarles información personal.</p>
+                        <p>Podemos actualizar esta Política de Privacidad periódicamente para reflejar cambios en nuestras prácticas o en la legislación aplicable. Le notificaremos cualquier cambio sustancial publicando la nueva política en esta página.</p>
+                    </div>
+                </details>
+
+                <!-- Terms of Service -->
+                <details>
+                    <summary class="text-sm hover:text-white">Términos y Condiciones</summary>
+                    <div class="mt-4 text-xs leading-relaxed text-gray-500 space-y-2">
+                        <p>Bienvenido a Cikewu Advisory. Al acceder y utilizar este sitio web, usted acepta cumplir con los siguientes Términos y Condiciones. Si no está de acuerdo con alguna parte de estos términos, no debe utilizar nuestro sitio web.</p>
+                        <p>Este sitio web actúa como un portal de asesoramiento y afiliación, conectando a los usuarios con proveedores de servicios de viajes. No somos una agencia de viajes ni un operador turístico, y no somos responsables de la ejecución de los servicios reservados a través de terceros.</p>
+                        <p>Toda la información proporcionada en este sitio web es solo para fines informativos y promocionales. Nos esforzamos por mantener la información actualizada, pero no garantizamos la exactitud, integridad o disponibilidad de las ofertas de viajes presentadas.</p>
+                        <p>Usted es responsable de verificar los requisitos de viaje, como visados, pasaportes y vacunas, antes de reservar cualquier viaje. Cikewu Advisory no asume responsabilidad por problemas derivados del incumplimiento de dichos requisitos.</p>
+                        <p>El uso de este sitio web es bajo su propio riesgo. No seremos responsables de ningún daño directo, indirecto, incidental o consecuente que resulte del uso o la imposibilidad de uso de este sitio web o de los servicios enlazados.</p>
+                        <p>Nos reservamos el derecho de modificar o discontinuar cualquier aspecto de nuestros servicios en cualquier momento sin previo aviso. Estos términos se rigen por las leyes vigentes y cualquier disputa se resolverá en la jurisdicción correspondiente.</p>
+                    </div>
+                </details>
+                
+                 <!-- Refund Policy (Generic for Affiliate) -->
+                 <details>
+                    <summary class="text-sm hover:text-white">Política de Devoluciones y Cambios</summary>
+                    <div class="mt-4 text-xs leading-relaxed text-gray-500 space-y-2">
+                        <p>Dado que Cikewu Advisory actúa como un intermediario informativo y plataforma de afiliación, no procesamos transacciones financieras directas por reservas de viajes. Todos los pagos se realizan directamente a los proveedores de servicios (aerolíneas, hoteles o agencias de viajes asociadas).</p>
+                        <p>Las políticas de reembolso, cancelación y cambios están dictadas exclusivamente por el proveedor final del servicio. Le recomendamos encarecidamente que revise las condiciones de cancelación de cada reserva antes de finalizar el pago en la plataforma del proveedor.</p>
+                        <p>En caso de que necesite solicitar un reembolso o realizar cambios en su itinerario, deberá ponerse en contacto directamente con la empresa donde realizó la reserva final. Cikewu Advisory no tiene acceso a sus datos de pago ni capacidad para autorizar devoluciones.</p>
+                        <p>No obstante, ofrecemos asesoramiento sobre cómo proceder en caso de reclamaciones y podemos guiarle hacia los canales de atención al cliente adecuados de nuestros socios comerciales.</p>
+                        <p>La contratación de un seguro de viaje es altamente recomendable para cubrir posibles imprevistos que puedan impedir su viaje y generar gastos de cancelación.</p>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white shadow-2xl p-4 border-t border-gray-200 transform translate-y-full transition-transform duration-300 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <p class="text-sm text-gray-600 mb-4 md:mb-0">
+                Utilizamos cookies para analizar el tráfico y mejorar su experiencia de búsqueda de viajes. Al continuar, acepta nuestro uso de cookies.
+            </p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm">Aceptar Todo</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 text-sm hover:text-gray-700">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS PROTOCOLS -->
+    <script>
+        // SMART ROUTING & SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to contact if ID missing
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+            setTimeout(() => { document.getElementById('cookie-banner').style.display = 'none'; }, 300);
+        }
+
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                const banner = document.getElementById('cookie-banner');
+                banner.classList.remove('translate-y-full');
+            }
+        });
+    </script>
+
+</body>
+</html>
