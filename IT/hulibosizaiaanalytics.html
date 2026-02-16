@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sizaia Analytics - Soluzioni digitali avanzate per concessionarie auto. Siti web, CRM e marketing per accelerare le vendite.">
+    <title>Sizaia Analytics | Digital Automotive Solutions</title>
+    <!-- Tailwind CSS v2.2.19 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: TECH STACK - Design System Injection -->
+    <style>
+        :root {
+            /* VAR D: Palette (Automotive Analytics -> Tech Blue) */
+            --primary: #1e40af; 
+            /* VAR C: Surface (Last Letter 'z' -> Cool Slate) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry (Length 26 % 3 = 2 -> Pill) */
+            --radius: 24px;
+            /* VAR B: Physics (First Letter 'h' % 3 = 2 -> Hard Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #111; /* Enhanced contrast for Hard Physics */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        .btn-secondary {
+            background-color: #ffffff;
+            color: #000 !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 700;
+            border: 2px solid #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Custom Details/Summary */
+        details summary {
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            padding-right: 20px;
+            font-weight: 600;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-black text-2xl tracking-tighter text-black uppercase">
+                        Sizaia<span class="text-primary">Analytics</span>
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-900 hover:text-primary font-bold transition">Soluzioni</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary font-bold transition">Testimonianze</a>
+                    <a href="#contact" class="btn-primary no-underline text-white">Prenota Demo</a>
+                </div>
+                <!-- Mobile Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-black focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t-2 border-black p-4">
+            <a href="#features" class="block py-3 text-lg font-bold text-gray-800">Soluzioni</a>
+            <a href="#reviews" class="block py-3 text-lg font-bold text-gray-800">Testimonianze</a>
+            <a href="#contact" class="block mt-4 text-center btn-primary">Prenota Demo</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-white overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" 
+                 src="https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Showroom auto moderno" 
+                 referrerpolicy="no-referrer" loading="lazy"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Car+Dealership+Background'">
+            <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl max-w-3xl leading-tight mb-6">
+                L'Analisi Intelligente che Accelera le Vendite della Tua <span class="text-blue-400">Concessionaria</span>
+            </h1>
+            <p class="mt-4 max-w-3xl text-xl text-gray-200 font-medium mb-10">
+                Trasformiamo i dati grezzi in contratti firmati. Sizaia Analytics ottimizza la presenza digitale del tuo showroom con la tecnologia leader di mercato.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#contact" class="btn-primary text-center">Inizia Ora</a>
+                <a href="#features" class="btn-secondary text-center">Scopri i Servizi</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST PROOF -->
+    <section class="py-10 bg-white border-b-2 border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Partner tecnologici di fiducia per</p>
+            <div class="flex justify-center flex-wrap gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <span class="text-2xl font-bold text-gray-600">AUTOEUROPA</span>
+                <span class="text-2xl font-bold text-gray-600">MOTORS CITY</span>
+                <span class="text-2xl font-bold text-gray-600">GRUPPO ROSSI</span>
+                <span class="text-2xl font-bold text-gray-600">DRIVE PLUS</span>
+                <span class="text-2xl font-bold text-gray-600">NEXT CAR</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-gray-900 sm:text-4xl mb-4">Ecosistema Digitale Automotive</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Offriamo un pacchetto completo per digitalizzare il tuo processo di vendita, dal primo clic alla consegna delle chiavi.
+                </p>
+            </div>
+
+            <!-- Feature 1 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Piattaforma Web Auto" 
+                         class="rounded-xl shadow-lg border-2 border-black w-full" 
+                         referrerpolicy="no-referrer" loading="lazy">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">WebSite & Showroom Virtuale</h3>
+                    <p class="text-gray-600 mb-6">
+                        Non un semplice sito, ma una vera estensione della tua concessionaria. I nostri portali web sono ottimizzati per la lead generation, con schede veicolo dettagliate, calcolatori finanziari integrati e un design responsive che guida l'utente verso la prenotazione del test drive.
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700 font-medium">
+                        <li>Integrazione stock in tempo reale</li>
+                        <li>UX Mobile-First per clienti in movimento</li>
+                        <li>SEO specifica per il settore automotive</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Analisi Dati CRM" 
+                         class="rounded-xl shadow-lg border-2 border-black w-full" 
+                         referrerpolicy="no-referrer" loading="lazy">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Gestione Lead & CRM Avanzato</h3>
+                    <p class="text-gray-600 mb-6">
+                        Non perdere mai più un potenziale acquirente. La nostra suite CRM centralizza ogni richiesta (email, telefono, walk-in) e automatizza il follow-up. Il nostro sistema di qualificazione intelligente ti aiuta a dare priorità ai lead più caldi pronti all'acquisto.
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700 font-medium">
+                        <li>Automazione dei task commerciali</li>
+                        <li>Tracciamento completo del customer journey</li>
+                        <li>Reportistica dettagliata sulle performance di vendita</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/906052/pexels-photo-906052.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Digital Marketing" 
+                         class="rounded-xl shadow-lg border-2 border-black w-full" 
+                         referrerpolicy="no-referrer" loading="lazy">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Digital Marketing Mirato</h3>
+                    <p class="text-gray-600 mb-6">
+                        Raggiungi l'acquirente giusto al momento giusto. Gestiamo campagne pubblicitarie multi-canale focalizzate sul ROI. Utilizziamo i dati del tuo inventario per creare annunci dinamici che mostrano le auto che hai effettivamente in stock.
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700 font-medium">
+                        <li>Campagne Google Ads e Social Media</li>
+                        <li>Retargeting dinamico basato sull'inventario</li>
+                        <li>Analisi predittiva del pubblico</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section id="reviews" class="py-10 px-4 bg-gray-50">
+        <div class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black text-center mb-10 text-gray-900">Cosa dicono i Dealer Italiani</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="p-4 border border-gray-100 rounded-lg bg-white">
+                    <div class="text-primary text-2xl mb-2">★★★★★</div>
+                    <p class="text-gray-600 text-sm mb-4">"Grazie a Sizaia Analytics abbiamo ridotto i tempi di risposta ai lead del 60%. Il CRM è intuitivo e il team di vendita lo adora. Una svolta reale."</p>
+                    <div class="font-bold text-gray-900">— Marco V., Resp. Vendite</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="p-4 border border-gray-100 rounded-lg bg-white">
+                    <div class="text-primary text-2xl mb-2">★★★★★</div>
+                    <p class="text-gray-600 text-sm mb-4">"Il nuovo sito web converte molto meglio del precedente. Le schede auto sono perfette e riceviamo richieste molto più qualificate."</p>
+                    <div class="font-bold text-gray-900">— Giulia R., Marketing Manager</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="p-4 border border-gray-100 rounded-lg bg-white">
+                    <div class="text-primary text-2xl mb-2">★★★★★</div>
+                    <p class="text-gray-600 text-sm mb-4">"Partner serio e affidabile. L'integrazione con i nostri sistemi di stock è stata rapida e indolore. Assolutamente consigliato."</p>
+                    <div class="font-bold text-gray-900">— Alessandro B., Titolare</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="py-10 px-4">
+        <div class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black text-center mb-8 text-gray-900">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                <details class="group p-4 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Quanto tempo serve per lanciare il nuovo sito?
+                        <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600">
+                        I tempi variano in base alla complessità, ma grazie alla nostra tecnologia modulare, possiamo lanciare una piattaforma completa in circa 4-6 settimane, inclusa l'importazione del tuo inventario auto.
+                    </div>
+                </details>
+                <details class="group p-4 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Il CRM si integra con i gestionali auto esistenti?
+                        <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600">
+                        Assolutamente sì. La nostra soluzione è progettata per dialogare con i principali DMS (Dealer Management Systems) presenti sul mercato italiano, garantendo la sincronizzazione dello stock senza doppio inserimento dati.
+                    </div>
+                </details>
+                <details class="group p-4 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Offrite supporto per le campagne pubblicitarie?
+                        <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600">
+                        Sì, il nostro pacchetto Digital Marketing include la gestione completa di campagne Google Ads, Facebook e Instagram, ottimizzate specificamente per generare test drive e visite in concessionaria.
+                    </div>
+                </details>
+                <details class="group p-4 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        I dati dei clienti sono al sicuro?
+                        <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600">
+                        La sicurezza dei dati è la nostra priorità. Tutte le nostre piattaforme sono conformi al GDPR e utilizzano crittografia avanzata per proteggere le informazioni sensibili dei tuoi clienti e del tuo business.
+                    </div>
+                </details>
+                <details class="group p-4 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        È prevista una formazione per il mio staff?
+                        <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600">
+                        Certamente. Ogni implementazione include sessioni di onboarding e formazione per il tuo team di vendita e marketing, per assicurare che sappiano sfruttare al massimo tutte le potenzialità degli strumenti forniti.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-16 px-4">
+        <div class="max-w-5xl mx-auto dna-card bg-white relative overflow-hidden">
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-black text-gray-900 mb-6">Accelera il tuo Business Oggi</h2>
+                    <p class="text-gray-600 mb-8">
+                        Compila il modulo per richiedere una demo gratuita delle nostre soluzioni. Un nostro esperto analizzerà le esigenze della tua concessionaria e ti proporrà un piano su misura.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4 text-gray-700 font-medium">
+                                Operiamo in tutta Italia
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                             <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4 text-gray-700 font-medium">
+                                Risposta garantita in 24h lavorative
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); const originalText = btn.innerText; btn.innerText = 'Invio in corso...'; btn.disabled = true; setTimeout(()=>{ this.style.display='none'; document.getElementById('success-msg').style.display='block'; window.scrollTo({top: document.getElementById('contact').offsetTop, behavior: 'smooth'}); }, 1500);">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-bold text-gray-700 mb-1">Nome e Cognome</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label for="company" class="block text-sm font-bold text-gray-700 mb-1">Nome Concessionaria</label>
+                                <input type="text" id="company" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-bold text-gray-700 mb-1">Telefono</label>
+                                <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label for="interest" class="block text-sm font-bold text-gray-700 mb-1">Interesse Principale</label>
+                                <select id="interest" class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary focus:outline-none transition-colors">
+                                    <option>Nuovo Sito Web</option>
+                                    <option>CRM e Gestione Lead</option>
+                                    <option>Marketing Digitale</option>
+                                    <option>Pacchetto Completo</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full btn-primary mt-4">Richiedi Demo Gratuita</button>
+                            <p class="text-xs text-gray-500 mt-2 text-center">I tuoi dati sono trattati in conformità con la nostra Privacy Policy.</p>
+                        </div>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="mb-4 text-green-500 flex justify-center">
+                            <svg class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Ricevuta!</h3>
+                        <p class="text-gray-600">Grazie per aver contattato Sizaia Analytics. Un nostro consulente automotive ti contatterà al numero fornito entro breve per confermare i dettagli.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white text-xl font-bold mb-4 uppercase">Sizaia<span class="text-primary">Analytics</span></h3>
+                    <p class="mb-4 text-sm max-w-sm">
+                        La piattaforma di riferimento per la trasformazione digitale delle concessionarie auto. Guidiamo il cambiamento attraverso dati, tecnologia e innovazione.
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        Questo è un sito promozionale indipendente gestito da Sizaia Analytics, che agisce come affiliato per MotorK. Tutti i marchi registrati appartengono ai legittimi proprietari.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 space-y-4">
+                <!-- LEGAL DETAILS -->
+                <details class="group cursor-pointer">
+                    <summary class="text-xs font-bold uppercase hover:text-white transition">Privacy Policy</summary>
+                    <div class="mt-4 text-xs space-y-2 text-gray-500 bg-gray-800 p-4 rounded leading-relaxed">
+                        <p><strong>1. Introduzione:</strong> La presente Privacy Policy descrive le modalità di gestione del sito web Sizaia Analytics in riferimento al trattamento dei dati personali degli utenti che lo consultano. Si tratta di un'informativa resa anche ai sensi dell'art. 13 del Regolamento UE 2016/679 (GDPR).</p>
+                        <p><strong>2. Titolare del Trattamento:</strong> Il Titolare del trattamento è Sizaia Analytics. Il trattamento dei dati connessi ai servizi web di questo sito ha luogo presso i server che ospitano il sito web.</p>
+                        <p><strong>3. Tipi di dati trattati:</strong> A) Dati di navigazione: i sistemi informatici acquisiscono, nel corso del loro normale esercizio, alcuni dati personali la cui trasmissione è implicita nell'uso dei protocolli di comunicazione di Internet. B) Dati forniti volontariamente: l'invio facoltativo di form comporta l'acquisizione dell'indirizzo del mittente, necessario per rispondere alle richieste, nonché degli altri eventuali dati personali inseriti.</p>
+                        <p><strong>4. Finalità del trattamento:</strong> I dati personali sono trattati per: a) permettere la navigazione sul sito; b) rispondere alle richieste di contatto; c) adempiere agli obblighi di legge.</p>
+                        <p><strong>5. Modalità del trattamento:</strong> I dati personali sono trattati con strumenti automatizzati per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti. Specifiche misure di sicurezza sono osservate per prevenire la perdita dei dati, usi illeciti o non corretti ed accessi non autorizzati.</p>
+                        <p><strong>6. Diritti degli interessati:</strong> I soggetti cui si riferiscono i dati personali hanno il diritto in qualunque momento di ottenere la conferma dell'esistenza o meno dei medesimi dati e di conoscerne il contenuto e l'origine, verificarne l'esattezza o chiederne l'integrazione o l'aggiornamento, oppure la rettificazione.</p>
+                        <p><strong>7. Modifiche:</strong> Il Titolare si riserva il diritto di apportare modifiche alla presente Privacy Policy in qualunque momento dandone pubblicità agli Utenti su questa pagina.</p>
+                        <p><strong>8. Cookie:</strong> Il sito utilizza cookie tecnici necessari al funzionamento e cookie di terze parti per analisi anonime del traffico.</p>
+                    </div>
+                </details>
+
+                <details class="group cursor-pointer">
+                    <summary class="text-xs font-bold uppercase hover:text-white transition">Termini e Condizioni</summary>
+                    <div class="mt-4 text-xs space-y-2 text-gray-500 bg-gray-800 p-4 rounded leading-relaxed">
+                        <p><strong>1. Accettazione dei Termini:</strong> L'accesso e l'uso di questo sito web sono soggetti ai seguenti Termini e Condizioni. Utilizzando il sito, accetti di essere vincolato da questi termini.</p>
+                        <p><strong>2. Uso del Sito:</strong> Il sito è destinato esclusivamente all'uso promozionale e informativo. È vietato utilizzare il sito per scopi illegali o non autorizzati. L'utente si impegna a non compromettere l'integrità o il funzionamento del sito.</p>
+                        <p><strong>3. Proprietà Intellettuale:</strong> Tutti i contenuti presenti sul sito, inclusi testi, grafiche, loghi e immagini, sono di proprietà di Sizaia Analytics o dei suoi fornitori di contenuti e sono protetti dalle leggi sul copyright. L'uso non autorizzato di tali materiali è severamente proibito.</p>
+                        <p><strong>4. Limitazione di Responsabilità:</strong> Sizaia Analytics non sarà responsabile per danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito. Le informazioni sono fornite "così come sono" senza garanzie di alcun tipo.</p>
+                        <p><strong>5. Link a Terze Parti:</strong> Il sito può contenere link a siti di terze parti. Sizaia Analytics non controlla tali siti e non è responsabile per i loro contenuti o per le loro politiche sulla privacy. L'accesso a tali siti è a rischio dell'utente.</p>
+                        <p><strong>6. Modifiche ai Termini:</strong> Ci riserviamo il diritto di modificare questi Termini e Condizioni in qualsiasi momento. Le modifiche saranno effettive immediatamente dopo la pubblicazione sul sito. L'uso continuato del sito costituisce accettazione delle modifiche.</p>
+                        <p><strong>7. Legge Applicabile:</strong> I presenti Termini sono regolati e interpretati in conformità con le leggi vigenti. Qualsiasi controversia sarà soggetta alla giurisdizione esclusiva dei tribunali competenti.</p>
+                    </div>
+                </details>
+
+                <div class="text-center pt-8 text-xs">
+                    &copy; 2026 Sizaia Analytics. Tutti i diritti riservati.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-black p-4 z-50 hidden shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-700 font-medium">
+                Utilizziamo i cookie per migliorare la tua esperienza di navigazione. Continuando a navigare accetti la nostra Policy.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 underline text-sm">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. SMART ROUTING
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Normal behavior if ID exists
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if ID is missing (Healing)
+                    console.log('Target ID missing, redirecting to Contact:', targetId);
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // 2. COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('sizaia_cookie_consent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+        
+        // Check consent on load
+        if (!localStorage.getItem('sizaia_cookie_consent')) {
+            document.getElementById('cookie-banner').classList.remove('hidden');
+            document.getElementById('cookie-banner').style.display = 'block'; // Ensure display
+        }
+    </script>
+
+</body>
+</html>
