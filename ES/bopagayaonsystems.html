@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BopaGaya Systems | Tecnología Automotriz Avanzada</title>
+    <meta name="description" content="Actualiza tu vehículo con los mejores sistemas de iluminación LED, multimedia y accesorios de detailing. Calidad profesional para tu coche.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* VAR D: Palette - Tech/Automotive Blue */
+            --primary: #2563eb;
+            /* VAR C: Surface - Clean White (based on calculation) */
+            --surface: #ffffff;
+            /* VAR A: Geometry - Sharp (33 char % 3 = 0) */
+            --radius: 0px;
+            /* VAR B: Physics - Material Shadow (Ascii 97 % 3 = 1) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 700;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-1px); 
+        }
+
+        .text-primary { color: var(--primary); }
+
+        /* DETAILS / FAQ STYLING */
+        details summary {
+            cursor: pointer;
+            padding: 1rem;
+            background-color: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            list-style: none;
+            position: relative;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary::after {
+            content: "+";
+            position: absolute;
+            right: 1rem;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+        details[open] summary::after {
+            content: "-";
+        }
+        details p {
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-top: none;
+        }
+
+        /* Legal Text Styling */
+        .legal-text {
+            font-size: 0.8rem;
+            color: #6b7280;
+            line-height: 1.5;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Sticky Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1f2937;
+            color: white;
+            padding: 1rem;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black text-gray-900 tracking-tighter uppercase">BopaGaya<span class="text-primary">Systems</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-primary font-medium transition">Soluciones</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-medium transition">Opiniones</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-medium transition">Ayuda</a>
+                    <a href="#contact" class="btn-primary">Contacto</a>
+                </div>
+                <!-- Mobile Button -->
+                <div class="flex md:hidden items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 focus:outline-none p-2">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-b">
+            <a href="#features" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Soluciones</a>
+            <a href="#reviews" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Opiniones</a>
+            <a href="#faq" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Ayuda</a>
+            <a href="#contact" class="block px-4 py-3 font-bold text-primary">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Full Width Exception) -->
+    <header class="relative bg-gray-900 h-screen-80 min-h-[600px] flex items-center">
+        <!-- Background Image -->
+        <img src="https://images.pexels.com/photos/188688/pexels-photo-188688.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+             alt="Coche moderno con luces led" 
+             class="absolute inset-0 w-full h-full object-cover"
+             referrerpolicy="no-referrer">
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-white leading-tight mb-6">
+                BopaGaya Systems: La evolución tecnológica que <span class="text-primary">tu coche necesita</span>.
+            </h1>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl">
+                Actualiza tu vehículo con los mejores <strong>sistemas de iluminación, multimedia y accesorios de detailing</strong>. La integración perfecta entre rendimiento y estética.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#features" class="btn-primary text-center">Ver Catálogo</a>
+                <a href="#contact" class="bg-white text-gray-900 px-8 py-4 font-bold uppercase tracking-wider hover:bg-gray-100 transition shadow-lg text-center" style="border-radius: var(--radius);">
+                    Solicitar Presupuesto
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST STRIP -->
+    <div class="bg-white border-b border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 flex justify-around flex-wrap gap-8 items-center text-gray-400 font-bold uppercase tracking-widest text-sm">
+            <span>Sistemas LED</span>
+            <span>CarPlay Integration</span>
+            <span>Car Detailing Pro</span>
+            <span>Diagnóstico OBD</span>
+            <span>Audio Premium</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4">
+
+        <!-- FEATURES / SERVICES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nuestras Soluciones Automotrices</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Seleccionamos los mejores componentes para modernizar cualquier vehículo, garantizando compatibilidad y un rendimiento superior en carretera.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gray-50 p-6 hover:shadow-lg transition duration-300" style="border-radius: var(--radius);">
+                    <img src="https://images.pexels.com/photos/10899320/pexels-photo-10899320.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Luces LED coche" 
+                         class="w-full h-48 object-cover mb-4 grayscale hover:grayscale-0 transition duration-500"
+                         style="border-radius: var(--radius);"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                    <h3 class="text-xl font-bold mb-3">Iluminación LED Avanzada</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Kits de conversión LED, bombillas Xenón y luces diurnas que mejoran la visibilidad y la seguridad nocturna. Tecnología Canbus para evitar errores en el cuadro.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-gray-50 p-6 hover:shadow-lg transition duration-300" style="border-radius: var(--radius);">
+                    <img src="https://images.pexels.com/photos/125514/pexels-photo-125514.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Pantalla Multimedia Coche" 
+                         class="w-full h-48 object-cover mb-4 grayscale hover:grayscale-0 transition duration-500"
+                         style="border-radius: var(--radius);"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                    <h3 class="text-xl font-bold mb-3">Multimedia y Conectividad</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Actualiza tu consola con pantallas táctiles compatibles con Android Auto y Apple CarPlay. Interfaces de vídeo, cámaras de aparcamiento y sistemas de navegación GPS integrados.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-gray-50 p-6 hover:shadow-lg transition duration-300" style="border-radius: var(--radius);">
+                    <img src="https://images.pexels.com/photos/4489704/pexels-photo-4489704.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Limpieza Coche Detailing" 
+                         class="w-full h-48 object-cover mb-4 grayscale hover:grayscale-0 transition duration-500"
+                         style="border-radius: var(--radius);"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                    <h3 class="text-xl font-bold mb-3">Detailing y Mantenimiento</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Productos profesionales para el cuidado estético de tu coche. Ceras, sellantes, limpiadores de tapicería y herramientas de diagnóstico OBD para mantener tu vehículo impecable.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOCIAL PROOF SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Experiencias de Conductores</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="border-l-4 border-blue-600 pl-4 py-2">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Instalé el kit de pantallas multimedia y el cambio ha sido brutal. Parece un coche nuevo salido del concesionario."</p>
+                    <p class="font-bold text-gray-900">- Carlos M., Madrid</p>
+                </div>
+                <div class="border-l-4 border-blue-600 pl-4 py-2">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Los productos de detailing son de nivel profesional. Compré el sellante cerámico y el brillo es espectacular."</p>
+                    <p class="font-bold text-gray-900">- Laura G., Valencia</p>
+                </div>
+                <div class="border-l-4 border-blue-600 pl-4 py-2">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Tenía dudas sobre qué bombillas LED elegir, pero su catálogo es muy claro. La iluminación en carretera ha mejorado un 200%."</p>
+                    <p class="font-bold text-gray-900">- Roberto S., Sevilla</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>¿Los kits LED son compatibles con todos los coches?</summary>
+                    <p class="text-gray-600">La mayoría de nuestros kits son universales, pero disponemos de modelos específicos con sistemas Canbus para vehículos modernos que detectan bombilla fundida. Recomendamos verificar el tipo de casquillo de su coche antes de pedir.</p>
+                </details>
+                <details>
+                    <summary>¿Ofrecen garantía en las pantallas multimedia?</summary>
+                    <p class="text-gray-600">Sí, todos los dispositivos electrónicos cuentan con la garantía legal de dos años contra defectos de fabricación. Nos aseguramos de ofrecer tecnología fiable y duradera.</p>
+                </details>
+                <details>
+                    <summary>¿Es difícil instalar los sistemas Android Auto?</summary>
+                    <p class="text-gray-600">Muchos de nuestros sistemas son "Plug & Play", diseñados para conectarse a la instalación original sin cortar cables. No obstante, siempre recomendamos la instalación por parte de un profesional si no se tiene experiencia.</p>
+                </details>
+                <details>
+                    <summary>¿Qué incluye un kit de detailing básico?</summary>
+                    <p class="text-gray-600">Un kit de iniciación suele incluir champú de carrocería, guante de lavado de microfibra, limpiallantas y una cera rápida para acabado. Es ideal para empezar a cuidar la estética del vehículo correctamente.</p>
+                </details>
+                <details>
+                    <summary>¿Hacen envíos a toda España?</summary>
+                    <p class="text-gray-600">Sí, gestionamos envíos a toda la península y Baleares con tiempos de entrega rápidos para que disfrutes de tus mejoras lo antes posible.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Contacta con Expertos</h2>
+                    <p class="text-gray-600 mb-8">
+                        ¿No sabes qué bombilla usa tu coche o qué pantalla es compatible? Envíanos tu consulta y te ayudaremos a elegir la mejor opción del mercado.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Ubicación</h4>
+                                <p class="text-gray-600">C. del Vidrio, 24, 28970 Humanes de Madrid, Madrid, España</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Horario</h4>
+                                <p class="text-gray-600">Lunes a Viernes: 09:30 - 18:30</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6" style="border-radius: var(--radius);">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Enviando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
+                            <input type="text" required class="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:border-blue-500" style="border-radius: var(--radius);">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Marca y Modelo del Vehículo</label>
+                            <input type="text" required class="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:border-blue-500" style="border-radius: var(--radius);">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Consulta</label>
+                            <textarea rows="4" required class="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:border-blue-500" style="border-radius: var(--radius);"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary">
+                            Enviar Consulta
+                        </button>
+                    </form>
+                    
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">¡Consulta Recibida!</h3>
+                        <p class="mt-2 text-sm text-gray-500">Un especialista técnico analizará los datos de tu vehículo y te contactará en breve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            
+            <div class="mb-8">
+                <span class="text-2xl font-black text-white uppercase tracking-tighter">BopaGaya<span class="text-primary">Systems</span></span>
+            </div>
+            
+            <p class="mb-6 text-sm text-gray-500 max-w-2xl mx-auto">
+                Este es un sitio promocional independiente gestionado por BopaGaya Systems, actuando como afiliado para AudioLedCar. Todos los derechos reservados de las marcas mencionadas pertenecen a sus respectivos propietarios.
+            </p>
+
+            <div class="flex justify-center space-x-6 mb-8 text-sm">
+                <a href="#contact" class="hover:text-white transition">Contacto</a>
+                <a href="#features" class="hover:text-white transition">Servicios</a>
+                <a href="#faq" class="hover:text-white transition">Preguntas Frecuentes</a>
+            </div>
+
+            <!-- COMPLIANCE DROPDOWNS -->
+            <div class="space-y-4 text-left max-w-3xl mx-auto">
+                
+                <details class="bg-gray-800 rounded p-4">
+                    <summary class="text-gray-300 font-bold hover:text-white">Política de Privacidad</summary>
+                    <div class="legal-text mt-4">
+                        <p class="mb-2">En BopaGaya Systems, nos tomamos muy en serio la privacidad de nuestros visitantes. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos su información personal cuando visita nuestro sitio web. Al utilizar nuestros servicios, usted acepta las prácticas descritas en esta política.</p>
+                        <p class="mb-2">Recopilación de Información: Recopilamos información que usted nos proporciona voluntariamente, como su nombre y detalles de su vehículo, únicamente a través de nuestro formulario de contacto. También podemos recopilar información técnica de forma automática, como su dirección IP y el tipo de navegador, mediante el uso de cookies para mejorar su experiencia de navegación.</p>
+                        <p class="mb-2">Uso de la Información: Utilizamos los datos recopilados para responder a sus consultas técnicas, mejorar la funcionalidad de nuestro sitio web y proporcionarle información relevante sobre actualizaciones tecnológicas para vehículos. No vendemos, alquilamos ni compartimos su información personal con terceros no afiliados con fines comerciales sin su consentimiento explícito.</p>
+                        <p class="mb-2">Seguridad de los Datos: Implementamos medidas de seguridad técnicas y organizativas razonables para proteger su información personal contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Sin embargo, tenga en cuenta que ninguna transmisión de datos a través de Internet es 100% segura.</p>
+                        <p class="mb-2">Derechos del Usuario: Usted tiene derecho a acceder, rectificar o eliminar la información personal que tenemos sobre usted. Si desea ejercer estos derechos, por favor contáctenos a través de nuestro formulario. Conservaremos su información solo durante el tiempo necesario para cumplir con los fines para los que fue recopilada.</p>
+                        <p>Cambios en la Política: Nos reservamos el derecho de modificar esta Política de Privacidad en cualquier momento. Cualquier cambio será publicado en esta página con la fecha de actualización correspondiente.</p>
+                    </div>
+                </details>
+
+                <details class="bg-gray-800 rounded p-4">
+                    <summary class="text-gray-300 font-bold hover:text-white">Términos y Condiciones</summary>
+                    <div class="legal-text mt-4">
+                        <p class="mb-2">Bienvenido a BopaGaya Systems. Al acceder y utilizar este sitio web, usted acepta cumplir y estar sujeto a los siguientes Términos y Condiciones de uso, que junto con nuestra Política de Privacidad rigen la relación entre usted y nosotros en relación con este sitio web.</p>
+                        <p class="mb-2">Uso del Sitio: El contenido de las páginas de este sitio web es para su información general y uso exclusivamente promocional. Está sujeto a cambios sin previo aviso. Ni nosotros ni terceros ofrecemos ninguna garantía en cuanto a la exactitud, puntualidad, rendimiento, integridad o idoneidad de la información y los materiales encontrados u ofrecidos en este sitio para ningún propósito particular.</p>
+                        <p class="mb-2">Propiedad Intelectual: Este sitio web contiene material que es propiedad nuestra o tiene licencia para nosotros. Este material incluye, entre otros, el diseño, la maquetación, la apariencia y los gráficos. Queda prohibida la reproducción salvo de conformidad con el aviso de copyright, que forma parte de estos términos y condiciones.</p>
+                        <p class="mb-2">Enlaces a Terceros: Este sitio web puede incluir enlaces a otros sitios web (como el proveedor original de los productos). Estos enlaces se proporcionan para su conveniencia para proporcionar más información. No significan que respaldemos el sitio web en su totalidad ni somos responsables del contenido de los sitios web enlazados.</p>
+                        <p class="mb-2">Limitación de Responsabilidad: El uso de cualquier información o material en este sitio web es bajo su propio riesgo, del cual no seremos responsables. Será su propia responsabilidad asegurarse de que cualquier producto, servicio o información disponible a través de este sitio web cumpla con sus requisitos específicos.</p>
+                        <p>Jurisdicción: El uso de este sitio web y cualquier disputa que surja de dicho uso del sitio web está sujeto a las leyes de España. Cualquier litigio será resuelto en los tribunales correspondientes.</p>
+                    </div>
+                </details>
+
+                <details class="bg-gray-800 rounded p-4">
+                    <summary class="text-gray-300 font-bold hover:text-white">Política de Reembolsos y Devoluciones</summary>
+                    <div class="legal-text mt-4">
+                        <p class="mb-2">En BopaGaya Systems, operamos como una plataforma de marketing y afiliación. Por lo tanto, no procesamos transacciones financieras directas ni ventas de productos físicos desde este sitio web específico. Todas las compras finales se realizan a través del proveedor original, AudioLedCar.</p>
+                        <p class="mb-2">Responsabilidad de la Compra: Cualquier reclamación, solicitud de reembolso o devolución debe dirigirse directamente al vendedor final donde se realizó la transacción económica. BopaGaya Systems no tiene acceso a los datos de facturación ni capacidad para emitir reembolsos de productos comprados en plataformas de terceros.</p>
+                        <p class="mb-2">Política General del Proveedor: Generalmente, los productos automotrices adquiridos en España cuentan con un derecho de desistimiento de 14 días naturales desde la recepción del producto, siempre que el producto esté en su embalaje original y sin usar. Los productos electrónicos instalados o manipulados pueden tener condiciones especiales.</p>
+                        <p class="mb-2">Garantía: Todos los productos comercializados en la Unión Europea tienen una garantía legal de dos años. Si el producto presenta un defecto de fabricación, debe ponerse en contacto con el servicio técnico del proveedor original para gestionar la reparación o sustitución.</p>
+                        <p>Exclusiones: BopaGaya Systems no se hace responsable de incompatibilidades de piezas si el usuario no ha verificado correctamente las especificaciones de su vehículo antes de la compra en el sitio del proveedor.</p>
+                    </div>
+                </details>
+
+            </div>
+
+            <p class="mt-12 text-gray-600">&copy; 2026 BopaGaya Systems. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <div class="text-sm mr-4">
+            Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle publicidad relacionada con sus preferencias.
+        </div>
+        <div class="flex gap-2">
+            <button onclick="document.getElementById('cookie-banner').style.transform='translateY(100%)'; localStorage.setItem('cookiesAccepted', 'true');" class="bg-white text-gray-900 px-4 py-2 text-xs font-bold rounded hover:bg-gray-200">
+                Aceptar
+            </button>
+            <button onclick="document.getElementById('cookie-banner').style.transform='translateY(100%)';" class="text-gray-400 text-xs underline">
+                Cerrar
+            </button>
+        </div>
+    </div>
+
+    <!-- JS INTERACTIVITY -->
+    <script>
+        // Sticky Header / Reveal
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+
+        // Cookie Logic
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                document.getElementById('cookie-banner').style.transform = 'translateY(0)';
+            }, 2000);
+        }
+
+        // Self-Healing Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    console.warn('Target ID not found:', targetId, 'Redirecting to Contact');
+                    const contactSection = document.querySelector('#contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
