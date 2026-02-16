@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wijem Partners | Selezione Moda Esclusiva</title>
+    <meta name="description" content="Scopri l'eleganza senza compromessi. Wijem Partners ti connette con le migliori collezioni di alta moda e accessori di lusso.">
+    
+    <!-- TAILWIND CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <!-- DESIGN DNA & SYSTEM CSS -->
+    <style>
+        :root {
+            /* VAR D: Palette - Fashion/Luxury (Pink 800) */
+            --primary: #9d174d; 
+            
+            /* VAR C: Surface - Warm Cream */
+            --surface: #fffdf5; 
+            
+            /* VAR A: Geometry - Length 26 % 3 = 2 -> Pill (24px) */
+            --radius: 24px; 
+            
+            /* VAR B: Physics - 'h' (104) % 3 = 2 -> Hard Neo-Brutalist */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL SETTINGS */
+        body {
+            background-color: #f3f4f6; /* Neutral contrast base */
+            color: #1f2937;
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* COMPONENT: DNA Card (The Anti-Blend Fix) */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000000; /* Increased border for brutalist pop */
+        }
+
+        /* COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2.5rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        /* UTILITIES */
+        .text-primary { color: var(--primary); }
+        .bg-surface { background-color: var(--surface); }
+
+        /* LEGAL DETAILS STYLE */
+        details {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: white;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0.5rem;
+        }
+        .legal-text {
+            font-size: 0.85rem;
+            color: #4b5563;
+            padding: 1rem;
+            line-height: 1.6;
+        }
+
+        /* COOKIE BANNER */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 3px solid #000;
+            padding: 1rem;
+            z-index: 50;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            display: none; /* Controlled by JS */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="w-full bg-white border-b-2 border-black sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-serif text-2xl font-bold tracking-tighter">
+                        Wijem<span class="text-primary">Partners</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-900 hover:text-primary font-medium">Collezioni</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary font-medium">Recensioni</a>
+                    <a href="#faq" class="text-gray-900 hover:text-primary font-medium">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm px-6 py-2">Richiedi Offerta</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-black focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-b border-black p-4">
+            <a href="#features" class="block py-2 text-lg font-medium text-gray-900">Collezioni</a>
+            <a href="#reviews" class="block py-2 text-lg font-medium text-gray-900">Recensioni</a>
+            <a href="#contact" class="block py-2 mt-2 btn-primary text-center">Contattaci</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative w-full bg-gray-900 text-white overflow-hidden">
+        <!-- Background with Overlay -->
+        <div class="absolute inset-0">
+            <img 
+                src="https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+                alt="Alta Moda Italiana" 
+                class="w-full h-full object-cover opacity-60"
+                referrerpolicy="no-referrer"
+            >
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+
+        <div class="relative max-w-5xl mx-auto px-4 py-24 sm:py-32 text-center">
+            <h1 class="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
+                Eleganza Senza Compromessi: <br>
+                <span class="text-pink-300">Il Tuo Partner di Stile.</span>
+            </h1>
+            <p class="text-xl sm:text-2xl mb-10 text-gray-200 max-w-3xl mx-auto">
+                Wijem Partners seleziona per te il meglio dell'abbigliamento griffato. Qualità, lusso e prezzi esclusivi per definire la tua identità.
+            </p>
+            <a href="#features" class="btn-primary border-white">Esplora le Collezioni</a>
+        </div>
+    </div>
+
+    <!-- TRUST BAR -->
+    <div class="bg-white border-b-2 border-black py-6">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">I Marchi che Amiamo</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale font-serif text-xl font-bold">
+                <span>ARMANI</span>
+                <span>VERSACE</span>
+                <span>MOSCHINO</span>
+                <span>DOLCE & GABBANA</span>
+                <span>PRADA</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="py-16 px-4">
+        
+        <!-- SERVICES / FEATURES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Cosa Ti Offriamo</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Non siamo un semplice negozio, siamo il tuo consulente di immagine personale con accesso ai cataloghi più ambiti.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center">
+                    <div class="bg-gray-100 rounded-full h-48 w-full mb-6 overflow-hidden border-2 border-black shadow-sm">
+                        <img 
+                            src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            class="w-full h-full object-cover" 
+                            alt="Abbigliamento Uomo"
+                            loading="lazy"
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Abbigliamento Firmato</h3>
+                    <p class="text-gray-600 text-sm">Capi iconici delle maison più prestigiose. Dagli abiti da sera al casual di lusso, vestiamo ogni momento della tua giornata.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="text-center">
+                    <div class="bg-gray-100 rounded-full h-48 w-full mb-6 overflow-hidden border-2 border-black shadow-sm">
+                        <img 
+                            src="https://images.pexels.com/photos/298864/pexels-photo-298864.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            class="w-full h-full object-cover" 
+                            alt="Scarpe e Accessori"
+                            loading="lazy"
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Calzature d'Elite</h3>
+                    <p class="text-gray-600 text-sm">Sneakers ricercate e scarpe eleganti in pelle italiana. Il dettaglio che definisce il tuo passo e il tuo status.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="text-center">
+                    <div class="bg-gray-100 rounded-full h-48 w-full mb-6 overflow-hidden border-2 border-black shadow-sm">
+                        <img 
+                            src="https://images.pexels.com/photos/1460838/pexels-photo-1460838.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            class="w-full h-full object-cover" 
+                            alt="Accessori Lusso"
+                            loading="lazy"
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Accessori & Borse</h3>
+                    <p class="text-gray-600 text-sm">Borse, cinture e piccoli accessori in pelle che trasformano un outfit ordinario in uno stile indimenticabile.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold text-center mb-10">Dicono di Noi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <div class="flex text-yellow-500 mb-2">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Finalmente un partner che capisce cosa significa qualità. Ho acquistato un completo Armani a un prezzo incredibile. Servizio impeccabile."</p>
+                    <p class="font-bold text-sm">— Marco B.</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <div class="flex text-yellow-500 mb-2">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Le scarpe sono arrivate in condizioni perfette. Wijem Partners è diventato il mio punto di riferimento per lo shopping di lusso online."</p>
+                    <p class="font-bold text-sm">— Elena G.</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <div class="flex text-yellow-500 mb-2">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Veloci, precisi e con una selezione di brand davvero invidiabile. Consiglio vivamente a chi cerca l'esclusività."</p>
+                    <p class="font-bold text-sm">— Luca S.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold text-center mb-8">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>I prodotti sono originali al 100%?</summary>
+                    <div class="legal-text bg-gray-50">Assolutamente sì. Wijem Partners collabora esclusivamente con fornitori e distributori certificati, garantendo l'autenticità di ogni singolo capo, calzatura o accessorio venduto attraverso la nostra piattaforma partner.</div>
+                </details>
+                <details>
+                    <summary>Quali sono i tempi di spedizione?</summary>
+                    <div class="legal-text bg-gray-50">Generalmente le spedizioni vengono elaborate entro 24/48 ore lavorative. La consegna avviene solitamente in 3-5 giorni lavorativi in tutta Italia, tramite corrieri espressi tracciabili.</div>
+                </details>
+                <details>
+                    <summary>Accettate resi e cambi taglia?</summary>
+                    <div class="legal-text bg-gray-50">Sì, il diritto di recesso è garantito a norma di legge. Se la taglia non è corretta o il prodotto non soddisfa le tue aspettative, puoi avviare la procedura di reso entro 14 giorni dalla ricezione.</div>
+                </details>
+                <details>
+                    <summary>I prezzi esposti includono l'IVA?</summary>
+                    <div class="legal-text bg-gray-50">Sì, tutti i prezzi mostrati sul catalogo finale sono comprensivi di IVA e tasse applicabili secondo la normativa italiana vigente.</div>
+                </details>
+                <details>
+                    <summary>Come posso verificare la disponibilità di un capo?</summary>
+                    <div class="legal-text bg-gray-50">Compilando il modulo di contatto o accedendo alle nostre offerte riservate, potrai verificare in tempo reale la disponibilità del magazzino dei nostri brand partner.</div>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Unisciti al Network</h2>
+                    <p class="text-gray-600 mb-6">
+                        Desideri ricevere il catalogo aggiornato, conoscere le offerte riservate o hai bisogno di assistenza per un ordine? Compila il modulo.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 text-gray-700">
+                            <span class="font-bold">Sede Operativa:</span>
+                            <span>San Marino (Distributore Logistico Partner)</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4">
+                            *Nota: Non utilizziamo supporto telefonico per garantire la tracciabilità scritta di ogni richiesta.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-inner">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Inviato!'; this.querySelector('button').classList.add('bg-green-600'); setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-black outline-none transition-colors" placeholder="Mario Rossi">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-black outline-none transition-colors" placeholder="mario@email.it">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Messaggio</label>
+                            <textarea rows="3" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-black outline-none transition-colors" placeholder="Vorrei informazioni su..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full text-center cursor-pointer">Invia Richiesta</button>
+                    </form>
+                    
+                    <!-- SUCCESS MESSAGE -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="text-green-500 text-5xl mb-4">✓</div>
+                        <h3 class="text-xl font-bold mb-2">Messaggio Inviato!</h3>
+                        <p class="text-gray-600">Un nostro consulente ti risponderà al più presto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t-4 border-primary">
+        <div class="max-w-6xl mx-auto px-4">
+            
+            <div class="mb-8 text-center">
+                <span class="font-serif text-2xl font-bold text-white tracking-tighter">Wijem Partners</span>
+                <p class="mt-2 text-sm text-gray-500">
+                    Questo è un sito promozionale indipendente gestito da Wijem Partners, che agisce in qualità di affiliato per Griffe Shop s.r.l.
+                </p>
+            </div>
+
+            <!-- LEGAL COMPLIANCE BLOCK -->
+            <div class="max-w-3xl mx-auto space-y-2 mb-8 text-left">
+                <!-- Privacy Policy -->
+                <details class="bg-gray-800 border-gray-700 text-sm">
+                    <summary class="text-gray-200 hover:text-white">Informativa sulla Privacy (GDPR)</summary>
+                    <div class="legal-text text-gray-400">
+                        <p><strong>1. Titolare del Trattamento:</strong> I dati raccolti attraverso questo sito web sono gestiti da Wijem Partners nel rispetto del Regolamento UE 2016/679 (GDPR). La tua privacy è una nostra priorità assoluta.</p>
+                        <p><strong>2. Tipologia di dati raccolti:</strong> Raccogliamo dati personali forniti volontariamente dall'utente, quali nome, cognome e indirizzo di contatto, esclusivamente tramite il modulo di richiesta informazioni. Vengono inoltre raccolti dati tecnici di navigazione in forma anonima per scopi statistici.</p>
+                        <p><strong>3. Finalità del trattamento:</strong> I dati sono utilizzati per rispondere alle richieste dell'utente, fornire informazioni sui prodotti di Griffe Shop, e, previo consenso, inviare comunicazioni promozionali relative al settore moda e lusso.</p>
+                        <p><strong>4. Base giuridica:</strong> Il trattamento si basa sul consenso dell'utente, espresso attraverso l'invio proattivo del modulo di contatto.</p>
+                        <p><strong>5. Condivisione dei dati:</strong> I dati potrebbero essere condivisi con Griffe Shop s.r.l. esclusivamente per finalità di evasione dell'ordine o della richiesta. Non cediamo i tuoi dati a terze parti per scopi di marketing non correlati.</p>
+                        <p><strong>6. Sicurezza dei dati:</strong> Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i dati personali da accessi non autorizzati, divulgazione o distruzione.</p>
+                        <p><strong>7. Periodo di conservazione:</strong> I dati vengono conservati per il tempo strettamente necessario a gestire la richiesta o fino alla revoca del consenso da parte dell'interessato.</p>
+                        <p><strong>8. Diritti dell'interessato:</strong> L'utente ha il diritto di accedere, rettificare, cancellare i propri dati, o limitarne il trattamento, contattandoci attraverso il modulo presente sul sito.</p>
+                    </div>
+                </details>
+
+                <!-- Terms of Service -->
+                <details class="bg-gray-800 border-gray-700 text-sm">
+                    <summary class="text-gray-200 hover:text-white">Termini e Condizioni</summary>
+                    <div class="legal-text text-gray-400">
+                        <p><strong>1. Introduzione:</strong> Benvenuti sul sito di Wijem Partners. L'utilizzo del sito implica l'accettazione integrale dei presenti Termini e Condizioni.</p>
+                        <p><strong>2. Ruolo del Sito:</strong> Questo sito funge da intermediario pubblicitario e vetrina informativa per i prodotti venduti da Griffe Shop s.r.l. Wijem Partners non è il venditore diretto dei beni, ma un promotore commerciale.</p>
+                        <p><strong>3. Accuratezza delle informazioni:</strong> Ci impegniamo a mantenere le informazioni aggiornate, ma non garantiamo che le descrizioni dei prodotti o altri contenuti siano privi di errori. Le immagini sono a scopo puramente illustrativo.</p>
+                        <p><strong>4. Proprietà Intellettuale:</strong> Tutti i contenuti, i marchi e i loghi citati appartengono ai legittimi proprietari e sono utilizzati qui esclusivamente a scopo descrittivo e promozionale.</p>
+                        <p><strong>5. Limitazione di Responsabilità:</strong> Wijem Partners non è responsabile per eventuali disservizi imputabili al fornitore finale, ritardi nelle spedizioni o difetti di conformità della merce, che ricadono sotto la responsabilità del venditore effettivo.</p>
+                        <p><strong>6. Modifiche ai Termini:</strong> Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. L'uso continuato del sito costituisce accettazione delle modifiche.</p>
+                        <p><strong>7. Link Esterni:</strong> Il sito può contenere link a siti terzi. Non siamo responsabili per le politiche di privacy o i contenuti di tali siti esterni.</p>
+                        <p><strong>8. Legge Applicabile:</strong> I presenti termini sono regolati dalla legge italiana. Per qualsiasi controversia è competente il foro di riferimento della sede legale del gestore del sito.</p>
+                    </div>
+                </details>
+
+                <!-- Refund Policy -->
+                <details class="bg-gray-800 border-gray-700 text-sm">
+                    <summary class="text-gray-200 hover:text-white">Politica di Reso e Rimborsi</summary>
+                    <div class="legal-text text-gray-400">
+                        <p><strong>1. Diritto di Recesso:</strong> In conformità con la normativa europea a tutela dei consumatori, il cliente ha diritto di recedere dall'acquisto entro 14 giorni dal ricevimento della merce senza dover fornire alcuna motivazione.</p>
+                        <p><strong>2. Condizioni del Reso:</strong> I prodotti devono essere restituiti integri, non utilizzati, con tutte le etichette originali attaccate e nella confezione originale. Capi indossati, lavati o danneggiati non saranno rimborsati.</p>
+                        <p><strong>3. Procedura:</strong> Per avviare un reso, è necessario contattare l'assistenza clienti tramite il modulo presente in questa pagina o seguendo le istruzioni incluse nel pacco ricevuto.</p>
+                        <p><strong>4. Spese di Spedizione:</strong> Le spese di spedizione per la restituzione del bene sono a carico del cliente, salvo diversa indicazione o in caso di prodotto difettoso.</p>
+                        <p><strong>5. Rimborsi:</strong> Una volta ricevuto e ispezionato il reso, il venditore (Griffe Shop) provvederà al rimborso utilizzando lo stesso metodo di pagamento utilizzato per l'acquisto iniziale, entro 14 giorni dalla ricezione del reso.</p>
+                        <p><strong>6. Eccezioni:</strong> Non è possibile esercitare il diritto di recesso per prodotti personalizzati o beni che per motivi igienici non si prestano ad essere restituiti se aperti dopo la consegna (es. intimo, costumi da bagno).</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="text-center text-xs text-gray-600">
+                &copy; 2026 Wijem Partners Net. Tutti i diritti riservati.
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-700">
+                Utilizziamo i cookie per migliorare la tua esperienza e per analizzare il traffico. Continuando a navigare accetti la nostra 
+                <a href="#" class="text-primary font-bold hover:underline">Politica sui Cookie</a>.
+            </p>
+            <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-xs whitespace-nowrap">Accetta Tutto</button>
+        </div>
+    </div>
+
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        // Smooth Scrolling with Fallback
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if ID missing
+                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Cookie Banner Logic
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>
