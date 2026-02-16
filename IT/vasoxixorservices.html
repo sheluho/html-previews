@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vasoxixor Services - Soluzioni Smart Home e Domotica</title>
+    <meta name="description" content="Trasforma la tua casa con soluzioni intelligenti. Illuminazione, audio e comfort controllati direttamente dal tuo smartphone.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- 🎨 DESIGN SYSTEM DNA -->
+    <style>
+        :root {
+            /* DNA VARIABLES CALCULATED */
+            /* VAR D: Palette (Tech/Smart Home Blue) */
+            --primary: #0284c7; 
+            /* VAR C: Surface (Cool White) - 'z' code */
+            --surface: #f8fafc;
+            /* VAR A: Geometry (Pill) - Length 20 % 3 = 2 */
+            --radius: 24px;
+            /* VAR B: Physics (Material) - 'v' code */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Gray base for contrast */
+            color: #1f2937;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2.5rem;
+            transition: all 0.2s ease-in-out;
+            font-weight: 700;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* Navigation specifics */
+        .nav-link:hover { color: var(--primary); }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+
+        /* Mobile Menu Transitions */
+        #mobile-menu { transition: max-height 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-2xl z-50 border-t border-gray-200 hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-600">Utilizziamo i cookie per migliorare la tua esperienza su Vasoxixor Services.</p>
+            <div class="flex gap-2">
+                <button onclick="acceptCookies()" class="btn-primary text-sm px-4 py-2">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 hover:text-gray-700 text-sm px-4 py-2">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-800 tracking-tight">Vasoxixor<span class="text-primary">Services</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="nav-link font-medium text-gray-600 transition">Funzionalità</a>
+                    <a href="#reviews" class="nav-link font-medium text-gray-600 transition">Recensioni</a>
+                    <a href="#faq" class="nav-link font-medium text-gray-600 transition">Domande</a>
+                    <a href="#contact" class="btn-primary">Richiedi Info</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-gray-800 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Funzionalità</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Recensioni</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold">Richiedi Info</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 text-white min-h-[600px] flex items-center justify-center">
+        <!-- Authentic Image from Pexels/Pixabay logic -->
+        <img 
+            src="https://images.pexels.com/photos/3771691/pexels-photo-3771691.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+            referrerpolicy="no-referrer"
+            onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Smart+Home+Living'"
+            alt="Casa Intelligente Soggiorno" 
+            class="absolute inset-0 w-full h-full object-cover opacity-60"
+        >
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-black/40"></div>
+        
+        <div class="relative max-w-4xl mx-auto px-4 text-center z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                La Tecnologia che <br><span class="text-primary">Migliora la Tua Casa</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto">
+                Rendi ogni stanza intelligente con soluzioni di domotica accessibili. Illuminazione, audio e purificazione dell'aria controllati con un tocco.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="btn-primary text-lg">Inizia Ora</a>
+                <a href="#features" class="bg-white text-gray-900 px-8 py-4 rounded-[24px] font-bold shadow-lg hover:bg-gray-100 transition duration-300">Scopri di Più</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST BADGES -->
+    <section class="py-10 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">Partner Tecnologici & Soluzioni Compatibili</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                <span class="text-2xl font-bold text-gray-500">Home Smart</span>
+                <span class="text-2xl font-bold text-gray-500">Zigbee</span>
+                <span class="text-2xl font-bold text-gray-500">Voice Control</span>
+                <span class="text-2xl font-bold text-gray-500">Eco-Light</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN FEATURES (Service Extract) -->
+    <section id="features" class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Un Ecosistema Completo</h2>
+                <p class="text-lg text-gray-600">Scopri come i nostri prodotti e servizi possono trasformare la tua quotidianità.</p>
+            </div>
+
+            <!-- Card Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Service 1: Lighting -->
+                <div class="dna-card flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <img 
+                        src="https://images.pexels.com/photos/1036936/pexels-photo-1036936.jpeg?auto=compress&cs=tinysrgb&w=800"
+                        referrerpolicy="no-referrer"
+                        class="w-full h-56 object-cover rounded-[24px] mb-6 shadow-md"
+                        alt="Illuminazione Smart"
+                    >
+                    <h3 class="text-2xl font-bold mb-3">Illuminazione Intelligente</h3>
+                    <p class="text-gray-600 mb-6 flex-grow">
+                        Crea l'atmosfera perfetta in ogni momento. Dimmer wireless, sensori di movimento e lampadine a LED che si adattano al tuo umore. Controlla tutto tramite app o comando vocale.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Configura le luci &rarr;</a>
+                </div>
+
+                <!-- Service 2: Audio -->
+                <div class="dna-card flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <img 
+                        src="https://images.pexels.com/photos/3772510/pexels-photo-3772510.jpeg?auto=compress&cs=tinysrgb&w=800"
+                        referrerpolicy="no-referrer"
+                        class="w-full h-56 object-cover rounded-[24px] mb-6 shadow-md"
+                        alt="Casse WiFi e Audio"
+                    >
+                    <h3 class="text-2xl font-bold mb-3">Audio & Suono Wi-Fi</h3>
+                    <p class="text-gray-600 mb-6 flex-grow">
+                        Musica che ti segue in ogni stanza. Le nostre soluzioni di casse Wi-Fi si integrano nell'arredamento (come cornici o lampade) offrendo un suono ricco e avvolgente.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Ascolta meglio &rarr;</a>
+                </div>
+
+                <!-- Service 3: Comfort/Sensors -->
+                <div class="dna-card flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <img 
+                        src="https://images.pexels.com/photos/7061662/pexels-photo-7061662.jpeg?auto=compress&cs=tinysrgb&w=800"
+                        referrerpolicy="no-referrer"
+                        class="w-full h-56 object-cover rounded-[24px] mb-6 shadow-md"
+                        alt="Purificatori aria e Tende smart"
+                    >
+                    <h3 class="text-2xl font-bold mb-3">Comfort & Aria Pura</h3>
+                    <p class="text-gray-600 mb-6 flex-grow">
+                        Migliora la qualità della vita con purificatori d'aria intelligenti, sensori di qualità dell'aria e tende elettriche che si regolano in base alla luce del sole.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Migliora il comfort &rarr;</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="reviews" class="py-16">
+        <div class="max-w-5xl mx-auto dna-card bg-white">
+            <h2 class="text-3xl font-bold text-center mb-10">Cosa dicono i nostri clienti</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-[24px]">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Non pensavo fosse così semplice rendere smart la mia casa. L'illuminazione ora crea un'atmosfera unica per le mie cene. Servizio impeccabile."</p>
+                    <p class="font-bold text-gray-900">- Marco R., Milano</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-[24px]">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Ho acquistato i purificatori d'aria e l'audio integrato. La qualità del sonno è migliorata e la musica si sente benissimo in ogni stanza."</p>
+                    <p class="font-bold text-gray-900">- Laura B., Torino</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-[24px] md:col-span-2">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Soluzioni accessibili ed efficaci. Il risparmio energetico grazie alle prese smart si nota già dalla prima bolletta. Consigliatissimo."</p>
+                    <p class="font-bold text-gray-900">- Giuseppe V., Roma</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16">
+        <div class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold text-center mb-10">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <details class="bg-gray-50 p-5 rounded-[24px] cursor-pointer">
+                    <summary class="font-bold text-lg text-gray-800 focus:outline-none hover:text-primary">È difficile installare questi dispositivi?</summary>
+                    <p class="mt-3 text-gray-600">No, la maggior parte dei nostri dispositivi è progettata per il "fai da te". Basta collegarli, scaricare l'app e seguire le istruzioni guidate per iniziare subito.</p>
+                </details>
+                <details class="bg-gray-50 p-5 rounded-[24px] cursor-pointer">
+                    <summary class="font-bold text-lg text-gray-800 focus:outline-none hover:text-primary">Serve un hub centrale per farli funzionare?</summary>
+                    <p class="mt-3 text-gray-600">Per le funzionalità base, spesso non serve. Tuttavia, per il controllo remoto fuori casa e l'integrazione completa di tutti i dispositivi (luci, tende, audio), raccomandiamo l'uso del nostro gateway smart.</p>
+                </details>
+                <details class="bg-gray-50 p-5 rounded-[24px] cursor-pointer">
+                    <summary class="font-bold text-lg text-gray-800 focus:outline-none hover:text-primary">I prodotti sono compatibili con gli assistenti vocali?</summary>
+                    <p class="mt-3 text-gray-600">Assolutamente sì. I nostri sistemi sono compatibili con Amazon Alexa, Google Assistant e Apple HomeKit, permettendoti di controllare tutto con la voce.</p>
+                </details>
+                <details class="bg-gray-50 p-5 rounded-[24px] cursor-pointer">
+                    <summary class="font-bold text-lg text-gray-800 focus:outline-none hover:text-primary">Quanto si risparmia sulla bolletta?</summary>
+                    <p class="mt-3 text-gray-600">L'uso di illuminazione LED smart e prese comandate permette di monitorare e ridurre i consumi, spegnendo automaticamente i dispositivi non utilizzati. Il risparmio può essere significativo nel lungo termine.</p>
+                </details>
+                <details class="bg-gray-50 p-5 rounded-[24px] cursor-pointer">
+                    <summary class="font-bold text-lg text-gray-800 focus:outline-none hover:text-primary">Fornite assistenza tecnica post-vendita?</summary>
+                    <p class="mt-3 text-gray-600">Vasoxixor Services offre supporto per configurazione e consigli. Per la garanzia hardware specifica, ci riferiamo alle politiche del produttore originale.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / LEAD FORM -->
+    <section id="contact" class="py-16">
+        <div class="max-w-5xl mx-auto dna-card flex flex-col md:flex-row gap-10">
+            <!-- Contact Info -->
+            <div class="md:w-1/2">
+                <h2 class="text-3xl font-bold mb-6">Contattaci</h2>
+                <p class="text-gray-600 mb-8">
+                    Hai domande sulla domotica o vuoi un preventivo per una configurazione completa della tua casa? Compila il modulo e ti risponderemo il prima possibile.
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="font-bold text-gray-900">Indirizzo Operativo</p>
+                            <p class="text-gray-600">Via della Tecnologia 45<br>20100 Milano, Italia (Digitale)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="font-bold text-gray-900">Orari di Assistenza</p>
+                            <p class="text-gray-600">Lun - Ven: 09:00 - 18:00<br>Servizio Online H24</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="md:w-1/2 bg-gray-50 p-6 rounded-[24px] border border-gray-100">
+                <form id="lead-form" class="space-y-4" onsubmit="handleFormSubmit(event)">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo</label>
+                        <input type="text" id="name" required class="mt-1 block w-full rounded-[24px] border-gray-300 bg-white p-3 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                    </div>
+                    <div>
+                        <label for="topic" class="block text-sm font-medium text-gray-700">Argomento di Interesse</label>
+                        <select id="topic" class="mt-1 block w-full rounded-[24px] border-gray-300 bg-white p-3 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                            <option>Informazioni Generali</option>
+                            <option>Illuminazione Smart</option>
+                            <option>Audio e Speaker</option>
+                            <option>Purificatori e Tende</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Messaggio</label>
+                        <textarea id="message" rows="4" required class="mt-1 block w-full rounded-[24px] border-gray-300 bg-white p-3 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"></textarea>
+                    </div>
+                    <button type="submit" class="w-full btn-primary text-center justify-center flex items-center">
+                        Invia Richiesta
+                    </button>
+                    <p class="text-xs text-gray-500 mt-2">I tuoi dati sono protetti secondo la nostra Privacy Policy.</p>
+                </form>
+
+                <!-- Success Message -->
+                <div id="success-msg" class="hidden text-center py-10">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Grazie!</h3>
+                    <p class="text-gray-600 mt-2">La tua richiesta è stata ricevuta correttamente. Un nostro esperto di domotica ti contatterà a breve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-gray-300 py-12 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <span class="text-2xl font-bold text-white">Vasoxixor<span class="text-primary">Services</span></span>
+                    <p class="mt-4 text-sm max-w-xs text-gray-400">
+                        La tua guida nel mondo della domotica e della casa intelligente. Soluzioni innovative per una vita quotidiana migliore.
+                    </p>
+                </div>
+                <div class="md:text-right">
+                    <p class="text-sm text-gray-400 mb-4">
+                        Questo è un sito promozionale indipendente gestito da Vasoxixor Services, che agisce come affiliato per IKEA Italia. Tutti i marchi registrati appartengono ai legittimi proprietari.
+                    </p>
+                </div>
+            </div>
+
+            <!-- LEGAL DETAILS -->
+            <div class="border-t border-gray-700 pt-8 space-y-4">
+                <details class="group cursor-pointer">
+                    <summary class="text-sm font-semibold hover:text-white transition list-none">Privacy Policy</summary>
+                    <div class="mt-4 text-xs text-gray-400 space-y-2 max-w-3xl">
+                        <p>In Vasoxixor Services, la privacy dei nostri visitatori è una priorità. Questo documento sulla Privacy Policy descrive i tipi di informazioni che vengono raccolte e registrate da Vasoxixor Services e come le utilizziamo. Se hai ulteriori domande o richiedi maggiori informazioni sulla nostra Informativa sulla privacy, non esitare a contattarci.</p>
+                        <p>Questa Privacy Policy si applica solo alle nostre attività online ed è valida per i visitatori del nostro sito web per quanto riguarda le informazioni che hanno condiviso e/o raccolto in Vasoxixor Services. Questa politica non è applicabile a nessuna informazione raccolta offline o tramite canali diversi da questo sito web. Utilizzando il nostro sito web, acconsenti alla nostra Privacy Policy e accetti i suoi termini.</p>
+                        <p>Le informazioni che ti viene chiesto di fornire, e i motivi per cui ti viene chiesto di fornirle, ti saranno chiariti nel punto in cui ti chiediamo di fornire le tue informazioni personali. Se ci contatti direttamente, potremmo ricevere ulteriori informazioni su di te come il tuo nome, indirizzo, contenuto del messaggio e/o allegati che potresti inviarci, e qualsiasi altra informazione che potresti scegliere di fornire. Quando ti registri per un Account, potremmo chiedere le tue informazioni di contatto, inclusi elementi come nome, nome dell'azienda, indirizzo e numero di telefono.</p>
+                        <p>Utilizziamo le informazioni raccolte in vari modi, tra cui: fornire, gestire e mantenere il nostro sito web; migliorare, personalizzare ed espandere il nostro sito web; capire e analizzare come utilizzi il nostro sito web; sviluppare nuovi prodotti, servizi, caratteristiche e funzionalità; comunicare con te, direttamente o tramite uno dei nostri partner, anche per il servizio clienti, per fornirti aggiornamenti e altre informazioni relative al sito web, e per scopi di marketing e promozionali; prevenire frodi.</p>
+                    </div>
+                </details>
+
+                <details class="group cursor-pointer">
+                    <summary class="text-sm font-semibold hover:text-white transition list-none">Termini e Condizioni</summary>
+                    <div class="mt-4 text-xs text-gray-400 space-y-2 max-w-3xl">
+                        <p>Benvenuto su Vasoxixor Services. Questi termini e condizioni delineano le regole e i regolamenti per l'uso del sito web di Vasoxixor Services. Accedendo a questo sito web presumiamo che accetti questi termini e condizioni. Non continuare a utilizzare Vasoxixor Services se non accetti di prendere tutti i termini e le condizioni indicati in questa pagina.</p>
+                        <p>I cookie sono impiegati in alcune aree del nostro sito per consentire la funzionalità di tale area e facilità d'uso per le persone che visitano. Alcuni dei nostri partner affiliati/pubblicitari possono anche utilizzare i cookie. Se non diversamente indicato, Vasoxixor Services e/o i suoi licenziatari possiedono i diritti di proprietà intellettuale per tutto il materiale su Vasoxixor Services. Tutti i diritti di proprietà intellettuale sono riservati. Puoi accedere a questo da Vasoxixor Services per il tuo uso personale soggetto alle restrizioni stabilite in questi termini e condizioni.</p>
+                        <p>Non devi: ripubblicare materiale da Vasoxixor Services; vendere, affittare o sub-licenziare materiale da Vasoxixor Services; riprodurre, duplicare o copiare materiale da Vasoxixor Services; ridistribuire contenuti da Vasoxixor Services. Il presente accordo avrà inizio dalla data odierna.</p>
+                        <p>Parti di questo sito web offrono l'opportunità agli utenti di pubblicare e scambiare opinioni e informazioni in determinate aree del sito web. Vasoxixor Services non filtra, modifica, pubblica o rivede i Commenti prima della loro presenza sul sito web. I Commenti non riflettono i punti di vista e le opinioni di Vasoxixor Services, dei suoi agenti e/o affiliati. I Commenti riflettono i punti di vista e le opinioni della persona che pubblica i propri punti di vista e opinioni. Nella misura consentita dalle leggi applicabili, Vasoxixor Services non sarà responsabile per i Commenti o per qualsiasi responsabilità, danni o spese causati e/o sofferti a seguito di qualsiasi uso e/o pubblicazione e/o apparizione dei Commenti su questo sito web.</p>
+                    </div>
+                </details>
+
+                <details class="group cursor-pointer">
+                    <summary class="text-sm font-semibold hover:text-white transition list-none">Politica Affiliazioni e Resi</summary>
+                    <div class="mt-4 text-xs text-gray-400 space-y-2 max-w-3xl">
+                        <p>Vasoxixor Services partecipa a programmi di marketing di affiliazione, il che significa che potremmo guadagnare commissioni sugli acquisti effettuati tramite i nostri link verso siti di rivenditori, incluso ma non limitato a IKEA. Questa partnership non influisce sul prezzo che paghi come consumatore. L'integrità e la trasparenza sono fondamentali per noi, pertanto raccomandiamo solo prodotti e servizi che riteniamo possano apportare valore ai nostri utenti.</p>
+                        <p>Poiché Vasoxixor Services agisce come intermediario promozionale e non vende direttamente i prodotti, non gestiamo direttamente i resi, i rimborsi o le spedizioni dei prodotti fisici mostrati. Tutte le transazioni di vendita avvengono sul sito del fornitore originale (ad esempio, IKEA Italia). Di conseguenza, qualsiasi richiesta di rimborso, sostituzione o garanzia deve essere indirizzata direttamente al servizio clienti del venditore originale da cui è stato effettuato l'acquisto, seguendo le loro specifiche politiche di reso e garanzia. Non siamo responsabili per ritardi nelle spedizioni, difetti di conformità dei prodotti o problemi logistici derivanti dall'acquisto sul sito del partner.</p>
+                        <p>Per i servizi di consulenza offerti direttamente da Vasoxixor Services (se applicabile), eventuali rimborsi saranno valutati caso per caso in base al contratto di servizio stipulato. Ci impegniamo a fornire informazioni accurate e aggiornate, ma non garantiamo che tutte le descrizioni dei prodotti o i prezzi sul nostro sito siano privi di errori, in quanto questi dati sono soggetti a modifiche da parte del fornitore originale in qualsiasi momento.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-sm">
+                &copy; 2026 Vasoxixor Services. Tutti i diritti riservati.
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPTS -->
+    <script>
+        // SMART ROUTING: Self-healing navigation
+        document.addEventListener('click', function(e) {
+            const anchor = e.target.closest('a[href^="#"]');
+            if (anchor) {
+                const targetId = anchor.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (!targetElement) {
+                    e.preventDefault();
+                    console.warn(`Anchor target #${targetId} missing. Redirecting to #contact.`);
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    // Let default behavior handle it if ID exists, or force smooth here
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // FORM SIMULATION
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('lead-form');
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Invio in corso...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+
+            setTimeout(() => {
+                form.style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+            }, 1500);
+        }
+
+        // COOKIE BANNER LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
