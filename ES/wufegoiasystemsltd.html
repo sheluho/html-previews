@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wufegoia Systems - Estilo Sistematizado para tu Familia</title>
+    <meta name="description" content="Descubre el sistema perfecto para renovar el armario familiar. Moda accesible, tallas para todos y tendencias actuales gestionadas por Wufegoia Systems.">
+    <!-- Tailwind CSS (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        /* DNA VARIABLES & DESIGN SYSTEM */
+        :root {
+            /* VAR D: Palette - Vibrant Sky Blue (Family/Trust) */
+            --primary: #0284c7; 
+            /* VAR C: Surface - Warm Cream (Last Letter 's' % 3 = 1) */
+            --surface: #fffdf5; 
+            /* VAR A: Geometry - Pill Shape (Length 20 % 3 = 2) */
+            --radius: 24px;
+            /* VAR B: Physics - Hard Pop/Neo-Brutal (First Letter 'h' % 3 = 2) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base for contrast */
+            color: #1f2937;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 2px solid #000; /* Added border to match "Hard" shadow logic */
+            transition: transform 0.2s ease;
+        }
+        
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 2px solid #000;
+            padding: 1rem 2.5rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        /* BRAND COMPONENT: Secondary/Ghost Button */
+        .btn-ghost {
+            background-color: transparent;
+            color: #1f2937;
+            border: 2px solid #000;
+            border-radius: var(--radius);
+            padding: 0.8rem 2rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-ghost:hover {
+            background-color: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        
+        /* Hero Overlay for Text Readability */
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(255,255,255,0.7), transparent);
+        }
+
+        /* Smooth Scroll Behavior */
+        html { scroll-behavior: smooth; }
+
+        /* Form Styling */
+        input, textarea, select {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px; /* Inner elements slightly less rounded */
+            padding: 0.8rem;
+            width: 100%;
+            transition: all 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+        }
+
+        /* FAQ Detail Styling */
+        details summary {
+            cursor: pointer;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            list-style: none;
+            position: relative;
+        }
+        details summary::-webkit-details-marker { display: none; }
+        details summary::after {
+            content: "+";
+            position: absolute;
+            right: 1rem;
+            font-size: 1.5rem;
+            line-height: 1rem;
+            color: var(--primary);
+        }
+        details[open] summary::after { content: "-"; }
+        details[open] summary { border-color: var(--primary); background: #f0f9ff; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-gray-100 py-4 fixed w-full z-50">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold tracking-tight text-gray-900">
+                Wufegoia<span class="text-primary">Systems</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#features" class="font-bold text-gray-600 hover:text-primary transition">Colecciones</a>
+                <a href="#reviews" class="font-bold text-gray-600 hover:text-primary transition">Opiniones</a>
+                <a href="#faq" class="font-bold text-gray-600 hover:text-primary transition">Ayuda</a>
+                <a href="#contact" class="btn-primary py-2 px-6 text-sm">Empezar Ahorro</a>
+            </div>
+
+            <!-- Mobile Button -->
+            <button class="md:hidden text-gray-800" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black p-4 absolute w-full shadow-xl">
+            <a href="#features" class="block py-3 font-bold text-gray-800">Colecciones</a>
+            <a href="#reviews" class="block py-3 font-bold text-gray-800">Opiniones</a>
+            <a href="#contact" class="block mt-4 text-center btn-primary">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.pexels.com/photos/1682497/pexels-photo-1682497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                class="w-full h-full object-cover object-top" 
+                alt="Familia feliz con ropa casual de moda"
+                referrerpolicy="no-referrer"
+            >
+            <div class="absolute inset-0 bg-white opacity-80 lg:bg-gradient-to-r lg:from-white lg:via-white lg:to-transparent"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-2xl">
+                <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4 inline-block border border-blue-200">Nueva Temporada 2025</span>
+                <h1 class="text-4xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                    El Sistema Perfecto para el <span class="text-primary">Armario de tu Familia</span>.
+                </h1>
+                <p class="text-xl text-gray-700 mb-8 font-medium">
+                    En Wufegoia Systems, creemos que vestir bien no debería ser un caos financiero. Descubre una metodología de moda eficiente, accesible y para todos los cuerpos. Calidad y precio en perfecto equilibrio.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="btn-primary text-center">Planificar Mi Estilo</a>
+                    <a href="#features" class="btn-ghost text-center bg-white/50">Ver Categorías</a>
+                </div>
+                <div class="mt-8 flex items-center gap-4 text-sm font-semibold text-gray-500">
+                    <span>✓ Devolución Garantizada</span>
+                    <span>✓ Moda Sostenible</span>
+                    <span>✓ Tallas para Todos</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-12 px-4 space-y-16">
+
+        <!-- FEATURES / SERVICES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card relative">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold mb-4">Soluciones de Moda Integral</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Nuestro catálogo asociado abarca desde el día a día hasta ocasiones especiales, sistematizando el ahorro sin perder estilo.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center group">
+                    <div class="relative h-64 mb-6 rounded-2xl overflow-hidden border-2 border-gray-100">
+                        <img 
+                            src="https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            class="w-full h-full object-cover transition transform group-hover:scale-110 duration-500"
+                            alt="Moda mujer tendencias actuales"
+                            referrerpolicy="no-referrer"
+                            loading="lazy"
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Moda Mujer y Hombre</h3>
+                    <p class="text-gray-600 text-sm">Tendencias actuales, básicos imprescindibles y colecciones denim para renovar tu look cada temporada sin esfuerzo.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="text-center group">
+                    <div class="relative h-64 mb-6 rounded-2xl overflow-hidden border-2 border-gray-100">
+                        <img 
+                            src="https://images.pexels.com/photos/35188/child-childrens-baby-children-s.jpg?auto=compress&cs=tinysrgb&w=800" 
+                            class="w-full h-full object-cover transition transform group-hover:scale-110 duration-500"
+                            alt="Ropa infantil y bebé resistente"
+                            referrerpolicy="no-referrer"
+                            loading="lazy"
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Infantil y Bebé</h3>
+                    <p class="text-gray-600 text-sm">Ropa diseñada para resistir el juego. Algodón suave, diseños divertidos y precios que crecen al ritmo de tus hijos.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="text-center group">
+                    <div class="relative h-64 mb-6 rounded-2xl overflow-hidden border-2 border-gray-100">
+                        <img 
+                            src="https://images.pexels.com/photos/13192087/pexels-photo-13192087.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            class="w-full h-full object-cover transition transform group-hover:scale-110 duration-500"
+                            alt="Moda inclusiva tallas grandes"
+                            referrerpolicy="no-referrer"
+                            loading="lazy"
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Tallas Grandes e Inclusivas</h3>
+                    <p class="text-gray-600 text-sm">La moda es un derecho, no un privilegio. Ofrecemos colecciones extensas y estilosas para todas las morfologías.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOCIAL PROOF SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card bg-blue-50">
+            <h2 class="text-3xl font-extrabold mb-10 text-center">Lo que dicen las familias</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Wufegoia Systems me ayudó a encontrar la ropa escolar perfecta para mis hijos. La calidad de las camisetas es increíble para el precio que tienen."</p>
+                    <div class="font-bold text-gray-900">— Laura G. <span class="text-xs text-gray-500 font-normal">Madrid</span></div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Por fin encuentro tallas grandes que son realmente bonitas y no parecen sacos. Me encanta la sección de vestidos."</p>
+                    <div class="font-bold text-gray-900">— Carmen M. <span class="text-xs text-gray-500 font-normal">Sevilla</span></div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="flex text-yellow-400 mb-3">★★★★☆</div>
+                    <p class="text-gray-700 italic mb-4">"La entrega fue rápida y todo llegó perfecto. He renovado mi armario de trabajo por la mitad de lo que solía gastar."</p>
+                    <div class="font-bold text-gray-900">— Alejandro P. <span class="text-xs text-gray-500 font-normal">Valencia</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold mb-8 text-center">Preguntas Frecuentes</h2>
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <details>
+                    <summary>¿Tienen guía de tallas?</summary>
+                    <div class="p-4 text-gray-600">Sí, cada prenda cuenta con una guía detallada para asegurar que el sistema de tallas se ajuste perfectamente a tus medidas o las de tus hijos.</div>
+                </details>
+                <details>
+                    <summary>¿Qué política de devoluciones tienen?</summary>
+                    <div class="p-4 text-gray-600">Ofrecemos un periodo extendido para devoluciones gratuitas en tienda o mediante correo postal, asegurando tu total satisfacción.</div>
+                </details>
+                <details>
+                    <summary>¿Tienen ropa de maternidad?</summary>
+                    <div class="p-4 text-gray-600">¡Por supuesto! Contamos con una línea específica premamá que combina comodidad, funcionalidad y estilo para esa etapa especial.</div>
+                </details>
+                <details>
+                    <summary>¿Cómo funciona el servicio de Click & Collect?</summary>
+                    <div class="p-4 text-gray-600">Puedes reservar tus prendas online y recogerlas en tu tienda más cercana de forma totalmente gratuita en tan solo unos días.</div>
+                </details>
+                <details>
+                    <summary>¿Ofrecen disfraces todo el año?</summary>
+                    <div class="p-4 text-gray-600">Sí, disponemos de una sección permanente de disfraces y accesorios de fiesta tanto para niños como para adultos.</div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold mb-4">Contacta con Wufegoia Systems</h2>
+                    <p class="text-gray-600 mb-8">
+                        ¿Tienes dudas sobre tu pedido o necesitas asesoramiento de estilo? Completa el formulario y nuestro equipo de atención al cliente te responderá en breve.
+                    </p>
+                    
+                    <!-- Real Donor Data simulation, simplified due to lack of direct specific HQ address in source without deep mining -->
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <div>
+                                <h4 class="font-bold">Oficina Central</h4>
+                                <p class="text-gray-600">C/ Sofía 26, Madrid, España</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <div>
+                                <h4 class="font-bold">Horario de Atención</h4>
+                                <p class="text-gray-600">Lunes - Sábado: 10:00 - 20:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Enviando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Nombre Completo</label>
+                                <input type="text" required placeholder="Tu nombre">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Teléfono</label>
+                                <input type="tel" required placeholder="Tu teléfono">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Interés Principal</label>
+                                <select>
+                                    <option>Moda Mujer</option>
+                                    <option>Moda Hombre</option>
+                                    <option>Infantil/Bebé</option>
+                                    <option>Tallas Grandes</option>
+                                    <option>Consulta General</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Mensaje</label>
+                                <textarea rows="3" placeholder="¿En qué podemos ayudarte?"></textarea>
+                            </div>
+                            <button type="submit" class="w-full btn-primary mt-2">Enviar Solicitud</button>
+                        </div>
+                    </form>
+                    
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-12">
+                        <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <h3 class="text-xl font-bold text-gray-800">¡Mensaje Enviado!</h3>
+                        <p class="text-gray-600 mt-2">Un asesor de estilo contactará contigo en breve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-300 py-12 text-sm border-t-4 border-black">
+        <div class="container mx-auto px-4 text-center">
+            
+            <p class="mb-4 font-bold text-xl text-white">Wufegoia Systems Ltd</p>
+            <p class="mb-8 opacity-70">
+                Este es un sitio promocional independiente gestionado por Wufegoia Systems Ltd, actuando como afiliado para Kiabi España.<br>
+                Todas las marcas comerciales pertenecen a sus respectivos propietarios.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8 text-left max-w-4xl mx-auto mb-12">
+                <details>
+                    <summary class="hover:text-white transition cursor-pointer mb-2 font-bold">Política de Privacidad</summary>
+                    <p class="mt-2 text-xs leading-relaxed opacity-80">
+                        En Wufegoia Systems Ltd, la privacidad de nuestros visitantes es de extrema importancia. Este documento de política de privacidad describe los tipos de información personal que recibe y recopila Wufegoia Systems Ltd y cómo se utiliza. Archivos de registro: Como muchos otros sitios web, hacemos uso de archivos de registro. La información dentro de los archivos de registro incluye direcciones de protocolo de Internet (IP), tipo de navegador, proveedor de servicios de Internet (ISP), fecha y hora, páginas de referencia/salida y número de clics para analizar tendencias, administrar el sitio, rastrear el movimiento del usuario alrededor del sitio y recopilar información demográfica. Las direcciones IP y otra información similar no están vinculadas a ninguna información que sea personalmente identificable. Cookies y Web Beacons: utilizamos cookies para almacenar información sobre las preferencias de los visitantes, registrar información específica del usuario sobre las páginas a las que el usuario accede o visita, personalizar el contenido de la página web según el tipo de navegador de los visitantes u otra información que el visitante envía a través de su navegador. Si desea desactivar las cookies, puede hacerlo a través de las opciones de su navegador individual.
+                    </p>
+                </details>
+
+                <details>
+                    <summary class="hover:text-white transition cursor-pointer mb-2 font-bold">Términos de Servicio</summary>
+                    <p class="mt-2 text-xs leading-relaxed opacity-80">
+                        Al acceder a este sitio web, usted acepta estar sujeto a estos Términos y condiciones de uso del sitio web, todas las leyes y regulaciones aplicables, y acepta que es responsable del cumplimiento de las leyes locales aplicables. Si no está de acuerdo con alguno de estos términos, tiene prohibido usar o acceder a este sitio. Los materiales contenidos en este sitio web están protegidos por las leyes de derechos de autor y marcas registradas aplicables. Licencia de uso: Se otorga permiso para descargar temporalmente una copia de los materiales (información o software) en el sitio web de Wufegoia Systems Ltd solo para visualización transitoria personal y no comercial. Esta es la concesión de una licencia, no una transferencia de título, y bajo esta licencia no puede: modificar o copiar los materiales; utilizar los materiales para cualquier fin comercial o para cualquier exhibición pública (comercial o no comercial); intentar descompilar o aplicar ingeniería inversa a cualquier software contenido en el sitio web; eliminar cualquier derecho de autor u otras notaciones de propiedad de los materiales; o transferir los materiales a otra persona o "reflejar" los materiales en cualquier otro servidor.
+                    </p>
+                </details>
+
+                <details>
+                    <summary class="hover:text-white transition cursor-pointer mb-2 font-bold">Política de Devoluciones</summary>
+                    <p class="mt-2 text-xs leading-relaxed opacity-80">
+                        Como portal afiliado, Wufegoia Systems Ltd no procesa ventas directas ni gestiona inventario físico. Todas las transacciones se completan en la plataforma del proveedor final. Por consiguiente, todas las devoluciones, reembolsos y cambios están sujetos estrictamente a las políticas de devolución del vendedor original (Kiabi). Generalmente, los consumidores tienen derecho a desistir de su compra en un plazo legalmente establecido (suele ser de 30 a 60 días dependiendo de la marca y las condiciones específicas) presentando el recibo original y asegurándose de que la mercancía se encuentre en su estado original, con etiquetas y sin usar. Recomendamos encarecidamente revisar la política de devoluciones específica en el sitio web de destino antes de finalizar cualquier compra. Wufegoia Systems Ltd no se hace responsable de disputas sobre productos dañados, envíos perdidos o tallas incorrectas, aunque facilitaremos la información de contacto del servicio al cliente del proveedor cuando sea posible.
+                    </p>
+                </details>
+            </div>
+
+            <p class="text-xs text-gray-500">
+                &copy; 2026 Wufegoia Systems Ltd. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t-4 border-black p-4 z-50 shadow-[0_-5px_15px_rgba(0,0,0,0.1)] hidden">
+        <div class="container mx-auto max-w-5xl flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-700">
+                Utilizamos cookies para optimizar nuestro sistema de moda y mejorar tu experiencia. Al continuar, aceptas nuestra gestión de datos.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="font-bold text-gray-500 text-sm hover:underline">Rechazar</button>
+                <button onclick="localStorage.setItem('cookieConsent','true'); document.getElementById('cookie-banner').style.display='none'" class="btn-primary text-xs py-2 px-4">Aceptar Cookies</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Smooth Scroll + Fallback to Contact Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if section missing
+                    const contactSection = document.querySelector('#contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Cookie Banner Check
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-banner').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
