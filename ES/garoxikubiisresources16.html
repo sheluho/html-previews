@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garox Resources | Gestión Inteligente de Flotas y Seguridad</title>
+    <meta name="description" content="Soluciones avanzadas de rastreo GPS, control de combustible y seguridad de activos para empresas de transporte.">
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DESIGN SYSTEM INJECTION -->
+    <style>
+        :root {
+            /* VAR D: Palette (Security/Logistics -> Royal Blue) */
+            --primary: #1e40af; 
+            /* VAR C: Surface (Last letter 'm' (109) % 3 = 1 -> Warm) */
+            --surface: #fffdf5;
+            /* VAR A: Geometry (Length 15 % 3 = 0 -> Sharp) */
+            --radius: 0px;
+            /* VAR B: Physics (First letter 's' (115) % 3 = 1 -> Material) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make cards pop */
+            color: #1f2937;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+             background-color: var(--primary);
+             color: #ffffff !important;
+             border-radius: var(--radius);
+             box-shadow: var(--shadow);
+             padding: 1rem 2rem;
+             transition: all 0.2s;
+             font-weight: 700;
+             display: inline-block;
+             text-decoration: none;
+             cursor: pointer;
+             border: none;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-1px); 
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HERO OVERLAY */
+        .hero-bg {
+            background-image: url('https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: height 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-md relative z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <!-- Brand Name derived from host -->
+                    <span class="text-2xl font-bold tracking-tight text-primary uppercase">GAROX RESOURCES</span>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:space-x-8">
+                    <a href="#features" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium transition">Servicios</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium transition">Opiniones</a>
+                    <a href="#faq" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium transition">Ayuda</a>
+                    <a href="#contact" class="btn-primary ml-4">Cotizar Ahora</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Abrir menú</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white border-t border-gray-200" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#features" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 border-l-4 border-transparent hover:border-primary">Servicios</a>
+                <a href="#reviews" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 border-l-4 border-transparent hover:border-primary">Opiniones</a>
+                <a href="#contact" class="block pl-3 pr-4 py-2 text-base font-bold text-primary hover:bg-gray-50 border-l-4 border-transparent hover:border-primary">Cotizar Ahora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="hero-bg relative text-white py-32 lg:py-48">
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+                Proteja y Optimice sus Recursos con <br/><span class="text-blue-300">Seguridad Móvil Inteligente</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 mb-10">
+                La gestión de flotas y el monitoreo de activos son la mejor inversión para su empresa. Recupere el control total de sus vehículos en tiempo real.
+            </p>
+            <div class="flex justify-center gap-4 flex-col sm:flex-row">
+                <a href="#contact" class="btn-primary text-lg">Solicitar Demostración</a>
+                <a href="#features" class="bg-white text-gray-900 px-8 py-4 rounded-none font-bold shadow-md hover:bg-gray-100 transition">Ver Funcionalidades</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8">
+        
+        <!-- TRUST INDICATORS -->
+        <div class="max-w-5xl mx-auto text-center mb-16">
+            <p class="text-sm font-semibold text-gray-500 tracking-wider uppercase mb-6">Empresas que confían en nuestra tecnología</p>
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-4 items-center opacity-60">
+                <span class="text-xl font-bold text-gray-600">TRANS-LOGISTIC</span>
+                <span class="text-xl font-bold text-gray-600">FLOTAS DEL SUR</span>
+                <span class="text-xl font-bold text-gray-600">GRUPO VIAL</span>
+                <span class="text-xl font-bold text-gray-600">CARGO EXPRESS</span>
+            </div>
+        </div>
+
+        <!-- FEATURES / SERVICES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Control Total en Movimiento
+                </h2>
+                <p class="mt-4 text-lg text-gray-500">
+                    A través de **Segurimovil**, ofrecemos tecnología de punta para transformar datos en decisiones rentables.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="flex items-center justify-center h-16 w-16 bg-blue-100 text-primary mb-6">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Localización GPS y Gestión de Flotas</h3>
+                    <p class="text-gray-600 text-sm">
+                        Monitoree la ubicación exacta de cada unidad las 24 horas. Optimice rutas, tiempos de entrega y reduzca el uso no autorizado de vehículos.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="flex items-center justify-center h-16 w-16 bg-blue-100 text-primary mb-6">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Control de Combustible</h3>
+                    <p class="text-gray-600 text-sm">
+                        Detecte extracciones no autorizadas y optimice el consumo. Nuestros sensores de alta precisión le permiten auditar cada litro utilizado por su flota.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="flex items-center justify-center h-16 w-16 bg-blue-100 text-primary mb-6">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Seguridad y Recuperación</h3>
+                    <p class="text-gray-600 text-sm">
+                        Proteja sus activos con alertas antirrobo instantáneas y protocolos de recuperación de vehículos en colaboración con las autoridades pertinentes.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center">
+                 <img src="https://images.pexels.com/photos/5025642/pexels-photo-5025642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                      alt="Gestión de flotas digital" 
+                      class="w-full h-64 object-cover rounded-none shadow-sm"
+                      loading="lazy"
+                      referrerpolicy="no-referrer"
+                      onerror="this.onerror=null; this.src='https://placehold.co/800x400?text=Mapa+de+Seguridad'">
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Lo que dicen nuestros clientes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="p-4 border-l-4 border-blue-600 bg-gray-50">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Desde que implementamos el sistema a través de Garox Resources, hemos reducido el gasto de combustible en un 15%. El control es absoluto."</p>
+                    <p class="font-bold text-gray-900">— Carlos Mendoza, Gerente Logístico</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="p-4 border-l-4 border-blue-600 bg-gray-50">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"El servicio de recuperación de vehículos funciona de verdad. Recuperamos una camioneta robada en menos de 2 horas gracias al GPS."</p>
+                    <p class="font-bold text-gray-900">— Ana Torres, Transportes Rápidos SA</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="p-4 border-l-4 border-blue-600 bg-gray-50">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"La plataforma es muy intuitiva. Puedo ver dónde está cada conductor desde mi móvil sin complicaciones."</p>
+                    <p class="font-bold text-gray-900">— Miguel Ángel Ruíz, Director de Flota</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details class="group bg-white border border-gray-200 p-4 cursor-pointer">
+                    <summary class="font-semibold text-gray-800 flex justify-between items-center">
+                        ¿Qué tipo de vehículos puedo monitorear?
+                        <span class="text-primary group-open:rotate-180 transition transform">▼</span>
+                    </summary>
+                    <p class="mt-3 text-gray-600">Nuestro sistema es compatible con todo tipo de vehículos: camiones pesados, furgonetas de reparto, vehículos comerciales ligeros, maquinaria amarilla e incluso embarcaciones.</p>
+                </details>
+                
+                <details class="group bg-white border border-gray-200 p-4 cursor-pointer">
+                    <summary class="font-semibold text-gray-800 flex justify-between items-center">
+                        ¿El sistema funciona fuera del país?
+                        <span class="text-primary group-open:rotate-180 transition transform">▼</span>
+                    </summary>
+                    <p class="mt-3 text-gray-600">Sí, ofrecemos cobertura internacional y roaming de datos para asegurar que sus activos estén visibles incluso si cruzan fronteras.</p>
+                </details>
+
+                <details class="group bg-white border border-gray-200 p-4 cursor-pointer">
+                    <summary class="font-semibold text-gray-800 flex justify-between items-center">
+                        ¿Es difícil instalar los dispositivos GPS?
+                        <span class="text-primary group-open:rotate-180 transition transform">▼</span>
+                    </summary>
+                    <p class="mt-3 text-gray-600">La instalación es realizada por técnicos certificados para garantizar que los dispositivos queden ocultos y sean difíciles de manipular. El proceso es rápido y minimiza el tiempo de inactividad del vehículo.</p>
+                </details>
+
+                <details class="group bg-white border border-gray-200 p-4 cursor-pointer">
+                    <summary class="font-semibold text-gray-800 flex justify-between items-center">
+                        ¿Puedo recibir alertas en mi celular?
+                        <span class="text-primary group-open:rotate-180 transition transform">▼</span>
+                    </summary>
+                    <p class="mt-3 text-gray-600">Absolutamente. Puede configurar alertas personalizadas para excesos de velocidad, salidas de zona (geocercas), encendido no autorizado y nivel de combustible crítico.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT FORM SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Optimice su Seguridad Hoy</h2>
+                    <p class="text-gray-600 mb-8">
+                        Complete el formulario para recibir una cotización personalizada de Garox Resources y Segurimovil. Un especialista analizará las necesidades de su flota.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="h-6 w-6 text-primary mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Ubicación</h4>
+                                <p class="text-gray-600">Cobertura Nacional e Internacional</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <svg class="h-6 w-6 text-primary mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Horario de Atención</h4>
+                                <p class="text-gray-600">Lunes a Viernes: 09:00 - 18:00</p>
+                                <p class="text-gray-600">Soporte Técnico 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 shadow-sm border border-gray-100">
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="success-msg" style="display:none" class="text-center py-10">
+                        <svg class="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">¡Solicitud Recibida!</h3>
+                        <p class="text-gray-600">Gracias por contactar a Garox Resources. Un asesor experto se pondrá en contacto con usted en breve.</p>
+                    </div>
+
+                    <!-- Lead Form -->
+                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Enviando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                            <input type="text" required class="mt-1 block w-full border-gray-300 bg-gray-50 border p-3 focus:ring-blue-500 focus:border-blue-500 rounded-none">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Empresa</label>
+                            <input type="text" class="mt-1 block w-full border-gray-300 bg-gray-50 border p-3 focus:ring-blue-500 focus:border-blue-500 rounded-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Teléfono</label>
+                            <input type="tel" required class="mt-1 block w-full border-gray-300 bg-gray-50 border p-3 focus:ring-blue-500 focus:border-blue-500 rounded-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Tamaño de Flota (Vehículos)</label>
+                            <select class="mt-1 block w-full border-gray-300 bg-gray-50 border p-3 focus:ring-blue-500 focus:border-blue-500 rounded-none">
+                                <option>1 - 5</option>
+                                <option>6 - 20</option>
+                                <option>21 - 50</option>
+                                <option>50+</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="w-full btn-primary text-center">
+                            Solicitar Cotización Gratuita
+                        </button>
+                        
+                        <p class="text-xs text-gray-500 text-center mt-2">Sus datos están seguros. No compartimos información con terceros no autorizados.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">GAROX RESOURCES</h3>
+                    <p class="text-sm leading-relaxed">
+                        Líderes en soluciones tecnológicas para la gestión de activos móviles. Maximizamos la seguridad y eficiencia de su negocio.
+                    </p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 border-l-2 border-gray-700 pl-4">
+                        <strong>Aviso Legal Importante:</strong> Este es un sitio promocional independiente gestionado por Garox Resources, actuando como afiliado de marketing para Segurimovil. Todas las marcas comerciales pertenecen a sus respectivos dueños.
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-sm">
+                <!-- LEGAL DROPDOWNS -->
+                <div class="space-y-4 mb-6">
+                    <details>
+                        <summary class="cursor-pointer text-gray-400 hover:text-white">Política de Privacidad</summary>
+                        <div class="mt-2 text-xs text-gray-500 space-y-2 p-4 bg-gray-800 rounded">
+                            <p>En Garox Resources, la privacidad de nuestros visitantes es de extrema importancia. Este documento de política de privacidad describe los tipos de información personal que recibe y recopila nuestro sitio y cómo se utiliza. Al utilizar nuestro sitio web, usted acepta la recopilación y el uso de información de acuerdo con esta política. Recopilamos información que su navegador envía cada vez que visita nuestro Servicio ("Datos de registro").</p>
+                            <p>Estos Datos de registro pueden incluir información como la dirección de Protocolo de Internet ("IP") de su computadora, el tipo de navegador, la versión del navegador, las páginas de nuestro Servicio que visita, la hora y fecha de su visita, el tiempo dedicado a esas páginas y otras estadísticas. Además, podemos utilizar servicios de terceros como Google Analytics que recopilan, controlan y analizan este tipo de información. La seguridad de su información personal es importante para nosotros, pero recuerde que ningún método de transmisión a través de Internet o método de almacenamiento electrónico es 100% seguro.</p>
+                            <p>Aunque nos esforzamos por utilizar medios comercialmente aceptables para proteger su información personal, no podemos garantizar su seguridad absoluta. Podemos utilizar su Información personal para contactarlo con boletines informativos, materiales de marketing o promocionales y otra información que pueda ser de su interés. Puede optar por no recibir ninguna o todas estas comunicaciones de nuestra parte siguiendo el enlace de cancelación de suscripción o las instrucciones proporcionadas en cualquier correo electrónico que le enviemos. Cumplimos con todas las leyes aplicables relativas a la protección de datos en las jurisdicciones en las que operamos.</p>
+                        </div>
+                    </details>
+                    
+                    <details>
+                        <summary class="cursor-pointer text-gray-400 hover:text-white">Términos y Condiciones</summary>
+                        <div class="mt-2 text-xs text-gray-500 space-y-2 p-4 bg-gray-800 rounded">
+                            <p>Por favor, lea estos Términos y Condiciones cuidadosamente antes de usar el sitio web operado por Garox Resources. Su acceso y uso del Servicio está condicionado a su aceptación y cumplimiento de estos Términos. Estos Términos se aplican a todos los visitantes, usuarios y otras personas que acceden o utilizan el Servicio. Al acceder o utilizar el Servicio, usted acepta estar sujeto a estos Términos. Si no está de acuerdo con alguna parte de los términos, no podrá acceder al Servicio.</p>
+                            <p>Nuestro Servicio puede contener enlaces a sitios web o servicios de terceros que no son propiedad ni están controlados por Garox Resources. Garox Resources no tiene control ni asume responsabilidad por el contenido, las políticas de privacidad o las prácticas de sitios web o servicios de terceros. Además, reconoce y acepta que Garox Resources no será responsable, directa o indirectamente, de ningún daño o pérdida causados o presuntamente causados por o en relación con el uso o la confianza en dicho contenido, bienes o servicios disponibles en o a través de dichos sitios web o servicios. Nos reservamos el derecho, a nuestra entera discreción, de modificar o reemplazar estos Términos en cualquier momento.</p>
+                            <p>Si una revisión es material, intentaremos proporcionar un aviso con al menos 30 días de antelación antes de que entren en vigor los nuevos términos. Lo que constituye un cambio material se determinará a nuestra entera discreción. El uso continuado del sitio web después de cualquier cambio en estos términos implica la aceptación de dichos cambios. Es su responsabilidad revisar periódicamente estos términos para verificar si hay cambios. Este sitio actúa como un intermediario promocional y no garantiza la disponibilidad directa de los servicios del proveedor final en todo momento.</p>
+                        </div>
+                    </details>
+                </div>
+                
+                <p>&copy; 2026 Garox Resources. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-lg p-4 z-50 flex flex-col sm:flex-row justify-between items-center" style="display:none;">
+        <div class="mb-4 sm:mb-0 mr-0 sm:mr-4 text-sm text-gray-700">
+            Utilizamos cookies para mejorar su experiencia y analizar el tráfico de nuestro sitio web. Al continuar navegando, acepta nuestro uso de cookies.
+        </div>
+        <div class="flex space-x-4">
+            <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm">Aceptar</button>
+            <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 hover:text-gray-700 text-sm font-medium">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // SMART ROUTING: Self-Healing Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if ID is missing (Anti-Link Rot)
+                    console.warn(`Section #${targetId} missing. Redirecting to #contact`);
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close Mobile Menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').style.display = 'flex';
+            }
+        };
+    </script>
+</body>
+</html>
