@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RuguQimoia Systems - Piattaforma di Apprendimento Digitale</title>
+    <meta name="description" content="Accedi a corsi universitari online gratuiti e migliora le tue competenze con il nostro sistema avanzato di e-learning.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* VAR D: Palette -> System Blue for Education/Tech */
+            --primary: #2563EB; 
+            /* VAR C: Surface -> Cool (Slate White) based on 'z' (122 % 3 = 2) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry -> Soft based on length 22 (22 % 3 = 1) */
+            --radius: 12px;
+            /* VAR B: Physics -> Flat based on 'r' (114 % 3 = 0) */
+            --shadow: 0 0 0 1px #e5e7eb;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* UTILITY */
+        .text-primary { color: var(--primary); }
+        
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1rem;
+            background-color: rgba(0,0,0,0.02);
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        details[open] > summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+        details > div {
+            padding: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-top: none;
+            border-bottom-left-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t border-gray-200 p-4 z-50 hidden shadow-lg">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-600">
+                Utilizziamo i cookie per migliorare l'esperienza utente e analizzare il traffico del sito. Continuando a navigare, accetti il nostro utilizzo dei cookie.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary text-sm py-2 px-4">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 text-sm hover:underline">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800 tracking-tight">
+                RuguQimoia <span class="text-primary">Systems</span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex gap-8">
+                <a href="#features" class="text-gray-600 hover:text-primary font-medium">Corsi</a>
+                <a href="#reviews" class="text-gray-600 hover:text-primary font-medium">Recensioni</a>
+                <a href="#faq" class="text-gray-600 hover:text-primary font-medium">FAQ</a>
+                <a href="#contact" class="text-gray-600 hover:text-primary font-medium">Contatti</a>
+            </nav>
+
+            <!-- Mobile Button -->
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-gray-600 focus:outline-none">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t p-4 space-y-4">
+            <a href="#features" class="block text-gray-700 hover:text-primary">Corsi</a>
+            <a href="#reviews" class="block text-gray-700 hover:text-primary">Recensioni</a>
+            <a href="#faq" class="block text-gray-700 hover:text-primary">FAQ</a>
+            <a href="#contact" class="block text-gray-700 hover:text-primary">Contatti</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gray-900 text-white py-24 px-4 overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Digital Learning" 
+                 class="w-full h-full object-cover opacity-40"
+                 referrerpolicy="no-referrer" loading="lazy"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Digital+Education'">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto">
+            <span class="inline-block bg-primary/20 text-blue-200 border border-blue-500/30 px-3 py-1 rounded-full text-xs font-semibold mb-6 uppercase tracking-wider">
+                Evoluzione Digitale Accademica
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                L'Istruzione è il Sistema Operativo del <span class="text-blue-400">Futuro</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl">
+                RuguQimoia Systems ti connette all'eccellenza accademica. Accedi ai corsi MOOC dell'Università UNINETTUNO: formazione universitaria gratuita, flessibile e aperta a tutti.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#features" class="btn-primary text-center">Esplora i Corsi</a>
+                <a href="#contact" class="px-8 py-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition font-bold text-center">Richiedi Informazioni</a>
+            </div>
+            
+            <div class="mt-12 flex items-center gap-6 text-sm text-gray-400">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle text-primary"></i> <span>Accesso Gratuito</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle text-primary"></i> <span>Riconosciuto da UNINETTUNO</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle text-primary"></i> <span>Multi-device</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST LOGOS (Text Based) -->
+    <div class="bg-white border-b py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm text-gray-400 uppercase tracking-widest mb-4">Tecnologia didattica apprezzata da</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale font-bold text-xl text-gray-600">
+                <span>TECHITALIA</span>
+                <span>EDU-FUTURE</span>
+                <span>SYSTEMS INC.</span>
+                <span>OPEN LEARNING ALLIANCE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES / FEATURES SECTION -->
+    <section id="features" class="py-16 px-4">
+        <div class="max-w-3xl mx-auto text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Un'Architettura di Apprendimento Completa</h2>
+            <p class="text-gray-600">Il nostro approccio combina la qualità accademica tradizionale con l'efficienza dei sistemi digitali moderni.</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto dna-card grid md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="text-center md:text-left">
+                <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-4 mx-auto md:mx-0">
+                    <i class="fas fa-graduation-cap text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Corsi MOOC ad Accesso Libero</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Un'ampia offerta formativa universitaria messa a disposizione gratuitamente. Dalle discipline umanistiche all'ingegneria, democratizziamo l'accesso al sapere di alto livello.
+                </p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="text-center md:text-left">
+                <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-4 mx-auto md:mx-0">
+                    <i class="fas fa-globe text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Piattaforma E-Learning Multilingue</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Studia nella lingua che preferisci. I corsi sono disponibili in italiano, inglese, arabo e altre lingue, eliminando le barriere geografiche e culturali all'istruzione.
+                </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="text-center md:text-left">
+                <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-4 mx-auto md:mx-0">
+                    <i class="fas fa-laptop-code text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Materiali Digitali & Ipermediali</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Videolezioni digitalizzate indicizzate per argomento, collegate tramite link ipertestuali a materiali di approfondimento, esercizi e bibliografie interattive.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROOF / REVIEWS -->
+    <section id="reviews" class="py-4 px-4">
+        <div class="max-w-5xl mx-auto dna-card bg-white relative overflow-hidden">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold">Cosa Dicono i Nostri Utenti</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="p-6 bg-gray-50 rounded-xl">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic text-sm mb-4">"Grazie alla struttura dei corsi offerti, ho potuto approfondire argomenti di ingegneria che erano fondamentali per la mia promozione lavorativa, tutto completamente online."</p>
+                    <div class="font-bold text-gray-900 text-sm">- Marco V., Torino</div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="p-6 bg-gray-50 rounded-xl">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic text-sm mb-4">"L'interfaccia è intuitiva e la qualità delle videolezioni è superiore a molti corsi a pagamento che ho frequentato. Il sistema di indicizzazione dei video è geniale."</p>
+                    <div class="font-bold text-gray-900 text-sm">- Giulia R., Roma</div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="p-6 bg-gray-50 rounded-xl">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-700 italic text-sm mb-4">"Studiare Giurisprudenza a distanza sembrava impossibile, ma grazie alla piattaforma di RuguQimoia e ai contenuti Uninettuno, sto gestendo studio e lavoro perfettamente."</p>
+                    <div class="font-bold text-gray-900 text-sm">- Luca B., Milano</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-4 px-4">
+        <div class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold mb-8 text-center">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-2">
+                <details>
+                    <summary>I corsi sono davvero gratuiti?</summary>
+                    <div class="text-gray-600 text-sm">
+                        Sì, l'accesso ai MOOC (Massive Open Online Courses) promossi sulla nostra piattaforma è completamente gratuito. L'obiettivo è democratizzare la conoscenza e renderla accessibile a chiunque disponga di una connessione internet.
+                    </div>
+                </details>
+                <details>
+                    <summary>È necessario seguire le lezioni in orari specifici?</summary>
+                    <div class="text-gray-600 text-sm">
+                        No, la piattaforma è asincrona. Puoi accedere alle videolezioni e ai materiali didattici 24 ore su 24, 7 giorni su 7, permettendoti di studiare secondo i tuoi ritmi e le tue esigenze personali.
+                    </div>
+                </details>
+                <details>
+                    <summary>Che tipo di dispositivo serve per accedere?</summary>
+                    <div class="text-gray-600 text-sm">
+                        La piattaforma è ottimizzata per essere accessibile da computer desktop, tablet e smartphone. È sufficiente un browser web aggiornato e una connessione internet stabile.
+                    </div>
+                </details>
+                <details>
+                    <summary>Viene rilasciato un certificato alla fine del corso?</summary>
+                    <div class="text-gray-600 text-sm">
+                        La partecipazione ai corsi è libera. Per l'ottenimento di crediti formativi universitari (CFU) o certificazioni ufficiali, potrebbe essere necessario iscriversi formalmente all'Università Telematica Internazionale UNINETTUNO e sostenere gli esami previsti, secondo le normative vigenti.
+                    </div>
+                </details>
+                <details>
+                    <summary>Quali materie sono coperte dai corsi?</summary>
+                    <div class="text-gray-600 text-sm">
+                        L'offerta formativa è molto vasta e copre diverse facoltà tra cui: Ingegneria, Economia, Giurisprudenza, Lettere, Psicologia e Scienze della Comunicazione.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-4 px-4 mb-12">
+        <div class="max-w-5xl mx-auto dna-card grid md:grid-cols-2 gap-10">
+            
+            <!-- Info Side -->
+            <div>
+                <h2 class="text-3xl font-bold mb-4">Contattaci</h2>
+                <p class="text-gray-600 mb-8">
+                    Hai domande sull'utilizzo della piattaforma o sui contenuti dei corsi? Compila il modulo e il nostro team ti fornirà tutte le informazioni necessarie per iniziare il tuo percorso di apprendimento.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-primary mt-1">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Indirizzo Sede</h4>
+                            <p class="text-gray-600 text-sm">
+                                Corso Vittorio Emanuele II, 39<br>
+                                00186 Roma, Italia
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mt-6 border border-blue-100">
+                        <p class="text-xs text-blue-800">
+                            <strong>Nota:</strong> Per assistenza tecnica specifica sui corsi, si prega di utilizzare il sistema di ticket interno una volta effettuato il login.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Side -->
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Telefono</label>
+                            <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Argomento di Interesse</label>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <option>Ingegneria</option>
+                                <option>Economia</option>
+                                <option>Giurisprudenza</option>
+                                <option>Lettere</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Messaggio</label>
+                            <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary cursor-pointer">Invia Richiesta</button>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-3 text-center">I tuoi dati sono al sicuro. Non inviamo spam.</p>
+                </form>
+
+                <!-- Success Message -->
+                <div id="success-msg" style="display:none" class="text-center py-10">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-4">
+                        <i class="fas fa-check text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Messaggio Inviato!</h3>
+                    <p class="text-gray-600 text-sm">Grazie per averci contattato. Un nostro consulente accademico prenderà in carico la tua richiesta a breve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-auto">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8 mb-8 border-b border-gray-700 pb-8">
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">RuguQimoia Systems</h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        La tua porta d'accesso all'innovazione educativa. Promuoviamo l'accesso universale alla conoscenza attraverso tecnologie avanzate.
+                    </p>
+                    <p class="text-xs text-gray-500 italic">
+                        Questo è un sito promozionale indipendente gestito da RuguQimoia Systems, che agisce come affiliato per Università Telematica Internazionale UNINETTUNO.
+                    </p>
+                </div>
+                <div class="text-right hidden md:block">
+                     <p class="text-sm">Tutti i diritti riservati &copy; 2026</p>
+                </div>
+            </div>
+
+            <!-- LEGAL SECTION (VERBOSE) -->
+            <div class="space-y-2 text-xs text-gray-500">
+                <details>
+                    <summary class="hover:text-gray-300">Informativa sulla Privacy (Clicca per leggere)</summary>
+                    <div class="bg-gray-900 p-4 rounded text-justify">
+                        <p class="mb-2">La tua privacy è di fondamentale importanza per RuguQimoia Systems. Questa Informativa sulla Privacy descrive come raccogliamo, utilizziamo, proteggiamo e divulghiamo le informazioni personali che ci fornisci quando utilizzi il nostro sito web. Ci impegniamo a proteggere i dati personali degli utenti e a trattarli in conformità con il Regolamento Generale sulla Protezione dei Dati (GDPR) e le altre leggi applicabili in materia di privacy. Raccogliamo informazioni personali solo quando ci vengono fornite volontariamente, ad esempio compilando i moduli di contatto presenti sul sito.</p>
+                        <p class="mb-2">Le informazioni raccolte possono includere nome, numero di telefono e preferenze di studio. Questi dati vengono utilizzati esclusivamente per rispondere alle richieste degli utenti, fornire informazioni sui servizi offerti e migliorare l'esperienza di navigazione sul nostro sito. Non vendiamo, scambiamo o trasferiamo a terzi le tue informazioni personali identificabili, salvo quanto necessario per fornire i servizi richiesti o se richiesto dalla legge.</p>
+                        <p class="mb-2">Adottiamo misure di sicurezza adeguate per proteggere i tuoi dati personali da accessi non autorizzati, alterazioni, divulgazioni o distruzioni. I dati sono conservati su server sicuri e accessibili solo a personale autorizzato che ha l'obbligo di mantenere la riservatezza delle informazioni. Utilizziamo tecnologie di crittografia per proteggere i dati sensibili trasmessi online. Inoltre, il nostro sito utilizza i cookie per migliorare la funzionalità e analizzare il traffico web. Puoi scegliere di disabilitare i cookie tramite le impostazioni del tuo browser, ma ciò potrebbe limitare alcune funzionalità del sito.</p>
+                        <p>Hai il diritto di accedere ai tuoi dati personali, di chiederne la rettifica o la cancellazione, e di opporti al loro trattamento. Per esercitare tali diritti o per qualsiasi domanda riguardante la nostra Informativa sulla Privacy, puoi contattarci tramite i canali disponibili sul sito. Ci riserviamo il diritto di aggiornare questa Informativa sulla Privacy in qualsiasi momento; le modifiche saranno pubblicate su questa pagina. Ti invitiamo a consultare periodicamente questa pagina per rimanere informato su come proteggiamo le tue informazioni.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="hover:text-gray-300">Termini e Condizioni di Utilizzo</summary>
+                    <div class="bg-gray-900 p-4 rounded text-justify">
+                        <p class="mb-2">Benvenuti su RuguQimoia Systems. Utilizzando questo sito web, accetti di rispettare e di essere vincolato dai seguenti Termini e Condizioni di utilizzo. Se non accetti questi termini, ti preghiamo di non utilizzare il nostro sito. I contenuti presenti su questo sito sono forniti a solo scopo informativo e promozionale. RuguQimoia Systems si riserva il diritto di modificare o interrompere in qualsiasi momento, senza preavviso, qualsiasi aspetto o funzionalità del sito.</p>
+                        <p class="mb-2">Tutti i contenuti, inclusi testi, grafica, loghi, icone, immagini e software, sono di proprietà di RuguQimoia Systems o dei suoi fornitori di contenuti e sono protetti dalle leggi internazionali sul copyright. È vietata la riproduzione, distribuzione, modifica o utilizzo non autorizzato di qualsiasi materiale presente sul sito senza il previo consenso scritto. L'utente si impegna a utilizzare il sito solo per scopi legittimi e a non violare i diritti di terzi né interferire con il corretto funzionamento del sito stesso.</p>
+                        <p class="mb-2">RuguQimoia Systems non garantisce l'accuratezza, la completezza o l'affidabilità delle informazioni fornite sul sito. Non saremo responsabili per eventuali danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito o i suoi contenuti. Il sito può contenere link a siti web di terze parti; non abbiamo alcun controllo su tali siti e non ci assumiamo alcuna responsabilità per i loro contenuti o pratiche sulla privacy.</p>
+                        <p>Ci riserviamo il diritto di modificare questi Termini e Condizioni in qualsiasi momento. L'uso continuato del sito dopo la pubblicazione delle modifiche costituisce accettazione dei nuovi termini. È responsabilità dell'utente verificare periodicamente questa pagina per eventuali aggiornamenti. La legge applicabile per la risoluzione di qualsiasi controversia derivante dall'uso di questo sito sarà quella dello stato in cui ha sede legale RuguQimoia Systems.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="hover:text-gray-300">Politica sui Rimborsi</summary>
+                    <div class="bg-gray-900 p-4 rounded text-justify">
+                        <p class="mb-2">Poiché RuguQimoia Systems agisce come portale informativo e promozionale per corsi prevalentemente gratuiti (MOOC), non gestiamo direttamente transazioni finanziarie per l'acquisto di corsi o servizi didattici. Di conseguenza, la nostra politica sui rimborsi si applica limitatamente ai servizi che potrebbero essere direttamente forniti da noi, se esistenti.</p>
+                        <p class="mb-2">Per eventuali servizi a pagamento offerti direttamente dall'Università Telematica Internazionale UNINETTUNO o da terze parti a cui il nostro sito fa riferimento (ad esempio, tasse per esami o certificazioni), si prega di fare riferimento alle politiche di rimborso specifiche di tali enti. RuguQimoia Systems non è responsabile per rimborsi relativi a pagamenti effettuati su piattaforme esterne o direttamente all'ente erogatore del servizio didattico.</p>
+                        <p class="mb-2">Nel caso in cui RuguQimoia Systems offra servizi di consulenza o assistenza premium a pagamento, l'utente ha diritto di recedere dal contratto entro 14 giorni dalla sottoscrizione, a condizione che il servizio non sia stato già completamente erogato. In caso di problemi tecnici o disservizi imputabili direttamente alla nostra infrastruttura che impediscano la fruizione di un servizio a pagamento da noi erogato, valuteremo le richieste di rimborso caso per caso, impegnandoci a trovare una soluzione equa per il cliente.</p>
+                        <p>Qualsiasi richiesta di rimborso o chiarimento in merito a transazioni economiche deve essere inoltrata tramite i canali di contatto ufficiali indicati sul sito. Ci impegniamo a rispondere alle richieste entro un tempo ragionevole. Questa politica non pregiudica i diritti legali dei consumatori previsti dalle normative vigenti a tutela del consumatore.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPTS -->
+    <script>
+        // Smooth Scrolling Interceptor
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback routing
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Cookie Banner Logic
+        function checkCookies() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        }
+        
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = checkCookies;
+    </script>
+</body>
+</html>
