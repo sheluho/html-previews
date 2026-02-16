@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rituneum Solutions - Esperti in Impianti Elettrici e Automazione</title>
+    <meta name="description" content="Servizi professionali di impiantistica elettrica, automazione e manutenzione per abitazioni e aziende. Affidabilità garantita da Rituneum Solutions.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* PHASE 2: DESIGN SYSTEM (DNA INJECTION) */
+        /* 
+           DNA CALCULATION:
+           Domain: rituneumsolutionsltd.buzz
+           Length: 26 % 3 = 2 -> Radius: Pill (24px)
+           First Char 'r' (114) % 3 = 0 -> Shadow: Flat (Border)
+           Last Char 'z' (122) % 3 = 2 -> Surface: Cool (#f8fafc)
+           Niche: Electrical -> Primary: Electric Blue (#0284c7)
+        */
+        :root {
+            --primary: #0284c7; /* Sky 700 - Professional Electric Blue */
+            --surface: #f8fafc; /* Slate 50 - Cool White */
+            --radius: 24px;     /* Pill Radius */
+            --shadow: 0 0 0 1px #e5e7eb; /* Flat Border Look */
+            --bg-page: #f3f4f6; /* Gray 100 */
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: #1f2937;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* COMPONENT: The DNA Card - Critical for Contrast */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .dna-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        /* COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2.5rem;
+            transition: all 0.2s;
+            font-weight: 700;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            background-color: #0369a1;
+        }
+
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+
+        /* HERO OVERLAY */
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.6));
+        }
+
+        /* UTILITIES */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1rem;
+            background: #fff;
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            border: 1px solid #e5e7eb;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] > summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background: #f1f5f9;
+        }
+        .details-content {
+            background: #fff;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-top: none;
+            border-bottom-left-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+        }
+
+        /* MOBILE MENU TRANSITION */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 z-50 hidden shadow-lg">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-600">
+                Utilizziamo i cookie per migliorare la tua esperienza. Continuando a navigare accetti la nostra politica sulla privacy.
+            </p>
+            <button onclick="acceptCookies()" class="btn-primary text-sm px-6 py-2">Accetto</button>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-gray-800 tracking-tight">
+                        <span class="text-primary">Rituneum</span> Solutions
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Servizi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Dicono di noi</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm">Richiedi Preventivo</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium rounded-md">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium rounded-md">Recensioni</a>
+                <a href="#contact" class="block px-3 py-2 text-primary font-bold rounded-md">Contattaci</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 text-white">
+        <!-- Image Failsafe: Using Unsplash/Pexels source related to electrician -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden">
+            <img src="https://images.pexels.com/photos/8005397/pexels-photo-8005397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Tecnico elettricista al lavoro" 
+                 class="w-full h-full object-cover"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Impianti+Elettrici'">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 py-24 sm:py-32 lg:px-8 flex flex-col items-center text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+                Tecnologia avanzata, <br class="hidden md:block" />
+                <span class="text-primary">Sicurezza Garantita.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl">
+                La modernizzazione dei tuoi impianti è il miglior investimento per il comfort e la sicurezza della tua casa. 
+                Siamo <strong>Rituneum Solutions</strong>.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#contact" class="btn-primary text-lg">
+                    Sopralluogo Gratuito
+                </a>
+                <a href="#features" class="bg-white text-gray-900 hover:bg-gray-100 font-bold py-4 px-10 rounded-full shadow transition transform hover:-translate-y-1">
+                    I Nostri Servizi
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST BADGES -->
+    <div class="bg-white border-b border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm text-gray-500 font-semibold tracking-wider uppercase mb-6">Partner Tecnici & Certificazioni</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <!-- Text logos for safety against broken images -->
+                <span class="text-xl font-bold text-gray-400">SIEMENS</span>
+                <span class="text-xl font-bold text-gray-400">BTICINO</span>
+                <span class="text-xl font-bold text-gray-400">VIMAR</span>
+                <span class="text-xl font-bold text-gray-400">SCHNEIDER</span>
+                <span class="text-xl font-bold text-gray-400">PHILIPS</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6">
+
+        <!-- FEATURES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Cosa Facciamo</h2>
+                <h3 class="text-3xl font-bold text-gray-900">Soluzioni Elettriche a 360°</h3>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+                    Offriamo un servizio completo per l'impiantistica civile e industriale, garantendo standard elevati e conformità alle normative vigenti.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition">
+                    <div class="w-12 h-12 bg-blue-100 text-primary rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Impianti Elettrici</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Progettazione e realizzazione di impianti elettrici civili e industriali. Messa a norma e rilascio certificazioni di conformità per la tua sicurezza.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition">
+                    <div class="w-12 h-12 bg-blue-100 text-primary rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Domotica & Automazione</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Rendi la tua casa intelligente. Installazione di sistemi di automazione per cancelli, tapparelle e gestione smart dell'illuminazione e dei consumi.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition">
+                    <div class="w-12 h-12 bg-blue-100 text-primary rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Manutenzione </h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Assistenza tecnica rapida per guasti e malfunzionamenti. Piani di manutenzione programmata per aziende e condomini per prevenire disservizi.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <a href="#contact" class="text-primary font-bold hover:underline">Scopri di più sui nostri interventi <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+        </div>
+
+        <!-- IMAGE BREAK -->
+        <div class="max-w-5xl mx-auto mb-8 rounded-3xl overflow-hidden shadow-lg h-64 md:h-80 relative">
+             <img src="https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                  alt="Ingegneria elettrica" 
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  referrerpolicy="no-referrer">
+             <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                 <h3 class="text-white text-3xl font-bold px-4 text-center">Efficienza che illumina il futuro</h3>
+             </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h3 class="text-3xl font-bold text-gray-900 text-center mb-10">La Voce dei Clienti</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-2xl">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Rituneum ha rifatto completamente l'impianto del mio appartamento. Puntuali, puliti e molto professionali. Consiglio vivamente."</p>
+                    <div class="font-bold text-gray-900 text-sm">- Marco Rossi</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-2xl">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Avevo un problema con il cancello automatico che nessuno riusciva a risolvere. Il team tecnico ha individuato il guasto in 10 minuti."</p>
+                    <div class="font-bold text-gray-900 text-sm">- Elena Bianchi</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-2xl md:col-span-2 lg:col-span-1">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Ottima consulenza per l'illuminazione a LED del mio negozio. Risparmio in bolletta visibile fin dal primo mese."</p>
+                    <div class="font-bold text-gray-900 text-sm">- Giuseppe Verdi</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h3 class="text-3xl font-bold text-gray-900 mb-8">Domande Frequenti</h3>
+            
+            <details class="group">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800">
+                    <span>Rilasciate la dichiarazione di conformità?</span>
+                    <span class="transition group-open:rotate-180">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </summary>
+                <div class="details-content text-gray-600 mt-0">
+                    Assolutamente sì. Al termine di ogni installazione o modifica sostanziale dell'impianto, rilasciamo la dichiarazione di conformità (DiCo) come previsto dalla legge 37/08.
+                </div>
+            </details>
+
+            <details class="group">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800">
+                    <span>Quanto costa un preventivo?</span>
+                    <span class="transition group-open:rotate-180">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </summary>
+                <div class="details-content text-gray-600 mt-0">
+                    Il preventivo e il primo sopralluogo sono generalmente gratuiti e senza impegno. Analizziamo le tue esigenze per offrirti la soluzione migliore.
+                </div>
+            </details>
+
+            <details class="group">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800">
+                    <span>Vi occupate anche di sistemi di allarme?</span>
+                    <span class="transition group-open:rotate-180">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </summary>
+                <div class="details-content text-gray-600 mt-0">
+                    Sì, installiamo impianti di sicurezza, videosorveglianza e allarmi antintrusione integrabili con il sistema domotico della tua abitazione.
+                </div>
+            </details>
+
+            <details class="group">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800">
+                    <span>Quali sono i tempi per un intervento di manutenzione?</span>
+                    <span class="transition group-open:rotate-180">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </summary>
+                <div class="details-content text-gray-600 mt-0">
+                    Cerchiamo di intervenire nel minor tempo possibile. Per le emergenze critiche offriamo priorità di intervento.
+                </div>
+            </details>
+
+             <details class="group">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800">
+                    <span>Installate impianti fotovoltaici?</span>
+                    <span class="transition group-open:rotate-180">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </summary>
+                <div class="details-content text-gray-600 mt-0">
+                    Collaboriamo con partner specializzati per la predisposizione e l'allaccio di impianti fotovoltaici, garantendo la perfetta integrazione con il tuo impianto elettrico domestico.
+                </div>
+            </details>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Contattaci Ora</h3>
+                    <p class="text-gray-600 mb-8">
+                        Compila il modulo per richiedere informazioni o fissare un appuntamento. Il nostro team tecnico ti risponderà il prima possibile.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <!-- Simulated Data based on Donor Content Types - NO FAKE PHONE -->
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-primary">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-900">Sede Operativa</h4>
+                                <p class="text-gray-600">Disponibili su tutto il territorio per sopralluoghi.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-primary">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-900">Orari</h4>
+                                <p class="text-gray-600">Lun - Ven: 08:00 - 18:00<br>Sabato su appuntamento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Telefono</label>
+                            <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tipo di Intervento</label>
+                            <select class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                <option>Nuovo Impianto</option>
+                                <option>Manutenzione</option>
+                                <option>Automazione/Domotica</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary w-full text-center">Invia Richiesta</button>
+                    </form>
+                    
+                    <div id="success-msg" style="display:none" class="text-center py-10">
+                        <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900">Grazie!</h4>
+                        <p class="text-gray-600 mt-2">La tua richiesta è stata ricevuta. Ti contatteremo a breve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-2xl font-bold text-white">Rituneum Solutions</span>
+                    <p class="text-sm mt-2 text-gray-400">Energia e innovazione al tuo servizio.</p>
+                </div>
+                <div class="text-sm text-gray-500 text-center md:text-right">
+                    &copy; 2026 Rituneum Solutions. Tutti i diritti riservati.
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-xs text-gray-500 space-y-4">
+                <p>
+                    <strong>DISCLAIMER:</strong> Questo è un sito promozionale indipendente gestito da Rituneum Solutions, che agisce in qualità di affiliato per Elettro Info. Tutti i marchi citati appartengono ai legittimi proprietari.
+                </p>
+
+                <!-- LEGAL DETAILS -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <details>
+                        <summary class="bg-gray-800 text-gray-300 border-gray-700">Privacy Policy</summary>
+                        <div class="p-4 bg-gray-800 text-gray-400 rounded-b-lg">
+                            <p class="mb-2"><strong>Informativa sulla Privacy</strong></p>
+                            <p class="mb-2">Rituneum Solutions si impegna a proteggere la tua privacy. Questa informativa spiega come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.</p>
+                            <p class="mb-2">1. RACCOLTA DATI: Raccogliamo solo i dati necessari per fornirti i servizi richiesti (nome, telefono, indirizzo). Non vendiamo i tuoi dati a terzi.</p>
+                            <p class="mb-2">2. UTILIZZO: I dati sono utilizzati esclusivamente per contattarti in merito alla tua richiesta di preventivo o servizio tecnico.</p>
+                            <p class="mb-2">3. SICUREZZA: Adottiamo misure di sicurezza tecniche per proteggere i tuoi dati da accessi non autorizzati.</p>
+                            <p class="mb-2">4. DIRITTI DELL'UTENTE: Hai il diritto di accedere, rettificare o cancellare i tuoi dati in qualsiasi momento contattandoci tramite il sito.</p>
+                            <p class="mb-2">5. COOKIE: Il sito utilizza cookie tecnici per il funzionamento base. Continuando la navigazione accetti il loro utilizzo.</p>
+                            <p>6. MODIFICHE: Ci riserviamo il diritto di aggiornare questa policy. Le modifiche saranno pubblicate su questa pagina.</p>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary class="bg-gray-800 text-gray-300 border-gray-700">Termini e Condizioni</summary>
+                        <div class="p-4 bg-gray-800 text-gray-400 rounded-b-lg">
+                            <p class="mb-2"><strong>Termini di Servizio</strong></p>
+                            <p class="mb-2">L'accesso e l'uso di questo sito web sono soggetti ai seguenti termini e condizioni.</p>
+                            <p class="mb-2">1. ACCETTAZIONE: Utilizzando il sito, accetti questi termini. Se non sei d'accordo, ti preghiamo di non utilizzare i nostri servizi.</p>
+                            <p class="mb-2">2. SERVIZI: Rituneum Solutions funge da intermediario pubblicitario. I servizi tecnici finali sono forniti da professionisti qualificati.</p>
+                            <p class="mb-2">3. RESPONSABILITÀ: Non siamo responsabili per danni diretti o indiretti derivanti dall'uso del sito o dall'impossibilità di utilizzarlo.</p>
+                            <p class="mb-2">4. PROPRIETÀ INTELLETTUALE: Tutto il contenuto (testi, loghi, grafica) è di proprietà di Rituneum Solutions o dei suoi licenziatari.</p>
+                            <p class="mb-2">5. LEGGE APPLICABILE: Questi termini sono regolati dalla legge italiana. Per qualsiasi controversia è competente il foro di residenza dell'utente.</p>
+                            <p>6. CONTATTI: Per domande sui termini, utilizzare il modulo di contatto presente sul sito.</p>
+                        </div>
+                    </details>
+                    
+                    <details>
+                        <summary class="bg-gray-800 text-gray-300 border-gray-700">Politica Rimborsi</summary>
+                        <div class="p-4 bg-gray-800 text-gray-400 rounded-b-lg">
+                            <p class="mb-2"><strong>Politica di Rimborso e Garanzia</strong></p>
+                            <p class="mb-2">Ci impegniamo a garantire la massima soddisfazione per i servizi prestati.</p>
+                            <p class="mb-2">1. SOPRALLUOGHI: I costi relativi ai sopralluoghi sono specificati prima dell'intervento. Non sono previsti rimborsi per sopralluoghi già effettuati.</p>
+                            <p class="mb-2">2. INTERVENTI TECNICI: La garanzia sugli interventi è regolata dalle norme vigenti del Codice Civile e dalle condizioni specifiche pattuite nel contratto di lavoro.</p>
+                            <p class="mb-2">3. CONTESTAZIONI: Eventuali difetti o problemi devono essere segnalati entro i termini di legge. Valuteremo ogni caso per offrire una soluzione adeguata.</p>
+                            <p class="mb-2">4. MATERIALI: La garanzia sui materiali installati segue quella del produttore originale.</p>
+                            <p class="mb-2">5. ANNULLAMENTO: È possibile annullare un appuntamento con preavviso di almeno 24 ore senza penali.</p>
+                            <p>6. ECCEZIONI: Non rimborsiamo danni causati da uso improprio degli impianti o manomissioni da parte di terzi non autorizzati.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPT -->
+    <script>
+        // SMART ROUTING: Smooth Scroll Logic with Fallback
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100, // Offset for sticky header
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Gravity Well: Fallback to Contact
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        window.scrollTo({
+                            top: contactSection.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                // Close Mobile Menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // COOKIE BANNER LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+                document.getElementById('cookie-banner').classList.add('block');
+            }
+        };
+    </script>
+</body>
+</html>
