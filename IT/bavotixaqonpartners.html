@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pianifica la tua prossima avventura con Bavoti Xaqon Partners. Strategie di viaggio intelligenti e risparmio garantito per esplorare il mondo senza confini.">
+    <title>Bavoti Xaqon Partners - Architetti del Tuo Viaggio</title>
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- DESIGN DNA & CUSTOM STYLES -->
+    <style>
+        :root {
+            /* VAR A: Geometry (Length 17 % 3 = 2 -> Pill) */
+            --radius: 24px; 
+            
+            /* VAR B: Physics (First 'v' 118 % 3 = 1 -> Material) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            
+            /* VAR C: Surface (Last 'm' 109 % 3 = 1 -> Warm) */
+            --surface: #fffdf5;
+            
+            /* VAR D: Palette (Travel/Sky) */
+            --primary: #0284c7; 
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Gray base for contrast */
+            color: #1f2937;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .dna-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+             background-color: var(--primary);
+             color: #ffffff !important;
+             border-radius: var(--radius);
+             box-shadow: var(--shadow);
+             padding: 1rem 2.5rem;
+             transition: all 0.2s;
+             font-weight: bold;
+             display: inline-block;
+             text-decoration: none;
+             cursor: pointer;
+             border: none;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-1px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HERO OVERLAY */
+        .hero-bg {
+            background-image: url('https://images.pexels.com/photos/3278215/pexels-photo-3278215.jpeg?auto=compress&cs=tinysrgb&w=1920');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.55); /* Ensuring text readability */
+        }
+        
+        /* DETAILS/SUMMARY STYLING */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 1rem;
+            background-color: rgba(0,0,0,0.03);
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+        }
+        details > summary:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        details[open] > summary {
+            background-color: rgba(0,0,0,0.06);
+        }
+        details > p {
+            padding: 1rem;
+            margin-top: -0.5rem;
+            border-bottom-left-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+            background-color: rgba(0,0,0,0.01);
+        }
+
+        /* COOKIE BANNER */
+        #cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-800">
+                        Bavoti<span class="text-primary">Xaqon</span> Partners
+                    </span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Servizi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
+                    <a href="#contact" class="btn-primary">Richiedi Preventivo</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Recensioni</a>
+                <a href="#contact" class="block w-full mt-4 btn-primary">Contattaci</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="hero-bg h-screen max-h-[700px] flex items-center">
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+                Pianificare il Viaggio Perfetto è il <br>
+                <span class="text-blue-300">Miglior Investimento</span> per la Tua Felicità.
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 mb-10">
+                Bavoti Xaqon Partners trasforma la ricerca del low-cost in una strategia vincente. Scopri destinazioni incredibili e pacchetti esclusivi ottimizzati per il tuo budget.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#features" class="btn-primary text-lg">Scopri le Soluzioni</a>
+                <a href="#contact" class="bg-white text-gray-800 px-8 py-4 rounded-full shadow-lg font-bold hover:bg-gray-100 transition">Parla con un Esperto</a>
+            </div>
+            <p class="mt-6 text-sm text-gray-400">Già scelto da oltre 5.000 viaggiatori intelligenti.</p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8">
+        
+        <!-- TRUST SECTION -->
+        <div class="max-w-5xl mx-auto mb-16 text-center">
+            <p class="text-sm font-semibold text-gray-500 tracking-wider uppercase mb-6">Partner Strategici di Viaggio</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale">
+                <span class="text-xl font-bold text-gray-400">GlobalFly</span>
+                <span class="text-xl font-bold text-gray-400">HotelConnect</span>
+                <span class="text-xl font-bold text-gray-400">EcoTours</span>
+                <span class="text-xl font-bold text-gray-400">SecureTrip</span>
+            </div>
+        </div>
+
+        <!-- FEATURES SECTION (Services) -->
+        <section id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900">I Nostri Servizi Esclusivi</h2>
+                <p class="mt-4 text-lg text-gray-600">Offriamo un approccio analitico e professionale al viaggio low-cost, garantendo qualità senza compromessi.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-primary mx-auto mb-6">
+                        <i class="fas fa-plane-departure text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Analisi Voli Low-Cost</h3>
+                    <p class="text-gray-600 text-sm">Monitoriamo costantemente le tariffe aeree globali per individuare il momento perfetto per prenotare, massimizzando il risparmio.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-primary mx-auto mb-6">
+                        <i class="fas fa-hotel text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Soggiorni Ottimizzati</h3>
+                    <p class="text-gray-600 text-sm">Selezioniamo strutture ricettive che offrono il miglior rapporto qualità-prezzo, dai boutique hotel agli ostelli di design.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-primary mx-auto mb-6">
+                        <i class="fas fa-map-marked-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Itinerari su Misura</h3>
+                    <p class="text-gray-600 text-sm">Creiamo percorsi personalizzati che ti permettono di esplorare di più spendendo di meno, con consigli locali verificati.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12">
+                 <img src="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                      alt="Pianificazione viaggio" 
+                      class="w-full h-64 object-cover rounded-xl shadow-sm"
+                      loading="lazy"
+                      referrerpolicy="no-referrer"
+                      onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Viaggi+Strategici'">
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Cosa Dicono i Viaggiatori</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Bavoti Xaqon ha rivoluzionato il mio modo di viaggiare. Ho risparmiato il 40% sul mio viaggio in Giappone senza rinunciare alla qualità."</p>
+                    <div class="font-bold text-gray-900">- Marco R.</div>
+                    <div class="text-xs text-gray-500">Milano, Gennaio 2026</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Servizio impeccabile. Non si limitano a trovare voli economici, costruiscono un'esperienza completa. Consigliatissimi."</p>
+                    <div class="font-bold text-gray-900">- Giulia S.</div>
+                    <div class="text-xs text-gray-500">Roma, Dicembre 2025</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Grazie alla loro consulenza ho potuto permettermi una vacanza che pensavo fosse fuori dal mio budget. Professionisti veri."</p>
+                    <div class="font-bold text-gray-900">- Luca M.</div>
+                    <div class="text-xs text-gray-500">Napoli, Febbraio 2026</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>Come riuscite a trovare prezzi così bassi?</summary>
+                    <p class="text-gray-600">Utilizziamo algoritmi avanzati e partnership strategiche per monitorare le fluttuazioni di prezzo in tempo reale, permettendoci di prenotare nei momenti di minimo storico.</p>
+                </details>
+                <details>
+                    <summary>Il servizio è adatto anche per famiglie?</summary>
+                    <p class="text-gray-600">Assolutamente sì. Siamo specializzati nel trovare soluzioni che combinano risparmio e comfort, ideali per chi viaggia con bambini e necessita di servizi specifici.</p>
+                </details>
+                <details>
+                    <summary>Organizzate viaggi di gruppo?</summary>
+                    <p class="text-gray-600">Sì, offriamo pacchetti speciali per gruppi numerosi, garantendo tariffe agevolate sia per i trasporti che per gli alloggi grazie ai nostri accordi commerciali.</p>
+                </details>
+                <details>
+                    <summary>Quali sono le mete più convenienti per il 2026?</summary>
+                    <p class="text-gray-600">Quest'anno consigliamo l'Europa dell'Est, il Sud-Est Asiatico e alcune zone emergenti del Sud America, dove il potere d'acquisto dell'Euro è ancora molto forte.</p>
+                </details>
+                <details>
+                    <summary>C'è un costo per la consulenza iniziale?</summary>
+                    <p class="text-gray-600">La prima valutazione delle tue esigenze di viaggio è gratuita. Paghi solo se decidi di procedere con la prenotazione dei servizi proposti.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Inizia il Tuo Viaggio</h2>
+                    <p class="text-gray-600 mb-8">Compila il modulo per ricevere una proposta personalizzata o per richiedere informazioni. Un nostro consulente ti risponderà in tempi brevi.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-check-circle text-primary mt-1"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-bold text-gray-900">Nessun Costo Nascosto</h4>
+                                <p class="text-gray-500">Trasparenza totale su tutte le tariffe proposte.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-check-circle text-primary mt-1"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-bold text-gray-900">Supporto Dedicato</h4>
+                                <p class="text-gray-500">Assistenza prima, durante e dopo il viaggio.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORM -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-inner">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        
+                        <!-- Honeypot -->
+                        <input type="text" name="website" style="display:none" autocomplete="off">
+
+                        <div class="mb-4">
+                            <label for="destination" class="block text-sm font-medium text-gray-700 mb-1">Destinazione Desiderata</label>
+                            <input type="text" id="destination" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Messaggio / Richieste</label>
+                            <textarea id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
+                        </div>
+
+                        <div class="mb-4 text-xs text-gray-500">
+                            Cliccando su "Invia Richiesta" accetti la nostra <a href="#legal-privacy" class="text-primary hover:underline">Privacy Policy</a>.
+                        </div>
+
+                        <button type="submit" class="w-full btn-primary text-center">Invia Richiesta</button>
+                    </form>
+
+                    <!-- SUCCESS MESSAGE -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+                            <i class="fas fa-check text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Inviata!</h3>
+                        <p class="text-gray-600">Grazie per averci contattato. Un nostro esperto analizzerà la tua richiesta e ti risponderà al più presto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-800 text-gray-300 py-12 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <span class="text-2xl font-bold text-white">Bavoti<span class="text-primary">Xaqon</span> Partners</span>
+                    <p class="mt-4 text-sm text-gray-400">
+                        La tua bussola nel mondo dei viaggi low-cost. Strategia, risparmio e avventura si incontrano.
+                    </p>
+                    <p class="mt-4 text-xs text-gray-500 border-l-2 border-primary pl-4">
+                        Questo è un sito promozionale indipendente gestito da Bavoti Xaqon Partners, che agisce come affiliato per viaggilowcost.com e altri partner selezionati.
+                    </p>
+                </div>
+                <div class="text-sm space-y-2 md:text-right">
+                    <p>&copy; 2026 Bavoti Xaqon Partners. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+
+            <!-- LEGAL DROPDOWNS -->
+            <div class="border-t border-gray-700 pt-8 space-y-2 text-xs text-gray-400">
+                
+                <details id="legal-privacy">
+                    <summary class="hover:text-white transition">Informativa sulla Privacy (Privacy Policy)</summary>
+                    <div class="mt-2 p-4 bg-gray-900 rounded">
+                        <h4 class="font-bold text-white mb-2">1. Introduzione e Raccolta Dati</h4>
+                        <p class="mb-2">La presente Informativa sulla Privacy descrive come Bavoti Xaqon Partners raccoglie, utilizza e protegge i tuoi dati personali. La tua privacy è di fondamentale importanza per noi. Quando visiti il nostro sito o utilizzi i nostri servizi, potremmo raccogliere informazioni come il tuo nome, indirizzo IP e preferenze di navigazione. Questi dati vengono utilizzati esclusivamente per migliorare la tua esperienza utente e fornirti i servizi richiesti.</p>
+                        <h4 class="font-bold text-white mb-2">2. Utilizzo delle Informazioni</h4>
+                        <p class="mb-2">Le informazioni raccolte vengono impiegate per elaborare le tue richieste di preventivo, gestire le comunicazioni e inviare aggiornamenti rilevanti, previo tuo consenso. Non vendiamo, scambiamo o trasferiamo a terzi i tuoi dati personali identificabili senza il tuo consenso esplicito, eccetto quanto necessario per fornire il servizio (es. partner di viaggio).</p>
+                        <h4 class="font-bold text-white mb-2">3. Sicurezza dei Dati</h4>
+                        <p class="mb-2">Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, alterazioni o distruzioni. I nostri server sono protetti da firewall e crittografia avanzata.</p>
+                        <h4 class="font-bold text-white mb-2">4. I Tuoi Diritti</h4>
+                        <p>In conformità con il GDPR, hai il diritto di accedere, rettificare, cancellare o limitare il trattamento dei tuoi dati personali. Puoi esercitare questi diritti contattandoci attraverso il modulo presente sul sito. Conserveremo i tuoi dati solo per il tempo necessario a soddisfare le finalità per cui sono stati raccolti.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="hover:text-white transition">Termini e Condizioni di Utilizzo</summary>
+                    <div class="mt-2 p-4 bg-gray-900 rounded">
+                        <h4 class="font-bold text-white mb-2">1. Accettazione dei Termini</h4>
+                        <p class="mb-2">Accedendo a questo sito web, l'utente accetta di essere vincolato dai presenti Termini e Condizioni, da tutte le leggi e i regolamenti applicabili. Se non si è d'accordo con uno qualsiasi di questi termini, è vietato utilizzare o accedere a questo sito. I materiali contenuti in questo sito web sono protetti dal diritto d'autore e dal diritto dei marchi applicabile.</p>
+                        <h4 class="font-bold text-white mb-2">2. Limitazioni di Responsabilità</h4>
+                        <p class="mb-2">In nessun caso Bavoti Xaqon Partners o i suoi fornitori saranno responsabili per danni (inclusi, senza limitazione, danni per perdita di dati o profitti, o a causa di interruzione dell'attività) derivanti dall'uso o dall'impossibilità di utilizzare i materiali sul sito, anche se Bavoti Xaqon Partners è stato informato della possibilità di tali danni.</p>
+                        <h4 class="font-bold text-white mb-2">3. Accuratezza dei Materiali</h4>
+                        <p class="mb-2">I materiali che appaiono sul sito potrebbero includere errori tecnici, tipografici o fotografici. Bavoti Xaqon Partners non garantisce che i materiali presenti sul sito siano accurati, completi o aggiornati. Possiamo apportare modifiche ai materiali contenuti nel sito in qualsiasi momento senza preavviso.</p>
+                        <h4 class="font-bold text-white mb-2">4. Link Esterni</h4>
+                        <p>Bavoti Xaqon Partners non ha esaminato tutti i siti collegati al proprio sito web e non è responsabile del contenuto di tali siti collegati. L'inclusione di qualsiasi link non implica l'approvazione da parte nostra. L'utilizzo di tali siti web collegati è a rischio e pericolo dell'utente.</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary class="hover:text-white transition">Politica sui Rimborsi</summary>
+                    <div class="mt-2 p-4 bg-gray-900 rounded">
+                        <h4 class="font-bold text-white mb-2">1. Natura del Servizio</h4>
+                        <p class="mb-2">Bavoti Xaqon Partners agisce principalmente come consulente e intermediario. Per i servizi di consulenza diretta pagati anticipatamente, offriamo una garanzia di soddisfazione. Se non sei soddisfatto del piano di viaggio proposto, puoi richiedere una revisione gratuita.</p>
+                        <h4 class="font-bold text-white mb-2">2. Prenotazioni Terze Parti</h4>
+                        <p class="mb-2">Per quanto riguarda voli, hotel e pacchetti turistici prenotati tramite i nostri partner affiliati (es. viaggilowcost.com), si applicano esclusivamente le politiche di rimborso e cancellazione del fornitore finale del servizio. Bavoti Xaqon Partners non è responsabile per rimborsi dovuti da compagnie aeree o hotel.</p>
+                        <h4 class="font-bold text-white mb-2">3. Procedura di Richiesta</h4>
+                        <p>Le richieste di rimborso relative alle nostre fee di servizio devono essere inviate tramite il modulo di contatto entro 14 giorni dalla transazione. Esamineremo ogni caso individualmente e risponderemo entro 7 giorni lavorativi con l'esito della valutazione.</p>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="dna-card p-6 shadow-2xl border-t-4 border-primary flex flex-col md:flex-row items-center justify-between gap-4 hidden">
+        <div class="text-sm text-gray-600">
+            <h5 class="font-bold text-gray-900 mb-1">La tua privacy è importante</h5>
+            <p>Utilizziamo cookie tecnici e di analisi per migliorare la tua esperienza di navigazione. Continuando a utilizzare il sito, accetti il nostro utilizzo dei cookie.</p>
+        </div>
+        <div class="flex gap-2">
+            <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm">Accetta</button>
+            <button onclick="document.getElementById('cookie-banner').style.display='none'" class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full text-sm font-bold hover:bg-gray-300 transition">Chiudi</button>
+        </div>
+    </div>
+
+    <!-- JS INTERACTIVITY -->
+    <script>
+        // SMART ROUTING LOGIC
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback routing
+                    console.warn(`Target #${targetId} not found. Redirecting to #contact.`);
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+                document.getElementById('cookie-banner').style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>
