@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circuitos por España - Yazeta Poia Resources</title>
+    <meta name="description" content="Organización de circuitos turísticos y gestión de itinerarios culturales por toda España. Optimice su experiencia de viaje.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: VISUAL FIX - DESIGN SYSTEM INJECTION -->
+    <style>
+        :root {
+            /* VAR D: Palette - Professional Ocean Blue for Travel/Logistics */
+            --primary: #0369a1;
+            /* VAR C: Surface - Warm (Cream White) based on 'm' */
+            --surface: #fffdf5;
+            /* VAR A: Geometry - Pill (24px) based on len(26)%3 = 2 */
+            --radius: 24px;
+            /* VAR B: Physics - Material based on 'y' (25%3=1) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Gray base to pop the cards */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HERO OVERLAY */
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+        }
+
+        /* COOKIE BANNER */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--surface);
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+            padding: 1.5rem;
+            display: none;
+            border-top: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-md fixed w-full z-40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-extrabold text-gray-800 tracking-tight">Yazeta Poia<span class="text-primary"> Resources</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#services" class="text-gray-600 hover:text-primary font-medium transition">Circuitos</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Opiniones</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">Preguntas</a>
+                    <a href="#contact" class="btn-primary">Solicitar Presupuesto</a>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#services" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Circuitos</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Opiniones</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary">Preguntas</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-gray-900 pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex items-center">
+        <div class="absolute inset-0 z-0">
+            <!-- Source: Pexels - Authentic Travel/Landscape Image -->
+            <img src="https://images.pexels.com/photos/1388030/pexels-photo-1388030.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Paisaje de España Barcelona" 
+                 class="w-full h-full object-cover"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Viajes+y+Paisajes'">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-white/20 text-white text-sm font-semibold mb-6 backdrop-blur-sm">Especialistas en Gestión Turística</span>
+            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
+                Optimizamos sus Recursos de Tiempo para la <br class="hidden lg:block"/>
+                <span class="text-primary" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Experiencia de Viaje Perfecta</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 mb-10">
+                Descubra los mejores circuitos por España con la garantía y seguridad de Viajes Carrefour. Gestionamos su itinerario para que su única preocupación sea disfrutar del destino.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#services" class="btn-primary text-lg">Ver Circuitos 2026</a>
+                <a href="#contact" class="px-8 py-4 bg-white text-gray-900 font-bold rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:-translate-y-1">Planificar mi Ruta</a>
+            </div>
+            
+            <!-- TRUST SIGNALS -->
+            <div class="mt-12 border-t border-white/10 pt-8">
+                <p class="text-sm text-gray-400 mb-4 uppercase tracking-widest">Colaboradores de confianza</p>
+                <div class="flex flex-wrap justify-center gap-8 items-center text-gray-400 font-bold text-xl">
+                    <span>HOTEL GROUP</span>
+                    <span>TOUR ESPAÑA</span>
+                    <span>RENFE VIAJEROS</span>
+                    <span>ALSA TOURS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="py-20 px-4 sm:px-6 lg:px-8">
+
+        <!-- SERVICES SECTION -->
+        <div id="services" class="max-w-5xl mx-auto dna-card relative">
+            <div class="text-center mb-16">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Nuestros Servicios</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Circuitos Organizados por España
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Seleccionamos los mejores itinerarios nacionales proporcionados por grandes operadores.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- SERVICE 1 -->
+                <div class="text-center group">
+                    <div class="w-full h-48 rounded-2xl overflow-hidden mb-6 shadow-md">
+                        <img src="https://images.pexels.com/photos/59519/pexels-photo-59519.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Monumentos Culturales" 
+                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                             loading="lazy">
+                    </div>
+                    <h3 class="mt-2 text-xl font-bold text-gray-900">Circuitos Culturales</h3>
+                    <p class="mt-2 text-gray-500 text-sm px-4">
+                        Rutas históricas por ciudades patrimonio. Visite la Alhambra, la Sagrada Familia y el casco antiguo de Toledo con guías expertos y accesos prioritarios.
+                    </p>
+                </div>
+
+                <!-- SERVICE 2 -->
+                <div class="text-center group">
+                    <div class="w-full h-48 rounded-2xl overflow-hidden mb-6 shadow-md">
+                        <img src="https://images.pexels.com/photos/2261226/pexels-photo-2261226.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Naturaleza España" 
+                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                             loading="lazy">
+                    </div>
+                    <h3 class="mt-2 text-xl font-bold text-gray-900">Paisajes y Naturaleza</h3>
+                    <p class="mt-2 text-gray-500 text-sm px-4">
+                        Descubra los tesoros naturales de Galicia, Asturias y los Pirineos. Itinerarios diseñados para conectar con el entorno rural con el máximo confort.
+                    </p>
+                </div>
+
+                <!-- SERVICE 3 -->
+                <div class="text-center group">
+                    <div class="w-full h-48 rounded-2xl overflow-hidden mb-6 shadow-md">
+                        <img src="https://images.pexels.com/photos/2791483/pexels-photo-2791483.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Autobús turístico" 
+                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                             loading="lazy">
+                    </div>
+                    <h3 class="mt-2 text-xl font-bold text-gray-900">Gestión Todo Incluido</h3>
+                    <p class="mt-2 text-gray-500 text-sm px-4">
+                        Olvídese de la logística. Gestionamos transporte, alojamiento en hoteles seleccionados y regímenes de pensión completa para su tranquilidad.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                 <a href="#contact" class="btn-primary">Solicitar Catálogo Digital</a>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card mt-16">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Lo que dicen nuestros viajeros</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-2xl relative">
+                    <div class="text-yellow-400 text-xl mb-3">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Reservamos el circuito por Andalucía y fue espectacular. La organización del transporte y los hoteles elegidos superaron nuestras expectativas."</p>
+                    <div class="font-bold text-gray-900">- María González</div>
+                    <div class="text-xs text-gray-400">Marzo 2025</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-2xl relative">
+                    <div class="text-yellow-400 text-xl mb-3">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Excelente atención de Yazeta Resources. Nos ayudaron a elegir el mejor paquete para recorrer el norte de España. Todo muy claro y sin sorpresas."</p>
+                    <div class="font-bold text-gray-900">- Carlos Fernández</div>
+                    <div class="text-xs text-gray-400">Febrero 2025</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-2xl relative">
+                    <div class="text-yellow-400 text-xl mb-3">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Para personas mayores como nosotros, estos circuitos son la mejor opción. Nos sentimos seguros y muy bien atendidos en todo momento."</p>
+                    <div class="font-bold text-gray-900">- Ana Belén Ruiz</div>
+                    <div class="text-xs text-gray-400">Enero 2026</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card mt-16">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details class="group bg-white rounded-xl shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 rounded-xl group-open:bg-gray-50 text-gray-900 transition">
+                        <span>¿Qué incluyen generalmente los circuitos?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-5 pt-0">
+                        La mayoría de nuestros circuitos incluyen transporte en autobús de gran confort, alojamiento en hoteles seleccionados, régimen alimenticio según programa, guía acompañante y seguro básico de viaje. Las entradas a monumentos específicos dependen de cada itinerario.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 rounded-xl group-open:bg-gray-50 text-gray-900 transition">
+                        <span>¿Es posible cancelar o modificar mi reserva?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-5 pt-0">
+                        Sí, las condiciones de cancelación dependen de la antelación con la que se realice el aviso y de la tarifa seleccionada. Le recomendamos contratar un seguro de cancelación opcional para mayor tranquilidad.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 rounded-xl group-open:bg-gray-50 text-gray-900 transition">
+                        <span>¿Las salidas están garantizadas?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-5 pt-0">
+                        Gran parte de nuestros circuitos tienen salidas garantizadas a partir de un número mínimo de plazas (generalmente 25 personas). En caso de no alcanzarse, se ofrecerá una alternativa similar o el reembolso total.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 rounded-xl group-open:bg-gray-50 text-gray-900 transition">
+                        <span>¿Son adecuados los circuitos para personas mayores?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-5 pt-0">
+                        Absolutamente. Nuestros circuitos culturales y de ocio están diseñados con un ritmo cómodo, sin prisas excesivas, y con todas las facilidades de transporte puerta a puerta en las excursiones.
+                    </div>
+                </details>
+                
+                <details class="group bg-white rounded-xl shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 rounded-xl group-open:bg-gray-50 text-gray-900 transition">
+                        <span>¿Ofrecen descuentos para grupos?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-5 pt-0">
+                        Sí, disponemos de tarifas especiales para grupos de más de 10 personas, asociaciones y colectivos. Rellene el formulario de contacto para recibir un presupuesto personalizado.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card mt-16 overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="p-4">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Planifique su próximo viaje</h2>
+                    <p class="text-gray-600 mb-8">
+                        Rellene el formulario y un especialista de Yazeta Poia Resources se pondrá en contacto con usted para ofrecerle las mejores opciones de circuitos disponibles.
+                    </p>
+                    
+                    <div class="space-y-4 text-gray-700">
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span>Gestión Online & Madrid Headquarters (España)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Lunes a Viernes: 09:00 - 18:00</span>
+                        </div>
+                    </div>
+                    
+                    <!-- NOTE: No phone number found in specific source text extraction instructions, omitted to prevent hallucination -->
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-inner">
+                    <!-- SUCCESS MESSAGE (Hidden by default) -->
+                    <div id="success-msg" style="display:none;" class="text-center py-10">
+                        <div class="text-green-500 text-5xl mb-4">✓</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">¡Solicitud Enviada!</h3>
+                        <p class="text-gray-600">Gracias por contactar con Yazeta Poia Resources. Hemos recibido sus datos y le enviaremos la información solicitada en breve.</p>
+                    </div>
+
+                    <!-- FORM -->
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Enviando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                            <input type="text" id="name" required class="mt-1 block w-full px-4 py-3 rounded-xl border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700">Teléfono</label>
+                            <input type="tel" id="phone" required class="mt-1 block w-full px-4 py-3 rounded-xl border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white">
+                        </div>
+                        <div>
+                            <label for="destination" class="block text-sm font-medium text-gray-700">Destino de Interés</label>
+                            <select id="destination" class="mt-1 block w-full px-4 py-3 rounded-xl border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white">
+                                <option>Circuitos Culturales</option>
+                                <option>Norte de España</option>
+                                <option>Andalucía</option>
+                                <option>Todo Incluido</option>
+                                <option>Otros</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Comentarios Adicionales</label>
+                            <textarea id="message" rows="3" class="mt-1 block w-full px-4 py-3 rounded-xl border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-center">Enviar Solicitud</button>
+                        <p class="text-xs text-gray-500 mt-2 text-center">Sus datos están protegidos bajo nuestra política de privacidad.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+            <div>
+                <h3 class="text-white text-lg font-bold mb-4">Yazeta Poia Resources</h3>
+                <p class="mb-4">Gestión experta de itinerarios y recursos de viaje. Su socio de confianza para descubrir España con la mayor comodidad.</p>
+                <p class="text-xs text-gray-500">© 2026 Yazeta Poia Resources. Todos los derechos reservados.</p>
+            </div>
+            
+            <div class="md:col-span-2">
+                <div class="bg-gray-900 p-4 rounded-lg mb-6 border border-gray-700">
+                    <p class="font-bold text-white mb-2">Aviso Legal Importante:</p>
+                    <p>Este es un sitio promocional independiente gestionado por Yazeta Poia Resources, actuando como afiliado promocional para Viajes Carrefour. No somos la entidad final proveedora del servicio de transporte ni alojamiento, sino que facilitamos la conexión comercial y la gestión de la reserva inicial.</p>
+                </div>
+                
+                <div class="space-y-2">
+                    <!-- PRIVACY POLICY -->
+                    <details class="cursor-pointer">
+                        <summary class="hover:text-white">Política de Privacidad</summary>
+                        <div class="pt-2 text-xs text-gray-400 space-y-2">
+                            <p>En Yazeta Poia Resources, nos comprometemos firmemente a proteger la privacidad de sus datos personales. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos su información cuando visita nuestro sitio web y utiliza nuestros servicios. Recopilamos información personal como nombre y número de teléfono únicamente con el fin de facilitar la gestión de sus solicitudes de viaje. No vendemos, alquilamos ni compartimos su información personal con terceros no relacionados con la prestación directa del servicio solicitado, salvo requerimiento legal.</p>
+                            <p>Utilizamos medidas de seguridad técnicas y organizativas adecuadas para proteger sus datos contra el acceso no autorizado, la alteración, divulgación o destrucción. Sus datos se almacenan en servidores seguros y solo el personal autorizado tiene acceso a ellos. Retenemos su información personal solo durante el tiempo necesario para cumplir con los fines establecidos en esta política, o según lo exija la ley. Usted tiene derecho a acceder, rectificar o eliminar sus datos personales en cualquier momento mediante una solicitud formal a través de nuestro formulario de contacto.</p>
+                            <p>Este sitio puede utilizar cookies para mejorar su experiencia de navegación. Al continuar utilizando nuestro sitio, usted acepta el uso de estas tecnologías. Nos reservamos el derecho de modificar esta política en cualquier momento, publicando los cambios en esta misma página. Le recomendamos revisar esta política periódicamente. La base legal para el tratamiento de sus datos es su consentimiento explícito al enviar el formulario. En caso de discrepancia, nos regimos por las leyes vigentes en España en materia de protección de datos.</p>
+                            <p>La transferencia de datos a los proveedores de servicios finales (como hoteles o compañías de transporte) se realiza bajo estrictos acuerdos de confidencialidad. No nos hacemos responsables de las políticas de privacidad de sitios web de terceros a los que pueda acceder a través de enlaces en nuestro sitio. Si tiene dudas sobre esta política, por favor utilice el apartado de contacto. Su confianza es fundamental para nosotros.</p>
+                        </div>
+                    </details>
+
+                    <!-- TERMS OF SERVICE -->
+                    <details class="cursor-pointer">
+                        <summary class="hover:text-white">Términos y Condiciones</summary>
+                        <div class="pt-2 text-xs text-gray-400 space-y-2">
+                            <p>Al acceder y utilizar este sitio web, usted acepta estar sujeto a estos Términos y Condiciones de uso. Yazeta Poia Resources actúa como un intermediario promocional y no es responsable directo de la ejecución material de los viajes, los cuales son operados por terceros proveedores licenciados. Toda la información presentada en este sitio web tiene carácter informativo y está sujeta a cambios sin previo aviso por parte de los operadores turísticos. Nos esforzamos por mantener la información actualizada, pero no garantizamos la exactitud absoluta de precios o disponibilidad en tiempo real.</p>
+                            <p>El usuario se compromete a utilizar este sitio web únicamente con fines legales y legítimos, absteniéndose de realizar actividades fraudulentas o dañinas. La contratación final de cualquier servicio turístico estará sujeta a los términos y condiciones específicos del proveedor final del servicio (Viajes Carrefour u otros operadores). Yazeta Poia Resources no asume responsabilidad por cancelaciones, retrasos o incumplimientos por parte de los operadores de transporte o alojamiento.</p>
+                            <p>Cualquier disputa relacionada con el uso de este sitio web se regirá por las leyes de España. La responsabilidad de Yazeta Poia Resources se limita a la correcta transmisión de la solicitud de información al proveedor. No nos hacemos responsables de pérdidas indirectas o consecuentes derivadas del uso de este sitio. El usuario es responsable de asegurarse de cumplir con los requisitos de documentación y salud para viajar. Nos reservamos el derecho de denegar el acceso al servicio a cualquier usuario que infrinja estos términos.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-600">
+                Utilizamos cookies propias y de terceros para mejorar su experiencia y analizar el uso de nuestra web. 
+                Al continuar navegando, acepta nuestra política de privacidad.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookieConsent', 'true')" class="text-sm font-bold text-primary hover:underline">Aceptar</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-sm text-gray-500 hover:text-gray-700">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // SMART ROUTING LOGIC
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if ID missing
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // COOKIE CHECK
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-banner').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
