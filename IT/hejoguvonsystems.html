@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hejoguvon Systems | Eccellenza Automotive e Moto</title>
+    <meta name="description" content="Il partner ideale per la cura della tua auto, moto e bici. Accessori, ricambi e sistemi di manutenzione selezionati per te.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            /* VAR D: Palette -> Automotive Red */
+            --primary: #DC2626; 
+            /* VAR C: Surface -> Cool Slate White (Code 2) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry -> Soft 12px (Code 1) */
+            --radius: 12px;
+            /* VAR B: Physics -> Hard Neo-Brutalist (Code 2) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #e5e7eb; /* Gray base to force contrast */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Neo-brutalist border addition for emphasis */
+            position: relative;
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HERO OVERLAY */
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+        }
+
+        /* FAQ ANIMATION */
+        details summary {
+            cursor: pointer;
+            list-style: none;
+            font-weight: 600;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary {
+            border-bottom: none;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="ph ph-gear-six text-3xl text-primary"></i>
+                    <span class="font-black text-2xl tracking-tighter">HEJOGUVON<span class="text-primary">SYSTEMS</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center font-bold">
+                    <a href="#features" class="hover:text-primary transition-colors">Servizi</a>
+                    <a href="#reviews" class="hover:text-primary transition-colors">Recensioni</a>
+                    <a href="#faq" class="hover:text-primary transition-colors">FAQ</a>
+                    <a href="#contact" class="btn-primary py-2 px-6 text-sm">Richiedi Info</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-black focus:outline-none">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black p-4 absolute w-full shadow-xl">
+            <a href="#features" class="block py-2 font-bold hover:text-primary">Servizi</a>
+            <a href="#reviews" class="block py-2 font-bold hover:text-primary">Recensioni</a>
+            <a href="#faq" class="block py-2 font-bold hover:text-primary">FAQ</a>
+            <a href="#contact" class="block py-2 font-bold text-primary mt-2">Contattaci Subito</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-black h-screen max-h-[700px] flex items-center justify-center overflow-hidden">
+        <!-- Image Failover Strategy -->
+        <img 
+            src="https://images.pexels.com/photos/4489749/pexels-photo-4489749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+            alt="Officina meccanica auto" 
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Auto+Service+Shop'"
+        >
+        <div class="hero-overlay absolute inset-0"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <span class="inline-block py-1 px-3 rounded bg-red-600 text-white font-bold text-xs uppercase tracking-widest mb-4 border-2 border-black" style="box-shadow: 3px 3px 0 #000;">
+                Il Top dell'Automotive
+            </span>
+            <h1 class="text-4xl md:text-6xl font-black text-white leading-tight mb-6">
+                SISTEMI DI ECCELLENZA PER LA TUA <span class="text-red-500">AUTO E MOTO</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto font-medium">
+                Dalla manutenzione avanzata agli accessori di design. Hejoguvon Systems è il punto di riferimento per chi pretende il massimo dal proprio veicolo.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#contact" class="btn-primary text-center">Inizia Ora</a>
+                <a href="#features" class="bg-white text-black font-bold py-4 px-8 border-2 border-black shadow-[4px_4px_0px_0px_#000] rounded-xl hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#000] transition-all flex items-center justify-center gap-2">
+                    <i class="ph ph-magnifying-glass-plus text-xl"></i> Scopri Catalogo
+                </a>
+            </div>
+            
+            <!-- Trust Signals -->
+            <div class="mt-12 pt-8 border-t border-gray-700 flex justify-center gap-8 items-center text-gray-400 font-bold uppercase text-sm flex-wrap">
+                <span>Partners Ufficiali:</span>
+                <span class="text-gray-200">Sparco</span>
+                <span class="text-gray-200">Thule</span>
+                <span class="text-gray-200">Bardahl</span>
+                <span class="text-gray-200">Brembo</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="py-16 px-4">
+        
+        <!-- SERVICES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black mb-4 uppercase">Cosa Offriamo</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Selezioniamo solo i migliori prodotti e accessori per garantirti prestazioni, sicurezza e stile su strada.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-4 border-2 border-gray-100 rounded-lg hover:border-black transition-colors">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6 border-2 border-black shadow-[3px_3px_0_0_#000]">
+                        <i class="ph ph-car-profile text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Accessori Auto & Tuning</h3>
+                    <p class="text-gray-600 mb-4">Dal comfort interno ai sistemi di portaggio esterni. Tutto il necessario per personalizzare e proteggere la tua automobile con stile.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-4 border-2 border-gray-100 rounded-lg hover:border-black transition-colors">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6 border-2 border-black shadow-[3px_3px_0_0_#000]">
+                        <i class="ph ph-motorcycle text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mondo Moto & Pilota</h3>
+                    <p class="text-gray-600 mb-4">Caschi omologati, abbigliamento tecnico e ricambi per la tua due ruote. La sicurezza incontra la passione per la velocità.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-4 border-2 border-gray-100 rounded-lg hover:border-black transition-colors">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6 border-2 border-black shadow-[3px_3px_0_0_#000]">
+                        <i class="ph ph-bicycle text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Bici & E-Bike Care</h3>
+                    <p class="text-gray-600 mb-4">Soluzioni complete per la mobilità sostenibile. Accessori per biciclette, portabici e prodotti per la manutenzione ordinaria.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISUAL BREAK -->
+        <div class="max-w-5xl mx-auto mb-16 rounded-[12px] overflow-hidden border-2 border-black shadow-[4px_4px_0px_0px_#000]">
+             <img 
+                src="https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                alt="Ricambi Auto e Accessori" 
+                class="w-full h-64 object-cover"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+             >
+             <div class="bg-black text-white p-6 text-center">
+                 <h3 class="text-xl font-bold uppercase">Qualità Certificata dai Migliori Marchi</h3>
+             </div>
+        </div>
+
+        <!-- TESTIMONIALS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black mb-10 text-center uppercase">Dicono di Noi</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded border border-gray-200">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Cercavo un box tetto specifico per la mia auto e qui ho trovato assistenza impeccabile. Il sistema di ricerca è perfetto."</p>
+                    <div class="font-bold text-sm border-l-4 border-primary pl-3">
+                        Marco V.<br>
+                        <span class="text-gray-400 font-normal">Torino</span>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded border border-gray-200">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Grande selezione di caschi. Ho apprezzato la velocità nel trovare la taglia giusta per il mio nuovo integrale."</p>
+                    <div class="font-bold text-sm border-l-4 border-primary pl-3">
+                        Giulia R.<br>
+                        <span class="text-gray-400 font-normal">Milano</span>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded border border-gray-200">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star-half"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Ottimi prodotti per la pulizia dell'auto. Finalmente prodotti professionali accessibili a tutti."</p>
+                    <div class="font-bold text-sm border-l-4 border-primary pl-3">
+                        Alessandro B.<br>
+                        <span class="text-gray-400 font-normal">Bologna</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black mb-8 uppercase">Domande Frequenti</h2>
+            <div class="space-y-2">
+                <details class="group">
+                    <summary class="flex justify-between items-center text-lg font-bold hover:text-primary transition-colors">
+                        Trattate solo accessori per auto?
+                        <span class="transform group-open:rotate-180 transition-transform"><i class="ph ph-caret-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-2 pb-4">No, la nostra offerta è completa. Copriamo il mondo dell'auto, della moto (incluso abbigliamento e caschi) e il settore bici/e-bike con manutenzione e accessori dedicati.</p>
+                </details>
+
+                <details class="group">
+                    <summary class="flex justify-between items-center text-lg font-bold hover:text-primary transition-colors">
+                        Come posso verificare la compatibilità dei ricambi?
+                        <span class="transform group-open:rotate-180 transition-transform"><i class="ph ph-caret-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-2 pb-4">Consigliamo sempre di compilare il modulo di contatto specificando il modello del veicolo e l'anno di immatricolazione. I nostri esperti verificheranno per te la compatibilità.</p>
+                </details>
+
+                <details class="group">
+                    <summary class="flex justify-between items-center text-lg font-bold hover:text-primary transition-colors">
+                        Effettuate servizi di installazione?
+                        <span class="transform group-open:rotate-180 transition-transform"><i class="ph ph-caret-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-2 pb-4">Noi ci occupiamo della fornitura e della consulenza sui migliori prodotti. Per l'installazione, collaboriamo con una rete di officine partner o puoi rivolgerti al tuo meccanico di fiducia.</p>
+                </details>
+
+                <details class="group">
+                    <summary class="flex justify-between items-center text-lg font-bold hover:text-primary transition-colors">
+                        Vendete olio motore e additivi?
+                        <span class="transform group-open:rotate-180 transition-transform"><i class="ph ph-caret-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-2 pb-4">Certamente. Abbiamo un'ampia gamma di lubrificanti, oli motore e additivi delle migliori marche (come Bardahl, Castrol) per ogni tipo di motore.</p>
+                </details>
+
+                <details class="group">
+                    <summary class="flex justify-between items-center text-lg font-bold hover:text-primary transition-colors">
+                        Quali sono i tempi di gestione della richiesta?
+                        <span class="transform group-open:rotate-180 transition-transform"><i class="ph ph-caret-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-2 pb-4">Rispondiamo a tutte le richieste inviate tramite modulo entro 24 ore lavorative, fornendo disponibilità e quotazioni dettagliate.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-black mb-6 uppercase text-primary">Parla con Noi</h2>
+                    <p class="text-gray-600 mb-8 font-medium">Hai bisogno di un consiglio tecnico o cerchi un accessorio specifico? Il nostro team di esperti è pronto ad aiutarti a trovare la soluzione perfetta per il tuo veicolo.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-gray-100 p-3 rounded-full border border-black"><i class="ph-fill ph-map-pin text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold">Sede Operativa</h4>
+                                <p class="text-sm text-gray-600">Via Monte Grappa 8/10<br>31044 Montebelluna (TV), Italia</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="bg-gray-100 p-3 rounded-full border border-black"><i class="ph-fill ph-clock text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold">Orari Assistenza</h4>
+                                <p class="text-sm text-gray-600">Lun - Ven: 09:00 - 18:00<br>Sabato: 09:00 - 13:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Safety Box -->
+                    <div class="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
+                        <i class="ph-bold ph-shield-check mr-1"></i> I tuoi dati sono al sicuro. Non inviamo spam.
+                    </div>
+                </div>
+
+                <!-- Form Simulator -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-inner">
+                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); btn.disabled=true; btn.innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'; window.scrollTo({top: document.getElementById('contact').offsetTop, behavior: 'smooth'});}, 1500);">
+                        
+                        <div>
+                            <label class="block text-sm font-bold mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full p-3 bg-gray-50 border-2 border-gray-200 rounded focus:border-primary focus:outline-none transition-colors" placeholder="Mario Rossi">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold mb-1">Veicolo (Modello/Anno)</label>
+                            <input type="text" required class="w-full p-3 bg-gray-50 border-2 border-gray-200 rounded focus:border-primary focus:outline-none transition-colors" placeholder="Es: Fiat 500, 2021">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold mb-1">Categoria di Interesse</label>
+                            <select class="w-full p-3 bg-gray-50 border-2 border-gray-200 rounded focus:border-primary focus:outline-none transition-colors">
+                                <option>Accessori Auto</option>
+                                <option>Moto e Caschi</option>
+                                <option>Bici ed E-bike</option>
+                                <option>Olio e Liquidi</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold mb-1">Messaggio</label>
+                            <textarea rows="3" required class="w-full p-3 bg-gray-50 border-2 border-gray-200 rounded focus:border-primary focus:outline-none transition-colors" placeholder="Descrivi cosa stai cercando..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full btn-primary text-center cursor-pointer">
+                            INVIA RICHIESTA GRATUITA
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" style="display:none;" class="text-center py-10">
+                        <i class="ph-fill ph-check-circle text-5xl text-green-500 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Messaggio Inviato!</h3>
+                        <p class="text-gray-600">Un nostro consulente ha preso in carico la tua richiesta.<br>Ti risponderemo nel più breve tempo possibile.</p>
+                        <button onclick="location.reload()" class="mt-6 text-primary font-bold hover:underline">Torna al sito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 border-t-4 border-primary">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="ph-fill ph-gear-six text-2xl text-primary"></i>
+                        <span class="font-bold text-xl">HEJOGUVON SYSTEMS</span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-sm mb-6">
+                        Questo è un sito promozionale indipendente gestito da Hejoguvon Systems, operante come affiliato per Bep's. Tutti i marchi citati appartengono ai rispettivi proprietari.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4 uppercase text-sm tracking-wider text-gray-500">Navigazione</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#features" class="hover:text-primary transition-colors">Servizi</a></li>
+                        <li><a href="#reviews" class="hover:text-primary transition-colors">Recensioni</a></li>
+                        <li><a href="#faq" class="hover:text-primary transition-colors">Domande Frequenti</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 uppercase text-sm tracking-wider text-gray-500">Note Legali</h4>
+                    <div class="space-y-2 text-xs text-gray-400">
+                        <!-- PRIVACY POLICY -->
+                        <details>
+                            <summary class="hover:text-white cursor-pointer list-none">Privacy Policy</summary>
+                            <div class="mt-2 p-3 bg-gray-800 rounded">
+                                <p class="mb-2"><strong>Informativa sulla Privacy - Hejoguvon Systems</strong></p>
+                                <p>1. <strong>Titolare del Trattamento:</strong> Il trattamento dei dati raccolti tramite questo sito è gestito da Hejoguvon Systems. Ci impegniamo a proteggere la tua privacy e i tuoi dati personali.</p>
+                                <p>2. <strong>Dati Raccolti:</strong> Raccogliamo solo i dati necessari per fornirti i servizi richiesti, come nome e dettagli del veicolo tramite il modulo di contatto.</p>
+                                <p>3. <strong>Finalità del Trattamento:</strong> I dati sono utilizzati esclusivamente per rispondere alle tue richieste di informazioni su prodotti auto e moto e per scopi di marketing diretto previo consenso.</p>
+                                <p>4. <strong>Condivisione dei Dati:</strong> Non vendiamo i tuoi dati a terzi. I dati possono essere condivisi con fornitori di servizi tecnici essenziali per il funzionamento del sito.</p>
+                                <p>5. <strong>Sicurezza:</strong> Adottiamo misure di sicurezza tecniche e organizzative per prevenire la perdita o l'accesso non autorizzato ai tuoi dati.</p>
+                                <p>6. <strong>Diritti dell'Utente:</strong> Hai il diritto di accedere, rettificare o cancellare i tuoi dati in qualsiasi momento contattandoci tramite il sito.</p>
+                                <p>7. <strong>Cookie:</strong> Utilizziamo cookie tecnici per migliorare la navigazione. Puoi gestire le preferenze tramite il banner o le impostazioni del browser.</p>
+                                <p>8. <strong>Modifiche:</strong> Questa informativa può subire aggiornamenti. La versione vigente è quella pubblicata sul sito.</p>
+                                <p>9. <strong>Base Giuridica:</strong> Il trattamento si basa sul consenso dell'utente e sull'esecuzione di misure precontrattuali.</p>
+                                <p>10. <strong>Conservazione:</strong> I dati sono conservati per il tempo strettamente necessario a gestire la richiesta dell'utente.</p>
+                                <p>11. <strong>Trasferimento Dati:</strong> I dati sono elaborati all'interno dell'Unione Europea.</p>
+                                <p>12. <strong>Reclami:</strong> L'utente ha il diritto di proporre reclamo all'autorità di controllo competente.</p>
+                                <p>13. <strong>Contatti:</strong> Per esercitare i tuoi diritti, utilizza il modulo di contatto presente nella pagina.</p>
+                                <p>14. <strong>Minori:</strong> Il sito non è diretto a minori di 18 anni. Non raccogliamo intenzionalmente dati di minori.</p>
+                                <p>15. <strong>Link Esterni:</strong> Il sito può contenere link a siti terzi di cui non siamo responsabili.</p>
+                            </div>
+                        </details>
+                        
+                        <!-- TERMS -->
+                        <details>
+                            <summary class="hover:text-white cursor-pointer list-none">Termini e Condizioni</summary>
+                            <div class="mt-2 p-3 bg-gray-800 rounded">
+                                <p class="mb-2"><strong>Termini e Condizioni - Hejoguvon Systems</strong></p>
+                                <p>1. <strong>Accettazione:</strong> L'uso del sito implica l'accettazione integrale di questi termini e condizioni.</p>
+                                <p>2. <strong>Servizio:</strong> Il sito fornisce informazioni promozionali su prodotti automotive. Non siamo venditori diretti ma promotori.</p>
+                                <p>3. <strong>Limitazione di Responsabilità:</strong> Hejoguvon Systems non è responsabile per eventuali inesattezze nelle descrizioni dei prodotti forniti da terzi.</p>
+                                <p>4. <strong>Proprietà Intellettuale:</strong> Tutti i contenuti del sito, inclusi testi e loghi del marchio Hejoguvon Systems, sono protetti da copyright.</p>
+                                <p>5. <strong>Uso Consentito:</strong> È vietato utilizzare il sito per scopi illegali o che possano danneggiare il servizio.</p>
+                                <p>6. <strong>Modifiche al Servizio:</strong> Ci riserviamo il diritto di modificare o interrompere il servizio in qualsiasi momento senza preavviso.</p>
+                                <p>7. <strong>Link di Affiliazione:</strong> Il sito potrebbe contenere link di affiliazione per i quali riceviamo una commissione.</p>
+                                <p>8. <strong>Legge Applicabile:</strong> Questi termini sono regolati dalla legge italiana.</p>
+                                <p>9. <strong>Foro Competente:</strong> Per qualsiasi controversia è competente il foro di residenza dell'operatore del sito.</p>
+                                <p>10. <strong>Contenuti Utente:</strong> L'utente è responsabile della veridicità dei dati forniti nel modulo di contatto.</p>
+                                <p>11. <strong>Indennizzo:</strong> L'utente accetta di manlevare Hejoguvon Systems da qualsiasi richiesta di risarcimento derivante dall'uso improprio del sito.</p>
+                                <p>12. <strong>Disponibilità:</strong> Non garantiamo che il sito sia sempre accessibile senza interruzioni.</p>
+                                <p>13. <strong>Prezzi:</strong> Eventuali prezzi indicati sono puramente indicativi e soggetti a conferma.</p>
+                                <p>14. <strong>Intero Accordo:</strong> Questi termini costituiscono l'intero accordo tra le parti.</p>
+                                <p>15. <strong>Contatti:</strong> Per questioni legali, utilizzare il form di contatto.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500">
+                <p>&copy; 2026 Hejoguvon Systems. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-sm bg-white p-6 rounded-lg shadow-[4px_4px_0px_0px_#000] border-2 border-black z-50 hidden">
+        <h5 class="font-bold text-lg mb-2">Rispetto della Privacy</h5>
+        <p class="text-sm text-gray-600 mb-4">Utilizziamo i cookie per migliorare la tua esperienza e offrirti servizi in linea con le tue preferenze.</p>
+        <div class="flex gap-2">
+            <button onclick="acceptCookies()" class="flex-1 btn-primary text-xs py-2 px-3">Accetta</button>
+            <button onclick="document.getElementById('cookie-banner').style.display='none'" class="flex-1 bg-gray-200 text-black font-bold py-2 px-3 rounded text-xs hover:bg-gray-300 transition">Rifiuta</button>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // SMART ROUTING & SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Mobile menu closer
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    // Scroll
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                } else {
+                    // Fallback to Contact
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection){
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('hejoguvon_consent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('hejoguvon_consent')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').style.display = 'block';
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
