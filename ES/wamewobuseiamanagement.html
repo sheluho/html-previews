@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Useia Management | Expertos en Selección de Personal y Cuidado</title>
+    <meta name="description" content="Gestión integral de personal para el cuidado de mayores y ayuda a domicilio. Seleccionamos a los mejores cuidadores para la tranquilidad de tu familia.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+
+    <style>
+        :root {
+            /* VAR D: Palette (Healthcare/Management -> Teal/Emerald) */
+            --primary: #0d9488;
+            /* VAR C: Surface (Warm Cream for comfort) */
+            --surface: #fffdf5;
+            /* VAR A: Geometry (Length 16 % 3 = 1 -> Soft 12px) */
+            --radius: 12px;
+            /* VAR B: Physics (h 104 % 3 = 2 -> Hard Shadow) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Global contrast base */
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000000; /* Adjusted for Hard Shadow visibility */
+            position: relative;
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s ease-in-out;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+
+        /* Accordion Styles */
+        details > summary {
+            list-style: none;
+            outline: none;
+            cursor: pointer;
+            padding: 15px;
+            background-color: rgba(0,0,0,0.03);
+            border-radius: var(--radius);
+            font-weight: 600;
+            position: relative;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] > summary {
+            background-color: rgba(13, 148, 136, 0.1);
+        }
+        details > p, details > div {
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: max-height 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold tracking-tighter uppercase text-black">
+                        Useia<span class="text-primary">Management</span>
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#services" class="text-gray-900 hover:text-primary font-medium transition">Servicios</a>
+                    <a href="#process" class="text-gray-900 hover:text-primary font-medium transition">Método</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary font-medium transition">Opiniones</a>
+                    <a href="#contact" class="btn-primary text-sm">Consulta Gratuita</a>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" onclick="const m=document.getElementById('mobile-menu'); m.classList.toggle('open');" class="text-gray-900 focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-gray-50 border-b-2 border-black">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#services" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-primary">Servicios</a>
+                <a href="#process" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-primary">Método</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-primary">Opiniones</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold">Contactar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/3768114/pexels-photo-3768114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 class="w-full h-full object-cover" 
+                 alt="Cuidadora ayudando a persona mayor en casa"
+                 loading="lazy"
+                 referrerpolicy="no-referrer">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+                    Gestión integral de personal para el <span class="text-primary">cuidado de tus seres queridos</span>.
+                </h1>
+                <p class="mt-4 text-xl text-gray-200 mb-8 font-light">
+                    En Useia Management conectamos a las familias con los mejores profesionales. Seleccionamos cuidadores y personal doméstico de confianza para garantizar tu tranquilidad.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="btn-primary text-center">Encontrar Cuidador</a>
+                    <a href="#services" class="inline-block px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-black transition text-center" style="border-radius: var(--radius);">
+                        Ver Servicios
+                    </a>
+                </div>
+                <div class="mt-8 flex items-center gap-4 text-gray-300 text-sm">
+                    <span><i class="fas fa-check-circle text-primary mr-1"></i> Selección verificada</span>
+                    <span><i class="fas fa-check-circle text-primary mr-1"></i> Trámites legales</span>
+                    <span><i class="fas fa-check-circle text-primary mr-1"></i> Cobertura nacional</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8">
+        
+        <!-- SERVICES SECTION -->
+        <div id="services" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm">Nuestros Servicios</span>
+                <h2 class="text-3xl font-bold text-gray-900 mt-2">Soluciones de Cuidado Integral</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Analizamos tus necesidades y gestionamos la contratación del perfil perfecto para tu hogar.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="text-center p-4">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl border-2 border-black" style="box-shadow: 2px 2px 0 0 #000;">
+                        <i class="fas fa-user-nurse"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Cuidado de Mayores</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Asistencia domiciliaria especializada para personas mayores. Acompañamiento, control de medicación, aseo personal y movilización con personal cualificado.
+                    </p>
+                </div>
+                <!-- Service 2 -->
+                <div class="text-center p-4">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl border-2 border-black" style="box-shadow: 2px 2px 0 0 #000;">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Ayuda a Domicilio</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Gestión de tareas domésticas: limpieza, cocina, plancha y mantenimiento del hogar. Personal de confianza para mantener tu casa impecable.
+                    </p>
+                </div>
+                <!-- Service 3 -->
+                <div class="text-center p-4">
+                    <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl border-2 border-black" style="box-shadow: 2px 2px 0 0 #000;">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Gestión Laboral</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Nos encargamos de todo el papeleo: contratos, altas en Seguridad Social, nóminas y sustituciones en caso de baja o vacaciones.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROCESS / METHOD SECTION -->
+        <div id="process" class="max-w-5xl mx-auto dna-card">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                         class="rounded-lg border-2 border-black w-full" 
+                         style="box-shadow: var(--shadow);"
+                         alt="Entrevista de selección de personal"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">El Método Useia Management</h2>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-4 mt-1 border border-black">1</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Análisis del Caso</h4>
+                                <p class="text-gray-600 text-sm">Estudiamos las necesidades específicas de tu familiar y tu hogar para definir el perfil ideal.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-4 mt-1 border border-black">2</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Selección Rigurosa</h4>
+                                <p class="text-gray-600 text-sm">Entrevistamos y verificamos referencias. Solo te presentamos a candidatos que cumplen con nuestros altos estándares.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-4 mt-1 border border-black">3</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Tranquilidad Total</h4>
+                                <p class="text-gray-600 text-sm">Gestionamos la contratación y realizamos un seguimiento continuo para asegurar tu satisfacción.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card bg-white">
+            <h2 class="text-3xl font-bold text-center mb-10">Lo que dicen las familias</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Encontrar a alguien de confianza para mi madre era vital. Gracias a Useia por la rapidez y la profesionalidad. María es un encanto."</p>
+                    <p class="font-bold text-gray-900">- Carmen R.</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Me han ahorrado muchos dolores de cabeza con el papeleo de la Seguridad Social. Servicio impecable."</p>
+                    <p class="font-bold text-gray-900">- Javier M.</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Necesitábamos una interna urgentemente tras una operación. En 48 horas teníamos a la persona adecuada en casa."</p>
+                    <p class="font-bold text-gray-900">- Elena S.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold mb-8 text-center">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>¿Cómo verifican a los cuidadores?</summary>
+                    <p>Realizamos entrevistas personales exhaustivas, comprobamos referencias laborales previas y verificamos toda la documentación legal y titulación necesaria para garantizar la máxima seguridad.</p>
+                </details>
+                <details>
+                    <summary>¿Qué pasa si el cuidador no encaja o se pone enfermo?</summary>
+                    <p>Nuestra gestión incluye garantía de sustitución ilimitada. Si la persona seleccionada no encaja con la familia o se enferma, gestionamos un reemplazo lo antes posible sin coste adicional de selección.</p>
+                </details>
+                <details>
+                    <summary>¿Ayudáis con los trámites legales?</summary>
+                    <p>Sí, nos encargamos de la redacción del contrato, el alta en la Seguridad Social y la gestión de nóminas mensuales para que tú no tengas que preocuparte por la burocracia.</p>
+                </details>
+                <details>
+                    <summary>¿Ofrecéis servicio de internas?</summary>
+                    <p>Sí, gestionamos personal tanto en régimen interno (24h con descansos legales) como externo (por horas o jornadas completas), así como fines de semana.</p>
+                </details>
+                <details>
+                    <summary>¿En qué zonas prestáis servicio?</summary>
+                    <p>Trabajamos a nivel nacional. Gracias a nuestra tecnología de gestión, podemos seleccionar personal cualificado en cualquier punto de España.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Solicita Información Gratuita</h2>
+                    <p class="text-gray-600 mb-8">
+                        Cuéntanos qué necesitas. Un asesor especializado analizará tu caso y te contactará para ofrecerte la mejor solución de cuidado.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4 border border-black">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="font-medium text-gray-700">Sin compromiso inicial</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4 border border-black">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <span class="font-medium text-gray-700">Respuesta rápida</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4 border border-black">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span class="font-medium text-gray-700">Privacidad garantizada</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Enviando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nombre Completo</label>
+                            <input class="w-full px-3 py-3 border border-gray-300 rounded focus:outline-none focus:border-primary" id="name" type="text" placeholder="Ej: María López" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">Teléfono</label>
+                            <input class="w-full px-3 py-3 border border-gray-300 rounded focus:outline-none focus:border-primary" id="phone" type="tel" placeholder="Ej: 600 000 000" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="service">Servicio de Interés</label>
+                            <select class="w-full px-3 py-3 border border-gray-300 rounded focus:outline-none focus:border-primary bg-white" id="service">
+                                <option>Cuidado de Mayores (Interna)</option>
+                                <option>Cuidado de Mayores (Externa)</option>
+                                <option>Ayuda a Domicilio / Limpieza</option>
+                                <option>Acompañamiento Hospitalario</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <button class="w-full btn-primary" type="submit">
+                            Solicitar Asesoramiento
+                        </button>
+                    </form>
+                    
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="text-green-500 text-5xl mb-4"><i class="fas fa-check-circle"></i></div>
+                        <h3 class="text-2xl font-bold mb-2">¡Solicitud Recibida!</h3>
+                        <p class="text-gray-600">Un asesor especializado revisará tu caso y te contactará en breve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+            <div>
+                <h4 class="text-white text-lg font-bold mb-4 uppercase">Useia Management</h4>
+                <p class="mb-4">Especialistas en la gestión de personal doméstico y asistencial. Tu tranquilidad es nuestro trabajo.</p>
+                <p class="text-xs text-gray-500">
+                    Este es un sitio promocional independiente gestionado por Useia Management, actuando como afiliado para Aiudo.
+                </p>
+            </div>
+            
+            <!-- LEGAL SECTION -->
+            <div class="col-span-2 space-y-4">
+                <details>
+                    <summary class="text-gray-400 hover:text-white">Política de Privacidad</summary>
+                    <div class="text-xs text-gray-400 mt-2 bg-gray-800 p-4 rounded">
+                        <p>En Useia Management nos tomamos muy en serio la privacidad de sus datos. De conformidad con el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo (RGPD), le informamos que sus datos personales serán tratados con la finalidad de gestionar su solicitud de información y servicios de cuidado a domicilio. La base legítima para el tratamiento es su consentimiento expreso al enviar el formulario de contacto. Sus datos no serán cedidos a terceros salvo obligación legal o necesidad contractual con el proveedor del servicio final. Tiene derecho a acceder, rectificar y suprimir sus datos, así como otros derechos detallados en la normativa vigente. Conservaremos sus datos durante el tiempo necesario para cumplir con la finalidad para la que se recabaron. Nos comprometemos a aplicar las medidas de seguridad técnicas y organizativas necesarias para evitar la pérdida, mal uso, alteración o acceso no autorizado a sus datos personales. Para ejercer sus derechos, puede contactar con nosotros a través de los canales habilitados en este sitio web. Este sitio utiliza cookies para mejorar la experiencia del usuario y analizar el tráfico.</p>
+                        <p class="mt-2">El responsable del tratamiento de los datos es Useia Management. Al utilizar este sitio web, usted acepta los términos de esta política. Nos reservamos el derecho a modificar esta política para adaptarla a novedades legislativas o jurisprudenciales.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="text-gray-400 hover:text-white">Términos y Condiciones</summary>
+                    <div class="text-xs text-gray-400 mt-2 bg-gray-800 p-4 rounded">
+                        <p>Bienvenido al sitio web de Useia Management. El acceso y uso de este sitio web le atribuye la condición de usuario, implicando la aceptación plena y sin reservas de todas las disposiciones incluidas en este Aviso Legal. Useia Management actúa como intermediario publicitario y gestor de leads para proveedores de servicios de cuidado. No somos el empleador directo del personal doméstico. La contratación final del personal y la relación laboral se establecen entre la familia y el cuidador, o a través de la agencia proveedora final (Aiudo), según corresponda la modalidad contractual elegida. Useia Management no se hace responsable de las relaciones laborales o contractuales que se deriven de la puesta en contacto entre las partes. Los contenidos de este sitio web son de carácter informativo y orientativo. Nos esforzamos por mantener la información actualizada, pero no garantizamos la exactitud completa en todo momento. El usuario se compromete a hacer un uso adecuado de los contenidos y servicios, y a no emplearlos para actividades ilícitas o contrarias a la buena fe y al orden público.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="text-gray-400 hover:text-white">Política de Reembolsos</summary>
+                    <div class="text-xs text-gray-400 mt-2 bg-gray-800 p-4 rounded">
+                        <p>Dado que Useia Management ofrece servicios de gestión e intermediación para la selección de personal, la política de reembolsos está sujeta a las condiciones específicas del contrato de servicio que se formalice. Por lo general, los servicios de selección de personal se consideran ejecutados una vez presentados los candidatos y realizada la contratación. No obstante, ofrecemos una garantía de sustitución: si el candidato seleccionado abandona el puesto o no cumple con las expectativas durante el periodo de garantía estipulado (generalmente los primeros meses), nos comprometemos a realizar un nuevo proceso de selección para sustituir al personal sin coste adicional para el cliente. No se realizarán reembolsos económicos directos por los servicios de gestión ya prestados y consumados, salvo en casos de incumplimiento grave de nuestras obligaciones contractuales o por imperativo legal. Cualquier reclamación sobre facturación o calidad del servicio debe realizarse a través de nuestros canales de atención al cliente para su estudio individualizado.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+            &copy; 2026 Useia Management. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50 transform translate-y-full transition-transform duration-300" style="border-top: 4px solid var(--primary);">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-sm">Utilizamos cookies propias y de terceros para mejorar nuestros servicios. Si continúa navegando, consideramos que acepta su uso.</p>
+            <div class="flex gap-4">
+                <button onclick="document.getElementById('cookie-banner').classList.add('translate-y-full'); localStorage.setItem('cookiesAccepted', 'true');" class="btn-primary py-2 px-4 text-xs">Aceptar</button>
+                <button onclick="document.getElementById('cookie-banner').classList.add('translate-y-full');" class="text-gray-400 underline text-xs">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS LOGIC -->
+    <script>
+        // Smooth Scroll Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to Contact if ID missing
+                    document.querySelector('#contact').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu.classList.contains('open')) {
+                    mobileMenu.classList.remove('open');
+                }
+            });
+        });
+
+        // Cookie Banner Logic
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                document.getElementById('cookie-banner').classList.remove('translate-y-full');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
