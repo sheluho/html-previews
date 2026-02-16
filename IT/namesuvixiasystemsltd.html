@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Suvixia Systems - Soluzioni professionali per la ristrutturazione della tua casa. Preventivi accurati e gestione completa del cantiere.">
+    <title>Suvixia Systems | Ristrutturazioni e Design</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* DNA VARIABLES CALCULATED FROM SOURCE */
+            --primary: #ea580c; /* Construction/Industrial Orange */
+            --surface: #f8fafc; /* Cool Slate White (VAR C) */
+            --radius: 12px;     /* Soft Radius (VAR A) */
+            --shadow: 4px 4px 0px 0px #1f2937; /* Hard Neo-Brutalist Shadow (VAR B) */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #e5e7eb; /* Light gray for contrast */
+            color: #1f2937;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #1f2937; /* Added border to match hard shadow style */
+            transition: transform 0.2s ease;
+        }
+        
+        .dna-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #1f2937;
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 2px solid #1f2937;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #1f2937;
+            background-color: #c2410c;
+        }
+        
+        .btn-primary:active {
+            transform: translate(0px, 0px);
+            box-shadow: 2px 2px 0px 0px #1f2937;
+        }
+
+        /* BRAND COMPONENT: Secondary/Ghost Button */
+        .btn-ghost {
+            background-color: transparent;
+            color: #1f2937 !important;
+            border: 2px solid #1f2937;
+            border-radius: var(--radius);
+            padding: 0.9rem 1.9rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-ghost:hover {
+            background-color: #fff;
+            box-shadow: 4px 4px 0px 0px #1f2937;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+        
+        /* Navigation Overlay for Mobile */
+        .nav-overlay {
+            background-color: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Form Input Styling */
+        input, textarea, select {
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 2px solid #d1d5db;
+            background-color: #fff;
+            margin-bottom: 1rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #1f2937;
+            box-shadow: 4px 4px 0px 0px #d1d5db;
+        }
+
+        /* Detail/Summary Animation */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 1rem;
+            background-color: rgba(0,0,0,0.02);
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] > summary {
+            background-color: #e5e7eb;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-white border-b-2 border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-black tracking-tighter text-gray-900">
+                        SUVIXIA<span class="text-primary">SYSTEMS</span>
+                    </span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-900 font-bold hover:text-primary transition">Servizi</a>
+                    <a href="#process" class="text-gray-900 font-bold hover:text-primary transition">Come Funziona</a>
+                    <a href="#reviews" class="text-gray-900 font-bold hover:text-primary transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-900 font-bold hover:text-primary transition">FAQ</a>
+                    <a href="#contact" class="btn-primary py-2 px-4 text-sm">Richiedi Preventivo</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 focus:outline-none">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-gray-800 p-4">
+            <a href="#features" class="block py-2 text-lg font-bold text-gray-900">Servizi</a>
+            <a href="#process" class="block py-2 text-lg font-bold text-gray-900">Come Funziona</a>
+            <a href="#reviews" class="block py-2 text-lg font-bold text-gray-900">Recensioni</a>
+            <a href="#contact" class="block py-2 text-lg font-bold text-primary">Richiedi Preventivo</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-gray-900 text-white overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 class="w-full h-full object-cover opacity-30" 
+                 alt="Interni casa moderna in ristrutturazione"
+                 referrerpolicy="no-referrer" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col items-center text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+                Ristrutturazione Intelligente: <br>
+                <span class="text-primary">Il Sistema Perfetto per la Tua Casa</span>
+            </h1>
+            <p class="mt-4 text-xl text-gray-300 max-w-3xl mb-10">
+                Suvixia Systems trasforma i tuoi spazi abitativi attraverso un approccio ingegneristico alla ristrutturazione. Ottieni il massimo valore dal tuo investimento immobiliare.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#contact" class="btn-primary text-center">Inizia il Progetto</a>
+                <a href="#features" class="btn-ghost text-white border-white hover:text-gray-900 text-center">Scopri i Servizi</a>
+            </div>
+            
+            <!-- Trust Indicators -->
+            <div class="mt-12 flex justify-center space-x-8 text-gray-400 opacity-70">
+                <span class="text-sm font-bold uppercase tracking-widest">Edilizia Certificata</span>
+                <span class="text-sm font-bold uppercase tracking-widest">•</span>
+                <span class="text-sm font-bold uppercase tracking-widest">Preventivi 24h</span>
+                <span class="text-sm font-bold uppercase tracking-widest">•</span>
+                <span class="text-sm font-bold uppercase tracking-widest">Bonus Fiscali</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
+
+        <!-- SERVICES / FEATURES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card relative">
+            <div class="absolute -top-6 -left-6 bg-primary text-white w-12 h-12 flex items-center justify-center rounded-lg shadow-lg border-2 border-gray-900 font-bold z-10">01</div>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">Soluzioni Integrate Suvixia</h2>
+                <p class="mt-4 text-lg text-gray-600">Non una semplice impresa, ma un sistema di gestione completo per la tua ristrutturazione.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 bg-white rounded-lg border-2 border-gray-100">
+                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-primary mb-4">
+                        <i class="fas fa-home fa-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Ristrutturazione Totale</h3>
+                    <p class="text-gray-600">Dalla demolizione alle finiture. Gestiamo appartamenti, ville e locali commerciali con un approccio "chiavi in mano" che elimina lo stress.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-6 bg-white rounded-lg border-2 border-gray-100">
+                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-primary mb-4">
+                        <i class="fas fa-calculator fa-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Analisi Costi e Preventivi</h3>
+                    <p class="text-gray-600">Software avanzato per il calcolo metrico estimativo. Evita sorprese con preventivi dettagliati e trasparenti prima dell'inizio lavori.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-6 bg-white rounded-lg border-2 border-gray-100">
+                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-primary mb-4">
+                        <i class="fas fa-drafting-compass fa-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Design Bagno & Cucina</h3>
+                    <p class="text-gray-600">Specialisti nel rinnovamento degli ambienti tecnici. Ottimizzazione degli spazi, impiantistica moderna e materiali di ultima generazione.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS / VISUAL SECTION -->
+        <section id="process" class="max-w-5xl mx-auto dna-card">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Come Lavoriamo</h2>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4 border-2 border-gray-900">1</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Sopralluogo Gratuito</h4>
+                                <p class="text-gray-600">I nostri tecnici rilevano le misure e ascoltano le tue esigenze specifiche.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-white text-gray-900 rounded-full flex items-center justify-center border-2 border-gray-900 font-bold mr-4">2</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Progettazione e Computo</h4>
+                                <p class="text-gray-600">Elaboriamo un piano lavori dettagliato con costi certi e tempi definiti.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-white text-gray-900 rounded-full flex items-center justify-center border-2 border-gray-900 font-bold mr-4">3</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Esecuzione Certificata</h4>
+                                <p class="text-gray-600">Squadre qualificate realizzano l'opera sotto la supervisione dei nostri architetti.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative h-64 md:h-full rounded-lg overflow-hidden border-2 border-gray-900 shadow-lg">
+                    <img src="https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                         alt="Cantiere in opera" 
+                         class="absolute inset-0 w-full h-full object-cover"
+                         referrerpolicy="no-referrer" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card relative">
+            <div class="absolute -top-6 -left-6 bg-white text-gray-900 w-12 h-12 flex items-center justify-center rounded-lg shadow-lg border-2 border-gray-900 font-bold z-10">
+                <i class="fas fa-star text-primary"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-center mb-12">Dicono di Noi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Suvixia Systems ha trasformato il nostro vecchio appartamento a Milano in un loft moderno. Il controllo dei costi è stato impeccabile."</p>
+                    <p class="font-bold text-gray-900">- Marco Rossi, Milano</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Cercavo un preventivo chiaro per il rifacimento del bagno. Sono stati gli unici a fornirmi un dettaglio spese che ha rispettato il budget."</p>
+                    <p class="font-bold text-gray-900">- Elena Bianchi, Roma</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Professionalità e pulizia in cantiere. Tempi rispettati quasi al millimetro. Consigliatissimi per chi non vuole problemi."</p>
+                    <p class="font-bold text-gray-900">- Roberto Esposito, Napoli</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold mb-8 text-center">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>Quanto costa ristrutturare al metro quadro nel 2026?</summary>
+                    <div class="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+                        I costi variano in base alle finiture e agli interventi strutturali. Generalmente si parte dai 600€/mq per interventi base fino a oltre 1200€/mq per ristrutturazioni di lusso. Richiedi un preventivo specifico per il tuo caso.
+                    </div>
+                </details>
+                <details>
+                    <summary>Vi occupate delle pratiche burocratiche e permessi?</summary>
+                    <div class="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+                        Assolutamente sì. Il nostro team tecnico include geometri e architetti che si occupano di presentare CILA, SCIA e permessi di costruire presso il comune di competenza.
+                    </div>
+                </details>
+                <details>
+                    <summary>È possibile usufruire dei bonus fiscali?</summary>
+                    <div class="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+                        Sì, offriamo consulenza completa per accedere a tutte le detrazioni fiscali vigenti per ristrutturazioni edilizie ed efficientamento energetico.
+                    </div>
+                </details>
+                <details>
+                    <summary>Quanto tempo richiede la ristrutturazione di un bagno?</summary>
+                    <div class="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+                        Un rifacimento completo del bagno richiede solitamente dai 7 ai 10 giorni lavorativi, inclusi demolizione, impiantistica, posa rivestimenti e montaggio sanitari.
+                    </div>
+                </details>
+                <details>
+                    <summary>Fornite preventivi gratuiti?</summary>
+                    <div class="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+                        Sì, il primo sopralluogo e la stesura del preventivo preliminare sono servizi gratuiti e senza impegno. Compila il modulo per fissare un appuntamento.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card relative border-primary">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4 text-gray-900">Richiedi una Valutazione</h2>
+                    <p class="text-gray-600 mb-8">Compila il modulo per essere ricontattato da un nostro esperto. Riceverai una consulenza preliminare gratuita entro 24 ore.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt w-8 text-primary"></i>
+                            <span>Operativi in tutta Italia</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock w-8 text-primary"></i>
+                            <span>Lun - Ven: 09:00 - 18:00</span>
+                        </div>
+                        <!-- NOTE: No phone number found in source audit. Button suppressed for data sanctity. -->
+                    </div>
+                </div>
+
+                <div>
+                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<i class=\'fas fa-spinner fa-spin\'></i> Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome e Cognome</label>
+                            <input type="text" required placeholder="Mario Rossi">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Tipologia Intervento</label>
+                            <select required>
+                                <option value="" disabled selected>Seleziona servizio...</option>
+                                <option value="ristrutturazione-completa">Ristrutturazione Completa</option>
+                                <option value="bagno">Rifacimento Bagno</option>
+                                <option value="cucina">Ristrutturazione Cucina</option>
+                                <option value="altro">Altro</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Dettagli Progetto</label>
+                            <textarea rows="4" placeholder="Descrivi brevemente la tua richiesta..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary w-full text-center">Invia Richiesta</button>
+                        <p class="text-xs text-gray-500 mt-2 text-center">I tuoi dati sono protetti e utilizzati solo per gestire la richiesta.</p>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center p-8 bg-green-50 rounded-xl border border-green-200">
+                        <i class="fas fa-check-circle text-4xl text-green-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-900">Richiesta Inviata!</h3>
+                        <p class="text-gray-600 mt-2">Un consulente Suvixia ti contatterà a breve per discutere del tuo progetto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="text-2xl font-black text-white">SUVIXIA<span class="text-primary">SYSTEMS</span></span>
+                    <p class="mt-4 text-sm text-gray-400 max-w-sm">
+                        Partner affidabile per la progettazione e la ristrutturazione edilizia. Costruiamo valore per il tuo futuro attraverso sistemi di gestione cantiere innovativi.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Navigazione</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-primary">Home</a></li>
+                        <li><a href="#features" class="hover:text-primary">Servizi</a></li>
+                        <li><a href="#reviews" class="hover:text-primary">Recensioni</a></li>
+                        <li><a href="#contact" class="hover:text-primary">Contatti</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-xs text-gray-500">
+                <p class="mb-4">© 2026 Suvixia Systems. Tutti i diritti riservati.</p>
+                <p class="mb-8 p-4 bg-gray-800 rounded border border-gray-700">
+                    <strong>DISCLAIMER TRASPARENZA:</strong> Questo sito è una promozione indipendente gestita da Suvixia Systems, che agisce come affiliato per Costo Ristrutturazione Casa. Tutte le informazioni fornite hanno scopo informativo e promozionale.
+                </p>
+
+                <!-- LEGAL ACCORDIONS -->
+                <div class="space-y-2">
+                    <details>
+                        <summary class="hover:text-white cursor-pointer">Privacy Policy</summary>
+                        <div class="mt-2 p-4 bg-gray-800 rounded text-justify">
+                            <p><strong>Informativa sulla Privacy di Suvixia Systems</strong><br><br>
+                            La presente Informativa sulla Privacy descrive come Suvixia Systems raccoglie, utilizza e protegge le informazioni personali che l'utente fornisce durante l'utilizzo di questo sito web. Ci impegniamo a garantire che la tua privacy sia protetta. Qualora ti chiedessimo di fornire determinate informazioni con cui puoi essere identificato quando utilizzi questo sito web, puoi essere certo che saranno utilizzate solo in conformità con questa informativa sulla privacy.<br><br>
+                            Raccogliamo informazioni relative a nome, informazioni di contatto e dettagli demografici come codice postale, preferenze e interessi, nonché altre informazioni pertinenti a indagini e/o offerte ai clienti. Utilizziamo queste informazioni per comprendere le tue esigenze e fornirti un servizio migliore, e in particolare per la tenuta dei registri interni. Potremmo utilizzare le informazioni per migliorare i nostri prodotti e servizi.<br><br>
+                            Siamo impegnati a garantire che le tue informazioni siano al sicuro. Al fine di prevenire l'accesso o la divulgazione non autorizzati, abbiamo messo in atto adeguate procedure fisiche, elettroniche e manageriali per salvaguardare e proteggere le informazioni che raccogliamo online. Non venderemo, distribuiremo o affitteremo le tue informazioni personali a terze parti a meno che non abbiamo il tuo permesso o siamo tenuti per legge a farlo. Potremmo utilizzare le tue informazioni personali per inviarti informazioni promozionali su terze parti che riteniamo possano interessarti se ci dici che desideri che ciò accada.<br><br>
+                            Il nostro sito web può contenere link ad altri siti web di interesse. Tuttavia, una volta che hai utilizzato questi link per lasciare il nostro sito, dovresti notare che non abbiamo alcun controllo su quell'altro sito web. Pertanto, non possiamo essere responsabili della protezione e della privacy delle informazioni che fornisci durante la visita a tali siti e tali siti non sono disciplinati dalla presente informativa sulla privacy.
+                            </p>
+                        </div>
+                    </details>
+                    
+                    <details>
+                        <summary class="hover:text-white cursor-pointer">Termini e Condizioni</summary>
+                        <div class="mt-2 p-4 bg-gray-800 rounded text-justify">
+                            <p><strong>Termini e Condizioni di Utilizzo</strong><br><br>
+                            Benvenuto sul nostro sito web. Se continui a navigare e utilizzare questo sito web, accetti di rispettare e di essere vincolato dai seguenti termini e condizioni di utilizzo, che insieme alla nostra politica sulla privacy regolano il rapporto di Suvixia Systems con te in relazione a questo sito web. Se non sei d'accordo con qualsiasi parte di questi termini e condizioni, ti preghiamo di non utilizzare il nostro sito web.<br><br>
+                            L'uso di questo sito web è soggetto ai seguenti termini di utilizzo: Il contenuto delle pagine di questo sito web è per tua informazione generale e solo per uso. È soggetto a modifiche senza preavviso. Né noi né terze parti forniamo alcuna garanzia o dichiarazione circa l'accuratezza, la tempestività, le prestazioni, la completezza o l'idoneità delle informazioni e dei materiali trovati o offerti su questo sito web per qualsiasi scopo particolare. Riconosci che tali informazioni e materiali possono contenere imprecisioni o errori ed escludiamo espressamente la responsabilità per tali imprecisioni o errori nella misura massima consentita dalla legge.<br><br>
+                            L'utilizzo di qualsiasi informazione o materiale su questo sito web è interamente a proprio rischio, per il quale non saremo responsabili. Sarà tua responsabilità assicurarti che qualsiasi prodotto, servizio o informazione disponibile attraverso questo sito web soddisfi le tue specifiche esigenze. Questo sito web contiene materiale che è di nostra proprietà o concesso in licenza a noi. Questo materiale include, ma non è limitato a, il design, il layout, l'aspetto, l'apparenza e la grafica. La riproduzione è vietata se non in conformità con l'avviso di copyright, che fa parte di questi termini e condizioni.<br><br>
+                            L'uso non autorizzato di questo sito web può dar luogo a una richiesta di risarcimento danni e/o costituire un reato penale. Di volta in volta, questo sito web può anche includere link ad altri siti web. Questi link sono forniti per tua comodità per fornire ulteriori informazioni. Non significano che approviamo il sito web (o i siti web). Non abbiamo alcuna responsabilità per il contenuto del sito web collegato.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 border-t-4 border-primary p-4 shadow-lg z-50 text-white transform translate-y-full transition-transform duration-300">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm">Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il traffico del sito. Continuando accetti la nostra policy.</p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-xs whitespace-nowrap">Accetta Tutto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Smooth Scrolling Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if ID missing
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close Mobile Menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Cookie Banner Logic
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script>
+
+</body>
+</html>
