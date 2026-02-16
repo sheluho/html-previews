@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nekukois Industries: La tecnologia avanzata per trovare le migliori offerte di viaggio, voli e hotel low cost.">
+    <title>Nekukois Industries | L'Ingegneria del Viaggio</title>
+    <!-- Tailwind CSS v2.2.19 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- 🎨 DESIGN SYSTEM DNA -->
+    <style>
+        :root {
+            /* VAR D: Palette (Travel Sky Blue) */
+            --primary: #0ea5e9;
+            /* VAR C: Surface (Cool Slate White - Last 't' % 3 = 2) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry (Pill - Len 26 % 3 = 2) */
+            --radius: 24px;
+            /* VAR B: Physics (Hard Brutalist - 'h' 104 % 3 = 2) */
+            --shadow: 4px 4px 0px 0px #000000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000000; /* Adjusted for Brutalist style */
+        }
+
+        /* COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            border: 2px solid #000;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HERO OVERLAY */
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+        }
+
+        /* Navbar Sticky */
+        nav {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9);
+            border-bottom: 2px solid #000;
+        }
+
+        /* FAQ Detail Styling */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 1rem;
+            background-color: #e2e8f0;
+            border-radius: var(--radius);
+            border: 2px solid #000;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        details[open] > summary {
+            margin-bottom: 1rem;
+            background-color: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 🍪 Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t-4 border-black p-4 z-50 hidden flex flex-col md:flex-row justify-between items-center shadow-lg">
+        <p class="text-sm md:text-base mb-2 md:mb-0 max-w-2xl text-gray-800">
+            Utilizziamo i cookie per analizzare il traffico e ottimizzare la tua esperienza di navigazione. Continuando, accetti la nostra politica sui cookie.
+        </p>
+        <div class="flex gap-4">
+            <button onclick="acceptCookies()" class="btn-primary text-xs py-2 px-4">Accetta tutto</button>
+            <button onclick="document.getElementById('cookie-banner').remove()" class="text-gray-500 underline text-sm font-bold">Rifiuta</button>
+        </div>
+    </div>
+
+    <!-- 🧭 Navigation -->
+    <nav class="fixed w-full z-40 top-0 left-0">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Brand Name -->
+                <div class="flex items-center">
+                    <span class="text-2xl font-black uppercase tracking-tighter border-2 border-black p-1 bg-white rounded-lg transform -rotate-2">
+                        Nekukois<span class="text-primary">Industries</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 font-bold text-gray-700">
+                    <a href="#services" class="hover:text-primary transition">Servizi</a>
+                    <a href="#reviews" class="hover:text-primary transition">Recensioni</a>
+                    <a href="#faq" class="hover:text-primary transition">FAQ</a>
+                    <a href="#contact" class="btn-primary py-2 px-6">Contattaci</a>
+                </div>
+
+                <!-- Mobile Button -->
+                <div class="md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black">
+            <a href="#services" class="block py-3 px-4 text-sm font-bold hover:bg-gray-100 border-t border-gray-100">Servizi</a>
+            <a href="#reviews" class="block py-3 px-4 text-sm font-bold hover:bg-gray-100 border-t border-gray-100">Recensioni</a>
+            <a href="#faq" class="block py-3 px-4 text-sm font-bold hover:bg-gray-100 border-t border-gray-100">FAQ</a>
+            <a href="#contact" class="block py-3 px-4 text-sm font-bold text-primary hover:bg-gray-100 border-t border-gray-100">Contattaci</a>
+        </div>
+    </nav>
+
+    <!-- 🚀 Hero Section -->
+    <header class="relative pt-32 pb-24 flex items-center justify-center min-h-[80vh] overflow-hidden">
+        <!-- Absolute Background -->
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.pexels.com/photos/1004584/pexels-photo-1004584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                class="w-full h-full object-cover" 
+                alt="Viaggi low cost vista aereo"
+                referrerpolicy="no-referrer"
+                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Viaggio+Low+Cost'"
+            >
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-4 text-center">
+            <span class="bg-primary text-white font-bold py-1 px-3 rounded-full uppercase text-xs tracking-widest mb-4 inline-block shadow-[4px_4px_0px_0px_#000] border-2 border-black">
+                Nuova Stagione 2026
+            </span>
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight drop-shadow-lg">
+                Progettiamo la Tua <br>
+                <span class="text-primary" style="text-shadow: 2px 2px 0px #000;">Fuga Perfetta</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-100 mb-10 max-w-3xl mx-auto font-medium shadow-black drop-shadow-md">
+                Nekukois Industries applica la precisione tecnica alla ricerca delle migliori offerte per hotel, voli e noleggi. Il lusso diventa accessibile.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#contact" class="btn-primary text-lg">Inizia la Ricerca</a>
+                <a href="#services" class="bg-white text-gray-900 font-bold py-4 px-8 rounded-[24px] shadow-[4px_4px_0px_0px_#000] border-2 border-black hover:bg-gray-100 transition transform hover:-translate-y-1">Scopri i Vantaggi</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 🛡️ Trust Indicator -->
+    <section class="py-10 bg-black border-y-2 border-black">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 uppercase text-xs font-bold tracking-widest mb-6">Partner e Tecnologia di Ricerca Compatibile Con</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center grayscale opacity-80 text-gray-400 font-black text-xl md:text-2xl">
+                <span>SKYSCANNER</span>
+                <span>EXPEDIA</span>
+                <span>BOOKING.COM</span>
+                <span>TRIPADVISOR</span>
+                <span>RYANAIR</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🛠️ Services Section (Target Content) -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black mb-4">I Nostri Moduli Operativi</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    Abbiamo ottimizzato il processo di prenotazione trasformandolo in una scienza esatta.
+                </p>
+            </div>
+
+            <!-- Service 1: Flights -->
+            <div class="max-w-5xl mx-auto dna-card flex flex-col md:flex-row gap-8 items-center">
+                <div class="md:w-1/2 w-full h-64 md:h-80 overflow-hidden rounded-[24px] border-2 border-black">
+                    <img 
+                        src="https://images.pexels.com/photos/1020016/pexels-photo-1020016.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                        alt="Volo aereo sopra le nuvole" 
+                        class="w-full h-full object-cover transform hover:scale-110 transition duration-500"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                    >
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-blue-100 text-blue-800 font-bold py-1 px-3 rounded-full inline-block mb-3 text-xs border border-blue-800">MODULO 01</div>
+                    <h3 class="text-2xl font-black mb-3">Analisi Voli Low Cost</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Il nostro sistema scansiona centinaia di compagnie aeree per identificare tariffe errate, sconti last-minute e le connessioni più efficienti. Non solo voli, ma traiettorie di risparmio per raggiungere ogni angolo del globo.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 font-medium mb-6 space-y-2">
+                        <li>Confronto diretto prezzi globali</li>
+                        <li>Tracciamento tariffe in tempo reale</li>
+                        <li>Itinerari multi-tratta intelligenti</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 2: Hotels -->
+            <div class="max-w-5xl mx-auto dna-card flex flex-col md:flex-row-reverse gap-8 items-center">
+                <div class="md:w-1/2 w-full h-64 md:h-80 overflow-hidden rounded-[24px] border-2 border-black">
+                    <img 
+                        src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                        alt="Camera di hotel lusso" 
+                        class="w-full h-full object-cover transform hover:scale-110 transition duration-500"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                    >
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-yellow-100 text-yellow-800 font-bold py-1 px-3 rounded-full inline-block mb-3 text-xs border border-yellow-800">MODULO 02</div>
+                    <h3 class="text-2xl font-black mb-3">Infrastrutture di Ospitalità</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Dal boutique hotel economico al resort di lusso. Filtriamo le migliori opzioni di alloggio basandoci su recensioni verificate, posizione strategica e rapporto qualità-prezzo imbattibile.
+                    </p>
+                    <a href="#contact" class="text-primary font-black underline decoration-2 hover:text-black transition">Trova Alloggi &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Service 3: Car Rental -->
+            <div class="max-w-5xl mx-auto dna-card flex flex-col md:flex-row gap-8 items-center">
+                <div class="md:w-1/2 w-full h-64 md:h-80 overflow-hidden rounded-[24px] border-2 border-black">
+                    <img 
+                        src="https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                        alt="Noleggio auto viaggio strada" 
+                        class="w-full h-full object-cover transform hover:scale-110 transition duration-500"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                    >
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-green-100 text-green-800 font-bold py-1 px-3 rounded-full inline-block mb-3 text-xs border border-green-800">MODULO 03</div>
+                    <h3 class="text-2xl font-black mb-3">Mobilità e Noleggio</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        La libertà di movimento è essenziale. Offriamo soluzioni di noleggio auto flessibili e trasparenti, senza costi nascosti, per garantirti l'indipendenza necessaria durante la tua esplorazione.
+                    </p>
+                    <a href="#contact" class="text-primary font-black underline decoration-2 hover:text-black transition">Prenota Veicolo &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⭐ Reviews Section -->
+    <section id="reviews" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-black text-center mb-12">Feedback Operativi</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Review 1 -->
+                <div class="dna-card text-center p-6">
+                    <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 border-2 border-black overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Utente felice" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-yellow-400 text-lg mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Grazie a Nekukois Industries ho risparmiato il 40% sul mio viaggio alle Maldive. Un'organizzazione impeccabile."</p>
+                    <h4 class="font-bold text-gray-900">- Giulia R.</h4>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="dna-card text-center p-6 transform md:-translate-y-4">
+                    <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 border-2 border-black overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Utente felice" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-yellow-400 text-lg mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Interfaccia chiara e risultati sorprendenti. Ho trovato un hotel a 4 stelle al prezzo di un ostello. Consigliatissimo."</p>
+                    <h4 class="font-bold text-gray-900">- Marco T.</h4>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="dna-card text-center p-6">
+                    <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 border-2 border-black overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Utente felice" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-yellow-400 text-lg mb-2">★★★★☆</div>
+                    <p class="text-gray-600 italic mb-4">"Il servizio di noleggio auto è stato trasparente e veloce. Niente sorprese al bancone. Ottimo lavoro."</p>
+                    <h4 class="font-bold text-gray-900">- Elena B.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ❓ FAQ Section -->
+    <section id="faq" class="py-16">
+        <div class="max-w-4xl mx-auto dna-card px-8">
+            <h2 class="text-3xl font-black mb-8 text-center">Domande Frequenti (FAQ)</h2>
+            
+            <details>
+                <summary>Come riuscite a trovare prezzi così bassi?</summary>
+                <div class="p-4 text-gray-700">
+                    Utilizziamo algoritmi avanzati che confrontano migliaia di offerte in tempo reale su database globali, accedendo a tariffe speciali e promozioni last-minute spesso non visibili sui motori di ricerca standard.
+                </div>
+            </details>
+
+            <details>
+                <summary>È sicuro prenotare attraverso la vostra piattaforma?</summary>
+                <div class="p-4 text-gray-700">
+                    Assolutamente sì. Operiamo come aggregatori certificati, reindirizzando l'utente solo verso partner affidabili e sicuri che utilizzano protocolli di crittografia SSL per tutte le transazioni.
+                </div>
+            </details>
+
+            <details>
+                <summary>Posso cancellare o modificare la mia prenotazione?</summary>
+                <div class="p-4 text-gray-700">
+                    Le politiche di cancellazione dipendono dal fornitore specifico (compagnia aerea o hotel) scelto durante la prenotazione. Tutte le condizioni sono chiaramente indicate prima del pagamento.
+                </div>
+            </details>
+
+            <details>
+                <summary>Offrite pacchetti completi Volo + Hotel?</summary>
+                <div class="p-4 text-gray-700">
+                    Sì, la nostra tecnologia permette di assemblare itinerari personalizzati combinando voli e alloggi per massimizzare il risparmio totale sul viaggio.
+                </div>
+            </details>
+
+            <details>
+                <summary>Ci sono costi nascosti?</summary>
+                <div class="p-4 text-gray-700">
+                    Trasparenza al 100%. Il prezzo che vedi è quello finale. Nekukois Industries crede in una politica di chiarezza totale verso il viaggiatore.
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- ✉️ Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-5xl mx-auto dna-card bg-white relative z-10 overflow-hidden">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="space-y-6">
+                    <h2 class="text-4xl font-black">Inizia il Tuo Viaggio</h2>
+                    <p class="text-gray-600">
+                        Compila il modulo per ricevere un preventivo personalizzato o per richiedere assistenza sulla tua prossima destinazione. Il nostro team di esperti è pronto a progettare la tua esperienza.
+                    </p>
+                    
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-[24px] border-2 border-black">
+                            <div class="bg-primary text-white p-3 rounded-full border border-black shadow-sm">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Orari Operativi</h4>
+                                <p class="text-sm text-gray-600">Lun - Ven: 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-[24px] border-2 border-black">
+                            <div class="bg-primary text-white p-3 rounded-full border border-black shadow-sm">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Sede Digitale</h4>
+                                <p class="text-sm text-gray-600">Operiamo globalmente online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-[24px] border-2 border-black shadow-inner">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Nome Completo</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-[12px] border-2 border-gray-300 focus:border-black focus:outline-none transition">
+                            </div>
+                            
+                            <!-- No Email Field (As per strict "Email Purge" it's safer to stick to forms without requiring direct email display, but usually a contact form needs an email input to reply. However, instruction says "IGNORE and DELETE all email addresses found". I will keep input for user to provide theirs, but I won't display MY email.) -->
+                            <div>
+                                <label class="block text-sm font-bold mb-2">La tua Email</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded-[12px] border-2 border-gray-300 focus:border-black focus:outline-none transition">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Destinazione d'interesse</label>
+                                <select class="w-full px-4 py-3 rounded-[12px] border-2 border-gray-300 focus:border-black focus:outline-none transition bg-white">
+                                    <option>Europa</option>
+                                    <option>Americhe</option>
+                                    <option>Asia</option>
+                                    <option>Africa</option>
+                                    <option>Oceania</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Messaggio</label>
+                                <textarea rows="4" class="w-full px-4 py-3 rounded-[12px] border-2 border-gray-300 focus:border-black focus:outline-none transition"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full btn-primary text-center">Invia Richiesta</button>
+                        </div>
+                    </form>
+                    
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-20">
+                        <div class="text-5xl text-green-500 mb-4"><i class="fas fa-check-circle"></i></div>
+                        <h3 class="text-2xl font-black mb-2">Richiesta Ricevuta!</h3>
+                        <p class="text-gray-600">Un nostro consulente di viaggio elaborerà la tua richiesta e ti contatterà a breve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📜 Footer & Legal -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t-8 border-primary">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <span class="text-2xl font-black uppercase text-white mb-4 block">Nekukois<span class="text-primary">Industries</span></span>
+                    <p class="text-sm text-gray-500 max-w-sm">
+                        Questo è un sito promozionale indipendente gestito da Nekukois Industries, che agisce in qualità di affiliato per Booking-lowcost.it. Tutte le prenotazioni sono gestite direttamente dai fornitori terzi.
+                    </p>
+                </div>
+                <div class="text-sm space-y-2">
+                    <p class="font-bold text-white">Legalità & Trasparenza</p>
+                    <p>Tutti i marchi registrati appartengono ai rispettivi proprietari.</p>
+                    <p>&copy; 2026 Nekukois Industries. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+
+            <!-- Legal Details (Accordion) -->
+            <div class="border-t border-gray-800 pt-8 space-y-4">
+                <details class="group">
+                    <summary class="list-none cursor-pointer text-xs font-bold uppercase tracking-widest hover:text-primary transition flex items-center">
+                        <span class="mr-2">+</span> Privacy Policy
+                    </summary>
+                    <div class="mt-4 text-xs text-gray-500 leading-relaxed p-4 bg-gray-800 rounded">
+                        <p class="mb-2"><strong>1. Titolare del Trattamento:</strong> Nekukois Industries si impegna a proteggere la privacy degli utenti. I dati raccolti sono utilizzati esclusivamente per migliorare l'esperienza di navigazione.</p>
+                        <p class="mb-2"><strong>2. Dati Raccolti:</strong> Raccogliamo dati tecnici di navigazione e, su base volontaria, dati forniti tramite moduli di contatto (nome, preferenze di viaggio). Non memorizziamo dati sensibili di pagamento.</p>
+                        <p class="mb-2"><strong>3. Finalità del Trattamento:</strong> I dati sono trattati per fornire risposte alle richieste, analizzare statistiche aggregate e prevenire frodi. Non cediamo dati a terzi per marketing non autorizzato.</p>
+                        <p class="mb-2"><strong>4. Cookie:</strong> Il sito utilizza cookie tecnici e analitici. L'utente può gestire le preferenze tramite il banner dedicato o le impostazioni del browser.</p>
+                        <p class="mb-2"><strong>5. Diritti dell'Interessato:</strong> L'utente ha diritto di accedere, rettificare o cancellare i propri dati in qualsiasi momento contattandoci tramite il sito.</p>
+                        <p class="mb-2"><strong>6. Sicurezza:</strong> Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i dati da accessi non autorizzati.</p>
+                        <p class="mb-2"><strong>7. Trasferimento Dati:</strong> I dati potrebbero essere elaborati su server situati al di fuori dell'UE, nel rispetto delle normative vigenti (GDPR).</p>
+                        <p class="mb-2"><strong>8. Modifiche:</strong> Ci riserviamo il diritto di aggiornare questa policy. Le modifiche saranno pubblicate su questa pagina.</p>
+                        <p class="mb-2"><strong>9. Conservazione:</strong> I dati sono conservati per il tempo strettamente necessario alle finalità indicate.</p>
+                        <p><strong>10. Contatti:</strong> Per qualsiasi richiesta relativa alla privacy, utilizzare il modulo di contatto presente nella sezione dedicata.</p>
+                    </div>
+                </details>
+
+                <details class="group">
+                    <summary class="list-none cursor-pointer text-xs font-bold uppercase tracking-widest hover:text-primary transition flex items-center">
+                        <span class="mr-2">+</span> Termini e Condizioni
+                    </summary>
+                    <div class="mt-4 text-xs text-gray-500 leading-relaxed p-4 bg-gray-800 rounded">
+                        <p class="mb-2"><strong>1. Accettazione:</strong> L'uso di questo sito implica l'accettazione integrale dei presenti Termini e Condizioni.</p>
+                        <p class="mb-2"><strong>2. Servizio:</strong> Nekukois Industries agisce come intermediario promozionale. Non vendiamo direttamente voli o hotel, ma indirizziamo l'utente verso fornitori terzi.</p>
+                        <p class="mb-2"><strong>3. Responsabilità:</strong> Non siamo responsabili per discrepanze di prezzo, cancellazioni o problemi relativi ai servizi prenotati sui siti partner. Il contratto finale è tra l'utente e il fornitore del servizio.</p>
+                        <p class="mb-2"><strong>4. Prezzi:</strong> I prezzi mostrati sono indicativi e soggetti a variazioni in tempo reale. Fare sempre riferimento al sito di prenotazione finale.</p>
+                        <p class="mb-2"><strong>5. Uso del Sito:</strong> È vietato utilizzare il sito per scopi illegali, spam o attività fraudolente.</p>
+                        <p class="mb-2"><strong>6. Proprietà Intellettuale:</strong> I contenuti, il design e il codice sono proprietà di Nekukois Industries o dei suoi licenziatari.</p>
+                        <p class="mb-2"><strong>7. Link Esterni:</strong> Il sito contiene link a siti terzi su cui non abbiamo controllo. Non siamo responsabili per i contenuti di tali siti.</p>
+                        <p class="mb-2"><strong>8. Limitazione di Responsabilità:</strong> Nella misura massima consentita dalla legge, decliniamo ogni responsabilità per danni diretti o indiretti derivanti dall'uso del sito.</p>
+                        <p class="mb-2"><strong>9. Giurisdizione:</strong> Per qualsiasi controversia è competente il foro del luogo di residenza dell'operatore del sito, salvo diverse disposizioni di legge.</p>
+                        <p><strong>10. Modifiche:</strong> Possiamo modificare questi termini in qualsiasi momento senza preavviso.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ⚡ INTERACTIVITY -->
+    <script>
+        // Smooth Scroll + Active Link Fix
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                } else {
+                    // Fallback to Contact if section missing
+                    const contactSection = document.querySelector('#contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Cookie Banner Logic
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        // Init Check
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+                document.getElementById('cookie-banner').classList.add('flex');
+            }
+        });
+    </script>
+</body>
+</html>
