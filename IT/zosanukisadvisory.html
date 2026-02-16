@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZosaNukis Advisory - Consulenza per servizi di assistenza domiciliare e ospedaliera professionale per anziani, malati e disabili.">
+    <title>ZosaNukis Advisory | Soluzioni di Assistenza</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DESIGN SYSTEM: Chameleon Platinum Contrast -->
+    <style>
+        :root {
+            /* VAR D: Palette (Healthcare/Trust = Emerald Green) */
+            --primary: #059669; 
+            /* VAR C: Surface (Warm Cream based on 'a' -> 1) */
+            --surface: #fffdf5;
+            /* VAR A: Geometry (29 chars % 3 = 2 -> Pill/Round) */
+            --radius: 24px;
+            /* VAR B: Physics ('p' = 112 % 3 = 1 -> Material Shadow) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .dna-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-1px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        
+        /* DETAILS/SUMMARY STYLING */
+        details {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+            outline: none;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* HERO OVERLAY */
+        .hero-bg {
+            background-image: url('https://images.pexels.com/photos/339620/pexels-photo-339620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            inset: 0;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-bold text-xl md:text-2xl text-primary tracking-tight">ZosaNukis Advisory</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-600 hover:text-primary transition font-medium">Servizi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary transition font-medium">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary transition font-medium">FAQ</a>
+                    <a href="tel:800012107" class="btn-primary py-2 px-6 text-sm">Chiama 800 012107</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Recensioni</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Contatti</a>
+                <a href="tel:800012107" class="block w-full text-center mt-4 btn-primary">Chiama Ora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero-bg h-screen max-h-[700px] flex items-center justify-center text-center px-4 relative">
+        <div class="hero-overlay"></div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <span class="inline-block py-1 px-3 rounded-full bg-green-100 text-green-800 text-sm font-semibold mb-4">
+                Partner di Fiducia per l'Assistenza
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+                Il Miglior Investimento per il <br><span class="text-green-400">Benessere dei Tuoi Cari</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                ZosaNukis Advisory ti guida nella scelta dei servizi di assistenza domiciliare più qualificati. Affidati ai professionisti della rete Privatassistenza.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="btn-primary text-lg">Richiedi Consulenza Gratuita</a>
+                <a href="#features" class="bg-white text-gray-800 font-bold py-4 px-8 rounded-[24px] hover:bg-gray-100 transition shadow-lg">Scopri i Servizi</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 space-y-16">
+
+        <!-- TRUST SECTION -->
+        <div class="max-w-5xl mx-auto text-center opacity-75">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6">Uniamo le famiglie con i migliori professionisti</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center grayscale">
+                <span class="text-xl font-bold text-gray-400">Privatassistenza</span>
+                <span class="text-xl font-bold text-gray-400">Servizi Sanitari</span>
+                <span class="text-xl font-bold text-gray-400">Assistenza Italia</span>
+                <span class="text-xl font-bold text-gray-400">Cura & Salute</span>
+            </div>
+        </div>
+
+        <!-- FEATURES / SERVICES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Soluzioni Complete per la Famiglia</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Identifichiamo e coordiniamo per te i migliori servizi assistenziali, disponibili 24 ore su 24.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="dna-card h-full flex flex-col">
+                    <div class="h-48 mb-6 overflow-hidden rounded-[12px]">
+                        <img src="https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Assistenza Anziani" class="w-full h-full object-cover transform hover:scale-105 transition duration-500" loading="lazy">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Assistenza Domiciliare Anziani</h3>
+                    <p class="text-gray-600 mb-6 flex-grow">
+                        Supporto quotidiano per l'igiene personale, la preparazione dei pasti, la mobilitazione e la compagnia. Badanti conviventi o a ore qualificate.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Igiene e vestizione</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Supporto pasti</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="dna-card h-full flex flex-col">
+                    <div class="h-48 mb-6 overflow-hidden rounded-[12px]">
+                        <img src="https://images.pexels.com/photos/6129203/pexels-photo-6129203.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Servizi Infermieristici" class="w-full h-full object-cover transform hover:scale-105 transition duration-500" loading="lazy">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Servizi Infermieristici</h3>
+                    <p class="text-gray-600 mb-6 flex-grow">
+                        Personale infermieristico specializzato direttamente a casa tua per iniezioni, medicazioni complesse, prelievi e gestione delle terapie.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Medicazioni e Flebo</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Riabilitazione</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="dna-card h-full flex flex-col">
+                    <div class="h-48 mb-6 overflow-hidden rounded-[12px]">
+                        <img src="https://images.pexels.com/photos/7551605/pexels-photo-7551605.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Veglia Ospedaliera" class="w-full h-full object-cover transform hover:scale-105 transition duration-500" loading="lazy">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Veglia e Dimissioni Protette</h3>
+                    <p class="text-gray-600 mb-6 flex-grow">
+                        Supporto in ospedale o struttura, sia di giorno che di notte. Assistenza qualificata al momento delle dimissioni per un rientro sicuro a casa.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Copertura notturna</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Supporto al pasto</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card bg-white">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Cosa Dicono le Famiglie</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-[12px] shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"ZosaNukis Advisory ci ha consigliato il centro PrivatAssistenza della nostra zona in un momento di emergenza. La badante arrivata è stata un angelo per mia madre."</p>
+                    <p class="font-bold text-gray-900">- Marco R.</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-[12px] shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Professionisti veri. L'infermiere che ci hanno inviato per le iniezioni di papà è stato puntuale e delicatissimo. Grazie per la consulenza rapida."</p>
+                    <p class="font-bold text-gray-900">- Elena B.</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-[12px] shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Avevo bisogno di una veglia notturna in ospedale urgente. Grazie al vostro aiuto abbiamo risolto in poche ore. Servizio eccellente."</p>
+                    <p class="font-bold text-gray-900">- Giulia M.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Domande Frequenti</h2>
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <details>
+                    <summary class="text-lg font-medium text-gray-800 p-2 hover:text-primary transition">Quanto tempo serve per attivare il servizio?</summary>
+                    <p class="text-gray-600 mt-2 px-2">I servizi possono essere attivati in tempi molto brevi, spesso entro poche ore dalla richiesta, specialmente in casi di dimissioni ospedaliere urgenti.</p>
+                </details>
+                <details>
+                    <summary class="text-lg font-medium text-gray-800 p-2 hover:text-primary transition">I servizi sono disponibili nel weekend?</summary>
+                    <p class="text-gray-600 mt-2 px-2">Sì, l'assistenza è disponibile 365 giorni l'anno, inclusi sabato, domenica e festivi, 24 ore su 24.</p>
+                </details>
+                <details>
+                    <summary class="text-lg font-medium text-gray-800 p-2 hover:text-primary transition">Il personale è qualificato?</summary>
+                    <p class="text-gray-600 mt-2 px-2">Assolutamente sì. Collaboriamo esclusivamente con professionisti assicurati e qualificati, selezionati rigorosamente per garantire la massima sicurezza e competenza.</p>
+                </details>
+                <details>
+                    <summary class="text-lg font-medium text-gray-800 p-2 hover:text-primary transition">Offrite assistenza ospedaliera?</summary>
+                    <p class="text-gray-600 mt-2 px-2">Certamente. Organizziamo veglie notturne e diurne presso ospedali e cliniche private, integrando l'assistenza del personale di reparto.</p>
+                </details>
+                <details>
+                    <summary class="text-lg font-medium text-gray-800 p-2 hover:text-primary transition">Quali sono i costi del servizio?</summary>
+                    <p class="text-gray-600 mt-2 px-2">Le tariffe variano in base al tipo di servizio e alla durata. Contattaci per un piano personalizzato gratuito senza impegno.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card bg-white relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-bold text-gray-900">Parla con un Esperto</h2>
+                    <p class="text-gray-600">
+                        Compila il modulo per essere ricontattato dal centro più vicino alle tue esigenze. La tua tranquillità è la nostra priorità.
+                    </p>
+                    
+                    <div class="flex items-center space-x-4 mt-8">
+                        <div class="bg-green-100 p-3 rounded-full text-primary">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Numero Verde</p>
+                            <a href="tel:800012107" class="text-xl font-bold text-gray-900 hover:text-primary">800 012 107</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-green-100 p-3 rounded-full text-primary">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Orari</p>
+                            <p class="text-base font-bold text-gray-900">Attivi 24h / 365 giorni</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-[12px] border border-gray-100 mt-6">
+                        <p class="text-xs text-gray-500 leading-relaxed">
+                            <strong>Nota bene:</strong> ZosaNukis Advisory opera come promotore indipendente. Tutte le richieste verranno gestite nel rispetto della privacy e inoltrate ai professionisti della rete.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div>
+                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nome e Cognome</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-[24px] border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none bg-gray-50" placeholder="Mario Rossi">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Telefono</label>
+                            <input type="tel" required class="w-full px-4 py-3 rounded-[24px] border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none bg-gray-50" placeholder="+39 333 1234567">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Città</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-[24px] border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none bg-gray-50" placeholder="Milano">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Di cosa hai bisogno?</label>
+                            <select class="w-full px-4 py-3 rounded-[24px] border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none bg-gray-50">
+                                <option>Assistenza Anziani</option>
+                                <option>Infermiera a Domicilio</option>
+                                <option>Veglia Ospedaliera</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-lg mt-2">Richiedi Assistenza Ora</button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10 bg-green-50 rounded-[24px]">
+                        <div class="text-5xl mb-4">✅</div>
+                        <h3 class="text-2xl font-bold text-green-800 mb-2">Richiesta Ricevuta!</h3>
+                        <p class="text-gray-600">Un coordinatore del centro ti contatterà al più presto al numero indicato.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-gray-300 py-12 border-t border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <span class="text-2xl font-bold text-white tracking-tight">ZosaNukis Advisory</span>
+                    <p class="mt-4 text-sm text-gray-400 max-w-xs">
+                        Consulenza professionale per l'assistenza socio-sanitaria domiciliare. Il ponte sicuro tra le famiglie e la cura.
+                    </p>
+                </div>
+                <div class="text-right md:text-right">
+                    <p class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Informazioni Legali</p>
+                    <div class="space-y-2">
+                        <!-- Privacy Policy Generator -->
+                        <details class="group cursor-pointer">
+                            <summary class="text-xs hover:text-white">Privacy Policy (Clicca per espandere)</summary>
+                            <div class="mt-2 text-xs text-justify text-gray-400 p-4 bg-gray-900 rounded-lg">
+                                <p><strong>Informativa sulla Privacy di ZosaNukis Advisory</strong><br>
+                                La presente informativa descrive le modalità di gestione del sito web in riferimento al trattamento dei dati personali degli utenti che lo consultano. Si tratta di un'informativa resa anche ai sensi della normativa vigente in materia di protezione dei dati personali. I dati personali forniti volontariamente dall'utente tramite i form di contatto (nome, telefono, città) saranno utilizzati al solo fine di ricontattare l'utente per fornire le informazioni richieste sui servizi di assistenza. I dati non saranno ceduti a terzi non autorizzati, ma potranno essere condivisi con i partner affiliati (Privatassistenza) strettamente necessari all'erogazione del servizio richiesto. Il trattamento dei dati avviene mediante strumenti manuali, informatici e telematici con logiche strettamente correlate alle finalità stesse e, comunque, in modo da garantire la sicurezza e la riservatezza dei dati stessi. L'utente ha il diritto in qualunque momento di ottenere la conferma dell'esistenza o meno dei medesimi dati e di conoscerne il contenuto e l'origine, verificarne l'esattezza o chiederne l'integrazione o l'aggiornamento, oppure la rettificazione. Inoltre, l'utente ha il diritto di chiedere la cancellazione, la trasformazione in forma anonima o il blocco dei dati trattati in violazione di legge. Il titolare del trattamento è ZosaNukis Advisory. Per esercitare i diritti sopra indicati, non è necessario inviare email ma utilizzare il modulo di contatto per richiedere la cancellazione.</p>
+                            </div>
+                        </details>
+                        
+                        <!-- Terms Generator -->
+                        <details class="group cursor-pointer">
+                            <summary class="text-xs hover:text-white">Termini e Condizioni (Clicca per espandere)</summary>
+                            <div class="mt-2 text-xs text-justify text-gray-400 p-4 bg-gray-900 rounded-lg">
+                                <p><strong>Termini e Condizioni di Utilizzo</strong><br>
+                                Benvenuti sul sito web di ZosaNukis Advisory. L'accesso e l'uso di questo sito sono regolati dai presenti Termini e Condizioni. Accedendo a questo sito, l'utente accetta di essere vincolato da tali termini. ZosaNukis Advisory agisce in qualità di promotore indipendente di servizi di terze parti e non è responsabile direttamente per le prestazioni sanitarie o assistenziali erogate dai centri affiliati. Il contenuto di questo sito è fornito a solo scopo informativo e promozionale. Sebbene ci impegniamo a fornire informazioni accurate e aggiornate, non garantiamo che tutte le informazioni contenute nel sito siano prive di errori o omissioni. L'utente riconosce che l'uso dei servizi presentati è a sua sola discrezione e rischio. ZosaNukis Advisory si riserva il diritto di modificare i contenuti del sito e i presenti termini in qualsiasi momento senza preavviso. È responsabilità dell'utente verificare periodicamente eventuali modifiche. L'uso continuato del sito dopo la pubblicazione delle modifiche costituirà accettazione delle stesse. Qualsiasi controversia derivante dall'uso di questo sito sarà regolata dalla legge vigente nel territorio di operatività.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 mt-8 text-center text-xs text-gray-500">
+                <p class="mb-2">&copy; 2026 ZosaNukis Advisory. Tutti i diritti riservati.</p>
+                <p class="italic">"Questo è un sito promozionale indipendente gestito da ZosaNukis Advisory, operante in qualità di affiliato promozionale per Privatassistenza."</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50 transform translate-y-full transition-transform duration-300">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between">
+            <p class="text-sm mb-4 sm:mb-0 mr-4">
+                Utilizziamo i cookie per migliorare la tua esperienza e per scopi di marketing. Continuando la navigazione accetti la nostra privacy policy.
+            </p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="bg-green-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-green-500">Accetto</button>
+                <button onclick="document.getElementById('cookie-banner').style.transform='translateY(100%)'" class="text-gray-400 hover:text-white text-sm underline">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS LOGIC -->
+    <script>
+        // Smooth Scrolling Fallback Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact form if section is missing
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Cookie Banner Logic
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
+        }
+
+        // Show cookie banner if not accepted
+        setTimeout(() => {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('translate-y-full');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
