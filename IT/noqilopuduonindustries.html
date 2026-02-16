@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noqil Industries | Ristrutturazioni e Design di Precisione</title>
+    <meta name="description" content="Servizi di ristrutturazione chiavi in mano, riqualificazione energetica e design d'interni. Trasformiamo la tua casa con precisione industriale e cura artigianale.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: DESIGN SYSTEM INJECTION -->
+    <style>
+        :root {
+            --primary: #ea580c; /* VAR D: Safety Orange for Construction/Industry */
+            --surface: #f8fafc; /* VAR C: Cool/Slate White (Ascii 47 % 3 = 2) */
+            --radius: 0px;      /* VAR A: Sharp (Length 63 % 3 = 0) */
+            --shadow: 4px 4px 0px 0px #000; /* VAR B: Hard/Neo-Brutalist (Ascii 'h' 104 % 3 = 2) */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Adjusted for Neo-Brutalist look to match shadow */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+        .btn-primary:hover { 
+            background-color: #c2410c;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        
+        /* Navigation Highlight */
+        .nav-link:hover {
+            color: var(--primary);
+            text-decoration: underline;
+            text-decoration-thickness: 3px;
+        }
+
+        /* FAQ Styling */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            font-weight: 700;
+            padding: 1rem;
+            background: #fff;
+            border: 2px solid #000;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        details > summary:hover {
+            background-color: #fef3c7;
+        }
+        details[open] > summary {
+            background-color: var(--primary);
+            color: white;
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        details > p {
+            padding: 1rem;
+            border: 2px solid #000;
+            border-top: none;
+            background: #fff;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-extrabold tracking-tighter uppercase text-black">Noqil<span class="text-primary">Industries</span></span>
+                </div>
+                <div class="hidden md:flex md:space-x-8 md:items-center">
+                    <a href="#features" class="nav-link font-bold text-gray-900">Servizi</a>
+                    <a href="#reviews" class="nav-link font-bold text-gray-900">Opinioni</a>
+                    <a href="#faq" class="nav-link font-bold text-gray-900">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm px-6 py-3">Richiedi Preventivo</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <span class="sr-only">Apri menu</span>
+                        <svg class="h-8 w-8 text-black" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white border-t-2 border-black" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1 px-4">
+                <a href="#features" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 border-l-4 border-transparent hover:border-primary">Servizi</a>
+                <a href="#reviews" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 border-l-4 border-transparent hover:border-primary">Opinioni</a>
+                <a href="#contact" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 border-l-4 border-transparent hover:border-primary">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-white border-b-2 border-black overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Interior Design moderno" referrerpolicy="no-referrer" loading="lazy">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6 shadow-sm">
+                Ristrutturazioni con <span class="text-primary bg-white px-2 text-black">Precisione Industriale</span>,<br>Comfort Abitativo Assoluto.
+            </h1>
+            <p class="mt-6 text-xl text-gray-100 max-w-3xl mx-auto font-medium">
+                Dimentica lo stress dei cantieri. <strong>Noqil Industries</strong> ti accompagna nella trasformazione completa della tua casa: dai progetti agli impianti, garantendo tempi certi e standard qualitativi superiori.
+            </p>
+            <div class="mt-10">
+                <a href="#contact" class="btn-primary text-lg px-8 py-4">Inizia il Tuo Progetto</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRUST SECTION -->
+    <div class="bg-gray-100 py-8 border-b-2 border-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">Eccellenza tecnica garantita da partner di livello</p>
+            <div class="flex justify-center gap-8 flex-wrap opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+                <span class="text-2xl font-black text-gray-700">CERAMICHE VENETE</span>
+                <span class="text-2xl font-black text-gray-700">MAPEI EXPERT</span>
+                <span class="text-2xl font-black text-gray-700">SCRIGNO</span>
+                <span class="text-2xl font-black text-gray-700">VELUX</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 uppercase">Le Nostre Soluzioni</h2>
+                <p class="mt-4 text-lg text-gray-600">Un approccio industriale alla ristrutturazione residenziale.</p>
+            </div>
+
+            <!-- Service 1 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <img src="https://images.pexels.com/photos/534151/pexels-photo-534151.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ristrutturazione Chiavi in Mano" class="w-full h-64 object-cover border-2 border-black" loading="lazy">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Ristrutturazione Chiavi in Mano</h3>
+                    <p class="text-gray-600 mb-6">Ci occupiamo di tutto noi. Un unico referente per l'intero processo: demolizione, costruzione, impianti e finiture. Gestiamo le maestranze e le tempistiche con rigore assoluto per consegnarti una casa pronta da vivere, senza sorprese.</p>
+                    <ul class="list-disc pl-5 mb-6 text-gray-700 font-medium">
+                        <li>Coordinamento totale dei lavori</li>
+                        <li>Rispetto rigoroso dei tempi di consegna</li>
+                        <li>Pulizia finale inclusa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="md:w-1/2">
+                    <img src="https://images.pexels.com/photos/8853502/pexels-photo-8853502.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Efficienza Energetica" class="w-full h-64 object-cover border-2 border-black" loading="lazy">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Riqualificazione Energetica</h3>
+                    <p class="text-gray-600 mb-6">Investire nell'efficienza non significa solo risparmiare in bolletta, ma aumentare il valore del tuo immobile. Installiamo cappotti termici, nuovi infissi e impianti ibridi di ultima generazione per massimizzare il comfort abitativo.</p>
+                    <ul class="list-disc pl-5 mb-6 text-gray-700 font-medium">
+                        <li>Accesso alle detrazioni fiscali vigenti</li>
+                        <li>Miglioramento della classe energetica</li>
+                        <li>Sistemi di riscaldamento a pavimento</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <img src="https://images.pexels.com/photos/3797931/pexels-photo-3797931.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Interior Design" class="w-full h-64 object-cover border-2 border-black" loading="lazy">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Progettazione e Interior Design</h3>
+                    <p class="text-gray-600 mb-6">La tecnica incontra l'estetica. I nostri architetti studiano la distribuzione degli spazi per ottimizzare ogni metro quadro. Visualizza il risultato finale ancora prima di iniziare i lavori grazie ai nostri rendering fotorealistici.</p>
+                    <ul class="list-disc pl-5 mb-6 text-gray-700 font-medium">
+                        <li>Studio illuminotecnico</li>
+                        <li>Consulenza materiali e arredi</li>
+                        <li>Ottimizzazione degli spazi vivibili</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-12 bg-gray-50 border-t-2 border-b-2 border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 dna-card">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">Dicono di Noi</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 border-2 border-black shadow-none">
+                    <div class="flex items-center mb-4 text-primary">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Hanno trasformato il mio appartamento anni '70 in un loft moderno. La precisione nei preventivi è stata rispettata al centesimo."</p>
+                    <p class="font-bold text-gray-900">- Marco V., Vicenza</p>
+                </div>
+                <div class="bg-white p-6 border-2 border-black shadow-none">
+                    <div class="flex items-center mb-4 text-primary">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Non credevo fosse possibile ristrutturare senza impazzire. Il team ha gestito tutto, dai permessi in comune fino alla posa delle piastrelle."</p>
+                    <p class="font-bold text-gray-900">- Elena R., Torri di Quartesolo</p>
+                </div>
+                <div class="bg-white p-6 border-2 border-black shadow-none">
+                    <div class="flex items-center mb-4 text-primary">
+                        ★★★★☆
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Professionalità rara nel settore edile. Il cappotto termico ha già dimezzato le mie bollette questo inverno."</p>
+                    <p class="font-bold text-gray-900">- Luca G., Thiene</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-16">
+        <div class="max-w-5xl mx-auto px-4 dna-card">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-8">Domande Frequenti</h2>
+            
+            <details>
+                <summary>Quanto costa ristrutturare un appartamento a Vicenza?</summary>
+                <p>I costi variano in base alla metratura e alla qualità delle finiture scelte. Offriamo preventivi dettagliati e trasparenti dopo un primo sopralluogo gratuito, per evitare sorprese durante i lavori.</p>
+            </details>
+
+            <details>
+                <summary>Vi occupate delle pratiche burocratiche per i bonus fiscali?</summary>
+                <p>Assolutamente sì. Il nostro team tecnico gestisce tutte le pratiche necessarie per accedere alle detrazioni fiscali (Bonus Ristrutturazione, Ecobonus, ecc.) in conformità con le normative vigenti.</p>
+            </details>
+
+            <details>
+                <summary>Quali sono i tempi medi per una ristrutturazione completa?</summary>
+                <p>Per un appartamento standard di 100mq, una ristrutturazione completa chiavi in mano richiede mediamente dai 3 ai 5 mesi. Le tempistiche vengono definite contrattualmente prima dell'inizio lavori.</p>
+            </details>
+
+            <details>
+                <summary>Posso rimanere in casa durante i lavori?</summary>
+                <p>Dipende dall'entità dell'intervento. Per ristrutturazioni parziali (es. solo bagno) è possibile, mentre per interventi strutturali o rifacimento completo degli impianti consigliamo di lasciare l'immobile per garantire sicurezza e velocità.</p>
+            </details>
+
+            <details>
+                <summary>Offrite garanzia sui lavori eseguiti?</summary>
+                <p>Sì, tutti i nostri interventi sono coperti da garanzia a norma di legge. Inoltre, utilizziamo solo materiali di prima scelta certificati per garantire durata nel tempo.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-16 bg-white border-t-2 border-black">
+        <div class="max-w-5xl mx-auto px-4 dna-card bg-gray-50">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Richiedi una Consulenza Gratuita</h2>
+                    <p class="text-gray-600 mb-8 text-lg">Sei pronto a investire nel tuo comfort? Compila il modulo. Analizzeremo le tue esigenze e ti proporremo la soluzione migliore senza impegno.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 flex items-center justify-center">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4 text-gray-700 font-bold">
+                                Area Operativa: Vicenza e Provincia
+                            </div>
+                        </div>
+                        
+                        <!-- Phone/Contact removed as exact number uncertain - Form Priority -->
+                        
+                        <div class="flex items-start">
+                             <div class="flex-shrink-0 h-6 w-6 flex items-center justify-center">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4 text-gray-700">
+                                Lunedì - Venerdì: 08:30 - 18:30
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 border-2 border-black">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Nome e Cognome</label>
+                            <input type="text" required class="w-full px-4 py-2 border-2 border-gray-300 focus:border-primary focus:outline-none bg-gray-50 transition-colors">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Telefono</label>
+                            <input type="tel" required class="w-full px-4 py-2 border-2 border-gray-300 focus:border-primary focus:outline-none bg-gray-50 transition-colors">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Tipo di Intervento</label>
+                            <select class="w-full px-4 py-2 border-2 border-gray-300 focus:border-primary focus:outline-none bg-gray-50 transition-colors">
+                                <option>Ristrutturazione Completa</option>
+                                <option>Riqualificazione Energetica</option>
+                                <option>Solo Bagno/Cucina</option>
+                                <option>Consulenza/Progetto</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2">Note (Facoltativo)</label>
+                            <textarea rows="3" class="w-full px-4 py-2 border-2 border-gray-300 focus:border-primary focus:outline-none bg-gray-50 transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full btn-primary text-center">Richiedi Preventivo Gratuito</button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="text-center py-10" style="display:none;">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4 border-2 border-black">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Inviata!</h3>
+                        <p class="text-gray-600">Grazie per averci contattato. Un nostro consulente ti richiamerà entro 24 ore lavorative per discutere il tuo progetto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-white border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <span class="text-2xl font-extrabold tracking-tighter uppercase text-white">Noqil<span class="text-primary">Industries</span></span>
+                    <p class="mt-4 text-gray-400 text-sm">Costruiamo il valore del tuo futuro attraverso ristrutturazioni precise e sostenibili.</p>
+                </div>
+                <div>
+                    <!-- Disclaimer Mandatory -->
+                    <p class="text-sm text-gray-500 font-semibold border-l-2 border-primary pl-4">
+                        Questo è un sito promozionale indipendente gestito da Noqil Industries, che agisce come affiliato per Futur House Vicenza.
+                    </p>
+                </div>
+                <div>
+                     <p class="text-gray-400 text-sm">© 2026 Noqil Industries. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-xs text-gray-500 space-y-4">
+                
+                <!-- PRIVACY POLICY -->
+                <details>
+                    <summary class="text-gray-300 hover:text-white cursor-pointer bg-transparent border-0 p-0 mb-2">Informativa sulla Privacy</summary>
+                    <p class="mt-2 text-gray-400 bg-transparent border-0 p-0">
+                        <strong>1. Titolare del Trattamento:</strong> Il titolare del trattamento dei dati è Noqil Industries. Ci impegniamo a proteggere la privacy dei nostri utenti.<br>
+                        <strong>2. Dati Raccolti:</strong> Raccogliamo dati personali come nome, cognome e numero di telefono solo quando forniti volontariamente attraverso il modulo di contatto.<br>
+                        <strong>3. Finalità del Trattamento:</strong> I dati vengono utilizzati esclusivamente per rispondere alle richieste di preventivo o informazioni sui servizi di ristrutturazione offerti dal fornitore del servizio.<br>
+                        <strong>4. Condivisione dei Dati:</strong> I dati raccolti possono essere condivisi con Futur House Vicenza al fine esclusivo di erogare il servizio richiesto (sopralluogo o preventivo). Non vendiamo dati a terzi per scopi di marketing non correlati.<br>
+                        <strong>5. Sicurezza:</strong> Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i dati da accessi non autorizzati.<br>
+                        <strong>6. Conservazione:</strong> I dati vengono conservati per il tempo strettamente necessario a gestire la richiesta dell'utente.<br>
+                        <strong>7. Diritti dell'Utente:</strong> L'utente ha diritto di accedere, rettificare, cancellare o limitare il trattamento dei propri dati personali in qualsiasi momento contattandoci.<br>
+                        <strong>8. Cookie:</strong> Questo sito utilizza cookie tecnici essenziali per il funzionamento e cookie di profilazione previo consenso.<br>
+                        <strong>9. Modifiche:</strong> Ci riserviamo il diritto di modificare questa policy. Le modifiche saranno pubblicate su questa pagina.<br>
+                        <strong>10. Base Giuridica:</strong> Il trattamento si basa sul consenso dell'utente e sull'esecuzione di misure precontrattuali.<br>
+                        <strong>11. Luogo del Trattamento:</strong> I dati sono trattati presso la sede operativa del titolare.<br>
+                        <strong>12. Reclami:</strong> L'utente ha diritto di proporre reclamo all'autorità di controllo competente.<br>
+                        <strong>13. Minori:</strong> Non raccogliamo intenzionalmente dati di minori di 18 anni.<br>
+                        <strong>14. Contatti:</strong> Per esercitare i propri diritti, l'utente può utilizzare il modulo di contatto presente sul sito.<br>
+                        <strong>15. Accettazione:</strong> Utilizzando il sito, l'utente accetta i termini della presente informativa.
+                    </p>
+                </details>
+
+                <!-- TERMS OF SERVICE -->
+                <details>
+                    <summary class="text-gray-300 hover:text-white cursor-pointer bg-transparent border-0 p-0 mb-2">Termini e Condizioni</summary>
+                    <p class="mt-2 text-gray-400 bg-transparent border-0 p-0">
+                        <strong>1. Accettazione dei Termini:</strong> L'accesso e l'uso di questo sito web sono soggetti ai seguenti termini e condizioni. Utilizzando il sito, accetti di essere vincolato da questi termini.<br>
+                        <strong>2. Descrizione del Servizio:</strong> Noqil Industries fornisce una piattaforma promozionale per servizi di ristrutturazione edilizia erogati da terze parti (Futur House Vicenza).<br>
+                        <strong>3. Limitazione di Responsabilità:</strong> Noqil Industries non è responsabile per la qualità, la tempistica o l'esecuzione dei lavori di ristrutturazione. Il contratto per i servizi sarà stipulato direttamente tra l'utente e il fornitore del servizio.<br>
+                        <strong>4. Uso del Sito:</strong> È vietato utilizzare il sito per scopi illegali o non autorizzati. L'utente si impegna a non trasmettere virus o codici dannosi.<br>
+                        <strong>5. Proprietà Intellettuale:</strong> Tutti i contenuti, inclusi testi, grafica e loghi presenti su questo sito sono di proprietà di Noqil Industries o dei suoi licenziatari.<br>
+                        <strong>6. Modifiche al Servizio:</strong> Ci riserviamo il diritto di modificare o interrompere il servizio in qualsiasi momento senza preavviso.<br>
+                        <strong>7. Link a Terzi:</strong> Il sito può contenere link a siti web di terze parti. Non siamo responsabili per il contenuto o le pratiche sulla privacy di tali siti.<br>
+                        <strong>8. Esattezza delle Informazioni:</strong> Sebbene ci sforziamo di fornire informazioni accurate, non garantiamo che tutte le informazioni sul sito siano prive di errori.<br>
+                        <strong>9. Indennizzo:</strong> L'utente accetta di indennizzare Noqil Industries da qualsiasi reclamo derivante dalla violazione di questi termini.<br>
+                        <strong>10. Legge Applicabile:</strong> Questi termini sono regolati dalle leggi dello Stato Italiano.<br>
+                        <strong>11. Risoluzione delle Controversie:</strong> Qualsiasi controversia sarà devoluta alla competenza esclusiva del foro competente.<br>
+                        <strong>12. Validità:</strong> Se una disposizione di questi termini è ritenuta non valida, le restanti disposizioni rimarranno in vigore.<br>
+                        <strong>13. Privacy:</strong> L'uso dei dati personali è regolato dalla nostra Privacy Policy.<br>
+                        <strong>14. Comunicazioni:</strong> Tutte le comunicazioni legali devono essere inviate tramite i canali ufficiali.<br>
+                        <strong>15. Intero Accordo:</strong> Questi termini costituiscono l'intero accordo tra l'utente e Noqil Industries.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 text-white p-4 z-50 border-t-4 border-primary shadow-lg hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm mb-4 md:mb-0 text-center md:text-left mr-4">
+                Utilizziamo i cookie per migliorare la tua esperienza. Continuando a navigare accetti la nostra Privacy Policy.
+            </p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="bg-primary hover:bg-white hover:text-primary text-white font-bold py-2 px-6 border-2 border-black rounded-none shadow-sm transition-all">
+                    Accetta
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS: INTERACTIVITY & LOGIC -->
+    <script>
+        // SMART ROUTING (Self-Healing Nav)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if ID missing
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close Mobile Menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+        
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>
