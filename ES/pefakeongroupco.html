@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeFakeon Group - Escapadas Exclusivas</title>
+    <meta name="description" content="Invertimos en tu bienestar. Encuentra las mejores escapadas de fin de semana, hoteles con spa y cenas gastronómicas.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: DESIGN SYSTEM INJECTION -->
+    <style>
+        :root {
+            /* VAR D: Palette (Travel/Wellness -> Cyan/Teal) */
+            --primary: #0e7490;
+            /* VAR C: Surface (Code 1 -> Warm Cream) */
+            --surface: #fffdf5;
+            /* VAR A: Geometry (Code 1 -> Soft) */
+            --radius: 12px;
+            /* VAR B: Physics (Code 2 -> Hard/Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Adjusted for Hard Shadow visibility */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        .text-primary { color: var(--primary); }
+        
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        /* FAQ Styling */
+        details summary {
+            cursor: pointer;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            list-style: none;
+            outline: none;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary {
+            background-color: rgba(14, 116, 144, 0.1);
+        }
+        details .content {
+            padding: 1rem;
+        }
+        
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-top: 4px solid #000;
+            padding: 1.5rem;
+            z-index: 50;
+            display: none;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-extrabold tracking-tighter text-black uppercase">
+                        PeFakeon<span class="text-primary">Group</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 font-bold">
+                    <a href="#features" class="hover:text-primary transition">Servicios</a>
+                    <a href="#reviews" class="hover:text-primary transition">Opiniones</a>
+                    <a href="#faq" class="hover:text-primary transition">Preguntas</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden md:block">
+                    <a href="#contact" class="btn-primary text-sm">Reservar Ahora</a>
+                </div>
+
+                <!-- Mobile Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-black focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t-2 border-black p-4">
+            <a href="#features" class="block py-2 font-bold hover:text-primary">Servicios</a>
+            <a href="#reviews" class="block py-2 font-bold hover:text-primary">Opiniones</a>
+            <a href="#contact" class="block mt-4 text-center btn-primary w-full">Reservar</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-gray-900 text-white overflow-hidden min-h-screen flex items-center">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 class="w-full h-full object-cover" 
+                 alt="Hotel spa de lujo"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Hotel+Spa+Relax'">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+
+        <div class="relative max-w-5xl mx-auto px-4 text-center z-10 py-20">
+            <span class="inline-block py-1 px-3 border-2 border-white rounded-full text-xs font-bold tracking-wider mb-6 uppercase">
+                Experiencias Premium 2026
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                Invertimos en tu Bienestar: <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-200">Escapadas que Renuevan</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto">
+                Olvídate de la rutina. Gestionamos paquetes exclusivos de hotel más experiencia gastronómica y wellness cerca de casa.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#features" class="btn-primary text-center">Explorar Ofertas</a>
+                <a href="#contact" class="bg-white text-black font-bold py-4 px-8 border-2 border-black shadow-[4px_4px_0px_0px_#000] rounded-xl hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] transition">
+                    Ver Disponibilidad
+                </a>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-600 flex justify-center space-x-8 text-gray-400 text-sm font-semibold uppercase tracking-wide">
+                <span>✓ Mejor precio garantizado</span>
+                <span>✓ Cancelación flexible</span>
+                <span>✓ Hoteles verificados</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="py-20 px-4">
+        
+        <!-- Trust Section -->
+        <div class="max-w-5xl mx-auto mb-16 text-center">
+            <p class="text-gray-500 font-bold uppercase tracking-widest mb-4 text-sm">Colaboramos con cadenas líderes</p>
+            <div class="flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                <span class="text-2xl font-bold text-gray-600">MELIÁ</span>
+                <span class="text-2xl font-bold text-gray-600">BARCELÓ</span>
+                <span class="text-2xl font-bold text-gray-600">PARADORES</span>
+                <span class="text-2xl font-bold text-gray-600">NH HOTELS</span>
+            </div>
+        </div>
+
+        <!-- Features Section (DNA Card) -->
+        <div id="features" class="max-w-5xl mx-auto dna-card relative overflow-hidden">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Experiencias Diseñadas para Ti</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    PeFakeon Group selecciona lo mejor de Weekendesk para ofrecerte micro-vacaciones que maximizan tu retorno de energía.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-100">
+                    <img src="https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg" 
+                         class="w-full h-48 object-cover" 
+                         alt="Cena romántica" loading="lazy" referrerpolicy="no-referrer">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 text-primary">Escapadas Románticas</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Sorprende a tu pareja con estancias que incluyen detalles de bienvenida, cenas íntimas y late check-out.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1 mb-4">
+                            <li>• Botella de Cava incluida</li>
+                            <li>• Decoración especial</li>
+                            <li>• Desayuno en la cama</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-100">
+                    <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg" 
+                         class="w-full h-48 object-cover" 
+                         alt="Mujer relajada en spa" loading="lazy" referrerpolicy="no-referrer">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 text-primary">Wellness & Spa</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Desconecta cuerpo y mente. Acceso a circuitos termales, masajes relajantes y tratamientos de belleza.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1 mb-4">
+                            <li>• Circuito de aguas 60 min</li>
+                            <li>• Masaje descontracturante</li>
+                            <li>• Kit de bienestar</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-100">
+                    <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg" 
+                         class="w-full h-48 object-cover" 
+                         alt="Plato gourmet" loading="lazy" referrerpolicy="no-referrer">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 text-primary">Escapadas Gastronómicas</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Descubre los sabores locales. Alojamiento en hoteles con encanto y menús degustación de alta cocina.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1 mb-4">
+                            <li>• Menú de 3 platos</li>
+                            <li>• Maridaje de vinos</li>
+                            <li>• Visita a bodegas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <a href="#contact" class="btn-primary">Personalizar mi Escapada</a>
+            </div>
+        </div>
+
+        <!-- Social Proof (DNA Card) -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold mb-8 text-center">Opiniones de Viajeros</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Reservamos el pack romántico de última hora y fue espectacular. El hotel era increíble y la cena superó nuestras expectativas. Gestión impecable."</p>
+                    <p class="font-bold text-sm">— Laura G., Madrid</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Necesitaba un fin de semana de relax. Encontré una oferta de Spa muy cerca de mi ciudad a un precio imbatible. Repetiré seguro."</p>
+                    <p class="font-bold text-sm">— Carlos M., Barcelona</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Me encanta que puedas filtrar por temáticas. Buscábamos algo con actividades para niños y cena incluida. Todo perfecto."</p>
+                    <p class="font-bold text-sm">— Familia Ruiz, Valencia</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section (DNA Card) -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold mb-8 text-center">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details class="bg-white border border-gray-200 rounded-lg">
+                    <summary>¿Qué incluye el precio de la escapada?</summary>
+                    <div class="content text-gray-600">
+                        El precio siempre incluye el alojamiento y las actividades especificadas en el paquete (cena, acceso al spa, visitas, etc.). Las tasas turísticas locales suelen pagarse directamente en el hotel.
+                    </div>
+                </details>
+                <details class="bg-white border border-gray-200 rounded-lg">
+                    <summary>¿Puedo cancelar o modificar mi reserva?</summary>
+                    <div class="content text-gray-600">
+                        La mayoría de nuestras ofertas permiten cancelación gratuita hasta 48 horas antes de la llegada. Revisa las condiciones específicas de cada paquete antes de confirmar.
+                    </div>
+                </details>
+                <details class="bg-white border border-gray-200 rounded-lg">
+                    <summary>¿Las escapadas incluyen transporte?</summary>
+                    <div class="content text-gray-600">
+                        No, nuestros paquetes están diseñados para llegar por medios propios. Esto nos permite ofrecerte mejores precios en el hotel y las experiencias locales.
+                    </div>
+                </details>
+                <details class="bg-white border border-gray-200 rounded-lg">
+                    <summary>¿Cómo recibo mi confirmación?</summary>
+                    <div class="content text-gray-600">
+                        Recibirás un bono digital inmediatamente después de completar el pago. Solo necesitas mostrarlo en la recepción del hotel desde tu móvil.
+                    </div>
+                </details>
+                <details class="bg-white border border-gray-200 rounded-lg">
+                    <summary>¿Tenéis ofertas de última hora?</summary>
+                    <div class="content text-gray-600">
+                        Sí, actualizamos nuestras ofertas diariamente. Busca la etiqueta "Last Minute" para encontrar descuentos de hasta el 40% para el próximo fin de semana.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- Contact Section (DNA Card) -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">¿Dudas? Contáctanos</h2>
+                    <p class="text-gray-600 mb-8">
+                        Nuestro equipo de expertos en ocio está listo para ayudarte a encontrar la escapada perfecta. Rellena el formulario y te enviaremos una propuesta personalizada.
+                    </p>
+                    
+                    <div class="bg-blue-50 p-6 rounded-lg border border-blue-100">
+                        <h4 class="font-bold text-lg mb-2 text-blue-900">Horario de Atención Digital</h4>
+                        <p class="text-blue-800 text-sm">Lunes a Domingo: 09:00 - 20:00</p>
+                        <p class="text-blue-800 text-sm mt-2">Gestionamos tus solicitudes online con máxima prioridad.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Enviando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Nombre Completo</label>
+                            <input type="text" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Preferencia de Destino</label>
+                            <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                <option>Escapada Romántica</option>
+                                <option>Relax & Spa</option>
+                                <option>Gastronomía</option>
+                                <option>Familia</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2">Comentarios Adicionales</label>
+                            <textarea rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-center">Solicitar Información</button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="text-green-500 text-5xl mb-4">✓</div>
+                        <h3 class="text-2xl font-bold mb-2">¡Solicitud Recibida!</h3>
+                        <p class="text-gray-600">Un especialista en escapadas revisará tu petición y te contactará en breve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t-4 border-black">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <div>
+                    <span class="text-2xl font-bold text-white tracking-tighter">PeFakeon Group</span>
+                    <p class="mt-4 text-sm text-gray-400">
+                        Tu socio de confianza para la gestión de tiempo libre y ocio de calidad. 
+                    </p>
+                </div>
+                <div class="text-sm text-gray-400 text-right md:text-right">
+                    <p>© 2026 PeFakeon Group. Todos los derechos reservados.</p>
+                    <p class="mt-2 text-xs opacity-70">
+                        Este es un sitio promocional independiente gestionado por PeFakeon Group, actuando como afiliado para Weekendesk.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Legal Accordions -->
+            <div class="border-t border-gray-800 pt-8 text-xs text-justify">
+                <details class="mb-2">
+                    <summary class="hover:text-white cursor-pointer mb-2">Política de Privacidad</summary>
+                    <div class="p-4 bg-gray-800 rounded mb-4">
+                        <p class="mb-2">En PeFakeon Group, nos tomamos muy en serio la privacidad de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos su información personal cuando visita nuestro sitio web. Al utilizar nuestros servicios, usted acepta las prácticas descritas en esta política.</p>
+                        <p class="mb-2">Recopilamos información que usted nos proporciona voluntariamente, como su nombre y preferencias de viaje a través de nuestros formularios de contacto. No vendemos, intercambiamos ni transferimos su información personal a terceros sin su consentimiento, excepto cuando sea necesario para proporcionar el servicio solicitado o cumplir con la ley.</p>
+                        <p class="mb-2">Utilizamos medidas de seguridad estándar de la industria para proteger sus datos contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Sin embargo, ninguna transmisión por Internet es 100% segura, por lo que no podemos garantizar la seguridad absoluta.</p>
+                        <p>Usted tiene derecho a acceder, corregir o eliminar su información personal en cualquier momento. Si desea ejercer estos derechos, por favor contáctenos a través de los canales oficiales disponibles en nuestro sitio web.</p>
+                    </div>
+                </details>
+                
+                <details class="mb-2">
+                    <summary class="hover:text-white cursor-pointer mb-2">Términos y Condiciones</summary>
+                    <div class="p-4 bg-gray-800 rounded mb-4">
+                        <p class="mb-2">Bienvenido a PeFakeon Group. Al acceder a este sitio web, usted acepta cumplir y estar sujeto a los siguientes términos y condiciones de uso. Si no está de acuerdo con alguna parte de estos términos, no debe utilizar nuestro sitio web.</p>
+                        <p class="mb-2">El contenido de las páginas de este sitio web es para su información general y uso exclusivamente. Está sujeto a cambios sin previo aviso. Ni nosotros ni terceros ofrecemos ninguna garantía en cuanto a la exactitud, puntualidad, rendimiento, integridad o idoneidad de la información y los materiales encontrados u ofrecidos en este sitio web para cualquier propósito particular.</p>
+                        <p class="mb-2">El uso de cualquier información o material en este sitio web es bajo su propio riesgo, por lo cual no seremos responsables. Será su propia responsabilidad asegurarse de que cualquier producto, servicio o información disponible a través de este sitio web cumpla con sus requisitos específicos.</p>
+                        <p>Este sitio web contiene material que es propiedad nuestra o tiene licencia para nosotros. Este material incluye, pero no se limita a, el diseño, la disposición, la apariencia y los gráficos. La reproducción está prohibida salvo de conformidad con el aviso de copyright.</p>
+                    </div>
+                </details>
+
+                <details class="mb-2">
+                    <summary class="hover:text-white cursor-pointer mb-2">Política de Reembolso</summary>
+                    <div class="p-4 bg-gray-800 rounded mb-4">
+                        <p class="mb-2">PeFakeon Group actúa como intermediario promocional. Los reembolsos y cancelaciones están sujetos estrictamente a las políticas del proveedor final del servicio (el hotel o proveedor de actividades). Por lo general, las reservas no reembolsables no permiten devolución de dinero.</p>
+                        <p class="mb-2">En caso de cancelaciones dentro del periodo permitido por la tarifa seleccionada, el reembolso se procesará de acuerdo con los tiempos bancarios estándar. Cualquier tarifa de gestión o servicio adicional puede no ser reembolsable dependiendo de las circunstancias específicas de la cancelación.</p>
+                        <p class="mb-2">Si el servicio no se puede prestar por causas de fuerza mayor (cierre del hotel, desastres naturales, etc.), trabajaremos con el proveedor para ofrecer una fecha alternativa o un reembolso completo, según corresponda y permita la legislación vigente.</p>
+                        <p>Le recomendamos encarecidamente revisar las condiciones específicas de cancelación de cada oferta antes de finalizar su reserva para evitar inconvenientes.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm font-medium">
+                Utilizamos cookies para asegurar que obtengas la mejor experiencia en nuestra web de escapadas.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookiesAccepted', 'true');" class="btn-primary py-2 px-4 text-sm">
+                    Aceptar
+                </button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none';" class="text-gray-500 hover:text-black underline text-sm">
+                    Rechazar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts: Smart Routing & Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Cookie Check
+            if(!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+
+            // Smooth Scroll & Gravity Well Logic
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        // Gravity Well: If ID doesn't exist, go to Contact
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
