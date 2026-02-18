@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GadekaZipiis Holdings | Soluzioni di Editoria Digitale e Media</title>
+    <meta name="description" content="Leader nell'informazione digitale, tecnologia e soluzioni pubblicitarie globali. Notizie in tempo reale e sistemi editoriali avanzati.">
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- DESIGN DNA & CUSTOM STYLES -->
+    <style>
+        :root {
+            /* VAR D: Palette -> Digital Blue */
+            --primary: #2563EB; 
+            /* VAR C: Surface -> Cool Slate White */
+            --surface: #f8fafc;
+            /* VAR A: Geometry -> Sharp */
+            --radius: 0px;
+            /* VAR B: Physics -> Hard (Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base for contrast */
+            color: #1f2937;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Added bold border for Hard DNA */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            border: 2px solid #000;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover { 
+            transform: translate(-2px, -2px); 
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        
+        .btn-primary:active {
+            transform: translate(0px, 0px);
+            box-shadow: none;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HEADER FIX */
+        header {
+            background-color: var(--surface);
+            border-bottom: 2px solid #000;
+        }
+
+        /* CUSTOM DETAILS/SUMMARY FOR LEGAL & FAQ */
+        details summary {
+            cursor: pointer;
+            padding: 10px;
+            font-weight: bold;
+            outline: none;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        details[open] summary {
+            color: var(--primary);
+        }
+        details div {
+            padding: 15px;
+            background-color: rgba(255,255,255,0.5);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 z-50 hidden border-t-4 border-blue-600">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <p class="mb-4 md:mb-0 text-sm">Utilizziamo i cookie per migliorare il nostro sistema digitale e l'esperienza utente. Continuando, accetti la nostra politica.</p>
+            <button onclick="acceptCookies()" class="bg-white text-black font-bold py-2 px-6 hover:bg-gray-200 transition" style="box-shadow: 4px 4px 0px 0px #4b5563;">
+                ACCETTO
+            </button>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <header class="fixed w-full top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- LOGO -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-black text-2xl tracking-tighter uppercase border-2 border-black p-2 bg-white shadow-sm">
+                        GADEKA<span class="text-blue-600">ZIPIIS</span>
+                    </span>
+                </div>
+                
+                <!-- DESKTOP MENU -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="font-bold hover:text-blue-600 transition">Servizi</a>
+                    <a href="#reviews" class="font-bold hover:text-blue-600 transition">Network</a>
+                    <a href="#faq" class="font-bold hover:text-blue-600 transition">Info</a>
+                    <a href="#contact" class="btn-primary text-sm">Contattaci</a>
+                </div>
+
+                <!-- MOBILE BUTTON -->
+                <div class="flex md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-blue-600 focus:outline-none">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 font-bold hover:bg-gray-100">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 font-bold hover:bg-gray-100">Network</a>
+                <a href="#faq" class="block px-3 py-2 font-bold hover:bg-gray-100">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 text-blue-600 font-black">Contattaci ORA</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-white pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b-2 border-black">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+            <div class="text-center">
+                <span class="inline-block py-1 px-3 border-2 border-black bg-yellow-300 font-bold text-xs tracking-wider mb-4 shadow-[4px_4px_0px_0px_#000]">
+                    EDITORIA DIGITALE AVANZATA
+                </span>
+                <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl mb-6">
+                    L'Informazione è Potere: <br>
+                    <span class="text-blue-600">Il Futuro del Digital Publishing è Qui</span>
+                </h1>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+                    Ogni <span class="font-bold text-black">notizia</span> conta. Offriamo un <span class="font-bold text-black">sistema</span> editoriale integrato per portare la <span class="font-bold text-black">tecnologia</span> al servizio della verità. Colleghiamo il mondo attraverso contenuti di qualità.
+                </p>
+                <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                    <a href="#contact" class="btn-primary text-lg px-8 py-4">
+                        Inizia Ora
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Abstract BG shapes -->
+        <div class="absolute top-0 left-0 w-full h-full z-0 opacity-10 pointer-events-none">
+             <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Meeting aziendale media" class="w-full h-full object-cover">
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8">
+        
+        <!-- SERVICES / FEATURES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 uppercase">Le Nostre Soluzioni</h2>
+                <p class="mt-4 text-lg text-gray-600">Un ecosistema completo per l'editoria e l'informazione.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="p-6 border-2 border-gray-100 hover:border-black transition duration-300">
+                    <div class="w-12 h-12 bg-blue-100 flex items-center justify-center mb-4 border-2 border-black" style="box-shadow: 4px 4px 0px 0px #000;">
+                        <i class="fas fa-globe-europe text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Network di Notizie</h3>
+                    <p class="text-gray-600">Copertura completa di ogni <span class="font-semibold">notizia</span> locale e nazionale. Portiamo i fatti dal mondo direttamente ai lettori.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="p-6 border-2 border-gray-100 hover:border-black transition duration-300">
+                    <div class="w-12 h-12 bg-blue-100 flex items-center justify-center mb-4 border-2 border-black" style="box-shadow: 4px 4px 0px 0px #000;">
+                        <i class="fas fa-bullhorn text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Advertising & Annunci</h3>
+                    <p class="text-gray-600">Ogni <span class="font-semibold">annuncio</span> raggiunge il target perfetto. Soluzioni programmatiche per massimizzare il ROI pubblicitario.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="p-6 border-2 border-gray-100 hover:border-black transition duration-300">
+                    <div class="w-12 h-12 bg-blue-100 flex items-center justify-center mb-4 border-2 border-black" style="box-shadow: 4px 4px 0px 0px #000;">
+                        <i class="fas fa-microchip text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Tecnologia Editoriale</h3>
+                    <p class="text-gray-600">Un <span class="font-semibold">sistema</span> CMS proprietario e <span class="font-semibold">tecnologia</span> all'avanguardia per editori digitali moderni.</p>
+                </div>
+            </div>
+            
+            <div class="mt-10 relative h-64 w-full overflow-hidden border-2 border-black hidden md:block">
+                 <img src="https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                      class="w-full h-full object-cover transform hover:scale-105 transition duration-700"
+                      loading="lazy" 
+                      alt="Tecnologia e Digitale">
+                 <div class="absolute bottom-0 left-0 bg-white border-t-2 border-r-2 border-black px-4 py-2 font-bold">
+                     Il Mondo Digitale
+                 </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 uppercase border-b-2 border-gray-200 pb-4">
+                Feedback dal Settore
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 border-2 border-gray-200">
+                    <div class="flex text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-sm text-gray-700 mb-4 italic">"Il sistema di GadekaZipiis ha trasformato il modo in cui gestiamo la <span class="font-bold">notizia</span> in tempo reale. Affidabilità top."</p>
+                    <div class="font-bold text-sm text-gray-900">- Marco Rossi, Direttore Editoriale</div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 border-2 border-gray-200">
+                    <div class="flex text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-sm text-gray-700 mb-4 italic">"Grazie al loro supporto tecnologico, il nostro <span class="font-bold">digitale</span> ha raddoppiato le visualizzazioni in sei mesi."</p>
+                    <div class="font-bold text-sm text-gray-900">- Giulia Bianchi, Tech Blog CEO</div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 border-2 border-gray-200">
+                    <div class="flex text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-sm text-gray-700 mb-4 italic">"Piattaforma solida per l'advertising. Ogni <span class="font-bold">annuncio</span> rende al massimo."</p>
+                    <div class="font-bold text-sm text-gray-900">- Azienda Partner MediaGroup</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 uppercase">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <details class="bg-white border-2 border-gray-100">
+                    <summary>Come gestite la veridicità di ogni notizia?</summary>
+                    <div>Attraverso un rigoroso processo di fact-checking e l'uso di tecnologia avanzata per incrociare le fonti, garantiamo che ogni informazione pubblicata sia accurata.</div>
+                </details>
+                <details class="bg-white border-2 border-gray-100">
+                    <summary>Che tipo di sistema utilizzate per l'advertising?</summary>
+                    <div>Il nostro sistema proprietario analizza i dati demografici per posizionare ogni annuncio in contesti rilevanti, massimizzando l'engagement del pubblico digitale.</div>
+                </details>
+                <details class="bg-white border-2 border-gray-100">
+                    <summary>Operate in tutto il mondo?</summary>
+                    <div>Sì, la nostra piattaforma è globale. Copriamo notizie e tecnologia a livello internazionale, offrendo una visione completa del mondo moderno.</div>
+                </details>
+                <details class="bg-white border-2 border-gray-100">
+                    <summary>Posso proporre un articolo o un annuncio?</summary>
+                    <div>Assolutamente. Offriamo spazi per contributi esterni e partnership commerciali. Utilizza il modulo di contatto per inviare la tua proposta al nostro team editoriale.</div>
+                </details>
+                <details class="bg-white border-2 border-gray-100">
+                    <summary>Quali settori tecnologici coprite maggiormente?</summary>
+                    <div>Ci concentriamo su innovazione digitale, AI, blockchain e hardware consumer. Il nostro obiettivo è rendere la tecnologia complessa accessibile a tutti.</div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-extrabold text-gray-900 uppercase">Parla con Noi</h2>
+                    <p class="text-gray-600">Hai una storia da raccontare o cerchi visibilità per il tuo brand? Il nostro team editoriale è pronto ad ascoltarti.</p>
+                    
+                    <div class="mt-8">
+                        <div class="flex items-start mb-6">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 border-2 border-black bg-blue-100 text-blue-600">
+                                    <i class="fas fa-map-marker-alt text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Sede Legale</h3>
+                                <p class="mt-1 text-gray-600">Via Po, 14<br>00198 Roma (RM), Italia</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-6 border-l-4 border-blue-600">
+                        <p class="text-sm font-bold text-blue-800">
+                            NOTA IMPORTANTE: Non accettiamo manoscritti non richiesti via posta. Si prega di utilizzare il modulo digitale per tutte le comunicazioni iniziali.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-white p-6 border-2 border-gray-200 shadow-sm">
+                    <form id="lead-form" onsubmit="handleForm(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 border-2 border-gray-300 focus:border-blue-600 focus:outline-none" placeholder="Il tuo nome">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Argomento</label>
+                            <select class="w-full px-4 py-3 border-2 border-gray-300 focus:border-blue-600 focus:outline-none bg-white">
+                                <option>Proposta Editoriale</option>
+                                <option>Pubblicità / Annuncio</option>
+                                <option>Informazioni Generali</option>
+                                <option>Segnalazione Tecnica</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Messaggio</label>
+                            <textarea required rows="4" class="w-full px-4 py-3 border-2 border-gray-300 focus:border-blue-600 focus:outline-none" placeholder="Descrivi la tua richiesta..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary mt-4">
+                            Invia Richiesta
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900">Messaggio Inviato!</h3>
+                        <p class="text-gray-600 mt-2">Grazie per aver contattato GadekaZipiis Holdings. Il nostro team editoriale valuterà la tua richiesta e ti risponderà a breve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-white border-t-2 border-black pt-12 pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <span class="font-black text-xl tracking-tighter uppercase block mb-4">GADEKA<span class="text-blue-600">ZIPIIS</span></span>
+                    <p class="text-gray-500 text-sm max-w-md">
+                        GadekaZipiis Holdings è il punto di riferimento per l'editoria digitale moderna, connettendo notizie, tecnologia e opportunità commerciali in un unico sistema globale.
+                    </p>
+                </div>
+                <div class="text-sm text-gray-500">
+                    <p class="italic mb-2">Questo sito è un portale promozionale indipendente gestito da GadekaZipiis Holdings, che agisce in qualità di affiliato per Netweek S.p.A. / Web365.it.</p>
+                    <p>&copy; 2026 GadekaZipiis Holdings. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+
+            <!-- LEGAL ACCORDIONS -->
+            <div class="border-t-2 border-gray-200 pt-8 space-y-2">
+                
+                <details class="text-xs text-gray-600">
+                    <summary>Termini e Condizioni</summary>
+                    <div>
+                        <p>Benvenuti su GadekaZipiis Holdings. L'accesso e l'uso di questo sito web sono soggetti ai seguenti termini e condizioni. Utilizzando il nostro sito, l'utente accetta di rispettare queste regole. Tutti i contenuti editoriali, incluse notizie, articoli di tecnologia e immagini, sono protetti da copyright. È vietata la riproduzione non autorizzata dei materiali presenti su questo portale. GadekaZipiis Holdings si riserva il diritto di modificare i contenuti in qualsiasi momento senza preavviso. L'utente si impegna a utilizzare il sito esclusivamente per scopi leciti e a non intraprendere azioni che possano compromettere la sicurezza del sistema digitale. Non siamo responsabili per eventuali inesattezze nelle notizie aggregate da terze parti, sebbene ci impegniamo per la massima accuratezza. L'utilizzo dei moduli di contatto implica l'accettazione delle nostre politiche di gestione dei dati. Per le aziende che desiderano inserire un annuncio, si applicano termini contrattuali specifici forniti al momento dell'accordo. Eventuali controversie legali saranno regolate dalla legge italiana vigente. L'accesso continuo al sito implica l'accettazione delle modifiche future ai termini.</p>
+                    </div>
+                </details>
+
+                <details class="text-xs text-gray-600">
+                    <summary>Privacy Policy</summary>
+                    <div>
+                        <p>La privacy degli utenti è fondamentale per GadekaZipiis Holdings. Questa informativa descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali quando visiti il nostro sito di editoria digitale. Raccogliamo dati non sensibili attraverso i cookie per migliorare l'esperienza di navigazione e per fini statistici. I dati forniti volontariamente tramite i moduli di contatto (nome, dettagli della richiesta) vengono utilizzati esclusivamente per rispondere alle vostre esigenze editoriali o commerciali. Non vendiamo, scambiamo o trasferiamo a terzi le tue informazioni personali identificabili senza il tuo consenso, eccetto per le parti di fiducia che ci assistono nella gestione del sito web (provider di hosting). Adottiamo misure di sicurezza tecnologiche avanzate per proteggere i tuoi dati contro l'accesso non autorizzato. Hai il diritto di richiedere la cancellazione dei tuoi dati dai nostri archivi in qualsiasi momento. I dati vengono conservati solo per il tempo necessario a fornire il servizio richiesto. Monitoriamo costantemente il nostro sistema per prevenire violazioni dei dati. Continuando a navigare, accetti la nostra pratica di raccolta dati.</p>
+                    </div>
+                </details>
+
+                <details class="text-xs text-gray-600">
+                    <summary>Dichiarazione di Esclusione di Responsabilità (Disclaimer)</summary>
+                    <div>
+                        <p>Le informazioni contenute in questo sito web sono fornite esclusivamente a scopo informativo generale. Mentre GadekaZipiis Holdings si impegna a mantenere le notizie e le informazioni aggiornate e corrette, non rilasciamo alcuna dichiarazione o garanzia di alcun tipo, espressa o implicita, sulla completezza, accuratezza, affidabilità, idoneità o disponibilità rispetto al sito web o alle informazioni, prodotti, servizi o grafica correlata contenuti nel sito web per qualsiasi scopo. Qualsiasi affidamento che riponete su tali informazioni è quindi rigorosamente a vostro rischio. In nessun caso saremo responsabili per perdite o danni inclusi, senza limitazioni, perdite o danni indiretti o consequenziali, o qualsiasi perdita o danno derivante dalla perdita di dati o profitti derivanti da, o in connessione con, l'uso di questo sito web. Attraverso questo sito web è possibile collegarsi ad altri siti web che non sono sotto il controllo di GadekaZipiis Holdings; non abbiamo alcun controllo sulla natura, il contenuto e la disponibilità di tali siti. L'inclusione di qualsiasi link non implica necessariamente una raccomandazione o avalla le opinioni espresse al loro interno. Il sito è inteso come vetrina promozionale.</p>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPTS -->
+    <script>
+        // FORM SIMULATION LOGIC
+        function handleForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            
+            // Loading state
+            btn.innerText = 'Elaborazione in corso...';
+            btn.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                // Hide form, show success
+                document.getElementById('lead-form').style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+                
+                // Optional: Scroll to success message
+                document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1500);
+        }
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check cookies
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+
+            // SMART ROUTING (Self-Healing Nav)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        // Fallback to Contact if section is missing
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
