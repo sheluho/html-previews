@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofikea Systems | Analisi e Recensioni Software Automatizzate</title>
+    <meta name="description" content="Sofikea Systems: La piattaforma leader per l'analisi di software automatizzato, recensioni di efficienza e soluzioni AI.">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Design DNA Injection -->
+    <style>
+        :root {
+            /* VAR D: Palette (Software/Tech -> Indigo) */
+            --primary: #4f46e5;
+            
+            /* VAR C: Surface (Last Letter 'm' = 109 -> 109%3=1 -> Warm) */
+            --surface: #fffdf5;
+            
+            /* VAR A: Geometry (Length 13 -> 13%3=1 -> Soft) */
+            --radius: 12px;
+            
+            /* VAR B: Physics (First Letter 'h'=104 -> 104%3=2 -> Hard/Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Added border to match Hard shadow style */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+             background-color: var(--primary);
+             color: #ffffff !important;
+             border-radius: var(--radius);
+             box-shadow: var(--shadow);
+             padding: 1rem 2rem;
+             transition: all 0.15s ease-in-out;
+             font-weight: 800;
+             text-transform: uppercase;
+             letter-spacing: 0.05em;
+             border: 2px solid #000;
+             display: inline-block;
+        }
+        .btn-primary:hover { 
+            transform: translate(-2px, -2px); 
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HEADER STYLING */
+        header {
+            background-color: var(--surface);
+            border-bottom: 2px solid #000;
+        }
+
+        /* FORM STYLING */
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--radius);
+            border: 2px solid #e5e7eb;
+            background-color: #fff;
+            transition: all 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Custom Details Marker */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 1rem;
+            background-color: #f9fafb;
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] > summary {
+            background-color: #e0e7ff;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <header class="sticky top-0 z-50 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-black tracking-tighter text-black uppercase">
+                        Sofikea<span class="text-primary">Systems</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-900 hover:text-primary font-bold transition">Recensioni</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary font-bold transition">Risultati</a>
+                    <a href="#faq" class="text-gray-900 hover:text-primary font-bold transition">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm py-2 px-4 shadow-none hover:shadow-lg">Richiedi Analisi</a>
+                </nav>
+
+                <!-- Mobile Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black absolute w-full left-0 top-20 shadow-xl">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Recensioni</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Risultati</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">FAQ</a>
+                <a href="#contact" class="block w-full text-center px-3 py-2 rounded-md text-base font-medium btn-primary mt-4">Contattaci</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gray-900 text-white pt-24 pb-32 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 class="w-full h-full object-cover opacity-30" 
+                 alt="Analisi Software Automatizzato e Tecnologia AI"
+                 loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-b from-gray-900 via-transparent to-gray-900 opacity-90"></div>
+        </div>
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Sofikea Systems: La Piattaforma Definitiva per l'Analisi di <span class="text-indigo-400">Software Automatizzato</span>.
+            </h1>
+            <p class="mt-4 text-xl text-gray-300 max-w-3xl mx-auto mb-10">
+                L'intelligenza artificiale non è più il futuro, ma il presente. Recensiamo le migliori soluzioni di chatbot e automazione per garantire che la tua azienda raggiunga l'efficienza massima.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#features" class="btn-primary border-white">Esplora i Report</a>
+                <a href="#contact" class="px-8 py-4 bg-transparent border-2 border-white rounded-xl font-bold hover:bg-white hover:text-black transition duration-300" style="border-radius: var(--radius);">Parla con un Esperto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
+
+        <!-- FEATURES / SERVICES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl uppercase tracking-wide">
+                    Le Nostre <span class="text-primary">Competenze</span>
+                </h2>
+                <p class="mt-4 text-lg text-gray-600">
+                    Come sito di recensioni software leader, analizziamo in profondità le piattaforme per offrirti dati certi.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 bg-white rounded-lg border-2 border-gray-100 hover:border-indigo-500 transition duration-300">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Analisi Software Automatizzata</h3>
+                    <p class="text-gray-600">Esaminiamo ogni piattaforma per verificarne la capacità di gestire flussi di lavoro complessi senza intervento umano. Il nostro focus è l'accuratezza del codice e l'affidabilità.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-6 bg-white rounded-lg border-2 border-gray-100 hover:border-indigo-500 transition duration-300">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Valutazione Chatbot AI</h3>
+                    <p class="text-gray-600">Non tutti i bot sono uguali. Testiamo la comprensione del linguaggio naturale e l'efficacia nel servizio clienti, garantendo recensioni imparziali sulle migliori soluzioni.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-6 bg-white rounded-lg border-2 border-gray-100 hover:border-indigo-500 transition duration-300">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Massimizzazione Efficienza</h3>
+                    <p class="text-gray-600">Il nostro obiettivo è trovare il software che ti fa risparmiare tempo. Misuriamo i "risultati" in termini di velocità di caricamento, integrazione WordPress e ROI aziendale.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-10">Cosa dicono dei nostri Report</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Grazie a Sofikea Systems ho trovato il software ideale per automatizzare il supporto clienti. La loro analisi sulle prestazioni dei chatbot è stata illuminante."</p>
+                    <p class="font-bold text-gray-900">- Marco L., Sviluppatore Full-Stack</p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Recensioni oneste e dettagliate. Cercavo una piattaforma che garantisse efficienza senza compromessi, e le guide qui presenti mi hanno indirizzato verso Hostinger."</p>
+                    <p class="font-bold text-gray-900">- Elena S., Digital Manager</p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"L'approccio basato sui dati di Sofikea è unico. Invece di semplici opinioni, forniscono test reali su velocità e integrazione. Indispensabile."</p>
+                    <p class="font-bold text-gray-900">- Filippo R., Consulente IT</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-8 text-center">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>Che tipo di software recensite principalmente?</summary>
+                    <div class="p-4 text-gray-600">
+                        Ci concentriamo su piattaforme SaaS, strumenti di automazione AI e soluzioni di hosting che offrono capacità di integrazione avanzate per il business digitale.
+                    </div>
+                </details>
+                <details>
+                    <summary>Come valutate l'efficienza di un Chatbot?</summary>
+                    <div class="p-4 text-gray-600">
+                        Analizziamo i tempi di risposta, l'accuratezza nelle risposte fornite e la facilità di configurazione tramite plugin o codice personalizzato. Solo i software che superano i nostri standard di efficienza vengono raccomandati.
+                    </div>
+                </details>
+                <details>
+                    <summary>I vostri servizi di analisi sono gratuiti?</summary>
+                    <div class="p-4 text-gray-600">
+                        Sì, il nostro portale è accessibile gratuitamente. Manteniamo la nostra indipendenza editoriale attraverso partnership di affiliazione trasparenti.
+                    </div>
+                </details>
+                <details>
+                    <summary>Posso richiedere una recensione su un software specifico?</summary>
+                    <div class="p-4 text-gray-600">
+                        Assolutamente. Utilizza il modulo di contatto per suggerirci una piattaforma o un tool automatizzato che vorresti vedere analizzato dal nostro team.
+                    </div>
+                </details>
+                <details>
+                    <summary>I risultati delle recensioni sono imparziali?</summary>
+                    <div class="p-4 text-gray-600">
+                        La nostra priorità è l'integrità dei dati. Basiamo le nostre valutazioni su test tecnici oggettivi, non solo sulle promesse di marketing dei fornitori.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Text Column -->
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Contattaci per una Consulenza</h2>
+                    <p class="text-gray-600 mb-6">
+                        Hai bisogno di aiuto per scegliere il software giusto? Il nostro team di esperti è pronto ad ascoltare le tue esigenze e indirizzarti verso la piattaforma automatizzata più adatta al tuo business.
+                    </p>
+                    <div class="mb-4">
+                        <img src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Team di supporto tecnico" 
+                             class="rounded-lg shadow-sm border-2 border-black w-full object-cover h-48"
+                             loading="lazy">
+                    </div>
+                </div>
+                
+                <!-- Form Column -->
+                <div>
+                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" required placeholder="Mario Rossi">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Azienda (Opzionale)</label>
+                            <input type="text" placeholder="Nome della tua azienda">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Software di Interesse</label>
+                            <select>
+                                <option>Chatbot AI</option>
+                                <option>Automazione Hosting</option>
+                                <option>Analisi Dati</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Messaggio</label>
+                            <textarea rows="4" required placeholder="Descrivi le tue esigenze..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-center">Richiedi Informazioni</button>
+                    </form>
+                    
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="text-4xl mb-4">✅</div>
+                        <h3 class="text-2xl font-bold text-gray-900">Messaggio Inviato!</h3>
+                        <p class="text-gray-600 mt-2">Grazie per aver contattato Sofikea Systems. Un nostro analista esaminerà la tua richiesta e ti risponderà al più presto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t-4 border-primary">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+            <div>
+                <p class="font-bold text-white text-lg mb-4">Sofikea Systems</p>
+                <p class="mb-4">
+                    La tua risorsa di fiducia per recensioni imparziali e analisi approfondite su software, automazione e tecnologia AI.
+                </p>
+                <p class="opacity-75">
+                    © 2026 Sofikea Systems. Tutti i diritti riservati.
+                </p>
+                <p class="mt-4 italic text-xs text-gray-500">
+                    *Questo è un sito promozionale indipendente gestito da Sofikea Systems, che agisce come affiliato per Hostinger.*
+                </p>
+            </div>
+            
+            <div class="space-y-2">
+                <!-- LEGAL: Privacy Policy -->
+                <details>
+                    <summary class="bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700">Informativa sulla Privacy</summary>
+                    <div class="p-4 bg-gray-800 text-xs text-gray-400 leading-relaxed">
+                        <p class="mb-2"><strong>1. Introduzione:</strong> Sofikea Systems rispetta la tua privacy e si impegna a proteggere i tuoi dati personali. Questa informativa spiega come raccogliamo, utilizziamo e proteggiamo le tue informazioni quando visiti il nostro sito web di recensioni software.</p>
+                        <p class="mb-2"><strong>2. Raccolta Dati:</strong> Raccogliamo dati forniti volontariamente tramite i moduli di contatto, come nome e preferenze di software, al solo scopo di fornire il servizio richiesto. Non raccogliamo dati sensibili senza consenso esplicito.</p>
+                        <p class="mb-2"><strong>3. Utilizzo dei Dati:</strong> Le informazioni vengono utilizzate per rispondere alle richieste, migliorare l'analisi delle nostre recensioni e, se acconsentito, inviare aggiornamenti pertinenti sul mondo dell'automazione software.</p>
+                        <p class="mb-2"><strong>4. Cookie e Tracciamento:</strong> Utilizziamo cookie tecnici per garantire il funzionamento del sito e cookie analitici anonimizzati per comprendere come gli utenti interagiscono con le nostre recensioni. Puoi disabilitare i cookie nelle impostazioni del browser.</p>
+                        <p class="mb-2"><strong>5. Condivisione con Terze Parti:</strong> Non vendiamo i tuoi dati. Potremmo condividere informazioni anonime aggregate con partner affiliati come Hostinger esclusivamente per scopi statistici relativi alle prestazioni delle campagne pubblicitarie.</p>
+                        <p class="mb-2"><strong>6. Sicurezza:</strong> Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, perdite o alterazioni.</p>
+                        <p class="mb-2"><strong>7. Diritti dell'Utente:</strong> Hai il diritto di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati personali in nostro possesso contattandoci tramite il modulo presente sul sito.</p>
+                        <p class="mb-2"><strong>8. Modifiche:</strong> Ci riserviamo il diritto di aggiornare questa policy. Le modifiche saranno pubblicate su questa pagina con la data di aggiornamento.</p>
+                    </div>
+                </details>
+
+                <!-- LEGAL: Terms of Service -->
+                <details>
+                    <summary class="bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700">Termini di Servizio</summary>
+                    <div class="p-4 bg-gray-800 text-xs text-gray-400 leading-relaxed">
+                        <p class="mb-2"><strong>1. Accettazione:</strong> Utilizzando il sito Sofikea Systems, accetti integralmente i presenti Termini di Servizio. Se non sei d'accordo, ti invitiamo a non utilizzare il nostro portale.</p>
+                        <p class="mb-2"><strong>2. Uso del Contenuto:</strong> Tutto il contenuto, incluse le recensioni, le analisi e i testi, è protetto da copyright. È vietata la riproduzione non autorizzata per scopi commerciali.</p>
+                        <p class="mb-2"><strong>3. Esclusione di Responsabilità:</strong> Le recensioni fornite sono opinioni basate su analisi tecniche. Non garantiamo che i software recensiti soddisfino le specifiche esigenze di ogni singolo utente. Sofikea Systems non è responsabile per perdite derivanti dall'uso dei software consigliati.</p>
+                        <p class="mb-2"><strong>4. Link di Affiliazione:</strong> Questo sito contiene link di affiliazione. Se clicchi su un link e acquisti un servizio, potremmo ricevere una commissione senza costi aggiuntivi per te. Questo non influenza la nostra imparzialità.</p>
+                        <p class="mb-2"><strong>5. Condotta dell'Utente:</strong> L'utente si impegna a non utilizzare il sito per scopi illeciti, inviare spam tramite i moduli di contatto o tentare di violare la sicurezza del sistema.</p>
+                        <p class="mb-2"><strong>6. Modifiche al Servizio:</strong> Ci riserviamo il diritto di modificare o interrompere il servizio in qualsiasi momento senza preavviso per manutenzione o aggiornamenti.</p>
+                        <p class="mb-2"><strong>7. Legge Applicabile:</strong> Questi termini sono regolati dalle leggi vigenti nello stato di residenza dell'operatore del sito.</p>
+                    </div>
+                </details>
+                
+                 <!-- LEGAL: Refund Policy (Affiliate Context) -->
+                 <details>
+                    <summary class="bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700">Politica di Rimborso</summary>
+                    <div class="p-4 bg-gray-800 text-xs text-gray-400 leading-relaxed">
+                        <p class="mb-2"><strong>1. Natura del Servizio:</strong> Sofikea Systems è un portale informativo e di recensioni. Non vendiamo direttamente software o licenze. Pertanto, non elaboriamo transazioni finanziarie dirette con gli utenti.</p>
+                        <p class="mb-2"><strong>2. Responsabilità del Fornitore:</strong> Qualsiasi acquisto di software (es. Hostinger) effettuato tramite i link presenti sul nostro sito è regolato dai termini e dalle condizioni del fornitore terzo.</p>
+                        <p class="mb-2"><strong>3. Richieste di Rimborso:</strong> Se desideri richiedere un rimborso per un servizio acquistato tramite un nostro link di affiliazione, devi contattare direttamente il team di supporto del venditore originale (es. Hostinger). Sofikea Systems non ha il potere di emettere rimborsi per conto di terzi.</p>
+                        <p class="mb-2"><strong>4. Assistenza:</strong> Sebbene non possiamo processare rimborsi, siamo disponibili a guidarti verso le pagine di supporto corrette del fornitore in caso di difficoltà.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t-2 border-black p-4 z-50 hidden shadow-2xl">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-700">
+                Utilizziamo i cookie per migliorare l'analisi dei nostri servizi e offrirti la migliore esperienza di navigazione.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-xs">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 hover:text-black text-sm underline">Rifiuta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Smooth Scroll & Navigation Handler
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Normal behavior: scroll to element
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback behavior: scroll to contact
+                    console.log(`Target #${targetId} not found, redirecting to #contact`);
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) {
+                         contactSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Cookie Banner Logic
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>
