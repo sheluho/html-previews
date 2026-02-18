@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LenugaKazon Solutions - Actualidad Científica y Tecnológica</title>
+    <meta name="description" content="Portal líder en noticias de ciencia, reviews de tecnología y análisis de opinión en España. El conocimiento es nuestra solución.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DESIGN DNA SYSTEM -->
+    <style>
+        :root {
+            /* VAR D: Palette - Science Blue/Indigo */
+            --primary: #2563eb; 
+            /* VAR C: Surface - Warm (#fffdf5) derived from 'm' */
+            --surface: #fffdf5;
+            /* VAR A: Geometry - Pill (24px) derived from 23 chars */
+            --radius: 24px;
+            /* VAR B: Physics - Hard (Neo-Brutalist) derived from 'n' */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Added border to match Neo-Brutalist shadow style */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            border: 2px solid #000;
+        }
+        
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        
+        /* Navigation Highlight */
+        .nav-link:hover {
+            color: var(--primary);
+            text-decoration: underline;
+            text-decoration-thickness: 3px;
+        }
+
+        /* Accordion Styles */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 1rem;
+            background: #fff;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+        }
+        details[open] > summary {
+            border-bottom: 2px solid var(--primary);
+        }
+        details > div {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* Hero Overlay */
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-black text-2xl tracking-tighter">LENUGAKAZON<span class="text-primary">SOLUTIONS</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="nav-link text-gray-900 font-bold px-3 py-2 text-sm">Servicios</a>
+                    <a href="#reviews" class="nav-link text-gray-900 font-bold px-3 py-2 text-sm">Opiniones</a>
+                    <a href="#faq" class="nav-link text-gray-900 font-bold px-3 py-2 text-sm">Ayuda</a>
+                    <a href="#contact" class="btn-primary py-2 px-4 text-xs">Contacto</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-gray-600 focus:outline-none p-2 border-2 border-black rounded-full">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-b-2 border-black">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-bold text-gray-900 hover:bg-gray-200">Servicios</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-bold text-gray-900 hover:bg-gray-200">Opiniones</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary hover:bg-gray-200">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-gray-900">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" 
+                 src="https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Ciencia y Tecnología Investigación" 
+                 referrerpolicy="no-referrer">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6">
+                La Ciencia es el camino.<br>
+                <span class="text-primary bg-white px-2 mt-2 inline-block transform -rotate-1 shadow-lg" style="border-radius: 8px;">LenugaKazon</span> es la Solución.
+            </h1>
+            <p class="mt-6 text-xl text-gray-100 max-w-3xl mx-auto font-medium">
+                Tu fuente confiable de noticias científicas, lanzamientos tecnológicos y artículos de opinión en España. Analizamos la actualidad para que tú comprendas el futuro.
+            </p>
+            <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                <a href="#features" class="btn-primary text-lg">
+                    Explorar Artículos
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRUST BADGES -->
+    <div class="bg-white border-b border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Información verificada por</p>
+            <div class="flex justify-center items-center space-x-8 flex-wrap opacity-60 grayscale">
+                <span class="text-xl font-black text-gray-600 m-4">NCYT®</span>
+                <span class="text-xl font-black text-gray-600 m-4">AMAZINGS</span>
+                <span class="text-xl font-black text-gray-600 m-4">SCIENCE WIRE</span>
+                <span class="text-xl font-black text-gray-600 m-4">TECH OBSERVER</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="py-16 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Periodismo Digital de Vanguardia
+                </h2>
+                <p class="mt-4 text-lg text-gray-600">
+                    Conectamos los hechos complejos con explicaciones claras.
+                </p>
+            </div>
+
+            <!-- Feature 1 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Noticias Científicas" 
+                         class="w-full h-64 object-cover rounded-2xl border-2 border-black"
+                         loading="lazy"
+                         referrerpolicy="no-referrer"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Noticias+Ciencia'">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="uppercase tracking-wide text-sm text-primary font-bold">Actualidad y Noticias</div>
+                    <h3 class="mt-2 text-2xl font-bold text-gray-900">Cobertura Global Inmediata</h3>
+                    <p class="mt-4 text-gray-600">
+                        Mantente al día con las últimas noticias de ciencia. Desde descubrimientos astronómicos hasta avances médicos. Nuestra redacción filtra el ruido para entregarte solo la información veraz y relevante que necesitas saber hoy.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Tech Reviews y Lanzamientos" 
+                         class="w-full h-64 object-cover rounded-2xl border-2 border-black"
+                         loading="lazy"
+                         referrerpolicy="no-referrer"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Tech+Review'">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="uppercase tracking-wide text-sm text-primary font-bold">Lanzamientos y Reviews</div>
+                    <h3 class="mt-2 text-2xl font-bold text-gray-900">Análisis de Tecnología</h3>
+                    <p class="mt-4 text-gray-600">
+                        ¿Nuevo gadget en el mercado? Realizamos cada <strong>review</strong> con profundidad técnica. Te ayudamos a decidir sobre el próximo <strong>lanzamiento</strong> tecnológico con comparativas honestas y pruebas de rendimiento en escenarios reales.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Opinión Experta" 
+                         class="w-full h-64 object-cover rounded-2xl border-2 border-black"
+                         loading="lazy"
+                         referrerpolicy="no-referrer"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Opinion+Analysis'">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="uppercase tracking-wide text-sm text-primary font-bold">Opinión y Debate</div>
+                    <h3 class="mt-2 text-2xl font-bold text-gray-900">Perspectiva Crítica</h3>
+                    <p class="mt-4 text-gray-600">
+                        No solo reportamos, analizamos. Lee nuestros artículos de <strong>opinión</strong> donde expertos desglosan el impacto ético y social de los nuevos avances en España y el mundo. Fomentamos el pensamiento crítico.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-12 px-4">
+        <div class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">
+                Lo que dicen nuestros lectores
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"La mejor fuente para seguir cualquier lanzamiento importante. Sus reviews son imparciales y muy técnicas. Imprescindible en mi día a día."</p>
+                    <p class="font-bold text-gray-900">- Carlos M., Madrid</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Me encanta la sección de opinión. Aportan contexto a la noticia científica que otros medios ignoran. Muy recomendado."</p>
+                    <p class="font-bold text-gray-900">- Laura G., Valencia</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"LenugaKazon ha sabido filtrar lo importante. La actualidad espacial y médica siempre llega primero aquí."</p>
+                    <p class="font-bold text-gray-900">- Dr. Javier R., Sevilla</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-12 px-4">
+        <div class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">
+                Preguntas Frecuentes
+            </h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>¿Con qué frecuencia actualizan las noticias?</summary>
+                    <div class="text-gray-600">Nuestro equipo editorial publica contenido diariamente, asegurando que cada noticia de última hora sobre ciencia y tecnología esté disponible lo antes posible.</div>
+                </details>
+                <details>
+                    <summary>¿Realizan reviews de productos tecnológicos?</summary>
+                    <div class="text-gray-600">Sí, contamos con un equipo especializado en hardware y software que realiza cada review y análisis de lanzamiento con pruebas objetivas.</div>
+                </details>
+                <details>
+                    <summary>¿Cómo puedo enviar una carta de opinión?</summary>
+                    <div class="text-gray-600">Valoramos la participación. Puedes usar nuestro formulario de contacto para enviar propuestas de artículos de opinión o comentarios sobre nuestra cobertura.</div>
+                </details>
+                <details>
+                    <summary>¿Están enfocados solo en España?</summary>
+                    <div class="text-gray-600">Aunque cubrimos exhaustivamente el ecosistema de I+D en España, nuestra sección de actualidad cubre avances científicos a nivel global.</div>
+                </details>
+                <details>
+                    <summary>¿Es fiable la información publicada?</summary>
+                    <div class="text-gray-600">Absolutamente. Verificamos todas nuestras fuentes (journals, papers, comunicados oficiales) antes de publicar cualquier noticia para garantizar la máxima rigurosidad.</div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-16 px-4">
+        <div class="max-w-5xl mx-auto dna-card">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900">Contáctanos</h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        ¿Tienes una primicia, una duda o quieres proponer una colaboración? Estamos aquí para escucharte.
+                    </p>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div class="ml-3 text-base text-gray-600">
+                                <p>Sede Digital LenugaKazon</p>
+                                <p class="text-sm text-gray-400">Operando globalmente</p>
+                            </div>
+                        </div>
+                        <!-- NOTE: Phone button omitted as no valid phone number was found in donor text source (Phase 1, Step 3) -->
+                    </div>
+                </div>
+
+                <!-- Form Logic -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-black shadow-lg">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Enviando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Nombre Completo</label>
+                            <input type="text" required class="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary transition-colors">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Tema de Interés</label>
+                            <select class="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary transition-colors">
+                                <option>Redacción / Editorial</option>
+                                <option>Publicidad</option>
+                                <option>Soporte Técnico</option>
+                                <option>Otros</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2">Mensaje</label>
+                            <textarea rows="4" required class="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary transition-colors"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                    
+                    <div id="success-msg" style="display:none" class="text-center py-8">
+                        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">¡Mensaje Recibido!</h3>
+                        <p class="mt-2 text-sm text-gray-500">Gracias por contactar con LenugaKazon Solutions. Nuestro equipo editorial revisará tu consulta en breve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-12 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="font-black text-2xl tracking-tighter">LENUGAKAZON<span class="text-primary">SOLUTIONS</span></span>
+                <p class="mt-2 text-sm text-gray-400">
+                    Tu portal de confianza para la ciencia y tecnología.
+                </p>
+            </div>
+            
+            <div class="text-center text-xs text-gray-500 space-y-4">
+                <p>&copy; 2026 LenugaKazon Solutions. Todos los derechos reservados.</p>
+                
+                <!-- Mandatory Disclaimer -->
+                <p class="border-t border-gray-800 pt-4">
+                    Este es un sitio promocional independiente gestionado por LenugaKazon Solutions, actuando como afiliado para Noticias de la Ciencia y la Tecnología.
+                </p>
+                
+                <!-- Legal Modals (Accordion Style for Footer) -->
+                <div class="max-w-3xl mx-auto text-left space-y-2 mt-8">
+                    <details>
+                        <summary class="bg-gray-800 text-gray-300 border-none">Política de Privacidad</summary>
+                        <div class="bg-gray-800 text-gray-400 p-4 text-xs">
+                            <p class="mb-2">En LenugaKazon Solutions, nos tomamos muy en serio su privacidad. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos su información personal cuando visita nuestro sitio web. Al utilizar nuestro sitio, usted acepta las prácticas descritas en esta política.</p>
+                            <p class="mb-2">Recopilación de Información: Podemos recopilar información personal que usted nos proporciona voluntariamente, como su nombre y detalles de contacto al utilizar nuestros formularios. También recopilamos información no personal automáticamente, como datos de navegación y uso del sitio mediante cookies, para mejorar la experiencia del usuario.</p>
+                            <p class="mb-2">Uso de la Información: Utilizamos la información recopilada para responder a sus consultas, mejorar nuestro contenido editorial y optimizar la funcionalidad del sitio web. No vendemos, alquilamos ni compartimos su información personal con terceros no afiliados, excepto cuando sea requerido por ley o para proteger nuestros derechos.</p>
+                            <p class="mb-2">Seguridad de Datos: Implementamos medidas de seguridad técnicas y organizativas razonables para proteger su información personal contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Sin embargo, ninguna transmisión por Internet es completamente segura.</p>
+                            <p class="mb-2">Derechos del Usuario: Usted tiene derecho a solicitar el acceso, corrección o eliminación de su información personal que poseemos. Si desea ejercer estos derechos, por favor contáctenos a través de nuestro formulario en el sitio.</p>
+                            <p>Cambios en la Política: Nos reservamos el derecho de modificar esta política en cualquier momento. Cualquier cambio será publicado en esta página y la fecha de revisión será actualizada. Le recomendamos revisar esta política periódicamente.</p>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary class="bg-gray-800 text-gray-300 border-none">Términos y Condiciones</summary>
+                        <div class="bg-gray-800 text-gray-400 p-4 text-xs">
+                            <p class="mb-2">Bienvenido a LenugaKazon Solutions. Al acceder y utilizar este sitio web, usted acepta cumplir y estar sujeto a los siguientes términos y condiciones de uso. Si no está de acuerdo con alguna parte de estos términos, no debe utilizar nuestro sitio web.</p>
+                            <p class="mb-2">Uso del Contenido: Todo el contenido publicado en este sitio, incluyendo textos, gráficos, logotipos e imágenes, es propiedad de LenugaKazon Solutions o sus proveedores de contenido y está protegido por las leyes de propiedad intelectual. El uso no autorizado del material puede violar las leyes de derechos de autor y marcas registradas.</p>
+                            <p class="mb-2">Conducta del Usuario: Usted se compromete a utilizar el sitio web solo para fines legales y de una manera que no infrinja los derechos de, restrinja o inhiba el uso y disfrute del sitio por parte de cualquier tercero. Está prohibido el envío de contenido ilegal, ofensivo o difamatorio a través de nuestros formularios.</p>
+                            <p class="mb-2">Limitación de Responsabilidad: El contenido de este sitio se proporciona "tal cual" y "según disponibilidad". No garantizamos la exactitud, integridad o actualidad de la información. LenugaKazon Solutions no será responsable de ningún daño directo, indirecto, incidental o consecuente que surja del uso de este sitio web.</p>
+                            <p class="mb-2">Enlaces a Terceros: Nuestro sitio puede contener enlaces a sitios web de terceros. Estos enlaces se proporcionan para su conveniencia y no significan que respaldamos el contenido de dichos sitios. No tenemos control sobre la naturaleza, el contenido y la disponibilidad de esos sitios.</p>
+                            <p>Modificaciones: Nos reservamos el derecho de cambiar estos términos en cualquier momento sin previo aviso. Es su responsabilidad revisar estos términos regularmente para asegurar su cumplimiento.</p>
+                        </div>
+                    </details>
+                    
+                    <details>
+                        <summary class="bg-gray-800 text-gray-300 border-none">Política de Afiliación</summary>
+                        <div class="bg-gray-800 text-gray-400 p-4 text-xs">
+                            <p class="mb-2">LenugaKazon Solutions participa en varios programas de marketing de afiliados, lo que significa que podemos recibir comisiones por las compras realizadas a través de nuestros enlaces a sitios de minoristas o proveedores de servicios. Esto no afecta el precio que usted paga ni influye en nuestra independencia editorial.</p>
+                            <p class="mb-2">Transparencia: Siempre nos esforzamos por ser transparentes acerca de nuestras relaciones comerciales. El contenido patrocinado o los enlaces de afiliados estarán claramente identificados cuando sea apropiado. Nuestra prioridad es proporcionar información valiosa y honesta a nuestros lectores.</p>
+                            <p>Responsabilidad: Aunque seleccionamos cuidadosamente a nuestros socios, no somos responsables de los productos, servicios o contenido ofrecidos por terceros. Cualquier reclamo o problema relacionado con un producto o servicio comprado a través de un enlace de afiliado debe dirigirse al proveedor correspondiente.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50 hidden border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <p class="text-sm mb-4 sm:mb-0 mr-4">
+                Utilizamos cookies para mejorar su experiencia de lectura y analizar el tráfico de nuestro portal científico.
+            </p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-xs whitespace-nowrap">
+                    Aceptar Cookies
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // SMART ROUTING: Self-Healing Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to Contact if section is missing
+                    console.warn(`Section #${targetId} missing. Redirecting to Contact.`);
+                    document.getElementById('contact').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
