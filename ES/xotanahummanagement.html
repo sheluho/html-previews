@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xotanahum Management | Gestión de Equipamiento Deportivo</title>
-    <meta name="description" content="Gestiona tu rendimiento con las mejores ofertas en ropa deportiva, calzado y accesorios de primeras marcas.">
+    <title>Xotanahum Management - Plataforma de Aprendizaje Estratégico</title>
+    <meta name="description" content="Gestione su futuro educativo con cursos en línea de alto nivel. Aprenda habilidades en TI, energía y emprendimiento. Registro abierto en nuestra plataforma.">
+    <!-- Tailwind CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
+    <!-- DESIGN DNA & CUSTOM STYLES -->
     <style>
         :root {
-            /* VAR D: Palette - Energy Orange for Sports Outlet Niche */
-            --primary: #ea580c;
-            /* VAR C: Surface - Warm White (Based on 's' % 3 = 1) */
-            --surface: #fffdf5;
-            /* VAR A: Geometry - Pill Radius (Based on Length 29 % 3 = 2) */
-            --radius: 24px;
-            /* VAR B: Physics - Hard Shadow (Based on 'h' % 3 = 2) */
+            /* VAR D: Palette -> Cobalt Blue for Education/Trust */
+            --primary: #2563EB; 
+            /* VAR C: Surface -> Clean White (Last Letter 'c' ASCII 99 % 3 = 0) */
+            --surface: #ffffff;
+            /* VAR A: Geometry -> Sharp (Length 93 % 3 = 0) */
+            --radius: 0px;
+            /* VAR B: Physics -> Hard/Neo-Brutalist (First Letter 'h' ASCII 104 % 3 = 2) */
             --shadow: 4px 4px 0px 0px #000;
         }
 
         /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6;
+            background-color: #f3f4f6; /* Gray background for contrast */
             color: #1f2937;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
         }
 
         /* BRAND COMPONENT: The DNA Card */
@@ -34,7 +36,7 @@
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
-            border: 2px solid #000; /* Adjusted for Neo-Brutalist look of VAR B */
+            border: 2px solid #000; /* Added border to match Neo-Brutalist shadow style */
         }
 
         /* BRAND COMPONENT: Primary Button */
@@ -46,464 +48,489 @@
             padding: 1rem 2rem;
             transition: all 0.2s;
             font-weight: 800;
-            border: 2px solid #000;
-            display: inline-block;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            display: inline-block;
+            border: 2px solid #000;
         }
-        
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translate(2px, 2px); 
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        .btn-primary:active {
+            transform: translate(2px, 2px);
             box-shadow: 2px 2px 0px 0px #000;
         }
 
         /* UTILITY: Text Accent */
         .text-primary { color: var(--primary); }
 
-        /* Mobile Menu Transition */
-        #mobile-menu {
-            transition: max-height 0.3s ease-in-out;
+        /* Custom Scrollbar for better feel */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
-        
-        /* Legal Details Styling */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border: 1px solid #000;
+        }
+
+        /* DETAILS SUMMARY STYLE */
         details > summary {
+            list-style: none;
             cursor: pointer;
-            padding: 0.5rem;
-            background: rgba(0,0,0,0.05);
-            border-radius: 8px;
-            font-weight: 600;
+            font-weight: bold;
+            padding: 1rem;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
             margin-bottom: 0.5rem;
+            transition: background 0.2s;
+        }
+        details > summary:hover {
+            background-color: #e5e7eb;
+        }
+        details[open] > summary {
+            border-bottom: 1px solid #000;
+            margin-bottom: 0;
+            background-color: var(--primary);
+            color: white;
         }
         details > div {
             padding: 1rem;
-            font-size: 0.9rem;
-            line-height: 1.6;
+            border: 1px solid #e5e7eb;
+            border-top: none;
+        }
+
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            border-top: 2px solid #000;
+            padding: 1.5rem;
+            z-index: 50;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            display: none;
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="antialiased">
 
     <!-- NAVIGATION -->
-    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <a href="#" class="flex items-center space-x-2 text-2xl font-black text-gray-800 tracking-tighter">
-                    <span class="text-primary"><i class="fas fa-chart-line"></i></span>
-                    <span>Xotanahum MGT</span>
-                </a>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 font-bold">
-                    <a href="#features" class="hover:text-primary transition">Categorías</a>
-                    <a href="#reviews" class="hover:text-primary transition">Opiniones</a>
-                    <a href="#faq" class="hover:text-primary transition">FAQ</a>
-                    <a href="#contact" class="px-6 py-2 border-2 border-black rounded-full hover:bg-black hover:text-white transition shadow-[2px_2px_0px_0px_#000]">Contacto</a>
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black uppercase tracking-tighter text-black">
+                        XOTANAHUM <span class="text-primary">MGT</span>
+                    </span>
                 </div>
-
-                <!-- Mobile Button -->
-                <div class="md:hidden">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-3xl focus:outline-none">
-                        <i class="fas fa-bars"></i>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-900 font-bold hover:text-primary uppercase text-sm">Cursos</a>
+                    <a href="#reviews" class="text-gray-900 font-bold hover:text-primary uppercase text-sm">Opiniones</a>
+                    <a href="#faq" class="text-gray-900 font-bold hover:text-primary uppercase text-sm">Ayuda</a>
+                    <a href="#contact" class="btn-primary text-sm py-2 px-4">Empezar Ahora</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t-2 border-black p-4">
-            <a href="#features" class="block py-3 font-bold hover:text-primary">Categorías</a>
-            <a href="#reviews" class="block py-3 font-bold hover:text-primary">Opiniones</a>
-            <a href="#faq" class="block py-3 font-bold hover:text-primary">FAQ</a>
-            <a href="#contact" class="block py-3 mt-2 text-center border-2 border-black rounded-full bg-white font-bold">Contacto</a>
+            <div class="flex flex-col space-y-4">
+                <a href="#features" class="font-bold block">Cursos</a>
+                <a href="#reviews" class="font-bold block">Opiniones</a>
+                <a href="#contact" class="font-bold block">Contacto</a>
+            </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <header class="relative bg-gray-900 text-white py-24 md:py-32">
-        <div class="absolute inset-0 z-0">
-            <!-- Pexels direct image: Athletes running/Sports context -->
-            <img src="https://images.pexels.com/photos/3763879/pexels-photo-3763879.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                 referrerpolicy="no-referrer" 
-                 class="w-full h-full object-cover opacity-40" 
-                 alt="Deporte y rendimiento">
+    <header class="relative bg-white overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" 
+                 src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Estudiantes aprendiendo en línea"
+                 referrerpolicy="no-referrer"
+                 loading="lazy">
+            <div class="absolute inset-0 bg-black bg-opacity-60"></div>
         </div>
-        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight">
-                Gestiona tu Estilo, <br><span class="text-primary">Maximiza tu Rendimiento</span>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center lg:text-left">
+            <h1 class="text-4xl tracking-tight font-black text-white sm:text-5xl md:text-6xl uppercase">
+                Gestión Inteligente de tu <br>
+                <span class="text-primary bg-white px-2 mt-2 inline-block transform -skew-x-6 border-2 border-black">Aprendizaje</span>
             </h1>
-            <p class="text-xl md:text-2xl mb-10 text-gray-200 max-w-3xl mx-auto font-medium">
-                La inversión inteligente para tu armario deportivo. Accede a las mejores marcas y equipamiento con la garantía de calidad que mereces.
+            <p class="mt-6 max-w-md mx-auto lg:mx-0 text-xl text-gray-200 font-medium">
+                La mejor gestión para tu futuro es la educación continua. Accede a un sistema de cursos de alto nivel y domina las habilidades del mañana hoy mismo.
             </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#features" class="btn-primary text-lg">
-                    Explorar Catálogo <i class="fas fa-arrow-down ml-2"></i>
+            <div class="mt-10 flex justify-center lg:justify-start gap-4">
+                <a href="#features" class="btn-primary text-lg">Ver Plataforma</a>
+                <a href="#contact" class="bg-white text-gray-900 border-2 border-black font-bold py-4 px-8 shadow-[4px_4px_0px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] transition-transform uppercase tracking-wider" style="border-radius: 0px;">
+                    Registro Gratuito
                 </a>
-            </div>
-            
-            <div class="mt-12 flex justify-center items-center gap-8 text-gray-400 font-bold uppercase tracking-widest text-sm opacity-80 flex-wrap">
-                <span>Adidas</span>
-                <span>Nike</span>
-                <span>Puma</span>
-                <span>Under Armour</span>
-                <span>Reebok</span>
             </div>
         </div>
     </header>
 
-    <!-- TRUST STRIP -->
-    <div class="bg-primary text-white py-4 border-b-2 border-black">
-        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center text-sm font-bold uppercase overflow-x-auto whitespace-nowrap">
-            <span><i class="fas fa-check-circle mr-2"></i>Calidad Certificada</span>
-            <span><i class="fas fa-shipping-fast mr-2"></i>Envío Eficiente</span>
-            <span><i class="fas fa-shield-alt mr-2"></i>Compra Segura</span>
-            <span><i class="fas fa-tag mr-2"></i>Mejores Precios</span>
+    <!-- TRUST LOGOS (TEXT BASED) -->
+    <section class="bg-yellow-300 border-b-2 border-black py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-xs font-black uppercase tracking-widest text-black mb-4">Con la confianza y colaboración educativa de líderes como:</p>
+            <div class="flex justify-center flex-wrap gap-8 text-black font-black text-xl opacity-80">
+                <span>TECNOLÓGICO DE MONTERREY</span>
+                <span class="opacity-50">|</span>
+                <span>COURSERA</span>
+                <span class="opacity-50">|</span>
+                <span>EDX</span>
+                <span class="opacity-50">|</span>
+                <span>ACME EDUCATION</span>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow py-16 px-4">
-        
-        <!-- SERVICES / FEATURES SECTION -->
-        <section id="features" class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-black mb-4">Nuestra Selección Premium</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    En Xotanahum Management seleccionamos las mejores oportunidades del mercado deportivo para ofrecerte calidad superior sin comprometer tu presupuesto.
-                </p>
+    <!-- FEATURES / SERVICES -->
+    <section id="features" class="py-20">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-gray-900 uppercase tracking-tight">Programas de Formación</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Nuestro sistema selecciona los mejores cursos para potenciar tu perfil profesional en áreas críticas.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="group">
-                    <div class="relative overflow-hidden rounded-[20px] border-2 border-black mb-4 h-48">
-                        <img src="https://images.pexels.com/photos/8532439/pexels-photo-8532439.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" 
-                             alt="Ropa Deportiva de Marca"
-                             loading="lazy">
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Ropa Técnica y Moda</h3>
-                    <p class="text-gray-600 mb-4">Camisetas, sudaderas y pantalones de entrenamiento de las marcas líderes. Diseñados para durar.</p>
+                <!-- Service 1 -->
+                <div class="dna-card hover:bg-gray-50 transition-colors">
+                    <div class="h-12 w-12 bg-primary text-white flex items-center justify-center border-2 border-black mb-4 font-bold text-xl">1</div>
+                    <h3 class="text-xl font-black mb-3">Habilidades del Futuro</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                        Domina áreas esenciales como Tecnologías de la Información, Física Universitaria y Energía. Cursos diseñados para comprender el mundo que viene.
+                    </p>
+                    <ul class="text-sm font-bold text-gray-800 space-y-2">
+                        <li>• Desarrollo de Software</li>
+                        <li>• Energías Renovables</li>
+                        <li>• Matemáticas Aplicadas</li>
+                    </ul>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="group">
-                    <div class="relative overflow-hidden rounded-[20px] border-2 border-black mb-4 h-48">
-                        <img src="https://images.pexels.com/photos/1478442/pexels-photo-1478442.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" 
-                             alt="Calzado Deportivo"
-                             loading="lazy">
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Calzado de Alto Rendimiento</h3>
-                    <p class="text-gray-600 mb-4">Desde zapatillas de running hasta botas de fútbol. Encuentra el soporte perfecto para tus pies.</p>
+                <!-- Service 2 -->
+                <div class="dna-card hover:bg-gray-50 transition-colors">
+                    <div class="h-12 w-12 bg-black text-white flex items-center justify-center border-2 border-gray-800 mb-4 font-bold text-xl">2</div>
+                    <h3 class="text-xl font-black mb-3">Innovación Educativa</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                        Capacitación especializada para docentes y facilitadores. Aprende a aplicar metodologías de aprendizaje activo y herramientas digitales en el aula.
+                    </p>
+                    <ul class="text-sm font-bold text-gray-800 space-y-2">
+                        <li>• Psicología del Aprendizaje</li>
+                        <li>• Aulas Virtuales</li>
+                        <li>• Gestión Escolar</li>
+                    </ul>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="group">
-                    <div class="relative overflow-hidden rounded-[20px] border-2 border-black mb-4 h-48">
-                        <img src="https://images.pexels.com/photos/416754/pexels-photo-416754.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" 
-                             alt="Equipamiento y Accesorios"
-                             loading="lazy">
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Equipamiento Pro</h3>
-                    <p class="text-gray-600 mb-4">Mochilas, gorras y accesorios esenciales para completar tu equipación deportiva.</p>
+                <!-- Service 3 -->
+                <div class="dna-card hover:bg-gray-50 transition-colors">
+                    <div class="h-12 w-12 bg-white text-primary flex items-center justify-center border-2 border-black mb-4 font-bold text-xl">3</div>
+                    <h3 class="text-xl font-black mb-3">Emprendimiento y Gestión</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                        Certificaciones profesionales para quienes desean lanzar su propia empresa. Aprende sobre marketing, finanzas y estrategia de negocios.
+                    </p>
+                    <ul class="text-sm font-bold text-gray-800 space-y-2">
+                        <li>• Marketing Digital</li>
+                        <li>• Finanzas para No Financieros</li>
+                        <li>• Liderazgo Efectivo</li>
+                    </ul>
                 </div>
             </div>
             
-            <div class="mt-8 text-center">
-                <a href="#contact" class="btn-primary text-sm px-8 py-3">Solicitar Información de Stock</a>
+            <div class="mt-12 text-center">
+                 <p class="text-gray-700 italic mb-4">"Aprender es la única cosa que la mente nunca se cansa de hacer."</p>
+                 <a href="#contact" class="btn-primary">Ver Catálogo Completo</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- REVIEWS SECTION -->
-        <section id="reviews" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-black mb-10 text-center">Opiniones de Atletas</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Review 1 -->
-                <div class="bg-gray-50 p-6 rounded-[20px] border border-gray-200">
-                    <div class="text-primary mb-3 text-lg">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"Increíble variedad de zapatillas. Xotanahum me ayudó a encontrar justo lo que necesitaba para mi maratón."</p>
-                    <div class="font-bold text-sm">- Carlos M., Madrid</div>
+    <!-- TESTIMONIALS -->
+    <section id="reviews" class="py-12 bg-blue-50">
+        <div class="max-w-5xl mx-auto px-4">
+             <div class="dna-card relative bg-white">
+                <h2 class="text-2xl font-black text-center mb-10 uppercase">Lo que dicen nuestros estudiantes</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Review 1 -->
+                    <div class="bg-gray-50 p-6 border-2 border-gray-200">
+                        <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                        <p class="text-gray-600 text-sm mb-4">"La plataforma es muy intuitiva. Pude empezar mi certificación en gestión de proyectos sin problemas técnicos. Excelente sistema."</p>
+                        <div class="font-bold text-black text-sm">- Carlos Méndez</div>
+                        <div class="text-xs text-gray-500">Ingeniero de Sistemas</div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="bg-gray-50 p-6 border-2 border-gray-200">
+                        <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                        <p class="text-gray-600 text-sm mb-4">"Buscaba cursos para actualizarme en docencia y encontré aquí justo lo que necesitaba. El proceso de registro fue rápido."</p>
+                        <div class="font-bold text-black text-sm">- Sofía Arriaga</div>
+                        <div class="text-xs text-gray-500">Profesora de Secundaria</div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="bg-gray-50 p-6 border-2 border-gray-200">
+                        <div class="flex text-yellow-400 mb-2">★★★★☆</div>
+                        <p class="text-gray-600 text-sm mb-4">"Grandes opciones para aprender a mi propio ritmo. La calidad del contenido del Tecnológico de Monterrey es indiscutible."</p>
+                        <div class="font-bold text-black text-sm">- Luis Torres</div>
+                        <div class="text-xs text-gray-500">Emprendedor</div>
+                    </div>
                 </div>
-                <!-- Review 2 -->
-                <div class="bg-gray-50 p-6 rounded-[20px] border border-gray-200">
-                    <div class="text-primary mb-3 text-lg">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"La ropa es 100% original y de gran calidad. El servicio de atención fue muy rápido resolviendo mis dudas."</p>
-                    <div class="font-bold text-sm">- Laura P., Barcelona</div>
-                </div>
-                <!-- Review 3 -->
-                <div class="bg-gray-50 p-6 rounded-[20px] border border-gray-200">
-                    <div class="text-primary mb-3 text-lg">★★★★☆</div>
-                    <p class="text-gray-700 italic mb-4">"Grandes precios en marcas top. Renové todo mi equipamiento de gimnasio por la mitad de lo que esperaba."</p>
-                    <div class="font-bold text-sm">- Javier R., Valencia</div>
+             </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card">
+                <h2 class="text-3xl font-black mb-8 text-center uppercase">Preguntas Frecuentes</h2>
+                <div class="space-y-2">
+                    <details>
+                        <summary>¿Cómo me registro en la plataforma?</summary>
+                        <div class="bg-white">
+                            Es muy sencillo. Solo dirígete a la sección de contacto o haz clic en "Empezar Registro". Te redirigiremos al formulario oficial para crear tu cuenta y comenzar a aprender inmediatamente.
+                        </div>
+                    </details>
+                    <details>
+                        <summary>¿Los cursos tienen algún costo?</summary>
+                        <div class="bg-white">
+                            Muchos de los cursos son de acceso gratuito bajo la modalidad de auditoría (puedes ver el contenido sin costo). Si deseas obtener un certificado oficial al finalizar, suele haber una tarifa establecida por la plataforma proveedora.
+                        </div>
+                    </details>
+                    <details>
+                        <summary>¿Necesito conocimientos previos para empezar?</summary>
+                        <div class="bg-white">
+                            Depende del curso. Tenemos opciones desde niveles introductorios hasta especializados. La descripción de cada programa indica los requisitos previos necesarios para asegurar tu éxito.
+                        </div>
+                    </details>
+                    <details>
+                        <summary>¿Puedo estudiar a mi propio ritmo?</summary>
+                        <div class="bg-white">
+                            Sí, el sistema está diseñado para ser flexible. Puedes acceder a las lecciones cuando tengas tiempo disponible, lo que es ideal para personas que trabajan o estudian.
+                        </div>
+                    </details>
+                    <details>
+                        <summary>¿Qué tipo de certificado obtendré?</summary>
+                        <div class="bg-white">
+                            Al completar los requisitos y abonar la tasa correspondiente (si aplica), recibirás un certificado digital respaldado por instituciones educativas de prestigio como el Tecnológico de Monterrey.
+                        </div>
+                    </details>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- FAQ SECTION -->
-        <section id="faq" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-black mb-8 text-center">Preguntas Frecuentes</h2>
-            <div class="space-y-4">
-                <details class="bg-white rounded-xl border border-gray-200">
-                    <summary class="list-none flex justify-between items-center cursor-pointer p-5 font-bold hover:bg-gray-50 rounded-xl">
-                        ¿Los productos son originales?
-                        <span class="text-primary">+</span>
-                    </summary>
-                    <div class="p-5 text-gray-600 border-t border-gray-100">
-                        Absolutamente. Solo trabajamos con proveedores oficiales y distribuidores autorizados de marcas como Nike, Adidas, Puma, etc., para garantizar la autenticidad de cada prenda y calzado.
-                    </div>
-                </details>
-
-                <details class="bg-white rounded-xl border border-gray-200">
-                    <summary class="list-none flex justify-between items-center cursor-pointer p-5 font-bold hover:bg-gray-50 rounded-xl">
-                        ¿Cuáles son los plazos de entrega?
-                        <span class="text-primary">+</span>
-                    </summary>
-                    <div class="p-5 text-gray-600 border-t border-gray-100">
-                        Generalmente, los pedidos se procesan en 24-48 horas laborables. El tiempo de envío dependerá de su ubicación dentro de la península, oscilando habitualmente entre 3 y 5 días laborables.
-                    </div>
-                </details>
-
-                <details class="bg-white rounded-xl border border-gray-200">
-                    <summary class="list-none flex justify-between items-center cursor-pointer p-5 font-bold hover:bg-gray-50 rounded-xl">
-                        ¿Tienen política de devoluciones?
-                        <span class="text-primary">+</span>
-                    </summary>
-                    <div class="p-5 text-gray-600 border-t border-gray-100">
-                        Sí, disponemos de una política de devolución estándar conforme a la normativa vigente. Si el producto no cumple con sus expectativas o la talla no es la correcta, puede iniciar el proceso de devolución a través de nuestro formulario de contacto.
-                    </div>
-                </details>
-
-                <details class="bg-white rounded-xl border border-gray-200">
-                    <summary class="list-none flex justify-between items-center cursor-pointer p-5 font-bold hover:bg-gray-50 rounded-xl">
-                        ¿Cómo puedo contactar con atención al cliente?
-                        <span class="text-primary">+</span>
-                    </summary>
-                    <div class="p-5 text-gray-600 border-t border-gray-100">
-                        La forma más eficiente es a través del formulario de contacto en esta misma página. Nuestro equipo revisa las consultas diariamente y le responderá lo antes posible.
-                    </div>
-                </details>
+    <!-- CONTACT & FORM -->
+    <section id="contact" class="py-12 pb-24">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card grid md:grid-cols-2 gap-12">
                 
-                <details class="bg-white rounded-xl border border-gray-200">
-                    <summary class="list-none flex justify-between items-center cursor-pointer p-5 font-bold hover:bg-gray-50 rounded-xl">
-                        ¿Hacen envíos a las islas?
-                        <span class="text-primary">+</span>
-                    </summary>
-                    <div class="p-5 text-gray-600 border-t border-gray-100">
-                        Actualmente operamos principalmente en la península. Para envíos a Baleares o Canarias, por favor consúltenos directamente antes de realizar un pedido para verificar condiciones y tarifas especiales.
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="max-w-5xl mx-auto dna-card">
-            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Contact Info -->
                 <div>
-                    <h2 class="text-3xl font-black mb-4">Contacta con Nosotros</h2>
+                    <h2 class="text-3xl font-black mb-6 uppercase">Empieza tu Futuro Hoy</h2>
                     <p class="text-gray-600 mb-8">
-                        ¿Tienes dudas sobre una talla, un pedido o disponibilidad de stock? Rellena el formulario y el equipo de Xotanahum Management te asistirá en la gestión de tu compra deportiva.
+                        Completa el formulario para recibir información sobre los próximos inicios de curso y asegurar tu plaza en el sistema.
                     </p>
                     
-                    <div class="space-y-4">
+                    <div class="space-y-6">
                         <div class="flex items-start">
-                            <i class="fas fa-building mt-1 mr-4 text-primary text-xl"></i>
-                            <div>
-                                <h4 class="font-bold">Oficina Central</h4>
-                                <p class="text-gray-600">Gestión de E-Commerce<br>Tradebelts GmbH (Operador Logístico)</p>
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-lg font-bold text-gray-900">Sede Principal (Donor)</p>
+                                <p class="text-gray-600">Av. Eugenio Garza Sada 2501 Sur, Tecnológico<br>64849 Monterrey, N.L., México</p>
                             </div>
                         </div>
+
                         <div class="flex items-start">
-                            <i class="fas fa-clock mt-1 mr-4 text-primary text-xl"></i>
-                            <div>
-                                <h4 class="font-bold">Horario de Atención</h4>
-                                <p class="text-gray-600">Lunes - Viernes: 09:00 - 18:00</p>
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-lg font-bold text-gray-900">Horario de Atención Digital</p>
+                                <p class="text-gray-600">Lunes a Viernes: 09:00 - 18:00<br>Sábados: 10:00 - 14:00</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-[20px] border border-gray-200 shadow-inner">
-                    <form id="lead-form" class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-bold mb-2">Nombre Completo</label>
-                            <input type="text" required class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-lg focus:border-black focus:outline-none transition">
+                <!-- Simulation Form -->
+                <div class="bg-gray-50 p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Procesando...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2 uppercase text-xs" for="name">Nombre Completo</label>
+                            <input class="w-full px-3 py-3 border-2 border-gray-300 focus:outline-none focus:border-primary" id="name" type="text" placeholder="Tu nombre" required>
                         </div>
-                        <div>
-                            <label class="block text-sm font-bold mb-2">Teléfono</label>
-                            <input type="tel" class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-lg focus:border-black focus:outline-none transition">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2 uppercase text-xs" for="interest">Curso de Interés</label>
+                            <select class="w-full px-3 py-3 border-2 border-gray-300 focus:outline-none focus:border-primary" id="interest">
+                                <option>Innovación Educativa</option>
+                                <option>TI y Energía</option>
+                                <option>Negocios y Emprendimiento</option>
+                                <option>Otro</option>
+                            </select>
                         </div>
-                        <div>
-                            <label class="block text-sm font-bold mb-2">Consulta</label>
-                            <textarea rows="4" required class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-lg focus:border-black focus:outline-none transition"></textarea>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2 uppercase text-xs" for="message">Mensaje (Opcional)</label>
+                            <textarea class="w-full px-3 py-3 border-2 border-gray-300 focus:outline-none focus:border-primary h-24" id="message" placeholder="¿Tienes alguna duda específica?"></textarea>
                         </div>
-                        <button type="submit" class="w-full btn-primary text-center cursor-pointer">
-                            Enviar Consulta
+                        <button class="w-full btn-primary" type="submit">
+                            Solicitar Información
                         </button>
                     </form>
-                    
-                    <div id="success-msg" class="hidden text-center py-12">
-                        <i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">¡Consulta Enviada!</h3>
-                        <p class="text-gray-600">Gracias por contactar con Xotanahum Management. Tu solicitud ha sido registrada correctamente.</p>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" style="display:none" class="text-center py-10">
+                        <svg class="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">¡Solicitud Recibida!</h3>
+                        <p class="text-gray-600">Gracias por tu interés en nuestra plataforma de aprendizaje. Hemos recibido tus datos correctamente.</p>
                     </div>
                 </div>
-            </div>
-        </section>
 
-    </main>
+            </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8 border-t-4 border-primary">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-12">
-                <div class="col-span-1 md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-4">Xotanahum Management</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4 max-w-sm">
-                        Somos especialistas en la gestión y promoción de material deportivo de alta gama. Nuestro compromiso es conectar a deportistas con las mejores ofertas del mercado.
-                    </p>
-                    <p class="text-xs text-gray-500 italic border-l-2 border-primary pl-4 py-2 bg-gray-800 rounded-r-lg">
-                        Descargo de responsabilidad: Este es un sitio promocional independiente gestionado por Xotanahum Management, actuando como afiliado para Deporte-Outlet.
+    <footer class="bg-gray-900 text-white border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold uppercase tracking-wider mb-4">Xotanahum Management</h3>
+                    <p class="text-gray-400 text-sm">
+                        Facilitando el acceso a la educación superior y continua para el desarrollo profesional en México y el mundo.
                     </p>
                 </div>
                 <div>
-                    <h4 class="font-bold mb-4">Navegación</h4>
+                    <h3 class="text-lg font-bold uppercase tracking-wider mb-4">Enlaces Rápidos</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-primary">Inicio</a></li>
-                        <li><a href="#features" class="hover:text-primary">Catálogo</a></li>
-                        <li><a href="#reviews" class="hover:text-primary">Opiniones</a></li>
-                        <li><a href="#contact" class="hover:text-primary">Contacto</a></li>
+                        <li><a href="#features" class="hover:text-white">Cursos Disponibles</a></li>
+                        <li><a href="#reviews" class="hover:text-white">Testimonios</a></li>
+                        <li><a href="#faq" class="hover:text-white">Preguntas Frecuentes</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#privacy" onclick="document.getElementById('privacy-details').open = true" class="hover:text-primary">Política de Privacidad</a></li>
-                        <li><a href="#terms" onclick="document.getElementById('terms-details').open = true" class="hover:text-primary">Términos de Uso</a></li>
-                    </ul>
+                     <h3 class="text-lg font-bold uppercase tracking-wider mb-4">Aviso Importante</h3>
+                     <p class="text-gray-500 text-xs leading-relaxed">
+                        Este es un sitio promocional independiente gestionado por Xotanahum Management, actuando como afiliado para Tecnológico de Monterrey y sus plataformas asociadas. No somos la institución educativa directa, sino un puente hacia sus recursos educativos públicos y ofertas de cursos.
+                     </p>
                 </div>
             </div>
 
-            <!-- LEGAL BLOCKS (DETAILS) -->
-            <div class="border-t border-gray-800 pt-8 space-y-4">
-                
-                <details id="privacy-details" class="bg-gray-800 rounded-lg group">
-                    <summary class="text-sm font-bold text-gray-300 hover:text-white group-open:text-primary transition">
-                        Política de Privacidad (Click para leer)
-                    </summary>
-                    <div class="text-xs text-gray-400 space-y-2">
-                        <p>En Xotanahum Management, valoramos y respetamos su privacidad. Esta Política de Privacidad describe cómo recopilamos, usamos y protegemos la información personal que usted nos proporciona al utilizar nuestro sitio web. Al acceder a nuestro sitio, usted acepta las prácticas descritas en este documento.</p>
-                        <p>Recopilación de información: Podemos recopilar información personal, como su nombre y número de teléfono, solo cuando usted la proporciona voluntariamente a través de nuestros formularios de contacto. No utilizamos cookies invasivas para rastrear su actividad personal sin su consentimiento.</p>
-                        <p>Uso de la información: La información que recopilamos se utiliza exclusivamente para responder a sus consultas, gestionar sus solicitudes de servicio y mejorar su experiencia en nuestro sitio. No vendemos, intercambiamos ni transferimos su información personal a terceros ajenos a nuestra organización, salvo lo estrictamente necesario para cumplir con la ley o proteger nuestros derechos.</p>
-                        <p>Seguridad de los datos: Implementamos una variedad de medidas de seguridad para mantener la seguridad de su información personal. Sin embargo, ninguna transmisión por Internet es 100% segura, por lo que no podemos garantizar la seguridad absoluta de la información transmitida.</p>
-                        <p>Derechos del usuario: Usted tiene derecho a acceder, rectificar o eliminar su información personal en cualquier momento. Para ejercer estos derechos, por favor contáctenos a través de los medios disponibles en nuestra página web. Nos reservamos el derecho de modificar esta política en cualquier momento, por lo que le recomendamos revisarla periódicamente.</p>
-                        <p>Enlaces a terceros: Nuestro sitio web puede contener enlaces a otros sitios que no son operados por nosotros. No tenemos control sobre el contenido y las prácticas de esos sitios y no asumimos responsabilidad alguna por sus políticas de privacidad. Le recomendamos revisar las políticas de privacidad de cualquier sitio de terceros que visite.</p>
-                        <p>Almacenamiento de datos: Sus datos personales se conservarán solo durante el tiempo necesario para cumplir con los fines para los que fueron recopilados, a menos que la ley exija o permita un período de retención más largo. Tomamos medidas razonables para destruir o anonimizar la información personal que ya no necesitamos.</p>
-                    </div>
-                </details>
+            <!-- LEGAL SECTIONS -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="max-w-3xl mx-auto space-y-4">
+                    
+                    <details class="group">
+                        <summary class="list-none text-gray-400 hover:text-white cursor-pointer text-sm font-bold bg-transparent border border-gray-700 rounded p-2 text-center">
+                            Política de Privacidad
+                        </summary>
+                        <div class="mt-4 text-xs text-gray-400 space-y-2 bg-gray-800 p-4 rounded border border-gray-700">
+                            <p>En Xotanahum Management, la privacidad de nuestros visitantes es de extrema importancia. Este documento de Política de Privacidad describe los tipos de información personal que recibe y recopila nuestro sitio web y cómo se utiliza. Al utilizar nuestro sitio, usted acepta las prácticas descritas en esta política.</p>
+                            <p>Archivos de registro: Al igual que muchos otros sitios Web, hacemos uso de archivos de registro. La información dentro de los archivos de registro incluye direcciones de protocolo de Internet (IP), tipo de navegador, proveedor de servicios de Internet (ISP), fecha/hora, páginas de referencia/salida, y el número de clics para analizar tendencias, administrar el sitio, rastrear el movimiento del usuario alrededor del sitio, y recopilar información demográfica. Las direcciones IP y otra información similar no están vinculadas a ninguna información que sea personalmente identificable.</p>
+                            <p>Cookies y Web Beacons: Utilizamos cookies para almacenar información sobre las preferencias de los visitantes, registrar información específica del usuario sobre las páginas a las que el usuario accede o visita, personalizar el contenido de la página web según el tipo de navegador de los visitantes u otra información que el visitante envíe a través de su navegador. Usted puede desactivar las cookies a través de las opciones de su navegador individual.</p>
+                            <p>Uso de la Información: La información recopilada se utiliza exclusivamente para mejorar la experiencia del usuario, responder a consultas realizadas a través de nuestros formularios de contacto y, si el usuario lo consiente, enviar información relevante sobre cursos y novedades educativas. No vendemos, intercambiamos ni transferimos a terceros su información de identificación personal sin su consentimiento previo, excepto cuando sea necesario para cumplir con la ley, hacer cumplir las políticas de nuestro sitio o proteger nuestros derechos, propiedad o seguridad.</p>
+                            <p>Protección de datos: Implementamos una variedad de medidas de seguridad para mantener la seguridad de su información personal. Sin embargo, ninguna transmisión de datos a través de Internet o cualquier red inalámbrica puede garantizarse como 100% segura. En consecuencia, aunque nos esforzamos por proteger su información, usted reconoce que existen limitaciones de seguridad y privacidad inherentes a Internet que están fuera de nuestro control.</p>
+                            <p>Enlaces a Terceros: Ocasionalmente, a nuestra discreción, podemos incluir u ofrecer productos o servicios de terceros en nuestro sitio web (como los cursos del Tecnológico de Monterrey). Estos sitios de terceros tienen políticas de privacidad separadas e independientes. Por lo tanto, no tenemos responsabilidad ni obligación por el contenido y las actividades de estos sitios vinculados. Sin embargo, buscamos proteger la integridad de nuestro sitio y agradecemos cualquier comentario sobre estos sitios.</p>
+                        </div>
+                    </details>
 
-                <details id="terms-details" class="bg-gray-800 rounded-lg group">
-                    <summary class="text-sm font-bold text-gray-300 hover:text-white group-open:text-primary transition">
-                        Términos y Condiciones (Click para leer)
-                    </summary>
-                    <div class="text-xs text-gray-400 space-y-2">
-                        <p>Bienvenido a Xotanahum Management. Al acceder y utilizar este sitio web, usted acepta cumplir y estar sujeto a los siguientes Términos y Condiciones de Uso. Si no está de acuerdo con alguna parte de estos términos, le rogamos que no utilice nuestro sitio web.</p>
-                        <p>Uso del sitio: El contenido de las páginas de este sitio web es para su información y uso general únicamente. Está sujeto a cambios sin previo aviso. Ni nosotros ni terceros ofrecemos ninguna garantía en cuanto a la exactitud, puntualidad, rendimiento, integridad o idoneidad de la información y los materiales encontrados u ofrecidos en este sitio web para cualquier propósito particular.</p>
-                        <p>Propiedad intelectual: Este sitio web contiene material que es propiedad nuestra o del que tenemos licencia. Este material incluye, pero no se limita a, el diseño, la disposición, la apariencia y los gráficos. Queda prohibida la reproducción salvo de acuerdo con el aviso de copyright, que forma parte de estos términos y condiciones.</p>
-                        <p>Responsabilidad: El uso de cualquier información o material en este sitio web es bajo su propio riesgo, por lo cual no seremos responsables. Será su propia responsabilidad asegurarse de que cualquier producto, servicio o información disponible a través de este sitio web cumpla con sus requisitos específicos.</p>
-                        <p>Enlaces externos: Este sitio web puede incluir enlaces a otros sitios web. Estos enlaces se proporcionan para su conveniencia para proporcionar más información. No significan que respaldamos el sitio web. No tenemos ninguna responsabilidad por el contenido de los sitios web enlazados.</p>
-                        <p>Modificaciones: Xotanahum Management se reserva el derecho de revisar y modificar estos términos en cualquier momento. Al usar este sitio web, usted acepta estar sujeto a la versión actual de estos Términos y Condiciones de Uso.</p>
-                        <p>Legislación aplicable: El uso de este sitio web y cualquier disputa que surja de dicho uso del sitio web está sujeto a las leyes vigentes en España. Cualquier acción legal o procedimiento relacionado con el sitio web se llevará a cabo exclusivamente en los tribunales competentes de dicha jurisdicción.</p>
-                    </div>
-                </details>
+                    <details class="group">
+                        <summary class="list-none text-gray-400 hover:text-white cursor-pointer text-sm font-bold bg-transparent border border-gray-700 rounded p-2 text-center">
+                            Términos de Servicio
+                        </summary>
+                        <div class="mt-4 text-xs text-gray-400 space-y-2 bg-gray-800 p-4 rounded border border-gray-700">
+                            <p>Bienvenido a Xotanahum Management. Al acceder a este sitio web, usted acepta cumplir y estar sujeto a los siguientes términos y condiciones de uso, que junto con nuestra política de privacidad gobiernan la relación de Xotanahum Management con usted en relación con este sitio web.</p>
+                            <p>El uso de este sitio web está sujeto a las siguientes condiciones de uso: El contenido de las páginas de este sitio web es para su información general y uso solamente. Está sujeto a cambios sin previo aviso. Ni nosotros ni terceros ofrecemos ninguna garantía en cuanto a la exactitud, puntualidad, rendimiento, integridad o idoneidad de la información y los materiales encontrados u ofrecidos en este sitio web para cualquier propósito particular. Usted reconoce que dicha información y materiales pueden contener inexactitudes o errores y excluimos expresamente la responsabilidad por tales inexactitudes o errores en la máxima medida permitida por la ley.</p>
+                            <p>El uso de cualquier información o material en este sitio web es bajo su propio riesgo, por lo cual no seremos responsables. Será su propia responsabilidad asegurar que cualquier producto, servicio o información disponible a través de este sitio web cumpla con sus requisitos específicos. Este sitio web contiene material que es propiedad de o licenciado a nosotros, o utilizado bajo referencia informativa. Este material incluye, pero no se limita a, el diseño, disposición, apariencia y gráficos. La reproducción está prohibida salvo de conformidad con el aviso de copyright, que forma parte de estos términos y condiciones.</p>
+                            <p>Todas las marcas registradas reproducidas en este sitio web, que no son propiedad de, o con licencia para el operador, son reconocidas en el sitio web. El uso no autorizado de este sitio web puede dar lugar a una reclamación por daños y perjuicios y/o ser un delito penal. De vez en cuando, este sitio web también puede incluir enlaces a otros sitios web. Estos enlaces se proporcionan para su conveniencia para proporcionar más información. No significan que respaldamos el sitio web(s). No tenemos responsabilidad por el contenido del sitio web vinculado.</p>
+                            <p>Modificaciones: Xotanahum Management se reserva el derecho de revisar estos términos de servicio en cualquier momento sin previo aviso. Al utilizar este sitio web, usted acepta estar sujeto a la versión actual de estos Términos y Condiciones de Uso. Ley Aplicable: Cualquier reclamación relacionada con el sitio web de Xotanahum Management se regirá por las leyes locales aplicables sin tener en cuenta sus disposiciones sobre conflictos de leyes.</p>
+                        </div>
+                    </details>
 
-                 <details class="bg-gray-800 rounded-lg group">
-                    <summary class="text-sm font-bold text-gray-300 hover:text-white group-open:text-primary transition">
-                        Política de Devoluciones y Reembolsos
-                    </summary>
-                    <div class="text-xs text-gray-400 space-y-2">
-                         <p>Nuestra política de devoluciones tiene una duración de 30 días. Si han pasado 30 días desde su compra, desafortunadamente no podemos ofrecerle un reembolso ni un cambio. Para ser elegible para una devolución, su artículo debe estar sin usar y en las mismas condiciones en que lo recibió.</p>
-                         <p>Elementos adicionales que no son retornables: Tarjetas de regalo, productos de software descargables y algunos artículos de salud y cuidado personal. Para completar su devolución, requerimos un recibo o prueba de compra.</p>
-                         <p>Reembolsos (donde aplique): Una vez que su devolución es recibida e inspeccionada, le notificaremos si su reembolso es aprobado. Si es aprobado, entonces su reembolso será procesado y se aplicará un crédito automáticamente a su tarjeta de crédito o método original de pago, dentro de una cierta cantidad de días.</p>
-                         <p>Envío de devoluciones: Usted será responsable de pagar sus propios costos de envío para devolver su artículo. Los costos de envío no son reembolsables. Si recibe un reembolso, el costo del envío de devolución se deducirá de su reembolso.</p>
-                         <p>Dependiendo de dónde viva, el tiempo que le tome a su producto intercambiado llegar hasta usted puede variar. Si está enviando un artículo de valor considerable, debería considerar usar un servicio de envío rastreable o comprar seguro para el envío.</p>
-                    </div>
-                </details>
+                    <details class="group">
+                        <summary class="list-none text-gray-400 hover:text-white cursor-pointer text-sm font-bold bg-transparent border border-gray-700 rounded p-2 text-center">
+                            Política de Reembolsos
+                        </summary>
+                        <div class="mt-4 text-xs text-gray-400 space-y-2 bg-gray-800 p-4 rounded border border-gray-700">
+                            <p>Xotanahum Management actúa como un portal informativo y de afiliación para cursos ofrecidos por terceras instituciones y plataformas (como el Tecnológico de Monterrey a través de Coursera o edX). Nosotros no cobramos directamente por la inscripción a los cursos ni procesamos pagos de matrícula en este sitio web.</p>
+                            <p>Debido a la naturaleza de nuestros servicios como intermediarios de información, no realizamos reembolsos directos ya que no recolectamos dinero de los usuarios. Cualquier transacción financiera relacionada con la obtención de certificados verificados, micro-títulos o programas especializados se realiza directamente en la plataforma del proveedor educativo (por ejemplo, el sitio web de edX o Coursera).</p>
+                            <p>Por lo tanto, la política de reembolsos aplicable será la del proveedor final del curso. Recomendamos encarecidamente que los usuarios lean los términos y condiciones de compra, así como las políticas de reembolso, en el sitio web de destino antes de realizar cualquier pago. Generalmente, estas plataformas ofrecen un periodo de prueba o un plazo específico para solicitar devoluciones si el curso no cumple con las expectativas, pero esto está completamente fuera del control de Xotanahum Management.</p>
+                            <p>Si usted ha incurrido en un gasto a través de un enlace proporcionado en nuestro sitio y desea solicitar un reembolso, deberá ponerse en contacto directamente con el equipo de soporte de la plataforma donde realizó el pago. Xotanahum Management no tiene acceso a sus datos de pago ni autoridad para revertir transacciones realizadas en sitios de terceros.</p>
+                            <p>En el caso improbable de que Xotanahum Management ofrezca algún servicio de consultoría o asesoría premium cobrado directamente por nosotros, los reembolsos se evaluarán caso por caso y se otorgarán a nuestra entera discreción si el servicio no se ha prestado conforme a lo descrito, previa solicitud formal del cliente.</p>
+                        </div>
+                    </details>
 
-            </div>
-
-            <div class="text-center mt-8 text-gray-500 text-sm">
-                &copy; 2026 Xotanahum Management. Todos los derechos reservados.
+                </div>
+                <div class="mt-8 text-center text-gray-500 text-sm">
+                    &copy; 2026 Xotanahum Management. Todos los derechos reservados.
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t-2 border-black p-4 z-50 transform translate-y-full transition-transform duration-300 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-sm text-gray-700">
-                Utilizamos cookies propias y de terceros para mejorar nuestros servicios y optimizar su experiencia de navegación.
+    <div id="cookie-banner">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-700 font-medium">
+                Utilizamos cookies propias y de terceros para mejorar su experiencia en nuestra plataforma educativa. Al continuar navegando, acepta su uso.
             </p>
             <div class="flex gap-4">
-                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-xs">Aceptar</button>
-                <button onclick="document.getElementById('cookie-banner').style.transform='translateY(100%)'" class="text-gray-500 underline text-sm">Cerrar</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookiesAccepted', 'true')" class="btn-primary text-xs py-2 px-4 whitespace-nowrap">
+                    Aceptar
+                </button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 hover:text-black underline text-xs">
+                    Rechazar
+                </button>
             </div>
         </div>
     </div>
 
     <!-- SCRIPTS -->
     <script>
-        // Smooth Scroll & Navigation Fixes
+        // Smooth Scroll + Interceptor
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href').substring(1);
-                const target = document.getElementById(targetId);
-                
-                // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
+                const targetElement = document.getElementById(targetId);
 
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    // Fallback to contact if section missing
-                    const contact = document.getElementById('contact');
-                    if(contact) contact.scrollIntoView({ behavior: 'smooth' });
+                    // Fallback to Contact if ID missing
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close Mobile Menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
                 }
             });
         });
 
-        // Form Simulation Logic
-        document.getElementById('lead-form').onsubmit = function(event) {
-            event.preventDefault();
-            const btn = this.querySelector('button');
-            const originalText = btn.innerText;
-            btn.innerText = 'Procesando...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                this.style.display = 'none';
-                document.getElementById('success-msg').style.display = 'block';
-                // Optional: Scroll to success message
-                document.getElementById('success-msg').scrollIntoView({behavior: 'smooth'});
-            }, 1500);
-        };
-
-        // Cookie Banner Logic
-        window.addEventListener('load', () => {
-            if (!localStorage.getItem('cookiesAccepted')) {
-                setTimeout(() => {
-                    document.getElementById('cookie-banner').style.transform = 'translateY(0)';
-                }, 1000);
-            }
-        });
-
-        function acceptCookies() {
-            localStorage.setItem('cookiesAccepted', 'true');
-            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
+        // Cookie Logic
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookie-banner').style.display = 'block';
         }
     </script>
 </body>
