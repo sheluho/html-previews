@@ -3,35 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raneda Foluor Ventures - Il Futuro dell'Intelligenza Artificiale</title>
-    <meta name="description" content="Resta aggiornato sulle ultime novità di Intelligenza Artificiale, analisi degli algoritmi e tecnologia futura con Raneda Foluor Ventures.">
-    
-    <!-- Tailwind CSS -->
+    <meta name="description" content="Raneda Foluor Ventures: La tua guida nell'era dell'Intelligenza Artificiale. Notizie, analisi di algoritmi e visioni sul futuro della tecnologia.">
+    <title>Raneda Foluor Ventures | Il Futuro della Tecnologia</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- Design System Injection -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <style>
         :root {
-            /* VAR D: Palette -> Electric Blue for Tech/AI */
-            --primary: #2563EB;
-            /* VAR C: Surface (Last char '/' ASCII 47 % 3 = 2) -> Cool Slate White */
-            --surface: #f8fafc;
-            /* VAR A: Geometry (Length 29 % 3 = 2) -> Pill */
+            /* DNA Variables Calculation:
+               Input: https://universeit.blog/tag/ai/
+               Length: 29 % 3 = 2 -> Radius: 24px (Pill)
+               First Char 'h' (104) % 3 = 2 -> Shadow: Hard (Neo-Brutalist)
+               Last Char '/' (47) % 3 = 2 -> Surface: Cool (#f8fafc)
+               Niche: Tech News -> Primary: Electric Blue
+            */
+            --primary: #2563eb; /* Blue-600 */
+            --surface: #f8fafc; /* Slate-50 */
             --radius: 24px;
-            /* VAR B: Physics (First char 'h' ASCII 104 % 3 = 2) -> Hard Neo-Brutalist */
-            --shadow: 4px 4px 0px 0px #000;
+            --shadow: 4px 4px 0px 0px #000000;
         }
 
         /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            background-color: #f3f4f6; /* Gray-100 to pop the cards */
             color: #1f2937;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
-        }
-
-        h1, h2, h3 {
-            letter-spacing: -0.025em;
         }
 
         /* BRAND COMPONENT: The DNA Card */
@@ -40,8 +37,9 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 2px solid #000; /* Adjusted for Neo-Brutalist look */
+            margin-bottom: 3rem;
+            border: 2px solid #000; /* Added border to match Neo-Brutalist shadow style */
+            transition: transform 0.2s ease;
         }
 
         /* BRAND COMPONENT: Primary Button */
@@ -54,417 +52,456 @@
             transition: all 0.2s;
             font-weight: 800;
             text-transform: uppercase;
-            border: 2px solid #000;
+            letter-spacing: 0.05em;
             display: inline-block;
+            border: 2px solid #000;
         }
+        
         .btn-primary:hover {
-            opacity: 0.9;
+            opacity: 0.95;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        
+        .btn-primary:active {
             transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
         }
 
+        /* UTILITY: Text Accent */
         .text-primary { color: var(--primary); }
-        
-        /* Mobile Menu Transition */
-        #mobile-menu {
-            transition: height 0.3s ease-in-out;
+
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #000;
+        }
+
+        /* Hero Overlay */
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7));
         }
         
-        /* Form Input Styles */
-        input, textarea, select {
+        /* Form Inputs */
+        .input-dna {
             width: 100%;
             padding: 0.75rem;
-            border: 2px solid #000;
-            border-radius: 12px; /* Slightly less than card for inner elements */
-            margin-bottom: 1rem;
-            background-color: #fff;
-            box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.1);
+            border-radius: var(--radius);
+            border: 2px solid #e5e7eb;
+            background-color: white;
+            transition: all 0.3s;
         }
-        input:focus, textarea:focus {
+        .input-dna:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 4px 4px 0px 0px var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
 
         details > summary {
             list-style: none;
             cursor: pointer;
-            font-weight: bold;
             padding: 1rem;
-            background: #e2e8f0;
+            background: #f1f5f9;
             border-radius: 12px;
             margin-bottom: 0.5rem;
-            border: 1px solid #cbd5e1;
+            font-weight: bold;
         }
         details[open] > summary {
-            background: var(--surface);
-            border-bottom: 1px solid #cbd5e1;
+            background: #e2e8f0;
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t-2 border-black p-4 z-50 hidden shadow-xl">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-sm">Utilizziamo i cookie per migliorare la tua esperienza sul nostro blog di Tecnologia e Analisi AI.</p>
-            <div class="flex gap-4">
-                <button onclick="acceptCookies()" class="btn-primary text-xs py-2 px-4">Accetta</button>
-                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="underline text-sm">Rifiuta</button>
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 top-0 left-0 py-4">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-black uppercase tracking-tighter flex items-center gap-2">
+                <i class="fas fa-cube text-primary"></i>
+                Raneda Foluor
+            </a>
+            
+            <div class="hidden md:flex gap-8 font-bold text-sm">
+                <a href="#features" class="hover:text-primary transition">Servizi</a>
+                <a href="#reviews" class="hover:text-primary transition">Recensioni</a>
+                <a href="#faq" class="hover:text-primary transition">Domande</a>
+                <a href="#contact" class="btn-primary py-2 px-6 text-xs">Contattaci</a>
             </div>
-        </div>
-    </div>
 
-    <!-- Navigation -->
-    <nav class="bg-white border-b-2 border-black sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="font-black text-2xl tracking-tighter">Raneda<span class="text-primary">Foluor</span></span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="font-bold hover:text-primary transition">Servizi</a>
-                    <a href="#reviews" class="font-bold hover:text-primary transition">Recensioni</a>
-                    <a href="#faq" class="font-bold hover:text-primary transition">FAQ</a>
-                    <a href="#contact" class="btn-primary py-2 px-4 text-sm">Contattaci</a>
-                </div>
-                <div class="-mr-2 flex items-center md:hidden">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-2 rounded-md hover:bg-gray-100 focus:outline-none border-2 border-black">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
+            <!-- Mobile Hamburger -->
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 font-bold hover:bg-gray-100 rounded-md">Servizi</a>
-                <a href="#reviews" class="block px-3 py-2 font-bold hover:bg-gray-100 rounded-md">Recensioni</a>
-                <a href="#faq" class="block px-3 py-2 font-bold hover:bg-gray-100 rounded-md">FAQ</a>
-                <a href="#contact" class="block px-3 py-2 font-bold hover:bg-gray-100 rounded-md">Contattaci</a>
-            </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white border-b-2 border-black p-4 flex flex-col gap-4 md:hidden shadow-xl">
+            <a href="#features" class="font-bold block py-2">Servizi</a>
+            <a href="#reviews" class="font-bold block py-2">Recensioni</a>
+            <a href="#faq" class="font-bold block py-2">Domande</a>
+            <a href="#contact" class="btn-primary block text-center">Contattaci</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative bg-white border-b-2 border-black overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="https://cdn.pixabay.com/photo/2020/12/18/16/56/laptop-5842509_1280.jpg" alt="Analisi Tecnologica" class="w-full h-full object-cover" loading="lazy">
-            <div class="absolute inset-0 bg-white/90 backdrop-blur-sm"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8 text-center">
-            <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-800 text-xs font-bold border border-blue-800 mb-6">TECH NEWS 2026</span>
-            <h1 class="text-4xl md:text-6xl font-black mb-6 tracking-tight text-gray-900">
-                Investire nella Conoscenza: <br>
-                La Tua Fonte per l'<span class="text-primary">Intelligenza Artificiale</span>
+    <!-- HERO SECTION -->
+    <header class="relative pt-32 pb-24 min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <img src="https://cdn.pixabay.com/photo/2020/01/26/18/43/artificial-intelligence-4795466_1280.jpg" 
+             class="absolute inset-0 w-full h-full object-cover z-0" 
+             alt="Intelligenza Artificiale Futuro"
+             referrerpolicy="no-referrer">
+        
+        <!-- Overlay -->
+        <div class="absolute inset-0 hero-overlay z-10"></div>
+
+        <div class="relative z-20 container mx-auto px-4 text-center text-white max-w-4xl">
+            <span class="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-xs font-bold mb-6 tracking-wide uppercase shadow-lg">
+                Notizie e Tecnologia
+            </span>
+            <h1 class="text-4xl md:text-6xl font-black mb-8 leading-tight">
+                La Tua Migliore Impresa è la Conoscenza del <span class="text-blue-400">Futuro Tecnologico</span>
             </h1>
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-700 font-medium">
-                Analisi approfondite, news sugli algoritmi e uno sguardo critico sul futuro della tecnologia. Il blog per chi vuole capire oggi il mondo di domani.
+            <p class="text-xl md:text-2xl mb-10 text-gray-200 font-light max-w-2xl mx-auto">
+                Decifra gli algoritmi del domani. Raneda Foluor Ventures ti porta al centro della rivoluzione digitale con analisi approfondite sull'Intelligenza Artificiale.
             </p>
-            <div class="mt-10 flex justify-center gap-4">
-                <a href="#contact" class="btn-primary">Iscriviti alla Newsletter</a>
-                <a href="#features" class="px-8 py-4 bg-white border-2 border-black text-black font-bold rounded-[24px] shadow-[4px_4px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] transition">
-                    Esplora i Temi
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#contact" class="btn-primary border-white">
+                    Resta Aggiornato
+                </a>
+                <a href="#features" class="bg-white text-gray-900 px-8 py-4 rounded-full font-bold shadow-lg hover:bg-gray-100 transition border-2 border-black transform hover:-translate-y-1">
+                    Scopri di Più
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Trust Banner -->
-    <div class="bg-gray-100 border-b-2 border-gray-200 py-6">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-sm font-bold text-gray-500 mb-4 uppercase tracking-widest">Temi Trattati Con Rigore</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 font-black text-xl text-gray-400">
-                <span>OPENAI</span>
-                <span>DEEP LEARNING</span>
-                <span>NEURAL NETWORKS</span>
-                <span>DATA SCIENCE</span>
-                <span>ROBOTICS</span>
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4">
+
+        <!-- TRUST SIGNALS -->
+        <div class="max-w-5xl mx-auto mb-16 text-center">
+            <p class="text-sm text-gray-500 font-bold uppercase mb-6 tracking-widest">Analisi verificate da fonti leader</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale">
+                <span class="text-2xl font-black text-gray-400">TECHNO_DAILY</span>
+                <span class="text-2xl font-black text-gray-400">AI_WATCH</span>
+                <span class="text-2xl font-black text-gray-400">FUTURE_LABS</span>
+                <span class="text-2xl font-black text-gray-400">CODE_SOCIETY</span>
             </div>
         </div>
-    </div>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-black mb-4">La Tecnologia Spiegata Semplice</h2>
-                <p class="text-lg text-gray-600">Scopri le nostre categorie principali dedicate al mondo dell'IA e oltre.</p>
+        <!-- FEATURES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black mb-4">La Nostra Offerta Informativa</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Non perderti nella vastità del web. Selezioniamo e analizziamo per te solo ciò che conta davvero nel mondo dell'Intelligenza Artificiale.
+                </p>
             </div>
 
-            <!-- Feature 1 -->
-            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
-                <div class="w-full md:w-1/3">
-                    <img src="https://cdn.pixabay.com/photo/2018/05/08/08/44/artificial-intelligence-3382507_1280.jpg" 
-                         alt="Intelligenza Artificiale" 
-                         class="w-full h-48 object-cover rounded-2xl border-2 border-black"
-                         referrerpolicy="no-referrer" loading="lazy">
-                </div>
-                <div class="w-full md:w-2/3">
-                    <h3 class="text-2xl font-bold mb-3">Analisi degli Algoritmi</h3>
-                    <p class="text-gray-600 mb-4">
-                        Comprendere come funzionano i modelli che guidano il mondo moderno. Dalle reti neurali al machine learning, spieghiamo la complessità tecnica con un linguaggio accessibile per professionisti e appassionati.
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center">
+                    <div class="h-48 overflow-hidden rounded-2xl border-2 border-gray-100 mb-6">
+                        <img src="https://cdn.pixabay.com/photo/2024/05/20/16/06/ai-8775618_1280.jpg" 
+                             alt="AI News Monitor" 
+                             class="w-full h-full object-cover transform hover:scale-110 transition duration-500"
+                             loading="lazy"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=AI+News'">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Monitoraggio AI</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Seguiamo le ultime novità su ChatGPT, modelli linguistici e reti neurali per tenerti sempre un passo avanti alla concorrenza.
                     </p>
-                    <a href="#contact" class="text-primary font-bold hover:underline">Approfondisci l'Analisi &rarr;</a>
                 </div>
-            </div>
 
-            <!-- Feature 2 -->
-            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
-                <div class="w-full md:w-1/3">
-                    <img src="https://cdn.pixabay.com/photo/2024/05/21/19/57/computer-8779018_1280.jpg" 
-                         alt="Futuro e Tecnologia" 
-                         class="w-full h-48 object-cover rounded-2xl border-2 border-black"
-                         referrerpolicy="no-referrer" loading="lazy">
-                </div>
-                <div class="w-full md:w-2/3">
-                    <h3 class="text-2xl font-bold mb-3">Il Futuro del Lavoro</h3>
-                    <p class="text-gray-600 mb-4">
-                        Come l'Intelligenza Artificiale sta ridisegnando le professioni? Offriamo report dettagliati sulle tendenze di mercato e sulle competenze necessarie per navigare l'era dell'automazione.
+                <!-- Feature 2 -->
+                <div class="text-center">
+                    <div class="h-48 overflow-hidden rounded-2xl border-2 border-gray-100 mb-6">
+                        <img src="https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_1280.jpg" 
+                             alt="Analisi Algoritmi" 
+                             class="w-full h-full object-cover transform hover:scale-110 transition duration-500"
+                             loading="lazy"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=Algoritmi'">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Analisi Algoritmica</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Spieghiamo come funziona un algoritmo complesso con parole semplici, rendendo la tecnologia accessibile a tutti, non solo agli esperti.
                     </p>
-                    <a href="#contact" class="text-primary font-bold hover:underline">Leggi i Report &rarr;</a>
                 </div>
-            </div>
 
-            <!-- Feature 3 -->
-            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
-                <div class="w-full md:w-1/3">
-                    <img src="https://cdn.pixabay.com/photo/2016/11/19/14/01/man-1839878_1280.jpg" 
-                         alt="News Tech" 
-                         class="w-full h-48 object-cover rounded-2xl border-2 border-black"
-                         referrerpolicy="no-referrer" loading="lazy">
-                </div>
-                <div class="w-full md:w-2/3">
-                    <h3 class="text-2xl font-bold mb-3">Guide e Tutorial AI</h3>
-                    <p class="text-gray-600 mb-4">
-                        Non solo teoria. Le nostre guide passo-passo ti mostrano come utilizzare gli ultimi strumenti di IA generativa per ottimizzare la tua produttività quotidiana e il tuo flusso creativo.
+                <!-- Feature 3 -->
+                <div class="text-center">
+                    <div class="h-48 overflow-hidden rounded-2xl border-2 border-gray-100 mb-6">
+                        <img src="https://cdn.pixabay.com/photo/2020/05/16/16/54/future-5178657_1280.jpg" 
+                             alt="Futuro Tech" 
+                             class="w-full h-full object-cover transform hover:scale-110 transition duration-500"
+                             loading="lazy"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=Futuro'">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Visione sul Futuro</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Esploriamo come la tecnologia trasformerà il lavoro, la società e la vita quotidiana nei prossimi decenni. Preparati al cambiamento.
                     </p>
-                    <a href="#contact" class="text-primary font-bold hover:underline">Inizia a Imparare &rarr;</a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Reviews Section -->
-    <section id="reviews" class="py-20 bg-blue-50">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-black text-center mb-12">Cosa Dicono i Nostri Lettori</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="dna-card">
-                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"Finalmente un blog che spiega gli algoritmi senza troppi tecnicismi incomprensibili. Raneda Foluor è diventato la mia lettura quotidiana."</p>
-                    <div class="font-bold">- Marco V., Sviluppatore</div>
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card bg-blue-50">
+            <h2 class="text-3xl font-black mb-10 text-center">Cosa dicono i nostri lettori</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Finalmente un sito che spiega l'Intelligenza Artificiale senza usare termini incomprensibili. Ottimo per chi vuole capire dove va il mondo."</p>
+                    <div class="font-bold text-sm">— Marco V., Torino</div>
                 </div>
-                <div class="dna-card">
-                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"Le analisi sull'impatto dell'IA nel settore sanitario sono illuminanti. Informazione di qualità superiore alla media."</p>
-                    <div class="font-bold">- Giulia R., Ricercatrice</div>
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Le guide sugli algoritmi mi hanno aiutato nel mio lavoro di sviluppatore junior. Risorse preziose e sempre aggiornate."</p>
+                    <div class="font-bold text-sm">— Giulia R., Milano</div>
                 </div>
-                <div class="dna-card">
-                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"Ottima risorsa per rimanere aggiornati sul futuro della tecnologia. Le newsletter sono essenziali per il mio lavoro."</p>
-                    <div class="font-bold">- Luca B., Consulente IT</div>
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Seguo Raneda Foluor per le notizie sul futuro della tecnologia. Selezione di argomenti impeccabile e mai banale."</p>
+                    <div class="font-bold text-sm">— Luca S., Bologna</div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="py-20">
-        <div class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-black text-center mb-10">Domande Frequenti (FAQ)</h2>
-            <div class="space-y-4">
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black mb-8 text-center">Domande Frequenti (FAQ)</h2>
+            <div class="max-w-2xl mx-auto space-y-4">
                 <details>
-                    <summary>Quali argomenti specifici trattate sull'Intelligenza Artificiale?</summary>
-                    <div class="p-4 text-gray-700">
-                        Copriamo tutto, dalle notizie breaking su ChatGPT e Gemini, all'etica dell'IA, fino a tutorial pratici su come integrare questi strumenti nel tuo workflow professionale.
+                    <summary>Che tipo di argomenti trattate?</summary>
+                    <div class="p-4 bg-white border border-t-0 rounded-b-xl">
+                        Trattiamo principalmente Intelligenza Artificiale, Machine Learning, innovazioni tecnologiche, analisi di nuovi software e impatto della tecnologia sulla società.
                     </div>
                 </details>
                 <details>
-                    <summary>Il blog è adatto ai principianti?</summary>
-                    <div class="p-4 text-gray-700">
-                        Assolutamente sì. Sebbene trattiamo temi complessi come gli algoritmi, il nostro obiettivo è rendere la tecnologia accessibile a tutti tramite spiegazioni chiare e prive di jargon inutile.
+                    <summary>Gli articoli sono adatti ai principianti?</summary>
+                    <div class="p-4 bg-white border border-t-0 rounded-b-xl">
+                        Assolutamente sì. Cerchiamo di spiegare concetti complessi come gli algoritmi neurali con un linguaggio semplice e accessibile a tutti, pur mantenendo la precisione tecnica.
                     </div>
                 </details>
                 <details>
-                    <summary>Offrite consulenza aziendale?</summary>
-                    <div class="p-4 text-gray-700">
-                        Attualmente ci concentriamo sulla divulgazione informativa. Tuttavia, potete contattarci tramite il modulo per richieste specifiche di partnership o analisi dedicate.
+                    <summary>Con quale frequenza pubblicate nuove analisi?</summary>
+                    <div class="p-4 bg-white border border-t-0 rounded-b-xl">
+                        Le nostre analisi approfondite vengono pubblicate settimanalmente, mentre le notizie flash vengono aggiornate in base agli eventi rilevanti nel settore tech.
                     </div>
                 </details>
                 <details>
-                    <summary>Ogni quanto vengono pubblicati nuovi articoli?</summary>
-                    <div class="p-4 text-gray-700">
-                        Pubblichiamo nuove analisi e guide settimanalmente per garantire che i contenuti siano sempre freschi, rilevanti e approfonditi.
+                    <summary>Offrite corsi di formazione?</summary>
+                    <div class="p-4 bg-white border border-t-0 rounded-b-xl">
+                        Attualmente ci concentriamo sull'informazione e divulgazione gratuita tramite il nostro blog. Iscriviti alla newsletter per futuri aggiornamenti su eventuali corsi.
                     </div>
                 </details>
                 <details>
-                    <summary>Come posso supportare Raneda Foluor Ventures?</summary>
-                    <div class="p-4 text-gray-700">
-                        Il modo migliore è iscriversi alla nostra newsletter, leggere i nostri approfondimenti e condividere i contenuti con la vostra rete professionale.
+                    <summary>Posso proporre un argomento da trattare?</summary>
+                    <div class="p-4 bg-white border border-t-0 rounded-b-xl">
+                        Certamente! Utilizza il modulo di contatto qui sotto per inviarci le tue richieste o suggerimenti. Il nostro team valuta tutte le proposte dei lettori.
                     </div>
                 </details>
             </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-900 text-white">
-        <div class="max-w-5xl mx-auto dna-card bg-white text-gray-900">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h2 class="text-3xl font-black mb-6">Restiamo in Contatto</h2>
+                    <h2 class="text-3xl font-black mb-4">Unisciti alla Discussione</h2>
                     <p class="text-gray-600 mb-8">
-                        Hai domande su un articolo? Vuoi suggerire un tema per la nostra prossima analisi sul futuro della tecnologia? Compila il modulo.
+                        Hai domande sul futuro della tecnologia o vuoi approfondire un algoritmo specifico? Compila il modulo e i nostri esperti ti risponderanno presto.
                     </p>
                     
                     <div class="space-y-4">
-                        <div class="flex items-center gap-3">
-                            <span class="p-2 bg-blue-100 rounded-full text-primary">📍</span>
-                            <span>Raneda Foluor Ventures HQ, Italia</span>
+                        <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
+                            <div class="bg-blue-100 p-3 rounded-full text-primary">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold">Sede Digitale</div>
+                                <div class="text-sm text-gray-600">Disponibile Globalmente</div>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="p-2 bg-blue-100 rounded-full text-primary">⏰</span>
-                            <span>Lun - Ven: 09:00 - 18:00</span>
+                        
+                        <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
+                            <div class="bg-blue-100 p-3 rounded-full text-primary">
+                                <i class="fas fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold">Orari di Risposta</div>
+                                <div class="text-sm text-gray-600">Lun - Ven: 9:00 - 18:00</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div>
-                    <form id="lead-form" onsubmit="handleForm(event)">
-                        <div>
-                            <label class="block font-bold mb-2">Nome Completo</label>
-                            <input type="text" required placeholder="Mario Rossi">
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Nome Completo</label>
+                                <input type="text" class="input-dna" required placeholder="Mario Rossi">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Argomento di Interesse</label>
+                                <select class="input-dna">
+                                    <option>Intelligenza Artificiale</option>
+                                    <option>Analisi Software</option>
+                                    <option>Collaborazione</option>
+                                    <option>Altro</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Messaggio</label>
+                                <textarea class="input-dna h-32" required placeholder="Come posso aiutarti?"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full justify-center">Invia Messaggio</button>
+                            <p class="text-xs text-center text-gray-500 mt-4">
+                                Cliccando su "Invia", accetti i nostri Termini e Condizioni. I tuoi dati sono al sicuro.
+                            </p>
                         </div>
-                        <div>
-                            <label class="block font-bold mb-2">Argomento di Interesse</label>
-                            <select class="w-full p-3 border-2 border-black rounded-[12px] bg-white">
-                                <option>Informazioni Generali</option>
-                                <option>Intelligenza Artificiale</option>
-                                <option>Collaborazioni</option>
-                            </select>
-                        </div>
-                        <div class="mt-4">
-                            <label class="block font-bold mb-2">Messaggio</label>
-                            <textarea rows="4" required placeholder="Scrivi qui la tua domanda..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full btn-primary mt-6">Invia Messaggio</button>
                     </form>
-                    
-                    <div id="success-msg" class="hidden text-center py-10 bg-green-50 rounded-2xl border border-green-200">
-                        <h3 class="text-2xl font-bold text-green-700 mb-2">Messaggio Inviato!</h3>
-                        <p class="text-gray-600">Grazie per aver contattato Raneda Foluor Ventures. Ti risponderemo a breve.</p>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-12">
+                        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Messaggio Ricevuto!</h3>
+                        <p class="text-gray-600">Grazie per aver contattato Raneda Foluor Ventures. Ti risponderemo al più presto.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-100 border-t-2 border-gray-200 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
                 <div class="col-span-1 md:col-span-2">
-                    <span class="font-black text-xl">Raneda<span class="text-primary">Foluor</span></span>
-                    <p class="mt-4 text-gray-500 text-sm max-w-sm">
-                        La tua piattaforma di riferimento per l'Intelligenza Artificiale, l'analisi algoritmica e il futuro della tecnologia. Investire nella conoscenza è il nostro credo.
+                    <h3 class="text-2xl font-black text-white mb-4">Raneda Foluor Ventures</h3>
+                    <p class="text-sm opacity-80 mb-4 max-w-md">
+                        Il tuo punto di riferimento per l'innovazione tecnologica. Esploriamo insieme il confine tra il presente e il futuro digitale.
                     </p>
+                    <div class="p-3 bg-gray-800 rounded text-xs text-gray-400 border border-gray-700">
+                        <strong>NOTA DI TRASPARENZA:</strong> Questo è un sito promozionale indipendente gestito da Raneda Foluor Ventures, che agisce come affiliato per UniverseIT.
+                    </div>
                 </div>
+                
                 <div>
-                    <h4 class="font-bold mb-4">Navigazione</h4>
-                    <ul class="space-y-2 text-sm text-gray-600">
+                    <h4 class="font-bold text-white mb-4">Navigazione</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-primary">Home</a></li>
                         <li><a href="#features" class="hover:text-primary">Servizi</a></li>
                         <li><a href="#reviews" class="hover:text-primary">Recensioni</a></li>
-                        <li><a href="#faq" class="hover:text-primary">FAQ</a></li>
+                        <li><a href="#contact" class="hover:text-primary">Contatti</a></li>
                     </ul>
                 </div>
+                
                 <div>
-                    <h4 class="font-bold mb-4">Note Legali</h4>
-                    <p class="text-xs text-gray-500 mb-4">
-                        Questo è un sito promozionale indipendente gestito da Raneda Foluor Ventures, che agisce in qualità di affiliato per UniverseIT Blog.
-                    </p>
+                    <h4 class="font-bold text-white mb-4">Legale</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#privacy-policy" onclick="document.getElementById('privacy-details').open = true" class="hover:text-primary">Privacy Policy</a></li>
+                        <li><a href="#terms-conditions" onclick="document.getElementById('terms-details').open = true" class="hover:text-primary">Termini di Servizio</a></li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Legal Documents (Details) -->
-            <div class="border-t border-gray-300 pt-8 space-y-2 text-xs text-gray-500">
-                <details>
-                    <summary>Privacy Policy</summary>
-                    <div class="p-4 bg-white border border-gray-200 rounded mt-2">
-                        <p class="mb-2"><strong>1. Introduzione</strong><br>Benvenuti su Raneda Foluor Ventures. La vostra privacy è importante per noi. Questa Informativa sulla Privacy spiega come raccogliamo, utilizziamo, divulghiamo e proteggiamo le vostre informazioni quando visitate il nostro sito web.</p>
-                        <p class="mb-2"><strong>2. Raccolta Dati</strong><br>Possiamo raccogliere dati personali che ci fornite volontariamente, come nome e preferenze di contatto, quando compilate i moduli sul sito. Raccogliamo anche dati tecnici automaticamente tramite cookie per migliorare la navigazione.</p>
-                        <p class="mb-2"><strong>3. Utilizzo delle Informazioni</strong><br>Utilizziamo i dati raccolti per rispondere alle richieste degli utenti, migliorare i contenuti editoriali del blog, analizzare i trend di traffico e garantire la sicurezza del sito.</p>
-                        <p class="mb-2"><strong>4. Condivisione dei Dati</strong><br>Non vendiamo né affittiamo i vostri dati personali a terzi. Possiamo condividere informazioni con fornitori di servizi terzi che ci aiutano a gestire il sito, sotto vincoli di riservatezza.</p>
-                        <p class="mb-2"><strong>5. Sicurezza dei Dati</strong><br>Adottiamo misure di sicurezza adeguate per proteggere i vostri dati da accessi non autorizzati, alterazioni o distruzioni. Tuttavia, nessuna trasmissione internet è sicura al 100%.</p>
-                        <p class="mb-2"><strong>6. Diritti dell'Utente</strong><br>Avete il diritto di accedere, rettificare o cancellare i vostri dati personali in nostro possesso. Per esercitare tali diritti, contattateci tramite il modulo presente sul sito.</p>
-                        <p class="mb-2"><strong>7. Modifiche</strong><br>Ci riserviamo il diritto di modificare questa policy in qualsiasi momento. Le modifiche saranno effettive immediatamente dopo la pubblicazione.</p>
+            <hr class="border-gray-800 mb-8">
+
+            <!-- LEGAL TEXT EXPANDERS -->
+            <div class="space-y-4 text-xs text-gray-500">
+                <details id="privacy-details">
+                    <summary class="bg-gray-800 text-gray-300 hover:text-white">Politica sulla Privacy (Clicca per espandere)</summary>
+                    <div class="p-4 bg-gray-800 mt-2 rounded border border-gray-700">
+                        <p class="mb-2"><strong>1. Introduzione</strong><br>Presso Raneda Foluor Ventures, la tua privacy è di fondamentale importanza. Questa Informativa sulla Privacy spiega come raccogliamo, utilizziamo, divulghiamo e proteggiamo le tue informazioni quando visiti il nostro sito web. Ti preghiamo di leggere attentamente questa politica. Se non sei d'accordo con i termini di questa informativa, ti preghiamo di non accedere al sito.</p>
+                        <p class="mb-2"><strong>2. Raccolta Dati</strong><br>Possiamo raccogliere informazioni su di te in vari modi. Le informazioni che possiamo raccogliere includono dati personali come il tuo nome e altri dettagli che ci fornisci volontariamente quando compili il modulo di contatto. Raccogliamo anche dati anonimi sull'utilizzo del sito per migliorare la nostra offerta.</p>
+                        <p class="mb-2"><strong>3. Utilizzo dei Dati</strong><br>Utilizziamo le informazioni raccolte per rispondere alle tue richieste, migliorare il funzionamento del sito e inviare aggiornamenti se richiesto. Non vendiamo, scambiamo o affittiamo le tue informazioni personali a terze parti senza il tuo consenso esplicito, tranne quando richiesto dalla legge.</p>
+                        <p class="mb-2"><strong>4. Sicurezza</strong><br>Utilizziamo misure di sicurezza amministrative, tecniche e fisiche per proteggere le tue informazioni personali. Sebbene abbiamo adottato misure ragionevoli per proteggere le informazioni personali che ci fornisci, tieni presente che nessuna trasmissione di informazioni via Internet è completamente sicura.</p>
+                        <p><strong>5. Contatti</strong><br>Se hai domande o dubbi su questa Informativa sulla Privacy, ti preghiamo di contattarci utilizzando il modulo presente nella sezione contatti del sito.</p>
                     </div>
                 </details>
 
-                <details>
-                    <summary>Termini e Condizioni</summary>
-                    <div class="p-4 bg-white border border-gray-200 rounded mt-2">
-                        <p class="mb-2"><strong>1. Accettazione</strong><br>Accedendo a questo sito web, l'utente accetta di essere vincolato da questi Termini e Condizioni d'uso, da tutte le leggi e i regolamenti applicabili.</p>
-                        <p class="mb-2"><strong>2. Proprietà Intellettuale</strong><br>Tutti i contenuti presenti su questo sito, inclusi testi, grafiche, loghi e software, sono proprietà di Raneda Foluor Ventures o dei suoi fornitori di contenuti e sono protetti dalle leggi sul copyright.</p>
-                        <p class="mb-2"><strong>3. Uso Concesso</strong><br>È concesso il permesso di scaricare temporaneamente una copia dei materiali (informazioni o software) solo per la visione transitoria personale e non commerciale.</p>
-                        <p class="mb-2"><strong>4. Limitazioni</strong><br>In nessun caso Raneda Foluor Ventures sarà responsabile per danni (inclusi, senza limitazione, danni per perdita di dati o profitti) derivanti dall'uso o dall'incapacità di usare i materiali sul sito.</p>
-                        <p class="mb-2"><strong>5. Accuratezza dei Materiali</strong><br>I materiali che appaiono sul sito potrebbero includere errori tecnici, tipografici o fotografici. Non garantiamo che i materiali siano accurati, completi o aggiornati.</p>
-                        <p class="mb-2"><strong>6. Collegamenti</strong><br>Non abbiamo esaminato tutti i siti collegati al nostro sito web e non siamo responsabili per i contenuti di tali siti collegati. L'inclusione di qualsiasi collegamento non implica approvazione da parte nostra.</p>
-                        <p class="mb-2"><strong>7. Legge Applicabile</strong><br>Questi termini e condizioni sono governati e interpretati in conformità con le leggi italiane e l'utente si sottopone irrevocabilmente alla giurisdizione esclusiva dei tribunali di tale stato.</p>
+                <details id="terms-details">
+                    <summary class="bg-gray-800 text-gray-300 hover:text-white">Termini e Condizioni (Clicca per espandere)</summary>
+                    <div class="p-4 bg-gray-800 mt-2 rounded border border-gray-700">
+                        <p class="mb-2"><strong>1. Accettazione dei Termini</strong><br>Accedendo e utilizzando questo sito web, accetti di essere vincolato dai presenti Termini e Condizioni. Se non accetti tutti i termini e le condizioni, ti è vietato utilizzare o accedere a questo sito.</p>
+                        <p class="mb-2"><strong>2. Proprietà Intellettuale</strong><br>Tutti i contenuti presenti su questo sito, inclusi testi, grafiche, loghi e immagini, sono di proprietà di Raneda Foluor Ventures o dei suoi fornitori di contenuti e sono protetti dalle leggi internazionali sul diritto d'autore.</p>
+                        <p class="mb-2"><strong>3. Limitazione di Responsabilità</strong><br>In nessun caso Raneda Foluor Ventures sarà responsabile per danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito. Le informazioni fornite sono a scopo puramente informativo.</p>
+                        <p class="mb-2"><strong>4. Modifiche</strong><br>Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. Continuando a utilizzare il sito dopo la pubblicazione delle modifiche, accetti di essere vincolato dai termini modificati.</p>
+                        <p><strong>5. Legge Applicabile</strong><br>Questi termini e condizioni sono regolati e interpretati in conformità con le leggi vigenti, senza dare effetto a nessun principio di conflitto di leggi.</p>
                     </div>
                 </details>
             </div>
 
-            <div class="mt-8 text-center text-sm text-gray-500">
+            <div class="text-center mt-8 text-xs text-gray-600">
                 &copy; 2026 Raneda Foluor Ventures. Tutti i diritti riservati.
             </div>
         </div>
     </footer>
 
-    <!-- Interactive Scripts -->
-    <script>
-        // Smooth Scroll Logic
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white p-6 shadow-2xl z-50 border-t-4 border-primary hidden">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-sm text-gray-700">
+                Utilizziamo i cookie per migliorare la tua esperienza e analizzare il traffico. Continuando a navigare, accetti la nostra politica sui cookie.
+            </div>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-xs">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 text-sm hover:underline">Rifiuta</button>
+            </div>
+        </div>
+    </div>
 
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    // Fallback Safety
-                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-                }
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Smooth Scroll & Navigation Fix
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else if (targetId !== 'privacy-details' && targetId !== 'terms-details') {
+                        // Fallback logic for broken links -> Go to contact
+                        e.preventDefault();
+                        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
             });
+
+            // Cookie Logic
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
         });
 
-        // Form Simulation
-        function handleForm(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerText;
-            btn.innerText = 'Elaborazione in corso...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                document.getElementById('lead-form').style.display = 'none';
-                document.getElementById('success-msg').style.display = 'block';
-            }, 1500);
-        }
-
-        // Cookie Banner Logic
         function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'true');
+            localStorage.setItem('cookiesAccepted', 'true');
             document.getElementById('cookie-banner').style.display = 'none';
         }
-
-        window.onload = function() {
-            if (!localStorage.getItem('cookieConsent')) {
-                document.getElementById('cookie-banner').classList.remove('hidden');
-            }
-        };
     </script>
 </body>
 </html>
