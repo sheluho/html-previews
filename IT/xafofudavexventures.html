@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Davex Ventures - Il tuo partner strategico per il mondo digitale. Scopri le ultime notizie, tecnologie e sistemi per la crescita del tuo business.">
+    <title>Davex Ventures | Innovazione e Strategia Digitale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* DESIGN DNA VARIABLES */
+            --primary: #2563EB; /* VAR D: Tech Blue */
+            --surface: #fffdf5; /* VAR C: Warm Cream (s % 3 = 1) */
+            --radius: 0px;      /* VAR A: Sharp (21 % 3 = 0) */
+            --shadow: 0 0 0 1px #e5e7eb; /* VAR B: Flat (x % 3 = 0) */
+            --text-main: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .dna-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* BRAND COMPONENT: Secondary Button */
+        .btn-secondary {
+            background-color: white;
+            color: var(--text-main) !important;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--radius);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover {
+            background-color: #f9fafb;
+            border-color: var(--primary);
+            color: var(--primary) !important;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary-light { background-color: #eff6ff; }
+
+        /* HEADER & NAV */
+        header {
+            background-color: var(--surface);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* FORM STYLES */
+        input, textarea, select {
+            border-radius: var(--radius);
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            width: 100%;
+            transition: border-color 0.2s;
+            background-color: #ffffff;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            ring: 2px solid rgba(37, 99, 235, 0.1);
+        }
+
+        /* COOKIE BANNER */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #111827;
+            color: white;
+            padding: 1rem;
+            z-index: 50;
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <header class="sticky top-0 z-40 w-full shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold tracking-tight text-gray-900">
+                        DAVEX <span class="text-primary">VENTURES</span>
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Servizi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
+                    <a href="#contact" class="btn-primary">Richiedi Consulenza</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-gray-900 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Recensioni</a>
+                <a href="#contact" class="block w-full text-center px-3 py-3 mt-4 text-base font-bold text-white bg-primary rounded-none btn-primary">Contattaci</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gray-900 text-white pt-24 pb-32 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Meeting strategico ufficio digitale" 
+                 class="w-full h-full object-cover opacity-30"
+                 loading="lazy"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Digital+Strategy'">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <span class="inline-block py-1 px-3 rounded bg-blue-900 text-blue-200 text-sm font-semibold mb-6 tracking-wide uppercase">
+                Digital Media Publisher
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight max-w-4xl">
+                L'Analisi dei Dati è la Migliore <span class="text-blue-400">Notizia</span> per il Tuo Business
+            </h1>
+            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Davex Ventures trasforma ogni annuncio e notizia di mercato in opportunità di crescita. Tecnologia avanzata e strategie digitali per le aziende che vogliono dominare il mondo online.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+                <a href="#contact" class="btn-primary text-center px-8 py-4 text-lg">Inizia la Trasformazione</a>
+                <a href="#features" class="btn-secondary text-center px-8 py-4 text-lg bg-transparent text-white border-white hover:bg-white hover:text-gray-900">Scopri i Nostri Servizi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGO CLOUD (Trust) -->
+    <div class="bg-white py-8 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">Partner e Tecnologie Integrate</p>
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5 opacity-60 grayscale">
+                <div class="col-span-1 flex justify-center md:col-span-1">
+                    <span class="text-xl font-bold text-gray-400">MEDIA GROUP</span>
+                </div>
+                <div class="col-span-1 flex justify-center md:col-span-1">
+                    <span class="text-xl font-bold text-gray-400">DIGITAL ADV</span>
+                </div>
+                <div class="col-span-1 flex justify-center md:col-span-1">
+                    <span class="text-xl font-bold text-gray-400">TECH NEWS</span>
+                </div>
+                <div class="col-span-1 flex justify-center md:col-span-1">
+                    <span class="text-xl font-bold text-gray-400">SMART DATA</span>
+                </div>
+                <div class="col-span-1 hidden lg:flex justify-center md:col-span-1">
+                    <span class="text-xl font-bold text-gray-400">CONNECT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8 relative z-10 -mt-10">
+
+        <!-- FEATURES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Tecnologia e Strategia: Il Nostro Sistema
+                </h2>
+                <p class="mt-4 text-lg text-gray-600">
+                    Ogni annuncio conta. Offriamo soluzioni editoriali e pubblicitarie su misura per connetterti con il mondo.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 bg-gray-50 border border-gray-100 transition hover:bg-white">
+                    <div class="w-12 h-12 bg-blue-100 text-primary flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Advertising Digitale</h3>
+                    <p class="text-gray-600 text-sm">Pianificazione strategica su vasta scala. Portiamo il tuo annuncio sugli schermi giusti al momento giusto, massimizzando il ROI attraverso l'analisi dei dati.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-6 bg-gray-50 border border-gray-100 transition hover:bg-white">
+                    <div class="w-12 h-12 bg-blue-100 text-primary flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Hub Notizie & Content</h3>
+                    <p class="text-gray-600 text-sm">Produzione di contenuti di valore e gestione delle notizie aziendali per posizionare il tuo brand come leader di pensiero nel tuo settore.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-6 bg-gray-50 border border-gray-100 transition hover:bg-white">
+                    <div class="w-12 h-12 bg-blue-100 text-primary flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Soluzioni PMI</h3>
+                    <p class="text-gray-600 text-sm">Un sistema integrato pensato per le Piccole e Medie Imprese. Dalla presenza locale alla visibilità nazionale, supportiamo la crescita del tessuto economico italiano.</p>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                     alt="Programmazione software e analisi dati"
+                     class="w-full h-64 object-cover object-center mb-6"
+                     loading="lazy"
+                     referrerpolicy="no-referrer">
+                <a href="#contact" class="btn-primary inline-flex items-center">
+                    Richiedi un Piano Media
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+                <span class="bg-primary h-8 w-1 mr-3 block"></span>
+                Dicono di Davex Ventures
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 border border-gray-100 shadow-sm">
+                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Grazie al loro sistema di advertising, abbiamo raggiunto un pubblico che prima sembrava inaccessibile. Una vera svolta digitale."</p>
+                    <div class="font-bold text-sm text-gray-900">Marco Rossi</div>
+                    <div class="text-xs text-gray-500">Marketing Director, TechLab</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-white p-6 border border-gray-100 shadow-sm">
+                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Ogni notizia riguardante la nostra azienda è stata gestita con professionalità. La visibilità è aumentata del 40%."</p>
+                    <div class="font-bold text-sm text-gray-900">Giulia Bianchi</div>
+                    <div class="text-xs text-gray-500">CEO, Bianchi & Co.</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-white p-6 border border-gray-100 shadow-sm">
+                    <div class="flex text-yellow-400 mb-3">★★★★☆</div>
+                    <p class="text-gray-600 italic mb-4">"Il mondo digitale è complesso, ma Davex Ventures ha reso tutto semplice ed efficace. Ottimo servizio."</p>
+                    <div class="font-bold text-sm text-gray-900">Alessandro Verdi</div>
+                    <div class="text-xs text-gray-500">Fondatore, GreenStart</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+                <span class="bg-primary h-8 w-1 mr-3 block"></span>
+                Domande Frequenti
+            </h2>
+            <div class="space-y-4">
+                <details class="group bg-gray-50 border border-gray-200">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 text-gray-800 hover:text-primary transition">
+                        <span>Che tipo di annunci gestite?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-4 pt-0 border-t border-gray-100 mt-2">
+                        Gestiamo campagne display, video advertising, native advertising e soluzioni programmatiche su una vasta rete di portali premium.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 border border-gray-200">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 text-gray-800 hover:text-primary transition">
+                        <span>Lavorate solo con grandi aziende?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-4 pt-0 border-t border-gray-100 mt-2">
+                        No, abbiamo un sistema dedicato specificamente alle PMI per permettere anche alle piccole realtà di competere nel mondo digitale.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 border border-gray-200">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 text-gray-800 hover:text-primary transition">
+                        <span>Come misurate i risultati?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-4 pt-0 border-t border-gray-100 mt-2">
+                        Forniamo reportistica dettagliata e analisi in tempo reale su impression, click e conversioni per garantire la massima trasparenza.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 border border-gray-200">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 text-gray-800 hover:text-primary transition">
+                        <span>Potete pubblicare notizie sulla mia azienda?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-4 pt-0 border-t border-gray-100 mt-2">
+                        Assolutamente. I nostri servizi di Content Marketing sono pensati per dare voce alle iniziative e ai successi della tua impresa.
+                    </div>
+                </details>
+                
+                <details class="group bg-gray-50 border border-gray-200">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 text-gray-800 hover:text-primary transition">
+                        <span>Quanto tempo serve per avviare una campagna?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-4 pt-0 border-t border-gray-100 mt-2">
+                        Le tempistiche variano in base alla complessità, ma il nostro team è strutturato per lanciare le prime attività operative entro 48-72 ore dall'approvazione del piano.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Contattaci Ora</h2>
+                    <p class="text-gray-600 mb-8">Compila il modulo per ricevere una consulenza gratuita sulle nostre soluzioni di advertising e digital news.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <div class="ml-3 text-base text-gray-600">
+                                <p class="font-medium text-gray-900">Davex Ventures HQ</p>
+                                <p>Via del Bosco Rinnovato 8</p>
+                                <p>20090 Assago (MI), Italia</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 p-4 rounded-sm border-l-4 border-primary">
+                            <p class="text-sm text-blue-800">
+                                <strong>Nota:</strong> I nostri uffici sono aperti dal Lunedì al Venerdì, dalle 9:00 alle 18:00.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 shadow-inner">
+                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Invio in corso...'; this.querySelector('button').disabled=true; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo</label>
+                            <input type="text" id="name" required placeholder="Mario Rossi" class="mt-1">
+                        </div>
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-gray-700">Azienda</label>
+                            <input type="text" id="company" placeholder="La Tua Azienda S.r.l." class="mt-1">
+                        </div>
+                        <div>
+                            <label for="service" class="block text-sm font-medium text-gray-700">Servizio di Interesse</label>
+                            <select id="service" class="mt-1">
+                                <option>Advertising Digitale</option>
+                                <option>Pubblicazione Notizie</option>
+                                <option>Soluzioni PMI</option>
+                                <option>Consulenza Strategica</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Messaggio</label>
+                            <textarea id="message" rows="4" class="mt-1" placeholder="Descrivi le tue esigenze..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary flex justify-center items-center">
+                            Invia Richiesta
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" style="display:none;" class="text-center py-10">
+                        <svg class="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <h3 class="text-xl font-bold text-gray-900">Messaggio Inviato!</h3>
+                        <p class="text-gray-600 mt-2">Un nostro consulente ti contatterà al più presto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">DAVEX VENTURES</h3>
+                    <p class="text-sm mb-4">La tecnologia al servizio dell'informazione e della pubblicità. Connettiamo le aziende al mondo digitale attraverso soluzioni innovative.</p>
+                    <p class="text-xs text-gray-500">© 2026 Davex Ventures. Tutti i diritti riservati.</p>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Link Rapidi</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#features" class="hover:text-white transition">Servizi</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition">Recensioni</a></li>
+                        <li><a href="#faq" class="hover:text-white transition">Domande Frequenti</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Note Legali</h3>
+                    <div class="text-xs space-y-4">
+                        <p>Questo è un sito promozionale indipendente gestito da Davex Ventures, che agisce come affiliato per Italiaonline S.p.A. Le opinioni espresse non riflettono necessariamente quelle del fornitore originale.</p>
+                        
+                        <!-- PRIVACY POLICY DETAILS -->
+                        <details class="cursor-pointer group">
+                            <summary class="hover:text-white underline mb-1">Informativa sulla Privacy</summary>
+                            <p class="mt-2 text-gray-500 leading-relaxed">
+                                Presso Davex Ventures, rispettiamo la tua privacy e ci impegniamo a proteggere i tuoi dati personali. Questa informativa spiega come raccogliamo, utilizziamo e proteggiamo le tue informazioni. Raccogliamo dati identificativi come nome e azienda solo quando vengono forniti volontariamente attraverso i moduli di contatto. Questi dati sono utilizzati esclusivamente per rispondere alle tue richieste di servizi pubblicitari o editoriali. Non condividiamo i tuoi dati con terze parti non autorizzate, eccetto i partner necessari per l'erogazione del servizio come Italiaonline S.p.A. I dati sono conservati su server sicuri con accesso limitato. Utilizziamo cookie tecnici per migliorare l'esperienza di navigazione e analizzare il traffico in forma aggregata. Hai il diritto di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati in qualsiasi momento contattandoci via posta ordinaria presso la nostra sede legale. Continuiamo ad aggiornare le nostre misure di sicurezza in linea con le normative vigenti per garantire la massima protezione contro accessi non autorizzati o furti di dati.
+                            </p>
+                        </details>
+
+                        <!-- TERMS OF SERVICE DETAILS -->
+                        <details class="cursor-pointer group">
+                            <summary class="hover:text-white underline mb-1">Termini e Condizioni</summary>
+                            <p class="mt-2 text-gray-500 leading-relaxed">
+                                Benvenuto sul sito di Davex Ventures. Utilizzando questo sito, accetti i presenti termini e condizioni d'uso. I contenuti presentati su questo portale, inclusi testi, immagini e loghi, sono protetti dalle leggi sul diritto d'autore e non possono essere riprodotti senza autorizzazione esplicita. Davex Ventures agisce come intermediario promozionale e non è responsabile direttamente per le variazioni dei servizi offerti dal fornitore principale. Ci riserviamo il diritto di modificare i contenuti e le offerte promozionali in qualsiasi momento senza preavviso. L'utente si impegna a utilizzare il sito esclusivamente per scopi leciti e a non tentare di compromettere la sicurezza del sistema informatico. Non siamo responsabili per eventuali danni diretti o indiretti derivanti dall'uso di questo sito web o dall'impossibilità di accedervi. Qualsiasi controversia legale sarà regolata dalle leggi vigenti in Italia e sarà di competenza del foro locale competente.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm">Utilizziamo i cookie per migliorare la tua esperienza su questo sito e per analizzare il traffico digitale.</p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="bg-primary text-white px-4 py-2 text-sm font-bold shadow hover:bg-blue-600 transition border border-transparent">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="bg-transparent text-gray-300 border border-gray-600 px-4 py-2 text-sm hover:text-white transition">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS LOGIC -->
+    <script>
+        // Smooth Scrolling Logic (The Gravity Well Protocol)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to Contact if ID missing
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Cookie Logic
+        function acceptCookies() {
+            localStorage.setItem('davex_cookie_consent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        // Check Cookies on Load
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('davex_cookie_consent')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
