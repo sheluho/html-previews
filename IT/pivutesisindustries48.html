@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pivutesis Industries: La tua guida definitiva ai software di analisi dati, reportistica e statistiche per l'efficienza aziendale.">
+    <title>Pivutesis Industries - Analisi Dati & Software Review</title>
+    <!-- Tailwind CSS v2.2.19 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DESIGN DNA: INJECTION START -->
+    <style>
+        :root {
+            /* VAR D: Palette -> Indigo for SaaS/Tech */
+            --primary: #4f46e5; 
+            /* VAR C: Surface -> Last Char 'z' (122%3=2) -> Cool (Slate White) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry -> Length 26 (26%3=2) -> Pill */
+            --radius: 24px;
+            /* VAR B: Physics -> First Char 'p' (112%3=1) -> Material */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base for contrast */
+            color: #1f2937;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(79, 70, 229, 0.05); /* Slight tint of primary */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        
+        /* HERO OVERLAY */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.pexels.com/photos/186461/pexels-photo-186461.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* LEGAL DETAILS */
+        details.legal-doc {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+        }
+        details.legal-doc summary {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        details.legal-doc p {
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        /* COOKIE BANNER */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #111827;
+            color: white;
+            padding: 1rem;
+            z-index: 50;
+            display: none;
+            box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.1);
+        }
+    </style>
+    <!-- DESIGN DNA: INJECTION END -->
+</head>
+<body class="antialiased selection:bg-indigo-100">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-bold text-2xl text-primary tracking-tight">Pivutesis Industries</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium">Analisi & Software</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm px-6 py-3">Contattaci</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Recensioni</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-bold text-primary bg-indigo-50">Contattaci</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="hero-bg relative">
+        <div class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 lg:py-32 text-center">
+            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
+                Costruiamo Decisioni Solide: <br>
+                <span class="text-indigo-400">Software di Analisi Dati</span> per l'Impresa Moderna
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 lg:mx-auto">
+                In Pivutesis Industries, analizziamo per te i migliori tool per trasformare le statistiche grezze in efficienza operativa. Il futuro della tua azienda inizia da un report intelligente.
+            </p>
+            <div class="mt-10 flex justify-center gap-4">
+                <a href="#features" class="btn-primary border-2 border-transparent">Scopri le Soluzioni</a>
+                <a href="#contact" class="bg-white text-gray-900 border-2 border-white rounded-[24px] px-8 py-4 font-bold hover:bg-gray-100 transition duration-300">Richiedi Consulenza</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-12 px-4 sm:px-6">
+
+        <!-- TRUST SECTION -->
+        <div class="max-w-5xl mx-auto text-center mb-16">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
+                Software analizzati e comparati
+            </p>
+            <div class="flex flex-wrap justify-center items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <span class="text-xl font-bold text-gray-700">Microsoft Power BI</span>
+                <span class="text-xl font-bold text-gray-700">Tableau</span>
+                <span class="text-xl font-bold text-gray-700">Qlik Sense</span>
+                <span class="text-xl font-bold text-gray-700">Factorial</span>
+                <span class="text-xl font-bold text-gray-700">Google Looker</span>
+            </div>
+        </div>
+
+        <!-- SERVICES SECTION (FEATURES) -->
+        <section id="features" class="max-w-5xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-gray-900">Le Nostre Aree di Competenza</h2>
+                <p class="mt-4 text-lg text-gray-600">Guidiamo la tua scelta verso l'eccellenza nell'analisi dati e nella reportistica.</p>
+            </div>
+
+            <!-- Card 1 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=600" 
+                         alt="Software Comparison" 
+                         class="rounded-xl w-full h-64 object-cover shadow-md"
+                         loading="lazy">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="inline-flex items-center justify-center p-3 bg-indigo-100 rounded-full mb-4">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Comparazione Software BI</h3>
+                    <p class="text-gray-600 mb-4">
+                        Il mercato dei software di analisi dati è vasto. Ti aiutiamo a navigare tra le opzioni (come PowerBI, Tableau e soluzioni HR integrate) per trovare lo strumento che si adatta perfettamente alla dimensione della tua azienda e al tuo budget.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=600" 
+                         alt="Reporting Efficiency" 
+                         class="rounded-xl w-full h-64 object-cover shadow-md"
+                         loading="lazy">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="inline-flex items-center justify-center p-3 bg-indigo-100 rounded-full mb-4">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Reportistica e Statistiche</h3>
+                    <p class="text-gray-600 mb-4">
+                        L'efficienza nasce dalla conoscenza. Ti guidiamo nella configurazione di dashboard intuitive per monitorare KPI vitali, ridurre i tempi di reportistica manuale e aumentare la precisione dei tuoi dati aziendali.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=600" 
+                         alt="Strategic Decisions" 
+                         class="rounded-xl w-full h-64 object-cover shadow-md"
+                         loading="lazy">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="inline-flex items-center justify-center p-3 bg-indigo-100 rounded-full mb-4">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Ottimizzazione Decisionale</h3>
+                    <p class="text-gray-600 mb-4">
+                        Trasforma i "Big Data" in decisioni semplici. I nostri insight sui software ti permettono di adottare tecnologie che predicono i trend, ottimizzano le risorse umane e migliorano la redditività complessiva.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto mt-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-gray-900">Cosa Dicono i Nostri Utenti</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="dna-card p-6 !mb-0 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                        <p class="text-gray-600 italic">"Grazie a Pivutesis Industries abbiamo scelto il software di analisi dati perfetto per la nostra PMI. L'efficienza del reparto vendite è aumentata del 30%."</p>
+                    </div>
+                    <div class="mt-4 font-bold text-gray-900">- Marco Rossi, Direttore Commerciale</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="dna-card p-6 !mb-0 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                        <p class="text-gray-600 italic">"Cercavamo chiarezza nel mondo delle statistiche HR. Le guide e le recensioni trovate qui ci hanno risparmiato mesi di test inutili."</p>
+                    </div>
+                    <div class="mt-4 font-bold text-gray-900">- Laura Bianchi, HR Manager</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="dna-card p-6 !mb-0 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                        <p class="text-gray-600 italic">"Ottimo servizio informativo. Report dettagliati e un focus reale sulle esigenze delle industrie moderne."</p>
+                    </div>
+                    <div class="mt-4 font-bold text-gray-900">- Giuseppe Verdi, Analista IT</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto mt-16">
+            <div class="dna-card">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti (FAQ)</h2>
+                
+                <div class="space-y-4">
+                    <details class="group bg-white rounded-lg p-4 border border-gray-100 cursor-pointer">
+                        <summary class="font-bold text-gray-800 flex justify-between items-center list-none outline-none">
+                            Perché è importante un software di analisi dati?
+                            <span class="transform group-open:rotate-180 transition-transform text-primary">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pl-2 border-l-4 border-indigo-100">
+                            L'analisi dati permette di trasformare informazioni grezze in strategie concrete. Un buon software riduce gli errori umani, automatizza i report e fornisce una visione chiara (tramite statistiche visuali) per decisioni più rapide ed efficaci.
+                        </p>
+                    </details>
+
+                    <details class="group bg-white rounded-lg p-4 border border-gray-100 cursor-pointer">
+                        <summary class="font-bold text-gray-800 flex justify-between items-center list-none outline-none">
+                            Quale software è migliore per le piccole imprese?
+                            <span class="transform group-open:rotate-180 transition-transform text-primary">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pl-2 border-l-4 border-indigo-100">
+                            Dipende dal settore. Per le PMI, raccomandiamo spesso soluzioni scalabili come Factorial (per dati HR) o versioni cloud di Microsoft Power BI, che offrono un ottimo equilibrio tra costi e funzionalità.
+                        </p>
+                    </details>
+
+                    <details class="group bg-white rounded-lg p-4 border border-gray-100 cursor-pointer">
+                        <summary class="font-bold text-gray-800 flex justify-between items-center list-none outline-none">
+                            Come valutate l'efficienza di uno strumento?
+                            <span class="transform group-open:rotate-180 transition-transform text-primary">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pl-2 border-l-4 border-indigo-100">
+                            Valutiamo la facilità d'uso, la capacità di integrazione con altri sistemi aziendali, la qualità della reportistica visiva e il supporto tecnico offerto dal fornitore.
+                        </p>
+                    </details>
+
+                    <details class="group bg-white rounded-lg p-4 border border-gray-100 cursor-pointer">
+                        <summary class="font-bold text-gray-800 flex justify-between items-center list-none outline-none">
+                            È difficile implementare questi software?
+                            <span class="transform group-open:rotate-180 transition-transform text-primary">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pl-2 border-l-4 border-indigo-100">
+                            La maggior parte dei moderni SaaS di Business Intelligence sono "no-code" o "low-code", progettati per essere utilizzati anche da chi non è un data scientist. Tuttavia, una formazione iniziale è sempre consigliata.
+                        </p>
+                    </details>
+                    
+                    <details class="group bg-white rounded-lg p-4 border border-gray-100 cursor-pointer">
+                        <summary class="font-bold text-gray-800 flex justify-between items-center list-none outline-none">
+                            Offrite supporto diretto per l'installazione?
+                            <span class="transform group-open:rotate-180 transition-transform text-primary">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pl-2 border-l-4 border-indigo-100">
+                            Pivutesis Industries agisce come portale di recensione e comparazione. Ti mettiamo in contatto con le migliori soluzioni, ma l'installazione è gestita direttamente dai fornitori del software scelto.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-3xl mx-auto mt-16 mb-24">
+            <div class="dna-card relative overflow-hidden">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Parliamo dei Tuoi Dati</h2>
+                    <p class="mt-4 text-gray-600">
+                        Compila il modulo per ricevere un confronto gratuito dei software più adatti al tuo settore.
+                    </p>
+                </div>
+
+                <form id="lead-form" class="space-y-6" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); const originalText = btn.innerText; btn.innerText = 'Invio in corso...'; btn.disabled = true; setTimeout(()=>{ this.style.display='none'; document.getElementById('success-msg').style.display='block'; }, 1500);">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nome Azienda</label>
+                        <input type="text" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Indirizzo Email Aziendale</label>
+                        <input type="email" id="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border">
+                    </div>
+                    <div>
+                        <label for="interest" class="block text-sm font-medium text-gray-700">Interesse Principale</label>
+                        <select id="interest" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border">
+                            <option>Comparazione Software Generica</option>
+                            <option>Analisi HR e Personale</option>
+                            <option>Business Intelligence Finanziaria</option>
+                            <option>Altro</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full btn-primary flex justify-center py-3">
+                            Richiedi Analisi Gratuita
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-400 text-center mt-2">I tuoi dati sono trattati in conformità con la nostra privacy policy.</p>
+                </form>
+
+                <!-- SUCCESS MESSAGE -->
+                <div id="success-msg" style="display: none;" class="text-center py-10">
+                    <svg class="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h3 class="text-2xl font-bold text-gray-900">Messaggio Inviato!</h3>
+                    <p class="text-gray-600 mt-2">Un nostro esperto analizzerà la tua richiesta e ti risponderà a breve.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-white pt-12 pb-6 border-t border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <span class="font-bold text-2xl text-white tracking-tight">Pivutesis Industries</span>
+                    <p class="mt-2 text-gray-400 text-sm">
+                        La tua bussola nel mondo complesso dei software di analisi dati. Recensioni indipendenti e guide strategiche.
+                    </p>
+                    <p class="mt-4 text-xs text-gray-500">
+                        *Questo è un sito promozionale indipendente gestito da Pivutesis Industries, che agisce in qualità di affiliato per Factorial e altri fornitori software.
+                    </p>
+                </div>
+            </div>
+
+            <!-- LEGAL ACCORDIONS -->
+            <div class="border-t border-gray-700 pt-8">
+                
+                <details class="legal-doc text-gray-900">
+                    <summary>Privacy Policy</summary>
+                    <p>
+                        In Pivutesis Industries, prendiamo molto sul serio la tua privacy. La presente Privacy Policy descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali quando visiti il nostro sito web. I dati raccolti attraverso i moduli di contatto (nome, email) vengono utilizzati esclusivamente per rispondere alle richieste di informazioni e non vengono ceduti a terzi senza il consenso esplicito, salvo ove richiesto dalla legge o per l'esecuzione del servizio di intermediazione richiesto. 
+                        <br><br>
+                        Utilizziamo misure di sicurezza tecniche e organizzative per proteggere i tuoi dati da accessi non autorizzati. I cookie vengono utilizzati per migliorare l'esperienza di navigazione. Hai il diritto di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati in qualsiasi momento contattandoci tramite le modalità previste. Conserviamo i dati solo per il tempo strettamente necessario a finalizzare le operazioni richieste.
+                        <br><br>
+                        Continuando a utilizzare il nostro sito, acconsenti al trattamento dei tuoi dati secondo questa informativa. Ci riserviamo il diritto di modificare questa policy in qualsiasi momento; le modifiche saranno pubblicate su questa pagina.
+                    </p>
+                </details>
+
+                <details class="legal-doc text-gray-900">
+                    <summary>Termini e Condizioni</summary>
+                    <p>
+                        Benvenuto su Pivutesis Industries. Utilizzando questo sito web, accetti di rispettare i seguenti Termini e Condizioni. Il contenuto di questo sito è fornito a solo scopo informativo e comparativo riguardo software di analisi dati. Sebbene ci sforziamo di mantenere le informazioni aggiornate e corrette, non garantiamo la completezza, l'accuratezza o l'affidabilità di alcuna recensione o dato presentato.
+                        <br><br>
+                        Pivutesis Industries non è responsabile per eventuali danni diretti, indiretti o consequenziali derivanti dall'uso delle informazioni presenti su questo sito. I marchi citati appartengono ai legittimi proprietari e sono utilizzati a solo scopo descrittivo. L'utente si impegna a non utilizzare il sito per scopi illegali o non autorizzati.
+                        <br><br>
+                        Ci riserviamo il diritto di modificare, sospendere o interrompere qualsiasi parte del servizio in qualsiasi momento senza preavviso. L'utilizzo continuativo del sito costituisce l'accettazione di tali modifiche. Per qualsiasi controversia legale, il foro competente sarà quello stabilito dalle leggi vigenti nel territorio di operatività.
+                    </p>
+                </details>
+
+                <details class="legal-doc text-gray-900">
+                    <summary>Policy sui Rimborsi</summary>
+                    <p>
+                        Poiché Pivutesis Industries opera come portale di recensioni e informazione gratuita, non vendiamo direttamente licenze software o abbonamenti. Pertanto, non offriamo rimborsi diretti per prodotti o servizi menzionati sul nostro sito. 
+                        <br><br>
+                        Qualsiasi acquisto o sottoscrizione effettuata a seguito di un click su un link presente nel nostro sito avviene sulla piattaforma del fornitore terzo (es. Factorial, Tableau, ecc.). Di conseguenza, qualsiasi richiesta di rimborso, cancellazione o disputa finanziaria deve essere indirizzata direttamente al fornitore del servizio software specifico, in conformità con i loro termini e condizioni di vendita.
+                        <br><br>
+                        Consigliamo agli utenti di leggere attentamente le condizioni di vendita e le politiche di rimborso dei fornitori terzi prima di completare qualsiasi transazione. Pivutesis Industries declina ogni responsabilità per transazioni finanziarie avvenute su siti esterni collegati.
+                    </p>
+                </details>
+
+                <div class="mt-8 text-center text-sm text-gray-500">
+                    &copy; 2026 Pivutesis Industries. Tutti i diritti riservati.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <p class="mb-4 md:mb-0 text-sm">Utilizziamo i cookie per migliorare la tua esperienza e analizzare il traffico. Continuando la navigazione accetti l'uso dei cookie.</p>
+            <div class="flex space-x-4">
+                <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookieConsent', 'true')" class="bg-indigo-600 px-4 py-2 rounded text-sm font-bold hover:bg-indigo-500 transition">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-400 text-sm underline hover:text-white">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Smooth Scroll "Gravity Well" Protocol
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if ID is missing (Self-Healing)
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Cookie Consent Logic
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-banner').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
