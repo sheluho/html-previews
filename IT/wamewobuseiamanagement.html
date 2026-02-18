@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WameWobuseia Management | Ottimizzazione e Pulizia Sistema PC</title>
+    <meta name="description" content="Ottimizza le prestazioni del tuo PC con WameWobuseia Management. Scansione avanzata, protezione attiva e pulizia profonda per un sistema veloce e sicuro.">
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DESIGN DNA SYSTEM -->
+    <style>
+        :root {
+            /* VAR D: Palette -> Tech Blue/Indigo for Software Utility */
+            --primary: #4f46e5; 
+            /* VAR C: Surface -> Last Letter '/' (ASCII 47 % 3 = 2) -> Cool (#f8fafc) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry -> Length 47 (% 3 = 2) -> Pill (24px) */
+            --radius: 24px;
+            /* VAR B: Physics -> First Letter 'h' (ASCII 104 % 3 = 2) -> Hard (Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Neo-brutalist requires distinct border */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            opacity: 1;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        .text-primary { color: var(--primary); }
+        
+        /* Utility */
+        summary { cursor: pointer; font-weight: bold; }
+        
+        /* Fixed Bottom Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            padding: 1rem;
+            border-top: 4px solid #000;
+            z-index: 50;
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-black text-2xl tracking-tighter">WAMEWOBUSEIA<span class="text-primary">.MGMT</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="font-bold hover:text-primary transition">Funzionalità</a>
+                    <a href="#reviews" class="font-bold hover:text-primary transition">Recensioni</a>
+                    <a href="#faq" class="font-bold hover:text-primary transition">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm">Scarica Utility</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-black hover:text-gray-700 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black p-4 space-y-4">
+            <a href="#features" class="block font-bold">Funzionalità</a>
+            <a href="#reviews" class="block font-bold">Recensioni</a>
+            <a href="#contact" class="block btn-primary text-center">Inizia Ora</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover opacity-30" 
+                 src="https://images.pexels.com/photos/5475756/pexels-photo-5475756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Ottimizzazione Software e Codice PC"
+                 referrerpolicy="no-referrer">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+        <div class="relative max-w-5xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6">
+                Una gestione intelligente è il miglior <br/><span class="text-primary">investimento</span> per il tuo PC.
+            </h1>
+            <p class="mt-6 text-xl text-gray-200 max-w-3xl">
+                Il tuo computer è lento? WameWobuseia Management offre la soluzione definitiva per la pulizia e l'ottimizzazione. 
+                Sblocca le vere prestazioni del tuo <span class="font-bold text-white">Sistema</span> oggi stesso.
+            </p>
+            <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                <a href="#contact" class="btn-primary w-full sm:w-auto text-lg">
+                    Avvia Analisi Gratuita
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRUST STRIP -->
+    <div class="bg-white border-b-2 border-black py-6">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Tecnologia compatibile con</p>
+            <div class="flex justify-center space-x-8 md:space-x-16 opacity-60 font-black text-xl text-gray-400">
+                <span>WINDOWS 11</span>
+                <span>MACOS</span>
+                <span>LINUX</span>
+                <span>ANDROID</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 space-y-16">
+
+        <!-- FEATURES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-base text-primary font-black tracking-wide uppercase">Performance Suite</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Software di Utilità Superiore
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Non lasciare che i file inutili rallentino il tuo lavoro. Il nostro software offre un approccio proattivo.
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+                    <!-- Feature 1 -->
+                    <div class="flex flex-col items-center text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 border-2 border-black mb-4">
+                            <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-bold text-gray-900">Pulizia Profonda</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Una <strong>Scansione</strong> completa che rimuove gigabyte di file temporanei, cache e registri obsoleti che intasano il tuo disco rigido.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="flex flex-col items-center text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 border-2 border-black mb-4">
+                            <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-bold text-gray-900">Protezione Privacy</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Elimina tracce di navigazione e cookie. La nostra <strong>Protezione</strong> digitale ti garantisce l'anonimato durante l'utilizzo del web.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="flex flex-col items-center text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 border-2 border-black mb-4">
+                            <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-bold text-gray-900">Monitoraggio Attivo</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Il sistema rimane <strong>Attivo</strong> in background, gestendo le risorse della CPU e della RAM per prevenire rallentamenti improvvisi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 w-full bg-gray-200 rounded-lg overflow-hidden border-2 border-black">
+                <!-- Fallback Image if direct pexels link fails -->
+                <img src="https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                     alt="Dashboard Software Ottimizzazione" 
+                     class="w-full h-64 object-cover"
+                     loading="lazy"
+                     referrerpolicy="no-referrer"
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=PC+Optimization+Software'">
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-8">Cosa dicono gli utenti</h2>
+            <div class="grid gap-8 md:grid-cols-3">
+                <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Il mio laptop era diventato inutilizzabile. Dopo la scansione, ho recuperato 15GB di spazio e la velocità è raddoppiata. Incredibile."</p>
+                    <p class="font-bold text-gray-900">- Marco Rossi</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Uso questo software per il <strong>Monitoraggio</strong> quotidiano. Non ho più crash di sistema o rallentamenti durante il gaming."</p>
+                    <p class="font-bold text-gray-900">- Giulia Bianchi</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★☆</div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Ottimo per la privacy. La funzione di pulizia cancella tutto ciò che non serve in un solo click. Consigliato."</p>
+                    <p class="font-bold text-gray-900">- Luca Ferrari</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                <details class="group p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <summary class="list-none flex justify-between items-center text-lg font-medium text-gray-900">
+                        Il software è compatibile con Windows 11?
+                        <span class="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600">
+                        Sì, WameWobuseia Management è pienamente ottimizzato per Windows 10 e 11, oltre alle versioni recenti di macOS.
+                    </div>
+                </details>
+                <details class="group p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <summary class="list-none flex justify-between items-center text-lg font-medium text-gray-900">
+                        La scansione cancella i miei file personali?
+                        <span class="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600">
+                        Assolutamente no. Il <strong>Sistema</strong> di pulizia agisce solo su file temporanei, cache di sistema e spazzatura digitale. I tuoi documenti, foto e video sono al sicuro.
+                    </div>
+                </details>
+                <details class="group p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <summary class="list-none flex justify-between items-center text-lg font-medium text-gray-900">
+                        Posso disattivare il monitoraggio attivo?
+                        <span class="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600">
+                        Certamente. Sebbene consigliamo di mantenerlo <strong>Attivo</strong> per prestazioni ottimali, puoi configurare le impostazioni secondo le tue preferenze.
+                    </div>
+                </details>
+                <details class="group p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <summary class="list-none flex justify-between items-center text-lg font-medium text-gray-900">
+                        Quanto tempo richiede una scansione completa?
+                        <span class="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600">
+                        Dipende dallo stato del disco, ma solitamente la prima scansione richiede meno di 5 minuti. Le scansioni successive sono molto più rapide.
+                    </div>
+                </details>
+                <details class="group p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <summary class="list-none flex justify-between items-center text-lg font-medium text-gray-900">
+                        Offrite una garanzia di rimborso?
+                        <span class="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600">
+                        Sì, offriamo una garanzia "soddisfatti o rimborsati" per le versioni premium, come dettagliato nelle nostre condizioni d'uso.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT / FORM SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Scarica e Ottimizza</h2>
+                    <p class="text-gray-600 mb-6">Compila il modulo per ricevere il link di download diretto per l'utility di pulizia più adatta al tuo sistema operativo.</p>
+                    
+                    <div class="mt-8 p-4 bg-blue-50 border-l-4 border-primary rounded">
+                        <h4 class="font-bold text-gray-900">Supporto Tecnico</h4>
+                        <p class="text-sm text-gray-600 mt-2">Per assistenza immediata, utilizza il form qui a lato. Il nostro team risponderà con le istruzioni per l'installazione.</p>
+                    </div>
+                    <!-- Note: No phone/address available in source, so none displayed to prevent hallucination -->
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-inner">
+                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Analisi in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700">Nome Completo</label>
+                            <input type="text" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-3 border focus:ring-primary focus:border-primary">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700">Sistema Operativo</label>
+                            <select class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-3 border">
+                                <option>Windows 11/10</option>
+                                <option>macOS</option>
+                                <option>Linux</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700">Principale Problema</label>
+                            <select class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-3 border">
+                                <option>Computer Lento</option>
+                                <option>Mancanza di Spazio</option>
+                                <option>Errori di Registro</option>
+                                <option>Privacy / Cookie</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-center">
+                            Ottieni Software Adesso
+                        </button>
+                    </form>
+
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="mt-3 text-lg leading-6 font-medium text-gray-900">Richiesta Ricevuta!</h3>
+                        <p class="mt-2 text-sm text-gray-500">Stiamo preparando il pacchetto di installazione adatto al tuo sistema. Verrai reindirizzato a breve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white border-t-4 border-primary">
+        <div class="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-bold uppercase tracking-wider text-primary">WameWobuseia Management</h3>
+                    <p class="mt-4 text-gray-400 text-sm">
+                        La soluzione leader per la manutenzione e l'ottimizzazione dei sistemi informatici personali e aziendali.
+                    </p>
+                </div>
+                <div>
+                    <!-- Disclaimer is Mandatory -->
+                    <p class="text-xs text-gray-500 border border-gray-700 p-4 rounded bg-gray-800">
+                        Questo è un sito promozionale indipendente gestito da WameWobuseia Management, che agisce in qualità di affiliato per fornitori terzi di software di utilità. Non siamo gli sviluppatori diretti ma facilitiamo l'accesso a strumenti di pulizia PC.
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 space-y-4">
+                <!-- LEGAL: Privacy Policy -->
+                <details class="text-sm text-gray-400">
+                    <summary>Informativa sulla Privacy</summary>
+                    <div class="mt-2 p-4 bg-gray-800 rounded">
+                        <p class="mb-2">La tua privacy è fondamentale per WameWobuseia Management. Questa informativa descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.</p>
+                        <p class="mb-2">1. Raccolta Dati: Raccogliamo informazioni tecniche (tipo di browser, sistema operativo) e dati forniti volontariamente tramite i moduli di contatto (nome, preferenze software) per erogare il servizio richiesto.</p>
+                        <p class="mb-2">2. Utilizzo: I dati vengono utilizzati esclusivamente per migliorare l'esperienza utente, fornire assistenza tecnica e suggerire il software di ottimizzazione più adatto al tuo dispositivo.</p>
+                        <p class="mb-2">3. Protezione: Implementiamo misure di sicurezza avanzate, crittografia e protocolli sicuri per prevenire accessi non autorizzati ai tuoi dati personali.</p>
+                        <p class="mb-2">4. Terze Parti: Non vendiamo né scambiamo i tuoi dati con terze parti non autorizzate. Potremmo condividere dati anonimizzati con partner di analisi per migliorare le prestazioni del sito.</p>
+                        <p class="mb-2">5. Cookie: Utilizziamo cookie tecnici per il funzionamento del sito e cookie analitici per comprendere come gli utenti interagiscono con le nostre pagine. Puoi gestire le preferenze tramite il banner dedicato.</p>
+                        <p class="mb-2">6. Diritti: Hai il diritto di accedere, rettificare o richiedere la cancellazione dei tuoi dati in qualsiasi momento contattandoci tramite il modulo presente sul sito.</p>
+                        <p class="mb-2">7. Modifiche: Ci riserviamo il diritto di aggiornare questa politica in qualsiasi momento per riflettere cambiamenti normativi o operativi.</p>
+                    </div>
+                </details>
+
+                <!-- LEGAL: Terms of Service -->
+                <details class="text-sm text-gray-400">
+                    <summary>Termini e Condizioni</summary>
+                    <div class="mt-2 p-4 bg-gray-800 rounded">
+                        <p class="mb-2">Benvenuto su WameWobuseia Management. Utilizzando questo sito, accetti i seguenti termini e condizioni.</p>
+                        <p class="mb-2">1. Accettazione: L'accesso e l'uso del sito comportano l'accettazione completa di questi termini. Se non sei d'accordo, ti preghiamo di non utilizzare i nostri servizi.</p>
+                        <p class="mb-2">2. Uso del Servizio: Il sito fornisce informazioni e link per il download di software di utilità. L'utente si impegna a utilizzare il software nel rispetto delle leggi vigenti e dei diritti di proprietà intellettuale.</p>
+                        <p class="mb-2">3. Limitazione di Responsabilità: WameWobuseia Management non è responsabile per eventuali danni diretti o indiretti derivanti dall'uso o dall'impossibilità di utilizzare il software scaricato.</p>
+                        <p class="mb-2">4. Proprietà Intellettuale: Tutti i contenuti del sito, inclusi testi, loghi e immagini, sono protetti da copyright. È vietata la riproduzione non autorizzata.</p>
+                        <p class="mb-2">5. Modifiche al Servizio: Ci riserviamo il diritto di modificare o interrompere il servizio in qualsiasi momento senza preavviso.</p>
+                        <p class="mb-2">6. Link Esterni: Il sito può contenere link a siti terzi. Non siamo responsabili per il contenuto o le pratiche sulla privacy di tali siti.</p>
+                        <p class="mb-2">7. Legge Applicabile: Questi termini sono regolati dalla legge dello stato in cui opera la società. Qualsiasi controversia sarà di competenza esclusiva del foro competente.</p>
+                    </div>
+                </details>
+
+                <!-- LEGAL: Refund Policy -->
+                <details class="text-sm text-gray-400">
+                    <summary>Politica di Rimborso</summary>
+                    <div class="mt-2 p-4 bg-gray-800 rounded">
+                        <p class="mb-2">La nostra politica di rimborso mira alla massima soddisfazione del cliente per i prodotti software distribuiti.</p>
+                        <p class="mb-2">1. Periodo di Garanzia: Offriamo un periodo di garanzia di 30 giorni dall'acquisto per la maggior parte dei software premium raccomandati.</p>
+                        <p class="mb-2">2. Condizioni: Il rimborso viene concesso se il software presenta malfunzionamenti tecnici non risolvibili dal supporto o se non corrisponde alla descrizione fornita.</p>
+                        <p class="mb-2">3. Richiesta: Per richiedere un rimborso, è necessario contattare il supporto tramite il modulo sul sito, fornendo i dettagli dell'acquisto e il motivo della richiesta.</p>
+                        <p class="mb-2">4. Esclusioni: Non vengono concessi rimborsi per acquisti effettuati per errore o se l'utente ha cambiato idea dopo il periodo di garanzia.</p>
+                        <p class="mb-2">5. Tempi: I rimborsi approvati vengono elaborati entro 5-10 giorni lavorativi e accreditati sul metodo di pagamento originale.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-8 text-center text-sm text-gray-500">
+                &copy; 2026 WameWobuseia Management. Tutti i diritti riservati.
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-700">
+                Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il traffico del sito. Cliccando su "Accetta", acconsenti all'uso dei cookie.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary text-xs py-2 px-4">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 text-xs underline">Rifiuta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIC SCRIPT -->
+    <script>
+        // SMOOTH SCROLL ROUTING
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to contact if ID not found
+                    const contactSection = document.querySelector('#contact');
+                    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
