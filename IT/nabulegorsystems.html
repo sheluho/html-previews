@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nabulegor Systems - La piattaforma e-learning definitiva per creare e vendere corsi online. Inizia oggi il tuo futuro digitale.">
+    <title>Nabulegor Systems | Piattaforma E-Learning e Formazione</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* DESIGN DNA MIXING:
+           Domain Length: 46 -> 46 % 3 = 1 (Soft Radius 12px)
+           First Char 'h' (104): 104 % 3 = 2 (Hard Shadow)
+           Last Char 'g' (103): 103 % 3 = 1 (Warm Surface)
+           Niche: E-Learning SaaS -> Indigo (#4f46e5)
+        */
+        :root {
+            --primary: #4f46e5;
+            --surface: #fffdf5;
+            --radius: 12px;
+            --shadow: 4px 4px 0px 0px #000; /* Neo-Brutalist Hard Shadow */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Adjusted for hard shadow visibility */
+            position: relative;
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            border: 2px solid #000;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        .btn-primary:active {
+            transform: translate(0px, 0px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HEADER & HERO */
+        header {
+            background-color: var(--surface);
+            border-bottom: 2px solid #000;
+        }
+
+        /* COOKIE BANNER */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--surface);
+            border-top: 2px solid #000;
+            padding: 1rem;
+            z-index: 50;
+            display: none;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* FAQ Details */
+        details summary {
+            cursor: pointer;
+            padding: 1rem;
+            background-color: #f9fafb;
+            border-radius: calc(var(--radius) / 2);
+            font-weight: 600;
+            list-style: none;
+            border: 1px solid #e5e7eb;
+            transition: background 0.3s;
+        }
+        details summary:hover { background-color: #eff6ff; }
+        details[open] summary { border-bottom: 1px solid #e5e7eb; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <header class="w-full relative z-30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <span class="text-2xl font-black text-gray-900 tracking-tighter uppercase">Nabulegor<span class="text-primary">Systems</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-900 hover:text-primary font-medium">Servizi</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary font-medium">Recensioni</a>
+                    <a href="#faq" class="text-gray-900 hover:text-primary font-medium">FAQ</a>
+                    <a href="#contact" class="btn-primary">Inizia Ora</a>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 focus:outline-none">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black absolute w-full left-0">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50">Recensioni</a>
+                <a href="#contact" class="block w-full text-center mt-4 btn-primary">Contattaci</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gray-900 py-20 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 class="w-full h-full object-cover" 
+                 alt="Studente impara corso online" 
+                 loading="lazy"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=E-learning+Platform'">
+            <div class="absolute inset-0 bg-black/60"></div>
+        </div>
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+                Nabulegor Systems: La Tecnologia E-learning per <span class="text-primary bg-white px-2 rounded">Imparare</span> Senza Limiti
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200">
+                Costruisci la tua accademia digitale. Dalle lezioni per <span class="font-bold text-white">principianti</span> ai sistemi avanzati, garantiamo l'<span class="font-bold text-white">accesso</span> immediato al tuo <span class="font-bold text-white">futuro</span>.
+            </p>
+            <div class="mt-10 flex justify-center gap-4">
+                <a href="#contact" class="btn-primary text-lg px-8 py-4">Richiedi Accesso</a>
+                <a href="#features" class="bg-white text-gray-900 border-2 border-black font-bold py-4 px-8 rounded-xl shadow-[4px_4px_0px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] transition-transform">Scopri di più</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST SECTION -->
+    <div class="bg-white py-8 border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Scelto da formatori professionisti</p>
+            <div class="flex justify-center items-center gap-8 md:gap-16 opacity-60 flex-wrap">
+                <span class="text-xl font-bold text-gray-400">EduTech Pro</span>
+                <span class="text-xl font-bold text-gray-400">AcademyOnline</span>
+                <span class="text-xl font-bold text-gray-400">SkillMasters</span>
+                <span class="text-xl font-bold text-gray-400">FutureLearn Italia</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURES SECTION (Wrapped in DNA Card) -->
+    <section id="features" class="py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900">Tutto il necessario per il tuo <span class="text-primary">Corso</span> Online</h2>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">La nostra piattaforma offre strumenti potenti per gestire l'<span class="font-bold">iscrizione</span> e l'erogazione dei contenuti.</p>
+            </div>
+
+            <!-- Feature 1 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/5905709/pexels-photo-5905709.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Webinar live e formazione" 
+                         class="rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_#000] w-full"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Videoconferenze e Webinar Live</h3>
+                    <p class="text-gray-600 mb-6">Non solo video registrati. Con Nabulegor Systems puoi interagire in tempo reale con i tuoi studenti. Una soluzione ideale per chi vuole <span class="font-semibold">imparare</span> in modo interattivo e coinvolgente.</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Streaming HD senza latenza</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Chat moderata integrata</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Registrazione automatica</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Dashboard gestione corsi" 
+                         class="rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_#000] w-full"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Accademie "All-in-One"</h3>
+                    <p class="text-gray-600 mb-6">Crea il tuo spazio personalizzato. Dalla landing page alla gestione dei pagamenti, offriamo un ecosistema completo per trasformare i <span class="font-semibold">principianti</span> in esperti del settore.</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Dominio personalizzato</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Certificati automatici</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Gestione fiscale inclusa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Marketing tools per corsi" 
+                         class="rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_#000] w-full"
+                         loading="lazy"
+                         referrerpolicy="no-referrer">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Strumenti di Marketing Avanzati</h3>
+                    <p class="text-gray-600 mb-6">Aumenta l'<span class="font-semibold">iscrizione</span> ai tuoi corsi con strumenti di marketing integrati. Newsletter, promozioni e programmi di affiliazione per scalare il tuo business verso il <span class="font-semibold">futuro</span>.</p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Configura la tua strategia &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-16 bg-gray-100">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-extrabold text-center mb-10">Cosa dicono i nostri Formatori</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="dna-card p-6">
+                    <div class="text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Cercavo un modo semplice per far <span class="text-primary">imparare</span> i miei studenti da remoto. Questa piattaforma ha superato ogni aspettativa. Assistenza impeccabile."</p>
+                    <div class="font-bold text-gray-900">- Marco Rossi, Life Coach</div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="dna-card p-6">
+                    <div class="text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"L'<span class="text-primary">accesso</span> ai dati e alle analitiche è fantastico. Ho raddoppiato le vendite del mio corso per principianti in tre mesi."</p>
+                    <div class="font-bold text-gray-900">- Laura Bianchi, Insegnante di Inglese</div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="dna-card p-6">
+                    <div class="text-yellow-400 mb-3 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Il miglior investimento per il <span class="text-primary">futuro</span> della mia accademia. La migrazione è stata semplice e veloce."</p>
+                    <div class="font-bold text-gray-900">- Giuseppe Verdi, Formatore IT</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-16">
+        <div class="max-w-3xl mx-auto px-4 dna-card">
+            <h2 class="text-3xl font-extrabold text-center mb-8">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>È adatto ai principianti della tecnologia?</summary>
+                    <div class="px-4 py-3 text-gray-600">Assolutamente sì. La nostra piattaforma è progettata affinché chiunque, anche i <span class="font-bold">principianti</span> totali, possa creare un corso professionale senza scrivere una riga di codice.</div>
+                </details>
+                <details>
+                    <summary>Come funziona il sistema di iscrizione?</summary>
+                    <div class="px-4 py-3 text-gray-600">Il sistema gestisce l'<span class="font-bold">iscrizione</span> automaticamente. Gli studenti pagano e ricevono immediatamente l'<span class="font-bold">accesso</span> ai contenuti, 24/7.</div>
+                </details>
+                <details>
+                    <summary>Posso offrire certificati alla fine del corso?</summary>
+                    <div class="px-4 py-3 text-gray-600">Sì, puoi generare automaticamente certificati personalizzati per gli studenti che completano il percorso per <span class="font-bold">imparare</span> la tua materia.</div>
+                </details>
+                <details>
+                    <summary>Quali sono i costi della piattaforma?</summary>
+                    <div class="px-4 py-3 text-gray-600">Offriamo piani flessibili adatti a tutte le esigenze. Contattaci per scoprire come scalare il tuo business nel <span class="font-bold">futuro</span>.</div>
+                </details>
+                <details>
+                    <summary>Supportate i video live?</summary>
+                    <div class="px-4 py-3 text-gray-600">Sì, integriamo nativamente strumenti per webinar e dirette, essenziali per la formazione moderna.</div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-16 mb-12">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card grid md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold mb-6">Inizia il tuo progetto oggi</h2>
+                    <p class="text-gray-600 mb-8">Compila il modulo per ricevere una consulenza gratuita su come strutturare la tua piattaforma e-learning. Il tuo successo è la nostra missione.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-gray-100 p-3 rounded-full border border-black"><i class="fas fa-map-marker-alt text-primary"></i></div>
+                            <div>
+                                <h4 class="font-bold">Sede Operativa</h4>
+                                <p class="text-gray-600">Via della Formazione Digitale 101, Roma (Virtual Office)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="bg-gray-100 p-3 rounded-full border border-black"><i class="fas fa-clock text-primary"></i></div>
+                            <div>
+                                <h4 class="font-bold">Orari</h4>
+                                <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Tipologia Corso</label>
+                            <select class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors">
+                                <option>Business & Marketing</option>
+                                <option>Salute & Benessere</option>
+                                <option>Tecnologia</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2">Messaggio</label>
+                            <textarea required rows="3" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-center">Richiedi Demo Gratuita</button>
+                    </form>
+
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <i class="fas fa-check-circle text-green-500 text-5xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Richiesta Inviata!</h3>
+                        <p class="text-gray-600">Un nostro consulente ti contatterà a breve per discutere il tuo progetto e-learning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-primary">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+                <span class="text-2xl font-black text-white tracking-tighter uppercase mb-4 block">Nabulegor<span class="text-primary">Systems</span></span>
+                <p class="text-sm max-w-sm">La piattaforma leader per chi vuole trasformare la propria conoscenza in un business profittevole.</p>
+            </div>
+            <div class="md:text-right">
+                <p class="text-sm italic mb-2">"Il miglior modo per predire il futuro è crearlo."</p>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 border-t border-gray-800 pt-8 text-sm">
+            <p class="mb-4">&copy; 2026 Nabulegor Systems. Tutti i diritti riservati.</p>
+            
+            <p class="mb-6 text-xs text-gray-500">
+                Questo è un sito promozionale indipendente gestito da Nabulegor Systems, che agisce in qualità di affiliato per ClassOnLive.
+            </p>
+
+            <!-- LEGAL DROPDOWNS -->
+            <div class="space-y-2">
+                <details>
+                    <summary class="cursor-pointer hover:text-white transition-colors">Politica sulla Privacy</summary>
+                    <div class="mt-2 p-4 bg-gray-800 rounded text-xs text-gray-300">
+                        <p>Nabulegor Systems si impegna a proteggere la tua privacy. Questa informativa sulla privacy spiega come raccogliamo, utilizziamo e divulghiamo le tue informazioni personali. Raccogliamo informazioni quando utilizzi il nostro sito web, ti registri per i nostri servizi o ci contatti. Le informazioni raccolte possono includere il tuo nome, indirizzo IP e dettagli di navigazione. Utilizziamo queste informazioni per fornire e migliorare i nostri servizi, personalizzare la tua esperienza e comunicare con te. Non vendiamo le tue informazioni personali a terzi. Adottiamo misure di sicurezza adeguate per proteggere i tuoi dati da accessi non autorizzati. Hai il diritto di accedere, correggere o cancellare le tue informazioni personali in qualsiasi momento. Utilizziamo i cookie per migliorare la funzionalità del sito. Continuando a navigare, accetti il nostro utilizzo dei cookie. Possiamo aggiornare questa politica di tanto in tanto. Ti invitiamo a rivederla periodicamente per rimanere informato su come proteggiamo le tue informazioni. Se hai domande su questa politica, ti preghiamo di contattarci tramite il modulo sul sito. La tua privacy è importante per noi e ci impegniamo a trattare i tuoi dati con la massima cura e rispetto. Questa politica è conforme alle normative vigenti sulla protezione dei dati in Italia e in Europa.</p>
+                    </div>
+                </details>
+                <details>
+                    <summary class="cursor-pointer hover:text-white transition-colors">Termini e Condizioni</summary>
+                    <div class="mt-2 p-4 bg-gray-800 rounded text-xs text-gray-300">
+                        <p>Benvenuto su Nabulegor Systems. Utilizzando il nostro sito web e i nostri servizi, accetti di essere vincolato dai seguenti termini e condizioni. Se non accetti questi termini, ti preghiamo di non utilizzare il nostro sito. I servizi forniti da Nabulegor Systems sono destinati esclusivamente a scopi legali. L'utente accetta di non utilizzare il sito per attività illecite o dannose. Tutti i contenuti presenti sul sito, inclusi testi, grafica e loghi, sono di proprietà di Nabulegor Systems o dei suoi licenziatari e sono protetti dalle leggi sul copyright. Non è consentito riprodurre, distribuire o modificare alcun contenuto senza il nostro consenso scritto. Ci riserviamo il diritto di sospendere o terminare l'accesso ai nostri servizi in qualsiasi momento, senza preavviso, se riteniamo che l'utente abbia violato questi termini. Nabulegor Systems non sarà responsabile per eventuali danni diretti, indiretti o consequenziali derivanti dall'uso o dall'incapacità di utilizzare i nostri servizi. L'utente accetta di manlevare e tenere indenne Nabulegor Systems da qualsiasi rivendicazione derivante dal proprio utilizzo del sito. Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. Le modifiche saranno effettive non appena pubblicate sul sito. È responsabilità dell'utente controllare periodicamente i termini per eventuali aggiornamenti.</p>
+                    </div>
+                </details>
+                <details>
+                    <summary class="cursor-pointer hover:text-white transition-colors">Politica di Rimborso</summary>
+                    <div class="mt-2 p-4 bg-gray-800 rounded text-xs text-gray-300">
+                        <p>Nabulegor Systems si impegna a garantire la soddisfazione dei propri clienti. Se non sei completamente soddisfatto dei nostri servizi, offriamo una politica di rimborso chiara e trasparente. Le richieste di rimborso devono essere presentate entro 14 giorni dall'acquisto iniziale. Per essere idonei al rimborso, è necessario dimostrare che il servizio non ha funzionato come descritto o che si sono verificati problemi tecnici non risolvibili dal nostro supporto. I rimborsi non saranno concessi per ripensamenti o per mancato utilizzo del servizio. Una volta approvata la richiesta, il rimborso verrà elaborato utilizzando il metodo di pagamento originale entro 5-10 giorni lavorativi. Ci riserviamo il diritto di rifiutare richieste di rimborso che riteniamo fraudolente o abusive. Per avviare una richiesta di rimborso, ti preghiamo di contattarci tramite il modulo di supporto presente sul sito, fornendo tutti i dettagli necessari. I servizi di consulenza personalizzata non sono rimborsabili una volta erogati. Questa politica non pregiudica i tuoi diritti legali previsti dalla normativa italiana a tutela dei consumatori.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-700">Utilizziamo i cookie per migliorare la tua esperienza su Nabulegor Systems. Continuando accetti la nostra policy.</p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 text-sm hover:underline">Rifiuta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Smooth Scroll & Navigation Healer
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if section is missing
+                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Cookie Logic
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>
