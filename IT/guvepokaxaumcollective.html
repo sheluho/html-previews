@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GK Collective | Analisi Software e Strumenti di Codifica AI</title>
+    <meta name="description" content="La tua risorsa definitiva per l'analisi di software automatizzato e assistenti di codifica AI. Scopri come migliorare l'efficienza del tuo sviluppo.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: DESIGN SYSTEM (CSS Injection) -->
+    <style>
+        :root {
+            /* VAR D: Palette (Niche: Software/Dev -> Indigo) */
+            --primary: #4f46e5;
+            /* VAR C: Surface (Last Letter 's' ASCII 115 % 3 = 1 -> Warm/Cream) */
+            --surface: #fffdf5;
+            /* VAR A: Geometry (Domain Length 8 % 3 = 2 -> Pill) */
+            --radius: 24px;
+            /* VAR B: Physics (First Letter 'h' ASCII 104 % 3 = 2 -> Hard/Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Added border for Neo-Brutalist feel matching shadow */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* BRAND COMPONENT: Secondary/Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary-light { background-color: #e0e7ff; }
+
+        /* Navbar Sticky Fix */
+        .sticky-nav {
+            background-color: var(--surface);
+            border-bottom: 2px solid #000;
+            z-index: 50;
+        }
+
+        /* Form Styling */
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 12px; /* Slight reduce for inner elements */
+            border: 2px solid #d1d5db;
+            margin-bottom: 1rem;
+            background-color: #fff;
+        }
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+        
+        /* Details Summary Styling */
+        details summary {
+            cursor: pointer;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            font-weight: 600;
+        }
+        details[open] summary {
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky-nav fixed w-full top-0 left-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-black tracking-tight text-gray-900">GK COLLECTIVE</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-900 font-bold hover:text-primary">Servizi</a>
+                    <a href="#reviews" class="text-gray-900 font-bold hover:text-primary">Recensioni</a>
+                    <a href="#contact" class="btn-primary">Richiedi Analisi</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-primary focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black p-4 absolute w-full">
+            <a href="#features" class="block px-3 py-2 text-base font-bold text-gray-900 hover:bg-gray-50 rounded-md">Servizi</a>
+            <a href="#reviews" class="block px-3 py-2 text-base font-bold text-gray-900 hover:bg-gray-50 rounded-md">Recensioni</a>
+            <a href="#contact" class="block mt-4 text-center btn-primary">Richiedi Analisi</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-gray-900 pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover opacity-30" src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Software code background" referrerpolicy="no-referrer">
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-gray-900 mix-blend-multiply"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
+                Codifica Intelligente.<br><span class="text-primary">Automazione Senza Confini.</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-300">
+                La guida essenziale agli strumenti di codifica AI. Analisi critica, software automatizzato e soluzioni per sviluppatori che cercano l'efficienza pura.
+            </p>
+            <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                <a href="#features" class="btn-primary w-full sm:w-auto text-lg">Esplora le Soluzioni</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8">
+        
+        <!-- INTRO / TRUST SECTION -->
+        <div class="max-w-5xl mx-auto text-center mb-16">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Analizziamo le tecnologie usate dai leader</p>
+            <div class="mt-6 flex justify-center space-x-8 grayscale opacity-60 font-bold text-2xl text-gray-400">
+                <span>TECH_CORP</span>
+                <span>DEV_STUDIO</span>
+                <span>CODE_LABS</span>
+                <span>SOFT_SYS</span>
+            </div>
+        </div>
+
+        <!-- FEATURES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900">Servizi di Analisi Software</h2>
+                <p class="mt-4 text-lg text-gray-600">Ottimizza il tuo flusso di lavoro con la nostra expertise nella selezione degli strumenti AI.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-primary-light text-primary mb-4 border-2 border-black shadow-sm">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Confronto Assistenti AI</h3>
+                    <p class="text-gray-600">Esaminiamo in dettaglio ogni piattaforma e software di codifica assistita per garantire che tu scelga l'opzione più adatta al tuo stack tecnologico.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-primary-light text-primary mb-4 border-2 border-black shadow-sm">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Analisi dell'Efficienza</h3>
+                    <p class="text-gray-600">Misuriamo l'impatto reale dell'intelligenza artificiale sui tempi di sviluppo, con focus su risultati concreti e velocità di rilascio.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-primary-light text-primary mb-4 border-2 border-black shadow-sm">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Automazione del Workflow</h3>
+                    <p class="text-gray-600">Scopri come integrare un sistema automatizzato nel tuo ciclo DevOps per ridurre gli errori manuali e migliorare la qualità del codice.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card mt-12">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-8">Dicono di Noi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                    <div class="flex text-primary mb-2">★★★★★</div>
+                    <p class="text-gray-600 mb-4">"Grazie alla loro analisi comparativa, il nostro team ha scelto l'assistente AI perfetto. L'efficienza è aumentata del 30%."</p>
+                    <p class="font-bold text-gray-900">- Marco Rossi, CTO</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                    <div class="flex text-primary mb-2">★★★★★</div>
+                    <p class="text-gray-600 mb-4">"Una piattaforma eccellente per capire quale software di codifica adottare. Analisi tecniche molto approfondite."</p>
+                    <p class="font-bold text-gray-900">- Sofia Bianchi, Senior Dev</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                    <div class="flex text-primary mb-2">★★★★★</div>
+                    <p class="text-gray-600 mb-4">"I risultati ottenuti seguendo i loro consigli sull'automazione del codice sono stati immediati. Consigliato."</p>
+                    <p class="font-bold text-gray-900">- Luca Esposito, Tech Lead</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card mt-12">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-8">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>Che cos'è un assistente di codifica AI?</summary>
+                    <div class="p-4 text-gray-600">
+                        È un software automatizzato che utilizza l'intelligenza artificiale per suggerire, completare e correggere il codice in tempo reale, aumentando l'efficienza degli sviluppatori.
+                    </div>
+                </details>
+                <details>
+                    <summary>Quali linguaggi di programmazione sono supportati?</summary>
+                    <div class="p-4 text-gray-600">
+                        La maggior parte degli strumenti moderni supporta Python, JavaScript, TypeScript, Ruby, Go e molti altri. La nostra piattaforma analizza la compatibilità specifica di ogni tool.
+                    </div>
+                </details>
+                <details>
+                    <summary>Come viene valutata l'efficienza di questi strumenti?</summary>
+                    <div class="p-4 text-gray-600">
+                        Conduciamo test rigorosi basati sulla velocità di completamento, la precisione dei suggerimenti e la riduzione del tempo di debugging.
+                    </div>
+                </details>
+                <details>
+                    <summary>Questi software sono sicuri per il codice proprietario?</summary>
+                    <div class="p-4 text-gray-600">
+                        Dipende dallo strumento. Nelle nostre recensioni, poniamo grande attenzione alle policy sulla privacy e alla gestione dei dati sensibili da parte dei fornitori.
+                    </div>
+                </details>
+                <details>
+                    <summary>Offrite consulenza personalizzata per aziende?</summary>
+                    <div class="p-4 text-gray-600">
+                        Sì, analizziamo il flusso di lavoro specifico della tua azienda per raccomandare la soluzione automatizzata più adatta alle tue esigenze.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card mt-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Contattaci per una Consulenza</h2>
+                    <p class="text-gray-600 mb-8">
+                        Sei interessato a implementare l'IA nel tuo processo di sviluppo? Compila il modulo per ricevere un'analisi preliminare sui migliori strumenti software per la tua realtà.
+                    </p>
+                    <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Workspace" class="rounded-xl shadow-md border-2 border-black" referrerpolicy="no-referrer">
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label for="name" class="block text-sm font-bold text-gray-700 mb-2">Nome Completo</label>
+                            <input type="text" id="name" required placeholder="Mario Rossi">
+                        </div>
+                        <div>
+                            <label for="tech" class="block text-sm font-bold text-gray-700 mb-2">Interesse Tecnologico</label>
+                            <select id="tech">
+                                <option>Assistenti AI Generali</option>
+                                <option>Automazione Test</option>
+                                <option>Refactoring del Codice</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-bold text-gray-700 mb-2">Descrivi le tue esigenze</label>
+                            <textarea id="message" rows="4" required placeholder="Vorremmo migliorare l'efficienza del nostro team..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full text-center cursor-pointer">Invia Richiesta</button>
+                    </form>
+                    
+                    <div id="success-msg" style="display:none;" class="text-center py-10">
+                        <div class="text-4xl mb-4">✅</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Inviata!</h3>
+                        <p class="text-gray-600">Grazie per averci contattato. Un nostro esperto analizzerà le tue esigenze e ti risponderà presto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-white border-t-2 border-black mt-12 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-xl font-black tracking-tight text-gray-900 mb-4">GK COLLECTIVE</h2>
+            <p class="text-gray-500 mb-8 max-w-2xl mx-auto text-sm">
+                Questo è un sito promozionale indipendente gestito da GK Collective, che agisce in qualità di affiliato per Manus.im e partner associati. Non siamo gli sviluppatori diretti del software recensito.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left max-w-4xl mx-auto text-sm text-gray-600 mb-8">
+                <details>
+                    <summary>Politica sulla Privacy</summary>
+                    <p class="mt-2 p-2 bg-gray-50 rounded">
+                        GK Collective si impegna a proteggere la tua privacy. Questa informativa descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali. Raccogliamo solo le informazioni necessarie per fornire i nostri servizi di analisi software e risposta alle richieste di contatto. Non vendiamo i tuoi dati a terzi. Utilizziamo tecnologie standard per proteggere i dati da accessi non autorizzati. I cookie possono essere utilizzati per migliorare l'esperienza utente. Hai il diritto di richiedere la cancellazione dei tuoi dati in qualsiasi momento. Controlliamo periodicamente le nostre pratiche sulla privacy per garantire la conformità con le leggi vigenti in Italia e nell'Unione Europea. Le informazioni inviate tramite il modulo di contatto sono utilizzate esclusivamente per scopi di comunicazione diretta. Manteniamo i dati solo per il tempo strettamente necessario. L'uso continuato del sito costituisce l'accettazione di questa politica.
+                    </p>
+                </details>
+                <details>
+                    <summary>Termini di Servizio</summary>
+                    <p class="mt-2 p-2 bg-gray-50 rounded">
+                        Accedendo al sito di GK Collective, accetti di essere vincolato da questi termini di servizio, da tutte le leggi e dai regolamenti applicabili. Se non sei d'accordo con uno qualsiasi di questi termini, ti è vietato utilizzare o accedere a questo sito. I materiali contenuti in questo sito web sono protetti dalle leggi applicabili sul diritto d'autore e sui marchi. È concesso il permesso di scaricare temporaneamente una copia dei materiali per la visualizzazione transitoria personale e non commerciale. Questa non è un trasferimento di titolo. Il materiale fornito è solo a scopo informativo e non costituisce una consulenza professionale vincolante. Non garantiamo l'accuratezza o la completezza delle informazioni sui software di terze parti recensiti. GK Collective non sarà responsabile per eventuali danni derivanti dall'uso o dall'impossibilità di utilizzare i materiali sul sito web. Ci riserviamo il diritto di modificare questi termini in qualsiasi momento senza preavviso.
+                    </p>
+                </details>
+                <details>
+                    <summary>Politica sui Rimborsi</summary>
+                    <p class="mt-2 p-2 bg-gray-50 rounded">
+                        Poiché GK Collective opera principalmente come sito di recensioni informative e analisi comparativa di software, non vendiamo prodotti direttamente. Tuttavia, nel caso di servizi di consulenza premium concordati direttamente, applichiamo una politica trasparente. Le richieste di consulenza possono essere annullate gratuitamente fino a 24 ore prima dell'appuntamento previsto. Per i servizi già erogati sotto forma di report personalizzati, non è previsto un rimborso completo una volta che il lavoro è stato consegnato, a meno che non vi siano difetti sostanziali nella consegna rispetto a quanto concordato. Ogni reclamo sarà valutato caso per caso dal nostro team amministrativo per garantire equità e soddisfazione del cliente. Se acquisti software di terze parti tramite i nostri link di affiliazione, si applicano le politiche di rimborso del fornitore originale del software, non di GK Collective.
+                    </p>
+                </details>
+            </div>
+
+            <p class="text-gray-400 text-sm">&copy; 2026 GK Collective. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t-2 border-black p-4 z-50 hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm text-gray-700 mb-4 md:mb-0 mr-4">
+                Utilizziamo i cookie per migliorare l'analisi del sito e la tua esperienza di navigazione. Continuando accetti la nostra politica.
+            </p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-xs">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 hover:text-gray-800 underline text-xs">Rifiuta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // SMART ROUTING LOGIC
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback routing
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // COOKIE LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+        
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-banner').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
