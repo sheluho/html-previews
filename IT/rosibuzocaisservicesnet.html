@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RosiBuzocais Net - Il tuo portale di riferimento per notizie e approfondimenti sulla tecnologia digitale e i sistemi informatici.">
+    <title>RosiBuzocais Net | Editore Media Digitale</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- DNA Design System -->
+    <style>
+        :root {
+            /* VAR D: Palette (Tech/News -> Electric Blue) */
+            --primary: #2563EB; 
+            /* VAR C: Surface (Last letter 'k' (107) % 3 = 2 -> Cool) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry (Length 27 % 3 = 0 -> Sharp) */
+            --radius: 0px;
+            /* VAR B: Physics (First letter 'r' (114) % 3 = 0 -> Flat) */
+            --shadow: 0 0 0 1px #e5e7eb;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base */
+            color: #1f2937;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-1px); 
+        }
+
+        .text-primary { color: var(--primary); }
+        
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Legal Details */
+        details summary {
+            cursor: pointer;
+            padding: 1rem;
+            background-color: #edf2f7;
+            margin-bottom: 0.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+        }
+        details[open] summary {
+            background-color: #e2e8f0;
+        }
+        .legal-text {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            padding: 1rem;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1f2937;
+            color: white;
+            padding: 1rem;
+            z-index: 50;
+            display: none;
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-gray-900 tracking-tight">
+                        RosiBuzocais<span class="text-primary">Net</span>
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Servizi</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Opinioni</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">FAQ</a>
+                    <a href="#contact" class="btn-primary py-2 px-4 text-sm">Contatti</a>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-700 hover:text-primary focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block text-gray-700 hover:text-primary px-3 py-2 text-base font-medium">Servizi</a>
+                <a href="#reviews" class="block text-gray-700 hover:text-primary px-3 py-2 text-base font-medium">Opinioni</a>
+                <a href="#contact" class="block text-gray-700 hover:text-primary px-3 py-2 text-base font-medium">Contatti</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="relative bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg" alt="Tecnologia e notizie digitali" loading="lazy" referrerpolicy="no-referrer">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6">
+                RosiBuzocais Net: Il Punto di Riferimento per la <span class="text-primary">Notizia</span> Tecnologica
+            </h1>
+            <p class="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
+                L'aggiornamento costante è l'investimento più importante nel mondo del business moderno. Offriamo analisi critiche, guide strategiche e ogni <strong>annuncio</strong> cruciale per professionisti del <strong>digitale</strong>.
+            </p>
+            <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                <a href="#contact" class="btn-primary text-lg px-8 py-3">
+                    Richiedi Consulenza Editoriale
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust Bar -->
+    <div class="bg-white py-8 border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-gray-500 tracking-wide uppercase mb-4">LEADER DI SETTORE DI CUI PARLIAMO</p>
+            <div class="flex flex-wrap justify-center gap-8 items-center opacity-70">
+                <span class="text-xl font-bold text-gray-400">TechDaily</span>
+                <span class="text-xl font-bold text-gray-400">NetSystems</span>
+                <span class="text-xl font-bold text-gray-400">GlobalHost</span>
+                <span class="text-xl font-bold text-gray-400">DataFlow</span>
+                <span class="text-xl font-bold text-gray-400">CloudSecure</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Il Nostro Ecosistema Informativo</h2>
+                    <p class="mt-4 text-lg text-gray-600">Esplora il <strong>mondo</strong> dell'IT attraverso i nostri servizi editoriali curati per l'eccellenza.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="p-6 bg-white border border-gray-100 shadow-sm">
+                        <div class="w-12 h-12 bg-blue-100 text-primary flex items-center justify-center mb-4">
+                            <i class="fas fa-newspaper fa-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Notizia in Tempo Reale</h3>
+                        <p class="text-gray-600">Copertura h24 di ogni <strong>notizia</strong> rilevante nel settore hardware e software. Non perdere mai un aggiornamento critico per il tuo business.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="p-6 bg-white border border-gray-100 shadow-sm">
+                        <div class="w-12 h-12 bg-blue-100 text-primary flex items-center justify-center mb-4">
+                            <i class="fas fa-search fa-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Analisi di Sistema</h3>
+                        <p class="text-gray-600">Approfondimenti tecnici su infrastrutture cloud, sicurezza e performance. Analizziamo ogni <strong>sistema</strong> per offrirti recensioni imparziali.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="p-6 bg-white border border-gray-100 shadow-sm">
+                        <div class="w-12 h-12 bg-blue-100 text-primary flex items-center justify-center mb-4">
+                            <i class="fas fa-bullhorn fa-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Annuncio Digitale</h3>
+                        <p class="text-gray-600">Pubblichiamo ogni <strong>annuncio</strong> strategico, dalle acquisizioni aziendali ai nuovi rilasci software, garantendo una visione chiara del mercato.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section id="reviews" class="py-12">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card bg-white">
+                <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Cosa Dicono i Lettori</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"RosiBuzocais Net è diventato la mia prima fonte al mattino. La qualità delle analisi sulla tecnologia <strong>digitale</strong> è impareggiabile nel panorama italiano."</p>
+                        <p class="font-bold text-gray-900">- Marco Rossi, IT Manager</p>
+                    </div>
+                    <div class="bg-gray-50 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Cercavo un portale serio che non parlasse solo di gadget, ma di infrastruttura e business. Finalmente ho trovato chi spiega il <strong>sistema</strong> in modo chiaro."</p>
+                        <p class="font-bold text-gray-900">- Laura Bianchi, DevOps Engineer</p>
+                    </div>
+                    <div class="bg-gray-50 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Ogni <strong>annuncio</strong> importante arriva qui prima che altrove. Per chi lavora nel web hosting e cloud è una risorsa indispensabile."</p>
+                        <p class="font-bold text-gray-900">- Giovanni Esposito, CTO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-12">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti</h2>
+                <div class="space-y-4">
+                    <details class="group">
+                        <summary class="list-none flex justify-between items-center font-medium cursor-pointer text-lg text-gray-800 bg-gray-50 p-4">
+                            Quali argomenti di tecnologia trattate principalmente?
+                            <span class="transition group-open:rotate-180 ml-2">
+                                <i class="fas fa-chevron-down text-primary"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 mt-3 p-4 bg-white border-l-4 border-blue-500">
+                            Ci concentriamo su infrastrutture cloud, web hosting, sicurezza informatica e trend del <strong>mondo</strong> dello sviluppo software. Il nostro obiettivo è informare i professionisti.
+                        </div>
+                    </details>
+
+                    <details class="group">
+                        <summary class="list-none flex justify-between items-center font-medium cursor-pointer text-lg text-gray-800 bg-gray-50 p-4">
+                            Accettate guest post o collaborazioni editoriali?
+                            <span class="transition group-open:rotate-180 ml-2">
+                                <i class="fas fa-chevron-down text-primary"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 mt-3 p-4 bg-white border-l-4 border-blue-500">
+                            Sì, valutiamo costantemente nuovi contributi. Se hai un <strong>annuncio</strong> o una ricerca tecnica rilevante, contattaci tramite il modulo dedicato.
+                        </div>
+                    </details>
+
+                    <details class="group">
+                        <summary class="list-none flex justify-between items-center font-medium cursor-pointer text-lg text-gray-800 bg-gray-50 p-4">
+                            Come rimanere aggiornati su ogni nuova notizia?
+                            <span class="transition group-open:rotate-180 ml-2">
+                                <i class="fas fa-chevron-down text-primary"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 mt-3 p-4 bg-white border-l-4 border-blue-500">
+                            Aggiorniamo il portale quotidianamente. Puoi visitare la sezione "Notizie" per leggere l'ultima <strong>notizia</strong> appena pubblicata.
+                        </div>
+                    </details>
+
+                    <details class="group">
+                        <summary class="list-none flex justify-between items-center font-medium cursor-pointer text-lg text-gray-800 bg-gray-50 p-4">
+                            Offrite servizi di consulenza tecnica diretta?
+                            <span class="transition group-open:rotate-180 ml-2">
+                                <i class="fas fa-chevron-down text-primary"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 mt-3 p-4 bg-white border-l-4 border-blue-500">
+                            Operiamo principalmente come editori media. Tuttavia, tramite la nostra rete, possiamo indirizzarti verso il miglior <strong>sistema</strong> di assistenza per le tue esigenze specifiche.
+                        </div>
+                    </details>
+
+                     <details class="group">
+                        <summary class="list-none flex justify-between items-center font-medium cursor-pointer text-lg text-gray-800 bg-gray-50 p-4">
+                            Il contenuto è adatto anche ai non addetti ai lavori?
+                            <span class="transition group-open:rotate-180 ml-2">
+                                <i class="fas fa-chevron-down text-primary"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 mt-3 p-4 bg-white border-l-4 border-blue-500">
+                            Cerchiamo di rendere accessibile il <strong>digitale</strong> a tutti, ma manteniamo un livello tecnico adeguato per fornire valore reale ai professionisti del settore.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="dna-card grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Contattaci</h2>
+                    <p class="text-gray-600 mb-8">
+                        Hai un <strong>annuncio</strong> da condividere o cerchi una partnership? Il nostro team editoriale è a tua disposizione per discutere di ogni aspetto del mondo <strong>digitale</strong>.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-primary fa-lg mt-1"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Sede Redazione</h3>
+                                <p class="text-gray-600">Via Dell’Edilizia 19<br>36100 Vicenza, Italia</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-phone text-primary fa-lg mt-1"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Telefono</h3>
+                                <p class="text-gray-600">
+                                    <a href="tel:0444321155" class="hover:text-primary transition">0444 321155</a>
+                                </p>
+                                <p class="text-sm text-gray-500 mt-1">Lun - Ven, 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-none">
+                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<i class=\'fas fa-spinner fa-spin\'></i> Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo</label>
+                            <input type="text" id="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700">Telefono</label>
+                            <input type="tel" id="phone" required class="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary">
+                        </div>
+                        <div>
+                            <label for="topic" class="block text-sm font-medium text-gray-700">Argomento</label>
+                            <select id="topic" class="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary">
+                                <option>Segnalazione Notizia</option>
+                                <option>Partnership Commerciale</option>
+                                <option>Supporto Tecnico</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Messaggio</label>
+                            <textarea id="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary">
+                            Invia Richiesta
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2">
+                            Inviando questo modulo, accetti la nostra politica sulla privacy.
+                        </p>
+                    </form>
+                    
+                    <!-- Success Message -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <i class="fas fa-check-circle text-green-500 text-5xl mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900">Grazie!</h3>
+                        <p class="text-gray-600 mt-2">Abbiamo ricevuto la tua richiesta. Un membro del nostro team editoriale ti contatterà al più presto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Legal -->
+    <footer class="bg-white border-t border-gray-200 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="text-2xl font-bold text-gray-900">RosiBuzocais<span class="text-primary">Net</span></span>
+                    <p class="mt-4 text-sm text-gray-500 max-w-xs">
+                        La tua fonte affidabile per notizie, analisi e tendenze nel panorama della tecnologia e dell'informatica.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Navigazione</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#features" class="text-base text-gray-500 hover:text-gray-900">Servizi</a></li>
+                        <li><a href="#reviews" class="text-base text-gray-500 hover:text-gray-900">Recensioni</a></li>
+                        <li><a href="#contact" class="text-base text-gray-500 hover:text-gray-900">Contatti</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 mt-8">
+                 <div class="mb-6 text-sm text-gray-500 italic text-center">
+                    "Questo è un sito promozionale indipendente gestito da RosiBuzocais Net, che agisce come affiliato per Shellrent."
+                </div>
+                
+                <!-- LEGAL DROPDOWNS -->
+                <div class="max-w-4xl mx-auto space-y-2 mb-8">
+                    <details>
+                        <summary>Politica sulla Privacy</summary>
+                        <div class="legal-text">
+                            <h4 class="font-bold mb-2">1. Introduzione</h4>
+                            <p class="mb-2">La protezione dei tuoi dati personali è fondamentale per RosiBuzocais Net. Questa informativa descrive come raccogliamo, utilizziamo e proteggiamo le tue informazioni quando visiti il nostro sito web dedicato all'editoria digitale. Rispettiamo rigorosamente il Regolamento Generale sulla Protezione dei Dati (GDPR) e le leggi italiane vigenti in materia di privacy. Utilizzando i nostri servizi, acconsenti alle pratiche descritte in questo documento.</p>
+                            <h4 class="font-bold mb-2">2. Raccolta Dati</h4>
+                            <p class="mb-2">Raccogliamo dati personali che ci fornisci volontariamente attraverso i moduli di contatto, come nome, numero di telefono e preferenze di comunicazione. Inoltre, raccogliamo dati tecnici automatici, inclusi indirizzo IP, tipo di browser e pagine visitate, per migliorare l'esperienza utente e la sicurezza del sistema. Questi dati sono essenziali per fornirti le notizie e gli aggiornamenti tecnologici richiesti.</p>
+                            <h4 class="font-bold mb-2">3. Utilizzo dei Dati</h4>
+                            <p class="mb-2">I dati raccolti vengono utilizzati per gestire le tue richieste, migliorare i nostri contenuti editoriali e prevenire frodi. Non vendiamo né affittiamo i tuoi dati a terze parti per scopi di marketing senza il tuo esplicito consenso. I dati possono essere condivisi con fornitori di servizi tecnici che operano sotto stretti accordi di riservatezza per mantenere operativo il sito.</p>
+                            <h4 class="font-bold mb-2">4. Sicurezza</h4>
+                            <p class="mb-2">Implementiamo misure di sicurezza fisiche, elettroniche e procedurali per proteggere i tuoi dati personali da accessi non autorizzati, alterazioni o distruzioni. Tuttavia, nessun metodo di trasmissione su Internet è sicuro al 100%, quindi non possiamo garantire la sicurezza assoluta, pur impegnandoci al massimo livello ragionevole.</p>
+                            <h4 class="font-bold mb-2">5. Diritti dell'Utente</h4>
+                            <p>Hai il diritto di accedere, correggere, cancellare o limitare l'uso dei tuoi dati personali in qualsiasi momento. Per esercitare questi diritti, ti preghiamo di contattarci utilizzando le informazioni fornite nella sezione contatti del sito. Risponderemo alle tue richieste entro i termini legali previsti.</p>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary>Termini e Condizioni</summary>
+                        <div class="legal-text">
+                            <h4 class="font-bold mb-2">1. Accettazione dei Termini</h4>
+                            <p class="mb-2">Accedendo a questo sito web, l'utente accetta di essere vincolato dai presenti Termini e Condizioni d'uso, da tutte le leggi e i regolamenti applicabili. Se non si accettano questi termini, è vietato utilizzare o accedere a questo sito. I materiali contenuti in questo sito web sono protetti dalle leggi applicabili sul diritto d'autore e sui marchi.</p>
+                            <h4 class="font-bold mb-2">2. Licenza d'Uso</h4>
+                            <p class="mb-2">È concesso il permesso di scaricare temporaneamente una copia dei materiali (informazioni o software) sul sito web di RosiBuzocais Net solo per la visualizzazione transitoria personale e non commerciale. Questa è la concessione di una licenza, non un trasferimento di titolo, e sotto questa licenza non è possibile: modificare o copiare i materiali; utilizzare i materiali per qualsiasi scopo commerciale; tentare di decompilare o decodificare qualsiasi software contenuto nel sito.</p>
+                            <h4 class="font-bold mb-2">3. Limitazione di Responsabilità</h4>
+                            <p class="mb-2">I materiali sul sito web di RosiBuzocais Net sono forniti "così come sono". RosiBuzocais Net non fornisce alcuna garanzia, espressa o implicita, e con la presente declina e nega tutte le altre garanzie, comprese, senza limitazioni, garanzie implicite o condizioni di commerciabilità, idoneità per uno scopo particolare o non violazione della proprietà intellettuale. Inoltre, non garantiamo l'accuratezza o l'affidabilità dell'uso dei materiali sul nostro sito web.</p>
+                            <h4 class="font-bold mb-2">4. Link a Terze Parti</h4>
+                            <p class="mb-2">Il nostro servizio può contenere link a siti web o servizi di terze parti che non sono posseduti o controllati da RosiBuzocais Net. Non abbiamo alcun controllo su, e non ci assumiamo alcuna responsabilità per, il contenuto, le politiche sulla privacy o le pratiche di qualsiasi sito web o servizio di terze parti. L'utente riconosce e accetta che RosiBuzocais Net non sarà responsabile, direttamente o indirettamente, per eventuali danni o perdite causate dall'uso di tali contenuti.</p>
+                            <h4 class="font-bold mb-2">5. Modifiche</h4>
+                            <p>RosiBuzocais Net può rivedere questi termini di servizio per il suo sito web in qualsiasi momento senza preavviso. Utilizzando questo sito web, l'utente accetta di essere vincolato dalla versione allora corrente di questi termini di servizio. È responsabilità dell'utente controllare periodicamente questa pagina per eventuali modifiche.</p>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary>Politica sui Rimborsi</summary>
+                        <div class="legal-text">
+                            <h4 class="font-bold mb-2">1. Principi Generali</h4>
+                            <p class="mb-2">RosiBuzocais Net opera principalmente come piattaforma di informazione gratuita. Tuttavia, per eventuali servizi premium o consulenze a pagamento che potrebbero essere offerti, si applicano le seguenti politiche di rimborso, in conformità con la normativa vigente sulla tutela dei consumatori e sul commercio elettronico.</p>
+                            <h4 class="font-bold mb-2">2. Diritto di Recesso</h4>
+                            <p class="mb-2">Hai il diritto di recedere da un contratto di servizio entro 14 giorni dalla sua sottoscrizione senza dover fornire alcuna motivazione. Il periodo di recesso scade dopo 14 giorni dal giorno della conclusione del contratto. Per esercitare il diritto di recesso, è necessario informarci della decisione tramite una dichiarazione esplicita inviata via posta o tramite i nostri canali di contatto ufficiali.</p>
+                            <h4 class="font-bold mb-2">3. Eccezioni al Rimborso</h4>
+                            <p class="mb-2">Il diritto di recesso non si applica alla fornitura di contenuto digitale mediante un supporto non materiale se l'esecuzione è iniziata con l'accordo espresso del consumatore e con l'accettazione del fatto che in tal caso avrebbe perso il diritto di recesso. Allo stesso modo, servizi di consulenza già erogati o parzialmente erogati su richiesta specifica dell'utente non sono rimborsabili per la parte già eseguita.</p>
+                            <h4 class="font-bold mb-2">4. Procedura di Rimborso</h4>
+                            <p class="mb-2">Se il rimborso è approvato, elaboreremo il rimborso utilizzando lo stesso metodo di pagamento utilizzato per la transazione iniziale, a meno che tu non abbia espressamente convenuto altrimenti. In ogni caso, non dovrai sostenere alcun costo quale conseguenza di tale rimborso. I tempi di elaborazione possono variare a seconda dell'istituto bancario o del fornitore della carta di credito.</p>
+                            <h4 class="font-bold mb-2">5. Contatti per Rimborsi</h4>
+                            <p>Per qualsiasi domanda relativa alla nostra politica sui rimborsi o per avviare una richiesta, ti invitiamo a utilizzare il modulo di contatto presente sul nostro sito. Il nostro team amministrativo esaminerà la tua richiesta e fornirà assistenza nel più breve tempo possibile.</p>
+                        </div>
+                    </details>
+                </div>
+                
+                <p class="text-center text-gray-400 text-sm">
+                    &copy; 2026 RosiBuzocais Net. Tutti i diritti riservati.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm mb-4 md:mb-0">
+                Utilizziamo i cookie per migliorare la tua esperienza sul nostro portale di tecnologia. Continuando a navigare, accetti la nostra politica sui cookie.
+            </p>
+            <div class="flex space-x-4">
+                <button id="accept-cookies" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-bold shadow-md" style="border-radius: var(--radius)">
+                    Accetta
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Smooth Scrolling Intercept
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
+        });
+
+        // Cookie Banner Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            
+            if (!localStorage.getItem('cookiesAccepted')) {
+                banner.style.display = 'block';
+            }
+
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                banner.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
