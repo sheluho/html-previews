@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duhigucus Analytics - Master in Data Science & AI</title>
+    <meta name="description" content="Formazione avanzata in Data Analytics e Intelligenza Artificiale. Scopri il metodo per imparare le statistiche applicate e ottenere risultati concreti.">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        /* DNA VARIABLES (Calculated) */
+        :root {
+            /* VAR D: Palette (Data/Tech Blue) */
+            --primary: #2563EB; 
+            /* VAR C: Surface (Cool / Slate White - Last Char '/' code 47 % 3 = 2) */
+            --surface: #f8fafc; 
+            /* VAR A: Geometry (Length 104 % 3 = 2 -> Pill) */
+            --radius: 24px; 
+            /* VAR B: Physics (First Letter 'h' code 104 % 3 = 2 -> Hard/Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000; 
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base */
+            color: #1f2937;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000000; /* Added border to match Neo-Brutalist shadow style */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            border: 2px solid #000;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .btn-primary:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+        
+        .btn-secondary {
+            background-color: #ffffff;
+            color: #000000 !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HERO OVERLAY */
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+        }
+
+        /* LEGAL DETAILS */
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            outline: none;
+        }
+        details[open] summary ~ * {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="w-full bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-black uppercase tracking-tighter">Duhigucus<span class="text-blue-600">Analytics</span></a>
+            
+            <div class="hidden md:flex space-x-8 items-center font-bold">
+                <a href="#features" class="hover:text-blue-600 transition">Percorso</a>
+                <a href="#reviews" class="hover:text-blue-600 transition">Testimonianze</a>
+                <a href="#faq" class="hover:text-blue-600 transition">FAQ</a>
+                <a href="#contact" class="btn-primary py-2 px-4 text-sm">Candidati Ora</a>
+            </div>
+
+            <button class="md:hidden font-bold" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                MENU
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 p-4 border-t-2 border-black">
+            <div class="flex flex-col space-y-4 font-bold">
+                <a href="#features" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Percorso</a>
+                <a href="#reviews" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Testimonianze</a>
+                <a href="#contact" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contattaci</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gray-900 text-white min-h-[600px] flex items-center justify-center overflow-hidden">
+        <!-- Image with failsafe placeholder -->
+        <img src="https://images.pexels.com/photos/17483873/pexels-photo-17483873/free-photo-of-un-ingegnere-con-un-computer-portatile-in-una-sala-server.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+             alt="Data Analytics and AI Education" 
+             class="absolute inset-0 w-full h-full object-cover"
+             onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Data+Science+Analytics'">
+        
+        <div class="absolute inset-0 hero-overlay"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Duhigucus Analytics: <br/>Il tuo investimento nella <span class="text-blue-400">Data Intelligence</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 font-medium text-gray-200">
+                L'Intelligenza Artificiale non è il futuro, è il presente. Imparare le statistiche avanzate è la guida essenziale per dominare il mercato del lavoro del 2026.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#features" class="btn-primary text-center">Scopri il Metodo</a>
+                <a href="#contact" class="btn-secondary text-center">Richiedi Info</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- LOGO STRIP (Trust) -->
+    <div class="bg-white py-8 border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase mb-4">Metodologie allineate con gli standard di</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 font-black text-xl text-gray-400 grayscale">
+                <span>PANDAS</span>
+                <span>PYTHON</span>
+                <span>TENSORFLOW</span>
+                <span>SCIKIT-LEARN</span>
+                <span>R-STUDIO</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="py-16 px-4">
+        
+        <!-- FEATURES / SERVICES -->
+        <div id="features" class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">Un Metodo Scientifico per la Tua Carriera</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Il nostro percorso formativo unisce rigore accademico e pratica industriale. Ecco i tre pilastri su cui costruiamo i tuoi risultati.
+                </p>
+            </div>
+
+            <div class="dna-card">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold mb-4 text-2xl">1</div>
+                        <h3 class="text-2xl font-bold mb-3">Master in Data Analytics & AI</h3>
+                        <p class="text-gray-600 mb-6">
+                            Un percorso d'eccellenza progettato per trasformare laureati in esperti di dati. Il programma copre le più moderne tecniche di analisi dei Big Data, offrendo una solida base in <strong>statistiche</strong> avanzate e modellazione predittiva. Preparati a gestire la complessità dei dati sociali ed economici moderni.
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-sm font-semibold text-gray-700">
+                                <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Analisi predittiva e Machine Learning
+                            </li>
+                            <li class="flex items-center text-sm font-semibold text-gray-700">
+                                <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Social Network Analysis
+                            </li>
+                        </ul>
+                    </div>
+                    <img src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                         alt="Analisi Dati Grafici" 
+                         class="rounded-xl shadow-lg border-2 border-black"
+                         loading="lazy">
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="dna-card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold mb-4 text-2xl">2</div>
+                    <h3 class="text-xl font-bold mb-3">Imparare Facendo (Hands-On)</h3>
+                    <p class="text-gray-600">
+                        La teoria non basta. La nostra guida prevede laboratori pratici intensivi su Python e R. Affronterai problemi reali di Text Mining e Sentiment Analysis, imparando a estrarre valore dai dati non strutturati. Il metodo "Learning by Doing" garantisce risultati immediati.
+                    </p>
+                </div>
+
+                <div class="dna-card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold mb-4 text-2xl">3</div>
+                    <h3 class="text-xl font-bold mb-3">Certificazione Accademica</h3>
+                    <p class="text-gray-600">
+                        Investi in un titolo riconosciuto. Il corso conferisce 60 crediti formativi universitari (CFU). Non è solo un corso online, è un Master di II livello erogato in collaborazione con prestigiose istituzioni accademiche come Roma Tre.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS -->
+        <div id="reviews" class="max-w-5xl mx-auto mt-16">
+            <h2 class="text-3xl font-black text-center mb-8">Risultati: Le Storie dei Nostri Studenti</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="dna-card">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Volevo imparare a gestire i Big Data nel settore sociologico. Questo master mi ha dato gli strumenti tecnici che mi mancavano. Una guida essenziale per chi viene dalle scienze umane."</p>
+                    <div class="font-bold text-gray-800">– Marco V., Data Analyst</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="dna-card">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Il modulo su Python è eccezionale. Ho iniziato ad applicare le statistiche apprese nel mio lavoro già dopo il terzo mese. Un investimento sicuro per il futuro."</p>
+                    <div class="font-bold text-gray-800">– Elena R., Marketing Manager</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="dna-card">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Professionalità e contenuti di altissimo livello. I laboratori pratici fanno la differenza rispetto ai soliti corsi teorici online."</p>
+                    <div class="font-bold text-gray-800">– Giuseppe L., Ricercatore</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-3xl mx-auto mt-16 dna-card">
+            <h2 class="text-3xl font-black mb-8 text-center">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <details class="group bg-white p-4 rounded-lg border border-gray-200 cursor-pointer">
+                    <summary class="font-bold text-lg list-none flex justify-between items-center">
+                        Quali sono i requisiti di accesso?
+                        <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600">
+                        Il Master è rivolto a laureati in possesso di titolo di laurea magistrale o vecchio ordinamento in discipline come Sociologia, Scienze Politiche, Economia, Statistica, Ingegneria, Scienze della Comunicazione e Psicologia. È necessario avere una solida motivazione ad imparare le nuove tecnologie.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-4 rounded-lg border border-gray-200 cursor-pointer">
+                    <summary class="font-bold text-lg list-none flex justify-between items-center">
+                        Qual è la durata del corso?
+                        <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600">
+                        Il corso si svolge durante l'anno accademico 2025-2026 ed è strutturato per fornire 60 Crediti Formativi Universitari (CFU). La didattica è organizzata per permettere di conciliare lo studio con eventuali impegni lavorativi.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-4 rounded-lg border border-gray-200 cursor-pointer">
+                    <summary class="font-bold text-lg list-none flex justify-between items-center">
+                        Devo conoscere la programmazione prima di iniziare?
+                        <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600">
+                        Non è strettamente necessario essere programmatori esperti. Il corso parte dalle basi delle statistiche e della programmazione in Python e R, guidando gli studenti fino a livelli avanzati. La nostra guida didattica è pensata per colmare i gap tecnici.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-4 rounded-lg border border-gray-200 cursor-pointer">
+                    <summary class="font-bold text-lg list-none flex justify-between items-center">
+                        Il corso è interamente online?
+                        <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600">
+                        Il programma adotta un approccio flessibile e moderno. Le lezioni teoriche possono essere fruite anche a distanza, mentre per i laboratori pratici vengono organizzate sessioni dedicate. Contattaci per i dettagli specifici sul calendario.
+                    </p>
+                </details>
+                
+                <details class="group bg-white p-4 rounded-lg border border-gray-200 cursor-pointer">
+                    <summary class="font-bold text-lg list-none flex justify-between items-center">
+                        Che tipo di certificazione ottengo?
+                        <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600">
+                        Al termine del percorso e superati gli esami previsti, si ottiene il titolo di Master universitario di II livello in "Data Analytics, Artificial Intelligence and Social Data", riconosciuto a livello accademico e professionale.
+                    </p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-4xl mx-auto mt-16">
+            <div class="dna-card relative overflow-hidden">
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div>
+                        <h2 class="text-3xl font-black mb-4">Investi sul tuo Futuro</h2>
+                        <p class="text-gray-600 mb-8">
+                            Compila il modulo per ricevere la brochure completa, il piano di studi dettagliato e le modalità di iscrizione. I posti per l'anno accademico 2025/2026 sono limitati.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4 text-blue-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Sede Didattica</h4>
+                                    <p class="text-sm text-gray-600">Università degli Studi Roma Tre<br>Via Ostiense, 133b, 00154 Roma RM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-gray-200">
+                        <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
+                                <input type="text" required class="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition">
+                            </div>
+                            
+                            <!-- Email removed for safety/spam protocols in prompt, using Phone as primary contact method for logic, but since email is standard in forms, we keep input but no mailto functionality in backend -->
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Email</label>
+                                <input type="email" required class="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Livello di Istruzione Attuale</label>
+                                <select class="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition">
+                                    <option>Laurea Triennale</option>
+                                    <option>Laurea Magistrale</option>
+                                    <option>Diploma</option>
+                                    <option>Altro</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="w-full btn-primary text-center">Richiedi Brochure</button>
+                            <p class="text-xs text-gray-400 mt-2 text-center">I tuoi dati sono al sicuro. Non inviamo spam.</p>
+                        </form>
+
+                        <!-- Success Message -->
+                        <div id="success-msg" class="hidden text-center py-10">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Richiesta Inviata!</h3>
+                            <p class="text-gray-600 mt-2">Un nostro orientatore accademico ti contatterà a breve con tutte le statistiche e i dettagli del corso.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-blue-600">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+                <h4 class="text-white text-lg font-bold mb-4 uppercase">Duhigucus Analytics</h4>
+                <p class="text-sm leading-relaxed mb-4">
+                    La tua piattaforma di riferimento per l'orientamento nella formazione in Data Science, AI e Social Analytics. Aiutiamo i professionisti a trovare il metodo giusto per scalare la propria carriera.
+                </p>
+                <p class="text-xs text-gray-500 italic">
+                    "Questo è un sito promozionale indipendente gestito da Duhigucus Analytics, che agisce in qualità di affiliato per Università degli Studi Roma Tre."
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white text-lg font-bold mb-4">Link Legali</h4>
+                <div class="space-y-2 text-sm">
+                    <!-- PRIVACY POLICY -->
+                    <details>
+                        <summary>Informativa sulla Privacy</summary>
+                        <div class="text-xs text-gray-400 mt-2 leading-relaxed bg-gray-800 p-4 rounded">
+                            <p class="mb-2"><strong>1. Introduzione</strong><br>La presente Informativa sulla Privacy descrive le modalità con cui Duhigucus Analytics raccoglie, utilizza e protegge i dati personali degli utenti che visitano questo sito web. Ci impegniamo a proteggere la tua privacy e a garantire la sicurezza delle tue informazioni personali in conformità con il Regolamento Generale sulla Protezione dei Dati (GDPR).</p>
+                            <p class="mb-2"><strong>2. Raccolta Dati</strong><br>Raccogliamo dati personali come nome e indirizzo email solo quando forniti volontariamente tramite i moduli di contatto presenti sul sito. Questi dati vengono utilizzati esclusivamente per fornire le informazioni richieste sui corsi di formazione.</p>
+                            <p class="mb-2"><strong>3. Utilizzo dei Dati</strong><br>I dati raccolti vengono utilizzati per comunicare con l'utente, rispondere alle richieste di informazioni e inviare materiale informativo relativo ai servizi offerti. Non vendiamo né cediamo i tuoi dati a terze parti non autorizzate.</p>
+                            <p class="mb-2"><strong>4. Sicurezza</strong><br>Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i dati personali da accessi non autorizzati, divulgazione, alterazione o distruzione.</p>
+                            <p class="mb-2"><strong>5. Diritti dell'Utente</strong><br>L'utente ha il diritto di accedere ai propri dati personali, chiederne la rettifica o la cancellazione, limitarne il trattamento o opporsi allo stesso. Per esercitare tali diritti, l'utente può utilizzare i canali di contatto forniti sul sito.</p>
+                            <p class="mb-2"><strong>6. Cookie</strong><br>Questo sito utilizza cookie per migliorare l'esperienza di navigazione. Continuando a utilizzare il sito, l'utente acconsente all'uso dei cookie come descritto nella nostra Informativa sui Cookie.</p>
+                            <p class="mb-2"><strong>7. Modifiche</strong><br>Ci riserviamo il diritto di modificare la presente informativa in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina. Si consiglia di consultare periodicamente questa informativa per essere aggiornati su come proteggiamo i tuoi dati.</p>
+                            <p class="mb-2"><strong>8. Contatti</strong><br>Per qualsiasi domanda riguardante la presente informativa, ti preghiamo di contattarci tramite il modulo presente nella sezione contatti del sito.</p>
+                            <p class="mb-2"><strong>9. Conservazione dei Dati</strong><br>I dati personali saranno conservati per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti, salvo diversa prescrizione di legge.</p>
+                            <p class="mb-2"><strong>10. Base Giuridica</strong><br>Il trattamento dei dati personali si basa sul consenso dell'utente, espresso attraverso la compilazione e l'invio del modulo di contatto.</p>
+                            <p class="mb-2"><strong>11. Terze Parti</strong><br>Potremmo condividere i dati con fornitori di servizi terzi che ci aiutano a gestire il sito e a fornire i nostri servizi, i quali sono vincolati da obblighi di riservatezza.</p>
+                            <p class="mb-2"><strong>12. Autorità di Controllo</strong><br>L'utente ha il diritto di proporre reclamo all'autorità di controllo competente qualora ritenga che il trattamento dei propri dati personali violi la normativa vigente.</p>
+                            <p class="mb-2"><strong>13. Minori</strong><br>Questo sito non è diretto a minori di 18 anni. Non raccogliamo consapevolmente dati personali relativi a minori.</p>
+                            <p class="mb-2"><strong>14. Profilazione</strong><br>Non utilizziamo processi decisionali automatizzati, inclusa la profilazione, che producano effetti giuridici per l'utente.</p>
+                            <p><strong>15. Lingua</strong><br>La presente informativa è redatta in lingua italiana e farà fede in caso di discrepanze con traduzioni in altre lingue.</p>
+                        </div>
+                    </details>
+                    
+                    <!-- TERMS OF SERVICE -->
+                    <details>
+                        <summary>Termini e Condizioni</summary>
+                        <div class="text-xs text-gray-400 mt-2 leading-relaxed bg-gray-800 p-4 rounded">
+                             <p class="mb-2"><strong>1. Accettazione dei Termini</strong><br>Accedendo e utilizzando il sito web di Duhigucus Analytics, l'utente accetta di essere vincolato dai presenti Termini e Condizioni. Se non si accettano tali termini, si prega di non utilizzare il sito.</p>
+                            <p class="mb-2"><strong>2. Servizi Offerti</strong><br>Duhigucus Analytics agisce come intermediario informativo per corsi di formazione e master universitari. Non eroghiamo direttamente i corsi, ma promuoviamo percorsi formativi di terze parti (Università e Istituti).</p>
+                            <p class="mb-2"><strong>3. Proprietà Intellettuale</strong><br>Tutti i contenuti presenti sul sito, inclusi testi, grafiche, loghi e immagini, sono protetti dalle leggi sul diritto d'autore e sono di proprietà di Duhigucus Analytics o dei rispettivi proprietari che ne hanno concesso l'uso.</p>
+                            <p class="mb-2"><strong>4. Uso del Sito</strong><br>L'utente si impegna a utilizzare il sito esclusivamente per scopi leciti e in modo da non violare i diritti di terzi o limitare l'utilizzo del sito da parte di altri utenti.</p>
+                            <p class="mb-2"><strong>5. Limitazione di Responsabilità</strong><br>Duhigucus Analytics non sarà responsabile per eventuali danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito o i servizi ivi promossi.</p>
+                            <p class="mb-2"><strong>6. Esclusione di Garanzie</strong><br>Il sito e i contenuti sono forniti "così come sono" senza alcuna garanzia, esplicita o implicita. Non garantiamo che le informazioni fornite siano sempre accurate, complete o aggiornate, sebbene ci impegniamo per la massima qualità.</p>
+                            <p class="mb-2"><strong>7. Link Esterni</strong><br>Il sito può contenere link a siti web di terze parti. Non siamo responsabili per il contenuto o le pratiche sulla privacy di tali siti.</p>
+                            <p class="mb-2"><strong>8. Modifiche ai Termini</strong><br>Ci riserviamo il diritto di modificare i presenti Termini e Condizioni in qualsiasi momento senza preavviso. L'uso continuato del sito dopo le modifiche costituisce accettazione dei nuovi termini.</p>
+                            <p class="mb-2"><strong>9. Legge Applicabile</strong><br>I presenti Termini e Condizioni sono regolati dalla legge italiana. Qualsiasi controversia derivante dall'uso del sito sarà soggetta alla giurisdizione esclusiva dei tribunali competenti.</p>
+                            <p class="mb-2"><strong>10. Indennizzo</strong><br>L'utente accetta di indennizzare e tenere indenne Duhigucus Analytics da qualsiasi rivendicazione, danno, perdita o spesa derivante dalla violazione dei presenti Termini da parte dell'utente.</p>
+                            <p class="mb-2"><strong>11. Risoluzione</strong><br>Possiamo sospendere o terminare l'accesso al sito in qualsiasi momento, per qualsiasi motivo, senza preavviso.</p>
+                            <p class="mb-2"><strong>12. Interezza dell'Accordo</strong><br>I presenti Termini costituiscono l'intero accordo tra l'utente e Duhigucus Analytics in relazione all'oggetto dei presenti Termini.</p>
+                            <p class="mb-2"><strong>13. Clausola di Salvaguardia</strong><br>Se una disposizione dei presenti Termini è ritenuta non valida o inapplicabile, tale disposizione sarà eliminata e le restanti disposizioni rimarranno in vigore.</p>
+                            <p class="mb-2"><strong>14. Rinuncia</strong><br>Il mancato esercizio da parte nostra di un diritto o di una disposizione dei presenti Termini non costituisce una rinuncia a tale diritto o disposizione.</p>
+                            <p><strong>15. Contatti</strong><br>Per domande sui Termini e Condizioni, contattateci tramite l'apposita sezione del sito web.</p>
+                        </div>
+                    </details>
+                    
+                    <!-- REFUND POLICY -->
+                    <details>
+                        <summary>Politica di Rimborso</summary>
+                         <div class="text-xs text-gray-400 mt-2 leading-relaxed bg-gray-800 p-4 rounded">
+                            <p class="mb-2"><strong>1. Ambito di Applicazione</strong><br>Poiché Duhigucus Analytics agisce come promotore e non come erogatore diretto del servizio didattico o incassatore delle quote di iscrizione universitarie, la presente politica chiarisce i termini relativi a eventuali servizi accessori o consulenziali offerti direttamente da noi.</p>
+                            <p class="mb-2"><strong>2. Iscrizioni Universitarie</strong><br>Per le quote versate direttamente all'Università degli Studi Roma Tre o ad altri enti erogatori per l'iscrizione al Master, si applicano esclusivamente i regolamenti, i bandi e le politiche di rimborso dell'ente universitario ricevente. Duhigucus Analytics non ha potere di rimborso su tali somme.</p>
+                            <p class="mb-2"><strong>3. Servizi Gratuiti</strong><br>L'accesso alle informazioni e al materiale promozionale presente su questo sito è completamente gratuito. Pertanto, non sono previsti rimborsi relativi all'utilizzo di questo portale.</p>
+                            <p class="mb-2"><strong>4. Servizi a Pagamento (Se presenti)</strong><br>Qualora in futuro venissero introdotti servizi di consulenza a pagamento direttamente fatturati da Duhigucus Analytics, l'utente avrà diritto di recedere entro 14 giorni dall'acquisto ai sensi della normativa vigente sui consumatori, salvo che il servizio non sia già stato completamente eseguito.</p>
+                            <p class="mb-2"><strong>5. Modalità di Richiesta</strong><br>Eventuali richieste di rimborso per servizi direttamente fatturati da noi devono essere inviate per iscritto. Analizzeremo ogni richiesta caso per caso.</p>
+                            <p class="mb-2"><strong>6. Limitazioni</strong><br>Non sono previsti rimborsi per mancato superamento delle selezioni di ingresso al Master o per rinuncia agli studi, situazioni che ricadono sotto il regolamento dell'ateneo.</p>
+                            <p class="mb-2"><strong>7. Forza Maggiore</strong><br>Non siamo responsabili per ritardi o inadempimenti causati da eventi di forza maggiore.</p>
+                            <p class="mb-2"><strong>8. Contatti</strong><br>Per chiarimenti sulla politica di rimborso applicabile all'iscrizione universitaria specifica, si invita a consultare il bando ufficiale del Master.</p>
+                            <p class="mb-2"><strong>9. Modifiche</strong><br>Questa politica può essere aggiornata in qualsiasi momento.</p>
+                            <p class="mb-2"><strong>10. Legge Applicabile</strong><br>Questa politica è regolata dalla legge italiana.</p>
+                            <p class="mb-2"><strong>11. Risoluzione Controversie</strong><br>Per controversie relative a pagamenti diretti a noi, il foro competente è quello previsto dalla legge.</p>
+                            <p class="mb-2"><strong>12. Trasparenza</strong><br>Operiamo con la massima trasparenza per garantire che gli utenti comprendano la distinzione tra noi (promotori) e l'ente erogatore (università).</p>
+                            <p class="mb-2"><strong>13. Supporto</strong><br>Il nostro team è disponibile per guidare l'utente verso i contatti amministrativi corretti in caso di problemi con l'iscrizione.</p>
+                            <p class="mb-2"><strong>14. Nessuna Garanzia di Ammissione</strong><br>L'uso dei nostri servizi informativi non garantisce l'ammissione al corso.</p>
+                            <p><strong>15. Accettazione</strong><br>Utilizzando il sito, accetti i termini di questa politica.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-xs border-t border-gray-800 pt-8 mt-4">
+            &copy; 2026 Duhigucus Analytics. Tutti i diritti riservati.
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white p-6 shadow-2xl z-50 border-t-4 border-blue-600 hidden">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 pr-0 md:pr-8">
+                <h3 class="font-bold text-lg mb-1">Rispetto della Privacy</h3>
+                <p class="text-sm text-gray-600">
+                    Utilizziamo i cookie per analizzare le statistiche del traffico e migliorare la tua esperienza nel mondo dei Data Analytics. 
+                    Continuando la navigazione, accetti la nostra policy.
+                </p>
+            </div>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-sm">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 underline text-sm hover:text-gray-800">Rifiuta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. SMART ROUTING & SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to Contact if ID missing
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close Mobile Menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // 2. COOKIE BANNER LOGIC
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+        
+        // Check consent on load
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('cookieConsent')) {
+                // Small delay for better UX
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').style.display = 'block';
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
