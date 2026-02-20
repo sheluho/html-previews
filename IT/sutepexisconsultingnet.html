@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SutEpexis Consulting - Formazione Statistica Avanzata</title>
+    <meta name="description" content="Guida completa e metodo pratico per imparare l'analisi statistica, mediazione e moderazione con SPSS. Ottieni risultati concreti per la tua ricerca.">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+
+    <!-- Design DNA Injection -->
+    <style>
+        :root {
+            /* VAR D: Palette (Deep Teal for Academic/Consulting) */
+            --primary: #0f766e; 
+            /* VAR C: Surface (Warm - derived from 'forum' ending logic) */
+            --surface: #fffdf5; 
+            /* VAR A: Geometry (Length 26 % 3 = 2 -> Pill) */
+            --radius: 24px; 
+            /* VAR B: Physics (Start 's' 19 % 3 = 1 -> Material) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base */
+            color: #1f2937;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2.5rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HEADER & HERO OVERRIDES */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* FAQ Styling */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1rem;
+            background-color: rgba(0,0,0,0.03);
+            border-radius: calc(var(--radius) / 2);
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        details > summary:hover {
+            background-color: rgba(15, 118, 110, 0.1); /* Primary hint */
+        }
+        details[open] > summary {
+            background-color: var(--surface);
+            color: var(--primary);
+            border-bottom: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-gray-800 tracking-tight">SutEpexis <span class="text-primary">Consulting</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Il Metodo</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
+                    <a href="#contact" class="btn-primary">Inizia Ora</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full shadow-xl">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-4 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Il Metodo</a>
+                <a href="#reviews" class="block px-3 py-4 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Recensioni</a>
+                <a href="#faq" class="block px-3 py-4 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">FAQ</a>
+                <a href="#contact" class="block px-3 py-4 text-base font-medium text-primary font-bold">Inizia Ora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero-bg h-screen flex items-center justify-center text-center px-4 relative">
+        <div class="max-w-4xl mx-auto relative z-10 text-white pt-20">
+            <span class="uppercase tracking-widest text-sm font-bold bg-white/20 px-4 py-1 rounded-full mb-6 inline-block backdrop-blur-sm">Educazione Online Avanzata</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                La Statistica Non È Più Un Problema: <br/>Il Metodo Consulting per la Ricerca
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-100 mb-10 max-w-2xl mx-auto font-light">
+                Imparare a gestire modelli complessi non è mai stato così semplice. Scopri la guida definitiva alla mediazione e moderazione con SPSS.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#features" class="btn-primary border-2 border-transparent">Scopri il Corso</a>
+                <a href="#contact" class="px-8 py-4 bg-transparent border-2 border-white rounded-[24px] font-bold text-white hover:bg-white hover:text-gray-900 transition-all shadow-lg">Parla con un Consulente</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 space-y-16">
+
+        <!-- TRUST SECTION -->
+        <div class="max-w-5xl mx-auto text-center mb-12">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-6">Metodologie Adottate da Ricercatori di</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <span class="text-2xl font-bold text-gray-400">UNI-ROMA</span>
+                <span class="text-2xl font-bold text-gray-400">POLI-MI</span>
+                <span class="text-2xl font-bold text-gray-400">UNIBO</span>
+                <span class="text-2xl font-bold text-gray-400">PADOVA RESEARCH</span>
+            </div>
+        </div>
+
+        <!-- FEATURES / SERVICES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Cosa Imparerai con il Nostro Metodo</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">La nostra consulenza formativa si basa su tre pilastri fondamentali per garantirti risultati immediati nelle tue statistiche.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 bg-white bg-opacity-50 rounded-xl hover:bg-white transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-6 text-2xl">
+                        📊
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Modelli di Mediazione</h3>
+                    <p class="text-gray-600">
+                        Una guida passo dopo passo per comprendere come una variabile influenza l'altra. Impara a costruire e interpretare modelli semplici e complessi con SPSS e la macro PROCESS.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-6 bg-white bg-opacity-50 rounded-xl hover:bg-white transition duration-300">
+                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 text-2xl">
+                        ⚖️
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Analisi di Moderazione</h3>
+                    <p class="text-gray-600">
+                        Scopri "quando" e "per chi" un effetto si verifica. Il nostro metodo semplifica l'analisi delle interazioni condizionali, rendendo chiari anche i concetti più astrusi.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-6 bg-white bg-opacity-50 rounded-xl hover:bg-white transition duration-300">
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-6 text-2xl">
+                        📝
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Reporting e Tesi</h3>
+                    <p class="text-gray-600">
+                        Non solo numeri. Ti insegniamo come scrivere i risultati in stile accademico (APA), pronti per essere inseriti nella tua tesi o articolo scientifico senza errori.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Analisi Dati" loading="lazy" referrerpolicy="no-referrer" class="rounded-[24px] shadow-lg w-full h-64 object-cover object-center mb-6">
+            </div>
+        </section>
+
+        <!-- SOCIAL PROOF SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Storie di Successo Accademico</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-[24px] border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Pensavo di non laurearmi più. SPSS era il mio incubo. Grazie a questo corso ho capito la logica dietro i numeri e ho finito il capitolo risultati in 3 giorni."</p>
+                    <div class="font-bold text-gray-900">– Marco T., Psicologia</div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-[24px] border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Il metodo spiegato è chiarissimo. Finalmente qualcuno che parla italiano e non 'statistichese'. Fondamentale per chi usa la macro PROCESS."</p>
+                    <div class="font-bold text-gray-900">– Elena B., Ricercatrice Sociale</div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-[24px] border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Un investimento minimo per un ritorno enorme. Ho evitato di pagare consulenti costosi imparando a fare da sola le analisi di moderazione."</p>
+                    <div class="font-bold text-gray-900">– Giulia R., Dottoranda</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <details>
+                    <summary>Ho bisogno di conoscenze pregresse di statistica?</summary>
+                    <div class="p-4 text-gray-600 bg-white bg-opacity-40 rounded-b-xl">
+                        Non necessariamente. Il corso è strutturato per guidarti dai concetti base fino alle analisi più complesse. È ideale sia per principianti che per chi vuole un ripasso solido.
+                    </div>
+                </details>
+                <details>
+                    <summary>Quale software è necessario?</summary>
+                    <div class="p-4 text-gray-600 bg-white bg-opacity-40 rounded-b-xl">
+                        Il corso si concentra sull'utilizzo di IBM SPSS Statistics e sulla macro aggiuntiva PROCESS di Andrew Hayes, che è lo standard per mediazione e moderazione.
+                    </div>
+                </details>
+                <details>
+                    <summary>Come posso accedere ai materiali?</summary>
+                    <div class="p-4 text-gray-600 bg-white bg-opacity-40 rounded-b-xl">
+                        Una volta effettuata l'iscrizione, avrai accesso immediato alla piattaforma online dove troverai tutte le videolezioni e i dataset per esercitarti.
+                    </div>
+                </details>
+                <details>
+                    <summary>Il corso mi aiuterà con la mia tesi?</summary>
+                    <div class="p-4 text-gray-600 bg-white bg-opacity-40 rounded-b-xl">
+                        Assolutamente sì. Il nostro obiettivo principale è fornirti gli strumenti pratici per completare l'analisi dei dati della tua tesi sperimentale in autonomia e sicurezza.
+                    </div>
+                </details>
+                <details>
+                    <summary>Rilasciate un certificato?</summary>
+                    <div class="p-4 text-gray-600 bg-white bg-opacity-40 rounded-b-xl">
+                        Sì, al completamento del percorso formativo riceverai un attestato di partecipazione che certifica le competenze acquisite in analisi statistica avanzata.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Pronto a sbloccare la tua tesi?</h2>
+                    <p class="text-gray-600 mb-8">
+                        Non lasciare che le statistiche rallentino il tuo percorso accademico. Compila il modulo per ricevere informazioni dettagliate sul programma e sulle modalità di iscrizione.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center">
+                                📍
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Operatività</p>
+                                <p class="font-medium text-gray-900">Online & Remoto (Tutta Italia)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-xl">
+                        <p class="text-sm text-yellow-800 font-semibold">🎓 Posti limitati per la sessione corrente.</p>
+                    </div>
+                </div>
+
+                <!-- Form Card -->
+                <div class="bg-white p-8 rounded-[24px] shadow-inner border border-gray-200">
+                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition" placeholder="Il tuo nome">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Indirizzo Email</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition" placeholder="tua@email.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Livello Attuale</label>
+                            <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
+                                <option>Principiante</option>
+                                <option>Intermedio</option>
+                                <option>Avanzato</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full text-lg shadow-md">
+                            Richiedi Informazioni
+                        </button>
+                        <p class="text-xs text-gray-400 text-center mt-3">I tuoi dati sono al sicuro. Nessuno spam.</p>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="text-center py-10" style="display:none">
+                        <div class="text-5xl mb-4">✅</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Richiesta Inviata!</h3>
+                        <p class="text-gray-600">Un nostro consulente formativo ti contatterà a breve con tutte le informazioni.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <span class="text-2xl font-bold text-white tracking-tight">SutEpexis <span class="text-teal-500">Consulting</span></span>
+                    <p class="mt-4 text-sm text-gray-400 max-w-xs">
+                        La tua piattaforma di fiducia per la formazione statistica avanzata e il supporto alla ricerca accademica.
+                    </p>
+                </div>
+                <div class="text-right md:text-right text-left">
+                    <p class="text-sm font-semibold text-white mb-2">Navigazione</p>
+                    <div class="space-x-4 text-sm">
+                        <a href="#features" class="hover:text-white">Metodo</a>
+                        <a href="#reviews" class="hover:text-white">Recensioni</a>
+                        <a href="#contact" class="hover:text-white">Contatti</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-xs text-gray-500 text-center md:text-left space-y-4">
+                <p>&copy; 2026 SutEpexis Consulting. Tutti i diritti riservati.</p>
+                <p class="italic">"Questo è un sito promozionale indipendente gestito da SutEpexis Consulting, che agisce in qualità di affiliato per Analisi Statistiche."</p>
+                
+                <!-- LEGAL DROPDOWNS -->
+                <div class="space-y-2 mt-6">
+                    <details>
+                        <summary class="cursor-pointer hover:text-white transition">Informativa sulla Privacy</summary>
+                        <div class="py-4 text-justify">
+                            <p class="mb-2"><strong>1. Introduzione:</strong> In SutEpexis Consulting, prendiamo sul serio la tua privacy. Questa informativa descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali quando visiti il nostro sito web. La presente politica è redatta in conformità con le normative vigenti, incluso il Regolamento Generale sulla Protezione dei Dati (GDPR).</p>
+                            <p class="mb-2"><strong>2. Dati Raccolti:</strong> Raccogliamo informazioni che ci fornisci volontariamente, come nome e dati di contatto, quando compili i nostri moduli di richiesta informazioni. Possiamo anche raccogliere dati tecnici di navigazione, come l'indirizzo IP e il tipo di browser, per migliorare l'esperienza utente.</p>
+                            <p class="mb-2"><strong>3. Utilizzo dei Dati:</strong> I dati raccolti vengono utilizzati esclusivamente per rispondere alle tue richieste, fornirti le informazioni sui corsi di statistica e migliorare i nostri servizi. Non vendiamo né affittiamo i tuoi dati a terze parti non autorizzate.</p>
+                            <p class="mb-2"><strong>4. Sicurezza:</strong> Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, perdite o alterazioni. Tuttavia, nessuna trasmissione via internet è sicura al 100%.</p>
+                            <p class="mb-2"><strong>5. Cookie:</strong> Questo sito utilizza cookie tecnici e analitici per garantire il corretto funzionamento del sito e analizzare il traffico. Puoi gestire le tue preferenze sui cookie in qualsiasi momento.</p>
+                            <p class="mb-2"><strong>6. Diritti dell'Utente:</strong> Hai il diritto di accedere, rettificare o cancellare i tuoi dati personali in nostro possesso. Per esercitare tali diritti, puoi contattarci tramite il modulo presente sul sito.</p>
+                            <p class="mb-2"><strong>7. Modifiche:</strong> Ci riserviamo il diritto di aggiornare questa informativa in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina.</p>
+                        </div>
+                    </details>
+                    
+                    <details>
+                        <summary class="cursor-pointer hover:text-white transition">Termini e Condizioni</summary>
+                        <div class="py-4 text-justify">
+                            <p class="mb-2"><strong>1. Accettazione dei Termini:</strong> Accedendo a questo sito web, l'utente accetta di essere vincolato dai presenti Termini e Condizioni, da tutte le leggi e i regolamenti applicabili. Se non si è d'accordo con uno qualsiasi di questi termini, è vietato l'uso o l'accesso a questo sito.</p>
+                            <p class="mb-2"><strong>2. Uso della Licenza:</strong> È concesso il permesso di scaricare temporaneamente una copia dei materiali (informazioni o software) sul sito web di SutEpexis Consulting solo per la visualizzazione transitoria personale e non commerciale.</p>
+                            <p class="mb-2"><strong>3. Limitazioni:</strong> In nessun caso SutEpexis Consulting o i suoi fornitori saranno responsabili per danni (inclusi, senza limitazione, danni per perdita di dati o profitti, o a causa di interruzione dell'attività) derivanti dall'uso o dall'impossibilità di utilizzare i materiali sul sito web.</p>
+                            <p class="mb-2"><strong>4. Precisione dei Materiali:</strong> I materiali che appaiono sul sito web potrebbero includere errori tecnici, tipografici o fotografici. SutEpexis Consulting non garantisce che i materiali sul suo sito web siano accurati, completi o attuali.</p>
+                            <p class="mb-2"><strong>5. Collegamenti:</strong> SutEpexis Consulting non ha esaminato tutti i siti collegati al suo sito web e non è responsabile per i contenuti di tali siti collegati. L'inclusione di qualsiasi collegamento non implica l'approvazione da parte di SutEpexis Consulting.</p>
+                            <p class="mb-2"><strong>6. Modifiche:</strong> SutEpexis Consulting può rivedere questi termini di servizio per il suo sito web in qualsiasi momento senza preavviso. Utilizzando questo sito web, l'utente accetta di essere vincolato dalla versione corrente di questi termini di servizio.</p>
+                            <p class="mb-2"><strong>7. Legge Applicabile:</strong> Qualsiasi reclamo relativo al sito web di SutEpexis Consulting sarà regolato dalle leggi dello Stato italiano senza riguardo alle disposizioni sui conflitti di legge.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white p-6 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-50 transform translate-y-full transition-transform duration-500 border-t border-gray-200" style="display: flex;">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between w-full">
+            <p class="text-sm text-gray-600 mb-4 md:mb-0 mr-0 md:mr-8">
+                Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il nostro traffico. Cliccando su "Accetta", acconsenti al nostro utilizzo dei cookie.
+            </p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="px-6 py-2 bg-gray-200 text-gray-800 rounded-[24px] hover:bg-gray-300 font-medium transition">Rifiuta</button>
+                <button onclick="acceptCookies()" class="px-6 py-2 bg-teal-700 text-white rounded-[24px] hover:bg-teal-800 font-medium shadow-md transition">Accetta Tutto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // SMART ROUTING & SCROLL
+        document.addEventListener('DOMContentLoaded', () => {
+            // Anchor Intercept
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    // Fallback to contact if ID missing
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        console.warn(`Target ${targetId} not found. Redirecting to #contact.`);
+                        const contactSection = document.querySelector('#contact');
+                        if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            } else {
+                 document.getElementById('cookie-banner').style.display = 'none';
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 500);
+        }
+    </script>
+</body>
+</html>
