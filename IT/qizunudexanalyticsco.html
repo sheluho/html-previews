@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qizunudex Analytics | Software Utility e Ottimizzazione Sistema</title>
+    <meta name="description" content="Migliora le prestazioni del tuo dispositivo con strumenti avanzati di scansione, protezione e monitoraggio attivo gestiti da Qizunudex Analytics.">
+    
+    <!-- Tailwind CSS (Phase 2 Tech Stack) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: DESIGN SYSTEM INJECTION -->
+    <style>
+        :root {
+            /* VAR D: Palette (Indigo/Tech Blue for Analytics/Utility niche) */
+            --primary: #2563EB; 
+            /* VAR C: Surface (Domain: qizunudexanalyticsco -> ends in 'o'. Let's strictly use formula. 's' is last char of domain string 'qizunudexanalyticsco.sbs'. ASCII 's' = 115. 115 % 3 = 1 -> Warm #fffdf5) */
+            --surface: #fffdf5; 
+            /* VAR A: Geometry (Domain: 24 chars total with extension. 24 % 3 = 0 -> Sharp. Wait, prompt says length of 'qizunudexanalyticsco' is 20. 20%3=2 -> Pill 24px) */
+            --radius: 24px;
+            /* VAR B: Physics (First char 'q' = 113. 113 % 3 = 2 -> Hard Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Adjusted for Neo-brutalist to match shadow */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2.5rem;
+            transition: all 0.2s ease-in-out;
+            font-weight: 800;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 2px solid #000;
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        .text-primary { color: var(--primary); }
+
+        /* Form styling fix for DNA design */
+        input, textarea {
+            border-radius: var(--radius);
+            border: 2px solid #000 !important;
+            box-shadow: 2px 2px 0px 0px #000;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            background-color: #fff;
+            transition: all 0.2s;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            box-shadow: 4px 4px 0px 0px var(--primary);
+        }
+
+        /* Details & summary styling for FAQ and Legal */
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 1rem 0;
+            outline: none;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        details[open] summary {
+            color: var(--primary);
+            border-bottom: 2px solid #000;
+        }
+        
+        /* Cookie Banner */
+        #cookie-banner {
+            background-color: var(--surface);
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 2px solid #000;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen relative">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-10 h-10 bg-blue-600 rounded-full border-2 border-black flex items-center justify-center text-white font-bold text-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]" style="background-color: var(--primary); border-radius: var(--radius)">Q</div>
+                    <span class="font-extrabold text-2xl tracking-tight uppercase">Qizunudex Analytics</span>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-900 hover:text-blue-600 font-bold px-3 py-2 transition-colors">Ottimizzazione</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-blue-600 font-bold px-3 py-2 transition-colors">Recensioni</a>
+                    <a href="#faq" class="text-gray-900 hover:text-blue-600 font-bold px-3 py-2 transition-colors">Domande Frequenti</a>
+                </nav>
+
+                <div class="hidden md:flex items-center">
+                    <a href="#contact" class="btn-primary py-3 px-6 text-sm">Richiedi Strumento</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-blue-600 focus:outline-none p-2 border-2 border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-white">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black border-b-2">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 font-bold text-base text-gray-900 hover:bg-gray-100 border-b border-gray-200">Ottimizzazione</a>
+                <a href="#reviews" class="block px-3 py-2 font-bold text-base text-gray-900 hover:bg-gray-100 border-b border-gray-200">Recensioni</a>
+                <a href="#faq" class="block px-3 py-2 font-bold text-base text-gray-900 hover:bg-gray-100 border-b border-gray-200">Domande Frequenti</a>
+                <a href="#contact" class="block px-3 py-4 font-bold text-base text-blue-600">Richiedi Strumento</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- HERO SECTION (Full width exception, uses Bridge Slogan) -->
+        <section class="relative bg-gray-900 py-32 px-4 sm:px-6 lg:px-8 overflow-hidden border-b-2 border-black">
+            <!-- Bulletproof Background -->
+            <div class="absolute inset-0">
+                <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1f2937/ffffff?text=Tech+Analytics+Dashboard'"
+                     alt="Dashboard per l'ottimizzazione del sistema" 
+                     class="w-full h-full object-cover" 
+                     loading="lazy" 
+                     referrerpolicy="no-referrer">
+                <div class="absolute inset-0 bg-black bg-opacity-70 mix-blend-multiply"></div>
+            </div>
+            
+            <div class="relative max-w-5xl mx-auto text-center">
+                <div class="inline-flex items-center px-4 py-2 rounded-full border-2 border-black bg-blue-500 text-white font-bold text-sm mb-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] uppercase tracking-wide">
+                    Aggiornamento Disponibile 2026
+                </div>
+                <!-- H1 Bridging Slogan -->
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-8 leading-tight">
+                    L'Analisi e la <span class="text-blue-400">Scansione</span> Perfetta per l'Ottimizzazione del tuo <span class="text-blue-400">Sistema</span>
+                </h1>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-300 font-medium mb-10 leading-relaxed">
+                    Qizunudex Analytics unisce tecnologie di rilevamento dati alla pulizia avanzata. Mantieni il tuo PC fluido, pulito e al massimo delle prestazioni, gestendo file obsoleti e file temporanei in pochi click.
+                </p>
+                <div class="flex justify-center gap-4 flex-col sm:flex-row">
+                    <a href="#features" class="btn-primary text-lg">Scopri le Funzioni</a>
+                    <a href="#contact" class="bg-white text-gray-900 font-bold px-8 py-4 rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-100 transition-all uppercase tracking-wider inline-block" style="border-radius: var(--radius)">Scarica Utility</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PADDING FOR CARDS -->
+        <div class="py-16 px-4 sm:px-6 lg:px-8">
+
+            <!-- TRUST BANNER -->
+            <div class="max-w-5xl mx-auto mb-16 text-center">
+                <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Integrato con gli standard del settore tech</p>
+                <div class="flex justify-center items-center gap-8 md:gap-16 opacity-60 grayscale flex-wrap">
+                    <span class="text-2xl font-black">SysTech</span>
+                    <span class="text-2xl font-black">DataCore</span>
+                    <span class="text-2xl font-black">NetGuard</span>
+                    <span class="text-2xl font-black">OptimaPC</span>
+                </div>
+            </div>
+
+            <!-- FEATURES SECTION -->
+            <section id="features" class="max-w-5xl mx-auto dna-card">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 uppercase text-gray-900 tracking-tight border-b-4 border-blue-600 inline-block pb-2">Potenza al Tuo Comando</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Gli strumenti ideali per mantenere in salute il tuo ambiente di lavoro digitale e prevenire blocchi imprevisti.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-gray-50 p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(37,99,235,1)]" style="border-radius: var(--radius)">
+                        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center border-2 border-black mb-6">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Scansione Intelligente</h3>
+                        <p class="text-gray-700 leading-relaxed">Attiva la <span class="font-bold text-blue-600">Scansione</span> del disco per rilevare residui software, cache corrotte e file pesanti inutilizzati che occupano spazio prezioso.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-gray-50 p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(37,99,235,1)]" style="border-radius: var(--radius)">
+                        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center border-2 border-black mb-6">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Monitoraggio Attivo</h3>
+                        <p class="text-gray-700 leading-relaxed">Grazie al nostro <span class="font-bold text-blue-600">Monitoraggio</span> continuo, il software previene il rallentamento gestendo l'allocazione di memoria RAM in tempo reale in background.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-gray-50 p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(37,99,235,1)]" style="border-radius: var(--radius)">
+                        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center border-2 border-black mb-6">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Difesa e Protezione</h3>
+                        <p class="text-gray-700 leading-relaxed">Rinforza le difese eliminando tracce di navigazione e tracker invisibili. Ottieni una vera <span class="font-bold text-blue-600">Protezione</span> della privacy mentre velocizzi l'accesso alle app.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- IMAGE DIVIDER (Action Section) -->
+            <section class="max-w-5xl mx-auto dna-card bg-gray-900 border-none relative overflow-hidden flex items-center">
+                 <div class="absolute inset-0 z-0">
+                    <img src="https://images.pexels.com/photos/1714341/pexels-photo-1714341.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/1200x400/2563eb/white?text=Codice+e+Prestazioni'"
+                         alt="Prestazioni del sistema di codifica" class="w-full h-full object-cover opacity-20" loading="lazy" referrerpolicy="no-referrer">
+                 </div>
+                 <div class="relative z-10 w-full text-center py-8">
+                     <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-6 uppercase">Recupera la velocità originale del tuo computer</h3>
+                     <a href="#contact" class="btn-primary">Effettua Analisi Sistema Ora</a>
+                 </div>
+            </section>
+
+            <!-- REVIEWS SECTION -->
+            <section id="reviews" class="max-w-5xl mx-auto dna-card">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold uppercase mb-2 tracking-tight">Testimonianze 2026</h2>
+                    <p class="text-gray-600">Migliaia di utenti si affidano alla nostra soluzione.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Review 1 -->
+                    <div class="p-6 bg-white border-2 border-gray-200" style="border-radius: var(--radius)">
+                        <div class="flex text-yellow-400 mb-4">
+                            ★★★★★
+                        </div>
+                        <p class="text-gray-700 italic mb-6">"Avevo il computer bloccato. Eseguire la <strong class="text-blue-600">Scansione</strong> ha portato alla luce 12 GB di spazzatura accumulata. La differenza di reattività nel caricamento del mio <strong class="text-blue-600">Sistema</strong> è dal giorno alla notte."</p>
+                        <div class="font-bold text-gray-900 border-t-2 border-gray-100 pt-4">- Lorenzo B., Milano</div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="p-6 bg-white border-2 border-gray-200" style="border-radius: var(--radius)">
+                        <div class="flex text-yellow-400 mb-4">
+                            ★★★★★
+                        </div>
+                        <p class="text-gray-700 italic mb-6">"Come libero professionista non posso permettermi cali di frame o software bloccati. La funzione di pulizia della RAM lavora in incognito per garantire uno standard costante senza disturbarmi."</p>
+                        <div class="font-bold text-gray-900 border-t-2 border-gray-100 pt-4">- Martina C., Torino</div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="p-6 bg-white border-2 border-gray-200" style="border-radius: var(--radius)">
+                        <div class="flex text-yellow-400 mb-4">
+                            ★★★★★
+                        </div>
+                        <p class="text-gray-700 italic mb-6">"Ottimo programma, super semplice da usare rispetto ad altre alternative costose. Quello che mi piace di più è la dashboard riassuntiva che mi dice sempre il livello di <strong class="text-blue-600">Attivo</strong> impiego del disco e delle temperature."</p>
+                        <div class="font-bold text-gray-900 border-t-2 border-gray-100 pt-4">- Valerio R., Roma</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ SECTION -->
+            <section id="faq" class="max-w-5xl mx-auto dna-card">
+                <div class="mb-10 text-center">
+                    <h2 class="text-3xl font-extrabold uppercase mb-2">Domande Frequenti</h2>
+                    <p class="text-gray-600">Chiarisci ogni dubbio sul nostro strumento tecnico.</p>
+                </div>
+
+                <div class="space-y-4 max-w-3xl mx-auto">
+                    <details class="bg-white border-2 border-gray-200 px-6 py-2 shadow-sm" style="border-radius: var(--radius)">
+                        <summary class="font-bold text-lg">In che modo la utility influisce sulle prestazioni generali?</summary>
+                        <p class="pb-4 text-gray-700 mt-2">Lo strumento organizza frammenti di dati persi, pulisce registri interrotti e svuota la cache delle applicazioni di grandi dimensioni. Di conseguenza, si nota immediatamente un tempo di accensione del <strong class="text-blue-600">Sistema</strong> drasticamente ridotto e tempi di risposta migliorati per software pesanti.</p>
+                    </details>
+                    
+                    <details class="bg-white border-2 border-gray-200 px-6 py-2 shadow-sm" style="border-radius: var(--radius)">
+                        <summary class="font-bold text-lg">Devo ripetere l'analisi giornalmente?</summary>
+                        <p class="pb-4 text-gray-700 mt-2">Non necessariamente. Offriamo una feature per cui il <strong class="text-blue-600">Monitoraggio</strong> viene eseguito in background. Se preferisci, tuttavia, una singola passata completa di pulizia a settimana sarà ampiamente sufficiente.</p>
+                    </details>
+
+                    <details class="bg-white border-2 border-gray-200 px-6 py-2 shadow-sm" style="border-radius: var(--radius)">
+                        <summary class="font-bold text-lg">Garantite tutela sulla sicurezza dei miei dati personali?</summary>
+                        <p class="pb-4 text-gray-700 mt-2">Assolutamente sì. Progettiamo algoritmi che puntano ad assicurare una robusta <strong class="text-blue-600">Protezione</strong> dei documenti essenziali. Lo strumento non tocca MAI foto, video o cartelle personali non temporanee. Solo elementi di scarto verificati.</p>
+                    </details>
+
+                    <details class="bg-white border-2 border-gray-200 px-6 py-2 shadow-sm" style="border-radius: var(--radius)">
+                        <summary class="font-bold text-lg">È difficile eseguire l'avvio?</summary>
+                        <p class="pb-4 text-gray-700 mt-2">L'intero programma è strutturato secondo il principio del "1 Click". Basta premere l'ampio pulsante per inizializzare l'intero controllo senza impostazioni arzigogolate o lunghi preamboli configurativi.</p>
+                    </details>
+
+                    <details class="bg-white border-2 border-gray-200 px-6 py-2 shadow-sm" style="border-radius: var(--radius)">
+                        <summary class="font-bold text-lg">Cosa si intende per stato di lavoro continuo?</summary>
+                        <p class="pb-4 text-gray-700 mt-2">Quando lo strumento entra nella sua fase di ruolo <strong class="text-blue-600">Attivo</strong>, si prenderà cura costantemente di smaltire micro-ritardi appena chiudi le varie tab del browser, impedendo saturazioni cumulative prima che causino danni ai freeze video.</p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- CONTACT / DOWNLOAD FORM SECTION -->
+            <!-- NO PHONE OR ADDRESS FOUND IN DONOR - ONLY FORM AS REQUIRED BY RULES -->
+            <section id="contact" class="max-w-5xl mx-auto dna-card bg-blue-50 border-2 border-blue-600 shadow-[8px_8px_0px_0px_rgba(37,99,235,1)]">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <div>
+                        <div class="inline-block bg-white text-blue-600 px-4 py-1 font-bold text-sm uppercase tracking-wider mb-4 border-2 border-black" style="border-radius: var(--radius)">Passaggio Finale</div>
+                        <h2 class="text-3xl md:text-5xl font-extrabold uppercase leading-tight mb-6">Pronto per un<br>PC più Rapido?</h2>
+                        <p class="text-xl text-gray-700 mb-8 font-medium">Richiedi l'accesso al link ufficiale di download protetto compilandoti con i dati qui affianco.</p>
+                        
+                        <div class="space-y-4 mb-8 bg-white p-6 border-2 border-gray-200" style="border-radius: var(--radius)">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="font-bold text-gray-800">Software pulito senza bloatware</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="font-bold text-gray-800">Supporto compatibilità Windows</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="font-bold text-gray-800">Installazione semplificata in pochi click</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FORM -->
+                    <div class="bg-white p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative" style="border-radius: var(--radius)">
+                        <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                            <h3 class="text-2xl font-bold mb-4">Ricevi Link di Download</h3>
+                            
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 uppercase" for="name">Il tuo Nome</label>
+                                <input type="text" id="name" required placeholder="Es. Mario Rossi">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 uppercase" for="system">Versione Sistema Operativo</label>
+                                <select class="w-full mt-2 mb-4 p-3 bg-white border-2 border-black rounded-[var(--radius)] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-medium outline-none focus:shadow-[4px_4px_0px_0px_var(--primary)] transition-all">
+                                    <option value="win11">Windows 11</option>
+                                    <option value="win10">Windows 10</option>
+                                    <option value="win8">Windows 8.1</option>
+                                    <option value="other">Altro (Specificare sotto)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 uppercase" for="issue">Principale problema notato</label>
+                                <textarea id="issue" rows="3" required placeholder="Lentezza generale, pop-up anomali, ventole rumorose..."></textarea>
+                            </div>
+                            
+                            <p class="text-xs text-gray-500 leading-tight my-4">Premendo il pulsante dichiari di accettare termini ed informative legali relative alla registrazione alla distribuzione. Non cediamo le tue metriche ai publisher non validi.</p>
+                            
+                            <button type="submit" class="w-full btn-primary mt-2">Genera Link Utility</button>
+                        </form>
+
+                        <!-- Success Message -->
+                        <div id="success-msg" style="display:none" class="text-center py-10">
+                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center border-2 border-green-600 mx-auto mb-6">
+                                <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <h3 class="text-2xl font-black uppercase text-gray-900 mb-2">Richiesta Confermata!</h3>
+                            <p class="text-lg text-gray-600 font-medium">Il nostro motore cloud ha processato l'ambiente corretto per te. Segui i prossimi passi sullo schermo di completamento automatico.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white border-t-4 border-blue-600 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="lg:col-span-2">
+                    <span class="font-black text-2xl uppercase tracking-widest text-white mb-4 block flex items-center gap-2">
+                        <div class="w-8 h-8 bg-blue-600 rounded-full text-white text-base flex justify-center items-center">Q</div>
+                        Qizunudex Analytics
+                    </span>
+                    <p class="text-gray-400 mb-6 max-w-sm">Mettiamo l'accelerazione a tua disposizione curando lo smaltimento dei rallentamenti digitali. Rivoluziona oggi stesso la fluidità computazionale del tuo computer con strumenti mirati, innovativi e orientati a non interromperti mai nel mezzo di una prestazione operativa fondamentale per il tuo lavoro domestico e professionale aziendale garantendo un servizio pulito alla matrice.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold uppercase mb-4 text-blue-400 border-b-2 border-gray-700 pb-2 inline-block">Mappa Navigazione rapida</h4>
+                    <ul class="space-y-3 mt-4 text-gray-300">
+                        <li><a href="#features" class="hover:text-white transition-colors">Panoramica Ottimizzazioni Tecnologiche</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition-colors">Testimonianze dei consumatori ed Esperti</a></li>
+                        <li><a href="#faq" class="hover:text-white transition-colors">Centro delle risposte e documentazione tecnica</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Porta principale ai nostri prodotti e Link Download</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold uppercase mb-4 text-blue-400 border-b-2 border-gray-700 pb-2 inline-block">Nota Legale Affiliazione Commerciale e Partner</h4>
+                    <p class="text-xs text-gray-400 font-bold bg-gray-800 p-4 rounded-md border border-gray-700 mt-4 leading-relaxed">
+                        Questo è un sito promozionale indipendente gestito da Qizunudex Analytics, che agisce in qualità di affiliato per PC HelpSoft. I marchi commerciali presentati sul sito ufficiale appartengono ai rispettivi detentori diretti conformi al diritto internazionale sull'industria dell'intelletto delle software house collegate nella distribuzione digitale delle licenze associate qui menzionate esclusivamente ad uso descrittivo non ufficiale o confuso per le stesse.
+                    </p>
+                </div>
+            </div>
+
+            <!-- LEGAL DOCUMENTATION DETAILS -->
+            <div class="border-t border-gray-800 pt-8 mt-8 text-sm text-gray-400 space-y-4">
+                <details class="group bg-gray-800 p-4 rounded-md cursor-pointer hover:bg-gray-750 transition-colors">
+                    <summary class="font-bold text-white uppercase tracking-wider outline-none mb-2 border-none">Normativa e Documento di Privacy Policy per il portale del software</summary>
+                    <div class="mt-4 space-y-2 leading-relaxed text-gray-300">
+                        <p>Il presente documento traccia in che misura il portale denominato Qizunudex Analytics acquisisca, raggruppi, applichi e preservi qualsivoglia forma di informazione ottenuta durante la navigazione ed interazione sul nostro specifico sito rivolto alla scoperta ed esplorazione delle applicazioni tecniche di ottimizzazione destinate ai dispositivi per l'utenza privata mondiale globale. Rispettiamo severamente i protocolli base legiferati dai mandati attuali riguardanti il settore dell'innovazione elettronica in internet.</p>
+                        <p>Noi non preleveremo in maniera inaspettata l'accesso alla vostra rubrica per vendite sgradevoli o procedure contrarie all'etica morale. Registriamo solamente input e dati immessi liberamente in relazione a caselle quali il proprio identificativo appellativo di nome, preferenze sui macchinari hardware e sistemi legati operativi inseriti dalla tastiera manuale umana tramite moduli proposti sul dominio visibile per lo scopo finalizzato a soddisfare la necessità dello strumento domandato ed inviare conseguentemente interfacce scaricabili attinenti.</p>
+                        <p>Adoperiamo tecnologie sicure sui database ed affidiamo ad architetture rinomate nel settore web hosting server il processo di decrittazione crittografia per bloccare a cybercriminali intrusivi e malintenzionati esternalizzati l'ipotesi spiacevole di catturare i form completati presenti sopra l'url di navigazione esposto del nostro sito affiliato in particolare. Conserveremo tutto questo in tempi assolutamente delimitati finchè si riscontrerà una oggettiva natura funzionale rispetto all'originario permesso elargito coscientemente dell'appassionato, o cliente navigante, poi procederemo ad applicare una rapida cancellazione eliminazione dalle liste correnti. Tutti i cookies primari si intendono come puramente agevolanti i controlli fluidi di presentazione visiva ed interfaccia sul frontend dei dispositivi telefonici, mobili, personal computer. Al fine di inoltrare interrogazioni sui protocolli documentati inerenti al suddetto archivio informatico descritto nel preambolo legale che ci compone ed accomuna col regolamento qui dichiarato apertamente per il cittadino senza ambiguità di intenti commerciali secondari truffaldini o occulti sotterfugi operativi e finanziari in questo business informatico di software specifici di monitoraggi di performance per l'ambiente windows pc pulito. Si adoperi la pagina stessa predisposta precedentemente.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-800 p-4 rounded-md cursor-pointer hover:bg-gray-750 transition-colors">
+                    <summary class="font-bold text-white uppercase tracking-wider outline-none mb-2 border-none">Disposizioni ed Accordi dei Termini per Servizi Forniti Agli Utenti</summary>
+                    <div class="mt-4 space-y-2 leading-relaxed text-gray-300">
+                        <p>Effettuando una ricerca sul sito medesimo il visitatore implicitamente ed istantaneamente avvalla nella loro piena accezione rigorosa ed obbligatoria l'ottemperanza di codesti statuti d'uso in qualità di norma vincolante, pertanto un probabile rifiuto parziale su singoli elementi enunciati nelle righe successive comporta intrinsecamente il netto rigetto dell'accordo ed a sua discrezionalità dovrà desistere ad accedere procedere col servizio.</p>
+                        <p>I contenuti esibiti compresi immagini editoriali scritte loghi schemi e meccaniche della nostra identità autonoma restano per i nostri mezzi concessione governata sotto il diretto imperio tutelante dalla direttiva che protegge ingegni propri del proprietario intestatario esclusivo della landing o associati da lui promossi nei riguardi. Modificare manomettere scopiazzare ricondividere commercializzare porzioni delle facciate, delle diciture tradotte linguisticamente ed idee architettate presentate visivamente ai monitor e smartphone risulta indiscutibilmente fatto grave se difettanti della primaria necessaria liberatoria messa al vaglio su carta e firmata per mezzo legittimo. È da tener fermamente conto il principio della completa indipendenza tra noi operatori attivi web ed i prodotti originari e aziende originali software madri e sviluppatrici; escludiamo formalmente qualsiasi presa di onere garanzia e manleva su malfunzionamenti difetti blocchi del software prodotto stesso e per qualsivoglia tipologia originaria del programmatore esterno a noi.</p>
+                        <p>Cerchiamo accuratamente l'esattezza metodica grammaticale testuale nei descrittivi ma è materialmente impossibile azzerare fallimenti imprevisti, sviste o scarti tra dati, potendo insorgere non veritieri aggiornamenti improvvisi fuori dal potere della nostra rete ed alterare promesse originarie. Gli sviluppatori centrali software possono di diritto rimettere ed abrogare editti ed aggiustamenti vari sull'identificativo esibito di loro applicativi per scopi operativi ed integrativi futuri ai quali non diamo riscontro preannunciato. Trattative controversie questioni si relazioneranno in termini stringenti tramite il consueto riempimento della form presentata in precedenza, assicurando pazienza ai recettori prima di emettere conclusioni definitive circa l'utilizzo concesso sulle nostre piattaforme adatte ed accessibili ovunque per tutti con strumenti ordinari di browsing su fibra mobile e ADSL per reperire programmi digitali. Nessun contratto assicurativo o simile va incluso o menzionato su guasti del portatile collegabile ad agenti o processi qui elencati sui moduli di controllo, è severamente tenuto chi usa la tecnologia di saper preservare lo status della sua attrezzatura regolarmente eseguendo prassi consone e di comune intelligenza a prescindere dall'installato prodotto suggerito sul posto in quanto mero consiglio.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-800 p-4 rounded-md cursor-pointer hover:bg-gray-750 transition-colors">
+                    <summary class="font-bold text-white uppercase tracking-wider outline-none mb-2 border-none">Specifiche sulle Revoche del Consenso e Dinamiche Di Ritorno Prodotti Software Acquistati o Distribuiti nel Circuito</summary>
+                    <div class="mt-4 space-y-2 leading-relaxed text-gray-300">
+                        <p>Riflettendo essenzialmente l'anima di noi gestori che si occupano puramente di orientare informativamente da punto distaccato i navigatori attraverso suggerimenti esplicativi ad un tracciato web indirizzato vero ad applicativi realizzati ed ammodernizzati sotto un cappello di venditore diverso proprietario fornitore indipendente ed avulso dal presente sito informatico. Bisogna distinguere apertamente in partenza i punti in gioco dei soggetti venditori sul mercato informatico. Di fatto la totale estraneità tecnica logistica ed ammnistrativa dal percepimento del costo denaro transazione tra l'entità distributiva produttrice primaria o del negozio virtuale dove fisicamente il carello telematico giace in maniera effettiva vi chiarisce ampiamente le possibilità d'impatto.</p>
+                        <p>Ogni rimostranza controversia obiezione restituzione e malcontento materiale generico scaturente e causato dallo speso economico sul mezzo virtuale originario andrà reindirizzata inevitabilmente senza perdite o scarti verso il reparto post-vendita dedito ai contenziosi che lavora nei ranghi dei medesimi artefici programmatori o licenziatari detentori di questi particolari beni intangibili qui segnalati solo come consiglio per raddrizzamento prestazioni veloci su memoria pc in esame e sotto forma gratuita conoscitiva sul canale per Voi preparato. Come redazione in quanto mediatrice affiliante, raccomandiamo d'avere una perentoria prassi accademica nello spulciare con zelo gli iter restrittivi applicati direttamente nel momento dell'ordinazione presso l'apposito mercante. I download puramente freeware forniti di prova dal sistema distributore si esulano automaticamente da rientri di denaro trattandosi già d'assenza della contropartita. Laddove esistessero fraintendimenti interpretazioni distorte sulle specifiche funzioni dichiarate dal sito di nostro lavoro, questo frangente non crea basi solide d'obbligo vincolanti tra noi creatori delle vetrine espositive virtuali.</p>
+                        <p>Pertanto sollecitiamo, ribadendo ripetutamente nel modo limpido un messaggio centrale, di inviare compilare l'appropriata burocrazia elettronica presso lo spazio telematico d'ordine per riottenimenti legittimi sui vostri esborsi bancari ed escludendo qualsiasi form di richiesta sulle nostre caselle moduli e format a prescindere dai termini prescritti da norme del paese cittadino da cui ci leggete su questo display di lettura pubblica informatica generale e che noi in totale buon senso approviamo al pieno e lodiamo senza limiti come giusti ed equitativi nelle garanzie ed indennizzi del consumo del web mondiale per gli oggetti comprati o ceduti nella virtualità del network.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-12 text-center text-gray-500 font-medium">
+                &copy; 2026 Qizunudex Analytics. Tutti i diritti riservati. Sito ottimizzato a regola d'arte.
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full z-50 transform translate-y-full transition-transform duration-500 p-6 flex flex-col sm:flex-row justify-between items-center gap-4 border-2 border-black" style="box-shadow: 0 -4px 0px 0px #000;">
+        <div class="text-sm font-medium">
+            <p class="font-bold text-lg mb-1">Miglioramento Esperienza Locale</p>
+            Impieghiamo stringhe crittografate cookies tecniche per la calibrazione adeguata della grafica su risoluzioni dello schermo diversificate e migliorare la navigazione sui nostri tutorial e suggerimenti.
+        </div>
+        <div class="flex gap-4 flex-shrink-0">
+            <button id="accept-cookies" class="btn-primary py-2 px-6">Accetto e Comprendo</button>
+        </div>
+    </div>
+
+    <!-- Smart Routing and Functionality Script (Gravity Well Protocol) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Self-Healing Smart Routing interceptor for anchors
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Exists -> Smooth scroll directly
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        // Target missing -> Failsafe: Force scroll to Contact form (#contact)
+                        console.warn(`Anchor #${targetId} missing. Redirecting to gravity well (#contact).`);
+                        const fallbackElement = document.getElementById('contact');
+                        if (fallbackElement) {
+                            fallbackElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+
+                    // Also close mobile menu if opened
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Cookie Banner Logic with localStorage
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            
+            if (!localStorage.getItem('cookie_consent_qizunudex')) {
+                // Show banner slightly delayed for attention
+                setTimeout(() => {
+                    cookieBanner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookie_consent_qizunudex', 'true');
+                cookieBanner.classList.add('translate-y-full');
+            });
+        });
+    </script>
+</body>
+</html>
