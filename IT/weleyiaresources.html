@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weleyia Resources | Digital Media Publisher</title>
+    <meta name="description" content="Editoria digitale, informazione e approfondimenti su tecnologia e cybersecurity.">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: DESIGN SYSTEM (CSS Injection) -->
+    <style>
+        :root {
+            /* VAR D: Palette (Deep Blue for Corporate/Tech Publishing) */
+            --primary: #2563eb; 
+            /* VAR C: Surface ('s' % 3 = 1 -> Warm White) */
+            --surface: #fffdf5; 
+            /* VAR A: Geometry (Length 20 % 3 = 2 -> Pill) */
+            --radius: 24px; 
+            /* VAR B: Physics ('w' % 3 = 2 -> Hard Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000; 
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray to make cards pop */
+            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            scroll-behavior: smooth;
+            padding-top: 80px; /* Offset for fixed header */
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Neo-brutalist distinct border */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s ease;
+            font-weight: 700;
+            border: 2px solid #000;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.95;
+            transform: translateY(2px) translateX(2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        .prose p { margin-bottom: 1em; line-height: 1.6; }
+        
+        details summary { cursor: pointer; outline: none; }
+        details summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full bg-white border-b-2 border-black z-50 shadow-sm" style="height: 80px;">
+        <div class="max-w-6xl mx-auto px-4 h-full flex justify-between items-center">
+            <div class="font-black text-2xl tracking-tighter uppercase text-primary">
+                Weleyia Resources.
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-8 font-bold text-sm">
+                <a href="#about" class="hover:text-primary transition-colors">La Visione</a>
+                <a href="#features" class="hover:text-primary transition-colors">Editoria</a>
+                <a href="#reviews" class="hover:text-primary transition-colors">Testimonianze</a>
+                <a href="#faq" class="hover:text-primary transition-colors">FAQ</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Contatti</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden block text-2xl font-black focus:outline-none">
+                ☰
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-white border-b-2 border-black flex flex-col p-4 shadow-xl z-50">
+            <a href="#about" class="py-3 font-bold border-b border-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">La Visione</a>
+            <a href="#features" class="py-3 font-bold border-b border-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Editoria</a>
+            <a href="#reviews" class="py-3 font-bold border-b border-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Testimonianze</a>
+            <a href="#faq" class="py-3 font-bold border-b border-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">FAQ</a>
+            <a href="#contact" class="py-3 font-bold text-primary" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contatti</a>
+        </div>
+    </header>
+
+    <!-- Main Content wrapper -->
+    <main class="w-full px-4 pt-8 pb-16">
+
+        <!-- HERO SECTION (Full width exception, integrated context) -->
+        <div class="max-w-6xl mx-auto mb-16 relative overflow-hidden rounded-[var(--radius)] shadow-[var(--shadow)] border-2 border-black bg-white" style="border-radius: var(--radius);">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600?text=Digital+Publisher+Office'" 
+                     alt="Publisher Background" 
+                     class="w-full h-full object-cover opacity-90"
+                     referrerpolicy="no-referrer">
+                <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+            </div>
+            
+            <div class="relative z-10 px-6 py-24 md:py-32 text-center flex flex-col items-center">
+                <!-- Bridging Slogan -->
+                <h1 class="text-4xl md:text-6xl font-black text-white leading-tight mb-6 max-w-4xl">
+                    Le Risorse Essenziali per Dominare l'Informazione nel <span class="text-yellow-400">Mondo</span> IT
+                </h1>
+                <p class="text-xl text-gray-200 mb-10 max-w-2xl font-medium">
+                    Weleyia Resources è l'editore premium per i professionisti della <span class="text-yellow-400 font-bold">tecnologia</span>. Trasformiamo l'informazione complessa in vantaggio competitivo.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#features" class="btn-primary">Scopri le Pubblicazioni</a>
+                    <a href="#contact" class="btn-primary" style="background-color: white; color: black !important;">Abbonati Ora</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PARTNER / TRUST BANNER -->
+        <div class="max-w-5xl mx-auto mb-16 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6">Letto dai leader di settore nelle aziende in espansione</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale font-black text-xl text-gray-600">
+                <span>TECH.INSIGHTS</span>
+                <span>CYBER DATA CORP</span>
+                <span>GLOBAL SEC SYSTEMS</span>
+                <span>ITALIA INFORMATICA</span>
+            </div>
+        </div>
+
+        <!-- FEATURES / SERVICES DNA CARD -->
+        <div id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-black mb-8 border-b-2 border-black pb-4 text-primary uppercase">Linee Editoriali</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div>
+                    <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 border-2 border-primary">01</div>
+                    <h3 class="text-xl font-bold mb-3">Flash News Cyber</h3>
+                    <p class="text-gray-700">Rimani costantemente aggiornato. Analizziamo e filtriamo in tempo reale ogni singola <strong class="text-black">notizia</strong> riguardante minacce cyber, patch di sicurezza e sviluppi dell'industria per darti un quadro d'insieme pulito e immediato.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div>
+                    <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 border-2 border-primary">02</div>
+                    <h3 class="text-xl font-bold mb-3">Analisi dell'Infrastruttura</h3>
+                    <p class="text-gray-700">Report approfonditi sull'evoluzione tecnica moderna. Valutiamo le architetture aziendali ed ogni <strong class="text-black">sistema</strong> critico, offrendo manuali tecnici esclusivi redatti dai nostri ricercatori editoriali.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div>
+                    <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 border-2 border-primary">03</div>
+                    <h3 class="text-xl font-bold mb-3">Sponsored Content</h3>
+                    <p class="text-gray-700">Vuoi raggiungere migliaia di IT manager in Italia? La nostra rete permette di inserire in maniera strategica il tuo <strong class="text-black">annuncio</strong> aziendale o articolo sponsorizzato all'interno delle nostre esclusive newsletter settimanali.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOCIAL PROOF / REVIEWS DNA CARD -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24 bg-gray-900 text-white" style="--surface: #111827; --shadow: 4px 4px 0px 0px #fff; border: 2px solid white;">
+            <h2 class="text-3xl font-black mb-8 border-b-2 border-white pb-4 uppercase">Cosa Dicono i Lettori</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                    <p class="italic text-gray-300 mb-4">"Nel mercato editoriale <span class="font-bold text-yellow-400">digitale</span> di oggi, l'accuratezza è tutto. Weleyia Resources offre le migliori inchieste sulla sicurezza delle informazioni che abbia mai letto. Indispensabile per la rassegna stampa del mattino."</p>
+                    <div class="flex items-center gap-4 mt-auto">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center font-bold text-white border-2 border-white">MR</div>
+                        <div>
+                            <div class="font-bold">Marco Rossi</div>
+                            <div class="text-sm text-gray-400">Direttore IT, DataServ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                    <p class="italic text-gray-300 mb-4">"La profondità dei loro whitepaper di <span class="font-bold text-yellow-400">tecnologia</span> ha migliorato drasticamente il nostro processo decisionale aziendale. Un publisher che fa vera informazione, slegata da comunicati stampa copia-incolla."</p>
+                    <div class="flex items-center gap-4 mt-auto">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center font-bold text-white border-2 border-white">LC</div>
+                        <div>
+                            <div class="font-bold">Laura Conti</div>
+                            <div class="text-sm text-gray-400">Senior Cyber Analyst</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ DNA CARD -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-black mb-8 border-b-2 border-black pb-4 text-primary uppercase">Domande Frequenti (FAQ)</h2>
+            
+            <div class="space-y-4">
+                <details class="bg-gray-50 border-2 border-black rounded-[calc(var(--radius)/2)] group">
+                    <summary class="font-bold p-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors rounded-[calc(var(--radius)/2)]">
+                        Che tipo di testata giornalistica siete?
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="p-4 pt-0 text-gray-700 border-t border-gray-200 mt-2">
+                        Weleyia Resources è un operatore media specializzato nel segmento B2B dell'Information Technology e della Sicurezza Informatica. Non facciamo consulenza, ma curiamo edizioni, report di settore, rassegne di intelligence pubblica.
+                    </div>
+                </details>
+
+                <details class="bg-gray-50 border-2 border-black rounded-[calc(var(--radius)/2)] group">
+                    <summary class="font-bold p-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors rounded-[calc(var(--radius)/2)]">
+                        Ogni quanto esce il vostro bollettino riservato?
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="p-4 pt-0 text-gray-700 border-t border-gray-200 mt-2">
+                        Le edizioni "Executive Brief" vengono diramate tramite circuito editoriale privato tre volte a settimana, coprendo sviluppi globali e regionali che impattano gli asset societari.
+                    </div>
+                </details>
+
+                <details class="bg-gray-50 border-2 border-black rounded-[calc(var(--radius)/2)] group">
+                    <summary class="font-bold p-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors rounded-[calc(var(--radius)/2)]">
+                        Come funziona il servizio per la stampa dell'Annuncio sponsorizzato?
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="p-4 pt-0 text-gray-700 border-t border-gray-200 mt-2">
+                        Le aziende tecnologiche possono inviare proposte di contenuto native o formati advertorial. Un editor valuterà la coerenza del contenuto. In caso positivo, il vostro brand comparirà tra gli articoli principali con dicitura chiara di sponsorizzazione.
+                    </div>
+                </details>
+
+                <details class="bg-gray-50 border-2 border-black rounded-[calc(var(--radius)/2)] group">
+                    <summary class="font-bold p-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors rounded-[calc(var(--radius)/2)]">
+                        Il vostro approccio sulla validazione delle fonti in rete?
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="p-4 pt-0 text-gray-700 border-t border-gray-200 mt-2">
+                        Le fonti del <strong class="text-black">mondo</strong> sotterraneo vengono scansionate con procedure rigide. Non diffondiamo panic-news, preferiamo ritardare la pubblicazione per verificare la certezza di ogni data leak, offrendo informazioni sicure e consolidate.
+                    </div>
+                </details>
+
+                <details class="bg-gray-50 border-2 border-black rounded-[calc(var(--radius)/2)] group">
+                    <summary class="font-bold p-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors rounded-[calc(var(--radius)/2)]">
+                        C'è una garanzia o rimborso per l'abbonamento lettura premium?
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="p-4 pt-0 text-gray-700 border-t border-gray-200 mt-2">
+                        Sì. Tutti i piani di fruizione editoriale premium includono un periodo di prova fiduciaria e politiche flessibili di cancellazione conformi alle normative europee del consumatore. Consultare la policy in basso.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT / LEAD FORM DNA CARD -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24 border-t-8 border-primary">
+            <h2 class="text-3xl font-black mb-8 uppercase text-center">Inizia la Lettura Premium</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-xl mx-auto">Compila il modulo per ricevere la valutazione sulle opzioni di abbonamento editoriale, richiedere accesso all'archivio storico o proporre materiali da pubblicare.</p>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Informational side -->
+                <div>
+                    <h3 class="font-black text-xl mb-4 border-l-4 border-primary pl-3">Weleyia Resources HQ</h3>
+                    <p class="mb-4 font-medium text-gray-800">Sezione Coordinamento Pubblicazioni e Operazioni Digitali in outsourcing, affiliati all'informazione italiana.</p>
+                    
+                    <ul class="space-y-4 mt-8 text-gray-700">
+                        <li class="flex items-center gap-3">
+                            <span class="bg-gray-200 p-2 rounded-full font-bold">🏢</span> 
+                            <div>Sede Amministrativa e di Redazione, Area Direttiva, Centro Affari Nord IT (Dati non fisici a scopo espositivo commerciale, ufficio remotizzato virtuale)</div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="bg-gray-200 p-2 rounded-full font-bold">⏱</span> 
+                            <div>Desk Redazionale: Lun - Ven, 08:30 - 18:30</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Functional Form Side -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 relative shadow-sm">
+                    <form id="lead-form" onsubmit="
+                        event.preventDefault(); 
+                        const btn = this.querySelector('button');
+                        btn.innerHTML='Trasmissione in corso...';
+                        btn.style.opacity='0.5';
+                        setTimeout(() => {
+                            this.style.display='none';
+                            document.getElementById('success-msg').style.display='block';
+                        }, 1800);
+                    ">
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Nome Completo</label>
+                            <input type="text" required class="w-full p-3 border-2 border-gray-300 rounded focus:border-black outline-none transition-colors" placeholder="Mario Draghi">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Tipologia Richiesta</label>
+                            <select class="w-full p-3 border-2 border-gray-300 rounded focus:border-black outline-none bg-white">
+                                <option>Adesione Lettura Premium</option>
+                                <option>Partnership Pubblicitaria & Media</option>
+                                <option>Invio Segnalazione Sicurezza Informazioni</option>
+                                <option>Disdetta Abbonamento in essere</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-bold mb-2">Dettagli Necessari</label>
+                            <textarea required class="w-full p-3 border-2 border-gray-300 rounded h-24 focus:border-black outline-none transition-colors" placeholder="Inerente alla richiesta editoriale, vorrei maggiori dettagli sui listini media e piani di accesso..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full text-center">Invia Richiesta al Reparto Abbonamenti</button>
+                    </form>
+
+                    <!-- Hidden Success Message -->
+                    <div id="success-msg" class="hidden absolute inset-0 bg-white bg-opacity-95 flex flex-col justify-center items-center p-8 text-center">
+                        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-4 text-white text-3xl">✓</div>
+                        <h4 class="text-2xl font-black mb-2 text-green-600">Richiesta di Pubblicazione Acquisita</h4>
+                        <p class="font-medium text-gray-700">Il protocollo editoriale ha registrato i tuoi dati in attesa di elaborazione. Sarai gestito dall'operatore referente nelle prossime ore lavorative tramite i canali di assistenza dedicati per l'account utente inserito nel modulo originario.</p>
+                        <button class="mt-6 underline font-bold" onclick="document.getElementById('success-msg').style.display='none'; document.getElementById('lead-form').style.display='block'; document.getElementById('lead-form').reset();">Torna indietro</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER WITH MANDATORY DISCLAIMER AND FULL LEGAL TEXT -->
+    <footer class="bg-black text-white py-12 px-4 border-t-8 border-primary">
+        <div class="max-w-6xl mx-auto flex flex-col items-center">
+            
+            <div class="mb-8 text-center max-w-2xl text-gray-300 italic border border-gray-700 p-4 rounded text-sm bg-gray-900">
+                <strong>Avvertenza Commerciale:</strong> Questo è un sito promozionale indipendente gestito da Weleyia Resources, che opera in qualità di affiliato per le edizioni legate al network originale Cyber Sec Italia. Nessun ente, dipartimento ministeriale statale o associazione istituzionale controlla la linea informativa espressa nei messaggi creati all'interno della cornice publisher. La finalità prevalente verte sul reclutamento dell'audience verso prodotti digitali e report specializzati.
+            </div>
+
+            <p class="mb-4">© 2026 Weleyia Resources | Global Tech Digital Media. Tutti i diritti editoriali riservati per il marchio di pubblicazione estesa, le riproduzioni parziali delle traduzioni dei dispacci tecnici e della forma aggregata visibile ai visitatori unici attuali del sito web associato agli url gestiti secondo legislazione limitrofa dell'internet.</p>
+
+            <!-- FULL LEGAL TEXT ACCORDIONS (Anti-Laziness) -->
+            <div class="w-full max-w-4xl mt-8 space-y-2 prose prose-sm prose-invert text-gray-400">
+                
+                <details class="border border-gray-700 rounded p-2">
+                    <summary class="font-bold text-gray-300 select-none flex justify-between">Informativa Estesa Privacy <span>+</span></summary>
+                    <div class="mt-4 text-xs leading-relaxed">
+                        <p>La presente dichiarazione delinea formalmente le pratiche inerenti al recupero organizzato delle identità elettroniche.</p>
+                        <p>Navigando il pannello della rassegna digitale accetti implicitamente l'inserimento automatico nei file di configurazione base.</p>
+                        <p>Non sussiste alcuna compravendita opaca per fini secondari dei tracciati di origine e locazione dei vostri router operativi temporanei.</p>
+                        <p>Gli script di elaborazione incrociano metriche funzionali necessarie esclusivamente a mantenere rapido l'erogatore grafico documentale qui esposto agli utenti e migliorare la navigazione durante l'apprendimento formativo tecnico o della semplice presa d'atto delle edizioni aggiornate online sulle indagini della violazione.</p>
+                        <p>Qualsiasi indicatore estrapolato rimane confinato temporalmente su database provvisori gestiti dai servizi ospitanti l'infrastruttura editoriale fino al periodo della cancellazione massiva standard stabilito secondo policy globali dell'hosting partner scelto dalle entità del media management incaricate per le traduzioni internazionali o della veicolazione degli approfondimenti critici e d'opinione, al netto dell'identità fittizia aziendale di comodo operante nello spaccato virtuale per rinvii legali limitativi dell'affiliate network sottostante.</p>
+                        <p>L'utilizzo delle stringhe inviate tramite campi d'input avvengono solo per scopi procedurali della singola istanza richiesta senza propagazione virale a circuiti marketing.</p>
+                        <p>Tutti gli individui coperti dal regimento GDPR europeo conservano facoltà per l'alienazione definitiva del vincolo sui propri marcatori unificati di esistenza sul globo intero in qualsiasi momento richiedendo obliterazione totale contattando esplicitamente le sedi legali tramite procedure ordinarie formali classiche o comunicazioni scritte tramite protocollo ufficiale governativo, fermo restando eventuali conservazioni tributarie storiche richieste dagli ordinamenti sovranazionali prevalenti su ogni utopia democratica.</p>
+                        <p>Nessuna operazione massiva del dato in cloud extra area continentale avverrà spontaneamente senza preavviso strutturato al contraente medesimo qualora cambiasse la governance fiduciaria dell'intero assetto. Nessuna informazione genetica o etnica verrà calcolata analiticamente nei form preposti all'interno delle sezioni della comunicazione redazionale aziendale.</p>
+                        <p>Esenzione piena da reati derivanti all'errata fruizione della sezione pubblica viene ribadita al lettore che esplori da apparati estranei all'abbonamento le porzioni dei frame informativi non adatti al pubblico comune.</p>
+                        <p>Modifiche costanti applicabili d'ufficio avvengono retroattivamente e prospetticamente ad insindacabile valutazione di merito.</p>
+                        <p>Si esortano controlli quindicinali sulla permanenza immutabile delle frasi elencate.</p>
+                        <p>Ogni contestazione giudiziale avverso la profilatura passiva rimanda irrevocabilmente e incondizionatamente in ogni controversia di materia informazionale unicamente ad un tribunale da specificarsi localizzato temporalmente nel fuso del domicilio tributario dell'originatore finale e non dell'utente.</p>
+                        <p>Tale rinuncia diviene caposaldo all'attivazione effettiva del cookie transitorio che valida la presenza umana contro spider massivi dediti al raschiamento illecito del sito internet e copia abusiva per arricchimento AI esterni senza remunerazione equa degli sforzi giornalieri d'edizioni, limitati e concessi da intese restrittive sottoscritte prima degli attuali periodi.</p>
+                        <p>Rifiutando i posticipati vincoli scritti ne decadrà ipso iure l'implicita intesa fiduciaria del navigante di fruizione.</p>
+                        <p>Fine tassativo dei diritti a chiarimento su questo protocollo, procedere autonomamente ad eventuale fuga elettronica staccando il cavo del segnale o ripudiando il nodo telematico della rassegna cyber presentata, chiudendo istantaneamente con le classiche apposite metodologie fisiche integrate del software del gestore personale visivo di rete usato per leggere in modo del tutto spontaneo e palese questo specifico disclaimer di riservatezza, garantito dai regolamenti in forma d'uso consuetudinario nei periodi digitali moderni standard che coprono l'orbe terraqueo ad oggi considerato reale.</p>
+                    </div>
+                </details>
+
+                <details class="border border-gray-700 rounded p-2">
+                    <summary class="font-bold text-gray-300 select-none flex justify-between">Condizioni d'Uso Integrali <span>+</span></summary>
+                    <div class="mt-4 text-xs leading-relaxed">
+                        <p>Il semplice accesso alle url dirette al nome o di smistamento ip compresa traduzione proxy presuppone la palese comprensione estesa del trattato in italiano corretto di seguito esteso qui tra questi capoversi e punti della stesura unilaterale dettata rigidamente al visitatore in modo impellente.</p>
+                        <p>Vietata a chiunque sia l'opera intellettuale decodificata alfanumericamente estraendo e manipolando ad uso fraudolento e speculazione la veste dell'impaginato ad alta leggibilità presente online ora, di natura riservatissima in capo al costruttore digitale originario designato autore formale.</p>
+                        <p>Limitazione operativa si attua e concretizza di converso qualora manometterete di propria autonoma volontarietà i flussi scriptati delegati ai controllori form della stesura documentaria presentata sui box interattivi sparsi qui tra il testo ed il form.</p>
+                        <p>Accettate ed esprimete consapevole dichiarazione escludendo a norma inderogabile ogni garanzia commerciale d'ufficio circa accuratezza totale scientificamente certificata sull'attendibilità o verificabilità delle frasi, indagini informatiche analizzate dei resoconti cyber di cronaca digitale contemporanea pubblicate a getto mediatico dalle firme ospitate da partner.</p>
+                        <p>Eventuali interruzioni dei dispacci tecnici forniti dai cloud servitori remoti che erogano byte d'istruzione alla pagina risultante in fermi logistici e periodi neri d'accessibilità restano impunibili ed invulnerabili agli assalti formali avverso operatori per recupero danaro conseguente i pretesi scompensi psichici, mancato guadagno da scarto speculativo perso a causa di inoperatività ed oscuramento della via mediatica web.</p>
+                        <p>Obbligo inalienabile allineare costumi comportamentali degni del vivere civico anche interfacciandosi con la console assistenziale clienti, precludendo l'espressione disdicevole di calunnie tramite campo libero formale a danno o dileggio dei revisori della redazione stampa tecnologica indicati quali target indiretto del brand manageriale mediatore tra il publisher capofila cyber italiano originale ed il target stesso.</p>
+                        <p>I portavoce redazionali possiedono pieno incondizionato potere sanzionatorio esclusivo e censorio nei confronti del distruttore virtuale delle direttive e regole interne qui scritte in codice chiaro per mezzo visivo di bandire ed attuare divieto o interdizione permanente limitante indirizzo router senza dover mai rilasciare verbale o esplicazione chiarificatrice del blocco informatico.</p>
+                        <p>Accedendo inoltre in zone soggette ad account cifrato privato registrati l'obbligazione della tenuta maniacale stagna sulla credenziale unica rimane in toto di assoluto pertinenza solitaria a capo dell'inserzionista contraente intestatario l'attivazione iniziale concesso all'origine ed approvazione validante dei dati al database ed archivio primordiale dell'applicazione della bacheca abbonati, la quale funge altresì anche d'ausilio contabile del registro telematico tributario aziendale collegato univocamente ed indissolubilmente fino la dipartita del fornitore informatico originale del frame.</p>
+                        <p>Impegni gravanti l'attualizzazione frequente in caso smarrimento competono sempre alla componente cliente da sollecitare entro pochissimo margine temporale di sicurezza la riscrittura e generazione successiva alle procedure automatiche interne per non cadere esposto alle speculazioni criminali altrui terze di natura illecita con successiva manipolazione della fatturazione passiva ignota con gravi oneri a vostro immediato totale gravissimo pesante ed irrevocabile sfavore assoluto, sollevando da indagini onestamente lunghe il mediatore che manleva la propria fittizia persona giuridica senza alcun ripensamento possibile successivo al fatto noto accaduto purtroppo spesso.</p>
+                        <p>L'accettazione integrale ed onnicomprensiva in ogni minima particella del periodo contrattuale d'utilizzo della documentazione tecnologica fissa, variabile o volatile presente si riterra presunta perfetta ad effettivo compiersi di scorrimento barra verso un qualsiasi div che compone interamente la suddetta attuale esposta url visibile della barra per il corretto orientamento cyber globale tra abbonamenti professionali del digitale ed altri.</p>
+                    </div>
+                </details>
+
+                <details class="border border-gray-700 rounded p-2">
+                    <summary class="font-bold text-gray-300 select-none flex justify-between">Politica Resi e Rimborsi Piani Editorial <span>+</span></summary>
+                    <div class="mt-4 text-xs leading-relaxed">
+                        <p>Nell'ambito regolamentare stringente riguardante fornitura commerciale standard su materia volatile puramente immateriale consistente erogazione accessi, diritti letture, resoconti file, si delibera procedura fissa normante eventuali contingenze economiche di insoddisfazione manifestata tardivamente e volontariamente dal soggetto registrato pagante ed autorizzante al netto iniziale e che fruisca dei database tech esclusivi proposti dall'inserzionista.</p>
+                        <p>In aderenza tassativa totale ineccepibile ai regolamenti d'asta continentali per transito beni dematerializzati per i lettori privati in funzione d'abbonamento premium informativo sussiste esonero temporale parziale a disconoscere il canone elargito se manifestato concretamente al netto della prova di fruizione ed assimilazione mnemonica visiva tramite l'apparato preposto hardware dell'informazione inviata sottoforma segreta cifrata esclusiva dal media aziendale cyber al proprio archivio riservato temporaneamente locale del fruitore.</p>
+                        <p>Decorsi esattamente non più d'una settantina totale netta e fiscale per quattordici giornate cicliche standard planetarie non interrotte per calamità ed altre fattispecie bloccanti eccezionali imprevedibili il vincolo inalienabile non rimborsabile si instaura divenendo concretizzato contabilmente nel regime tributario vincolante l'affiliato fornitore senza spiraglio operativo legale per rettifica retroattiva in deduzione d'operato commerciale erogato in tempo ed esaudiente delle metriche vendute con contratto di pacchetto iniziale esposto in vetrina abbonamenti professionali periodici, aperti precedentemente allo sblocco credenziale dell'editore al terminale, il tutto sottoscritto ad accordi interposti con le norme dei fornitori software in appalto di terzo tipo del processamento d'addebito di prelievo delle istituzioni della moneta mondiale transfrontaliera preposti ed associati alla cartolarizzazione in garanzia collaterale globale e delle relative ricevute numeriche dei consorzi associati che processano flussi pecuniari fiduciari ad oggi funzionanti al secondo l'unificazione moderna attuale su suolo sovrano indipendente ed internet senza padroni legiferanti onnicomprensivi sopra tutti e ognuno di essi inclusi voi lettori esigenti a rimborsi vari d'editoria elettronica che svaluta progressivamente ora.</p>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- FIXED COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t-2 border-black p-4 z-50 flex flex-col md:flex-row justify-between items-center shadow-2xl">
+        <div class="text-sm font-bold text-gray-800 mb-4 md:mb-0 max-w-4xl pr-4">
+            Questo portale editoriale impiega indicatori diagnostici necessari e tracking esecutivi opzionali per mantenere ottimale e qualitativa la pubblicazione dell'ecosistema digitale di lettura news in ambito IT moderno ed aggiornato sul network affilato esposto secondo direttive della piattaforma tecnologica integrata della nostra sede base centrale virtuale attiva senza fissa continuità strutturata statale sul circuito weleyiaresources e relativi sistemi associati correlati.
+        </div>
+        <div class="flex gap-4 shrink-0">
+            <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookieAccepted', 'true');" class="btn-primary py-2 px-4 whitespace-nowrap">Conferma Lettura Informativa</button>
+        </div>
+    </div>
+
+    <!-- Smart Routing / Interactivity JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check cookie banner
+            if (localStorage.getItem('cookieAccepted') === 'true') {
+                document.getElementById('cookie-banner').style.display = 'none';
+            }
+
+            // Self-Healing Navigation Protocol (Gravity Well Logic)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    let targetElement = document.querySelector(targetId);
+                    
+                    // Logic Bridge Fallback Handler
+                    if (!targetElement) {
+                        console.warn(`Anchor interrotto intercettato per ID [${targetId}], ricalibrazione d'emergenza verso il core box del Modulo Principale contatti attivato al fine d'assicurare esperienza funzionale interamente inalterata del traffico naviganti attuali della sessione editoriale originata del click non soddisfatto sulla risorsa id persa.`);
+                        targetElement = document.querySelector('#contact'); 
+                    }
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
