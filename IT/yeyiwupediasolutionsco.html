@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YeyiwuPedia Solutions | Digital Media & Technology Publisher</title>
+    <meta name="description" content="Editoria digitale, notizie e analisi dal mondo della tecnologia e dei sistemi complessi. Promuovi il tuo business e resta informato.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb; /* Cobalt/Tech Blue representing deep tech analysis */
+            --surface: #f8fafc; /* VAR C: Cool Slate White based on last letter 't' */
+            --radius: 24px;     /* VAR A: Pill based on length 32 */
+            --shadow: 4px 4px 0px 0px #000; /* VAR B: Neo-Brutalist based on first letter 'h' */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Thicker border to match neo-brutalist shadow */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            border: 2px solid #000;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background-color: var(--surface);
+            border-bottom: 2px solid #000;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .neo-border {
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 z-50 flex flex-col md:flex-row justify-between items-center transform translate-y-full transition-transform duration-300">
+        <p class="text-sm mb-4 md:mb-0">Utilizziamo i cookie per migliorare l'esperienza sul nostro portale digitale. Continuando a navigare nel mondo dell'informazione tech, accetti la nostra policy.</p>
+        <button onclick="acceptCookies()" class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold text-sm hover:bg-gray-200">Accetta Tutto</button>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-extrabold text-2xl tracking-tighter text-primary">YeyiwuPedia<span class="text-gray-900">Solutions</span></span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#hero" class="text-gray-900 hover:text-primary font-bold">Inizio</a>
+                    <a href="#features" class="text-gray-900 hover:text-primary font-bold">Servizi</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary font-bold">Casi di Successo</a>
+                    <a href="#faq" class="text-gray-900 hover:text-primary font-bold">Domande</a>
+                    <a href="#contact" class="btn-primary" style="padding: 0.5rem 1.5rem; border-radius: var(--radius); border-width: 2px;">Contattaci</a>
+                </nav>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-primary focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#hero" class="block px-3 py-2 text-gray-900 font-bold">Inizio</a>
+                <a href="#features" class="block px-3 py-2 text-gray-900 font-bold">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-gray-900 font-bold">Casi di Successo</a>
+                <a href="#faq" class="block px-3 py-2 text-gray-900 font-bold">Domande</a>
+                <a href="#contact" class="block px-3 py-2 text-primary font-bold">Contattaci</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-8 pb-12 px-4 sm:px-6 lg:px-8">
+        
+        <!-- Hero Section (Full width logic with Contrast constraints) -->
+        <section id="hero" class="max-w-7xl mx-auto mb-16 relative rounded-3xl overflow-hidden shadow-[var(--shadow)] border-2 border-black" style="box-shadow: var(--shadow);">
+            <div class="absolute inset-0">
+                <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x800/1e293b/ffffff?text=Innovazione+Digitale+e+Media'" 
+                     class="w-full h-full object-cover" 
+                     alt="YeyiwuPedia Solutions Team discussing tech" 
+                     loading="lazy" 
+                     referrerpolicy="no-referrer">
+                <div class="absolute inset-0 bg-gray-900 bg-opacity-80 mix-blend-multiply"></div>
+            </div>
+            <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center lg:py-32">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
+                    Soluzioni per l'Editoria: Ogni <span class="text-primary bg-white px-2 py-1 rounded-lg border-2 border-black shadow-[4px_4px_0_0_#000] transform -rotate-1 inline-block">Notizia</span> sul Futuro in un Unico Ecosistema
+                </h1>
+                <p class="mt-4 max-w-3xl text-xl text-gray-300 mx-auto font-medium">
+                    Da anni copriamo il polso dell'innovazione. Elaboriamo strategie di visibilità e ti forniamo le analisi più accurate sulla <strong>tecnologia</strong> che muove i mercati industriali globali. 
+                </p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="#contact" class="btn-primary text-lg">Inizia a Pubblicare</a>
+                    <a href="#features" class="bg-white text-gray-900 px-8 py-4 rounded-[var(--radius)] font-bold border-2 border-black hover:bg-gray-100 transition-all shadow-[var(--shadow)]">Scopri le Soluzioni</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features / Services -->
+        <section id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Copertura e Visibilità Editoriale</h2>
+                <p class="mt-4 text-lg text-gray-600">Connettere le menti brillanti ingegneristiche attraverso i dati.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-6 rounded-2xl neo-border shadow-[var(--shadow)] transform hover:-translate-y-1 transition-transform">
+                    <div class="h-12 w-12 rounded-xl bg-blue-100 text-primary flex items-center justify-center mb-4 neo-border">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Magazine Digitale</h3>
+                    <p class="text-gray-600">Articoli approfonditi e rubriche esclusive. Analizziamo l'evoluzione del mondo <strong>digitale</strong> per fornirti gli insight essenziali prima dei tuoi competitor.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white p-6 rounded-2xl neo-border shadow-[var(--shadow)] transform hover:-translate-y-1 transition-transform">
+                    <div class="h-12 w-12 rounded-xl bg-blue-100 text-primary flex items-center justify-center mb-4 neo-border">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Ingegneria di Sistema</h3>
+                    <p class="text-gray-600">Dal silicio al software cloud. I nostri reporter esaminano ogni nuovo <strong>sistema</strong> elettronico per comprenderne l'impatto sul mercato B2B.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white p-6 rounded-2xl neo-border shadow-[var(--shadow)] transform hover:-translate-y-1 transition-transform">
+                    <div class="h-12 w-12 rounded-xl bg-blue-100 text-primary flex items-center justify-center mb-4 neo-border">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">PR & Sponsorship</h3>
+                    <p class="text-gray-600">Amplifica la tua voce. Se hai un <strong>annuncio</strong> cruciale per la tua azienda, ti garantiamo copertura mediata e accesso al pubblico di professionisti del settore.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 border-l-8 border-primary pl-4 text-left">Opinioni dal Settore (Aggiornato al 2026)</h2>
+            <div class="space-y-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-xl neo-border relative">
+                    <p class="text-gray-700 italic mb-4">"Collaborare con YeyiwuPedia Solutions ha trasformato il nostro piano media. Non si limitano a diffondere la <strong>notizia</strong>, ma creano contesti redazionali di altissimo profilo. La nostra piattaforma software è stata compresa dal loro pubblico B2B."</p>
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 font-bold border-2 border-black">MI</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-gray-900">Marco Invernizzi</p>
+                            <p class="text-sm text-gray-500">CMO presso TechNova SpA</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-xl neo-border relative">
+                    <p class="text-gray-700 italic mb-4">"Seguo i loro articoli quotidianamente per capire la direzione della <strong>tecnologia</strong> globale. Le analisi su sensori e connettività sono precise, puntuali e libere da rumore di fondo. Essenziali per il nostro reparto R&D."</p>
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 font-bold border-2 border-black">LS</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-gray-900">Laura Serti</p>
+                            <p class="text-sm text-gray-500">Lead Systems Engineer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-gray-900">Risposte alle tue domande</h2>
+            </div>
+            <div class="space-y-4">
+                <details class="group bg-white rounded-xl neo-border [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-6 font-bold text-gray-900">
+                        Come gestite un annuncio stampa per un'azienda?
+                        <span class="relative h-5 w-5 shrink-0">
+                            <svg class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            <svg class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600">
+                        Una volta ricevuto il materiale per il vostro <strong>annuncio</strong>, il nostro team editoriale valuta l'aderenza ai temi di ingegneria ed elettronica, procedendo alla stesura o all'adattamento del pezzo per la pubblicazione sulla nostra testata o network.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl neo-border [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-6 font-bold text-gray-900">
+                        Che tipo di tecnologia coprite maggiormente?
+                        <span class="relative h-5 w-5 shrink-0">
+                            <svg class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            <svg class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600">
+                        Siamo verticali su elettronica di consumo e industriale, automazione, componenti attivi/passivi e innovazione IoT. La <strong>tecnologia</strong> complessa è il nostro pane quotidiano, esaminata da professionisti per professionisti.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl neo-border [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-6 font-bold text-gray-900">
+                        Posso abbonarmi alle notizie internazionali?
+                        <span class="relative h-5 w-5 shrink-0">
+                            <svg class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            <svg class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600">
+                        Certamente. YeyiwuPedia monitora le fonti e raccoglie informazioni di altissimo valore dal <strong>mondo</strong> intero, elaborando traduzioni e adattamenti culturali in modo che il mercato italiano abbia un flusso di informazioni fluido.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl neo-border [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-6 font-bold text-gray-900">
+                        Come posso inserire il mio brand in un vostro sistema editoriale?
+                        <span class="relative h-5 w-5 shrink-0">
+                            <svg class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            <svg class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600">
+                        Offriamo vari piani sponsorizzati integrati all'interno di un <strong>sistema</strong> editoriale sofisticato, inclusi banner on-site, inclusioni su newsletter specializzate e redazionali su misura in ambito <strong>digitale</strong>.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card bg-white">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="flex-1">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Mettiti in evidenza</h2>
+                    <p class="text-lg text-gray-600 mb-8">Vuoi sottoporre un prodotto per la nostra redazione? Desideri investire per la massima visibilità nel mondo tech italiano? Compila la richiesta, i nostri specialist media ti ricontatteranno.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center text-gray-600 p-4 bg-gray-50 rounded-xl neo-border">
+                            <svg class="h-6 w-6 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            <div>
+                                <p class="font-bold text-gray-900">Sede Principale Editoria</p>
+                                <p>Milano, Lombardia - Polo Innovativo Tecnologico</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1">
+                    <form id="lead-form" class="space-y-4 bg-gray-50 p-6 rounded-2xl neo-border shadow-[var(--shadow)]" onsubmit="handleFormSubmission(event)">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Azienda / Nome Referente</label>
+                            <input type="text" id="name" required class="mt-1 block w-full px-4 py-3 border-2 border-black rounded-lg shadow-sm focus:ring-primary focus:border-primary">
+                        </div>
+                        <div>
+                            <label for="contact" class="block text-sm font-medium text-gray-700">Recapito (No Indirizzo Elettronico richiesto qui)</label>
+                            <input type="text" id="contact" required class="mt-1 block w-full px-4 py-3 border-2 border-black rounded-lg shadow-sm focus:ring-primary focus:border-primary" placeholder="Prefisso e numero per ricontatto rapido">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Dettagli della richiesta (Press Kit, Adv...)</label>
+                            <textarea id="message" rows="4" required class="mt-1 block w-full px-4 py-3 border-2 border-black rounded-lg shadow-sm focus:ring-primary focus:border-primary"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary flex justify-center py-4">
+                            Invia Richiesta al Reparto Redazionale
+                        </button>
+                    </form>
+
+                    <!-- Hidden Success Message -->
+                    <div id="success-msg" class="hidden h-full flex flex-col items-center justify-center p-8 text-center bg-green-50 rounded-2xl neo-border border-green-500 shadow-[var(--shadow)]">
+                        <svg class="w-16 h-16 text-green-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Dossier Ricevuto</h3>
+                        <p class="text-gray-600">I nostri editor manager elaboreranno la tua richiesta nel più breve tempo possibile. Tieni d'occhio i tuoi recapiti per un nostro contatto ufficiale dal team di sviluppo media.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t-4 border-black text-gray-300 py-12 px-4 sm:px-6 lg:px-8 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+            <span class="font-extrabold text-3xl tracking-tighter text-white mb-4">YeyiwuPedia<span class="text-primary">Solutions</span></span>
+            <p class="mb-6 max-w-2xl text-gray-400">Archivio editoriale, aggiornamenti B2B e visibilità internazionale per il progresso delle industrie tecniche nel campo <strong>digitale</strong>.</p>
+            
+            <!-- MANDATORY DISCLAIMER -->
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 w-full max-w-4xl mb-8">
+                <p class="text-sm font-medium text-gray-300">
+                    <em>Disclaimer: Questo è un sito promozionale indipendente gestito da YeyiwuPedia Solutions, che agisce come affiliato per Elettronica News (marchio o entità collegata operante nel settore editoriale).</em>
+                </p>
+            </div>
+
+            <!-- Full Text Legal Docs -->
+            <div class="w-full max-w-4xl space-y-2 text-left mb-8">
+                <!-- Privacy -->
+                <details class="bg-gray-800 border border-gray-700 rounded-lg group">
+                    <summary class="cursor-pointer font-bold p-4 hover:bg-gray-700 transition">Informativa sulla Privacy Dati e Contenuti (Clicca per espandere)</summary>
+                    <div class="p-4 pt-0 text-sm text-gray-400 leading-relaxed space-y-2 border-t border-gray-700 mt-2 pt-2">
+                        <p>La protezione dei dati nel nostro archivio redazionale e operativo è fondamentale. Durante la visita del nostro sito o durante la compilazione dei moduli per inoltrare un <strong>annuncio</strong> mediatico, i dati inseriti vengono processati con algoritmi moderni che mantengono un alto standard di integrità del dato. Utilizziamo la profilazione locale al solo fine di migliorare la nostra vetrina informativa sulle testate elettroniche. Nel campo in continua mutazione dell'informazione sulla <strong>tecnologia</strong>, avere sistemi protetti risulta la norma, perciò tutti i moduli interattivi vengono processati attraverso protocolli crittografici dedicati per non disperdere nessuna <strong>notizia</strong> sensibile. Le infrastrutture del <strong>sistema</strong> informatico vengono aggiornate costantemente per sventare fughe. Tutte le istanze sono locate presso fornitori europei in piena compatibilità legislativa.</p>
+                        <p>Le generalità personali vengono scartate entro il periodo stabilito per rispondere alle esigenze pubblicitarie concordate. Il diritto all'oblìo è ampiamente garantito per il visitatore qualora volesse cancellare l'intento redazionale inviatoci, inviando preavviso attraverso posta tracciabile certificata tradizionale oppure contatto diretto mediante linea dedicata al gestore responsabile qualora vi fosse accordo pregresso.</p>
+                    </div>
+                </details>
+
+                <!-- Terms -->
+                <details class="bg-gray-800 border border-gray-700 rounded-lg group">
+                    <summary class="cursor-pointer font-bold p-4 hover:bg-gray-700 transition">Termini di Servizio Media & Advertising (Clicca per espandere)</summary>
+                    <div class="p-4 pt-0 text-sm text-gray-400 leading-relaxed space-y-2 border-t border-gray-700 mt-2 pt-2">
+                        <p>Il presente accordo stabilisce le linee guida operative tra l'utenza promotrice e YeyiwuPedia Solutions operante nel settore <strong>digitale</strong> editoriale. Sottoponendo dei materiali fotografici o cartacei destinati alla stesura della propria <strong>notizia</strong> di promozione, l'inserzionista acconsente al rimaneggiamento grammaticale effettuato dalla direzione redazionale prima di rendere la notizia conforme ad un vasto pubblico nel <strong>mondo</strong>. Non assumiamo alcuna garanzia in merito al raggiungimento misurabile degli incrementi percentuali previsti per determinate conversioni dirette dal solo materiale redazionale fornito. Noi provvediamo a mantenere il <strong>sistema</strong> editoriale funzionante con percentuali molto vicine alla copertura totale annuale escludendo periodi imprevisti di guasto.</p>
+                        <p>Nessun risarcimento viene contemplato quando, dopo una approvazione mutua sul format estetico concordato o inserimento per la visibilità in edicola interattiva, l'interesse manifestato risulti minore del preventivato dall'analisi dei costi. Tutela la nostra indipendenza il poter riservarci l'autorità formale ultima, esaminata una serie di parametri redazionali preposti alla scrematura etica o morale che esulano dall'argomento tecnologico rigorosamente inteso dal provider dell'affiliazione. Oneri bancari a carico del mittente. Controversie subordinate al territorio competente locale rispetto le leggi nazionali sulla stampa d'impresa e le telecomunicazioni indipendenti vigenti per un editor indipendente operante con mandato non fiduciario illimitato.  </p>
+                    </div>
+                </details>
+
+                <!-- Refunds -->
+                <details class="bg-gray-800 border border-gray-700 rounded-lg group">
+                    <summary class="cursor-pointer font-bold p-4 hover:bg-gray-700 transition">Condizioni Finanziarie, Rimborsi o Disdette Promozionali (Clicca per espandere)</summary>
+                    <div class="p-4 pt-0 text-sm text-gray-400 leading-relaxed space-y-2 border-t border-gray-700 mt-2 pt-2">
+                        <p>I cicli di sponsorizzazione si considerano prestati attivamente dal momento stesso della finalizzazione delle revisioni editoriali sulla materia fornita dal referente per l'ufficio comunicativo d'impresa. Qualsiasi recesso anticipato dal posizionamento di materiale tipo <strong>annuncio</strong> a pagamento comporterà la chiusura dell'esposizione mantenendo come quota amministrativa per compensazione la somma prelevata inizialmente all'avvio contrattuale del posizionamento promozionale online all'interno dell'apparato del portale principale nel macro <strong>mondo</strong> specializzato coperto o nei network collegati. </p>
+                        <p>Trattandosi nello specifico di prestazioni d'autore intellettuale ed intellettivo, non applicabile reso al pari di prodotti consumabili finiti, se si rileva discrepanza tra stesure in via telematica che invalidi il senso originario si procederà celermente in senso correttivo sul canale principale digitale ad insindacabile discrezione correttiva, escludendo qualsivoglia retrocessione parziale d'addebito se tale azione viene effettuata utilmente nelle fasce orarie canoniche dedite alla risoluzione ticket legati ai report malfunzionanti dei testi di <strong>tecnologia</strong> errati caricati inizialmente da remoto dagli incaricati designati per approvazioni urgenti preliminari necessarie ad una serena conclusione di una campagna.</p>
+                    </div>
+                </details>
+            </div>
+
+            <p class="text-gray-500 mt-8">&copy; 2026 YeyiwuPedia Solutions. Tutti i diritti riservati. Sviluppato e codificato ad uso redazionale indipendente secondo direttive architetturali estetiche reattive avanzate, al riparo da malfunzionamenti o sovrapposizione visiva strutturale, fornendo alti contrasti visivi agli analisti fruitori giornalieri dell'osservatorio e laboratorio sperimentale del circuito di mercato specializzato sui mercati in ascesa interconnessi contemporanei globalizzati tramite cloud flessibile.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY & FALLBACKS -->
+    <script>
+        // 1. Smart Routing Logic (Gravity Well)
+        document.addEventListener("DOMContentLoaded", () => {
+            const internalLinks = document.querySelectorAll('a[href^="#"]');
+            
+            internalLinks.forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+
+                    const targetId = this.getAttribute("href").substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Smooth Scroll to existing element
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        // Force Route to Contact if Missing
+                        console.warn(`Anchor #${targetId} missing. Redirecting to #contact protocol.`);
+                        document.getElementById("contact").scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+
+        // 2. Functional Site Logic (Simulated Form Submission)
+        function handleFormSubmission(event) {
+            event.preventDefault(); // Prevent page reload
+            
+            const formContainer = document.getElementById('lead-form');
+            const submitBtn = formContainer.querySelector('button');
+            const successMsg = document.getElementById('success-msg');
+            
+            // Visual loading state
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Elaborazione in corso nel server redazionale...';
+            submitBtn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                // Hide form, show success (No alert allowed per rules)
+                formContainer.style.display = 'none';
+                successMsg.style.display = 'flex';
+                successMsg.classList.remove('hidden');
+                
+                // Form cleanup
+                formContainer.reset();
+                submitBtn.innerText = originalText;
+                submitBtn.style.opacity = '1';
+                
+                // Optional: reset after 10 seconds to allow resubmission for edge cases
+                setTimeout(()=> {
+                    formContainer.style.display = 'block';
+                    successMsg.style.display = 'none';
+                    successMsg.classList.add('hidden');
+                }, 10000);
+
+            }, 1800);
+        }
+
+        // 3. Cookie Banner Logic
+        window.addEventListener('load', () => {
+            const cookieAccepted = localStorage.getItem('cookie_consent');
+            if (cookieAccepted !== 'true') {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookie_consent', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
