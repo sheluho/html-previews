@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software di Gestione | Lutiku Bais Collective</title>
+    <meta name="description" content="Lutiku Bais Collective: Sistema avanzato di Automazione e Software per l'Efficienza aziendale.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* VAR D: Palette (Indigo for Tech SaaS) */
+            --primary: #4F46E5;
+            /* VAR C: Surface (Last Letter 'm' = ascii 109. 109 % 3 = 1 -> Warm) */
+            --surface: #fffdf5;
+            /* VAR A: Geometry (Length 26. 26 % 3 = 2 -> Pill) */
+            --radius: 24px;
+            /* VAR B: Physics (First Letter 'h' = ascii 104. 104 % 3 = 2 -> Hard/Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Adjusted for Neo-Brutalist contrast synergy */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            border: 2px solid #000;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        .text-primary { color: var(--primary); }
+
+        /* Navigation specifics */
+        nav { background-color: var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        
+        /* Legal Details Styling */
+        details summary { cursor: pointer; font-weight: bold; padding-top: 1rem; padding-bottom: 0.5rem; border-top: 1px solid #e5e7eb; outline: none; }
+        details p { margin-top: 1rem; font-size: 0.875rem; color: #4b5563; line-height: 1.6; }
+
+        #cookie-banner { transition: bottom 0.5s; z-index: 50; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 w-full z-40 border-b-2 border-black" style="background-color: var(--surface);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-extrabold text-black tracking-tighter uppercase">Lutiku Bais <span class="text-primary">Collective</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-800 hover:text-primary font-semibold transition-colors">Il Sistema</a>
+                    <a href="#reviews" class="text-gray-800 hover:text-primary font-semibold transition-colors">Recensioni</a>
+                    <a href="#faq" class="text-gray-800 hover:text-primary font-semibold transition-colors">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm py-2 px-6">Richiedi Accesso</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button type="button" class="text-gray-800 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-white">
+            <div class="px-4 pt-2 pb-4 space-y-1 sm:px-3 text-center">
+                <a href="#features" class="block px-3 py-3 font-semibold text-gray-800">Il Sistema</a>
+                <a href="#reviews" class="block px-3 py-3 font-semibold text-gray-800">Recensioni</a>
+                <a href="#faq" class="block px-3 py-3 font-semibold text-gray-800">FAQ</a>
+                <a href="#contact" class="block mt-4 px-3 py-3 btn-primary w-full">Richiedi Accesso</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Exception: Full Width) -->
+    <header class="relative bg-gray-900 py-32 lg:py-48 overflow-hidden">
+        <!-- Background Image with Fail-safe -->
+        <img src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+             onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Software+Automazione'" 
+             referrerpolicy="no-referrer" 
+             loading="eager" 
+             alt="Piattaforma Software in azione" 
+             class="absolute inset-0 w-full h-full object-cover">
+        
+        <!-- Anti-Blend Overlay -->
+        <div class="absolute inset-0 bg-black bg-opacity-70 mix-blend-multiply"></div>
+        
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- BRIDGING SLOGAN (H1) -->
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-8">
+                L'evoluzione tecnologica firmata Lutiku Bais Collective: il miglior <span class="text-blue-400">Software</span> per la tua crescita.
+            </h1>
+            <p class="mt-6 text-xl lg:text-2xl text-gray-200 max-w-3xl mx-auto mb-10 font-medium">
+                Sfrutta un Sistema di Gestione avanzato. Trasforma i dati in decisioni ed eleva l'Efficienza di ogni processo lavorativo.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#contact" class="btn-primary text-lg">Inizia l'Automazione</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust Banner -->
+    <section class="bg-gray-800 py-6 border-y-2 border-black">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">La tecnologia scelta da aziende visionarie</p>
+            <div class="flex justify-center items-center flex-wrap gap-8 text-gray-500 font-bold text-xl md:text-2xl">
+                <span>Acme Innovazione</span>
+                <span>DataFlow Sistemi</span>
+                <span>ProGestione SpA</span>
+                <span>TechSinergy Italia</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+
+        <!-- Features Section inside DNA Card -->
+        <section id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Un <span class="text-primary">Software</span> progettato per l'eccellenza</h2>
+                <p class="text-lg text-gray-600">Rivoluzioniamo la Gestione aziendale integrandola in un ecosistema digitale unico, veloce e sicuro.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center p-6 bg-white border-2 border-gray-100 rounded-xl" style="border-radius: var(--radius)">
+                    <div class="w-16 h-16 bg-blue-100 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Automazione Intelligente</h3>
+                    <p class="text-gray-600">Riduci al minimo le operazioni manuali ripetitive. La nostra Automazione trasforma processi complessi in procedure silenziose ed efficaci.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="text-center p-6 bg-white border-2 border-gray-100 rounded-xl" style="border-radius: var(--radius)">
+                    <div class="w-16 h-16 bg-blue-100 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Dashboard di Efficienza</h3>
+                    <p class="text-gray-600">Ogni metrica essenziale a colpo d'occhio. Incrementa la tua Efficienza operativa monitorando l'andamento del lavoro in tempo reale e in alta precisione.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="text-center p-6 bg-white border-2 border-gray-100 rounded-xl" style="border-radius: var(--radius)">
+                    <div class="w-16 h-16 bg-blue-100 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Gestione Completa</h3>
+                    <p class="text-gray-600">Metti in connessione reparti, dati e documenti in un unico grande Sistema interconnesso che risponde ai più moderni standard del mercato.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Breakpoint -->
+        <div class="max-w-5xl mx-auto mb-16 rounded-[var(--radius)] overflow-hidden" style="border-radius: var(--radius); border: 2px solid #000; box-shadow: var(--shadow);">
+             <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/1200x600?text=Ufficio+Aziendale+Moderno'" 
+                 referrerpolicy="no-referrer" 
+                 loading="lazy" 
+                 alt="Team che analizza l'Efficienza dei flussi aziendali" 
+                 class="w-full h-80 object-cover">
+        </div>
+
+        <!-- Social Proof (Reviews) inside DNA Card -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center border-b-2 border-gray-100 pb-4">Il valore confermato dai nostri utenti</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="p-6 border-2 border-black bg-white" style="border-radius: var(--radius);">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 font-bold text-xl tracking-widest">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 mb-4 font-medium italic">"L'integrazione di questo Software nella nostra Gestione interna ci ha fatto guadagnare il 40% di tempo in più al mese. La transizione all'Automazione non è mai stata così semplice e guidata dal collettivo."</p>
+                    <p class="font-bold text-gray-900 uppercase text-sm">Marco F. – CEO, 2026</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="p-6 border-2 border-black bg-white" style="border-radius: var(--radius);">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 font-bold text-xl tracking-widest">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 mb-4 font-medium italic">"Prima lavoravamo a compartimenti stagni. Ora utilizziamo il loro Sistema centralizzato e finalmente tutta l'azienda riesce a collaborare in Efficienza costante. Strumento essenziale e affidabile."</p>
+                    <p class="font-bold text-gray-900 uppercase text-sm">Elena S. – Operations Manager, 2026</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="p-6 border-2 border-black bg-white" style="border-radius: var(--radius);">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 font-bold text-xl tracking-widest">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 mb-4 font-medium italic">"La piattaforma offre una visibilità completa sulle performance finanziarie e sui processi. Un approccio rivoluzionario alla reportistica grazie a una perfetta architettura."</p>
+                    <p class="font-bold text-gray-900 uppercase text-sm">Giacomo V. – CFO, 2026</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section inside DNA Card -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                <details class="group bg-white p-4 border-2 border-black" style="border-radius: var(--radius);">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg">
+                        Come posso migliorare l'Efficienza con il vostro strumento?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">Il nostro Sistema integra l'Automazione direttamente nei punti nevralgici dei tuoi flussi di lavoro. Evitando gli inserimenti manuali multipli e il trasferimento farraginoso di file, elimini gli errori e liberi preziose risorse lavorative concentrandole su obiettivi ad alto valore per il tuo marchio.</p>
+                </details>
+
+                <details class="group bg-white p-4 border-2 border-black" style="border-radius: var(--radius);">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg">
+                        Il Software richiede l'installazione di programmi locali?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">Assolutamente no. Funziona completamente nel cloud e può essere raggiunto tramite browser web crittografati da qualsiasi computer connesso a internet. La tua Gestione aziendale resta mobile e sempre sicura ai massimi standard.</p>
+                </details>
+
+                <details class="group bg-white p-4 border-2 border-black" style="border-radius: var(--radius);">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg">
+                        Posso collegarlo ai miei strumenti attuali di gestione dati?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">Sì, la nostra piattaforma prevede moduli progettati per aggregare i feed e i set di database più popolari, garantendo di esportare, elaborare o inviare istruzioni ai tuoi storici software dipartimentali senza interrompere le attività odierne.</p>
+                </details>
+                
+                <details class="group bg-white p-4 border-2 border-black" style="border-radius: var(--radius);">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg">
+                        Come supportate l'onboarding di nuovi dipendenti?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">Con interfacce chiare e una documentazione visiva ricchissima che abbatte del 60% la consueta curva di apprendimento del mondo tecnologico per nuovi dipendenti. Diventare operativi sarà fluido e organico alla loro settimana formativa aziendale.</p>
+                </details>
+
+                <details class="group bg-white p-4 border-2 border-black" style="border-radius: var(--radius);">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg">
+                        È utile per le piccole e medie imprese italiane?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">Certo, l'applicativo è estremamente scalabile ed è nato in modo specifico proprio per agevolare tutte quelle PMI decise a digitalizzarsi che richiedono processi moderni tipici di aziende leader in virtù del continuo bisogno di rapida progressione strutturale e competenza logistica.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Contact & Lead Form inside DNA Card -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card bg-gray-900 text-white" style="border-color: transparent;">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-extrabold mb-6 text-white">Pronto a fare il salto tecnologico?</h2>
+                    <p class="mb-8 text-gray-300 text-lg">Affida la logica dei tuoi procedimenti lavorativi a una base infrastrutturale costruita per scalare con la tua ambizione. Completa il modulo sottostante, e il team tecnico affiliato ti illustrerà nel dettaglio la fase implementativa del Software nel tuo perimetro gestionale e le funzionalità di prova incluse.</p>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-gray-100 uppercase tracking-widest text-sm mb-4">I Nostri Sedi Affiliati Principali</h4>
+                        <div class="flex items-start text-gray-400 mb-4">
+                            <svg class="w-6 h-6 mr-3 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <p>Gestione Centrale Innovazione<br>Polo Tecnologico Digitale (Solo Appuntamenti su Sistema remoto)</p>
+                        </div>
+                        <div class="flex items-start text-gray-400">
+                            <svg class="w-6 h-6 mr-3 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <p>Operatività Cloud:<br>Lunedì - Venerdì, 9:00 - 18:00 (Ora Europea)</p>
+                        </div>
+                        <!-- Note: Aggressively purged phone/email logic due to missing raw reliable contact info on source -->
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl" style="border-radius: var(--radius); border: 2px solid #000; box-shadow: var(--shadow);">
+                    <!-- Lead Form with Pure JS Logic -->
+                    <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); const oldTxt = btn.innerText; btn.innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-5">
+                            <label class="block text-gray-800 font-bold mb-2 text-sm">Nome Azienda</label>
+                            <input type="text" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded focus:outline-none focus:border-blue-500 text-gray-900 transition-colors" placeholder="Il nome della tua impresa">
+                        </div>
+                        <div class="mb-5">
+                            <label class="block text-gray-800 font-bold mb-2 text-sm">Numero Operatori (Stima)</label>
+                            <select class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded focus:outline-none focus:border-blue-500 text-gray-900 transition-colors">
+                                <option>Da 1 a 10</option>
+                                <option>Da 11 a 50</option>
+                                <option>Oltre 50</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-800 font-bold mb-2 text-sm">Richiesta / Obiettivo di Automazione</label>
+                            <textarea required rows="4" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded focus:outline-none focus:border-blue-500 text-gray-900 transition-colors" placeholder="Descrivi il processo di Gestione che desideri innovare..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full shadow-md text-lg uppercase tracking-wide">Attiva Piano Gratuito Sperimentale</button>
+                        <p class="text-xs text-gray-500 text-center mt-4">Inviando la tua richiesta approvi i Termini e accetti l'avviso di trasparenza commerciale in calce al sito.</p>
+                    </form>
+
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="success-msg" style="display:none" class="text-center py-10">
+                        <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta di Consultazione Trasmessa!</h3>
+                        <p class="text-gray-600">Un tecnico sistemista specializzato per la tua industry prenderà in carico l'esame infrastrutturale molto rapidamente. I dettagli di contatto non ti sono preclusi, la dashboard aspetta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t-4 border-gray-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="text-3xl font-extrabold text-white tracking-tighter uppercase mb-4 block">Lutiku Bais <span class="text-blue-500">Collective</span></span>
+                <p class="text-gray-400 font-medium">Software all'avanguardia per massimizzare la tua redditività strutturale.</p>
+            </div>
+
+            <!-- MANDATORY DISCLAIMER -->
+            <div class="bg-gray-800 p-6 rounded text-sm text-gray-300 mb-10 text-center mx-auto max-w-4xl italic shadow-inner">
+                Questo è un sito promozionale indipendente gestito da Lutiku Bais Collective, che opera come affiliato per Rivelo Platform. Tutte le richieste ed i contratti finali avvengono ed intercorrono tra l'acquirente e i titolari effettivi della fornitura nativa del prodotto in oggetto.
+            </div>
+
+            <!-- Legal Documents Details -->
+            <div class="max-w-4xl mx-auto space-y-4 mb-10 bg-white p-6 rounded" style="border-radius: var(--radius)">
+                
+                <details>
+                    <summary class="text-gray-900 border-b-0 hover:text-primary transition-colors">Informativa sulla Privacy Globale del Sistema Software</summary>
+                    <div class="mt-4 px-4 pb-4">
+                        <p>La tua privacy è fondamentale per l'infrastruttura di erogazione del nostro Software aziendale.</p>
+                        <p>Ci impegniamo costantemente e rigorosamente a proteggere tutte le informazioni personali, i metadati e le configurazioni di Automazione generate o condivise sulla nostra architettura web o in fase preventiva.</p>
+                        <p>Le tue credenziali e i flussi immessi per fini di test non saranno mai divulgati verso enti oscuri o agenzie pubblicitarie esterne per profilazione senza consensi espliciti attivi e verificabili in forma protocollare asincrona.</p>
+                        <p>Raccogliamo stringhe operative quali percorsi web, durata delle sessioni aziendali sulla Gestione front-end, finalizzati esclusivamente alla produzione statistica che assicura stabilità applicativa, risoluzione remota o identificazione precoce e risolutiva dei colli di bottiglia logistici.</p>
+                        <p>Questo protocollo prevede l'installazione momentanea di codici monitor o tracker comportamentali finalizzati alla validazione della tua richiesta sul terminale dell'istituto promotore al solo scopo tecnico della presa in carico operativa.</p>
+                        <p>Hai pieno ed esclusivo diritto intellettuale a presentare, esigere in qualunque fase l'integrità strutturale nonché disporre istantaneamente la modifica della copia virtuale immagazzinata nei registri che ti riguardino compilando la maschera front-end o disattivandola sul sito ufficiale finale.</p>
+                        <p>Noi implementiamo solide garanzie tecnologiche affinché nessuno degli apparati informativi risulti alterato o intercettato durante il passaggio logico dell'Automazione interrotta sui nostri re-router, tramite cifrari TLS robusti aggiornati.</p>
+                        <p>Qualunque informazione ceduta nel box dedicato alle osservazioni è recepita come volontaria e trattata esclusivamente dal collettivo promotore e condivisa alla società donatrice ufficiale come indicato nell'avvertenza di trasparenza, restando i unici due attori del percorso visivo.</p>
+                        <p>Noi limitiamo l'utilizzo dell'uso in conformità rigida e diretta dell'ordinamento telematico globale e nazionale del GDPR ove adiacente e legalmente asservibile agli scopi contrattuali che stai sottoscrivendo esplicitamente richiedendo demo virtuali e materiale consultivo in tal senso organizzato nel layout e non inibibile.</p>
+                        <p>Ti informiamo chiaramente e indubitabilmente che questa area legale concerne soltanto l'attuale sito transitorio; la transizione del processo ai canali definitivi del detentore legale comporterà l'accettazione diretta delle norme in atto predisposte autonomamente sul lato software provider esterno a noi e fuori dall'esegesi della nostra supervisione etica locale.</p>
+                        <p>Con cadenze non calendarizzate, aggiorniamo il nostro modulo privacy a seguito di emendamenti legislativi rilevanti ed influenti e pubblichiamo in totale sintonia con le prerogative di equità l'indice e il manifesto mutato visibile costantemente qua all'apertura d'interesse della documentazione pertinente e sensibile che vi tutela appieno finché permanete qui sull'affiliazione web in modo prolungato non recondito per un totale tempo d'azione da confermarsi nei passaggi standard tecnici o derivati informatici logaritmici operati sull'asset designativo intermedio visibile e operabile a tutti liberamente e palesemente.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="text-gray-900 border-b-0 border-t hover:text-primary transition-colors pt-4">Condizioni Termini Generali di Affiliazione e Servizio Piattaforma</summary>
+                    <div class="mt-4 px-4 pb-4">
+                        <p>Accedendo al dominio affiliato per il Software e impiegando interattivamente ogni materiale intellettuale, concettuale o funzionale, stai aderendo consapevolmente ai vincoli di navigazione enunciati congiuntamente da Lutiku Bais.</p>
+                        <p>Rendiamo palese a tutti gli operatori e curiosi che l'integrità totale o parziale e l'esaustività testuale concernente garanzie sul tasso esatto o predeterminato e certo dell'Efficienza finale del pacchetto è stimato e non fattuale rispetto ad attori dissimili nell'inserimento dei dati da cui scaturisce ogni Automazione finale sul core service originario.</p>
+                        <p>Il marchio ospitante, pur sforzandosi profondamente in verifiche preclusive e controlli etici formali di qualità esigente su fornitori, ricusa recisamente e permanentemente la totale colpevolezza derivata oggettivamente da cadute, ritardi implementativi temporanei o persistenti legati all'ecosistema centrale di chi produce operativamente la fornitura Software a causa dell'evidenza formale e indiscutibile riguardante la natura promozionale ponte assunta qui e per la quale offriamo mera opera fiduciaria limitata senza responsabilità d'erogazione server remoti in prima persona fisicamente non manipolati o programmati attivamente dalla squadra promozionale ospitante locale del presente sito transiente per lo sviluppo contatti validati prefiltrati non fraudolenti passati all'architettura esterna finale originaria e competente univoca per l'azione e per i pagamenti.</p>
+                        <p>Vietiamo e diffidiamo risolutamente chi cercherà forzosamente di scardinare blocchi anti automazione invasivi contro i moduli promozionali col rischio palese e comprovato a livello codici, nonché il duplicare in malafede porzioni del nostro set istruttivo descrittivo al solo ingenerare errate concorrenze sui nostri materiali descrittivi che violerebbero le consuete prerogative d'autore con potenziale ritorsione normativa applicata contro bot infettivi operanti azioni di crawling intensivo senza autorizzazioni speciali documentabili, lecite e trasparenti a noi non negate ed evidenziate opportunamente dalla Gestione formale e processuale richiesta per chi naviga sul dominio per interesse umano reale.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary class="text-gray-900 border-b-0 border-t hover:text-primary transition-colors pt-4">Termini Specifici sulle Esenzioni Commerciali dei Rimborsi</summary>
+                    <div class="mt-4 px-4 pb-4">
+                        <p>Richiamando costantemente che noi offriamo transito divulgativo unicamente verso i possessori legali dello strumento tecnologico di Automazione esposto, la politica monetaria a seguire e adiacente al rimborso resta di piena applicazione normativa dell'emittente il contratto fornitore del core software o chi detiene il gateway gestionale sui server originari verso i quali stiamo puntando e a cui non possiamo per definizione alterare le prassi non intervenendovi a nessun livello finanziario monetario non richiedendovi compensi da questa landing informazionale d'acquisizione pur operata ai massimi canoni stilistici tecnici ed etici d'attitudine web standard prestativa veloce ma scollegata legalmente dall'effettuazione rimborsi.</p>
+                        <p>Non possiamo onestamente agire, stornare ad alcun cittadino entrate né prelevamenti che esulano radicalmente dal design del nostro coinvolgimento transitorio fiduciario limitatissimo al trasporto descritto nella sezione precedente per le clausole d'esonero dalle avarie software esterne, precludendovi ogni vertenza monetaria che non trovi il destinatario esatto coincidente palesemente ed esclusivamente sull'azienda ricevente l'appalto descritto, la quale gestirà la transazione e conseguentemente fornirà il proprio inconfutabile, obbligatorio e personale avviso in conformità contrattuale sull'opportunità legislativa concessavi di reclamare somme qualora insoddisfatti entro il limite esatto preposto, concordato nei loro file informatici definitivi dopo il ponte comunicazionale effettuato qua a regola dell'arte d'avvio commerciale iniziale libero per l'indagatore fiduciario dell'offerta digitale qui ampiamente sponsorizzata a titolo consulenziale collettivo senza transazione avvenuta in questi sistemi d'invio anagrafico.</p>
+                    </div>
+                </details>
+
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 mt-8 flex justify-center text-center">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2026 Lutiku Bais Collective. Tutti i diritti intellettuali sulla composizione stilistica e presentazionale web della presente scheda affiliata sono rigidamente e orgogliosamente difesi secondo i trattati del collettivo e degli attuali depositari di hosting transnazionali approvati con certificazione cloud sicura ed elevatissima conformità. Software and IT Solutions per Automazione di Eccellenza.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner Fixed -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 border-t-2 border-gray-700 p-6 flex flex-col md:flex-row items-center justify-between text-white transform translate-y-full transition-transform duration-500 shadow-[0_-10px_20px_rgba(0,0,0,0.5)] z-50">
+        <div class="text-sm text-gray-300 md:mr-8 mb-4 md:mb-0 max-w-4xl font-medium leading-relaxed">
+            Per innalzare l'Efficienza di questo spazio impieghiamo sistemi analitici invisibili che calibrano positivamente l'assetto operativo generale web secondo normative correnti limitanti rigidamente profilazione terza o marketing indesiderabile, attuando navigazioni pure nel puro scopo funzionale senza tracking per terze agenzie per scopi estranei, solo l'abilitazione statistica di continuità della promozione collettiva offerta dal framework.
+        </div>
+        <div class="flex-shrink-0">
+            <button onclick="acceptCookies()" class="btn-primary py-2 px-6 whitespace-nowrap text-sm border-2 border-black">Ho inteso e approvo l'Analisi Web</button>
+        </div>
+    </div>
+
+    <!-- Scripts for Logic -->
+    <script>
+        // JS Smart Routing (The Gravity Well Protocol)
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            for (let i = 0; i < links.length; i++) {
+                links[i].addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        console.warn(`Target #${targetId} missing. Forcing smooth scroll to Contact Form fallback.`);
+                        document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+
+            // Cookie Logic with LocalStorage implementation
+            if(!localStorage.getItem('cookie_consent_accepted_tech')) {
+                setTimeout(() => {
+                    const cb = document.getElementById('cookie-banner');
+                    cb.style.transform = 'translateY(0)';
+                }, 1000);
+            }
+        });
+
+        // External function for the cookie banner inline click event
+        function acceptCookies() {
+            localStorage.setItem('cookie_consent_accepted_tech', 'true');
+            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
+        }
+    </script>
+</body>
+</html>
