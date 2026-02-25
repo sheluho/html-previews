@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cimupeyum Management - Piattaforma E-Learning</title>
+    
+    <!-- Tailwind CSS v2.2.19 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DESIGN DNA: Contrast Protocol Inject -->
+    <style>
+      :root {
+        --primary: #4f46e5;      /* VAR D: Indigo (Tech/Learning Palette) */
+        --surface: #fffdf5;      /* VAR C: Warm Surface (ASCII 's' = 115 % 3 = 1) */
+        --radius: 24px;          /* VAR A: Pill Geometry (Length 23 % 3 = 2) */
+        --shadow: 0 0 0 1px #e5e7eb; /* VAR B: Flat Physics (ASCII 'c' = 99 % 3 = 0) */
+      }
+
+      /* GLOBAL CONTRAST BASE */
+      body {
+        background-color: #f3f4f6;
+        color: #1f2937;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+
+      /* BRAND COMPONENT: The DNA Card */
+      .dna-card {
+        background-color: var(--surface);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
+
+      /* BRAND COMPONENT: Primary Button */
+      .btn-primary {
+         background-color: var(--primary) !important;
+         color: #ffffff !important;
+         border-radius: var(--radius) !important;
+         box-shadow: var(--shadow) !important;
+         padding: 1rem 2rem;
+         transition: all 0.2s ease-in-out;
+         font-weight: bold;
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         cursor: pointer;
+      }
+      .btn-primary:hover { 
+          opacity: 0.9; 
+          transform: translateY(-2px); 
+      }
+
+      /* UTILITY: Text Accent */
+      .text-primary { 
+          color: var(--primary) !important; 
+      }
+      
+      .bg-primary {
+          background-color: var(--primary) !important;
+      }
+      
+      /* Standardizing inputs */
+      input, textarea {
+          border-radius: var(--radius) !important;
+          border: 1px solid #d1d5db !important;
+          padding: 0.75rem 1rem !important;
+          background-color: #ffffff !important;
+          width: 100%;
+      }
+      input:focus, textarea:focus {
+          outline: none;
+          border-color: var(--primary) !important;
+          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
+      }
+      
+      /* Cookie banner setup */
+      #cookie-banner {
+          border-top-left-radius: var(--radius);
+          border-top-right-radius: var(--radius);
+      }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-extrabold text-2xl tracking-tight text-gray-900">
+                        Cimupeyum<span class="text-primary">Management</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Vantaggi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Storie di Successo</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">Domande Frequenti</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-primary font-medium transition-colors">Prezzi (Test Fallback)</a>
+                </nav>
+                
+                <div class="hidden md:flex items-center">
+                    <a href="#contact" class="btn-primary text-sm px-6 py-2">Inizia Ora</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="flex md:hidden items-center">
+                    <button id="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-gray-900 p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
+            <a href="#features" class="block text-gray-700 font-medium hover:text-primary">Vantaggi</a>
+            <a href="#reviews" class="block text-gray-700 font-medium hover:text-primary">Storie di Successo</a>
+            <a href="#faq" class="block text-gray-700 font-medium hover:text-primary">FAQ</a>
+            <a href="#contact" class="block w-full text-center mt-4 btn-primary py-2">Inizia Ora</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gray-900 py-24 sm:py-32 lg:py-40 overflow-hidden">
+        <!-- Abstract Tech Background pattern -->
+        <div class="absolute inset-0 z-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTIgMmgydjJIMUMyeiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==')]"></div>
+        <div class="absolute inset-0 z-0 bg-gradient-to-r from-gray-900 via-gray-900/90 to-transparent"></div>
+        
+        <img class="absolute inset-0 w-full h-full object-cover opacity-30 z-[-1]" src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80" alt="Studenti su piattaforma e-learning" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1f2937/ffffff?text=E-Learning+Platform'">
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+                Gestire il tuo <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Futuro</span> inizia con un singolo <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Corso</span>.
+            </h1>
+            <p class="mt-4 text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Scopri l'<strong>accesso</strong> illimitato alla formazione premium sviluppata dai top manager. Costruisci nuove competenze, ottieni certificazioni reali e rivoluziona la tua carriera, direttamente da casa tua.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="btn-primary text-lg px-8 py-4">Inizia a Imparare</a>
+                <a href="#features" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold rounded-[var(--radius)] hover:bg-white hover:text-gray-900 transition-colors text-lg">Esplora il Catalogo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST SECTION -->
+    <div class="bg-white border-b border-gray-200 py-6">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold text-gray-500 uppercase tracking-wide mb-6">Migliaia di studenti imparano ogni giorno con le metodologie di</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-60 grayscale">
+                <span class="text-2xl font-black font-serif text-gray-800 tracking-tighter">TECHCorp</span>
+                <span class="text-2xl font-black font-sans text-gray-800 tracking-wider">MEDIAWorks</span>
+                <span class="text-xl font-bold font-mono text-gray-800">GLOBAL.edu</span>
+                <span class="text-2xl font-black text-gray-800">Innovate</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8">
+        
+        <!-- SERVICES / FEATURES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900">Perché scegliere la nostra Piattaforma E-Learning?</h2>
+                <p class="mt-4 text-lg text-gray-600">Che tu sia uno studente o un manager esperto, abbiamo le risorse per garantirti il massimo risultato formativo in tempi record.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 bg-white rounded-xl border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4 border border-indigo-100">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Un Corso per Ogni Esigenza</h3>
+                    <p class="text-gray-600">Abbiamo strutturato il nostro programma per supportare studenti a qualsiasi livello. Ideale anche per <strong>principianti</strong> che vogliono inserirsi rapidamente nel mercato del lavoro digitale.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-6 bg-white rounded-xl border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4 border border-indigo-100">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Accesso Flessibile h24</h3>
+                    <p class="text-gray-600">Gestisci i tuoi ritmi. Ti forniamo l'<strong>accesso</strong> continuo on-demand da qualsiasi dispositivo. Apprendi ovunque ti trovi con quiz, simulazioni e moduli scaricabili per studiare offline.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-6 bg-white rounded-xl border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4 border border-indigo-100">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Iscrizione Veloce e Sicura</h3>
+                    <p class="text-gray-600">Zero scartoffie e processi complessi. L'<strong>iscrizione</strong> alla nostra suite richiede meno di 2 minuti. Diventa subito operativo e tuffati nelle metodologie più richieste sul mercato del lavoro.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Cosa dice chi ha scelto di Imparare con noi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="h-10 w-10 bg-indigo-200 rounded-full flex items-center justify-center font-bold text-primary">M</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-900">Marco Rossi</h4>
+                            <p class="text-sm text-gray-500">Studente - Anno 2026</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Cercavo un sistema pratico per migliorare la mia posizione. L'<strong>accesso</strong> rapido alle risorse e il materiale eccellente mi hanno trasformato. Ho seguito un <strong>corso</strong> intensivo e in tre settimane applicavo già le competenze sul campo. La svolta per il mio futuro."</p>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="h-10 w-10 bg-indigo-200 rounded-full flex items-center justify-center font-bold text-primary">L</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-900">Laura Bianchi</h4>
+                            <p class="text-sm text-gray-500">Libera Professionista - Anno 2026</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Ero molto titubante all'inizio. In qualità di <strong>principiante</strong> assoluta, temevo argomenti troppo tecnici. Ma la didattica è step-by-step. Cimupeyum Management ti segue garantendo che tu possa davvero <strong>imparare</strong> ogni singolo concetto chiave. Consigliatissimo!"</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-gray-900">Domande Frequenti (FAQ)</h2>
+                <p class="mt-3 text-gray-600">Hai dubbi? Qui trovi tutte le risposte sui nostri servizi formativi.</p>
+            </div>
+            
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <details class="group bg-white rounded-lg border border-gray-200 open:border-primary">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:bg-gray-50">
+                        <span>1. Posso iniziare se sono tra i principianti assoluti?</span>
+                        <span class="transition group-open:rotate-180 text-primary">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 px-5 pb-5">
+                        Assolutamente sì. I nostri programmi sono scalabili. Ogni area didattica parte dalle basi per accompagnarti gradualmente, fornendo tutte le risorse didattiche affinché anche i <strong>principianti</strong> possano raggiungere livelli avanzati nel minor tempo possibile.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-lg border border-gray-200 open:border-primary">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:bg-gray-50">
+                        <span>2. Quanto dura l'iscrizione ai corsi?</span>
+                        <span class="transition group-open:rotate-180 text-primary">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 px-5 pb-5">
+                        L'<strong>iscrizione</strong> è altamente personalizzabile. Puoi scegliere piani mensili, trimestrali o abbonamenti annuali in base alle tue necessità professionali per assicurarti che il tuo investimento sia esattamente in linea con le tue aspettative sul tuo percorso formativo.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-lg border border-gray-200 open:border-primary">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:bg-gray-50">
+                        <span>3. Dopo l'acquisto, avrò accesso immediato?</span>
+                        <span class="transition group-open:rotate-180 text-primary">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 px-5 pb-5">
+                        Certamente! Una volta completata la procedura, riceverai l'<strong>accesso</strong> immediato a tutta l'accademia, così che tu possa iniziare subito il tuo primo <strong>corso</strong>. Imparare non ha mai tempi morti con la nostra piattaforma dinamica.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-lg border border-gray-200 open:border-primary">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:bg-gray-50">
+                        <span>4. Viene rilasciata una certificazione?</span>
+                        <span class="transition group-open:rotate-180 text-primary">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 px-5 pb-5">
+                        Sì, ogni volta che completi un modulo formativo ed affronti il test finale, la nostra piattaforma genera una certificazione ufficiale per testare le competenze che potrai spendere direttamente per avanzare nel tuo nuovo, luminoso, <strong>futuro</strong> lavorativo.
+                    </div>
+                </details>
+
+                 <details class="group bg-white rounded-lg border border-gray-200 open:border-primary">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:bg-gray-50">
+                        <span>5. Imparare solo dalla teoria o anche con la pratica?</span>
+                        <span class="transition group-open:rotate-180 text-primary">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 px-5 pb-5">
+                        Puntiamo alla massima praticità. Oltre a solide basi teoriche, sarai spinto ad affrontare casi studio concreti, progetti finali ed esercizi per farti non solo <strong>imparare</strong> i fondamenti ma per simulare reali flussi di lavoro aziendali e manageriali.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Investi ora nella tua Formazione</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Iscriverti ai nostri piani didattici cambierà il modo in cui percepisci le dinamiche aziendali del mercato moderno. Ricevi una panoramica su come strutturiamo il materiale di supporto formativo erogato grazie al network di Learnn.<br><br>
+                        Compila il modulo in pochi secondi. Un esperto del nostro staff per i programmi didattici Cimupeyum Management ti affiancherà per farti scegliere il percorso ottimale.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-indigo-50 rounded-full flex justify-center items-center text-primary">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-sm font-semibold text-gray-900">Provider Principale Formazione:</h4>
+                                <p class="text-sm text-gray-600">Learnn Platform HQ, Italia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEAD FORM -->
+                <div class="bg-white p-8 rounded-2xl border shadow-sm border-gray-100">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Inoltro richiesta...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="space-y-5">
+                            <div>
+                                <label for="fullname" class="block text-sm font-medium text-gray-700 mb-1">Nome e Cognome *</label>
+                                <input type="text" id="fullname" name="fullname" required placeholder="Es. Mario Rossi">
+                            </div>
+                            <div>
+                                <label for="telephone" class="block text-sm font-medium text-gray-700 mb-1">Recapito Telefonico *</label>
+                                <input type="tel" id="telephone" name="telephone" required placeholder="Il tuo numero">
+                            </div>
+                            <div>
+                                <label for="goals" class="block text-sm font-medium text-gray-700 mb-1">Principale Area di Interesse</label>
+                                <select id="goals" name="goals" class="w-full rounded-[var(--radius)] border border-gray-300 py-3 px-4 bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option value="manager">Sviluppo Management</option>
+                                    <option value="digital">Competenze Digitali</option>
+                                    <option value="marketing">Strategie E-learning</option>
+                                    <option value="beginners">Iniziazione / Corsi Base</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary w-full text-center py-4 text-lg mt-6">
+                                Richiedi Informazioni Gratuite
+                            </button>
+                            <p class="text-xs text-gray-400 text-center">Procedendo, accetti il trattamento dei dati personali come illustrato nell'informativa ai sensi del GDPR vigente.</p>
+                        </div>
+                    </form>
+
+                    <!-- Success Message Container -->
+                    <div id="success-msg" style="display:none" class="py-12 text-center">
+                        <div class="mx-auto w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Ricevuta!</h3>
+                        <p class="text-gray-600">Grazie per il tuo interesse nel preparare il tuo <strong>futuro</strong>. Uno dei nostri consulenti didattici visionerà i dati ed analizzerà quale <strong>corso</strong> ti si adatta al meglio, contattandoti in brevissimo tempo. Inizia a prepararti per la tua nuova fase di crescita professionale.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="font-extrabold text-2xl tracking-tight text-white block mb-4">Cimupeyum<span class="text-primary">Management</span></span>
+                <!-- MANDATORY DISCLAIMER -->
+                <p class="text-sm text-gray-400 border border-gray-800 p-4 rounded-lg bg-gray-800/50 max-w-3xl mx-auto font-mono">
+                    Questo è un sito promozionale indipendente gestito da Cimupeyum Management, che agisce come affiliato per Learnn. La piattaforma presentata riflette l'infrastruttura di apprendimento per conto dell'effettivo erogatore. I marchi riportati non costituiscono un possesso formale o affiliazione legale diretta se non diversamente specificato. I servizi erogati non esonerano lo studente dallo svolgimento in proprio della professione e dall'onere della gestione di impresa nei limiti di legge, declinando l'ente da dirette responsabilità legate ai successi finanziari soggettivi.
+                </p>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 mt-8">
+                <p class="text-center text-sm text-gray-500 mb-8">&copy; 2026 Cimupeyum Management. Tutti i diritti riservati.</p>
+
+                <!-- LEGAL POLICIES SECTION (Anti-Laziness Full Text Generate Protocol) -->
+                <div class="max-w-3xl mx-auto space-y-3 text-left">
+                    <details class="group bg-gray-800/30 rounded-lg open:bg-gray-800/60 transition">
+                        <summary class="cursor-pointer text-sm font-semibold p-4 text-gray-300 hover:text-white flex justify-between">
+                            Informativa sulla Privacy
+                            <span class="text-gray-500 group-open:text-primary">▼</span>
+                        </summary>
+                        <div class="p-4 pt-0 text-xs text-gray-400 leading-relaxed space-y-3">
+                            <p>Cimupeyum Management rispetta pienamente il diritto alla privacy dei propri utenti (studenti, principianti ed esperti) nell'ambito della legislazione comunitaria ed internazionale (ivi compresi i regolamenti per il GDPR ove l'utente appartenga allo Spazio Economico Europeo). Quando decidete di iscrivervi sulla nostra piattaforma o di procedere con l'utilizzo del nostro portale informatico (sito web accessibile da connessione domestica e mobile), raccogliamo necessariamente specifiche informazioni di varia entità in maniera esplicita tramite consensi liberi ai form contatti di riferimento integrati ai processi didattici di E-learning proposti da o mediati da questo medesimo sito tramite Learnn in qualità di fornitore ed erogatore principale per il portafoglio docenti.</p>
+                            <p>Questo significa concretamente che le interazioni come navigazioni da IP di riferimento non coperti da proxy e comunicazioni esplicite telefoniche divengono a pieno titolo parte dei dataset protetti da architettura tecnica che monitoriamo attivamente solo a fine gestionale operativo aziendale; ogni iscritto a nostro catalogo, compilando qualsivoglia richiesta per i futuri propri programmi di formazione, fornisce consenso formale espresso. Tutti i database correlati alle infrastrutture della rete e del management della medesima operazione formativa o della somministrazione digitale restano saldamente e strettamente circoscritti e confinati all'ambito della specifica fornitura dell'acquisto del videocorso. Dichiariamo con fermezza ai nostri fruitori del servizio che mai attuiamo prassi commerciali per lo sfruttamento non autorizzato, compravendite occulte per via laterale con altre piattaforme terze per lo share o subconcessione per uso secondario non didattico a terze parti.</p>
+                            <p>Ulteriormente ai suddetti fondamenti formali dell'operazione di transazione informatica sul bene E-learning, conserviamo esplicitamente per le sole motivazioni burocratiche strettamente pertinenti agli adempimenti contabili, erariali legali nazionali e al management per rimborsi un set d'emergenza ed integrazione dei contratti dei fornitori informatici connessi; qualora fosse domandata eventuale limitazione e cessazione totale sull'erogazione della didattica basterà riferirsi in autonomia a tutti gli enti indicati dal fornitore centrale delle transazioni o in extremis procedendo come suggerisce l'agenzia o il fornitore formale; non offriamo un contatto secondario telematico su questo sito affinché si garantisca univocamente ogni controllo di cancellazione, prelievo o obliterazione dell'identità secondo procedure e meccaniche prestabilite nell'ambiente operativo del vero esecutore delle piattaforme digitali in causa a prescindere.</p>
+                        </div>
+                    </details>
+
+                    <details class="group bg-gray-800/30 rounded-lg open:bg-gray-800/60 transition">
+                        <summary class="cursor-pointer text-sm font-semibold p-4 text-gray-300 hover:text-white flex justify-between">
+                            Termini e Condizioni
+                            <span class="text-gray-500 group-open:text-primary">▼</span>
+                        </summary>
+                        <div class="p-4 pt-0 text-xs text-gray-400 leading-relaxed space-y-3">
+                            <p>Tutte le sezioni che specificano le metodologie didattiche d'apprendimento formativo che trovate qui a seguire formalizzano univocamente i punti imprescindibili dell'offerta contrattualizzata (Termini) nel corso intero delle nostre intermediazioni col provider menzionato sulla pagina web in calce; qualora tu fossi riluttante verso l'adesione ad ognuno degli articoli presenti nei termini, o non ti trovassi favorevolmente in accordo sulle prospettive illustrate nei paragrafi, declinano reciprocamente dal considerare avviata un'erogazione verso di te del comparto corsi. L'utenza per partecipare allo sviluppo del proprio futuro didattico su moduli, interazioni multimediali video a tempo indeterminato tramite pacchetto abbonamento garantisce al tempo zero legalmente in forza della fruizione l'impegno all'aderenza ad accordo sulle specifiche licenze di accesso fornite nominalmente in base allo statuto del venditore centrale per cui il provider agisce operante o pro-forma.  Qualunque accesso multiplo effettuato su macchine virtuali condivise per evitare la prassi canonica sulle sottoscrizioni degli abbonati costituisce gravissima condotta contro la tutela degli asset intellettuali operativi del corpo dipendenti.</p>
+                            <p>I partecipanti iscritti certificati al pannello degli studi dichiarano solennemente fin dall'accensione telematica dell'ambiente educativo formativo online che la sola garanzia sul buon progredire, acquisire capacità spendibili come futuri professionisti è da riferirsi pienamente senza nessuna deroga e pretesa alcuna esclusivamente alle loro capacità individuali e disponibilità a dedicare focus intellettuale in coerenza coi contenuti elaborati sui cataloghi previsti online su nostra somministrazione paritaria o principale della proposta. Il sito di E-learning o l'organo promotore che media e referenzia non sarà interpellato in giudizi su vertenze in ambiti lavorativi mancati post completamenti dei seminari o delle masterclass per esplicita estraneità dai domini occupazionali futuri al netto d'impegni per apprendere. Per i neo formati l'utilizzo sistemico continuativo dopo revoche ai profili di studio attiene in sé illeciti su furto intellettuale che determinano rimostranza ufficiale secondo norme a valenza internazionale inerenti reati sui dati informativi aziendali confidenziali come apposti tra contratti tra le due entità fisiche aziendali preposte fin da iscrizioni sul server loggati d'erogazione primari con o in vece da referrers digitali medesimi a titolo.</p>
+                        </div>
+                    </details>
+
+                    <details class="group bg-gray-800/30 rounded-lg open:bg-gray-800/60 transition">
+                        <summary class="cursor-pointer text-sm font-semibold p-4 text-gray-300 hover:text-white flex justify-between">
+                            Politica sui Rimborsi
+                            <span class="text-gray-500 group-open:text-primary">▼</span>
+                        </summary>
+                        <div class="p-4 pt-0 text-xs text-gray-400 leading-relaxed space-y-3">
+                            <p>Noi e l'intero comparto del network Learnn comprendiamo bene quanto l'acquisizione online costituisca talvolta impegni decisivi che determinino futuri andamenti economici sui budget privati dei cittadini che anelano con determinazione ad avanzare per posizioni migliorative; nondimeno come ogni entità seria del business, regoliamo strettamente resi sul capitale corrisposto dai committenti se conformi entro condizioni inderogabili imposte contrattualmente alla primissima battuta d'ingresso all'intero comparto portale web ove lo scibile umano ed educativo giaccia materialmente immagazzinato su infrastruttura e database. Ove vogliate ritirare un capitale destinato inizialmente alla maturazione e formazione del vostro percorso da management non essendo trascorsi dal checkout telematico sul conto o portale di riferimento un lasso prestabilito di calendario feriale indicato nel modulo transato originariamente al fornitore ed esecutore medesimo con ricevuta e valuta (normalmente indicato pari temporalmente allo spartiacque quattordici giornate nominalmente intere) valuteremo ed ammetteremo accoglimento formale sulla petizione.</p>
+                            <p>Se sussisterà in seguito verifica incontrovertibile tramite file-log d'istanza operativa d'infrastruttura d'ingresso certificando l'attuata procedura d'ingresso ma simultaneo basso sfruttamento effettivo (ergo che le fruizioni sul tempo effettivo per consumi dei multimedia registrati sulle app formanti restino rigidamente quantificati con valori ammontanti o stimati a percentuali inferiori per la soglia del quinto - ovvero 20 percento netto calcolato del totale materiale video dei professori iscritti nei nostri reparti formanti sul sito o per master specifico scelto su referenza del catalogo da acquisire formalmente come allievo neo diplomato all'uopo), un ristoro sulle fatturazioni per quota totale non trattenute all'emissione risulterà da autorizzarsi da ufficio ed operatori competenti formali interpellando esclusivamente moduli appositi dal centralino dell'ambiente utente reale, eludendo intermediari affiliati quali non detengono alcun poter discrezionale esecutivo sui wallet finanziari legati a fatture dell'utente ed iscrittisi in piattaforma didattica finale.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 sm:p-6 shadow-2xl transform translate-y-full transition-transform duration-500 z-50">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-sm text-gray-600 flex-1">
+                <strong>Informativa Cookies:</strong> Impieghiamo tecnologie necessarie per assicurarvi accessi stabili ed inalterati ed esaminare parametri generali allo scopo d'efficientare l'acquisizione. Per continuare nel progresso sui siti promossi da questa iniziativa manageriale con un funzionamento pieno al miglior andamento del futuro gestionale naviga concedendo adesione o leggi i profili descrittivi interni all'accordo privacy stipulato al footer testuale limitativo.
+            </div>
+            <div class="flex gap-3 whitespace-nowrap">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-sm">Accetta e Continua</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SMART ROUTING SCRIPT (The Gravity Well Protocol) & Interactive Behaviours -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Check for cookie consent and display banner after delay
+            setTimeout(() => {
+                if(!localStorage.getItem('cimupeyum_cookie_consent')) {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }
+            }, 1000);
+
+            // 2. Smart Routing Interceptor
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    // Logic: Smooth scroll to target if exists.
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        // Fallback: Force Smooth Scroll to #contact if missing
+                        console.log(`Element ${targetId} not found. Fallback to #contact triggered.`);
+                        const fallbackTarget = document.querySelector('#contact');
+                        if(fallbackTarget) {
+                            fallbackTarget.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                    
+                    // Close mobile menu if opened
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+        });
+
+        // Accept Cookies handler
+        function acceptCookies() {
+            localStorage.setItem('cimupeyum_cookie_consent', 'accepted');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
