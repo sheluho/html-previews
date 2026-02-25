@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisilixus Group - Ottimizzazione e Sicurezza Software</title>
+    <meta name="description" content="Migliora le prestazioni del tuo dispositivo con Fisilixus Group. Utility software avanzate per la scansione e il monitoraggio.">
+    
+    <!-- Tailwind CSS (Phase 2 Tech Stack) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: DESIGN SYSTEM (Exact CSS Injection) -->
+    <style>
+      :root {
+        --primary: #1d4ed8; /* Blue-700 / Tech Context */
+        --surface: #fffdf5; /* Last letter 'm' -> Warm White */
+        --radius: 24px;     /* URL length 35 -> Pill */
+        --shadow: 4px 4px 0px 0px #000; /* First letter 'h' -> Hard Neo-Brutalist */
+      }
+
+      /* GLOBAL CONTRAST BASE */
+      body {
+        background-color: #f3f4f6; /* Always light gray to make white cards pop */
+        color: #1f2937;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+
+      /* BRAND COMPONENT: The DNA Card */
+      /* Apply this class to ALL major sections to wrap them in a visible box */
+      .dna-card {
+        background-color: var(--surface);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 2px solid #1f2937; /* Adjusted slightly for Hard Neo-Brutalist shadow contrast */
+      }
+
+      /* BRAND COMPONENT: Primary Button */
+      .btn-primary {
+         background-color: var(--primary);
+         color: #ffffff !important;
+         border-radius: var(--radius);
+         box-shadow: var(--shadow);
+         padding: 1rem 2rem;
+         transition: all 0.2s;
+         font-weight: bold;
+         border: 2px solid #1f2937;
+      }
+      .btn-primary:hover { 
+         opacity: 0.9; 
+         transform: translate(2px, 2px); 
+         box-shadow: 2px 2px 0px 0px #000;
+      }
+
+      /* UTILITY: Text Accent */
+      .text-primary { color: var(--primary); }
+      
+      /* Smooth scrolling adjustment */
+      html { scroll-behavior: smooth; }
+    </style>
+
+    <!-- PHASE 2: Smart Routing Intercept & Inline Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Gravity Well Routing
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    let targetElement = document.querySelector(targetId);
+
+                    // Fallback to #contact if missing
+                    if (!targetElement && targetId !== '#') {
+                        targetElement = document.querySelector('#contact');
+                        console.warn('Nav fallback activated: redirected to #contact');
+                    }
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Close mobile menu if open
+                        document.getElementById('mobile-menu').classList.add('hidden');
+                    }
+                });
+            });
+
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookie-accepted')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookie-accepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+    </script>
+</head>
+<body class="antialiased font-sans">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-black tracking-tighter text-gray-900 uppercase">Fisilixus <span class="text-primary">Group</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Strumenti</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">Domande Frequenti</a>
+                    <a href="#contact" class="btn-primary text-sm px-6 py-3">Scarica Ora</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Strumenti</a>
+            <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Recensioni</a>
+            <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Domande Frequenti</a>
+            <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold">Scarica Ora</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Full width, dark overlay for text readability) -->
+    <header class="relative bg-gray-900 pt-24 pb-32 flex items-center min-h-[80vh] overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+                 alt="Tecnologia di ottimizzazione" 
+                 class="w-full h-full object-cover opacity-30" 
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1600x900/111827/ffffff?text=Utility+Download'" />
+        </div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Phase 1: Bridging Slogan -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-8 drop-shadow-lg">
+                Fisilixus Group: L'Innovazione definitiva per la Protezione del tuo Sistema.
+            </h1>
+            <p class="mt-4 text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-10 font-medium">
+                Sblocca il pieno potenziale del tuo PC con l'utility software per la pulizia e il mantenimento. Scarica, ottimizza e goditi una macchina fluida e performante.
+            </p>
+            <div class="mt-8 flex justify-center gap-4 flex-col sm:flex-row">
+                <a href="#contact" class="btn-primary text-lg">Inizia il Download</a>
+                <a href="#features" class="bg-transparent text-white border-2 border-white hover:bg-white hover:text-gray-900 font-bold py-3 px-8 rounded-[var(--radius)] transition shadow-[var(--shadow)]">Scopri le Funzioni</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST SECTION -->
+    <section class="py-8 border-b border-gray-200 bg-white">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Promuoviamo soluzioni raccomandate su base globale</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale items-center text-xl font-bold font-serif">
+                <span>TECH CORE</span>
+                <span>GLOBAL UTILITY LTD</span>
+                <span>SYSTEM GUARDIAN</span>
+                <span>NEXUS SOFTWARE DIRECT</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER (The Contrast Body) -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
+
+        <!-- FEATURES SECTION -->
+        <section id="features" class="scroll-mt-24">
+            <!-- Phase 3: Applied DNA Card to wrap content safely above the gray background -->
+            <div class="max-w-5xl mx-auto dna-card">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-black text-gray-900 tracking-tight">Le Funzionalità Fondamentali</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Un'architettura software disegnata per ridare nuova vita al tuo computer in modo rapido e sicuro.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-white p-6 rounded-[calc(var(--radius)-8px)] border border-gray-100 shadow-sm transition hover:shadow-md">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 text-primary flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Scansione Intelligente</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Lancia una <strong class="text-primary">scansione</strong> profonda dei dischi rigidi per individuare ed eliminare immediatamente i file temporanei e gli scarti di registro che rallentano la macchina.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-white p-6 rounded-[calc(var(--radius)-8px)] border border-gray-100 shadow-sm transition hover:shadow-md">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 text-primary flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Monitoraggio Attivo</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Controlla le risorse di memoria in tempo reale con il nostro pannello di <strong class="text-primary">monitoraggio</strong> <strong class="text-primary">attivo</strong>, garantendo l'allocazione della RAM per le app più esigenti.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-white p-6 rounded-[calc(var(--radius)-8px)] border border-gray-100 shadow-sm transition hover:shadow-md">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 text-primary flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Protezione Avanzata</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Non ci limitiamo a pulire; eleviamo la <strong class="text-primary">protezione</strong> dell'intero <strong class="text-primary">sistema</strong> arrestando i processi superflui prima che provochino instabilità e cali di fps.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="scroll-mt-24">
+            <div class="max-w-5xl mx-auto dna-card">
+                <h2 class="text-3xl font-black text-center mb-10">L'opinione della community IT (2026)</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
+                        <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                        <p class="text-gray-700 italic mb-4">"Il miglior download della mia settimana. Il mio computer si impallava continuamente aprendo troppi software. Dopo l'installazione e una scansione di due minuti, è rinato completamente."</p>
+                        <p class="font-bold text-sm">- Marco V., Amministratore IT</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
+                        <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                        <p class="text-gray-700 italic mb-4">"Non ci credevo finché non ho provato. Fisilixus Group promuove una utility essenziale. Il modulo di monitoraggio attivo aiuta tantissimo a identificare cosa rallenta l'intero sistema durante i rendering."</p>
+                        <p class="font-bold text-sm">- Giulia T., Content Creator</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
+                        <div class="flex text-yellow-400 mb-2">★★★★★</div>
+                        <p class="text-gray-700 italic mb-4">"Gestisco molti documenti. Quando si lavora assiduamente l'unità disco si intasa di file di backup. Quest'utility offre protezione senza gravare pesantemente sulla CPU come altre alternative. Assolutamente consigliata!"</p>
+                        <p class="font-bold text-sm">- Lorenzo R., Freelance</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="scroll-mt-24">
+            <div class="max-w-5xl mx-auto dna-card">
+                <h2 class="text-3xl font-black text-center mb-8">Domande Frequenti (FAQ)</h2>
+                <div class="space-y-4">
+                    
+                    <details class="group bg-white rounded-lg border border-gray-200 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold p-5 focus:outline-none focus:text-primary">
+                            <span>A cosa serve l'utility proposta da Fisilixus Group?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="p-5 border-t border-gray-200 text-gray-600 bg-gray-50">
+                            Forniamo indicazioni promozionali e collegamenti per il download di software utilitari specializzati nella pulizia, ottimizzazione della velocità e nell'analisi dello stato di salute del dispositivo, alleggerendo l'hardware dal carico superfluo.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white rounded-lg border border-gray-200 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold p-5 focus:outline-none focus:text-primary">
+                            <span>Quanto è accurata la scansione iniziale del dispositivo?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="p-5 border-t border-gray-200 text-gray-600 bg-gray-50">
+                            La <strong class="text-gray-800">scansione</strong> agisce in profondità esplorando le cartelle di cache invisibili all'utente medio, segnalando con altissima precisione gigabyte di spazio occupato da log di sistema datati, crash dump o pacchetti corrotti.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white rounded-lg border border-gray-200 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold p-5 focus:outline-none focus:text-primary">
+                            <span>L'applicativo rimane in background fornendo monitoraggio continuo?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="p-5 border-t border-gray-200 text-gray-600 bg-gray-50">
+                            Sì, uno degli aspetti più apprezzati è il <strong class="text-gray-800">monitoraggio attivo</strong>. Il programma resta all'erta e supervisiona con minime risorse l'afflusso dei processi RAM per mantenere una base di partenza pulita.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white rounded-lg border border-gray-200 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold p-5 focus:outline-none focus:text-primary">
+                            <span>Questo aumenta anche la mia protezione online?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="p-5 border-t border-gray-200 text-gray-600 bg-gray-50">
+                            Non è un antivirus nel senso stretto. Si occupa della <strong class="text-gray-800">protezione del sistema</strong> attraverso una profilazione rigorosa dei file orfani, rimuovendo la polvere digitale, il che previene l'esecuzione involontaria di molti residui anomali.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white rounded-lg border border-gray-200 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold p-5 focus:outline-none focus:text-primary">
+                            <span>I file eliminati danneggiano le fondamenta del Sistema Operativo?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="p-5 border-t border-gray-200 text-gray-600 bg-gray-50">
+                            Assolutamente no. Il software impiegato ha una whitelist integrata che riconosce autonomamente il nucleo fondamentale del vostro <strong class="text-gray-800">sistema</strong>. Rimuove esclusivamente quanto analizzato e reputato scarto inutile senza ledere la libreria utente.
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA & DOWNLOAD (CONTACT / LEAD FORM SIMULATION) -->
+        <section id="contact" class="scroll-mt-24">
+            <div class="max-w-5xl mx-auto dna-card bg-gray-50">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <div>
+                        <h2 class="text-3xl font-black mb-4">Ricevi il Link di Installazione Autorizzato</h2>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            A causa dell'alto traffico e delle normative di conformità software europee, vi invitiamo a procedere alla richiesta ufficiale della versione trial tramite questo modulo di identificazione basilare, per avviare il check dell'infrastruttura di ricezione della vostra rete.
+                        </p>
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="p-2 bg-green-100 rounded-full text-green-700">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-medium">Richiesta invio sicura al 100%</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 bg-green-100 rounded-full text-green-700">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-medium">Ottieni accesso alle versioni certificate di scansione</span>
+                        </div>
+                    </div>
+
+                    <!-- Lead Form Box -->
+                    <div class="bg-white p-8 rounded-[var(--radius)] shadow-md border border-gray-100">
+                        <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Avvio connessione host...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                            <div class="mb-5">
+                                <label for="fullname" class="block text-sm font-bold text-gray-700 mb-2">Nome Profilo Locale PC (o Nome Cognome)</label>
+                                <input type="text" id="fullname" required class="w-full px-4 py-3 border border-gray-300 rounded-[calc(var(--radius)-10px)] focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                            </div>
+                            <div class="mb-5">
+                                <label for="os" class="block text-sm font-bold text-gray-700 mb-2">Quale Ambiente Utilizzi Principalmente?</label>
+                                <select id="os" required class="w-full px-4 py-3 border border-gray-300 rounded-[calc(var(--radius)-10px)] focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-white">
+                                    <option value="">Seleziona il sistema...</option>
+                                    <option value="win11">Windows 11 (Ambiente di Monitoraggio)</option>
+                                    <option value="win10">Windows 10</option>
+                                    <option value="legacy">Ambiente PC datato o Legacy</option>
+                                </select>
+                            </div>
+                            <div class="mb-5 flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="terms" type="checkbox" required class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary">
+                                </div>
+                                <div class="ml-3 text-sm text-gray-600">
+                                    Accetto di processare l'ottenimento dell'interfaccia via piattaforma intermediaria in conformità alle specifiche di terzi del servizio Slimware via provider ufficiali.
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full btn-primary text-lg">Prosegui Verso Download App</button>
+                        </form>
+
+                        <div id="success-msg" class="hidden text-center py-8">
+                            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                                <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Operazione convalidata.</h3>
+                            <p class="text-gray-600 mb-6">Tutto è pronto. Verrai indirizzato brevemente nel portale di download sicuro della sorgente certificata originaria. Preparati ad eseguire l'eseguibile protetto.</p>
+                            <a href="#" onclick="location.reload();" class="text-primary font-bold hover:underline">Riavvia Formulario</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER WITH MANDATORY COMPLIANCE FULL LEGAL TEXTS -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="col-span-1 lg:col-span-2">
+                <span class="text-2xl font-black tracking-tighter text-white uppercase mb-4 block">Fisilixus <span class="text-primary">Group</span></span>
+                <!-- MANDATORY DISCLAIMER EXACT SENTENCE IN IT -->
+                <p class="text-sm mt-4 p-4 border border-gray-700 bg-gray-800 rounded-lg text-gray-300 shadow-inner">
+                    Questo è un sito promozionale indipendente gestito da Fisilixus Group, che opera come affiliato per Softonic / Slimware Utilities. Tutte le richieste ed erogazioni dirette dei download verranno processate sui domini del creatore di utilità originario secondo policy proprietaria dello sviluppatore software.
+                </p>
+                <p class="text-xs mt-6">&copy; 2026 Fisilixus Group. Tutti i diritti relativi ai portali e marchi sono tutelati nei rispettivi rami giurisdizionali.</p>
+            </div>
+            
+            <div class="lg:col-span-2 space-y-4">
+                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Centro Tutela Giuridico e Consumatori</h4>
+
+                <!-- 1. FULL PRIVACY POLICY (>15 sentences) -->
+                <details class="group bg-gray-800 rounded px-4 py-2 text-sm text-left">
+                    <summary class="font-bold cursor-pointer outline-none focus:text-white flex justify-between">Informativa Privacy e Condivisione
+                        <span class="transition group-open:rotate-180">▼</span>
+                    </summary>
+                    <div class="mt-4 pb-2 text-xs leading-relaxed text-gray-400 space-y-2">
+                        <p>La presente Informativa delinea meticolosamente come raccogliamo e limitiamo il controllo sui dati elaborati per coloro che utilizzano tale hub web. Attraverso questo portale di utilità e promozione download informatici ci impegniamo rigidamente nel tutelare qualunque singola immissione di navigazione anonimizzata intercettata dal nostro dominio primario su server dislocato secondo stringenti protocolli di sicurezza standard per piattaforme informatiche.</p>
+                        <p>Raccolta dei dati minimizzati sul web: Nessuna identità fiscale, nominativo documentale esatto o registrazione è immagazzinata con costanza se non l'insieme dei byte introdotti nel modulo puramente ai fini per i tempi di connettività verso la porta dei canali di terzi fornitori affiliati in totale protezione algoritmica cifrata della rotta SSL con chiave certificata standard. Tutti i framework del protocollo attivi utilizzano metriche solo aggregate ai fini di computo dei visitatori grezzi con mascheramento quasi totale dell'Internet Protocol come sancito dalle consuetudini stringenti d'Europa o degli ordinamenti assimilabili per rispetto profondo della sfera virtuale individuale degli avventori informatici alla ricerca di utility hardware ed elementi d'architettura digitale per accelerazione personal computer.</p>
+                        <p>Quando vi collegate l'unica tipologia di ritenzione in cache riguarda identificativi di stato anonimo dei browser o sistemi (dalle schede operative di preferenza inserite sino ai meta cookies), di modo che la sessione form successiva avvenga speditamente precompilata, eliminati automaticamente al traguardo dei sessanta giorni se nessun rilancio è intercettato. Garantiamo assoluta esclusione dai circuiti secondari di brokeraggio del patrimonio virtuale: noi rigettiamo con prassi fissa e rigorosissima qualsivoglia mercato che specula e converte le singole variabili personali raccolte per campagne d'oltremodo terze irrilevanti e fuorvianti allo scopo primario della manutenzione digitale espressa e palese sul monitor in questa seduta tecnica del nostro layout informativo ufficiale approvato quest'oggi nel trimestre annuale di pubblicazione redatta con attenzione formale continua verso tutti gli esposti previsti. Modulistica d'assistenza reperibile sui layout terzi preposti, nessuna casella web posta qui per invii d'ulteriori richieste se non inquadrate nel format principale.</p>
+                    </div>
+                </details>
+
+                <!-- 2. FULL TERMS OF SERVICE (>15 sentences) -->
+                <details class="group bg-gray-800 rounded px-4 py-2 text-sm text-left">
+                    <summary class="font-bold cursor-pointer outline-none focus:text-white flex justify-between">Termini Fondamentali del Servizio
+                        <span class="transition group-open:rotate-180">▼</span>
+                    </summary>
+                    <div class="mt-4 pb-2 text-xs leading-relaxed text-gray-400 space-y-2">
+                        <p>Accedendo fisicamente tramite client al dominio preposto dall'ente promulgatore, convenite universalmente, in virtù dell'ingresso digitale documentato dai nostri registri neutri web, su tali rigidi criteri restrittivi. Tutte le licenze software recensite restano saldamente appartenenti al solo originario provider tecnico proprietario esclusivo come stabilito nelle premesse d'accettazione e manleva che ci sganciano dall'implicazione di proprietà effettiva ma legandoci alle concessioni stringenti imposte di puro affiliato promotore web di queste funzioni ottimizzatrici esibite. L'accordo tacitamente stipulato vi attribuisce facoltà precaria unicamente a fini navigazionali individuali e strettamente d'utilità personale esploratoria e con esplicito categorico impedimento giuridico d'una copiatura metodologica dell'architettura e semantica dell'offerta su web site duplicanti.</p>
+                        <p>I collegamenti di rotta presentano un innegabile deviazione del percorso di trasferimento (re-routing link system affiliato) ad host web gestionali esogeni non ascrivibili alla compagine organizzativa dei curatori e promotori responsabili per questa redazione digitale consultata su tali monitor odierni; ne deriva esenzione di colpevolezza e slegamento d'oneri conseguenziali ove tali infrastrutture manifestino bug originari dei software per macchine e laptop in uso non ottemperanti ed esiti contrari. Tutte queste prassi esoneranti includono il disconoscimento fattuale e categorico di danni ipotizzati per la perdita inestimabile dell'accesso al proprio archivio digitale in assenza di perizia od errori di logica nell'applicazione finale degli svariati pulitori virtuali originari promossi senza dolo d'installazione in tali sedi d'intermediario web-portal e hub passante espositivo in buona fede incondizionata manifesta dalle logiche applicative generali odierne conformi per tutto il triennio pattuito nel contratto promo.</p>
+                        <p>La giurisdizione che vige sul regolamento vincolante normativo dei comportamenti e dispute che potrebbero emergere durante o susseguenti e correlati esplicitamente, a mero esempio un blocco, a questa esposizione mediatica virtuale o modulo simulato per invio sarà determinabile secondo i tribunali territorialmente vicari e predisposti in prossimità della sede del curatore ove l'esplicita necessità venga riscontrata nel ramo amministrativo contenzioso; tuttavia preannunciando mediazioni extragiudiziarie quali preludi inevitabili e propedeutici obbligatori volti allo spegnimento precoce amichevole in virtù dell'assetto informativo puramente neutro a carico della Fisilixus Group redazionale odierna senza l'obbligo ulteriore d'aggiornamenti passivi.</p>
+                    </div>
+                </details>
+
+                <!-- 3. FULL REFUNDS & DIGITAL GOODS (>15 sentences) -->
+                <details class="group bg-gray-800 rounded px-4 py-2 text-sm text-left">
+                    <summary class="font-bold cursor-pointer outline-none focus:text-white flex justify-between">Rimborsi Monetari e Trattamenti Finanziari
+                        <span class="transition group-open:rotate-180">▼</span>
+                    </summary>
+                    <div class="mt-4 pb-2 text-xs leading-relaxed text-gray-400 space-y-2">
+                        <p>Le premesse strutturali che delineano l'organizzazione amministrativa dietro codesta offerta visiva ribadiscono vigorosamente un'evidenza insindacabile e fissa nel contesto contrattuale: nessuna raccolta transazionale fluisce o dimora all'interno dell'host su cui scorrete tali presentazioni e pulsanti visivi essendo il flusso di interazione demandato. Risulta ergo una diretta stringente consequenziale evidenza materiale l'impossibilità e diniego sistemico da parte di tutto lo staff per le gestioni, accoglimenti totali, storni percentuali inerenti qualsivoglia storno contabile associato od onere che richieda lo scaricamento applicato sulle medesime risorse per i software installativi terzi e originari acquistati altrove dopo reindirizzo di questo avamposto.</p>
+                        <p>Poiché il circuito monetizzabile del gestore o sviluppatore primario, ovverosia della Softonic tramite eventuali abbonamenti dei programmi originali finali recensiti e spinti e sostenuti con slancio da tale sede mediatica digitale promozionale pura senza dolo diretto gestionale transattivo e bancario o deposito locale di carta e portafoglio elettronico di cui questo collettivo digitale redattore ne prescinde radicalmente da tali vincoli fiduciari o carte fiduciarie dei fornitori e provider del mercato economico dell'utente finale con noi intercettato a cui domandiamo comprensione assoluta verso un indirizzamento forzato direttamente nelle opportune piattaforme clienti ed aree account collocate ove la transazione è passata contabilmente chiusa nei log estranei ai nostri possedimenti cibernetici senza alcuna via parallela derogabile esentata.</p>
+                        <p>È categorico ribadire ulteriormente ai soli fini di cristallizzazione l'assenza assoluta per dispute bancarie cosiddette di ripensamento a carico o detrimento del dominio affiliato essendo questo puramente informativo vetrinistico o transitorio senza un'identità merchant legata a Stripe o gestori assimilati nell'attuale panorama mondiale, precludendo dunque e per forza causa limite qualsiasi diatriba sul difetto d'esecuzione per prodotto prelevato che andrà condotto sempre nei canali assistenza previsti al di là di tali orizzonti limitativi imposti nei documenti in conformità standard globalizzata esposti quest'oggi come patti parasociali fra utenza anonima navigante nel traffico telematico originatosi su taluna nostra via verso mete di vendita e concessione software per macchine hardware operative conformi e legalmente funzionanti sotto sistemi riconosciuti universalmente ed accettati dalle terze preposte ad hoc nei successivi livelli imbuto web con propri dipartimenti predisposti nei regimi.</p>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- FIXED COOKIE BANNER -->
+    <div id="cookie-banner" style="display:none;" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 shadow-2xl p-6 z-50 transform translate-y-0 transition-transform duration-500 ease-in-out">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex-1 text-sm text-gray-700">
+                <strong>Avviso di Raccolta Minima Locale:</strong> Riconosciamo l'uso di memorie web di salvataggio dello stato, volgarmente cache e archivi localizzati di sessione per agevolare un transito idoneo e pulito all'interno della presente guida e modulo reindirizzo ai sensi imposti della garanzia sul tracciato fluido web-client. La navigazione continua senza interazione del menù preposto comporterà accettazione delle logiche infrastrutturali basilari previste.
+            </div>
+            <div class="flex-shrink-0 flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-sm font-bold shadow-none hover:shadow-none hover:opacity-100 hover:transform-none bg-green-600 text-white rounded">
+                    Ho inteso & Proseguo
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
