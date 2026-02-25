@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tawiyia Group | Software per Automazione ed Efficienza</title>
+    <meta name="description" content="Sistema avanzato e Software per la gestione, l'efficienza e l'automazione dei processi basata su intelligenza artificiale.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb; /* Cobalt Blue for Tech Software Service */
+            --surface: #f8fafc; /* VAR C: Cool Surface (length % 3 = 2) */
+            --radius: 0px;      /* VAR A: Sharp Geometry (Length 81 % 3 = 0) */
+            --shadow: 4px 4px 0px 0px #000; /* VAR B: Neo-Brutalist Hard Shadow ('h' 104 % 3 = 2) */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray to ensure cards pop out */
+            color: #1f2937;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.1); /* Slightly stronger border for neo-brutalist pop */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+             background-color: var(--primary);
+             color: #ffffff !important;
+             border-radius: var(--radius);
+             box-shadow: var(--shadow);
+             padding: 1rem 2rem;
+             transition: all 0.2s;
+             font-weight: bold;
+             display: inline-flex;
+             justify-content: center;
+             align-items: center;
+             border: 1px solid #000;
+        }
+        .btn-primary:hover { 
+            opacity: 0.95; 
+            transform: translate(2px, 2px); 
+            box-shadow: 2px 2px 0px 0px #000; 
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* Secondary form elements styling mapping */
+        .form-input {
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: var(--radius);
+            padding: 0.75rem 1rem;
+            width: 100%;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Mobile menu base hidden logic */
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: block; }
+
+        .legal-content p {
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 text-white p-4 z-50 flex flex-col sm:flex-row justify-between items-center transition-all shadow-[var(--shadow)] hidden">
+        <div class="mb-4 sm:mb-0 text-sm max-w-4xl">
+            Questo portale di servizi Software utilizza cookie essenziali per garantire la massima Efficienza nella navigazione del nostro Sistema di offerta, in conformità con le direttive legali.
+        </div>
+        <div class="flex gap-4">
+            <button onclick="acceptCookies()" class="bg-blue-600 px-6 py-2 border-2 border-black font-bold text-white shadow-[2px_2px_0_0_#000] hover:translate-y-px hover:translate-x-px hover:shadow-none transition-all">Accetto</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 w-full bg-white border-b-2 border-black z-40 p-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-black tracking-tight text-gray-900 flex items-center gap-2">
+                <span class="bg-black text-white px-2 py-1">TG</span> Tawiyia Group
+            </a>
+            
+            <div class="hidden md:flex space-x-8 items-center font-bold">
+                <a href="#features" class="text-gray-600 hover:text-black hover:underline">Servizi Software</a>
+                <a href="#about" class="text-gray-600 hover:text-black hover:underline">Il Sistema</a>
+                <a href="#reviews" class="text-gray-600 hover:text-black hover:underline">Casi di Efficienza</a>
+                <a href="#contact" class="btn-primary">Richiedi Automazione</a>
+            </div>
+
+            <button class="md:hidden block border-2 border-black px-3 py-1 bg-gray-100 font-bold" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+                MENU
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="md:hidden bg-white border-t-2 border-black px-4 py-4 space-y-4 font-bold shadow-xl">
+            <a href="#features" class="block text-gray-800" onclick="document.getElementById('mobile-menu').classList.remove('open')">Servizi Software</a>
+            <a href="#about" class="block text-gray-800" onclick="document.getElementById('mobile-menu').classList.remove('open')">Il Sistema</a>
+            <a href="#reviews" class="block text-gray-800" onclick="document.getElementById('mobile-menu').classList.remove('open')">Casi di Efficienza</a>
+            <a href="#contact" class="block text-center mt-4 border-2 border-black bg-blue-600 text-white py-2 shadow-[2px_2px_0_0_#000]" onclick="document.getElementById('mobile-menu').classList.remove('open')">Inizia Ora</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative w-full overflow-hidden bg-black flex items-center" style="min-height: 85vh;">
+        <!-- Failsafe Placeholder image -->
+        <img src="https://placehold.co/1920x1080/000000/1e40af?text=AI+Business+Software" alt="Tawiyia Group Software" loading="eager" class="absolute w-full h-full object-cover opacity-50 grayscale mix-blend-overlay">
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 py-20 lg:py-32 flex flex-col md:flex-row gap-12 items-center w-full">
+            <div class="max-w-2xl text-left border-l-8 border-blue-600 pl-6 bg-white/5 backdrop-blur-sm p-8 shadow-[8px_8px_0_0_#000]">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 uppercase tracking-tighter">
+                    L'Innovazione è il nostro Miglior <span class="text-blue-400">Software</span> per la Tua Evoluzione
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-200 mb-8 font-medium">
+                    Ottimizza la tua azienda grazie a un Sistema evoluto. In Tawiyia Group sviluppiamo soluzioni ad altissima Efficienza, progettate per farti scalare il mercato grazie alla vera Automazione e integrazione di intelligenza artificiale.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mt-6">
+                    <a href="#features" class="btn-primary text-lg">
+                        Esplora i Servizi Software
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BADGES (Client context: Integration with AI text apps) -->
+    <div class="w-full bg-white border-y-2 border-black py-8 relative z-20 shadow-[0_4px_0_0_#000] mb-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm uppercase tracking-widest font-bold text-gray-500 mb-6">Un Sistema strutturato per massimizzare il rendimento aziendale</p>
+            <div class="flex flex-wrap justify-center items-center gap-10 opacity-70 font-black text-xl text-gray-700 uppercase">
+                <span>Gestione Dinamica</span>
+                <span class="w-2 h-2 rounded-full bg-black"></span>
+                <span>Analisi Strategica</span>
+                <span class="w-2 h-2 rounded-full bg-black"></span>
+                <span>Automazione AI</span>
+                <span class="w-2 h-2 rounded-full bg-black"></span>
+                <span>Architetture Cloud</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN PAGE CONTENT (Wrapped for Contrast Protocol) -->
+    <div class="container mx-auto px-4 lg:px-0 py-8 space-y-12">
+
+        <!-- FEATURES SECTION (Required Software Service Services) -->
+        <div id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-8 uppercase border-b-4 border-black inline-block pb-2">Architettura Del Servizio</h2>
+            <p class="text-lg text-gray-700 mb-8 font-medium">L'implementazione del nostro Software ridisegna le logiche di lavoro per team e imprenditori, colmando il gap tra strumenti complessi e risultati tangibili. Portiamo i vantaggi analizzati dai migliori operatori creativi del mercato - come descritto negli scenari d'avanguardia su intelligenza artificiale di mercato - direttamente all'interno della tua Gestione quotidiana.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border-2 border-black p-6 bg-white shadow-[4px_4px_0_0_var(--primary)] hover:bg-gray-50 transition-colors group">
+                    <div class="bg-black text-white w-12 h-12 flex items-center justify-center font-black text-2xl mb-4 group-hover:-translate-y-1 transition-transform">01</div>
+                    <h3 class="text-xl font-bold mb-3 text-black">Sistema di Generazione AI</h3>
+                    <p class="text-gray-700">Integrazione di servizi Software dedicati all'elaborazione automatica e massiva di dati. Affidare al nostro ambiente i compiti ripetitivi restituisce il massimo valore della tua offerta sul mercato.</p>
+                </div>
+
+                <div class="border-2 border-black p-6 bg-white shadow-[4px_4px_0_0_var(--primary)] hover:bg-gray-50 transition-colors group">
+                    <div class="bg-black text-white w-12 h-12 flex items-center justify-center font-black text-2xl mb-4 group-hover:-translate-y-1 transition-transform">02</div>
+                    <h3 class="text-xl font-bold mb-3 text-black">Hub di Gestione</h3>
+                    <p class="text-gray-700">Costruiamo l'interfaccia unica tra te e le intelligenze connettive del mercato attuale, rendendo accessibile in pochi click ogni interazione testuale o grafica di alta precisione.</p>
+                </div>
+
+                <div class="border-2 border-black p-6 bg-white shadow-[4px_4px_0_0_var(--primary)] hover:bg-gray-50 transition-colors group">
+                    <div class="bg-black text-white w-12 h-12 flex items-center justify-center font-black text-2xl mb-4 group-hover:-translate-y-1 transition-transform">03</div>
+                    <h3 class="text-xl font-bold mb-3 text-black">Report e Automazione</h3>
+                    <p class="text-gray-700">Garantisci la reale Efficienza delle ore operative. Grazie alla pura Automazione applicata da Tawiyia Group, trasformerai lunghi compiti creativi e analitici in rapide risposte sistematiche, limitando gli errori umani.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT SECTION -->
+        <div id="about" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="flex flex-col lg:flex-row gap-8 items-center">
+                <div class="w-full lg:w-1/2">
+                    <!-- Failsafe Placeholder image -->
+                    <img src="https://placehold.co/800x600/2563eb/ffffff?text=Efficienza+di+Rete" alt="Sistema e Automazione Dashboard" class="w-full h-auto border-4 border-black shadow-[8px_8px_0_0_#000]" loading="lazy">
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-3xl font-black text-gray-900 mb-6 uppercase border-b-4 border-black inline-block pb-2">Perché Tawiyia Group?</h2>
+                    <p class="text-gray-700 mb-4 font-medium">Siamo leader nello sviluppo di architetture digitali strutturate attorno al moderno scenario dei task complessi. Quando gli iter lavorativi rallentano la produzione e la qualità, subentra il nostro Software di supporto, testato per accelerare, misurare e ottimizzare ogni processo, dall'inserimento dati alla redazione autonoma dei materiali.</p>
+                    <ul class="space-y-4 font-bold text-gray-800">
+                        <li class="flex items-center gap-2"><span class="text-blue-600 border-2 border-black px-2 py-0.5">✓</span> Miglioramento dei costi infrastrutturali.</li>
+                        <li class="flex items-center gap-2"><span class="text-blue-600 border-2 border-black px-2 py-0.5">✓</span> Applicazione delle direttive operative ai robot testuali.</li>
+                        <li class="flex items-center gap-2"><span class="text-blue-600 border-2 border-black px-2 py-0.5">✓</span> Un ambiente sicuro e monitorato ad elevata Efficienza tecnica.</li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="#contact" class="btn-primary">Prenota un Audit Strategico</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 uppercase text-center">Analisi Dell'Efficienza in Campo</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-gray-100 border-2 border-black p-6 relative">
+                    <div class="absolute -top-4 -right-4 bg-yellow-400 text-black border-2 border-black w-8 h-8 flex items-center justify-center font-bold text-xl transform rotate-12">!</div>
+                    <div class="flex text-yellow-500 mb-3 text-xl">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Senza il Sistema sviluppato da Tawiyia Group eravamo sommersi da attività manuali nella redazione delle schede testuali e immagini. La loro infrastruttura Software ci fa risparmiare il 65% del tempo di Gestione."</p>
+                    <div class="font-bold border-t border-black pt-2">- M. Roberto (Imprenditore, 2026)</div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-gray-100 border-2 border-black p-6 relative">
+                    <div class="absolute -top-4 -right-4 bg-yellow-400 text-black border-2 border-black w-8 h-8 flex items-center justify-center font-bold text-xl transform -rotate-6">!</div>
+                    <div class="flex text-yellow-500 mb-3 text-xl">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Integrare l'Automazione dei workflow di creatività in azienda non era mai stato così pratico. Servizio scalabile con picchi incredibili per l'Efficienza dell'intero dipartimento."</p>
+                    <div class="font-bold border-t border-black pt-2">- E. Verdi (Direttore Sviluppo, 2026)</div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-gray-100 border-2 border-black p-6 relative">
+                    <div class="absolute -top-4 -right-4 bg-yellow-400 text-black border-2 border-black w-8 h-8 flex items-center justify-center font-bold text-xl transform rotate-3">!</div>
+                    <div class="flex text-yellow-500 mb-3 text-xl">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Affidarci al loro pacchetto di Gestione del know-how aziendale basato sull'AI ci ha sbloccati dalle classiche strozzature umane, permettendo ai collaboratori un respiro tecnico notevole."</p>
+                    <div class="font-bold border-t border-black pt-2">- A. Neri (Coordinatrice Creativa, 2026)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 uppercase border-b-4 border-black inline-block pb-2">Domande e Architetture (FAQ)</h2>
+            
+            <div class="space-y-4">
+                <details class="group bg-white border-2 border-black p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-[2px_2px_0_0_#000] hover:-translate-y-px transition-transform">
+                    <summary class="flex justify-between items-center font-bold text-lg">
+                        Come incide la nuova Automazione sul team di lavoro attuale?
+                        <span class="transition group-open:rotate-45 font-black text-2xl border-l-2 pl-4 border-black">+</span>
+                    </summary>
+                    <p class="text-gray-700 mt-4 border-t-2 border-black pt-4">L'Automazione libererà le risorse umane dal data entry continuo o dalla creazione di spunti e appunti zero. Il Sistema che integriamo accelera il lavoro ma necessità pur sempre di supervisione e strategia che spettano al vostro team di competenza, massimizzando il ritorno sul costo operatore.</p>
+                </details>
+
+                <details class="group bg-white border-2 border-black p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-[2px_2px_0_0_#000] hover:-translate-y-px transition-transform">
+                    <summary class="flex justify-between items-center font-bold text-lg">
+                        Quale tipo di Gestione del dato prevedono questi protocolli Software?
+                        <span class="transition group-open:rotate-45 font-black text-2xl border-l-2 pl-4 border-black">+</span>
+                    </summary>
+                    <p class="text-gray-700 mt-4 border-t-2 border-black pt-4">In piena adesione alle normative 2026, l'uso del nostro Software gestisce gli algoritmi fornendo chiarezza dei task ma senza l'ingerenza di traccianti di archiviazione lesivi; i flussi elaborano le necessità per generare una stringa o esito risolutore puntuale per il mercato di utilizzo.</p>
+                </details>
+
+                <details class="group bg-white border-2 border-black p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-[2px_2px_0_0_#000] hover:-translate-y-px transition-transform">
+                    <summary class="flex justify-between items-center font-bold text-lg">
+                        Il mio progetto di settore è pronto per questa innovazione in Efficienza?
+                        <span class="transition group-open:rotate-45 font-black text-2xl border-l-2 pl-4 border-black">+</span>
+                    </summary>
+                    <p class="text-gray-700 mt-4 border-t-2 border-black pt-4">Con alta probabilità la risposta è sì. Dalle realtà del marketing alla fornitura logistica, non vi è impresa in Italia che attualmente non potrebbe generare profitti operativi indiretti integrando logiche di Efficienza basate su AI personalizzata nel workflow base.</p>
+                </details>
+
+                <details class="group bg-white border-2 border-black p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-[2px_2px_0_0_#000] hover:-translate-y-px transition-transform">
+                    <summary class="flex justify-between items-center font-bold text-lg">
+                        Richiedere supporto sul portale ha vincoli temporali lunghi per il set-up?
+                        <span class="transition group-open:rotate-45 font-black text-2xl border-l-2 pl-4 border-black">+</span>
+                    </summary>
+                    <p class="text-gray-700 mt-4 border-t-2 border-black pt-4">L'installazione e la calibrazione del nostro Sistema sono standardizzati. Di base eseguiamo un briefing che trasla le problematiche procedurali nel calcolo automatico per poi implementarlo in due tre settimane lavorative piene in cloud sicuro e monitorato dai log formali.</p>
+                </details>
+
+                <details class="group bg-white border-2 border-black p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-[2px_2px_0_0_#000] hover:-translate-y-px transition-transform">
+                    <summary class="flex justify-between items-center font-bold text-lg">
+                        Sono forniti moduli formativi post lancio di Software?
+                        <span class="transition group-open:rotate-45 font-black text-2xl border-l-2 pl-4 border-black">+</span>
+                    </summary>
+                    <p class="text-gray-700 mt-4 border-t-2 border-black pt-4">Ovviamente. Creare tecnologia sterile sarebbe infruttuoso. Il vero pacchetto che offriamo ingloba istruzioni d'uso di Sistema stringente dove vi passiamo l'intera documentazione tecnica e pratica per guidare tutti ai pieni massimali garantiti dai report di progettazione preventiva.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24 bg-gray-900 border-none shadow-[12px_12px_0_0_var(--primary)] text-white">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-black mb-6 uppercase text-blue-400">Implementa Il Tuo Futuro Oggi</h2>
+                    <p class="text-gray-300 mb-8 font-medium">Fissa un contatto diretto con i nostri sviluppatori e scopri quanto l'Efficienza algoritmica può mutare drasticamente l'andamento ed i costi strutturali aziendali. Abbraccia il Sistema definitivo.</p>
+                    
+                    <div class="space-y-4 mb-8 font-bold text-lg border-l-4 border-blue-600 pl-4 bg-white/5 py-4">
+                        <p class="flex items-center gap-3">
+                            <span class="bg-black text-blue-400 px-2 border border-blue-600 py-1 text-sm">Orari</span> 
+                            Lunedì - Venerdì, 09:00 - 18:00
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 border-4 border-black text-gray-900 shadow-[6px_6px_0_0_#000]">
+                    <form id="lead-form" class="space-y-5" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); const oldTxt = btn.innerText; btn.innerText='Caricamento modulo Sistema...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-bold text-black mb-1">Nominativo Completo o Azienda *</label>
+                            <input type="text" required class="form-input shadow-[2px_2px_0_0_#000]">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-black mb-1">Recapito Telefonico Diretto *</label>
+                            <input type="tel" required class="form-input shadow-[2px_2px_0_0_#000]">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-black mb-1">Area di Efficienza Richiesta *</label>
+                            <select class="form-input shadow-[2px_2px_0_0_#000]">
+                                <option>Automazione Testi / Immagini AI</option>
+                                <option>Software Gestionale AI Inhouse</option>
+                                <option>Studio Architettura del Dato</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary w-full text-xl mt-4">
+                            Sviluppiamo Ora L'Ideazione
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" style="display:none" class="bg-blue-50 border-4 border-blue-600 p-8 text-center text-gray-800 shadow-[6px_6px_0_0_#2563eb]">
+                        <div class="w-16 h-16 bg-blue-600 text-white rounded-none border-2 border-black flex items-center justify-center text-4xl mx-auto mb-4 font-black">✓</div>
+                        <h3 class="text-2xl font-black mb-2 text-black">Modulazione Registrata con Successo!</h3>
+                        <p class="font-bold">I nostri incaricati Software stanno elaborando i dettagli per proporre il pacchetto della tua Gestione ad alte prestazioni. Contatto in poche ore operazionali valide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white pt-16 pb-8 border-t-[8px] border-blue-600 mt-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10 mb-12 text-sm">
+            <div>
+                <a href="#" class="text-2xl font-black tracking-tight text-white flex items-center gap-2 mb-6">
+                    <span class="bg-blue-600 text-white px-2 py-1 shadow-[2px_2px_0_0_#fff]">TG</span> Tawiyia Group
+                </a>
+                <p class="text-gray-400 font-medium">Azienda cardine nei reparti moderni per automazioni d'intelligenza strutturale in business modernizzati. Sostegno alla filiera di settore in modo strategico per ottimizzazioni reali e dirette senza intermediazioni pesanti d'oneri storici sul budget per lo staffing manuale prolungato.</p>
+            </div>
+            
+            <div class="lg:col-span-2">
+                <h4 class="font-black text-xl mb-4 border-l-4 border-blue-600 pl-3">Dichiarazione Operativa (Legale Formale)</h4>
+                <p class="text-gray-400 font-medium italic border border-gray-800 bg-gray-900 p-4">
+                    Questo è un sito promozionale indipendente gestito da Tawiyia Group, che agisce in qualità di affiliato per Flowerista. Il sito ha uno scopo consultivo in architetture digitali ed offre Software, interfacce informative, moduli preconfigurati non vincolanti sui loghi originali delle entità descritte se non in maniera cooperativa per scopi referenziali tecnici verso il grande bacino dei committenti creativi che sono alla base della matrice formativa esterna d'apprendimento ed esecuzione su mercato.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-black text-xl mb-4 border-l-4 border-blue-600 pl-3">Collegamenti Utili in Portale</h4>
+                <ul class="space-y-3 font-bold text-gray-400">
+                    <li><a href="#features" class="hover:text-blue-400 hover:translate-x-1 transition-transform block">Dipartimenti Servizio Gestione</a></li>
+                    <li><a href="#about" class="hover:text-blue-400 hover:translate-x-1 transition-transform block">Core del Nostro Sistema Evoluto</a></li>
+                    <li><a href="#reviews" class="hover:text-blue-400 hover:translate-x-1 transition-transform block">Prova Statistica ed Evidenza Pratica</a></li>
+                    <li><a href="#faq" class="hover:text-blue-400 hover:translate-x-1 transition-transform block">Bacheca Informative (FAQ di Linea)</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FULL LEGAL DISCLOSURE SECTION -->
+        <div class="max-w-7xl mx-auto px-4 border-t border-gray-800 pt-8 mt-8 text-gray-400 relative z-10 text-xs font-medium bg-black">
+            
+            <div class="space-y-3 mt-6 legal-content mb-8">
+                <!-- Privacy Policy -->
+                <details class="group bg-gray-900 border border-gray-800 p-3 hover:border-gray-600 cursor-pointer">
+                    <summary class="font-bold uppercase tracking-wider text-sm flex justify-between items-center text-gray-300">
+                        Privacy Policy e Gestione Protezione Rete
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 pt-4 border-t border-gray-800 text-gray-400 text-justify">
+                        <p>Il presente modulo formativo attesta l'insieme normativo regolamentante l'acquisizione dei dati naviganti secondo gli istituti moderni approvati nel perimetro informatico per piattaforme interattive d'Efficienza di sistema del mercato digitale nel suo esteso. Registrando navigazioni attraverso il Sistema d'impostazione fornita dai moduli form o consultazioni semplici per mera presenza log, codifichiamo l'accettazione preliminare sulle pratiche standard attuali vigenti da noi elaborate minuziosamente. Siano informate in prima istanza le unità utente, aziendali, terzi operanti come rappresentanza circa l'uso stringente di profilazione a minor invasività, deducente il fine di calcolo statistico aggregante al momento dei picchi di visibilità architettura lato hosting che non compromettendo per fini collaterali alcun anagrafico che venga richiesto con esplicita volontarietà dai quadri preposti nelle pagine web mostrate sul server pubblico attivo attualmente. Noi non propaghiamo liste derivanti al momento non collegate ai progetti principali richiesti tramite form ed è prassi rigorosa ed assolta conservare con decrittazione controllata il nome associato all'organizzazione committente senza mai eccedere in un mantenimento postume inutile decorsi gli obbiettivi fissati. Richiediamo espressamente, quando possibile nelle fasi progettuali, informazioni precise perché solo garantendo un input robusto si potrà dimensionare con massima e oggettiva proporzionalità l'esposizione al vero Automazione procedurale offerta dalle agenzie fornitrici come Flowerista connesse. Sulla piattaforma risiede pertanto una infrastruttura certificata che fa scudo ed evige alle ingerenze per quanto fisicamente implementato dall'architetto del backoffice incaricato delle verifiche manutentive feriali previste ed onerate dalla compagnia locatrice come da mandato interno a cadenza mensile prefissata con scadenziario tecnico regolare ad alta sorveglianza digitale di salvaguardia assoluta costante continua nel tracciato normativo che sottende la conformità dei consensi.</p>
+                        <p>Ad addizione procedurale, qualsivoglia diritto in esercizio riguardante variazioni logiche sulle stringhe rilasciate deve ed avrà asilo tempestivo entro canali telematici idonei (tra cui i moduli appositi integrati nelle dashboard o pannelli terzi resi fruibili successivamente), per la ri-compilazione sicura form in variazione a correzione che permette sovrascrizione nel repository, come previsto nella direttiva di Efficienza generale in materia tesa sul quadro formale in adempimento ed evasione da pratiche complesse rallentate solitamente. Un approccio a privacy design by default è l'onere mantenuto su tutta la parte della programmazione applicativa al portale Tawiyia Group; significa preclusione assoluta ad elaborati invisibili malevoli escludendo qualsivoglia intrusione passibile ad ogni stato e condizione dell'esecuzione standard richiesta e garantita e protocollata di cui siamo fedeli manutentori incaricati attivi vigili severi fieri esecutori operativi conformi trasparenti esposti a tutti i controlli predisposti e certificabili del perimetro tecnologico Software impiegato fin dall'inizio operativo primordiale e futuro programmato.</p>
+                    </div>
+                </details>
+
+                <!-- Terms and Conditions -->
+                <details class="group bg-gray-900 border border-gray-800 p-3 hover:border-gray-600 cursor-pointer">
+                    <summary class="font-bold uppercase tracking-wider text-sm flex justify-between items-center text-gray-300">
+                        Termini e Condizioni per il Contratto del Servizio Software Generale
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 pt-4 border-t border-gray-800 text-gray-400 text-justify">
+                        <p>Questo regolamento contrattuale formale pone le premesse, i perimetri in esecuzione del Sistema ed il corpo legante che avvia l'accordo volontario inteso al principio di utilizzo informatico verso quanto prodotto in output informativo generato dalla vetrina descritta su codesta struttura online denominata provvisoriamente a livello globale nel mercato sotto codifica URL visibile della stringa digitata al fine della ricerca d'efficienza con Software applicativo. Navigare a scorrimento lungo l'elenco testuale informativo dei benefici descritti, attivando comandi testati sui bottoni resi prominenti in grafiche o cliccando referenze porta automatica implicita ammissione accettando tutto lo scibile dell'accordo pre redatto secondo i vigenti dettami in tema dei settori commerciati e dei procedimenti delle prestazioni collegate. Tutte le interazioni in compilazioni, siano state introdotte da interfacce per stazioni Desktop informatiche normali ovvero smartphone touch abilitati su layout responsive applicativi conformi a disposizioni che permettono fluidità ad agio consultivo universale portano vincolo morale intellettuale ad accettarne lo staus descrittivo che funge come manuale del fruitore della campagna in oggetto promozionante gli attributi dell'originatore in fonte. Decliniamo la garanzia in assoluto verso interruzioni occorse da cause naturali catastrofali disastri server globalizzati perdite repentine pacchetti dati nelle dorsali marittime guasti imputabili a correntamenti energetici saltuari dipendenti non dalla logica ma della fisica della trasmissione pura essenziale mondiale in corso attuale imprevedibile da noi singoli individui ed in ultima istanza problemi interamente riferibili all'apparato del contraente consumatore finale ultimo della scala. Questo sito non assume nessuna ed obbligata pretesa garantita sul successo a breve termine della Gestione AI proposti senza previa collaborazione attiva aziendale di controparte essenziale nei collaudi continui necessari per avviare il tutto operativamente bene conformemente con profitto misurabile scalabile.</p>
+                        <p>È categorico e presuntivo affermare l'estraneità patrimoniale se eventuali deviazioni occorse sui prodotti presentati originassero dalle terze entità fornitrici reali ed attive come promotrici iniziali di questa esposizione testuale elaborata che voi ora scrutate; tale divario eventuale andrebbe affrontato come intermediario che inoltra il problema alla radice strutturale originale madre creatrice delle funzioni intime dell'architettura presentata con noi agenti nel limitato dell'indicizzazione testuale visiva pura attrattiva verso la transizione. Con il progresso costante, questi Termini Condizionanti sottostaranno a regolari aggiunte estensioni rivisitazioni correttive grammaticali modifiche del calibro logico al fine sempre di allinearci repentinamente puntualmente agli scenari presi all'estero, che formano orientamento predominante nel panorama normativo odierno di applicazione per Software; la prosecuzione consuetudinaria navigante sul dominio e nelle ramificazioni costituirà a prescindere un inoppugnabile patto firmato al continuo dell'osservanza ad ogni rilascio contrattuale successivo caricato nel database documentale mantenuto sul server madre principale.</p>
+                    </div>
+                </details>
+
+                <!-- Refund / Billing Policy -->
+                <details class="group bg-gray-900 border border-gray-800 p-3 hover:border-gray-600 cursor-pointer">
+                    <summary class="font-bold uppercase tracking-wider text-sm flex justify-between items-center text-gray-300">
+                        Disciplina Fatturazione e Rientro dell'Investimento Economico Fissato Inizialmente
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 pt-4 border-t border-gray-800 text-gray-400 text-justify">
+                        <p>Con il presente manifesto illustrativo della politica economico rimborso, viene chiarificato in ogni ambiguità l'intento relativo alla Gestione dei flussi delle fatturazioni, del corrispettivo a compensazione degli scompensi economici su progetti o Software richiesti su stima. Data l'identità dell'opera, intrinsecamente correlata alla fornitura dei calcoli cognitivi su ore logiche e d'ingegnerizzazione su macchine di architettura immateriali d'elaborazione non riponibile in cassa, gran quota dell'infrastrutturazione ad hoc fornita all'acquisizione perde il carattere primario che ammette l'ordinario rimborso di un prodotto al minuto sigillato con bollino in scatola che venga portato sul banco merce fisico tangibile restituito a norma. Ne conviene pertanto che a partire della messa sotto opera effettiva in attivazione, l'Efficienza oraria di codice testuale scritto su log aziendale risulta speso come tempo lavoro impiegato consumato definitivamente per redigere la soluzione a Automazione che non permette retromarcia restitutiva per questioni inerenti ad una logica immateriale irrecuperabile e delocalizzata del mondo servizi di informazione globale telematica immateriale volatile istantanea irripetibile irreversibile. Ciononostante le finestre esplorative della transazione prima dell'accredito o firma in essere presentano ampia tempistica disposta con audizioni chiamate in conformità consultazioni affinché emergano con acclarata e disarmante nettezza tutte incrinature sospette obiezioni per incanalarle ad espedienti e moduli pacchetti di Efficienza adatti evitando quindi reclami sulla pertinenza tardivi inefficaci impossibilitati alla base da queste ferree rigorose invalicabili ma oneste policy contrattuali.</p>
+                        <p>Nell'eventualità remota statistica eccezionale che per cause riconducibili per l'interezza del dolo ed inerzia e guasto alle nostre infrastrutture prettamente dipendenti da dolo umano di chi cura questo specifico perimetro, se il Sistema promesso divenisse assolutamente muto non connesso errante irrimediabilmente, valuteremo pro quota pro rato un credito rimborsato, un voucher d'estensione contrattuale manutentivo riparatore calmieratore secondo criteri paritari della logica solidale commerciale etica aziendale rigorosamente onesta fidata solida trasparente garantita con certificazione verbale interna del direttorio plenario dell'impresa convocata al vaglio dello stato guasto imprevisto denunciato analizzato validato contabilizzato chiuso quietanzato storicizzato nei registri formalizzati previsti. È infine esclusa una garanzia laddove siano gli intermedi terzi (che generano a loro volta il servizio ultimo vero descritto o ospitato in affiliate link) che deviano unilateralmente da una logica descrittiva in promessa iniziale mutando il target finale predefinito con cui l'impresario iniziale si aspettava una rendita od il compenso di funzionalità attesa in pieno titolo di validità legittima. La direttiva vige in conformità per tutta estensione dello strumento descritto su pagine senza sconti eccezionali verbali pattuiti non in forma esplicitamente autenticata firmata su supporto materiale tra direttori competenti in delega fiduciaria completa con attribuzione totale sui visti.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center border-t border-gray-800 pt-8 pb-4">
+                <p>&copy; 2026 Tawiyia Group - Sistemi Operativi Intelligenti e Architetture Dati per Efficienza Aziendale d'Azienda. Tutti i diritti riservati ai fini del framework proprietario d'Esecuzione.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY LOGIC -->
+    <script>
+        // Cookie Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('cookie-accepted')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookie-accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        // Smart Routing (Gravity Well Protocol + Failsafe)
+        document.addEventListener('click', function(e) {
+            const targetLink = e.target.closest('a[href^="#"]');
+            if (targetLink) {
+                e.preventDefault();
+                const targetId = targetLink.getAttribute('href');
+                let targetElem = document.querySelector(targetId);
+                
+                // If Target doesn't exist, force scroll to #contact as instructed
+                if (!targetElem && targetId !== '#') {
+                    targetElem = document.getElementById('contact');
+                }
+                
+                if (targetElem) {
+                    targetElem.scrollIntoView({ behavior: 'smooth' });
+                }
+                // Close mobile menu on jump
+                const menu = document.getElementById('mobile-menu');
+                if(menu.classList.contains('open')) {
+                    menu.classList.remove('open');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
