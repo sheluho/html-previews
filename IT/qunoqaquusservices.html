@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qunoqaquus Services | Editore del Mondo Digitale</title>
+    <meta name="description" content="Qunoqaquus Services offre servizi editoriali di alto livello. Scopri l'ultima notizia, gli sviluppi della tecnologia e ogni nuovo annuncio del mondo digitale.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: DESIGN SYSTEM (CSS Injection based on Design DNA Mix) -->
+    <!-- 
+      Donor: https://www.spazio50.org/category/tecnologia/ (Len 46) -> 46 % 3 = 1 -> Soft: 12px
+      Host: qunoqaquusservices.sbs -> 'q' (113 % 3 = 2) -> Hard Neo-Brutalist shadow
+      Host: 's' (115 % 3 = 1) -> Warm Cream Surface
+      Palette: #2563eb (Digital Blue)
+    -->
+    <style>
+        :root {
+            --primary: #2563eb;       /* VAR D: Digital Media Blue */
+            --surface: #fffdf5;       /* VAR C: Warm Cream */
+            --radius: 12px;           /* VAR A: Soft Radius */
+            --shadow: 4px 4px 0px 0px #000000; /* VAR B: Hard / Neo-Brutalist */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Constant gray for popping cards */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border: 2px solid #000; /* Matching brutalist theme outline */
+            transition: transform 0.2s ease;
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+            border: 2px solid #000;
+        }
+        
+        .btn-primary:hover { 
+            opacity: 0.95; 
+            transform: translateY(-2px); 
+            box-shadow: 6px 6px 0px 0px #000000;
+        }
+
+        .btn-primary:active {
+            transform: translateY(2px);
+            box-shadow: 0px 0px 0px 0px #000000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* LEGAL DETAILS */
+        details { cursor: pointer; }
+        details summary { font-weight: 600; padding: 0.5rem 0; outline: none; }
+        
+        /* OVERRIDES */
+        .prose-section { margin-top: 1rem; color: #4b5563; line-height: 1.6;}
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black tracking-tight uppercase">Qunoqaquus <span class="text-primary">Services</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 font-semibold">
+                    <a href="#hero" class="text-gray-900 hover:text-primary transition-colors">Home</a>
+                    <a href="#features" class="text-gray-900 hover:text-primary transition-colors">Pubblicazioni</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary transition-colors">Testimonianze</a>
+                    <a href="#faq" class="text-gray-900 hover:text-primary transition-colors">FAQ</a>
+                    <a href="#contact" class="btn-primary">Contattaci</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#hero" class="block px-3 py-2 text-base font-bold text-gray-900 hover:text-primary">Home</a>
+                <a href="#features" class="block px-3 py-2 text-base font-bold text-gray-900 hover:text-primary">Pubblicazioni</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-bold text-gray-900 hover:text-primary">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary">Contattaci</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Full width exception, Image with Overlay) -->
+    <header id="hero" class="relative bg-gray-900 overflow-hidden w-full h-[600px] flex items-center">
+        <!-- Background Image Fallback to Contextually Translated Query -->
+        <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+             onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Information+Technology+Media'" 
+             alt="Tecnologia Digitale" 
+             class="absolute inset-0 w-full h-full object-cover z-0" 
+             loading="eager" 
+             referrerpolicy="no-referrer" />
+        <div class="absolute inset-0 bg-black bg-opacity-70 z-10"></div> <!-- Absolute Dark Overlay for Readability -->
+        
+        <div class="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <span class="uppercase tracking-widest font-semibold text-blue-300 text-sm mb-4 block">Publisher Media Digitale</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Servizi di Analisi per Navigare la Nuova <span class="text-blue-400">Tecnologia</span>.
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed">
+                Dal piccolo aggiornamento di sistema al grande evento mondiale, trasformiamo l'informazione cruda nel tuo miglior asset. Ogni <strong>notizia</strong> e <strong>annuncio</strong> che conta per il <strong>mondo digitale</strong>.
+            </p>
+            <div class="mt-10">
+                <a href="#features" class="btn-primary text-lg">Scopri i Contenuti</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow pt-16 pb-24 w-full">
+        
+        <!-- TRUST BAR -->
+        <div class="max-w-5xl mx-auto px-4 mb-16 text-center">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-6">Come visto e apprezzato dagli appassionati di innovazione</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale font-black text-xl">
+                <span>TECH.INSIGHT</span>
+                <span>SYSTEM HUB</span>
+                <span>DIGITAL PRESS CO.</span>
+                <span>GLOBAL NOTIZIE</span>
+            </div>
+        </div>
+
+        <!-- FEATURES / SERVICES SECTION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-black text-gray-900 uppercase">La Nostra Offerta Editoriale</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mt-4 rounded"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <!-- Feature 1 -->
+                <div class="flex flex-col border-2 border-transparent hover:border-black p-4 transition rounded-lg">
+                    <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-primary mb-4 border-2 border-black">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Copertura Globale sulla Notizia</h3>
+                    <p class="prose-section">Non ci limitiamo ai titoli superficiali. Curiamo e pubblichiamo l'ultima <strong>notizia</strong> per mantenerti informato sui cambiamenti improvvisi in corso in tutto il <strong>mondo</strong>.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="flex flex-col border-2 border-transparent hover:border-black p-4 transition rounded-lg">
+                    <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-primary mb-4 border-2 border-black">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Analisi del Sistema</h3>
+                    <p class="prose-section">Spieghiamo come i software moderni si intersecano con le nostre vite. Ogni nuovo <strong>sistema</strong> informatico rilasciato sul mercato passa sotto la lente dei nostri recensori.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="flex flex-col border-2 border-transparent hover:border-black p-4 transition rounded-lg">
+                    <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-primary mb-4 border-2 border-black">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">L'Importanza dell'Annuncio</h3>
+                    <p class="prose-section">Nessun <strong>annuncio</strong> aziendale di rilevanza nel campo <strong>digitale</strong> sfuggirà al tuo controllo. Decodifichiamo le dichiarazioni e traduciamo l'impatto reale della <strong>tecnologia</strong> sulla società.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOCIAL PROOF SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card bg-white">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 uppercase text-center">I Nostri Lettori (2026)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <blockquote class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 font-bold tracking-widest">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 font-medium italic">"Miglior servizio publisher italiano. Hanno coperto quell'annuncio con una prontezza incredibile, chiarendo dubbi su un sistema software che pareva incomprensibile."</p>
+                    <footer class="mt-4 text-sm font-bold">— Lorenzo G., Ingegnere Software</footer>
+                </blockquote>
+                <blockquote class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 font-bold tracking-widest">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 font-medium italic">"La piattaforma che visito per leggere una vera notizia sulla tecnologia, svincolata dalle chiacchiere dei social network. Il mondo digitale analizzato con professionalità."</p>
+                    <footer class="mt-4 text-sm font-bold">— Francesca V., Appassionata IT</footer>
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 uppercase text-center">Domande Frequenti Editoriali</h2>
+            
+            <div class="space-y-4">
+                <details class="bg-white p-4 rounded-lg border-2 border-gray-100 open:border-black transition-colors">
+                    <summary class="text-lg font-bold">Come filtrate la notizia per valutarne la credibilità?</summary>
+                    <p class="prose-section mt-3">Il nostro team editoriale verifica costantemente le fonti nel mondo e analizza in modo approfondito ogni report prima della pubblicazione, garantendo uno standard giornalistico e un alto livello informativo.</p>
+                </details>
+                
+                <details class="bg-white p-4 rounded-lg border-2 border-gray-100 open:border-black transition-colors">
+                    <summary class="text-lg font-bold">Vi occupate anche di un sistema hardware in particolare?</summary>
+                    <p class="prose-section mt-3">Assolutamente. Pubblichiamo rassegne e approfondimenti per ogni dispositivo connesso e sistema informatico, dai personal computer ai componenti dell'infrastruttura di rete globale.</p>
+                </details>
+                
+                <details class="bg-white p-4 rounded-lg border-2 border-gray-100 open:border-black transition-colors">
+                    <summary class="text-lg font-bold">Quanto frequentemente viene rilasciato un vostro articolo?</summary>
+                    <p class="prose-section mt-3">Copriamo quotidianamente lo spazio dedicato all'innovazione. L'informazione riguardante la tecnologia è dinamica; pertanto, ci assicuriamo che tu possa accedere a dati nuovi senza dover aspettare.</p>
+                </details>
+                
+                <details class="bg-white p-4 rounded-lg border-2 border-gray-100 open:border-black transition-colors">
+                    <summary class="text-lg font-bold">Di quale formato è fatto l'annuncio che curate?</summary>
+                    <p class="prose-section mt-3">Possiamo trattare dal semplice post aziendale ai report di acquisizioni finanziarie nel digitale, offrendo articoli chiari che sintetizzano lo scenario attuale.</p>
+                </details>
+
+                <details class="bg-white p-4 rounded-lg border-2 border-gray-100 open:border-black transition-colors">
+                    <summary class="text-lg font-bold">Posso richiedere un'analisi di una tematica digitale?</summary>
+                    <p class="prose-section mt-3">Certamente. Amiamo l'interazione con i nostri lettori e prendiamo in considerazione proposte che riguardano eventi e fenomeni tecnologici moderni per arricchire i nostri contenuti editoriali.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT & FORM SECTION (Functional Simulator, NO phone mapped if missing) -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                <div>
+                    <h2 class="text-3xl font-black text-gray-900 mb-6 uppercase">La Tua Redazione a Portata di Mano</h2>
+                    <p class="prose-section text-lg font-medium">Vuoi ricevere indicazioni esclusive o segnalare un <strong>sistema</strong> da valutare? Scrivi al team dei Servizi Editoriali Qunoqaquus per entrare in contatto con i professionisti del media network della <strong>tecnologia</strong>.</p>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-center font-bold text-gray-700">
+                            <svg class="w-6 h-6 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            Servizi Digitali / Spazio 50 - Italia
+                        </div>
+                        <div class="flex items-center font-bold text-gray-700">
+                            <svg class="w-6 h-6 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Lun - Ven: 09:00 - 18:00
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 md:p-8 rounded-xl border-2 border-black relative">
+                    <!-- HIDDEN SUCCESS MESSAGE -->
+                    <div id="success-msg" class="absolute inset-0 bg-white z-10 flex flex-col items-center justify-center p-8 text-center" style="display: none; border-radius: var(--radius);">
+                        <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-4 border-2 border-green-600">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-black mb-2 text-gray-900">Richiesta Ricevuta</h3>
+                        <p class="font-medium text-gray-600">La redazione esaminerà il tuo interesse per la pubblicazione al più presto.</p>
+                    </div>
+
+                    <!-- THE FORM -->
+                    <form id="lead-form" class="space-y-4" onsubmit="
+                        event.preventDefault(); 
+                        this.querySelector('button').innerHTML='Invio in corso...'; 
+                        setTimeout(() => {
+                            this.style.display='none';
+                            document.getElementById('success-msg').style.display='flex';
+                        }, 1500);">
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors bg-gray-50">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Telefono / Contatto</label>
+                            <input type="text" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors bg-gray-50">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Area d'Interesse Media</label>
+                            <select class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors bg-gray-50">
+                                <option>L'ultimo annuncio di Mercato</option>
+                                <option>Aggiornamenti sul Sistema Digitale</option>
+                                <option>Una notizia sul Mondo Hardware</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="w-full btn-primary text-lg mt-4 cursor-pointer">Invia Messaggio Editoriale</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER & LEGAL STACK -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-auto">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-8 border-b border-gray-700 pb-8">
+                <span class="text-2xl font-black tracking-tight uppercase text-white">Qunoqaquus <span class="text-blue-500">Services</span></span>
+                <p class="mt-4 max-w-2xl mx-auto font-medium leading-relaxed">Il tuo editore e compagno di navigazione attraverso i complessi territori del digitale e delle novità mondiali sull'innovazione.</p>
+            </div>
+
+            <div class="text-center mb-8 font-semibold italic text-gray-500">
+                "Questo è un sito promozionale indipendente gestito da Qunoqaquus Services, che agisce in qualità di affiliato per Spazio 50."
+            </div>
+            
+            <!-- ANTI-LAZINESS FULL TEXT LEGAL WRAPPERS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                <!-- PRIVACY POLICY -->
+                <details class="bg-gray-800 p-4 rounded text-left group">
+                    <summary class="text-gray-300 hover:text-white uppercase tracking-widest text-xs outline-none">Politica sulla Riservatezza</summary>
+                    <div class="mt-4 text-xs text-gray-400 space-y-2 overflow-y-auto max-h-48 custom-scrollbar">
+                        <p>Qunoqaquus Services, nel proprio operato di editore e publisher di materiale orientato al segmento tecnologico, tutela con forza e incondizionatamente il diritto alla riservatezza di ciascun visitatore e lettore attivo. È della massima importanza chiarire in che misura raccogliamo, conserviamo, tuteliamo e in determinati casi processiamo i vari identificativi inerenti agli utenti che accedono alla presente pagina, specialmente nei passaggi legati all'immissione volontaria di riferimenti per la modulistica. Non intraprendiamo mai pratiche di raccolta occulta tramite architetture subdole non esplicitamente presentate all'utente in modo preventivo; ogni attività che comporta una qualche memorizzazione di traccia è strettamente soggetta all'impalcatura fornita dal GDPR per lo spazio legislativo europeo e derivati equipollenti. Nello svolgimento del nostro dovere, e specificatamente per inoltrare ed istruire un eventuale modulo d’interesse riguardante servizi accessori afferenti a fonti come quelle gestite o associate a Spazio 50, immagazziniamo nei database i nominativi e, in particolare, i contatti numerici provvisti esplicitamente in chiusura della visita ai moduli, senza pretendere di sondare gli apparecchi riceventi. Tutti gli incartamenti, sia telematici che in possesso fittizio da transazione volatile per la pura profilazione tecnica finalizzata al recapito, restano custoditi ed inaccessibili al traffico aperto grazie all’implementazione dei protocolli che blindano il canale logico dal server ai vari hub che fungono da ponte col backend gestionale. Va considerato imprescindibile ribadire come nessuna di queste procedure debba includere terzi agenti di telemarketing che operino sciolti dal nucleo di questo contratto informativo e dei contratti promozionali annessi, ed in questo ci poniamo come responsabili assoluti del flusso interno di manipolazione testuale. I diretti interessati detengono un costante, irreprimibile e immediato potere per rivendicare l’eliminazione istantanea della propria impronta dalla griglia informatica che adoperiamo o impiegare canali normati affinché nulla rimanga archiviato. Le eventuali evoluzioni di questo apparato di indicazioni verranno propagate prontamente; non tolleriamo e decliniamo utilizzi slegati o impertinenti fuori da questo ecosistema strutturale protetto. L'impiego continuato garantisce adesione consapevole ed effettiva di quanto enucleato per sommi capi in tale stesura formale vincolante.</p>
+                    </div>
+                </details>
+                
+                <!-- TERMS OF SERVICE -->
+                <details class="bg-gray-800 p-4 rounded text-left group">
+                    <summary class="text-gray-300 hover:text-white uppercase tracking-widest text-xs outline-none">Termini di Fruizione</summary>
+                    <div class="mt-4 text-xs text-gray-400 space-y-2 overflow-y-auto max-h-48 custom-scrollbar">
+                        <p>L’avvalimento o finanche l'ingresso e la visione statica degli insiemi descrittivi raggruppati, esibiti ed esposti all'indirizzo operato da Qunoqaquus Services, equivale e coincide indiscutibilmente in capo all’interessato ad una sottomissione cosciente ad ogni presupposto delineato nell'impalcatura che descriviamo nel presente spazio telematico e informativo. Ciascuna esposizione testuale prodotta, concepita da personale editorialista oppure riadattata partendo dai filoni informativi derivanti dai partner per l'ambito tecnologico moderno ed affine alle tematiche trattate in Spazio 50, detiene natura meramente indicativa ed il fruitore dovrà approcciarvi con ponderazione analitica propria; mai alcuna disquisizione presentata qui assume dignità od estensione di dogmatico convincimento finanziario, normativo o contrattuale. Ogni artefatto logico in forma visiva, letteraria, semantica ed impaginativa introdotto appartiene a noi a titolo preminente od all’elenco di concessori affiliati dei quali veicoliamo l’intenzione editoriale preordinata; inibiamo ferocemente perciò pratiche sistematiche mirate alla duplicazione grezza dei testi a scopo denigratorio, lucrativo fuori dalla partnership in essere oppure volto ad atti di pirateria logica. Nello spiegamento di questa cornice ci asteniamo e ci estraniamo totalmente dal fornire rassicurazioni dogmatiche, continue nel tempo su parametri o stime tecniche dei sistemi valutati nell'editoriale di base; qualora avvengano discordanze o si crei malcontento soggettivo dovuto alle notizie lette e percepite qui rispetto agli apparati finali descritti, escludiamo forme concrete di addebito nei confronti degli elaboratori informatici dell'operatore o agenzie annesse. Ove vi venisse posta in capo facoltà di riempire il riquadro deputato ai riscontri od alla comunicazione bilaterale coi team addetti al settore media, l’immissione testuale postula categoricamente veridicità assoluta delle nozioni personali senza mistificazioni intenzionali od omonimie fraudolente a svantaggio della piattaforma ed indirettamente alle agenzie di smistamento lead. Si rimarca infine l'inclusività e conformità con il principio che ci vede promotori indipendenti con attribuzione derivata; qualora sussistano controversie la composizione non passerà per procedimenti ordinari in una sede civile estranea allo Stato deputato e competente da noi preventivamente scelto secondo i consueti criteri vigenti, bensì vi è da assoggettarsi al circondario del foro preposto a nostro discernimento esclusivo per derimere divergenze palesi scaturite dal puro mezzo che ha erogato i documenti scritti.</p>
+                    </div>
+                </details>
+
+                <!-- REFUND POLICY / MEDIA DISCLAIMER -->
+                <details class="bg-gray-800 p-4 rounded text-left group">
+                    <summary class="text-gray-300 hover:text-white uppercase tracking-widest text-xs outline-none">Termini di Disdetta ed Esoneri</summary>
+                    <div class="mt-4 text-xs text-gray-400 space-y-2 overflow-y-auto max-h-48 custom-scrollbar">
+                        <p>Il comparto che regola gli sconti compensativi o la decadenza del rapporto non riveste tratti legati ad articoli tangibili con movimentazione commerciale diretta su questo spazio di dominio; ciò giacché le finalità in essere in virtù del publisher riguardano un’essenza precipua come redattori digitali dediti agli editoriali informativi su aggiornamenti software. Essendo la visione generale pubblica fruibile apertamente nell'immediato al di là di preclusioni e senza la transazione economica tramite pagamenti integrati in questa prima pagina operata tramite modulo d'atterraggio Qunoqaquus Services, manca fisicamente e intrinsecamente il requisito principe di cui potersi far rivalsa materialmente a favore di procedimenti che emettano ristoro valutario per la lettura di tali testi di approfondimento; le comunicazioni erogate tramite i bollettini scritti avvengono libere ed in tal forma cessano qualora lo consideri il navigante senza preavviso necessario e tassativo al gruppo autore del progetto telematico affiliato che espone da tramite. Diversa materia per quanto possa concorrere la natura di transazioni eventualmente e potenzialmente svolte ad epilogo fuori e lontane dalle prerogative governative di questa specifica installazione e, in senso figurativo, sui domini partner affiliativi; difatti occorrendo liti commerciali in quei reami digitali successivi o correlati (tipo Spazio 50 o derivazioni commerciali terze) sarà giocoforza da rivolgersi a loro in persona col dipartimento apposito esentandoci interamente. Allorquando il visitatore compilasse gli spazi vuoti designati al rilascio di espressione d’intenti tramite il nostro terminale interattivo di richiamo, vige per essi il perentorio diritto all'oblio; domandare l’eliminazione totale di detti elenchi nominativi, bloccando alla radice qualsivoglia trasmissione differita all’hub originale dell'agente o a subappaltatori mediatici è la facoltà e pretesa prima dell'uomo moderno nell'ambiente internet globalizzato. Tutte le volte in cui ritenessimo impiegabile l’arresto unilaterale della prestazione accessoria inerente il supporto mediatico informatico da inviare verso uno specifico nucleo fruitore e senza compensazione pecuniaria perché esente da imposte transattive ab initio, lo faremo qualora identificheremo impiego abusante senza ulteriori premesse temporali ed immediate. Consigliamo in tal veste precauzionale sempre, comunque e preventivamente l’istruzione propria verso documentazione estesa sulle leggi applicabili concernenti la materia informatica attuale per salvaguardare appieno in via giudiziaria la serenità che occorre mantenersi negli snodi mediatici esenti da rimborso forfettario effettivo, ma uniti da tutela per non nocività della nozione veicolata al navigatore ed alla interezza collettiva che vi stanzia per diletto giornaliero puro.</p>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="text-center mt-8 text-xs text-gray-600">
+                &copy; 2026 Qunoqaquus Services Media. Tutti i diritti riservati e preservati sul marchio e design telematico.
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t-4 border-primary p-6 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-50 transform translate-y-0 transition-transform duration-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm font-semibold text-gray-800 flex-1 max-w-4xl">
+            Avviso ai naviganti dello spazio digitale: Impegneremo minimi artefatti tecnici e archivi di misurazione denominati in gergo "cookie" volti esclusivamente per rendere tangibile ed idonea la fruizione dei nostri foglietti editoriali sulle tematiche del momento. Negando l’asserzione rinunci allo status ottimale della sessione ma sarai abilitato al prosieguo visivo di base.
+        </p>
+        <div class="flex gap-4 w-full sm:w-auto">
+            <button onclick="acceptCookies()" class="flex-1 sm:flex-none btn-primary !py-2 !px-4 text-sm whitespace-nowrap">Accetta Navigazione</button>
+            <button onclick="dismissCookies()" class="flex-1 sm:flex-none bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-[12px] border-2 border-black transition-colors whitespace-nowrap">Soltanto Essenziali</button>
+        </div>
+    </div>
+
+    <!-- JS PROTOCOLS -->
+    <script>
+        // SMART ROUTING INTERCEPTOR (Gravity Well Protocol - Self-Healing Navigation)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                // Close mobile menu on click if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
+                if (targetElement) {
+                    // Logic 1: ID exists -> Scroll
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    // Fallback: Force smooth scroll to #contact if section is removed or misspelled
+                    console.log('Gravity Well Protocol Activated: Re-routing missed anchor to lead section.');
+                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // COOKIE LOGIC
+        window.onload = function() {
+            if (localStorage.getItem('cookieConsent_Media')) {
+                document.getElementById('cookie-banner').style.display = 'none';
+            }
+        };
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent_Media', 'true');
+            hideBanner();
+        }
+
+        function dismissCookies() {
+            localStorage.setItem('cookieConsent_Media', 'false');
+            hideBanner();
+        }
+
+        function hideBanner() {
+            const banner = document.getElementById('cookie-banner');
+            banner.style.transform = 'translateY(100%)';
+            setTimeout(() => { banner.style.display = 'none'; }, 500);
+        }
+    </script>
+</body>
+</html>
