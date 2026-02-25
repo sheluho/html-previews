@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cawivokiis Analytics - Il Portale delle Novità Digitali</title>
+    <meta name="description" content="Esplora il nostro esclusivo portale di news dedicato all'evoluzione digitale, con focus su web design professionale e report analitici.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Design DNA */
+            --primary: #2563eb; /* Tech Blue for News/Analytics */
+            --surface: #fffdf5; /* Warm (Domain last letter % 3 = 1) */
+            --radius: 12px;     /* Soft (Domain length 25 % 3 = 1) */
+            --shadow: 0 0 0 1px #e5e7eb; /* Flat (Domain first letter 'c'=99 % 3 = 0) */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s ease-in-out;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px); 
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* HERO OVERLAY */
+        .hero-bg {
+            background-image: url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.85); /* Dark overlay for readability */
+        }
+
+        /* FIXED COOKIE BANNER */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            z-index: 50;
+            border-top: 1px solid var(--shadow);
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <header class="bg-white sticky top-0 z-40 border-b shadow-sm border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-2xl font-black tracking-tight text-gray-900">
+                        Cawivokiis<span class="text-primary">Analytics</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-primary font-medium transition-colors">Il Portale</a>
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Ultime Novità</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Opinioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">Domande Frequenti</a>
+                </nav>
+
+                <div class="hidden md:flex items-center">
+                    <a href="#contact" class="btn-primary text-sm px-6 py-2">Richiedi Accesso</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Il Portale</a>
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Ultime Novità</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Opinioni</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary bg-blue-50 hover:bg-blue-100 rounded-md mt-2 text-center">Richiedi Accesso</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-bg py-24 lg:py-36 flex-shrink-0">
+        <div class="max-w-6xl mx-auto px-4 relative z-10 text-center lg:text-left">
+            <div class="lg:w-2/3">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-100/20 text-blue-300 font-semibold tracking-wide text-sm mb-4 border border-blue-200/30">L'INFORMAZIONE CHE TRASFORMA IL BUSINESS</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                    Ogni <span class="text-primary">Analisi</span> Strategica è il Miglior Investimento per il tuo Successo Digitale.
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
+                    Siamo il primo portale di informazione focalizzato sulla realizzazione di siti web. Accedi in anteprima a ogni <strong>report</strong> e <strong>novità</strong> per scoprire come le architetture web professionali, eCommerce e le strategie SEO stanno riscrivendo le regole del mercato.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#features" class="btn-primary text-lg">Leggi il Report Esclusivo</a>
+                    <a href="#contact" class="bg-transparent border-2 border-white/30 text-white hover:bg-white hover:text-gray-900 rounded-[12px] px-8 py-4 font-bold transition-all text-center">Unisciti alla Community</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-16 w-full space-y-12">
+
+        <!-- ABOUT PLATFORM (Re-contextualized) -->
+        <section id="about" class="dna-card">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">Dietro la Scena delle Piattaforme Digitali</h2>
+            <div class="w-20 h-1 bg-primary mb-6"></div>
+            <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                Attraverso le nostre pagine, pubblichiamo regolarmente ogni <strong>analisi</strong> tecnica sui migliori casi studio. Che si tratti di siti web vetrina, piattaforme di eCommerce complesse o blog aziendali, il nostro team giornalistico esamina l'evoluzione del design.
+            </p>
+            <p class="text-gray-600 text-lg leading-relaxed">
+                Non ci limitiamo a descrivere le estetiche, ma approfondiamo il lato tecnico. Come documentato nel nostro ultimo speciale, un posizionamento organico efficace su Google unito a velocità di caricamento ottimizzate può cambiare radicalmente i risultati. Scopri l'<strong>esclusivo</strong> sguardo dei nostri esperti su queste dinamiche in tempo reale.
+            </p>
+        </section>
+
+        <!-- FEATURES / TOPICS -->
+        <section id="features" class="dna-card">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">Rubriche e Argomenti in Evidenza</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 bg-white border border-gray-100 rounded-[12px] shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Corporate & Vetrina</h3>
+                    <p class="text-gray-600">Pubblichiamo un <strong>report</strong> settimanale sull'impatto dei siti istituzionali per la presentazione aziendale online.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="p-6 bg-white border border-gray-100 rounded-[12px] shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Novità E-Commerce</h3>
+                    <p class="text-gray-600">Ogni nuova funzionalità che ottimizza le vendite online analizzata in profondità. Quali piattaforme guidano il mercato oggi?</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-6 bg-white border border-gray-100 rounded-[12px] shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">SEO & Performance</h3>
+                    <p class="text-gray-600">Sveliamo strategie, tempistiche e <strong>novità</strong> tecniche essenziali per raggiungere le prime posizioni sui motori di ricerca.</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Grafici e Analisi Dati" loading="lazy" referrerpolicy="no-referrer" class="w-full rounded-[12px] shadow-md border border-gray-100 object-cover h-64" onerror="this.onerror=null; this.src='https://placehold.co/800x400/fffdf5/2563eb?text=Analisi+Dati';">
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section id="reviews" class="dna-card">
+            <h2 class="text-3xl font-bold mb-4 text-center text-gray-900">Le <span class="text-primary">Opinioni</span> dei Nostri Lettori</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Leader di settore e direttori marketing utilizzano le informazioni del nostro portale per guidare le loro decisioni strategiche digitali.</p>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-[12px] border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Le notizie fornite in esclusiva da Cawivokiis sulla corretta architettura di un e-commerce hanno aperto gli occhi alla nostra agenzia per i lavori del 2026."</p>
+                    <div class="font-bold text-gray-900">- Marco T.</div>
+                    <div class="text-sm text-gray-500">Imprenditore E-Commerce</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-[12px] border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Incredibile portale d'informazione. Da quando leggo la loro newsletter settimanale ho compreso l'importanza della SEO e della manutenzione continua dei siti."</p>
+                    <div class="font-bold text-gray-900">- Silvia R.</div>
+                    <div class="text-sm text-gray-500">Marketing Manager</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-[12px] border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Adoro le <strong>opinioni</strong> tecniche scritte dai loro esperti. Riuscite sempre a rendere comprensibili concetti di programmazione complessi."</p>
+                    <div class="font-bold text-gray-900">- Alessandro D.</div>
+                    <div class="text-sm text-gray-500">Lettore Abbonato</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="dna-card">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4 max-w-3xl mx-auto">
+                
+                <details class="group border border-gray-200 rounded-[12px] bg-white overflow-hidden">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:bg-gray-50">
+                        <span>Quanto spesso viene rilasciato un nuovo report sul web design?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-5 pt-0 border-t border-gray-100 mt-1">
+                        Aggiorniamo la redazione con ogni nuova scoperta giornaliera. Il grande approfondimento dedicato ai framework strutturali dei siti viene pubblicato con cadenza mensile, riassumendo tutte le <strong>novità</strong>.
+                    </div>
+                </details>
+
+                <details class="group border border-gray-200 rounded-[12px] bg-white overflow-hidden">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:bg-gray-50">
+                        <span>Questi contenuti esclusivi sono adatti anche a chi non programma?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-5 pt-0 border-t border-gray-100 mt-1">
+                        Assolutamente sì. Trasformiamo codici e performance tecniche in un linguaggio business. Il nostro focus è l'<strong>analisi</strong> manageriale: perché uno specifico layout o CMS porta più risultati rispetto a un altro.
+                    </div>
+                </details>
+
+                <details class="group border border-gray-200 rounded-[12px] bg-white overflow-hidden">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:bg-gray-50">
+                        <span>Potete pubblicare opinioni o articoli sponsorizzati?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-5 pt-0 border-t border-gray-100 mt-1">
+                        Il nostro team valuta contributi esterni solo se di alta qualità e pertinenti ai nostri settori cardine (sviluppo software, interfacce utente e server administration). Ogni contenuto <strong>esclusivo</strong> viene vagliato minuziosamente prima della messa in pagina.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT / NEWSLETTER (Simulated Lead Form) -->
+        <section id="contact" class="dna-card text-center lg:text-left flex flex-col lg:flex-row gap-12 items-center">
+            <div class="lg:w-1/2">
+                <h2 class="text-3xl font-bold mb-4 text-gray-900">Entra nell'Ecosistema dell'Informazione Digital</h2>
+                <p class="text-gray-600 mb-6 text-lg">
+                    Iscriviti subito al portale Cawivokiis Analytics. Diventa parte di una rete selettiva e inizia a ricevere i dossier speciali sulle implementazioni di siti, eCommerce, e ottimizzazioni server senza compromessi.
+                </p>
+                <div class="bg-blue-50 p-4 border border-blue-100 rounded-[12px]">
+                    <h4 class="font-bold text-gray-900 mb-1">Cosa Otterrai:</h4>
+                    <ul class="text-left text-gray-700 space-y-2 list-disc pl-5">
+                        <li>Approfondimenti tecnico/pratici.</li>
+                        <li>Case studies su re-design efficaci.</li>
+                        <li>Notifiche per l'uscita di trend report 2026.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 w-full bg-white p-8 rounded-[12px] border border-gray-200 shadow-sm relative">
+                <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Registrazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2 text-left" for="name">Nome Completo</label>
+                        <input class="shadow-sm appearance-none border border-gray-300 rounded-[12px] w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="name" type="text" placeholder="Mario Rossi" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2 text-left" for="role">Professione/Ruolo</label>
+                        <input class="shadow-sm appearance-none border border-gray-300 rounded-[12px] w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="role" type="text" placeholder="CEO / Direttore Marketing" required>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2 text-left" for="interest">Argomento di Interesse</label>
+                        <select class="shadow-sm appearance-none border border-gray-300 rounded-[12px] w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="interest" required>
+                            <option value="">Seleziona...</option>
+                            <option value="corporate">Notizie Siti Web Vetrina/Aziendali</option>
+                            <option value="ecommerce">Tendenze E-Commerce</option>
+                            <option value="seo">Ranking & Velocità (SEO)</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary w-full text-center" type="submit">
+                        Ricevi l'Accesso al Portale
+                    </button>
+                    <p class="text-xs text-gray-400 mt-4 text-center">Nessun costo richiesto. Sottoscrivi in totale sicurezza e accedi subito alla bacheca news.</p>
+                </form>
+                
+                <!-- Success Message -->
+                <div id="success-msg" style="display:none" class="py-12 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Iscrizione Convalidata!</h3>
+                    <p class="text-gray-600">Hai ufficialmente ottenuto l'accesso alla ricezione delle nostre esclusive testate digitali. Riceverai presto aggiornamenti tramite notifica sul portale.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            
+            <div class="grid md:grid-cols-2 gap-12 mb-12">
+                <div>
+                    <h3 class="text-2xl font-black tracking-tight text-white mb-4">
+                        Cawivokiis<span class="text-primary">Analytics</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+                        La voce indipendente nel mondo del web design e dello sviluppo di software applicativo online. Aggiornamenti rigorosi per figure professionali e brand orientati alla digitalizzazione di massa.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Disclamer Operativo Obbligatorio</h4>
+                    <p class="text-gray-500 text-sm border-l-2 border-primary pl-3">
+                        Questo è un sito promozionale indipendente gestito da Cawivokiis Analytics, che opera in qualità di affiliato per Design Evolution. Tutte le raccomandazioni presenti su testata sono redatte per scopi di analisi di tendenza generale.
+                    </p>
+                </div>
+            </div>
+
+            <!-- LEGAL SECTION (Full verbatims mapped in Details blocks) -->
+            <div class="border-t border-gray-800 pt-8 mt-8 space-y-4">
+                <details class="text-gray-400 text-sm">
+                    <summary class="cursor-pointer hover:text-white font-semibold underline mb-2">Termini e Condizioni di Servizio</summary>
+                    <div class="p-4 bg-gray-800 rounded mt-2 text-gray-300 text-xs leading-relaxed max-h-64 overflow-y-auto">
+                        <p>1. ACCETTAZIONE DELLE CONDIZIONI. Accedendo o utilizzando i servizi forniti attraverso questo portale di informazione e novità web, gestito da Cawivokiis Analytics (di seguito "noi", "nostro", "Portale"), l'utente dichiara di aver letto, compreso e accettato integralmente questi Termini e Condizioni. L'utilizzo continuato delle funzioni redazionali conferma questa intesa inequivocabile, operante ai sensi delle normative in ambito digitale correnti nel territorio dell'erogatore infrastrutturale in Europa. Le clausole qui di seguito espresse configurano l'intero impianto contrattuale che regola le limitazioni e le erogazioni della proprietà della testata digitale. Qualsiasi violazione provata dei medesimi terminerà le utenze di navigazione del reo.</p>
+                        <p class="mt-2">2. USO E DISTRIBUZIONE DEI REPORT. I testi, analisi, saggi di design tecnico, e ogni novità comunicativa (congiuntamente indicati come "Risorse" o "Contenuto Esclusivo") sono e rimangono beni sottoposti a diritto e tutela da parte del fornitore primario ed originatore d'opinione aziendale. Se il visitatore è intento in azioni di download manuale ovvero script programmato, deve interrompere tempestivamente codeste dinamiche automatizzate o subire provvedimenti di blocco persistente verso le estensioni di tracciamento o server IP impiegati. L'utilizzo primario e in deroga speciale dell'aggregatore di trend risulta confinato allo scibile cognitivo a vantaggio decisionale per lo staff direttivo del business o delle organizzazioni lettrici. È formalmente impedita, per legge sul diritto dei brevetti intellettuali o format informativi, qualsivoglia esecuzione tendente a copiare parti per rinvendita speculativa non preautorizzata.</p>
+                        <p class="mt-2">3. DECLINAZIONE DI CORRELAZIONI CAUSALI DIRETE. Si ricorda come questo portale web esponga un modello interpretativo in unione concettuale al macro fornitore denominato per nome e fama "Design Evolution". Nessuna indicazione strutturale dei mercati in questa istanza costituisce garanzia infondibile al raddoppio reddituale del medesimo visitatore operante il consumo di notizia pura su queste schede documentali. Nessun funzionario né creatore editoriale opererà risarcimento verso i capitali d'investimento aziendali che, a detta di chi compie causa pretestuosa nei vari tribunali regionali, ritenessero insufficienti gli affitti diretti delle letture d'implemento. Tutte le descrizioni d'eCommerce, visioni panoramiche, architetture vetrinistiche o protocolli lato web sono riportati secondo un ideale best-scenario statistico nel 2026. Esigenze o disagi riscontrabili sui flussi o malfunzionamenti derivano direttamente in ultima stanza al provider prescelto, estrapolando pertanto Cawivokiis Analytics dall’attribuzione diretta dell'esecuzione fallimentare e imputando unicamente responsabilità divulgativa e formativa.</p>
+                    </div>
+                </details>
+
+                <details class="text-gray-400 text-sm">
+                    <summary class="cursor-pointer hover:text-white font-semibold underline mb-2">Informativa sulla Privacy Regolamentata</summary>
+                    <div class="p-4 bg-gray-800 rounded mt-2 text-gray-300 text-xs leading-relaxed max-h-64 overflow-y-auto">
+                        <p>Il vigente codice deontologico del nostro sistema garantisce la salvaguardia intrinseca sui transiti delle metriche demografiche raccolte sui server. È concesso il transito informativo per finalità esplicite alla comprensione globale sul pubblico interessato agli ecosistemi di codice moderno (JavaScript avanzati, backends corporativi). Noi della direzione direttiva d'esame e le società affiliate in joint venture digitale non distribuiamo ad alcuna lista comprativa sotterranea ("black market lead sharing") i record, quali profili utente, IP fisso/mobile, identificativi browser e simili captati in via passiva per ragioni d'analisi sul server (le famose pratiche di log recording automatizzato HTTP e TCP).</p>
+                        <p class="mt-2">Nel modulo contatti, per l’impegno al database invio approfondimenti in ambito portale, ricaviamo preferibilmente nome e occupazione tecnica dell'individuo visitatore o della funzione organizzativa. Trattasi sempre d'intenzionalità attiva espressa dall’utilizzatore quando schiaccia volontariamente le diciture confermative esposte graficamente dai nostri front-end design systems. La cancellazione dalle medesime nomenclature temporanee allocate nel back end relazionale richiede solamente di interagire via portale nelle finestre opzionali accessibili nel pannello account dell’impiegato interno o avviare segnalazioni al gestore tecnico di Cawivokiis via modulistica certificata on line (non servono comunicazioni manuali fisiche cartacee od ulteriori passaggi farraginosi imposti nell'amministrazione classica). Questo adempie pienamente i cardini principali di minimizzazione d'impronta.</p>
+                        <p class="mt-2">Gli intermediari software (third party processing tools), composti da analisti cloud in locazioni mondiali ed integratori di server-edge per la propagazione di video reportistiche e media in alte risuluzioni formattati in compressioni ultra recenti come .webp, attuano in forma anonimizzata processamenti autonomi sotto clausole di segretezza rigorose note universalmente a norma dello scudo UE ed adiacenti patti extra-nazione sull’egida cibernetica, ove vigano medesimi principi essenziali protettori di diritto. Modificazioni di questa politica verranno annotate digitalmente direttamente qui, nella data d’emissione d'eventuale rinnovo di policy revisionale su aggiornamenti successivi normativi per anno giubilare correntato sul futuro standard dei sistemi gestiti in autonomia o automatizzazione algoritmica protocollare.</p>
+                    </div>
+                </details>
+                
+                <details class="text-gray-400 text-sm">
+                    <summary class="cursor-pointer hover:text-white font-semibold underline mb-2">Regolamento Resi e Garanzie Contrattuali</summary>
+                    <div class="p-4 bg-gray-800 rounded mt-2 text-gray-300 text-xs leading-relaxed max-h-64 overflow-y-auto">
+                        <p>Data l'indiscussa e manifesta qualità di Portale analitico fornitore unicamente in tipologia “Bene Non Tangibile Intellettuale” – ovverosia bollettini tecnici, statistiche aggiornate sui trend vetrina web e strategie visibili liberamente sugli impaginati schermografici correnti o ad uso su network per registrazione libera non monetizzata nella tariffa ingressiva in fase d'avvio odierna – noi omettiamo ogni forma di recesso d'indennizzo liquidativo patrimoniale monetario, poiché sprovvisti integralmente di casellario commerciale diretto sui frontespizi redazionali d’informazione giornalistica e analisi.</p>
+                        <p class="mt-2">Nel momento ed occasione eccezionale dove, per canali ausiliari in un contesto avanguardistico futuro venisse emesso da questa sorgente specifica, un manuale o una sessione o pacchetto scaricabile formativo digitale esoso od offerto a valore tariffato imposto da circuito pos payment gateway globale per bancomat e fido carteggiabili in portali internazionali crittografati: codesti pacchetti specificati subirebbero l’ovvio processo descrittivo dei 14 o trenta giorni classici previsti dal distretto consumativo italiano sulla rivendita e riassegnazione economica o rimborso inverso, unicamente previa testimonianza effettiva sulla mancata fornitura delle lezioni. Essendo per costituzione odierna un portale orientato esclusivamente a promuovere informazione terza ed elargizioni conoscitive sul design della rete su marchi affini menzionati nei discorsi introduttivi in pedata principale o sub testate in pagine adeguate alla funzione, tali evenienze di contesa risultano logicamente bloccate alla radice formale d’estratto statuario aziendale redattore dell'affiliazione. Ogni divergenza col prestatore effettivo dell'opera tangibile codificatoria è imputata in linea netta in competenza del mandatario finale (le società menzionate) svincolando totalitariamente la veste comunicativa in merito al ristoro pratico derivativo ai reclami sui preventivi o esecuzioni del server. Nessun credito per via indiretta va qui calcolato su pretese o danni d’immagine o lucro sfumante causato dai software fallati da parte altrui o ritardi in indicizzazione SEO su Google da motori web organici imposti a scala mondo da terzi estranei allo staff del portale. L'istanza è conclusa ai termini chiari senza margini interpretativi o appello giuridico vincolante al portale analitico divulgativo, sancito d'accordo volontario tramite scroll e caricamento dati pacchetto dati sito attuale confermato tramite il web socket HTTP vigente all’oggi in protocollo cifrato.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                &copy; 2026 Cawivokiis Analytics. Tutti i diritti riservati sull'impianto editoriale e grafico portale informativo news.
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" style="display: none;">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-700">
+                La redazione utilizza cookie tecnici e di misurazione del traffico per assicurare che ricevi la migliore selezione di novità e report sul web design e i portali in tendenza in conformità col manifesto aziendale.
+            </p>
+            <div class="flex gap-2 whitespace-nowrap">
+                <button onclick="acceptCookies()" class="btn-primary text-sm px-6 py-2">Compreso e Accetto</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-[12px] font-medium text-sm transition">Ignora Modulo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INLINE LOGIC / SMART ROUTING -->
+    <script>
+        // SMART ROUTING SYSTEM
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    let targetId = this.getAttribute("href").substring(1);
+                    let targetElement = document.getElementById(targetId);
+
+                    // If target doesn't exist, force scroll to contact form (Simulation of funnel recovery)
+                    if (!targetElement) {
+                        targetElement = document.getElementById("contact");
+                    }
+                    
+                    if (targetElement) {
+                        // Adjust scroll for sticky header offset
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                        
+                        // Close mobile menu if open
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if(!mobileMenu.classList.contains('hidden')){
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // COOKIE BANNER LOGIC (LocalStorage check)
+            if(!localStorage.getItem('cookies_accepted')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        });
+
+        // Accept Cookies function
+        window.acceptCookies = function() {
+            localStorage.setItem('cookies_accepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
