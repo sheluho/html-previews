@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jovoceus Advisory - Esperti in analisi software, piattaforme di sondaggi e ottimizzazione automatizzata per il business.">
+    <title>Jovoceus Advisory | Analisi Software e Strategie Digitali</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* VAR D: Palette -> Indigo for Professional Advisory/SaaS */
+            --primary: #4f46e5;
+            /* VAR C: Surface -> Warm (s -> 19 % 3 = 1) */
+            --surface: #fffdf5;
+            /* VAR A: Geometry -> Pill (20 chars % 3 = 2) */
+            --radius: 24px;
+            /* VAR B: Physics -> Material (j -> 10 % 3 = 1) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .dna-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+             background-color: var(--primary);
+             color: #ffffff !important;
+             border-radius: var(--radius);
+             box-shadow: var(--shadow);
+             padding: 1rem 2rem;
+             transition: all 0.2s;
+             font-weight: 700;
+             display: inline-block;
+             text-align: center;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-1px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* BRAND COMPONENT: Secondary Button */
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.9rem 2rem;
+            transition: all 0.2s;
+            font-weight: 700;
+        }
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary-light { background-color: rgba(79, 70, 229, 0.1); }
+        
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Details Summary Styling */
+        details summary {
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            padding-right: 20px;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        details[open] summary::after {
+            content: '-';
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 text-white p-4 z-50 hidden">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm">Utilizziamo i cookie per migliorare la tua esperienza sul nostro portale di analisi software. Continuando a navigare, accetti la nostra politica.</p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-primary text-sm px-4 py-2 bg-white text-gray-900 border-none">Accetta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-extrabold text-primary">Jovoceus Advisory</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium">Servizi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium">FAQ</a>
+                    <a href="#contact" class="btn-primary py-2 px-6">Contattaci</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button type="button" class="text-gray-500 hover:text-primary focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#features" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Recensioni</a>
+                <a href="#faq" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 btn-primary mt-4">Contattaci</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Software analysis team meeting" 
+                 class="w-full h-full object-cover opacity-30"
+                 referrerpolicy="no-referrer"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Digital+Strategy'">
+        </div>
+        <div class="relative max-w-5xl mx-auto px-4 py-24 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-indigo-900 text-indigo-100 text-sm font-semibold mb-6">Analisi & Strategia SaaS</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
+                L'Analisi Critica è il Miglior Investimento per il Tuo <span class="text-indigo-400">Software Automatizzato</span>
+            </h1>
+            <p class="mt-4 max-w-2xl text-xl text-gray-300 mx-auto mb-10">
+                Jovoceus Advisory ti guida nella scelta e nell'implementazione delle piattaforme di feedback più evolute. Trasforma i dati grezzi in risultati aziendali concreti.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#features" class="btn-primary">Scopri le Soluzioni</a>
+                <a href="#contact" class="btn-secondary text-white border-white hover:bg-white hover:text-gray-900">Richiedi Consulenza</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGO STRIP (Proof) -->
+    <div class="bg-white border-b border-gray-200 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">Software analizzati per leader di mercato</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all">
+                <span class="text-xl font-bold text-gray-600">TechCorp</span>
+                <span class="text-xl font-bold text-gray-600">GlobalMetrics</span>
+                <span class="text-xl font-bold text-gray-600">DataFlow Systems</span>
+                <span class="text-xl font-bold text-gray-600">InnovaSoft</span>
+                <span class="text-xl font-bold text-gray-600">NextLevel HR</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+        <!-- FEATURES SECTION (Wrapped in DNA Card) -->
+        <div id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    I Nostri Servizi di Analisi
+                </h2>
+                <p class="mt-4 text-lg text-gray-600">
+                    Valutiamo e implementiamo ogni aspetto della tua piattaforma software per garantire la massima efficienza.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center p-4">
+                    <div class="mx-auto h-16 w-16 bg-primary-light rounded-full flex items-center justify-center mb-4">
+                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Analisi Piattaforma</h3>
+                    <p class="text-gray-600">
+                        Esaminiamo software leader come SurveyMonkey per determinare come le loro funzionalità avanzate di analisi dati possano integrarsi con i tuoi obiettivi di business.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="text-center p-4">
+                    <div class="mx-auto h-16 w-16 bg-primary-light rounded-full flex items-center justify-center mb-4">
+                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Automazione del Feedback</h3>
+                    <p class="text-gray-600">
+                        Implementiamo strategie per rendere il processo di raccolta feedback completamente automatizzato, riducendo i tempi di gestione e aumentando l'efficienza.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="text-center p-4">
+                    <div class="mx-auto h-16 w-16 bg-primary-light rounded-full flex items-center justify-center mb-4">
+                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Reportistica e Risultati</h3>
+                    <p class="text-gray-600">
+                        Consulenza su come trasformare i dati grezzi dei sondaggi in report azionabili, utilizzando strumenti di intelligenza artificiale per scoprire insight nascosti.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- IMAGE BREAK -->
+        <div class="max-w-5xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-xl">
+             <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Analisi dei dati su monitor" 
+                 class="w-full h-80 object-cover"
+                 referrerpolicy="no-referrer"
+                 loading="lazy">
+        </div>
+
+        <!-- TESTIMONIALS (Wrapped in DNA Card) -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Cosa Dicono i Nostri Clienti</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-primary">
+                            ★★★★★
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Jovoceus Advisory ci ha aiutato a selezionare il software di sondaggi perfetto. La loro analisi comparativa ha risparmiato al nostro team settimane di ricerca."</p>
+                    <p class="font-bold text-gray-900">- Marco Rossi, Direttore HR</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-primary">
+                            ★★★★★
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Grazie alla consulenza sull'automazione, ora raccogliamo il 40% in più di feedback dai clienti senza alcuno sforzo manuale. Risultati eccezionali."</p>
+                    <p class="font-bold text-gray-900">- Elena Bianchi, Marketing Manager</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION (Wrapped in DNA Card) -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                <details class="group bg-gray-50 rounded-lg p-4">
+                    <summary class="font-semibold text-gray-800 text-lg">Come scegliete il software giusto per la mia azienda?</summary>
+                    <p class="mt-4 text-gray-600 pl-4 border-l-2 border-primary">
+                        Analizziamo le vostre esigenze specifiche, il volume di dati previsti e il budget. Valutiamo le caratteristiche tecniche, come la capacità di analisi e l'integrazione, per raccomandare la soluzione più adatta.
+                    </p>
+                </details>
+                <details class="group bg-gray-50 rounded-lg p-4">
+                    <summary class="font-semibold text-gray-800 text-lg">Offrite supporto per l'integrazione dei dati?</summary>
+                    <p class="mt-4 text-gray-600 pl-4 border-l-2 border-primary">
+                        Sì, la nostra consulenza include strategie per integrare i dati raccolti tramite sondaggi con il vostro CRM o altri sistemi aziendali per massimizzare l'efficienza.
+                    </p>
+                </details>
+                <details class="group bg-gray-50 rounded-lg p-4">
+                    <summary class="font-semibold text-gray-800 text-lg">Lavorate con software gratuiti o solo a pagamento?</summary>
+                    <p class="mt-4 text-gray-600 pl-4 border-l-2 border-primary">
+                        Valutiamo l'intero spettro del mercato. Spesso le versioni gratuite sono ottime per iniziare, ma per analisi avanzate e automazione completa, consigliamo soluzioni professionali scalabili.
+                    </p>
+                </details>
+                <details class="group bg-gray-50 rounded-lg p-4">
+                    <summary class="font-semibold text-gray-800 text-lg">Quali sono i tempi di una consulenza?</summary>
+                    <p class="mt-4 text-gray-600 pl-4 border-l-2 border-primary">
+                        Dipende dalla complessità del progetto. Una revisione software standard può richiedere pochi giorni, mentre un piano di automazione completo può durare alcune settimane.
+                    </p>
+                </details>
+                <details class="group bg-gray-50 rounded-lg p-4">
+                    <summary class="font-semibold text-gray-800 text-lg">Garantite la privacy dei dati?</summary>
+                    <p class="mt-4 text-gray-600 pl-4 border-l-2 border-primary">
+                        Assolutamente. La conformità al GDPR e la sicurezza dei dati sono pilastri fondamentali di ogni software e procedura che raccomandiamo ai nostri clienti.
+                    </p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION (Wrapped in DNA Card) -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Inizia la Tua Trasformazione</h2>
+                    <p class="text-gray-600 mb-8">
+                        Compila il modulo per richiedere un'analisi preliminare o per discutere di come ottimizzare i tuoi processi software.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="h-6 w-6 text-primary mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Indirizzo Operativo</h4>
+                                <p class="text-gray-600">2 Shelbourne Buildings, Shelbourne Road<br>Dublin, Irlanda</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <svg class="h-6 w-6 text-primary mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Orari</h4>
+                                <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-2xl">
+                    <form id="lead-form" onsubmit="handleFormSubmit(event)">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nome Completo</label>
+                            <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary" id="name" type="text" placeholder="Mario Rossi" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="company">Azienda</label>
+                            <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary" id="company" type="text" placeholder="Nome Azienda">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Come possiamo aiutarti?</label>
+                            <textarea class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary h-32" id="message" placeholder="Descrivi le tue esigenze..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-center">Invia Richiesta</button>
+                    </form>
+                    
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <svg class="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Messaggio Inviato!</h3>
+                        <p class="text-gray-600">Un nostro consulente analizzerà la tua richiesta e ti risponderà a breve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="text-2xl font-bold text-white mb-4 block">Jovoceus Advisory</span>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Il tuo partner strategico per l'analisi e la selezione di software automatizzati. Miglioriamo i processi aziendali attraverso la tecnologia e i dati.
+                    </p>
+                    <p class="text-xs text-gray-500 italic">
+                        Questo è un sito promozionale indipendente gestito da Jovoceus Advisory, che agisce come affiliato per SurveyMonkey.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Navigazione</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#features" class="hover:text-white">Servizi</a></li>
+                        <li><a href="#reviews" class="hover:text-white">Recensioni</a></li>
+                        <li><a href="#faq" class="hover:text-white">FAQ</a></li>
+                        <li><a href="#contact" class="hover:text-white">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legale</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" onclick="document.getElementById('legal-privacy').open = true" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" onclick="document.getElementById('legal-terms').open = true" class="hover:text-white">Termini di Servizio</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 mt-8 text-sm text-gray-500 text-center">
+                &copy; 2026 Jovoceus Advisory. Tutti i diritti riservati.
+            </div>
+
+            <!-- LEGAL TEXT BLOCKS -->
+            <div class="mt-10 space-y-4 text-xs text-gray-500 text-justify">
+                <details id="legal-privacy">
+                    <summary class="hover:text-gray-300">Privacy Policy (Clicca per espandere)</summary>
+                    <div class="pt-4 space-y-2">
+                        <p>Benvenuti su Jovoceus Advisory. La vostra privacy è di fondamentale importanza per noi. Questa Politica sulla Privacy descrive come raccogliamo, utilizziamo, proteggiamo e divulghiamo le informazioni personali quando utilizzate il nostro sito web e i nostri servizi di consulenza software. Accedendo o utilizzando il nostro sito, acconsentite alle pratiche descritte in questa politica. Raccogliamo informazioni che ci fornite direttamente, come quando compilate un modulo di contatto, richiedete una consulenza o vi iscrivete alla nostra newsletter. Queste informazioni possono includere il vostro nome, il nome dell'azienda, e altre informazioni di contatto.</p>
+                        <p>Utilizziamo le informazioni raccolte per fornire, mantenere e migliorare i nostri servizi, per rispondere alle vostre richieste, per inviarvi informazioni tecniche e amministrative e per comunicarvi prodotti, servizi, offerte e promozioni che riteniamo possano interessarvi. Non vendiamo, scambiamo o trasferiamo in altro modo a terzi le vostre informazioni personali identificabili senza il vostro consenso, eccetto per quanto necessario per fornire i servizi richiesti o come richiesto dalla legge. Implementiamo una serie di misure di sicurezza per mantenere la sicurezza delle vostre informazioni personali.</p>
+                        <p>Il nostro sito utilizza i cookie per migliorare l'esperienza dell'utente. Potete scegliere di disabilitare i cookie attraverso le impostazioni del vostro browser, tuttavia ciò potrebbe limitare alcune funzionalità del sito. Conserviamo le vostre informazioni personali solo per il tempo necessario a soddisfare le finalità per cui sono state raccolte, inclusi gli obblighi legali, contabili o di rendicontazione. Avete il diritto di accedere, correggere o cancellare le vostre informazioni personali in nostro possesso. Per esercitare questi diritti, vi preghiamo di contattarci tramite il modulo presente sul sito.</p>
+                        <p>Questo sito può contenere link a siti di terze parti, inclusi i nostri partner affiliati. Non siamo responsabili per le pratiche sulla privacy o il contenuto di tali siti. Vi incoraggiamo a leggere le politiche sulla privacy di ogni sito che visitate. Ci riserviamo il diritto di aggiornare questa politica sulla privacy in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina con una data di revisione aggiornata. L'uso continuato del sito dopo tali modifiche costituisce l'accettazione della nuova politica.</p>
+                    </div>
+                </details>
+
+                <details id="legal-terms">
+                    <summary class="hover:text-gray-300">Termini e Condizioni (Clicca per espandere)</summary>
+                    <div class="pt-4 space-y-2">
+                        <p>Questi Termini e Condizioni regolano l'uso del sito web Jovoceus Advisory e dei servizi correlati. Accedendo a questo sito, accettate di essere vincolati da questi termini. Se non siete d'accordo con una qualsiasi parte di questi termini, non dovete utilizzare il nostro sito. Il contenuto delle pagine di questo sito è per vostra informazione generale e uso. È soggetto a modifiche senza preavviso. Né noi né terze parti forniamo alcuna garanzia o assicurazione circa l'accuratezza, la tempestività, le prestazioni, la completezza o l'idoneità delle informazioni e dei materiali trovati o offerti su questo sito per qualsiasi scopo particolare.</p>
+                        <p>L'uso di qualsiasi informazione o materiale su questo sito è interamente a vostro rischio, per il quale non saremo responsabili. È vostra responsabilità assicurarvi che qualsiasi prodotto, servizio o informazione disponibile attraverso questo sito soddisfi le vostre specifiche esigenze. Questo sito contiene materiale che è di nostra proprietà o concesso in licenza a noi. Questo materiale include, ma non è limitato a, il design, il layout, l'aspetto e la grafica. La riproduzione è vietata se non in conformità con l'avviso di copyright, che fa parte di questi termini e condizioni.</p>
+                        <p>Jovoceus Advisory opera come un'entità di consulenza indipendente e può ricevere commissioni di affiliazione per i prodotti o servizi raccomandati. Tuttavia, le nostre raccomandazioni sono basate sulla nostra analisi professionale e non garantiamo i risultati derivanti dall'uso di software di terze parti. Non siamo responsabili per danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di usare il nostro sito o i servizi raccomandati. L'utente accetta di manlevare e tenere indenne Jovoceus Advisory da qualsiasi reclamo o domanda fatta da terzi a causa o derivante dalla violazione di questi Termini.</p>
+                        <p>Ci riserviamo il diritto di interrompere o terminare l'accesso al sito in qualsiasi momento senza preavviso per qualsiasi motivo. Questi termini sono regolati e interpretati in conformità con le leggi vigenti nello stato in cui ha sede l'operatore del sito, senza riguardo ai conflitti di disposizioni di legge. Qualsiasi controversia derivante o relativa all'uso di questo sito sarà soggetta alla giurisdizione esclusiva dei tribunali competenti.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        // 1. Navigation & Routing (Self-Healing)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    console.warn(`Target #${targetId} not found, redirecting to #contact`);
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // 2. Form Handling (No Alerts)
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('lead-form');
+            const button = form.querySelector('button');
+            const originalText = button.innerText;
+
+            button.innerText = 'Elaborazione in corso...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                form.style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+                // Reset (optional, for logic flow)
+                button.innerText = originalText;
+                button.disabled = false;
+            }, 1500);
+        }
+
+        // 3. Cookie Management
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+                document.getElementById('cookie-banner').style.display = 'block'; // Ensure display
+            }
+        }
+    </script>
+</body>
+</html>
