@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuxoNew Industries | Formazione AI e Prompt Design</title>
+    <meta name="description" content="Impara i segreti dell'Intelligenza Artificiale con il corso di TuxoNew Industries. Iscrizione aperta per principianti e professionisti.">
+    <meta name="robots" content="index, follow">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* VAR D: Palette -> Indigo for E-learning/Tech */
+            --primary: #4f46e5; 
+            /* VAR C: Surface -> Last letter 'n' (110%3=2) -> Cool Slate White */
+            --surface: #f8fafc;
+            /* VAR A: Geometry -> 'aulab.it' len 8 (8%3=2) -> Pill/Rounded */
+            --radius: 24px;
+            /* VAR B: Physics -> 'a' (97%3=1) -> Material Shadow */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Gray background for contrast */
+            color: #1f2937;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2.5rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover { 
+            opacity: 0.95; 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary-light { background-color: #e0e7ff; }
+
+        /* HERO OVERLAY */
+        .hero-bg {
+            background-image: url('https://images.pexels.com/photos/17483874/pexels-photo-17483874.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(31,41,55,0.9) 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-gray-800 tracking-tight">TuxoNew<span class="text-primary">Industries</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Programma</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Testimonianze</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm py-2 px-6">Accesso Corso</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Programma</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Testimonianze</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold hover:bg-gray-50 rounded-md">Iscrizione</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero-bg h-screen min-h-[600px] flex items-center justify-center pt-20">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
+            <span class="inline-block py-1 px-3 rounded-full bg-primary-light text-primary text-sm font-bold mb-4 tracking-wider uppercase">
+                Piattaforma E-learning del Futuro
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                L'Industria del Domani <br>Richiede Competenze Oggi.
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                TuxoNew Industries presenta il percorso definitivo per imparare l'Intelligenza Artificiale. 
+                Dalla teoria alla pratica: trasforma il tuo modo di lavorare e ottieni l'accesso al futuro professionale.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="btn-primary transform hover:scale-105">Inizia l'Apprendimento</a>
+                <a href="#features" class="bg-white text-gray-900 px-8 py-4 rounded-[24px] shadow-lg font-bold hover:bg-gray-100 transition transform hover:-translate-y-1">
+                    Scopri il Programma
+                </a>
+            </div>
+            <p class="mt-6 text-sm text-gray-400">
+                Iscrizione aperta a tutti • Adatto ai principianti
+            </p>
+        </div>
+    </header>
+
+    <!-- TRUST SECTION -->
+    <section class="py-12 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-6">
+                Le competenze richieste dalle aziende leader
+            </p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale">
+                <span class="text-xl font-bold text-gray-700">TECH_ITALIA</span>
+                <span class="text-xl font-bold text-gray-700">NOVADIGITAL</span>
+                <span class="text-xl font-bold text-gray-700">SOFT_SOLUTIONS</span>
+                <span class="text-xl font-bold text-gray-700">NEXT_LEVEL</span>
+                <span class="text-xl font-bold text-gray-700">INNOVAZIONE_SRL</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES / SERVICES SECTION -->
+    <section id="features" class="py-20">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Cosa imparerai con il nostro Corso</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Il programma è strutturato per portare i principianti a un livello professionale, 
+                    fornendo accesso a strumenti all'avanguardia per l'industria moderna.
+                </p>
+            </div>
+
+            <!-- Feature 1 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img 
+                        src="https://images.pexels.com/photos/5474295/pexels-photo-5474295.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                        alt="Imparare Prompt Design" 
+                        class="rounded-[24px] shadow-md w-full h-64 object-cover"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Prompt+Design'"
+                    >
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="text-primary font-bold mb-2">MODULO 01</div>
+                    <h3 class="text-2xl font-bold mb-4">Conversation & Prompt Design</h3>
+                    <p class="text-gray-600 mb-6">
+                        Impara l'arte di comunicare con le macchine. Questo modulo ti insegna come strutturare i prompt 
+                        per ottenere risultati precisi da modelli come ChatGPT. Essenziale per chi vuole lavorare nell'E-learning 
+                        o nell'automazione industriale.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Tecniche di prompting avanzato
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Gestione del contesto AI
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img 
+                        src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                        alt="Generative AI Tools" 
+                        class="rounded-[24px] shadow-md w-full h-64 object-cover"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Generative+AI'"
+                    >
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="text-primary font-bold mb-2">MODULO 02</div>
+                    <h3 class="text-2xl font-bold mb-4">AI Generativa per il Business</h3>
+                    <p class="text-gray-600 mb-6">
+                        Non solo teoria. Scopri come utilizzare Midjourney e altri strumenti generativi per creare asset 
+                        visivi e testuali. Ottimizza i processi aziendali e riduci i tempi di produzione grazie 
+                        al supporto dell'Intelligenza Artificiale.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Creazione contenuti automatizzata
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Integrazione nei flussi di lavoro
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img 
+                        src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                        alt="Carriera e Futuro" 
+                        class="rounded-[24px] shadow-md w-full h-64 object-cover"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Career+Success'"
+                    >
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="text-primary font-bold mb-2">MODULO 03</div>
+                    <h3 class="text-2xl font-bold mb-4">Upskilling e Futuro Professionale</h3>
+                    <p class="text-gray-600 mb-6">
+                        Il mercato del lavoro sta cambiando. Garantisci il tuo accesso alle professioni del domani 
+                        acquisendo competenze certificate. Ideale per chi vuole imparare da zero o riqualificarsi 
+                        velocemente nel settore tech.
+                    </p>
+                    <a href="#contact" class="text-primary font-bold hover:underline">Richiedi il programma completo →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-10">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Cosa dicono i nostri studenti</h2>
+            <div class="dna-card">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                        <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                        <p class="text-gray-600 text-sm mb-4">"Ho iniziato come principiante assoluto. Grazie a TuxoNew Industries, ora utilizzo l'AI quotidianamente nel mio lavoro di marketing. Un corso pratico e diretto."</p>
+                        <div class="font-bold text-gray-900 text-sm">- Marco Rossi</div>
+                        <div class="text-xs text-gray-500">Digital Strategist</div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                        <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                        <p class="text-gray-600 text-sm mb-4">"Cercavo un modo per imparare le basi del Prompt Design senza perdermi in tecnicismi inutili. L'iscrizione è stata la scelta migliore per il mio futuro."</p>
+                        <div class="font-bold text-gray-900 text-sm">- Giulia Bianchi</div>
+                        <div class="text-xs text-gray-500">Content Creator</div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                        <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                        <p class="text-gray-600 text-sm mb-4">"L'approccio 'industriale' e pratico mi è piaciuto molto. Non è solo teoria, ma applicazione reale per l'azienda. Consigliatissimo."</p>
+                        <div class="font-bold text-gray-900 text-sm">- Alessandro Verdi</div>
+                        <div class="text-xs text-gray-500">Imprenditore</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-10">
+        <div class="max-w-5xl mx-auto px-4 dna-card">
+            <h2 class="text-3xl font-bold text-center mb-8">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                <details class="bg-white p-4 rounded-xl border border-gray-200 cursor-pointer">
+                    <summary class="font-bold text-gray-800">Il corso è adatto ai principianti?</summary>
+                    <p class="mt-3 text-gray-600 text-sm">Assolutamente sì. Il percorso è progettato per chi parte da zero. Imparare i concetti base dell'Intelligenza Artificiale non richiede competenze di programmazione pregresse.</p>
+                </details>
+                <details class="bg-white p-4 rounded-xl border border-gray-200 cursor-pointer">
+                    <summary class="font-bold text-gray-800">Quali strumenti imparerò a utilizzare?</summary>
+                    <p class="mt-3 text-gray-600 text-sm">Ti concentrerai sui principali modelli di linguaggio come ChatGPT, strumenti di generazione immagini come Midjourney e piattaforme di automazione per il business.</p>
+                </details>
+                <details class="bg-white p-4 rounded-xl border border-gray-200 cursor-pointer">
+                    <summary class="font-bold text-gray-800">Rilasciate una certificazione?</summary>
+                    <p class="mt-3 text-gray-600 text-sm">Sì, al termine del percorso e dopo aver completato i project work, riceverai un attestato di partecipazione che certifica le competenze acquisite.</p>
+                </details>
+                <details class="bg-white p-4 rounded-xl border border-gray-200 cursor-pointer">
+                    <summary class="font-bold text-gray-800">Come avviene l'accesso alle lezioni?</summary>
+                    <p class="mt-3 text-gray-600 text-sm">Le lezioni sono disponibili sulla nostra piattaforma E-learning. Potrai seguire il corso in modalità on-demand o live, a seconda del pacchetto scelto in fase di iscrizione.</p>
+                </details>
+                <details class="bg-white p-4 rounded-xl border border-gray-200 cursor-pointer">
+                    <summary class="font-bold text-gray-800">Qual è la durata del corso?</summary>
+                    <p class="mt-3 text-gray-600 text-sm">Il corso base dura 8 settimane con un impegno part-time, pensato per chi lavora o studia. Sono inclusi esercizi pratici e sessioni di revisione.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-10 mb-20">
+        <div class="max-w-5xl mx-auto px-4 dna-card relative overflow-hidden">
+            <!-- Decorative circle -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-light rounded-full opacity-20"></div>
+
+            <div class="grid md:grid-cols-2 gap-12 relative z-10">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Inizia il Tuo Futuro Oggi</h2>
+                    <p class="text-gray-600 mb-8">
+                        Compila il modulo per ricevere la brochure dettagliata del corso e parlare con un nostro consulente didattico.
+                        L'iscrizione ai prossimi batch è in chiusura.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-primary-light p-3 rounded-full text-primary mt-1">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-800">Sede Operativa</h4>
+                                <p class="text-gray-600">Bari, Italia</p>
+                                <p class="text-xs text-gray-500">Provider Partner: aulab s.r.l</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary-light p-3 rounded-full text-primary mt-1">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-800">Orari Supporto</h4>
+                                <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-[24px] shadow-sm border border-gray-100">
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="inline-block p-4 rounded-full bg-green-100 text-green-500 mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Richiesta Inviata!</h3>
+                        <p class="text-gray-600">Grazie per il tuo interesse. Un nostro consulente ti contatterà a breve.</p>
+                    </div>
+
+                    <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); btn.disabled=true; btn.innerText='Invio in corso...'; setTimeout(()=>{this.style.display='none'; document.getElementById('success-msg').style.display='block';}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2 text-sm">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" placeholder="Il tuo nome">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2 text-sm">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" placeholder="tu@email.com">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2 text-sm">Interesse Principale</label>
+                            <select class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                                <option>Corso Principianti</option>
+                                <option>Upskilling Aziendale</option>
+                                <option>Informazioni Generali</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="flex items-center">
+                                <input type="checkbox" required class="form-checkbox h-4 w-4 text-indigo-600">
+                                <span class="ml-2 text-xs text-gray-500">Accetto la Privacy Policy e acconsento al trattamento dei dati.</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="w-full btn-primary text-center">Richiedi Info Ora</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <span class="text-2xl font-bold tracking-tight">TuxoNew<span class="text-indigo-400">Industries</span></span>
+                    <p class="mt-4 text-gray-400 text-sm leading-relaxed">
+                        Coltiviamo il talento per le industrie del domani. La nostra missione è rendere l'intelligenza artificiale accessibile a tutti coloro che vogliono imparare e crescere.
+                    </p>
+                </div>
+                <div></div>
+                <div></div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Link Rapidi</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#features" class="hover:text-white transition">Programma</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition">Testimonianze</a></li>
+                        <li><a href="#faq" class="hover:text-white transition">Domande Frequenti</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 mt-8 text-center md:text-left">
+                <p class="text-xs text-gray-500 mb-4 italic">
+                    Questo è un sito promozionale indipendente gestito da TuxoNew Industries, che agisce in qualità di affiliato per Aulab. Tutti i marchi registrati appartengono ai legittimi proprietari.
+                </p>
+                <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+                    <p>&copy; 2026 TuxoNew Industries. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+            
+            <!-- LEGAL DETAILS -->
+            <div class="mt-8 border-t border-gray-800 pt-8">
+                <details class="mb-4">
+                    <summary class="text-xs text-gray-500 cursor-pointer hover:text-white">Politica sulla Privacy (Clicca per espandere)</summary>
+                    <div class="mt-4 text-xs text-gray-400 space-y-2 text-justify">
+                        <p>La presente Informativa sulla Privacy descrive come TuxoNew Industries ("noi", "ci" o "nostro") raccoglie, utilizza e condivide le informazioni personali degli utenti ("voi", "vostro") che visitano il nostro sito web. Ci impegniamo a proteggere la vostra privacy e a garantire che i vostri dati personali siano trattati in modo sicuro e conforme alle normative vigenti, incluso il Regolamento Generale sulla Protezione dei Dati (GDPR). Raccogliamo informazioni che ci fornite volontariamente, come nome, indirizzo e numero di telefono, quando compilate i moduli di contatto sul nostro sito. Inoltre, possiamo raccogliere automaticamente alcune informazioni tecniche, come il vostro indirizzo IP e il tipo di browser utilizzato.</p>
+                        <p>Utilizziamo le informazioni raccolte per fornire i servizi richiesti, rispondere alle vostre domande e migliorare la qualità del nostro sito web. I vostri dati non saranno venduti a terzi per scopi di marketing senza il vostro esplicito consenso. Tuttavia, potremmo condividere le vostre informazioni con fornitori di servizi terzi che ci assistono nelle operazioni commerciali, sotto stretti obblighi di riservatezza. Avete il diritto di accedere ai vostri dati personali, chiederne la rettifica o la cancellazione, e opporvi al loro trattamento. Per esercitare questi diritti, vi invitiamo a utilizzare i canali di contatto forniti.</p>
+                        <p>Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i vostri dati da accessi non autorizzati, perdite o alterazioni. Conserviamo i vostri dati solo per il tempo necessario a soddisfare le finalità per cui sono stati raccolti o come richiesto dalla legge. Questo sito utilizza i cookie per migliorare l'esperienza di navigazione. Continuando a utilizzare il sito, acconsentite all'uso dei cookie come descritto nella nostra Cookie Policy. Ci riserviamo il diritto di aggiornare questa informativa in qualsiasi momento; le modifiche saranno pubblicate su questa pagina con la data di aggiornamento.</p>
+                        <p>La sicurezza dei dati è una priorità assoluta per TuxoNew Industries. Monitoriamo costantemente i nostri sistemi per rilevare eventuali vulnerabilità e attacchi. Nonostante i nostri sforzi, nessuna trasmissione di dati su Internet può essere garantita come completamente sicura. Pertanto, ci fornite le vostre informazioni a vostro rischio. In caso di violazione dei dati che possa compromettere i vostri diritti e le vostre libertà, vi informeremo tempestivamente in conformità con le leggi applicabili. Utilizzando i nostri servizi, confermate di aver letto e compreso questa Informativa sulla Privacy.</p>
+                        <p>Se avete domande riguardanti questa politica o le nostre pratiche sulla privacy, non esitate a contattarci tramite il modulo presente sul sito. Non includiamo indirizzi email diretti per motivi di sicurezza e per centralizzare le richieste. La vostra fiducia è importante per noi e lavoriamo duramente per mantenerla. Grazie per aver scelto TuxoNew Industries per le vostre esigenze di formazione e servizi digitali.</p>
+                    </div>
+                </details>
+
+                <details class="mb-4">
+                    <summary class="text-xs text-gray-500 cursor-pointer hover:text-white">Termini e Condizioni (Clicca per espandere)</summary>
+                    <div class="mt-4 text-xs text-gray-400 space-y-2 text-justify">
+                        <p>Benvenuti su TuxoNew Industries. L'accesso e l'uso di questo sito web sono regolati dai seguenti Termini e Condizioni. Accedendo al sito, accettate di essere vincolati da questi termini nella loro interezza. Se non accettate questi termini, vi preghiamo di non utilizzare il nostro sito. I contenuti presenti su questo sito sono forniti solo a scopo informativo generale e non costituiscono consulenza professionale. Ci riserviamo il diritto di modificare o interrompere i servizi offerti in qualsiasi momento senza preavviso.</p>
+                        <p>Tutti i diritti di proprietà intellettuale relativi ai contenuti di questo sito, inclusi testi, grafica, loghi e immagini, sono di proprietà di TuxoNew Industries o dei suoi licenziatari. È vietata la riproduzione, distribuzione o modifica non autorizzata di qualsiasi materiale presente sul sito. L'utente si impegna a utilizzare il sito solo per scopi leciti e in modo da non violare i diritti di terzi o limitare l'uso del sito da parte di altri. Qualsiasi tentativo di danneggiare il sito o accedere a aree riservate è severamente proibito.</p>
+                        <p>TuxoNew Industries non garantisce che il sito sia privo di errori, virus o altri componenti dannosi. Non siamo responsabili per eventuali danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito. I link a siti terzi sono forniti solo per comodità e non implichiamo alcuna approvazione dei loro contenuti. L'accesso a tali siti è a vostro rischio esclusivo.</p>
+                        <p>Ci riserviamo il diritto di sospendere o terminare il vostro accesso al sito in caso di violazione di questi Termini e Condizioni. In caso di controversie derivanti dall'uso di questo sito, tali controversie saranno regolate dalle leggi vigenti nello stato di residenza del proprietario del sito, senza considerare i conflitti di legge. Questi termini costituiscono l'intero accordo tra l'utente e TuxoNew Industries riguardo all'uso del sito.</p>
+                        <p>Per qualsiasi domanda riguardante i Termini e Condizioni, vi invitiamo a contattarci tramite l'apposito modulo. È vostra responsabilità rivedere periodicamente questa pagina per verificare eventuali modifiche. L'uso continuato del sito dopo la pubblicazione delle modifiche costituisce accettazione delle stesse. Grazie per la vostra collaborazione.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 border-t border-gray-700 p-4 z-50 hidden text-white">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-300">Utilizziamo i cookie per migliorare la tua esperienza su TuxoNew Industries. Continuando, accetti la nostra privacy policy.</p>
+            <div class="flex gap-4">
+                <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookieConsent','true')" class="px-4 py-2 bg-indigo-600 rounded text-sm font-bold hover:bg-indigo-500">Accetta</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 bg-gray-700 rounded text-sm hover:bg-gray-600">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cookie Logic
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-banner').classList.remove('hidden');
+        }
+
+        // Smooth Scroll + Contact Routing
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                } else {
+                    // Fallback to Contact
+                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
