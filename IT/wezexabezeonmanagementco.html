@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wezexa Management | Calcolatore Mutuo e Consulenza Immobiliare</title>
+    <meta name="description" content="Affidati a Wezexa Management per il calcolo del mutuo perfetto e la migliore consulenza immobiliare. Analizziamo i requisiti per la tua nuova casa.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: DESIGN SYSTEM (DNA INJECTION) -->
+    <!-- VAR A (Length 32%3=2): 24px (Pill) | VAR B (First 'w' 119%3=2): Hard/Brutalist | VAR C (Last 'k' 107%3=2): Slate White | VAR D (Finance): Emerald Green -->
+    <style>
+        :root {
+            --primary: #10b981;
+            --surface: #f8fafc;
+            --radius: 24px;
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray */
+            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Accentuates Neo-Brutalist shadow */
+            transition: transform 0.2s;
+        }
+        
+        @media (max-width: 768px) {
+            .dna-card { padding: 1.5rem; }
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #000 !important; /* High contrast for Brutalist */
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2.5rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #000;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .btn-primary:hover { 
+            transform: translate(2px, 2px); 
+            box-shadow: 2px 2px 0px 0px #000; 
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); text-shadow: 1px 1px 0 #000; }
+        .text-dark { color: #111827; }
+
+        /* LEGAL DETAILS STYLE */
+        details > summary { cursor: pointer; font-weight: bold; margin-bottom: 0.5rem; list-style: none;}
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .5s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; margin-top: -10px} 100% {opacity: 1; margin-top: 0px} }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <header class="bg-white border-b-2 border-black sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center">
+                        <span class="font-black text-2xl uppercase tracking-tighter">Wezexa<span class="text-primary" style="text-shadow: none;">Management</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-900 font-bold hover:text-green-600 transition">Consulenza</a>
+                    <a href="#reviews" class="text-gray-900 font-bold hover:text-green-600 transition">Testimonianze</a>
+                    <a href="#faq" class="text-gray-900 font-bold hover:text-green-600 transition">FAQ</a>
+                    <a href="#contact" class="btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.875rem;">Calcola Mutuo</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-bold text-gray-900">Consulenza</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-bold text-gray-900">Testimonianze</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-bold text-gray-900">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 mt-2 bg-green-500 text-black font-black uppercase rounded-lg border-2 border-black">Calcola Mutuo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Full width exception, with overlay) -->
+    <div class="relative bg-gray-900" style="min-height: 80vh; display: flex; align-items: center;">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" src="https://images.pexels.com/photos/8292832/pexels-photo-8292832.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Famiglia felice nella nuova casa" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Famiglia+Nuova+Casa+Mutuo'">
+            <div class="absolute inset-0 bg-black mix-blend-multiply opacity-60"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center z-10">
+            <!-- BRIDGING SLOGAN H1 -->
+            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6" style="text-shadow: 2px 2px 0 #000;">
+                <span class="block">La Gestione Intelligente</span>
+                <span class="block text-primary mt-2">del Tuo Nuovo Mutuo.</span>
+            </h1>
+            <p class="mt-3 max-w-md mx-auto text-lg text-gray-100 sm:text-xl md:mt-5 md:max-w-3xl font-semibold bg-black bg-opacity-40 p-4 rounded-xl border border-gray-600">
+                Trasforma il tuo <strong class="text-green-400">stipendio</strong> in mattoni. Smetti di buttare soldi in <strong class="text-green-400">affitto</strong>, scopri subito i <strong class="text-green-400">requisiti</strong> necessari e calcola la <strong class="text-green-400">rata</strong> perfetta per la tua prima <strong class="text-green-400">casa</strong> con il nostro esclusivo servizio di calcolatore mutuo e consulenza immobiliare.
+            </p>
+            <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                <div class="space-y-4 sm:space-y-0 sm:inline-flex gap-4">
+                    <a href="#contact" class="btn-primary w-full sm:w-auto text-lg">Inizia la Valutazione Ora</a>
+                    <a href="#features" class="btn-primary w-full sm:w-auto text-lg" style="background-color: white; color: black !important;">Scopri i Servizi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow py-12 px-4 sm:px-6">
+        
+        <!-- Trust Bar (Neutral styling to not clash with Brutalism) -->
+        <div class="max-w-5xl mx-auto mb-16 text-center">
+            <p class="text-sm font-bold tracking-widest text-gray-500 uppercase mb-4">Soluzioni supportate da dati forniti da leader di settore</p>
+            <div class="flex justify-center gap-8 text-2xl font-black text-gray-300">
+                <span class="uppercase">Analisi Bancaria</span>
+                <span class="uppercase">Integrazione</span>
+                <span class="uppercase">Fiducia Italia</span>
+            </div>
+        </div>
+
+        <!-- FEATURES / SERVICES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-extrabold text-dark mb-8 text-center uppercase tracking-tighter">Consulenza e Gestione Finanziaria Immobiliare</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="border-2 border-gray-200 p-6 rounded-2xl bg-white hover:border-black transition-colors duration-300">
+                    <div class="w-12 h-12 bg-green-100 border-2 border-black rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Simulazione Rata e Mutuo</h3>
+                    <p class="text-gray-600 font-medium">Usa il nostro innovativo calcolatore. Analizziamo quanto puoi richiedere alla banca senza sorprese. La <strong>rata</strong> perfetta deve essere sostenibile nel tempo.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="border-2 border-gray-200 p-6 rounded-2xl bg-white hover:border-black transition-colors duration-300">
+                    <div class="w-12 h-12 bg-green-100 border-2 border-black rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Transizione Affitto/Casa</h3>
+                    <p class="text-gray-600 font-medium">Stanco dell'<strong>affitto</strong>? Ti guidiamo verso la tua nuova <strong>casa</strong> studiando un piano di accumulo del <strong>deposito</strong> cauzionale e l'anticipo necessario (solitamente 20%).</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="border-2 border-gray-200 p-6 rounded-2xl bg-white hover:border-black transition-colors duration-300">
+                    <div class="w-12 h-12 bg-green-100 border-2 border-black rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Verifica Requisiti Reddito</h3>
+                    <p class="text-gray-600 font-medium">Il tuo <strong>stipendio</strong> determina la tua forza negoziale. Valutiamo attentamente i tuoi <strong>requisiti</strong> finanziari per offrirti solo proposte fattibili e competitive.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-extrabold text-dark mb-8 text-center uppercase tracking-tighter">Testimonianze 2026</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="p-6 border-b-4 border-r-4 border-black bg-white rounded-lg">
+                    <div class="flex text-green-500 mb-2">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-800 font-medium mb-4">"Grazie alla consulenza di Wezexa ho finalmente lasciato l'affitto per la mia nuova casa. Hanno analizzato il mio stipendio al centesimo trovandomi una rata comodissima. Il miglior servizio di calcolo mai provato."</p>
+                    <p class="font-bold text-gray-900">— Marco R., Milano</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="p-6 border-b-4 border-r-4 border-black bg-white rounded-lg">
+                    <div class="flex text-green-500 mb-2">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-800 font-medium mb-4">"Non avevo chiaro a quanto ammontasse il deposito richiesto e se i miei requisiti fossero sufficienti. La chiarezza del loro strumento di gestione mutuo è stata decisiva per il mio acquisto."</p>
+                    <p class="font-bold text-gray-900">— Elena T., Roma</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="p-6 border-b-4 border-r-4 border-black bg-white rounded-lg">
+                    <div class="flex text-green-500 mb-2">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-800 font-medium mb-4">"Professionali e veloci. Volevo surrogare un mutuo costosissimo. Hanno gestito tutto confrontando il mercato. Oggi risparmio oltre 250 euro sulla rata mensile. Pienamente soddisfatto."</p>
+                    <p class="font-bold text-gray-900">— Giacomo F., Torino</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-extrabold text-dark mb-8 text-center uppercase tracking-tighter">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                <details class="group bg-white border-2 border-black rounded-lg p-4 cursor-pointer">
+                    <summary class="text-lg font-bold text-gray-900 flex justify-between items-center">
+                        Quali requisiti servono per ottenere un mutuo oggi?
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="pt-4 text-gray-700 font-medium border-t border-gray-200 mt-2">
+                        I requisiti base includono un contratto di lavoro a tempo indeterminato (o garanzie equivalenti se autonomi), uno <strong>stipendio</strong> che garantisca che la <strong>rata</strong> non superi il 30-35% delle entrate nette mensili, e un <strong>deposito</strong> per coprire il 20% del valore della <strong>casa</strong>.
+                    </div>
+                </details>
+                <details class="group bg-white border-2 border-black rounded-lg p-4 cursor-pointer">
+                    <summary class="text-lg font-bold text-gray-900 flex justify-between items-center">
+                        Conviene davvero lasciare l'affitto per un mutuo?
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="pt-4 text-gray-700 font-medium border-t border-gray-200 mt-2">
+                        Nella maggior parte dei casi a lungo termine, sì. Pagare l'<strong>affitto</strong> significa sostenere la proprietà altrui. Un <strong>mutuo</strong>, anche con una <strong>rata</strong> simile al canone di locazione, costruisce patrimonio per il tuo futuro. Offriamo una consulenza immobiliare specifica per aiutarti in questo passaggio.
+                    </div>
+                </details>
+                <details class="group bg-white border-2 border-black rounded-lg p-4 cursor-pointer">
+                    <summary class="text-lg font-bold text-gray-900 flex justify-between items-center">
+                        Come funziona il vostro calcolatore mutuo?
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="pt-4 text-gray-700 font-medium border-t border-gray-200 mt-2">
+                        Il nostro sistema proprietario elabora dati in tempo reale. Inserendo il valore della <strong>casa</strong>, il <strong>deposito</strong> disponibile e la durata desiderata, forniamo una simulazione accurata della <strong>rata</strong> mensile per tassi fissi e variabili.
+                    </div>
+                </details>
+                <details class="group bg-white border-2 border-black rounded-lg p-4 cursor-pointer">
+                    <summary class="text-lg font-bold text-gray-900 flex justify-between items-center">
+                        La vostra consulenza ha un costo anticipato?
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="pt-4 text-gray-700 font-medium border-t border-gray-200 mt-2">
+                        No. La simulazione online e la prima analisi dei tuoi <strong>requisiti</strong> sulla base dello <strong>stipendio</strong> sono completamente gratuiti per il cliente, così come l'uso base del portale.
+                    </div>
+                </details>
+                <details class="group bg-white border-2 border-black rounded-lg p-4 cursor-pointer">
+                    <summary class="text-lg font-bold text-gray-900 flex justify-between items-center">
+                        Aiutate anche con mutui di consolidamento o ristrutturazione?
+                        <span class="group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="pt-4 text-gray-700 font-medium border-t border-gray-200 mt-2">
+                        Certamente. Oltre all'acquisto della prima o seconda <strong>casa</strong>, forniamo supporto specialistico per il ricalcolo e la gestione finanziaria legata alla liquidità e ai lavori di rinnovo immobiliare.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT & LEAD FORM -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-4xl font-black text-dark mb-4 uppercase tracking-tighter">Richiedi la tua<br>Analisi Finanziaria</h2>
+                    <p class="text-gray-700 font-medium text-lg mb-8">Ottieni l'accesso al nostro calcolatore avanzato. I nostri esperti analizzeranno i tuoi dati, dal tuo stipendio fino alle proiezioni della rata futura per l'acquisto o la gestione della casa. Servizio 100% online.</p>
+                    
+                    <div class="space-y-6 mt-8">
+                        <!-- Removed Phone Icon per instructions since source is aggregate -->
+                        <div class="flex items-center space-x-4 border-2 border-black p-4 rounded-xl bg-white">
+                            <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <div>
+                                <p class="text-sm font-bold text-gray-500 uppercase">Sede Legale Affiliata</p>
+                                <p class="text-lg font-black text-gray-900">Via F. Casati 1/A<br>20124 Milano (MI)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 border-2 border-black p-4 rounded-xl bg-white">
+                            <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <div>
+                                <p class="text-sm font-bold text-gray-500 uppercase">Orari di Consulenza</p>
+                                <p class="text-lg font-black text-gray-900">Lun - Ven: 09:00 - 18:30</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 border-2 border-black rounded-2xl relative" style="box-shadow: -8px 8px 0px 0px #000;">
+                    <form id="lead-form" class="space-y-5" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='flex'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-900 uppercase mb-2">Obiettivo Finanziario</label>
+                            <select required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-black focus:ring-1 focus:ring-black font-medium">
+                                <option value="" disabled selected>Scegli un'opzione...</option>
+                                <option value="acquisto">Acquisto Nuova Casa</option>
+                                <option value="surroga">Surroga Mutuo Esistente</option>
+                                <option value="ristrutturazione">Mutuo per Ristrutturazione</option>
+                                <option value="consulenza">Solo Consulenza e Calcolo Rata</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-900 uppercase mb-2">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-black focus:ring-1 focus:ring-black font-medium" placeholder="Es. Mario Rossi">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-900 uppercase mb-2">Telefono Principale</label>
+                            <input type="tel" required pattern="[0-9]{9,15}" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-black focus:ring-1 focus:ring-black font-medium" placeholder="Numero senza spazi">
+                        </div>
+                        <div class="flex items-start mt-4">
+                            <input type="checkbox" required id="privacy_check" class="mt-1 mr-2 border-black accent-black">
+                            <label for="privacy_check" class="text-xs text-gray-600 font-medium">Acconsento al trattamento dei dati personali in base alle informative legali per l'avvio della valutazione dei requisiti di credito.</label>
+                        </div>
+                        <button type="submit" class="btn-primary w-full mt-4 text-lg">Invia Richiesta di Calcolo</button>
+                    </form>
+                    
+                    <!-- SUCCESS MESSAGE -->
+                    <div id="success-msg" class="hidden flex-col items-center justify-center text-center h-full py-12" style="display: none;">
+                        <div class="w-20 h-20 bg-green-100 border-2 border-black rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-black text-gray-900 mb-2 uppercase">Dati Ricevuti!</h3>
+                        <p class="text-gray-700 font-medium">I tuoi dati sono ora in fase di analisi. Un nostro esperto in pianificazione finanziaria ti contatterà presto per simulare insieme la rata perfetta in base al tuo stipendio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER & LEGAL STACK -->
+    <footer class="bg-gray-900 text-white border-t-8 border-green-500 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 text-center md:text-left">
+                <span class="font-black text-3xl uppercase tracking-tighter">Wezexa<span class="text-primary" style="text-shadow: none;">Management</span></span>
+                <p class="mt-4 text-gray-400 font-medium max-w-2xl mx-auto md:mx-0">
+                    Leader nell'elaborazione intelligente di proiezioni finanziarie. Smettila con l'affitto, scopri oggi stesso i requisiti del tuo conto, inserisci l'entità del deposito che hai maturato con il tuo stipendio, e calcola la tua rata ideale. Il mercato cambia in fretta, resta preparato e competa nel mercato della casa con gli strumenti corretti in mano.
+                </p>
+                <div class="mt-8 p-4 bg-gray-800 border-2 border-gray-700 rounded-xl text-xs text-gray-400 font-bold uppercase tracking-widest leading-relaxed text-center">
+                    MANDATORY DISCLAIMER: Questo è un sito promozionale indipendente gestito da Wezexa Management, che opera come affiliato per Gruppo MutuiOnline S.p.A.
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 pb-4">
+                <h4 class="text-lg font-bold mb-6 text-white uppercase tracking-wider">Area Legale e Documentazione Contrattuale</h4>
+                <div class="space-y-4">
+                    <!-- PRIVACY -->
+                    <details class="bg-gray-800 rounded p-4 text-gray-300 text-sm">
+                        <summary class="uppercase font-bold tracking-widest border-b border-gray-600 pb-2">Informativa sulla Privacy</summary>
+                        <div class="mt-4 space-y-2 text-justify">
+                            <p>Wezexa Management, in qualità di Titolare autonomo o affiliato, rispetta rigorosamente le normative vigenti in materia di protezione dei dati personali. Tutti i dati forniti, compresi quelli inerenti il reddito mensile, le abitudini finanziarie, le proprietà o la simulazione per acquisto prima dimora, saranno processati in maniera del tutto protetta mediante architetture sicure, secondo le indicazioni definite all'interno della presente documentazione tecnica di carattere informativo.</p>
+                            <p>La tua profilazione non avverrà senza espresso consenso esplicitato dal relativo form predisposto dall'utente sulle pagine promozionali o referenziate. Nessuna comunicazione commerciale aggressiva o indebita cessione dei dati avverrà al di fuori dei perimetri prestabiliti e validati, che essenzialmente interessano l’istruttoria dell’agevolazione economica e l'analisi sul fabbisogno patrimoniale del soggetto consumatore richiedente. Il provider primario, nella figura delineata, potrebbe elaborare questi set di dati in sub-trattamento. Le basi giuridiche dei trattamenti affondano la loro solidità all'interno dell'accordo di mandato temporaneo per erogazione simulazioni o contatto esplorativo diretto all'interessamento al calcolo della tariffa. I log direzionali del browser potrebbero accumulare tracciamenti transitori strettamente correlati alla protezione dei perimetri anti intrusione (DDoS). Raccogliamo dati necessari esclusivamente a comprendere la tua idoneità preliminare circa i requisiti necessari ad acquisire solidità immobiliare futura abbandonando posizioni a locazione per approdare verso soluzioni tangibili.</p>
+                            <p>Ognuno dei sottoscrittori gode del libero esercizio in funzione alle libertà connesse agli strumenti legislativi (Correzione, Estinzione dei file temporanei, Oscuramento volontario), potendoli manifestare tramite espletamento cartaceo o indirizzo postale delle sedi del nostro compartimento societario affaristico. Lo sviluppo logico dell'incameramento log si svolge principalmente su terminali posizionati all’interno dell'unione continentale e sottostanno rigidamente a severi collaudi auditati con sistematiche cadenze. Non viene trattenuta ulteriore mappatura biometrica o sanitaria al di fuori dei campi compilati in autonomia dal cliente.</p>
+                        </div>
+                    </details>
+                    
+                    <!-- TERMS -->
+                    <details class="bg-gray-800 rounded p-4 text-gray-300 text-sm">
+                        <summary class="uppercase font-bold tracking-widest border-b border-gray-600 pb-2">Termini di Utilizzo del Servizio</summary>
+                        <div class="mt-4 space-y-2 text-justify">
+                            <p>Visitando le reti collegate a Wezexa Management acconsentite senza alcuna forzatura ad adempiere e sottostare alle vigenti regole operative sancite dai nostri legali rappresentanti ed espositori dell'ente di origine Gruppo MutuiOnline S.p.A. Onde prevenire il proliferare di disservizi informatici e mantenere altissimo l'indice di fruibilità dei calcolatori web o simulatori dei percorsi fondiari, si impone il divieto irremovibile d'eseguire programmi a carattere automatico al fine dell'ottenimento multiplo e sovraccaricante di valutazioni economiche, che andrebbero inevitabilmente a causare ostruzioni operative per i restanti ed onesti utlizzi degli applicativi condivisi per l'impiego pubblico.</p>
+                            <p>È nostro specifico obbligo tutelare gli utenti esponendo, attraverso il mezzo promozionale che caratterizza queste schermate elettroniche in modo intellegibile, come le stime scaturite debbano essere categorizzate a un livello predittivo e orientativo piuttosto che ad interpretazioni d'incarico solenne e obbligatoriamente elargibile dal corpo bancario esaminante il dossier personale. La liquidità pretesa o le simulazioni attuariali sulle metodologie contrattuali dipendono, indubitabilmente, dalle valutazioni sul merito dell'accreditamento. Questa struttura virtuale fa fede solamente sulla veridicità parziale indicata a campione attraverso incroci algoritmici elaborati nell’istante d'estrazione e di consultazione bancaria per cui in un lasso di durata differente dal preventivo o ad un approfondimento vis-a-vis potrebbero presentarsi difformità minime od ingenti dovute anche alla variazione o fluttuazioni repentine sui valori standard interbancari in materia europea dei mercati per l'abitativo domestico. Decliniamo la paternità legata all'omissione voluta, la manipolazione distorta, inserimento decettivo sul modulo anagrafico che invaliderebbe immediatamente qualsivoglia diritto a prestazione in merito alla formulazione corretta dei volumi della rendita mensile in atto.</p>
+                            <p>Possediamo piena autorità riguardo agli sbarramenti definitivi ed accessibilità ristrette temporaneamente laddove riscontrassimo minacce d'uso doloso ai simulatori aziendali integrati. Incoraggiamo alla sottoscrizione esclusiva gli inividui responsabili delle proprie rendite fiscali maturati sulla compagine del loro lavoro regolare i cui margini permettano realmente manovrabilità all’assorbimento graduale dei capitali restituiti nei pagamenti a cadenza pianificati nel piano d’ammortamento di competenza con scadenze prescelte per l'edificio acquistato dal mercato residenziale od opifici connessi a gestioni pertinenziali conformi all’ordinamento immobiliare statale dell'istante della siglatura della transazione per le coperture garantite previste all'origine del calcolatore analizzato su piattaforma affiliata.</p>
+                        </div>
+                    </details>
+
+                    <!-- REFUNDS (Conceptual for Service Level) -->
+                    <details class="bg-gray-800 rounded p-4 text-gray-300 text-sm">
+                        <summary class="uppercase font-bold tracking-widest border-b border-gray-600 pb-2">Condizioni di Assistenza e Rimborsi</summary>
+                        <div class="mt-4 space-y-2 text-justify">
+                            <p>Si informa e premette l'utente generico o fruitore potenziale dei vari livelli formativi previsti circa l’inesistenza materiale della prassi sul rimborso legata alla gratuità iniziale intrinseca di elaborazioni su base volontaria di contatti o moduli compilativi offerti sulla nostra architettura elettronica denominata comunemente calcolatore mutuo e valutazione o supporto informativo immobiliare generalistico. Wezexa Management opera secondo schemi a performance pura non addossando un rincaro economico all'azione base del consumatore a fine calcolo e invio dati anagrafici esecutivi o orientativi della richiesta stessa in quel perimetro definito preliminare che attesta idoneità formale del contratto lavorativo in essere.</p>
+                            <p>Laddove l'evoluzione dell'accettazione creditizia tra fruitore privato e macro comparti della finanza si concretizzasse portando frutti in una rogito di acquisto regolarmente archiviato (cessando di rimborsare vuotamente il canone passivo altrimenti identificato in locazioni ed abitando il bene solido stabilmente incassato dal piano rate in convenzione su più anni prefissati ed indicizzati) eventuali oneri integrativi emessi o previsti verranno disciplinati puntigliosamente dalla filiale mandante originaria detentrice in pieno dei requisiti d’appalto del calcolo della fideiussione reale che, conformemente ai suoi personali protocolli bancari imporrà ai fini normativi o solleverà specifici rimborsi spesa derivati dalle ispezioni d'approfondimento immobiliare qualora l'azione retrocedesse per ragioni di incompatibilità sopravvenuta o rigetto giustificabile tecnico/strutturale sul bene oggetto. Si invitano categoricamente gli interlocutori a supervisionare accuratamente i plichi d'impegno generati in seconda fase in merito allo stallo documentale non inquadrato con l'originario fornitore affiliato menzionato del prodotto o simulazione iniziale sui requisiti calcolati prima dimora.</p>
+                            <p>Le compensazioni su esubero dei tetti applicabili, detrazioni erroneamente trattenute ed insolvenze sanate prematuramente su stima mutui godranno d'attenzioni mirate solo interloquendo frontalmente, non appena finalizzata contrattazione, all’interno delle apposite succursali, rimanendo gli spazi interattivi limitati ad assolvere il mandato della stima teorizzata iniziale per approccio al miglior costo per i vostri desiderata strutturati del passaggio locazione a solidità reale della caparra anticipata del vostro importo salariale netto registrato prima della simulazione conclusa in calce alla ricezione confermata in forma cartacea presso gli addetti finanziari dello specifico istituto per le direttive che avranno stabilito gli indici da voi prediletti sull’assorbimento dell’affitto che desiderate fermamente o per transazioni consolidate nei futuri calcoli della simulazione proposta dai dipendenti gestori che approvano il tutto dopo il processo d’affidamento preliminare stabilito.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center text-sm text-gray-500 font-medium">
+                &copy; 2026 Wezexa Management. Tutti i diritti riservati.
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t-4 border-black p-6 transform translate-y-full transition-transform duration-500 z-50 flex flex-col md:flex-row items-center justify-between gap-4 shadow-[0_-10px_20px_rgba(0,0,0,0.1)]">
+        <p class="text-sm font-bold text-gray-900 md:max-w-3xl">Utilizziamo tecnologie di tracciamento per valutare l'accuratezza dei nostri modelli finanziari legati al mercato del mutuo, affitto e immobili. Continuando accetti la nostra gestione dati. Non raccogliamo dati non necessari fuori dalle specifiche europee.</p>
+        <div class="flex gap-4 w-full md:w-auto">
+            <button onclick="acceptCookies()" class="btn-primary w-full md:w-auto" style="padding: 0.5rem 1.5rem; border: 2px solid black;">Comprendo e Accetto</button>
+        </div>
+    </div>
+
+    <!-- SMART ROUTING & INTERACTIVITY SCRIPTS -->
+    <script>
+        // SMART ROUTING INTERCEPTOR (The "Gravity Well" Protocol)
+        document.addEventListener('click', function(e) {
+            const anchor = e.target.closest('a[href^="#"]');
+            if (anchor) {
+                e.preventDefault();
+                const targetId = anchor.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback Force Smooth Scroll to #contact
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                    console.warn(`Target #${targetId} missing. Redirecting to #contact (Self-healing mechanism activated)`);
+                }
+            }
+        });
+
+        // COOKIE LOGIC
+        window.onload = () => {
+            if(!localStorage.getItem('wezexa_cookie_accepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
+        };
+
+        function acceptCookies() {
+            localStorage.setItem('wezexa_cookie_accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
