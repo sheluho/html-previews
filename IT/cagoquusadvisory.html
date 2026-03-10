@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cagoquus Advisory | Servizio Confronto Tariffe Gas e Luce</title>
+    <meta name="description" content="Affidati a Cagoquus Advisory per il confronto completo delle tue spese energetiche e abbatti il costo della bolletta di luce e gas.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- PHASE 2: TECH STACK (DESIGN SYSTEM CSS INJECTION) -->
+    <style>
+        :root {
+            --primary: #0284c7; /* Electric Blue for Utilities/Advisory trust */
+            --surface: #f8fafc; /* VAR C: Cool Surface */
+            --radius: 0px; /* VAR A: Sharp Geometry */
+            --shadow: 4px 4px 0px 0px #000; /* VAR B: Neo-Brutalist Hard Shadow */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid #000; /* Explicit border for neo-brutalist logic */
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px); 
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { 
+            color: var(--primary); 
+        }
+
+        .border-primary {
+            border-color: var(--primary);
+        }
+
+        /* Inputs for Forms */
+        .dna-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: var(--radius);
+            box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.06);
+            margin-bottom: 1rem;
+        }
+        .dna-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 2px 2px 0px 0px var(--primary);
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black text-gray-900 tracking-tighter">CAGOQUUS <span class="text-primary">ADVISORY</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-primary font-bold transition">Il Servizio</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-bold transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-bold transition">Domande Frequenti</a>
+                    <a href="#contact" class="btn-primary text-sm px-6 py-2">Richiedi Analisi</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden border-t-2 border-black" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-white">
+                <a href="#features" class="block px-3 py-2 rounded-none text-base font-bold text-gray-700 hover:text-primary hover:bg-gray-50 border-b border-gray-100">Il Servizio</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-none text-base font-bold text-gray-700 hover:text-primary hover:bg-gray-50 border-b border-gray-100">Recensioni</a>
+                <a href="#faq" class="block px-3 py-2 rounded-none text-base font-bold text-gray-700 hover:text-primary hover:bg-gray-50 border-b border-gray-100">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 rounded-none text-base font-bold text-primary hover:bg-gray-50">Richiedi Analisi</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Full width exception, with visual readability logic) -->
+    <header class="relative bg-gray-900 w-full overflow-hidden border-b-[4px] border-black">
+        <img class="absolute inset-0 h-full w-full object-cover" 
+             src="https://images.pexels.com/photos/5402019/pexels-photo-5402019.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+             onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1f2937/fff?text=Advisory+e+Consulenza'"
+             referrerpolicy="no-referrer"
+             alt="Uomo che osserva grafici bollette">
+        <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+        <div class="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <span class="text-primary font-bold tracking-widest uppercase mb-3 bg-white px-3 py-1 border border-black shadow-[4px_4px_0px_0px_#0284c7]">Stop agli Spositi Nascosti</span>
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+                La migliore Consulenza <span class="text-primary">Advisory</span> per abbattere subito le tue bollette di luce e gas.
+            </h1>
+            <p class="mt-4 text-xl text-gray-200 max-w-3xl mb-10">
+                Ottimizza in un istante le tue spese di casa. Effettuiamo un rigoroso servizio confronto tariffe su misura per il tuo stile di consumo energetico.
+            </p>
+            <div class="flex gap-4">
+                <a href="#contact" class="btn-primary text-lg">Avvia Verifica Gratuita</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST BADGES -->
+    <section class="bg-white border-b border-gray-200 py-6">
+        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-16 opacity-60">
+            <span class="text-2xl font-black text-gray-400">ENERCONSULT</span>
+            <span class="text-2xl font-black text-gray-400">TARIFFA METRICS</span>
+            <span class="text-2xl font-black text-gray-400">LUCE ALLIANCE</span>
+            <span class="text-2xl font-black text-gray-400">ECO VANTAGGIO</span>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow pt-12 pb-24 px-4 sm:px-6 lg:px-8">
+        
+        <!-- VALUE/SERVICES (#features) -->
+        <div id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-black text-gray-900 mb-2 uppercase border-b-4 border-primary pb-2 inline-block">Strategia di Riduzione Bollette</h2>
+            <p class="text-gray-600 mb-8 mt-4 text-lg">Il nostro servizio ti guida agilmente in un mercato energetico spesso ambiguo. Scopri come l'efficacia del confronto ti permette un reale taglio sulle spese per ogni utenza domestica o business.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="border-2 border-black p-6 bg-white transition hover:-translate-y-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+                    <div class="w-12 h-12 bg-primary text-white flex items-center justify-center font-bold text-xl border border-black mb-4">L</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Migliore Tariffa Luce</h3>
+                    <p class="text-gray-600">Confrontiamo tutte le proposte attive sul mercato libero italiano per identificare la singola <strong class="text-gray-900">tariffa</strong> elettrica perfettamente in linea col tuo consumo quotidiano.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="border-2 border-black p-6 bg-white transition hover:-translate-y-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+                    <div class="w-12 h-12 bg-primary text-white flex items-center justify-center font-bold text-xl border border-black mb-4">G</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Comparazione Offerte Gas</h3>
+                    <p class="text-gray-600">Dimentica i costi occulti. Il nostro incrocio dati ti illustra chiaramente dove effettuare un vero <strong class="text-gray-900">risparmio</strong> sulla fornitura di <strong class="text-gray-900">gas</strong> riscaldamento in pochi passaggi.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="border-2 border-black p-6 bg-white transition hover:-translate-y-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+                    <div class="w-12 h-12 bg-primary text-white flex items-center justify-center font-bold text-xl border border-black mb-4">C</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Check-up Completo Spese</h3>
+                    <p class="text-gray-600">La chiave del successo è limitare le fuoriuscite finanziarie fisse. Monitora tutte le tue <strong class="text-gray-900">spese</strong> nascoste per una totale indipendenza contabile sulle tue <strong class="text-gray-900">bollette</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOCIAL PROOF (#reviews) -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card bg-[#fffcf0] scroll-mt-24">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 uppercase border-b-4 border-black pb-2 inline-block">Cosa Dicono di Noi (2026)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-5 border-l-4 border-primary shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)]">
+                    <div class="flex items-center mb-4">
+                        <div class="font-bold text-xl text-yellow-500 mr-2">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Con la crisi del gas, ho perso il controllo dei conti. Questo servizio confronto ha tagliato quasi 400€ l'anno sulle mie bollette di casa. Assolutamente raccomandato per l'integrità del team di Cagoquus Advisory."</p>
+                    <p class="font-bold text-gray-900 text-sm uppercase">- Mario R., Commerciante</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-white p-5 border-l-4 border-primary shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)]">
+                    <div class="flex items-center mb-4">
+                        <div class="font-bold text-xl text-yellow-500 mr-2">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Una volta caricata l'ultima tariffa della luce e i vari oneri, l'algoritmo di consulenza ha smascherato i costi di trasporto esorbitanti che il vecchio fornitore mi addebitava. Notevole."</p>
+                    <p class="font-bold text-gray-900 text-sm uppercase">- Giulia C., Imprenditrice Digitale</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-white p-5 border-l-4 border-primary shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)]">
+                    <div class="flex items-center mb-4">
+                        <div class="font-bold text-xl text-yellow-500 mr-2">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Rapido e spietato. Cercavo trasparenza sulle mie attuali spese e qui si va dritti al punto per raggiungere l'obiettivo reale di risparmio, senza fronzoli commerciali né contratti a sorpresa."</p>
+                    <p class="font-bold text-gray-900 text-sm uppercase">- Federico L., Geometra</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ (#faq) -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 uppercase border-b-4 border-primary pb-2 inline-block">Chiarimenti sull'Advisory Energetica</h2>
+            
+            <div class="space-y-4">
+                <details class="group bg-white border-2 border-black p-4 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer text-gray-900 text-lg">
+                        Come funziona il servizio confronto tariffe?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 font-medium">Preleviamo in base al tuo profilo i pacchetti di luce e gas di decine di fornitori in tempo reale e compariamo le reali quote energia calcolando quale proposta determina il risparmio annuo migliore.</p>
+                </details>
+
+                <details class="group bg-white border-2 border-black p-4 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer text-gray-900 text-lg">
+                        Questa indagine ha un costo sulle mie spese future?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 font-medium">Assolutamente no. Il servizio è puramente educativo. Siamo affiliati alla piattaforma indipendente di monitoraggio, non agiamo in conflitto con le tue finanze ma cerchiamo di preservarle intatte riducendo i margini impropri sulle bollette.</p>
+                </details>
+
+                <details class="group bg-white border-2 border-black p-4 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer text-gray-900 text-lg">
+                        Serve l'ultima fattura per un confronto esatto per luce e gas?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 font-medium">Disporre del dato dei consumi in kWh o metri cubi annotato tra le righe del documento in questione aiuterà i nostri tecnici della consulenza a darti un ritratto preciso degli sgravi potenziali per la nuova tariffa.</p>
+                </details>
+
+                <details class="group bg-white border-2 border-black p-4 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer text-gray-900 text-lg">
+                        Posso cambiare provider prima della scadenza formale?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 font-medium">Certamente. Sul libero mercato italiano i passaggi avvengono garantendo continuità logistica ai contatori civili ed esentando di fatto i consumatori finali dall'interruzione del vitale servizio idrocarburi o dell'impianto elettrico di casa o di bottega.</p>
+                </details>
+
+                <details class="group bg-white border-2 border-black p-4 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer text-gray-900 text-lg">
+                        Dopo la compilazione, i cambi contrattuali sono imposti dall'algoritmo in automatico?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 font-medium">Per nulla. La nostra prerogativa aziendale risiede nel sottoporvi valutazioni ed affiancamenti in formato di check up: sta solo e rigorosamente a voi, tramite libero arbitrio firmare o meno il perfezionamento della transizione fornitura coi provider energetici nazionali indicati nel report che forniremo.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT / LEAD GENERATION (#contact) -->
+        <!-- Note: As instructed by rule 3, no phone icon/button if not in input string (no internet). Strict deletion applies to prevent fake calls -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card bg-gray-900 text-white scroll-mt-24 shadow-[6px_6px_0px_0px_#0284c7]">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-black mb-4 uppercase">Avvia Subito la Pratica del Check-up</h2>
+                    <p class="text-gray-300 mb-8">Non esitare nel limitare lo spargimento della tua disponibilità economica per l'energia base domestica. Elabora ora una consulenza col modulo a lato e azzera il caro bollette alla fonte. </p>
+                    
+                    <div class="mb-6 space-y-4 font-bold">
+                        <div class="flex items-center text-primary">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            Sede Organizzativa Principale Italia: Servizio Erogato Esclusivamente Tramite Piattaforma Online
+                        </div>
+                        <div class="flex items-center text-primary">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Orari Consulenza: Lun - Ven: 09:00 - 18:00 (Web-Only Response)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Form via functional site logic simulation -->
+                <div class="bg-white p-8 border-2 border-black rounded-none shadow-[inset_0_0_20px_rgba(0,0,0,0.05)] text-gray-900">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione Parametri...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Tipologia Utenza da Verificare *</label>
+                            <select class="dna-input bg-white" required>
+                                <option value="" disabled selected>Seleziona mercato di interesse</option>
+                                <option value="luce">Utenza Luce (Solo Energia)</option>
+                                <option value="gas">Utenza Gas Riscaldamento</option>
+                                <option value="dual">Entrambi (Migliore Strategia Spese Combinate)</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Importo Medio Bimestrale Bollette Stimato *</label>
+                            <input type="number" class="dna-input" placeholder="Es. 150" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Nominativo Richiedente Consulto *</label>
+                            <input type="text" class="dna-input" placeholder="Il tuo nome per la scheda consulenza" required>
+                        </div>
+                        <button type="submit" class="w-full btn-primary uppercase text-center flex justify-center items-center">Attiva Analisi Subito</button>
+                    </form>
+                    
+                    <div id="success-msg" class="hidden text-center py-8">
+                        <svg class="mx-auto h-16 w-16 text-primary mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <h3 class="text-2xl font-black text-gray-900 mb-2">Richiesta Ricevuta!</h3>
+                        <p class="text-gray-600">Le informazioni in materia dei profili per l'attivazione della strategia migliore di spesa sono state instradate e inserite a sistema correttamente dalla piattaforma.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 border-t-4 border-black pt-12 pb-24 px-4 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mb-10 border-b border-gray-300 pb-8">
+            <span class="text-xl font-black text-gray-900 tracking-tighter mb-4 md:mb-0">CAGOQUUS <span class="text-primary">ADVISORY</span></span>
+            <div class="flex space-x-6 text-sm font-bold text-gray-500">
+                <span>© 2026 Cagoquus Advisory</span>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <!-- Mandatory Disclaimer -->
+            <p class="text-xs text-gray-600 border border-gray-300 p-4 bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] mb-8 inline-block">
+                <strong>Avviso Normativo:</strong> Questo è un sito promozionale indipendente gestito da Cagoquus Advisory, che agisce in qualità di affiliato per Bollette Casa. Le offerte effettive, i ricalcoli del mercato libero o tutelato, le variazioni delle tempistiche esatte di intercettazione commerciale appartengono integralmente e senza interferenze dirette al concessionario dei contratti. 
+            </p>
+
+            <!-- Legal Documents Container (15 sentences full VERBATIM text logic constraint per document without lazy approach) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                
+                <!-- PRIVACY POLICY -->
+                <details class="bg-white border-2 border-gray-300 p-4 rounded-none [&_summary::-webkit-details-marker]:hidden cursor-pointer hover:border-black transition-colors">
+                    <summary class="font-bold text-xs uppercase text-gray-700 flex justify-between">Privacy Policy <span class="text-primary">»</span></summary>
+                    <div class="mt-4 text-[10px] leading-relaxed text-gray-600 h-64 overflow-y-auto pr-2 custom-scrollbar">
+                        Il nostro servizio dà la massima priorità alla tutela rigorosa dei tuoi dati personali confidenziali nel campo energetico. Utilizziamo le informazioni inserite nei moduli elettronici di questa piattaforma in misura esclusiva per poterti formare e per preparare ed evadere correttamente la complessa logica informatica per l'elaborazione riguardante le tempistiche corrette per elaborare l'effettivo calcolo matematico sulle bollette o sul calcolo in termini temporali riguardo eventuali passaggi delle fatture richieste. Questo comporta un assoluto ed elevato rispetto in maniera perenne per tutte le varie e continue fasi tecniche procedurali congiunte. Non distribuiamo a nessuno delle strutture limitrofe nè ad associazioni marketing il tuo bagaglio documentario. Nessuna forma occulta verrà mai adottata su questa bacheca multimediale che consulti in orario sia diurno che in quello esteso o serale sul canale. I tuoi flussi transazionali ed architetturali vengono incapsulati dentro complessi strati per mantenere sempre lo standard moderno, e tutte le risposte ai flussi transnazionali sono esenti da frodi, grazie a metodologie crittografiche moderne conformi e non penetrabili che adottiamo per te con certificazione digitale valida in europa regolarmente protetta e criptata. Qualsiasi indicatore rilevato è governato rigidamente seguendo lo specchio delle massime ed insindacabili decisioni della severissima istituzione che definisce per l'intera repubblica tutti i paradigmi stringenti correlati a quest'ambito che si chiama formalmente Regolamento generale sulla protezione che prende proprio il celebre titolo abbreviativo di forma unanime che tu conosci certamente ovvero per tutti i professionisti o utenti privati: semplicemente acronimo che recita la nomenclatura indicante specificamente nel termine unito dicitura legiferativa acronimo GDPR e tutto ciò comporta grandissima diligenza. Non passiamo ad esterni non preventivamente esaminati le specifiche inerenti le tue delicate abitudini di riutilizzo continuativo quotidiano a prescindere di risorsa energetica tra luce o per i ricalcoli riguardo erogazione dei metri cubi legati chiaramente indissolubilmente con quanto serve in merito il prodotto che permette calore o cottura, insomma erogatore per il solo combustibile per scaldarti noto tra privati proprio col generico sostantivo gassoso del servizio mercato domestico metano gas. Ripartiamo unicamente ai broker che abbiamo esplicitamente integrato col sistema tali pacchetti documentali solo sotto condizione di palese espressione di tuo via libera per instaurare i perimetri commerciali o burocratici per poterti cedere regolarmente le attivazioni o i piani indicati al risparmio reale del nucleo per non sperperare per i futuri calcoli il fattore vitale del salvadanaio o dei sudati patrimoni per gestire tutto lo stile domestico che richiedevi compilando con mouse online sulla stringa visibile. Risulta garantita appieno l'assoluta liberatoria per poterti in alcun momento sollevare dall'indicare la tua predisposizione in questi passaggi formali, ricordandoti nondimeno con schiettezza metodologica che una preclusione della condivisione interromperebbe di default il percorso informatico bloccandone lo scibile algoritmico strutturato precedentemente bloccando irrimediabilmente la proficua chiusura col calcolo preventivo utile ed irrimediabilmente per le stime da visionare in tale specifica o mirata sessione. Tale ingegnoso ed utile elaboratore online salva solo per pochissimo i set comportamentali volti semplicemente e solamente ai test sulle curve per tracciare il risparmio attuabile. Nel momento in cui utilizzi le estensioni cookie di monitoraggio aggregate consenti implicitamente una serie di controlli incrociati puramente incentrati alla raccolta di matrici senza mai ricavare indicatore personale o alcun altro marcatore pericoloso o sgradito dai visitatori del sito in tempo attuale che accedono ai nostri bot. E in un contesto dove si esaminano fatture di questo ramo utilitaristico non avviene al medesimo tempo il minimo approccio o alcuna registrazione in un conto corrente della filiale o qualsivoglia traccia monetaria tangibile, quindi le componenti dei terminali carte di fido elettronico del tutto prive da attenzioni in fase temporanea sul server per nostra tranquillità di business. Continuiamo incessantemente a valutare col software i vari percorsi della bacheca aziendale web per rimuovere celermente ed efficacemente ogni singolo dislivello rischioso o insidia informatica in modo robusto in ogni secondo dell'esistenza. Assaltare l'impalcatura che ti ha portato ai nostri quadri dei testi formativi su bollette è perseguibile da enti giurisdizionali, tenendo traccia dell'accaduto secondo i termini dei procedimenti d'assalto criminali con tempestiva punibilità con condanne molto pesanti disposte dagli organi delle varie magistrature giudicanti incaricate a tale monitoraggio repressivo per gli incidenti. Avvertiamo ogni cliente italiano che si appresta sul browser per ottenere benefici della consulenza gratuita ed essenziale per noi: puoi chiederci in qualunque lasso del ciclo lavorativo stagionale del blocco la totale pulizia definitiva estirpando a zero dei tuoi referti archiviati mandando cartacea espressione scritta indirizzando tale busta plico raccomandata nel consueto punto per le spedizioni della compagnia, oppure più facilmente riaprendo interazione nel medesimo tab inserito dove comunichi tutto a schermo tramite i normalissimi gestori per via piattaforma web aziendale presente proprio qui senza costi al seguito dei quali daremo subitamente tempestivo appoggio confermato visibile ed oggettivo blocco conclusivo ai nostri iter tecnici a favore dell'utente in transito rapido ed utilissimo allo scopo descritto finemente poc'anzi e totalmente rispettoso per quanto appena stilato per noi in virtù al protocollo normato a monte. Questo testo lunghissimo esteso fino alle parole attuali finali vale proprio quale un sigillo per la consultazione e il benestare sulle politiche di trasparenza nel paese e serve proprio ad assolvere ad un dovere legislativo completo ai fini del diritto civico degli utenti italiani del servizio gratuito odierno su questa piattaforma.
+                    </div>
+                </details>
+
+                <!-- TERMS AND CONDITIONS -->
+                <details class="bg-white border-2 border-gray-300 p-4 rounded-none [&_summary::-webkit-details-marker]:hidden cursor-pointer hover:border-black transition-colors">
+                    <summary class="font-bold text-xs uppercase text-gray-700 flex justify-between">Terms of Service <span class="text-primary">»</span></summary>
+                    <div class="mt-4 text-[10px] leading-relaxed text-gray-600 h-64 overflow-y-auto pr-2 custom-scrollbar">
+                        Navigare dentro il perimetro web esplicita che accettate interamente senza alcuna possibile rinegoziazione le norme generali qui dettagliate e formalizzate in questo compendio rigido e netto su tali materie. Precisamente questa nostra vetrina eroga del prezioso know how tecnico che guarda costantemente ed unitamente tanto alla formazione scolastico ed aziendale quanto all'individuazione del taglio delle perdite economiche quotidiane per una persona od organizzazione complessa che fa l'imprenditore online ma ovviamente offline in vari posti dello scibile mercato lavorativo sul globo europeo dove operiamo attivamente noi ora tra i privati per questa sessione. Assolutamente il limite è inderogabilmente posto sul requisito per un utente di aver ampiamente oltrepassato la gioventù formale ed in parole civili possedere il tassativo attestato ed unico discrimine o punto insindacabile imposto: aver speso ben più anni al punto o alla barriera oggettiva fissa d'essere identificato diciannovesimo o maggiore anno o insomma i richiestissimi 18 traguardi o diciottesimi compiti per legge nazionale italiana del compimento dei giorni formanti e in definitiva godere della matura certificazione etagráfica ovvero lo status maturo in patria dei diritti che abilitano ogni possibile espressione e interazione coi tasti d'inizio contatto, quindi obbligatoria maggiore età imposta del soggetto interpellato come condizione esclusiva obbligatoria del fruitore. Declinando tutte le scommesse e pur credendo nel nostro iter metodico non assicuriamo che sussista costantemente e senza la men che la più microscopica deroga fallace la inoppugnabile equivalenza di centesimi al secondo sulle statistiche matematiche scaturite in quel preciso decimo di millisecondo di elaborato della CPU che genera tutto, specie considerando volatili variazioni su quei prezzi dei portali collegati non decisi dal fornitore perenne nostro a distanza online o dallo strumento o cruscotto. Le continue oscillazioni macro o per ragioni belliche o per semplici decisioni esclusive geopolitiche esterne di nazioni non vicine o in altri emisferi cambiano le metriche di contrattazione dell'intera piattaforma mercantile o grossista d'ogni molecola idrocarbura importabile da gasdotti od anche elettroni su traliccio elettrico determinando differenziali indipendenti dalle esclusive volontà redazionali operative. Ognuno dei design dei loghi che incrociate con lo scroll manuale unito al patrimonio testuale esteso minuziosamente è detenuto unicamente nella rigida proprietà intellettualistica protettiva appartenente direttamente a queste mura degli ingegneri digitali originali ed originalissimi o del partner fondatore della piattaforma associata o integrata col nostro applicativo principale od affiliato ad hoc. Rimarchiamo un no categorico ed inderogabile avviso legale verso condotte finalizzate a replicare spietatamente, emulare per puro dispetto concorrenziale oppure monetizzare slealmente ogni piccolo o gigante modulo architettato dai dipendenti e tutto tale comportamento vietato severamente per statuto esonera o comporta che senza timbro autorizzativo autografato in calce dai capi è reato per statuto o per clausola d'impresa non riproducibile ai visitatori esterni a fini illegali o non preventivati sui database aziendali nostri originali. Ogni scaltra, sotterranea, inopportuna ma sempre illegale violazione da profili con intenti subdoli, bot infetti artificiali od ogni interazione dannosa e fraudolenta forzerà l'erogatore del portale alla subitanea preclusione temporanea se non perpetua espulsione a danno esplicito che in tal modo cesseranno le loro utopie o sogni criminali nel blocco del sito con isolamento dei flussi ip o mac. Si ribadisce per scansare ombre sulla consulenza la non ricollegabilità a questa struttura societaria dei fisiologici ed imponderabili e pur possibili dilatamenti burocratici durante il materializzarsi di iter documentativi burocratici e tempistiche amministrative dovuti al traslarsi temporale o allo spostamento anagrafico che avverrà ai vertici ed ai computer dell'industria d'energia fornitore. L'azienda fa da pilone unicamente mediativo, senza stringere patti definitivi tra venditori gas se non il caldissimo auspicio che emerga finalmente ed interamente tale ricercatissima onestà strategica od approccio leale durante il vostro transito nell'educativo tracciato ideato prima col paragone. Intervenire alterando improvvisamente e globalmente codeste lunghe descrizioni vincolanti nel tab specifico di questa specifica postazione del contratto appartiene alla normale autonomia giuridica d'ufficio e questa manovra è praticabile del tutto seppur decisa dai nostri dirigenti ed amministratori all'occorrenza istantaneamente qualora appaia appropriato non inviandovi in tale spiacevole ma logica situazione per tutti alcune e men che minime notificazioni massive del gesto su carta o per altro, valendo quale comunicazione istantanea in presa visione autonoma con lo schermo se connesso costantemente all'algoritmo server qui in rete internet attuale con i loghi di tale piattaforma per le consulenze dei bollettari d'ufficio ad uso famiglia. Gli argomenti contabili disastrati da errate intestazioni catastali di terzi fornitori finali o controversie su morosità oscure restano alienati ad intervento locale esulandoci in forma massima ed estrema dai litigi sulle bollette se noi siamo solo i pionieri dei tassi ed in pratica comparando numeri su tale fronte, restando materia degli avvocati civilistici se le pendenze gravano le loro dirette sfere delle casse, estranee a codeste informative pregevoli del portale e della sede tecnica o logistica o organizzativa nostra esclusa con efficacia netta e sicura legalmente per i responsabili odierni e tutti i loro eredi legittimi nominati dall'atto. Induciamo fortemente le masse del traffico virtuale o i lupi speditivi al leggere prima di procedere sempre scrupolosamente le lunghissime condizioni di compravendita vergate minuziosamente sul plico offerto dalla vera grossista compagine mercantile o utility, laddove sarete un di loro numero da fattura per fornitura e su di loro graverà obbligo etico ma per noi nessun incarico su loro documento specifico su gasdotti o tubi. Ingolfare volontariamente e maledettamente codesti recettori dei dati su cui poggiando lo strato dei bot immettendo migliaia d'indirizzi fantasmi al fine che vada offline causa sovraccarichi per pura intemperanza ostacola duramente proprio tutto il sistema corretto o funzionante logico adibito al reale studio benefico paralizzando la comparazione luce di poveri incolpevoli, ergo lo classifichiamo proprio un misero intralcio informatico deludente per le aspettative umane preposte. Tenendo forte i comandi, in via eccezionale l'avvocatura per nostro unico indiscutibile comodo od arbitrio reciderà su due tronconi lo sfogo telematico o la rete di tale indirizzo non ripristinandolo neanche dietro supplica pietosa al vertice da parte del committente bandito dall'istituzione d'azienda odierna qui esplicita al paragrafo attuale normativo.
+                    </div>
+                </details>
+
+                <!-- REFUNDS -->
+                <details class="bg-white border-2 border-gray-300 p-4 rounded-none [&_summary::-webkit-details-marker]:hidden cursor-pointer hover:border-black transition-colors">
+                    <summary class="font-bold text-xs uppercase text-gray-700 flex justify-between">Refunds Policy <span class="text-primary">»</span></summary>
+                    <div class="mt-4 text-[10px] leading-relaxed text-gray-600 h-64 overflow-y-auto pr-2 custom-scrollbar">
+                        Per la grande stragrande mole di erogazione e consultazioni d'ambito informativo non sussistono oneri fiscalmente accertati, di fatto è elargito tutto il servizio come uno strato comparativo delle proiezioni del conto per l'uomo o la famiglia senza tariffari di parcella iniziale e quindi un reso diviene non logico proceduralmente ma pur in via d'eccezionale ipotesi un'impostazione di gestione ampiamente minuziosa occorre proprio illustrare o snocciolar per fugare ed ammorbidire polemiche future ipotetiche su possibili extra non previsti in origine su altri campi aperti. Laddove una forte disputa affligga proprio colui a cui la bolletta è inviata formalmente inerente solo con contrattazioni chiuse col grosso rivenditore nazionale vi suggeriamo caldamente un esplicito e vigoroso contraddittorio a viso scoperto recandovi fisicamente a patti diretti da loro o nelle stanze conciliatorie competenti degli ispettorati del libero mercato istituzionalmente noti che dispongono mezzi. Non raccattando di tasca dei consumatori o sottrattogli liquidità non ci sentiamo d'innescare transazioni opposte con versamenti che stornino, perchè il capitale fluisce integralmente con transiti sconosciuti in quanto assente nelle tabelle bilancio dove le mancate emissioni o le riemissioni economiche stanziali girano invisibili non ai noi visibili dei log dei rimborsi effettivi su tali portafogli di consulenti tecnici esenti e pur bravi consulenti bolletta o addetti. E nel casuale quanto fortuito malfunzionamento a voi sfavorevole ad esosi supplementi opzionali richiestoci a fianco della libera normale consulenza qualora esistano casi documentati tangibili o riscontrabili ci assoggettiamo ad immediate indagini con solida integerrima presa posizione tutoria, a seguito di indagine correttiva rigorosa interna per sanare tali malintesi rari. Appellarsi al giusto ristoro se pagata parcella d'ufficio esige la formale e non sindacabile via canonica tracciando una sequenza limitata a ben preciso arco di settimane massimalmente indicato nel quantitativo esatto che la prassi giuridica d'ordinanza colloca precisamente nei limitanti e perimetranti o per niente lunghi lassi composti rigorosamente su calendario dal termine massimo inappellabile limitato quattordici continui soleggiati completi giorni totali. Sviluppare in prima battuta quel documento d'inchiesta intestandolo formalmente su portali burocratici della controversia inserendo il numero indicativo o espositivo riguardo l'episodica o multipla alterazione algoritmica, l'omessa ricezione e un disservizio provabile o grave sull'output consegnato, allegando file esplicative sui ticket per noi consultabili altrimenti decade, è tassativamente richiesto dal personale operante o esigibile da ogni amministrativo revisore attento all'indagine o delegato addetto che risponde sui quesiti tecnici ed analizza se far far bonifico da voi reclamato sul conto per compensazione o risarcire il totale della perdita per bollette scorrette proiettate su carta prima per perizia erogata se la medesima comportò aggravio causato in maniera certa ad errori marchiani tecnici d'esclusiva competenza o fallanza umana colpa nostrana non attribuibile ai mercati mondiali o banchi borsa ove variano listini e dove noi zero decidiamo proprio con evidenza sui loro quadri quotati internazionali macro dei fondi esteri del medesimo compartimento macro per carburante riscaldante domestico civile cittadino base ad alta resa su camini o stufe dei borghi della bella ma non sempre accogliente, per temperature, splendida d'inverno penisola del territorio dove si dimora ed alberga tutti serenamente per l'autunno e tutto questo vi protegge dalla burocrazia esageratamente prolissa europea o per questioni tecniche col garante nel suo mandato in terra sui risarcimenti al di là dell'ambito dell'accadimento delle controversie monetarie di lieve entità al seguito delle pratiche ed operazioni o controlli bollette o ricalcoli effettuati coi servizi per questo mese e l'anno a correre nei lassi per tutti su internet con serenità da casa o dall'ufficio proprio con una spesa calmierata di tariffe in luce o un risparmio molto oculato con gas ottimizzando sempre proprio ogni minimo cavillo a vostro unico e primario e benefico indiscusso favore di conto proprio nella cassaforte ove giacciono frutti dei salari in moneta corrente sui tavoli. Con queste minuzie per tutelar chi compila riteniamo esaustiva, per questo frangente non facile per i tecnici digitali l'esposizione di cui sopra proprio ai limiti ed orli ultimi e margini del quadro di regolamenti per completare o sdoganare le informazioni trasmesse di garanzia del risarcimento o storno d'accredito fiduciario ad istituti odienti per procedere oltre senza intoppo al modulo o alla chiusura tranquilla e spensierata del ciclo informatico operativo del presente e corretto in Italia ma non solo o per tutta la navigazione di queste preziose tabelle tecniche nel comparto gas riscaldanti della luce italiana nazionale intera sempre su tali dispositivi tablet moderni validati col logo principale in tutte le occasioni pubbliche su mercato che si affronta quotidianamente in tutto il tempo d'attività operativa ed orario non disagiante.  Non procedendo alle sanzioni occulte si evidenzia qui al termine la piena assoluzione in materia rimborso da ogni possibile vizio e pendenza, assolvendosi la presente forma intera a validante in caso legale su territorio o a riprova certa dei confini non in superabili previsti dal garante su di un tema e campo economico difficile senza una reale chiusura o conclusione con patto tra di noi ed insomma vi si raccomanda totale responsabilità se non per causa ascrivibile ad anomalia su nostra piattaforma server log, proprio con tali esposti ricalcati integralmente nelle parole qui e per le prossime quindici scadenze annue sul suolo con le tutele del consumatore applicate ad personam costantemente garantendo i ristori previsti con celerità indubbia ove palese l'intenzionalità distorta della consegna.   
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 border-t-4 border-primary text-white p-4 shadow-[0px_-4px_0px_0px_#0284c7] z-50 transform translate-y-full transition-transform duration-500">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm">In conformità con il regolamento, l'algoritmo Advisory impiega indicatori (cookie) aggregati e temporanei per ottimizzare il confronto tariffario delle tue prossime bollette su questa base strutturata in Italia. Accedendo confermi i criteri del tool di indagine spesa e garantisci trasparenza del tracciamento utile alla logistica.</p>
+            <div class="flex gap-2 flex-shrink-0">
+                <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-sm">ACCETTA COMPRESO IL PACCHETTO DI MONITORAGGIO </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Smart Routing / Navigation Failsafe Protocol -->
+    <script>
+        // Init Smooth Scroll Protocol
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
+                // Fallback Navigation logic if id not exists
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                    console.log('Failsafe Routing to Contact initiated for missing ID:', targetId);
+                }
+            });
+        });
+
+        // Cookie Banner Logic with localStorage
+        window.addEventListener('load', function() {
+            if(!localStorage.getItem('advisory_cookies')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('advisory_cookies', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
