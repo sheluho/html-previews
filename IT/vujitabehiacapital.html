@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VujitaBehia Capital | App Monitoraggio Conti e Patrimonio</title>
+    <meta name="description" content="Tieni sotto controllo ogni conto, banca e risparmio. L'app definitiva per il monitoraggio del tuo patrimonio netto e rendimento.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* 
+             VAR A: Domain 'https://www.gimme5.app/' length (23) % 3 = 2 -> Pill (24px) 
+             VAR B: First Letter 'h' (104) % 3 = 2 -> Hard Neo-Brutalist 
+             VAR C: Last Letter '/' (47) % 3 = 2 -> Cool Slate White 
+             VAR D: Finance/App Niche -> Emerald Green (#10b981) 
+            */
+            --primary: #10b981;
+            --surface: #f8fafc;
+            --radius: 24px;
+            --shadow: 4px 4px 0px 0px #1f2937;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #1f2937; /* Required for neo-brutalist shadow consistency */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            display: inline-block;
+            text-align: center;
+            border: 2px solid #1f2937;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .btn-primary:hover { 
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #1f2937;
+            color: #ffffff;
+        }
+
+        /* Input styling aligned with DNA */
+        .dna-input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 2px solid #1f2937;
+            background-color: #ffffff;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+            margin-bottom: 1rem;
+        }
+        .dna-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06), 0 0 0 2px var(--primary);
+        }
+
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+
+        #cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background-color: #1f2937;
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            z-index: 50;
+            display: none;
+            box-shadow: var(--shadow);
+            border: 2px solid #000;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* FAQ specific styling */
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.125rem;
+            list-style: none;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b-2 border-gray-800 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-black tracking-tighter uppercase text-gray-900">
+                        VujitaBehia<span class="text-primary">Capital</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-700 hover:text-primary font-bold transition">Funzionalità</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-bold transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-bold transition">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm px-6 py-2">Scarica Ora</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-b-2 border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#features" class="block px-3 py-3 font-bold text-gray-800">Funzionalità</a>
+                <a href="#reviews" class="block px-3 py-3 font-bold text-gray-800">Recensioni</a>
+                <a href="#faq" class="block px-3 py-3 font-bold text-gray-800">FAQ</a>
+                <a href="#contact" class="block px-3 py-3 font-bold text-primary">Inizia Subito</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-white pt-16 pb-24 overflow-hidden border-b-2 border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="md:flex md:items-center md:gap-12">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-6 tracking-tight">
+                        Il vero capitale cresce solo quando hai il pieno controllo.
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 font-medium">
+                        Monitora ogni <strong class="text-gray-900">conto bancario</strong>, verifica il tuo <strong class="text-gray-900">saldo</strong> in tempo reale e massimizza il <strong class="text-gray-900">patrimonio</strong> con un'unica, potente applicazione intelligente.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="btn-primary text-center">Crea Account Gratuito</a>
+                        <p class="text-sm text-gray-500 mt-2 sm:mt-0 flex items-center justify-center sm:justify-start">
+                            <svg class="w-5 h-5 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Oltre 100.000 risparmiatori attivi.
+                        </p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://images.pexels.com/photos/7680199/pexels-photo-7680199.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=App+Monitoraggio+Conti'" 
+                         alt="Persona che controlla l'app per il monitoraggio bancario" 
+                         class="w-full rounded-3xl border-2 border-gray-800" style="box-shadow: 8px 8px 0px 0px #1f2937;"
+                         loading="lazy" referrerpolicy="no-referrer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Brands Strip -->
+    <div class="bg-gray-100 py-6 border-b-2 border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-16 items-center text-gray-400 font-bold text-xl uppercase tracking-widest">
+            <span>Connessione Sicura</span>
+            <span>API Bancarie</span>
+            <span>Privacy EU</span>
+            <span>Dati Criptati</span>
+        </div>
+    </div>
+
+    <!-- Main Content Area with DNA Cards -->
+    <main class="max-w-5xl mx-auto px-4 py-16 sm:px-6 lg:px-8 space-y-12">
+
+        <!-- Features Section -->
+        <section id="features" class="dna-card">
+            <h2 class="text-3xl font-black mb-6 text-gray-900 uppercase">La tua finanza sotto una lente d'ingrandimento</h2>
+            <p class="text-gray-600 mb-10 text-lg">Abbiamo costruito VujitaBehia Capital per eliminare lo stress del controllo incrociato tra banche diverse. La visione globale è la chiave della ricchezza.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-100">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4 border border-green-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tutti i Conti, Un Solo Saldo</h3>
+                    <p class="text-gray-600">Collega in sicurezza la tua <strong class="text-gray-900">banca</strong> principale e gli account secondari. Visualizza il tuo <strong class="text-gray-900">saldo</strong> complessivo istantaneamente, senza mai fare login in app diverse.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-100">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4 border border-green-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Monitoraggio Patrimonio Netto</h3>
+                    <p class="text-gray-600">Sottrai automaticamente i tuoi debiti dalle tue attività. Conosci sempre il valore reale ed esatto del tuo <strong class="text-gray-900">patrimonio</strong> aggiornato giorno per giorno.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-100">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4 border border-green-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Proteggi i tuoi Risparmi</h3>
+                    <p class="text-gray-600">Imposta obiettivi di accantonamento. Verifica quale portafoglio sta portando un <strong class="text-gray-900">rendimento</strong> migliore e ottimizza i tuoi <strong class="text-gray-900">risparmi</strong> per combattere l'inflazione.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section id="reviews" class="dna-card">
+            <h2 class="text-3xl font-black mb-8 text-center text-gray-900 uppercase">La voce dei nostri investitori</h2>
+            <div class="space-y-6">
+                
+                <div class="border-b border-gray-200 pb-6">
+                    <div class="flex items-center mb-2">
+                        <span class="text-yellow-400 flex">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </span>
+                        <span class="ml-2 font-bold text-gray-900">Il conto unificato è geniale</span>
+                    </div>
+                    <p class="text-gray-600 italic">"Prima avevo app per il conto corrente, un'altra app per i titoli, un foglio excel per i risparmi. Ora vedo tutto da VujitaBehia Capital. Sapere il mio vero patrimonio al centesimo mi fa dormire tranquillo."</p>
+                    <div class="mt-2 text-sm text-gray-500 font-semibold">— Marco R. (Imprenditore)</div>
+                </div>
+
+                <div class="border-b border-gray-200 pb-6">
+                    <div class="flex items-center mb-2">
+                        <span class="text-yellow-400 flex">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </span>
+                        <span class="ml-2 font-bold text-gray-900">Chiara percezione del rendimento</span>
+                    </div>
+                    <p class="text-gray-600 italic">"Con la funzione di analisi integrata riesco finalmente a capire il reale rendimento dei miei risparmi investiti. Interfaccia pulita, si sincronizza con la mia banca in due click."</p>
+                    <div class="mt-2 text-sm text-gray-500 font-semibold">— Laura T. (Analista)</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="dna-card">
+            <h2 class="text-3xl font-black mb-8 text-gray-900 uppercase">Domande Frequenti</h2>
+            <div class="space-y-4">
+                
+                <details class="bg-white p-4 rounded-xl border-2 border-gray-100 shadow-sm">
+                    <summary class="flex justify-between items-center text-gray-900">
+                        È sicuro collegare la mia banca a VujitaBehia Capital?
+                        <span class="text-primary">+</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Assolutamente sì. Utilizziamo connessioni crittografate end-to-end con i massimi standard di sicurezza bancaria europea (PSD2). I tuoi dati di accesso bancari non vengono mai memorizzati sui nostri server. L'app offre solo una visione "read-only" del tuo conto e del tuo saldo per garantirti il monitoraggio del patrimonio.
+                    </div>
+                </details>
+
+                <details class="bg-white p-4 rounded-xl border-2 border-gray-100 shadow-sm">
+                    <summary class="flex justify-between items-center text-gray-900">
+                        Quanti conti bancari posso collegare per tracciare il saldo?
+                        <span class="text-primary">+</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Non c'è alcun limite pratico per l'utente base. Puoi collegare conti correnti multipli, carte prepagate, account di trading e portafogli per i tuoi risparmi da istituti finanziari differenti. Il calcolo del tuo patrimonio totale verrà aggiornato automaticamente aggregando tutti i dati in un unico luogo.
+                    </div>
+                </details>
+
+                <details class="bg-white p-4 rounded-xl border-2 border-gray-100 shadow-sm">
+                    <summary class="flex justify-between items-center text-gray-900">
+                        L'app mi mostra il rendimento in tempo reale?
+                        <span class="text-primary">+</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Sì, il nostro modulo di intelligenza finanziaria aggrega i dati d'ingresso storici per proiettare e calcolare il rendimento complessivo dei tuoi investimenti e risparmi. Il pannello grafico ti aiuta a capire se la gestione delle tue finanze sta superando o meno i benchmark dell'inflazione e del mercato di riferimento.
+                    </div>
+                </details>
+
+                <details class="bg-white p-4 rounded-xl border-2 border-gray-100 shadow-sm">
+                    <summary class="flex justify-between items-center text-gray-900">
+                        Qual è la differenza tra Saldo disponibile e Patrimonio netto in app?
+                        <span class="text-primary">+</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Il saldo indica semplicemente l'ammontare liquido che hai attualmente disponibile sul tuo singolo conto bancario. Il Patrimonio netto è invece il calcolo definitivo della tua solidità: somma tutti i tuoi averi (soldi liquidi, titoli di stato, azioni per i tuoi risparmi) e sottrae eventuali debiti (mutui, finanziamenti). Questa metrica olistica è fondamentale.
+                    </div>
+                </details>
+
+                <details class="bg-white p-4 rounded-xl border-2 border-gray-100 shadow-sm">
+                    <summary class="flex justify-between items-center text-gray-900">
+                        Come posso richiedere assistenza per il calcolo dei risparmi?
+                        <span class="text-primary">+</span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        All'interno dell'app, troverai la sezione dedicata al supporto al cliente accessibile direttamente dal menu. Il nostro team ti fornirà assistenza tramite modulo web guidato. Attualmente non gestiamo l'apertura di ticket in altro modo al fine di garantire l'integrità del processo d'assistenza e del check degli indicatori patrimoniali legati al singolo profilo.
+                    </div>
+                </details>
+
+            </div>
+        </section>
+
+        <!-- Contact & Download Section -->
+        <section id="contact" class="dna-card text-center sm:text-left bg-gray-50 border-2 border-gray-800">
+            <div class="md:flex md:items-center md:gap-12">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-3xl font-black mb-4 text-gray-900 uppercase">Ottieni l'accesso all'App</h2>
+                    <p class="text-gray-600 mb-6 font-medium">Vuoi testare le potenzialità di VujitaBehia Capital in anteprima? Richiedi oggi stesso il link per sbloccare l'aggregatore di conti bancari numero uno in Europa e monitora i tuoi veri risparmi.</p>
+                    
+                    <!-- Simulating realistic missing phone/address due to app logic by replacing it with feature highlights -->
+                    <div class="bg-white p-4 rounded-xl border border-gray-200 inline-block w-full text-left">
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-sm font-semibold text-gray-800"><span class="w-3 h-3 bg-primary rounded-full mr-2"></span> Compatibile iOS e Android</li>
+                            <li class="flex items-center text-sm font-semibold text-gray-800"><span class="w-3 h-3 bg-primary rounded-full mr-2"></span> Integrazione API con 500+ Banche UE</li>
+                            <li class="flex items-center text-sm font-semibold text-gray-800"><span class="w-3 h-3 bg-primary rounded-full mr-2"></span> Aggiornamento bilanci live</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 bg-white p-6 rounded-2xl border-2 border-gray-200">
+                    
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Registrazione in corso...'; setTimeout(()=>{this.style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <h3 class="text-xl font-bold mb-4">Crea Account (Versione Web)</h3>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" required class="dna-input" placeholder="Mario Rossi">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Città</label>
+                            <input type="text" required class="dna-input" placeholder="Roma, Milano...">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Principale motivo di utilizzo</label>
+                            <select class="dna-input text-gray-600">
+                                <option>Monitorare vari Conti Correnti</option>
+                                <option>Calcolare il Patrimonio Netto</option>
+                                <option>Verificare il Rendimento Risparmi</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full mt-4">Richiedi Invito Gratis</button>
+                        <p class="text-xs text-gray-400 text-center mt-4">Inviando la richiesta accetti i termini operativi di VujitaBehia Capital in ottemperanza ai protocolli sulla riservatezza dei dati patrimoniali inseriti in banca.</p>
+                    </form>
+
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="success-msg" class="hidden text-center py-10">
+                        <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Ricevuta!</h4>
+                        <p class="text-gray-600">Verifica la notifica sul tuo dispositivo per installare la suite che proteggerà i tuoi conti bancari.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Area -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-12 border-t-8" style="border-top-color: var(--primary)">
+        <div class="max-w-5xl mx-auto px-4 text-center sm:text-left">
+            <div class="md:flex md:justify-between mb-8 pb-8 border-b border-gray-800">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-2xl font-black tracking-tighter uppercase text-white">
+                        VujitaBehia<span class="text-primary">Capital</span>
+                    </span>
+                    <p class="mt-2 text-sm text-gray-500 max-w-sm">La suite tecnologica essenziale che fonde un robusto monitoraggio bancario alle analisi del tuo capitale complessivo.</p>
+                </div>
+            </div>
+
+            <!-- MANDATORY DISCLAIMER -->
+            <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 mb-8 text-center text-sm font-semibold text-gray-400">
+                Questo è un sito promozionale indipendente gestito da VujitaBehia Capital, che agisce come affiliato per Gimme5.
+            </div>
+
+            <p class="text-sm text-gray-600 text-center mb-8">&copy; 2026 VujitaBehia Capital. Tutti i diritti riservati.</p>
+
+            <!-- LEGAL EXPANSIONS (Full Verbatim Compliance) -->
+            <div class="space-y-4 max-w-4xl mx-auto text-left text-xs text-gray-500">
+                
+                <details class="bg-gray-800 p-4 rounded border border-gray-700">
+                    <summary class="font-bold text-gray-400 cursor-pointer uppercase tracking-wide">Termini e Condizioni di Utilizzo Piattaforma Bancaria</summary>
+                    <div class="mt-4 space-y-2 text-justify leading-relaxed">
+                        I presenti Termini e Condizioni generali regolano l'utilizzo e l'accesso all'applicazione software messa a disposizione da VujitaBehia Capital, creata esclusivamente allo scopo di gestire, monitorare e raggruppare visivamente il portafoglio conti dell'utente. Prima di proseguire con l'uso delle metriche e della visualizzazione grafica fornita attraverso il cruscotto digitale di saldo patrimoniale, ogni fruitore accetta senza alcuna remora la totalità dei parametri contrattuali menzionati nel presente accordo. Noi, in quanto provider del middleware e aggregatore dei saldi delle molteplici banche associate all'identità digitale registrata sul dispositivo mobile, forniamo essenzialmente un prodotto SaaS che consente agli abbonati o sottoscrittori di effettuare interrogazioni (richieste d'accesso informatiche ai dati bancari tramite chiavi applicative concesse secondo gli accordi PSD2 e le stringhe dei form online). Tale tecnologia unicamente preleva e ricodifica i bilanci mostrati allo schermo terminale in modo puramente conoscitivo; non detiene capacità legali o sistemi bancari omologati per l'inizializzazione al pagamento di alcun ammontare finanziario o debitorio registrato tra cliente e suo istituto di credito originario di deposito delle finanze. Resta stabilito ed inteso in sede civilistica per i portali aggregatori del patrimonio o net worth index applicativi web che nessuna singola statistica visualizzata potrà generare garanzia di accrescimento patrimoniale effettivo o certificare stime economiche dal valore normativo inalienabile in controversie processuali di sorta a fronte della volatilità dei rendimenti del mercato economico mondiale sui quali poggiano eventuali tassi mostrati nei diagrammi digitali del software. Sottolineiamo espressamente l’interdizione dalla partecipazione al tracking per fruitori d’età minore degli anni diciotto con piena e robusta assunzione della consapevolezza di tutela civile vigente a protezione di minorenni. All'eventuale accertata non corrispondenza del target preposto all’età giuridica vincolante, tutti gli ingressi crittografici saranno bloccati a tempo indeterminato e l'iscrizione cassata del tutto con divieto riapplicativo a salvaguardia patrimoniale dei minori impiegando contromisure tecnologiche preventive standard imposte dal registro europeo della sicurezza elettronica e di salvaguardia patrimoniale. Utilizzare scorrettamente il form del salvataggio progressi renderà l’accesso disabilitato. Qualsiasi problematica insorgente dovuta ad immissioni manuali fuorvianti, che determinino visualizzazione distorta o rendicontazioni con discordanze matematiche nel saldo consolidato o sfasamento dei resoconti finali esenti di colpe della logica operativa dell’infrastruttura di VujitaBehia Capital. Qualsiasi contenzioso verrà stabilito sotto la normativa vigente per l'uso dei dispositivi informatici privati secondo l'accordo base non stipulato direttamente con alcun operatore umano mediante scambio telematico, né intermediario, considerandolo per giurisdizione validato virtualmente all’atto formativo in fase di acquisizione dati all'indirizzamento digitale principale dei moduli crittografici approntati ed in vigore per qualsivoglia cittadino sottoscrittore all’anno corrente dell'accordo in atto siglato tacitamente scaricando le cartelle dell'applicativo sul device di competenza di uso quotidiano in loco.
+                    </div>
+                </details>
+
+                <details class="bg-gray-800 p-4 rounded border border-gray-700">
+                    <summary class="font-bold text-gray-400 cursor-pointer uppercase tracking-wide">Informativa sul Trattamento Privacy Patrimoniale</summary>
+                    <div class="mt-4 space-y-2 text-justify leading-relaxed">
+                        L’implementazione dell’Informativa sulla Privacy ha uno scopo meramente essenziale a declinare i meccanismi adottati nell'introitare la conservazione nonché per operare una classificazione, cifratura numerica e l'adeguato smaltimento formale del volume informatico congiunto ai riferimenti specifici identificativi conferiti e lasciati nell’aggregatore saldo conti. Considerando i dispositivi stringenti sanciti nei contesti d'Unione in riferimento a garanzie basilari stabilite del Regolamento Europeo sul dato (escluso a priori, laddove menzionato l'uso trans-commerciale terziario di terzi non in ruolo fiduciario per monitoraggio patrimoniale). Le metriche assunte dall'interazione tra navigante e interfaccia a cruscotto per monitoraggio o tracking dei beni saranno salvate adottando livelli massimali consentiti dallo scibile ingegneristico della salvaguardia, avvalendosi, difatti, delle infrastrutture operative provviste di isolamenti e server dedicati di calcolo a regime autonomo. Il fornitore designato è incaricato dell’amministrazione di questi database e li incamera solo temporalmente in cache necessarie alla formazione ed interscambio visivo per rendere manifesti a video indicatori analitici finalizzati a chiarificare fluttuazioni monetarie di base senza un'estensione temporale sine die rispetto ai conti a monitoraggio attivato dalle interfacce collegate ai vostri conti centralizzati sui portali banche referenti. Resta chiarito che il detentore delle infrastrutture a rete si obbliga solidamente verso nessuna elargizione monetizzata extra su archivi informatici e anagrafiche per speculazione da riassetto targetting non funzionale alla base; garantendo la blindatura ai traccianti estranei privi dell’indispensabile preposto ruolo validativo nei calcoli. Ai contraenti permane salva e intangibile facoltà garantista a esigerne immediato olistico obliquo e l’elisione permanente ai sensori con effetto repentino qualora essi intendessero declinare un utilizzo aggiuntivo avvalendosi delle schermate del software dedicate all'espulsione dell'utente rintracciabili agevolmente fra le maschere settaggi generali nell'applicativo preposto come cancellazione integrale profilo personale registrato e storico del bilancio associato nell'arco di calcolo pregresso fin da accesso uno generato agli inizi previ check anti abuso sul proprio smartphone personale, revocando istanze allacciamento bancari con le istituzioni depositarie precedentemente annesse con moduli assenso telematici forniti nel form di setup principale dell'app all'utenza al compimento installativo primigenio originario all'interazione tra interfaccia front end e device proprio dell'acquirente privato interessato alle performance contabili bancarie nel rendiconto mensile per le imposte di patrimonio globalmente detenute tra capitalizzazioni varie di pertinenza civile tutelata legalmente ai massimi del segreto informatico protocollare in corso validante oggi da registri ministeriali informatici centrali ed enti autorizzativi europei allineati nel decennio alle leggi cyber previste dall'architettura del World Wide Web corrente su territorio sovrano operante fisicamente gli switch di instradamento al cloud server provider primario fornitore.
+                    </div>
+                </details>
+
+                <details class="bg-gray-800 p-4 rounded border border-gray-700">
+                    <summary class="font-bold text-gray-400 cursor-pointer uppercase tracking-wide">Polizza Rimborsi e Cancellazione Contrattuale</summary>
+                    <div class="mt-4 space-y-2 text-justify leading-relaxed">
+                        Esaminiamo approfonditamente all'interno di siffatto comparto regolatore il concetto dei rimborsi d'ammontare sottoscritto a canone se pertinenti ove contrattualmente presenti sui piani d'ingresso base per acquisire lo schema d'interazione applicativa al nostro strumento virtuale preposto per calcolare i capitali aggregando fonti dal panorama economico del richiedente al fine dell’osservazione quotidiana per la stabilizzazione finanza civile di privati che scaricano sul mercato. Tenendo pienamente fede ad oggettive precondizioni per le piattaforme online, informiamo anticipatamente sulla qualifica per l'incameramento rimborsativo laddove sussista oggettivamente disfunzione imputabile primariamente e comprovabilmente all’aggregatore saldo VujitaBehia Capital stesso a far scattare impedimento all'ingresso e tracciato bloccante sul quadro strumenti di calcolo totale altrimenti detto dashboard di sommatoria fondi dell’investitore medio utilizzante il protocollo. Tali difetti infrastrutturali d’ordine non aggirabile devono restare riscontrabili persistendo ed originare esiti d'ostruzione visiva rendimento superiore alle quarantotto tempistiche orarie accertate sul monitor tecnico. Diversamente l'avallo dello storno paritetico intero non seguirà prassi d’apertura ordinaria, ma l’annullamento a tempo venturo impedirà incameramento automatico ad anni posticipati del pagamento con disdetta dell'utenza pro quota in essere. Resta l'indisponibilità di reso completo quando sussistano errori a fattori determinati su condotta erroneamente condotta, inserzioni banche fittizie sprovviste credenziali giuste inserite in moduli da mano dell’abbonato rendendo improduttivo l'apparato d'interrogazione automatica ad istituti senza il possesso effettivo chiave al recupero file contabilità che impedisca corretto iter del bilancio rendimento all’interno del tool preconfigurato ed estraibile allo store app digitale referenziato di scaricamento iniziale dell'interessato ai tracciati del portfolio suo e conti vari detenuti in separata sede civile sotto tutela terza al provider medesimo, negando implicitamente risarcimento fiduciario con addebito esente dal ritorno al destinatario della transazione operata da terzisti dei processori contabili esterni assoldati quali nodi d'elaborazione preposti che prenderanno atto del divieto procedurale da nostra centrale app non generando bonifico o storno fiduciario ad istituti depositari all’accredito della fonte originatrice pagamento, terminando col negare ogni ricorso appellativo sulla richiesta che permarrà in fase di rifiuto permanente d'archivio informatico non passibile di ulteriore elaborazione. Moduli d’assolvimento contrattuale completi dovranno palesarsi esplicativi tramite protocollo form standard situato sull’area pannello utente da avviare sotto menù annulla licenza per arrestare processi.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner Component -->
+    <div id="cookie-banner" class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+        <div class="text-sm font-semibold max-w-xl text-center sm:text-left">
+            VujitaBehia Capital utilizza script tecnici al fine di ottimizzare e tutelare l'aggregazione sicura dei tuoi dati bancari. Procedendo senza l'uso olistico del tracciante il cruscotto potrebbe limitare temporaneamente funzioni legate alla cronologia dell'accrescimento patrimoniale effettivo. 
+        </div>
+        <div class="flex gap-4">
+            <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookieAccepted', 'true')" class="btn-primary text-xs py-2 px-4 shadow-none">Acconsento</button>
+            <button onclick="document.getElementById('cookie-banner').style.display='none';" class="bg-transparent border border-gray-500 text-gray-300 hover:text-white hover:border-white font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wide">Rifiuta Tutti</button>
+        </div>
+    </div>
+
+    <!-- Smart Routing & Logic Scripts -->
+    <script>
+        // Smooth scrolling & smart routing (Failsafe Navigation)
+        document.addEventListener('click', function(e) {
+            if(e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href').substring(1);
+                const targetEl = document.getElementById(targetId);
+                
+                if(targetEl) {
+                    targetEl.scrollIntoView({behavior: 'smooth'});
+                } else {
+                    // Fallback routing to contact/cta block
+                    const contactEl = document.getElementById('contact');
+                    if(contactEl) contactEl.scrollIntoView({behavior: 'smooth'});
+                }
+            }
+        });
+
+        // Cookie banner logic initialization
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("cookieAccepted")) {
+                document.getElementById("cookie-banner").style.display = "flex";
+            }
+        });
+    </script>
+</body>
+</html>
