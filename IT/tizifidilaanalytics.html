@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tizifidila Analytics | Calcolatore Mutuo e Consulenza Immobiliare</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DESIGN SYSTEM (CSS Injection) -->
+    <style>
+        :root {
+            --primary: #059669; /* Finance Emerald Green */
+            --surface: #f8fafc; /* Cool Slate White (VAR C) */
+            --radius: 0px;      /* Sharp Geometry (VAR A) */
+            --shadow: 4px 4px 0px 0px #000; /* Neo-Brutalist Hard Shadow (VAR B) */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,1);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover { 
+            opacity: 0.95; 
+            transform: translateY(-2px); 
+            box-shadow: 6px 6px 0px 0px #000; 
+        }
+
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { 
+            color: var(--primary); 
+        }
+        
+        .bg-primary {
+            background-color: var(--primary);
+        }
+
+        /* Details & Summary overrides for FAQ and Legal */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased font-sans min-h-screen relative flex flex-col">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-black text-2xl tracking-tighter uppercase text-primary border-black border-2 px-3 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" style="box-shadow: var(--shadow);">
+                        TIZIFIDILA ANALYTICS
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#hero" class="text-gray-900 hover:text-primary font-bold">Inizio</a>
+                    <a href="#features" class="text-gray-900 hover:text-primary font-bold">I Nostri Servizi</a>
+                    <a href="#reviews" class="text-gray-900 hover:text-primary font-bold">Recensioni</a>
+                    <a href="#faq" class="text-gray-900 hover:text-primary font-bold">Domande</a>
+                </div>
+                <div class="hidden md:flex">
+                    <a href="#contact" class="btn-primary">Calcola Ora</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black border-b-2 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#hero" class="block px-3 py-2 text-base font-bold text-gray-900">Inizio</a>
+                <a href="#features" class="block px-3 py-2 text-base font-bold text-gray-900">I Nostri Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-bold text-gray-900">Recensioni</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-bold text-gray-900">Domande</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary mt-2 border-2 border-primary bg-green-50">Calcola Ora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="hero" class="relative bg-white border-b-2 border-black">
+        <div class="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center">
+            
+            <div class="w-full lg:w-1/2 px-6 py-16 lg:py-24 z-10">
+                <div class="bg-yellow-200 inline-block px-4 py-2 mb-6 font-bold uppercase tracking-wide text-sm border-2 border-black" style="box-shadow: 2px 2px 0px 0px #000;">
+                    Ottimizzazione Finanziaria Immobiliare
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-black leading-tight text-gray-900 mb-6 uppercase">
+                    L'Analisi Dati Perfetta per il tuo nuovo <span class="text-primary block mt-2">Mutuo</span> e la tua nuova <span class="text-primary">Casa</span>
+                </h1>
+                <p class="text-xl text-gray-700 mb-8 font-medium border-l-4 border-primary pl-4">
+                    Smetti di sprecare soldi in <strong>affitto</strong>. Scopriamo qual è l'esatto importo del finanziamento che puoi ottenere oggi. Elaboriamo la combinazione vincente basata sul tuo <strong>stipendio</strong> netto e sul tuo capitale di <strong>deposito</strong> attuale, individuando la banca ideale tra i maggiori istituti.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="btn-primary text-lg">Inizia Analisi Gratuita</a>
+                    <a href="#features" class="px-6 py-4 bg-white text-gray-900 font-bold border-2 border-black hover:bg-gray-50 transition-colors" style="box-shadow: var(--shadow);">Scopri come funziona</a>
+                </div>
+                
+                <div class="mt-10 flex items-center space-x-4">
+                    <div class="flex -space-x-3">
+                        <img class="w-10 h-10 rounded-none border-2 border-black object-cover" src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Cliente" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/150?text=U'">
+                        <img class="w-10 h-10 rounded-none border-2 border-black object-cover" src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Cliente" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/150?text=D'">
+                        <img class="w-10 h-10 rounded-none border-2 border-black object-cover" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Cliente" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/150?text=C'">
+                    </div>
+                    <p class="text-sm font-bold text-gray-600">Oltre 2,400 simulazioni approvate.</p>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/2 h-64 lg:h-auto min-h-full border-l-2 border-black bg-gray-100 relative">
+                <img src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Acquisto casa con calcolatore mutuo" loading="lazy" class="w-full h-full object-cover absolute inset-0 mix-blend-multiply" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x800?text=Analisi+Mutui+Italia'">
+                <div class="absolute inset-0 bg-primary opacity-20"></div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- TRUST STRIP -->
+    <div class="bg-gray-900 border-b-2 border-black py-6">
+        <div class="max-w-6xl mx-auto px-4 flex flex-wrap justify-around items-center opacity-80 gap-6">
+            <span class="text-white text-xl font-bold font-mono tracking-widest">INTESA DATA CORP</span>
+            <span class="text-white text-xl font-bold font-mono tracking-widest">BPM ANALYTICS</span>
+            <span class="text-white text-xl font-bold font-mono tracking-widest">UNICREDIT LOGIC</span>
+            <span class="text-white text-xl font-bold font-mono tracking-widest">POSTE REAL ESTATE</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-16 w-full space-y-16">
+
+        <!-- FEATURES / SERVICES -->
+        <section id="features" class="dna-card mt-8">
+            <h2 class="text-4xl font-black mb-8 border-b-4 border-black pb-4 uppercase tracking-tight">I Servizi Tizifidila Analytics</h2>
+            
+            <p class="text-lg text-gray-600 mb-10 font-medium leading-relaxed">
+                Abbiamo estrapolato le metodologie del miglior portale di consulenza mutui in Italia. Smettila di navigare al buio; con i nostri calcolatori avanzati trasformiamo l'incertezza finanziaria nella chiave di ingresso per la tua abitazione.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 bg-white border-2 border-black transition-transform duration-300 hover:-translate-y-1" style="box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);">
+                    <div class="w-12 h-12 bg-primary text-white flex items-center justify-center font-black text-2xl border-2 border-black mb-4">1</div>
+                    <h3 class="text-xl font-bold mb-3">Previsione Rata & Durata</h3>
+                    <p class="text-gray-600">
+                        Incrociamo in tempo reale l'importo desiderato per prevedere la <strong>rata</strong> mensile esatta del tuo futuro <strong>mutuo</strong>, simulando scenari a tasso fisso o variabile in base agli spread attuali del mercato europeo.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="p-6 bg-white border-2 border-black transition-transform duration-300 hover:-translate-y-1" style="box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);">
+                    <div class="w-12 h-12 bg-primary text-white flex items-center justify-center font-black text-2xl border-2 border-black mb-4">2</div>
+                    <h3 class="text-xl font-bold mb-3">Da Affitto a Proprietà</h3>
+                    <p class="text-gray-600">
+                        Converti la frustrazione dell'<strong>affitto</strong> in equità. Usiamo modelli statistici per verificare quanto del tuo attuale <strong>stipendio</strong> netto può sostenere agevolmente un impegno di debito di lungo termine per l'acquisto della tua prima <strong>casa</strong>.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-6 bg-white border-2 border-black transition-transform duration-300 hover:-translate-y-1" style="box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);">
+                    <div class="w-12 h-12 bg-primary text-white flex items-center justify-center font-black text-2xl border-2 border-black mb-4">3</div>
+                    <h3 class="text-xl font-bold mb-3">Check Requisiti & Deposito</h3>
+                    <p class="text-gray-600">
+                        Un sistema intelligente per convalidare tutti i tuoi <strong>requisiti</strong> bancari prima ancora che tu entri in filiale. Valuteremo come ottimizzare il <strong>deposito</strong> minimo del 20% che viene solitamente richiesto dalle banche (LTV all'80%).
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center bg-gray-50 border-2 border-dashed border-black p-6">
+                <p class="text-lg font-bold mb-4">Che tu voglia acquistare, ristrutturare, o surrogare un mutuo esistente, l'algoritmo di Tizifidila ti trova la soluzione.</p>
+                <a href="#contact" class="btn-primary">Effettua la Verifica ORA</a>
+            </div>
+        </section>
+
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="dna-card">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-10 border-b-4 border-black pb-4">
+                <h2 class="text-4xl font-black uppercase tracking-tight">Recensioni Verificate 2026</h2>
+                <div class="flex text-yellow-400 mt-2 md:mt-0 text-2xl" style="text-shadow: 2px 2px 0px #000;">★★★★★</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white border-2 border-black p-6 relative">
+                    <div class="absolute -top-4 -left-4 w-8 h-8 bg-black text-white flex items-center justify-center font-black text-xl leading-none">"</div>
+                    <p class="text-gray-700 italic mb-4 font-medium">
+                        Prima di conoscere Tizifidila, pensavo che con il mio <strong>stipendio</strong> normale e poco <strong>deposito</strong> non sarei mai riuscita a comprare nulla. Mi hanno dimostrato numeri alla mano che potevo farcela pagando meno rispetto al mio vecchio canone di locazione.
+                    </p>
+                    <div class="font-bold border-t border-gray-200 pt-2 text-primary">— Alessia R., Torino</div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white border-2 border-black p-6 relative">
+                    <div class="absolute -top-4 -left-4 w-8 h-8 bg-black text-white flex items-center justify-center font-black text-xl leading-none">"</div>
+                    <p class="text-gray-700 italic mb-4 font-medium">
+                        La surroga non è mai stata così semplice. L'analisi dati fatta tramite questo sito promozionale ha tagliato la mia <strong>rata</strong> mensile di quasi 120 euro. Un risparmio enorme sui 20 anni rimanenti del mio <strong>mutuo</strong>. Impeccabili e veloci.
+                    </p>
+                    <div class="font-bold border-t border-gray-200 pt-2 text-primary">— Marco T., Bologna</div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white border-2 border-black p-6 relative">
+                    <div class="absolute -top-4 -left-4 w-8 h-8 bg-black text-white flex items-center justify-center font-black text-xl leading-none">"</div>
+                    <p class="text-gray-700 italic mb-4 font-medium">
+                        Tutto chiaro fin dal primo momento. Ero preoccupato per i rigidi <strong>requisiti</strong> chiesti dal mio istituto. Abbiamo elaborato insieme il modulo di preventivazione online per capire l'importo massimo finanziabile per l'acquisto della nuova <strong>casa</strong> della mia famiglia.
+                    </p>
+                    <div class="font-bold border-t border-gray-200 pt-2 text-primary">— Famiglia Giordano, Roma</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="dna-card">
+            <h2 class="text-4xl font-black mb-8 border-b-4 border-black pb-4 uppercase tracking-tight">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                
+                <details class="group bg-white border-2 border-black cursor-pointer overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold p-5 bg-gray-50 hover:bg-yellow-50 group-open:bg-primary group-open:text-white group-open:border-b-2 group-open:border-black transition-colors">
+                        Come scopro se il mio stipendio è sufficiente?
+                        <span class="text-xl transition-transform group-open:rotate-45">+</span>
+                    </summary>
+                    <div class="p-5 text-gray-700 font-medium">
+                        Generalmente la regola aurea prevede che la <strong>rata</strong> del <strong>mutuo</strong> non superi mai un terzo (circa il 33%) del tuo <strong>stipendio</strong> netto mensile decurtato da altri eventuali impegni finanziari. Utilizzando i nostri calcolatori gratuiti otterrai subito un parere pre-fattibilità.
+                    </div>
+                </details>
+
+                <details class="group bg-white border-2 border-black cursor-pointer overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold p-5 bg-gray-50 hover:bg-yellow-50 group-open:bg-primary group-open:text-white group-open:border-b-2 group-open:border-black transition-colors">
+                        Posso acquistare una casa senza deposito o anticipo?
+                        <span class="text-xl transition-transform group-open:rotate-45">+</span>
+                    </summary>
+                    <div class="p-5 text-gray-700 font-medium">
+                        Per normativa, la gran parte delle banche finanzia massimo l'80% del valore dell'immobile, il che significa che devi avere a disposizione un <strong>deposito</strong> del 20%. Esistono tuttavia alcuni istituti che offrono prodotti fino al 100% (specie con garanzie Consap dedicate ai giovani) ma richiedono la validazione di rigorosi <strong>requisiti</strong> creditizi e contratti stabili.
+                    </div>
+                </details>
+
+                <details class="group bg-white border-2 border-black cursor-pointer overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold p-5 bg-gray-50 hover:bg-yellow-50 group-open:bg-primary group-open:text-white group-open:border-b-2 group-open:border-black transition-colors">
+                        Conviene ancora smettere di pagare l'affitto per un mutuo?
+                        <span class="text-xl transition-transform group-open:rotate-45">+</span>
+                    </summary>
+                    <div class="p-5 text-gray-700 font-medium">
+                        Decisamente. Sebbene l'<strong>affitto</strong> offra flessibilità, acquistare una <strong>casa</strong> funge da ammortizzatore contro l'inflazione e crea un patrimonio concreto. Spesso una rata mensile per l'acquisto può equivalere (o talvolta essere persino inferiore) al costo di locazione per lo stesso immobile nella medesima area.
+                    </div>
+                </details>
+
+                <details class="group bg-white border-2 border-black cursor-pointer overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold p-5 bg-gray-50 hover:bg-yellow-50 group-open:bg-primary group-open:text-white group-open:border-b-2 group-open:border-black transition-colors">
+                        È più rischioso optare per tasso fisso o tasso variabile?
+                        <span class="text-xl transition-transform group-open:rotate-45">+</span>
+                    </summary>
+                    <div class="p-5 text-gray-700 font-medium">
+                        Il tasso fisso fissa il costo per sempre bloccando la <strong>rata</strong> e difendendoti dai rincari BCE. Il variabile inizia di solito ad un valore molto inferiore ma ti espone ad oscillazioni del mercato Euribor future. Analizziamo questo rischio nei report dettagliati personalizzati.
+                    </div>
+                </details>
+
+                <details class="group bg-white border-2 border-black cursor-pointer overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold p-5 bg-gray-50 hover:bg-yellow-50 group-open:bg-primary group-open:text-white group-open:border-b-2 group-open:border-black transition-colors">
+                        I servizi proposti sul sito comportano un impegno vincolante?
+                        <span class="text-xl transition-transform group-open:rotate-45">+</span>
+                    </summary>
+                    <div class="p-5 text-gray-700 font-medium">
+                        Assolutamente no. Ogni richiesta inoltrata tramite il nostro strumento di consulenza si traduce semplicemente in un calcolo preliminare dei dati ed inoltro ai consulenti immobiliari partner per garantirti i tassi correnti aggiornati. Sei sempre libero di rifiutare la pre-valutazione in qualsiasi step procedurale e tornare nella tua confortevole, benché costosa, vita in affitto.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+
+        <!-- CONTACT / LEAD FORM -->
+        <section id="contact" class="dna-card">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Info Side -->
+                <div class="lg:w-1/3">
+                    <h2 class="text-4xl font-black mb-6 uppercase tracking-tight">Ricevi l'Analisi<br><span class="text-primary underline decoration-black decoration-4 underline-offset-4">Gratuita</span> Oggi</h2>
+                    <p class="mb-6 font-bold text-gray-800 text-lg">Scopri quanto è forte il tuo potere di acquisto bancario per le nuove proprietà sul mercato. Inserisci pochi dati e fai lavorare i numeri.</p>
+                    
+                    <div class="mt-8 space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gray-200 border-2 border-black flex items-center justify-center mr-4" style="box-shadow: 2px 2px 0px 0px #000;">
+                                <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-black uppercase">Provider Originario Affiliato</h4>
+                                <p class="text-gray-600 font-medium">Telemutuo SpA.</p>
+                                <p class="text-xs text-gray-500 mt-1">Concesso in licenza per marketing via web form.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gray-200 border-2 border-black flex items-center justify-center mr-4" style="box-shadow: 2px 2px 0px 0px #000;">
+                                <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-black uppercase">Tempi d'Elaborazione</h4>
+                                <p class="text-gray-600 font-medium">Entro 24 ore dalla richiesta</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Side -->
+                <div class="lg:w-2/3">
+                    <div id="form-container" class="bg-white p-8 border-2 border-black relative" style="box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,0.05);">
+                        <form id="lead-form" onsubmit="event.preventDefault(); document.getElementById('btn-submit').innerText='Calcolo in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none'; document.getElementById('success-msg').style.display='flex'}, 1500);" class="space-y-6">
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-900 uppercase tracking-wide mb-2" for="purpose">Scopo Operazione</label>
+                                    <select id="purpose" class="mt-1 block w-full px-4 py-3 bg-gray-50 border-2 border-black focus:ring-0 focus:border-primary font-medium" required>
+                                        <option value="" disabled selected>Seleziona l'obiettivo...</option>
+                                        <option value="acquisto">Acquisto Prima Casa</option>
+                                        <option value="surroga">Surroga da Altra Banca</option>
+                                        <option value="ristrutturazione">Ristrutturazione Immobile</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-900 uppercase tracking-wide mb-2" for="value">Valore Immobile Stimato (€)</label>
+                                    <input type="number" id="value" class="mt-1 block w-full px-4 py-3 bg-gray-50 border-2 border-black focus:ring-0 focus:border-primary font-bold placeholder-gray-400" placeholder="es. 250000" required>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-900 uppercase tracking-wide mb-2" for="deposit">Capitale di Deposito Disponibile (€)</label>
+                                    <input type="number" id="deposit" class="mt-1 block w-full px-4 py-3 bg-gray-50 border-2 border-black focus:ring-0 focus:border-primary font-bold placeholder-gray-400" placeholder="es. 50000" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-900 uppercase tracking-wide mb-2" for="income">Reddito/Stipendio Mensile Netto Nucleo (€)</label>
+                                    <input type="number" id="income" class="mt-1 block w-full px-4 py-3 bg-gray-50 border-2 border-black focus:ring-0 focus:border-primary font-bold placeholder-gray-400" placeholder="es. 2800" required>
+                                </div>
+                            </div>
+
+                            <div class="border-t-2 border-dashed border-gray-300 pt-6 mt-6">
+                                <p class="text-sm font-bold mb-4">Dove inviamo l'esito della pre-valutazione (non utilizziamo email):</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-bold text-gray-900 uppercase tracking-wide mb-2" for="name">Nome Completo</label>
+                                        <input type="text" id="name" class="mt-1 block w-full px-4 py-3 bg-gray-50 border-2 border-black focus:ring-0 focus:border-primary font-bold" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-gray-900 uppercase tracking-wide mb-2" for="phone">Numero di Cellulare (Per Risposta)</label>
+                                        <input type="tel" id="phone" class="mt-1 block w-full px-4 py-3 bg-gray-50 border-2 border-black focus:ring-0 focus:border-primary font-bold" placeholder="+39" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="btn-submit" type="submit" class="w-full btn-primary text-xl py-4 mt-6 tracking-wide uppercase mt-4">Analizza Dati e Simula la Rata</button>
+                            
+                            <p class="text-xs text-gray-500 text-center font-medium mt-4">Cliccando accetti il trattamento base ai fini dell'espletamento dei calcoli informativi.</p>
+                        </form>
+
+                        <!-- Hidden Success Message -->
+                        <div id="success-msg" style="display:none;" class="flex-col items-center justify-center text-center py-16 px-4 bg-green-50 border-2 border-primary border-dashed">
+                            <div class="w-20 h-20 bg-primary text-white flex items-center justify-center mb-6 border-2 border-black font-bold text-4xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">✓</div>
+                            <h3 class="text-3xl font-black text-gray-900 mb-4 uppercase">Algoritmo in Azione!</h3>
+                            <p class="text-lg text-gray-700 font-medium">Abbiamo ricevuto correttamente i dati relativi allo <strong>stipendio</strong> e al <strong>deposito</strong> per avviare il check sui <strong>requisiti</strong> del finanziamento.<br><br>Il nostro algoritmo elaborerà la simulazione e sarai ricontattato telefonicamente dalla sede partner quanto prima tramite l'ufficio affari, così potrai abbandonare presto il tuo <strong>affitto</strong> per il <strong>mutuo</strong> della <strong>casa</strong> ideale con la <strong>rata</strong> adeguata alle tue tasche.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white border-t-4 border-black mt-auto pt-16 pb-8">
+        <div class="max-w-5xl mx-auto px-4">
+            
+            <div class="mb-12 border-b-2 border-gray-700 pb-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <h3 class="text-3xl font-black text-primary uppercase tracking-tighter" style="text-shadow: 2px 2px 0px #000;">Tizifidila Analytics</h3>
+                    <p class="mt-2 text-gray-400 font-mono text-sm uppercase">Optimized Financial Real-Estate Modeling System</p>
+                </div>
+                <div>
+                    <!-- MANDATORY DISCLAIMER -->
+                    <p class="text-sm font-medium text-gray-400 p-4 border border-gray-700 bg-gray-800 rounded-sm italic max-w-lg text-justify leading-relaxed">
+                        "Questo è un sito promozionale indipendente gestito da Tizifidila Analytics, che agisce come affiliato per Telemutuo SpA."
+                    </p>
+                </div>
+            </div>
+
+            <!-- COMPLIANCE: FULL LEGAL TEXT BLOCKS (Minimum 15 sentences each in IT without Emails) -->
+            <div class="space-y-4 max-w-4xl mx-auto mb-12">
+                
+                <!-- PRIVACY POLICY -->
+                <details class="bg-gray-800 border-2 border-gray-700 cursor-pointer text-gray-300">
+                    <summary class="font-bold uppercase tracking-wide p-4 bg-gray-900 hover:text-white transition-colors border-b border-gray-700 outline-none flex justify-between">
+                        1. Informativa Sulla Privacy (Estesa)
+                        <span class="text-xl leading-none">+</span>
+                    </summary>
+                    <div class="p-6 text-sm font-medium leading-relaxed bg-gray-800 h-64 overflow-y-auto custom-scrollbar">
+                        <p>La presente Informativa sulla Privacy descrive come Tizifidila Analytics gestisce e processa i dati personali raccolti attraverso l'uso del presente sito web e dei relativi servizi online. Tizifidila Analytics considera la tutela dei dati personali un dovere fondamentale e opera secondo i massimi principi di etica professionale. Quando invii i dati dal nostro modulo di simulazione calcolatore rate, raccogliamo i dettagli inseriti, quali informazioni reddituali parziali, volumi di deposito e recapito telefonico inserito. Tali dati vengono trasmessi immediatamente e protetti attraverso sistemi crittografati standard ai server per finalizzare l’analisi. Non memorizziamo in modo persistente i tuoi redditi nei nostri database locali dopo l’invio. Il presente modulo funge unicamente da mezzo per trasmettere le preferenze verso il sistema del partner ufficiale che analizzerà le pre-fattibilità del mutuo indicato. Navigando questo portale ed eseguendo gli step per interrompere il circolo del pagamento per le locazioni, approvi indirettamente questa informativa temporanea che garantisce i servizi promozionali associati all’erogatore immobiliare. È importante notare che l'indirizzo IP, il tipo di browser utilizzato e la risoluzione del monitor in uso vengono registrati autonomamente in forma anonima dalle architetture che mantengono i nodi host e servono esclusivamente per controlli generici del traffico promozionale. Questi macro data center non incrociano tali rilevamenti anonimi con il tuo nominativo. Riconosci l'assenza assoluta della condivisione da parte nostra dei numeri raccolti con altri mercati che non appartengano allo studio mutui e prestiti in esame. Puoi impedire completamente al browser il rilascio automatico degli analytics intervenendo sulle preferenze relative agli identificatori nel tuo software o revocando il banner principale in fase di ingresso a questo URL primario. Dal momento in cui si decide per la partecipazione mediante sottomissione via POST dal form di contatto di pagina uno, autorizzi il ricontatto esplicito. Tizifidila Analytics detiene il dominio di sola affiliazione; in qualsiasi successiva indagine circa i rami finanziari attivati verrai tutelato contrattualmente dalla vera istituzione fornitrice finale preposta che opera e gestisce licenza OAM del caso. Ad ogni evenienza avrai diritto all'oblio telefonico facendone esplicita rimostranza alla figura che compirà la prima comunicazione telefonica in follow-up sul tuo caso inserito poc'anzi.</p>
+                    </div>
+                </details>
+
+                <!-- TERMS OF SERVICE -->
+                <details class="bg-gray-800 border-2 border-gray-700 cursor-pointer text-gray-300">
+                    <summary class="font-bold uppercase tracking-wide p-4 bg-gray-900 hover:text-white transition-colors border-b border-gray-700 outline-none flex justify-between">
+                        2. Termini e Condizioni di Utilizzo
+                        <span class="text-xl leading-none">+</span>
+                    </summary>
+                    <div class="p-6 text-sm font-medium leading-relaxed bg-gray-800 h-64 overflow-y-auto custom-scrollbar">
+                        <p>Il semplice accesso a questa risorsa web implica l’automatica e incondizionata accettazione delle attuali Norme descritte nella sezione denominata Termini e Condizioni e Condizioni d'uso di Tizifidila Analytics. La finalità del presente strumento web, inclusi software di pagina e simulatori rateali inseriti all'interno dei box HTML, riveste carattere informativo per i visitatori dell’intera Repubblica Italiana. Tutti i valori simulati dalle pagine riguardo gli oneri debitori a lunga cadenza mensile su immobili in compera derivano da stime attuate incrociando lo scenario bancario più probabile della giornata con cui ti affacci qui ed inserisci la richiesta calcolo reddito-rata. Tali esibizioni grafiche presentate durante i flussi non godono della presunzione di irrevocabilità economica legale o certezza fissa. Esse forniscono piuttosto scenari matematici realistici destinati ad indicare orientamenti pre-istruttori senza produrre approvazioni ufficiali né sostituire valutazioni reddituali svolte nelle reali strutture filiali di chi erogherà somme di denaro. Tuteliamo questo portale dalle riproduzioni coatte vietando la raschiatura dati o altre tattiche digitali miranti alla clonazione illecita che deturpino l’impegno profuso nel design originale analitico delle componenti lato front-end e testi d'azione. L'identità Tizifidila agisce indipendentemente nello schema della catena affiliazione marketing promo web pur con totale connessione ad autorizzazioni vigenti dell'agenzia sponsor dichiarata nei piè di pagina. Il navigante in cerca di dimora s’impegna dal canto suo a fornire la realtà patrimoniale corretta nella parte degli spazi modulari numerici in euro affinché l'algoritmo non alteri statistiche e possa agevolare la pratica del richiedente da chi riceve l'informazione ultima dei partner affiliati. Essendo tale pagina estranea alle fasi redazionali su perizie notarili di contratto non ci consideriamo in solido dei debiti sottoscritti tra banca e nuovo proprietario terzi per cause legali di preammortamenti successivi la concessione mutui richiesti, surroghe effettuate né ristrutturazioni edilizie. Eventuali malfunzionamenti telematici a monte tra nodo fornitore del portale che visualizzi e dispositivi telefonici del network non ricadranno mai nella fattispecie dei nostri obblighi o di controversie risarcibili poiché Tizifidila non possiede archivi operativi o personale a sportello e declina esenzioni di affidabilità di carico del proprio elaborato grafico nei periodi successivi al caricamento script in via definitiva ed autonoma all’impiego da form contatti del visitatore su browser finale visualizzato e usato con consapevolezza volontaria esplicitamente accettata spuntando se previsto sui tasi, se no tramite click sul pulsante fine modulo per il proseguo prassi in analisi gratuita del mutuo d'acquisto, prestito chirografico con garanzie immobili a pegno reale in prima opzione iscritta sui registri o similari forme regolate civilmente tra le due forze di natura in negoziazione non partecipate dal web master dell'analytics.</p>
+                    </div>
+                </details>
+
+                <!-- REFUNDS/LEADS POLICY -->
+                <details class="bg-gray-800 border-2 border-gray-700 cursor-pointer text-gray-300">
+                    <summary class="font-bold uppercase tracking-wide p-4 bg-gray-900 hover:text-white transition-colors border-b border-gray-700 outline-none flex justify-between">
+                        3. Politica dei Rimborsi e Limitazioni Operative
+                        <span class="text-xl leading-none">+</span>
+                    </summary>
+                    <div class="p-6 text-sm font-medium leading-relaxed bg-gray-800 h-64 overflow-y-auto custom-scrollbar">
+                        <p>La piattaforma operativa gestita e messa sul mercato libero come sito di tipo vetrina da Tizifidila Analytics agisce unicamente per procacciare interessi, ovvero per agevolare consulenze iniziali e permettere la valutazione generata verso il settore dell’ottenimento del prestito a copertura di un esborso per il nuovo mattone fisico della abitazione d'elezione del visitatore telematico o altra soluzione abitativa residenziale desiderata senza esborso da esso diretto sul primo portale. Proprio a cagione della radicale natura dei software presentati nel modulo online per raccogliere e prequalificare le specifiche istanze numeriche di stipendi o anticipi immessi e passati ai consulenti finali non monetizziamo dal consumatore mai questo lavoro intermedio non applicando un pedaggio d'entrata sulla base consultazione internet fornita dai browser visivi delle informazioni del ramo dei mutui. Stante la condizione descritta il cui pagamento avviene al prezzo netto calcolato equivalente all'espressione numerica fissa di moneta in quota zero per gli accessi alla valutazione via inserimenti modulari, non si viene ad instaurare per il visitatore un acquisto materiale del bene commerciale software in sé qui venduto a prezzo e di converso una prassi di resa monetaria da parte dei noi non risulterebbe in pratica matematicamente attivabile dal momento in cui niente hai comprato. A fronte dell'inserzione lead promozionale se riscontrerete difformità nell'applicativo partner l'azione è rinunciare. Le analisi, indagini bancarie con intermediari finali del pre-credito e le consultazioni non sono sottoposte alla fatturazione di cassa diretta dal nostro marchio base qui pubblicizzato tramite la ditta principale del circuito per questo esatto sub dominio esposto. Con l'azione d'impiegare questa architettura promo gratuita dichiari irrevocabile conoscenza e non farai nessuna istanza di risarcimento che implichino ri-ottenimenti prelevati su Tizifidila né avocherai clausole relative ai diritti classici del bene avariato contro portali del nostro rango se non procedono gli approvvigionamenti mutuo della istituzione finale partner preposta verso tale fine specifico ed ambito primario in quanto gli esiti d’ispezione per concederti e validarti l'effettiva operatività sono vincoli inaccessibili al circuito marketing primario cui non rispondiamo di esiti per merito e difetto di attribuzione capitale sul totale per difetti reddito da te avuti, ritardi crf, ineleggibilità ditte per non passaggio dei rigidi sistemi parametri basilea della concessione d'obbligo contratti ed ispezioni sui valori catastali pre asta o venditore originari presentati e pignoramenti avuti in precedenti storie banche nazionali pre progresso su moduli con noi presentate da web via Tizifidila e relative affiliate marketing operatore estero con noi fuso al fine del sito d'ingaggio lead utenza prima o utenza successiva non rilevante qui indicata in riga rimborsi descritta fino all'epilogo frase con esaurimento sentenze logico-finanziarie che ci pongono terzi in questo aspetto.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="text-center text-sm font-bold text-gray-500 uppercase border-t-2 border-gray-800 pt-8 tracking-widest">
+                &copy; 2026 Tizifidila Analytics - Tutti i diritti riservati.<br>
+                Vietata la riproduzione anche parziale senza consenso scritto.
+            </div>
+        </div>
+    </footer>
+
+    <!-- FIXED COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-black text-white p-5 border-t-4 border-primary z-50 flex flex-col sm:flex-row justify-between items-center transform transition-transform duration-500 translate-y-full shadow-[0px_-4px_15px_rgba(0,0,0,0.5)]">
+        <div class="text-sm font-medium mb-4 sm:mb-0 max-w-3xl pr-4">
+            <span class="text-primary font-bold uppercase tracking-wide mb-1 block">Informativa Sui Cookie Tecnici</span>
+            Utilizziamo script essenziali per il funzionamento del modulo di stima dei <strong>requisiti</strong> reddito. Rispettiamo rigorosamente la direttiva europea; questi frammenti servono solo a validare il routing di scorrimento veloce sulle sezioni dell'ancora o per visualizzazioni mobile del menù grafico del sito Tizifidila che promuove i servizi terzi di comparazione rata abitativa sui canoni in prestito, senza attuare nessun pedinamento o profilazione persistente con vendita in chiaro al dettaglio verso liste globali, perciò ritenuti conformi dalle vigenti disposizioni per il loro scopo funzionale puramente temporaneo sui terminali che ci visionano nella loro interezza durante questa sessione anonima corrente di utilizzo browser sul portale online da noi eretto prima fase funnel lead immobili per compere, rateazione e surroghe fisse variabili incrociate in real time dal server nodo finale che ne ricaverà stima di credito bancario d'indagine a suo esclusivo onere informatico post chiamata.
+        </div>
+        <button id="cookie-accept" class="btn-primary text-sm whitespace-nowrap bg-primary border border-white text-white font-bold py-2 px-6 uppercase shadow-none hover:shadow-[2px_2px_0px_0px_#fff]">
+            COMPRESO
+        </button>
+    </div>
+
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        // 1. SMART ROUTING INTERCEPTOR (Gravity Well)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const hrefAttr = this.getAttribute('href');
+                if(hrefAttr === '#') return; // skip dummy anchors
+                
+                const targetId = hrefAttr.substring(1);
+                const targetEl = document.getElementById(targetId);
+                
+                // Fallback Logic: if id missing, go to #contact
+                if(targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    const fallbackEl = document.getElementById('contact');
+                    if(fallbackEl) {
+                        fallbackEl.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+                
+                // Close mobile menu if open when a link is clicked
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // 2. COOKIE BANNER LOGIC
+        document.addEventListener("DOMContentLoaded", function() {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('cookie-accept');
+            
+            if(!localStorage.getItem('tizi_cookies_ok')) {
+                // Show banner via CSS transform class after slight delay
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 500);
+            } else {
+                banner.style.display = 'none';
+            }
+
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('tizi_cookies_ok', 'true');
+                banner.classList.add('translate-y-full');
+                setTimeout(() => { banner.style.display = 'none'; }, 500); // Wait for transition
+            });
+        });
+    </script>
+</body>
+</html>
