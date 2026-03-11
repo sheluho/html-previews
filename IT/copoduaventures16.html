@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copodua Ventures | App di Networking e Mentoring Professionale</title>
+    <meta name="description" content="Accelera la tua carriera con Copodua Ventures. La migliore app per networking mirato e programmi di mentoring per professionisti.">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DESIGN SYSTEM (DNA INJECTION) -->
+    <style>
+        :root {
+            /* VAR D: Palette (App Networking) -> Indigo */
+            --primary: #4f46e5;
+            /* VAR C: Surface (Length 109%3=1) -> Warm Cream White */
+            --surface: #fffdf5;
+            /* VAR A: Geometry (Length 13%3=1) -> Soft */
+            --radius: 12px;
+            /* VAR B: Physics (ASCII 115%3=1) -> Material */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Ensure light gray to make white cards pop */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 0.75rem 2rem;
+            transition: all 0.2s;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+
+        /* LEGAL DETAILS STYLE */
+        details summary { cursor: pointer; font-weight: bold; margin-bottom: 0.5rem; outline: none; }
+        details { background: #fff; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #e5e7eb; font-size: 0.875rem; color: #4b5563; }
+        
+        /* OVERLAY TEXT READABILITY */
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.6));
+        }
+
+        #cookie-banner {
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black text-gray-900 tracking-tighter">COPODUA<span class="text-primary">VENTURES</span></span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Servizi App</a>
+                    <a href="#mentoring" class="text-gray-600 hover:text-primary font-medium transition">Mentoring</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Storie di Successo</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
+                    <a href="#contact" class="btn-primary">Richiedi Accesso</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-6 shadow-lg">
+            <a href="#features" class="block py-3 text-gray-600 font-medium border-b border-gray-50">Servizi App</a>
+            <a href="#mentoring" class="block py-3 text-gray-600 font-medium border-b border-gray-50">Mentoring</a>
+            <a href="#reviews" class="block py-3 text-gray-600 font-medium border-b border-gray-50">Storie di Successo</a>
+            <a href="#contact" class="block mt-4 btn-primary text-center w-full">Richiedi Accesso</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-20 mt-2">
+        <div class="absolute inset-0 w-full h-full">
+            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+                 alt="Professionisti al lavoro" 
+                 class="w-full h-full object-cover" 
+                 loading="lazy"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x800?text=Professionals+Networking'">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center lg:text-left flex flex-col lg:flex-row items-center">
+            <div class="lg:w-2/3 pr-0 lg:pr-12">
+                <span class="inline-block py-1 px-3 rounded-full bg-primary bg-opacity-20 text-indigo-200 font-semibold text-sm tracking-wide uppercase mb-4 border border-indigo-400 border-opacity-30">
+                    L'App Leader per i Professionisti
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                    Trasforma le Tue Relazioni nel Miglior <span class="text-primary">Venture</span> per la Tua Carriera.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl leading-relaxed">
+                    Copodua Ventures non è solo un'app. È una piattaforma esclusiva di networking e mentoring. 
+                    Stabilisci ogni nuova <strong class="text-white">connessione</strong> in modo strategico, trova guide esperte e costruisci il <strong class="text-white">percorso</strong> professionale che hai sempre desiderato.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#contact" class="btn-primary text-lg px-8 py-4">Sblocca il tuo potenziale</a>
+                    <a href="#features" class="bg-white text-gray-900 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg text-center">Scopri la piattaforma</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow pt-16 px-4 sm:px-6 lg:px-8 z-10 -mt-10 relative">
+        
+        <!-- TRUST INDICATORS (Neutral) -->
+        <div class="max-w-5xl mx-auto dna-card bg-white opacity-95 py-6">
+            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">Iniziative di networking in collaborazione con leader di settore</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale">
+                <span class="text-2xl font-bold text-gray-500">TechMatch</span>
+                <span class="text-2xl font-bold text-gray-500">GlobalInnovate</span>
+                <span class="text-2xl font-bold text-gray-500">StartHub Europe</span>
+                <span class="text-2xl font-bold text-gray-500">NexusPro</span>
+            </div>
+        </div>
+
+        <!-- SERVICES SECTION -->
+        <section id="features" class="max-w-5xl mx-auto dna-card mt-12 pt-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Networking Dinamico e Mentoring</h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">Una suite completa di strumenti in-app per farti incontrare la persona giusta al momento giusto.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="h-48 w-full overflow-hidden rounded-xl mb-6 relative">
+                        <img src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Networking" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Networking'">
+                        <div class="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 transition"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Smart Matching B2B</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Dimentica i bigliettini da visita inutili. L'algoritmo della nostra app ti connette direttamente con ogni <span class="font-bold text-gray-800">collega</span>, potenziale partner o investitore ideale per il tuo business attuale.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div id="mentoring" class="flex flex-col items-center text-center group">
+                    <div class="h-48 w-full overflow-hidden rounded-xl mb-6 relative">
+                        <img src="https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mentoring" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Mentoring'">
+                        <div class="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 transition"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Programmi di Mentoring</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Accelerazione professionale allo stato puro. Scegli una guida fidata, delinea i tuoi obiettivi e ottieni un netto <span class="font-bold text-gray-800">vantaggio</span> competitivo per eccellere nel tuo settore.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="h-48 w-full overflow-hidden rounded-xl mb-6 relative">
+                        <img src="https://images.pexels.com/photos/1708912/pexels-photo-1708912.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Eventi professionali" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Eventi'">
+                        <div class="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 transition"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Speed Date Aziendali</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Partecipa agli esclusivi eventi phygital organizzati tramite la piattaforma. Format veloci e mirati per far esplodere la tua <span class="font-bold text-gray-800">carriera</span> in sessioni da pochi minuti ad alto impatto.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS / SOCIAL PROOF -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">Le Voci dei Nostri Membri</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 shadow-sm relative">
+                    <div class="text-yellow-400 mb-2 text-xl">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Grazie a Copodua Ventures ho finalmente trovato un mentor nel settore fintech che ha svoltato il mio piano aziendale. La funzionalità di matching dell'app è incredibilmente precisa, ti mette in contatto solo con professionisti veramente rilevanti per la tua crescita."</p>
+                    <div class="font-bold text-gray-900">- Elena Rossi, <span class="font-normal text-sm text-gray-500">Startup Founder (Milano, 2026)</span></div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 shadow-sm relative">
+                    <div class="text-yellow-400 mb-2 text-xl">★★★★★</div>
+                    <p class="text-gray-700 italic mb-4">"Lavorare da remoto mi aveva isolato. Usando questa piattaforma ho costruito un <span class="font-bold">percorso</span> di collaborazioni fenomenale partecipando agli speed date online. Ogni interazione è ottimizzata, zero perdite di tempo, massimo rendimento."</p>
+                    <div class="font-bold text-gray-900">- Marco Bianchi, <span class="font-normal text-sm text-gray-500">Consulente IT Senior</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl font-bold text-gray-900 text-center mb-8">Domande Frequenti</h2>
+            <div class="space-y-4 max-w-3xl mx-auto">
+                
+                <details class="group bg-gray-50 border border-gray-200 rounded-lg p-4 open:bg-white open:ring-2 open:ring-primary open:ring-opacity-50 transition-all duration-300">
+                    <summary class="font-semibold text-lg text-gray-900 list-none flex justify-between items-center cursor-pointer">
+                        Come funziona il sistema di matching per trovare un Mentor?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 pt-3 border-t border-gray-100 leading-relaxed">
+                        Il nostro algoritmo analizza il tuo profilo, il tuo settore di interesse, le tue competenze attuali e i traguardi che desideri raggiungere. Incrociando questi dati, ti suggerisce i Mentor più idonei presenti nel nostro database, ottimizzando le possibilità di un accordo proficuo.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 border border-gray-200 rounded-lg p-4 open:bg-white open:ring-2 open:ring-primary open:ring-opacity-50 transition-all duration-300">
+                    <summary class="font-semibold text-lg text-gray-900 list-none flex justify-between items-center cursor-pointer">
+                        Gli eventi di speed networking sono in presenza o online?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 pt-3 border-t border-gray-100 leading-relaxed">
+                        L'app offre entrambi i formati. Potrai prenotarti per incontri "Digital Room" della durata di 10 minuti ciascuno per ampliare la rete a livello globale, oppure scoprire gli eventi "Live Hub" nelle principali città italiane per stringere mani dal vivo.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 border border-gray-200 rounded-lg p-4 open:bg-white open:ring-2 open:ring-primary open:ring-opacity-50 transition-all duration-300">
+                    <summary class="font-semibold text-lg text-gray-900 list-none flex justify-between items-center cursor-pointer">
+                        Posso usare l'app anche se sono alle prime armi lavorativamente?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 pt-3 border-t border-gray-100 leading-relaxed">
+                        Assolutamente sì. Copodua Ventures è progettata proprio per accelerare la crescita di chi è all'inizio. I Mentor dedicano ore specifiche a giovani talenti, fornendo consigli vitali che spesso richiedono anni per essere appresi autonomamente sul campo.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 border border-gray-200 rounded-lg p-4 open:bg-white open:ring-2 open:ring-primary open:ring-opacity-50 transition-all duration-300">
+                    <summary class="font-semibold text-lg text-gray-900 list-none flex justify-between items-center cursor-pointer">
+                        L'iscrizione ha dei costi fissi mensili?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 pt-3 border-t border-gray-100 leading-relaxed">
+                        Il download dell'app e la creazione del profilo base sono gratuiti. L'accesso a sessioni di mentoring avanzate o a specifici eventi fisici può richiedere l'acquisto di ticket digitali interni o l'iscrizione a piani Premium che si adattano alle tue necessità di networking.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 border border-gray-200 rounded-lg p-4 open:bg-white open:ring-2 open:ring-primary open:ring-opacity-50 transition-all duration-300">
+                    <summary class="font-semibold text-lg text-gray-900 list-none flex justify-between items-center cursor-pointer">
+                        Quanto dura tipicamente un percorso di Mentoring?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 pt-3 border-t border-gray-100 leading-relaxed">
+                        Dipende dalle tue necessità e dalla disponibilità del professionista che ti segue. Può variare da una singola "Power Session" di 60 minuti focalizzata su un problema specifico, fino a percorsi continuativi di 3-6 mesi per uno sviluppo di carriera a lungo termine.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT / FORM SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card bg-gray-900 text-white relative overflow-hidden">
+            <!-- Decorative circle -->
+            <div class="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-primary opacity-20 blur-3xl"></div>
+            
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-white">Pronto a fare il salto di qualità?</h2>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                        L'accesso a Copodua Ventures è attualmente a numero chiuso per garantire la massima qualità del network. Compila la richiesta di candidatura e ti invieremo l'invito per scaricare l'app non appena si libererà uno slot nel tuo settore di riferimento.
+                    </p>
+                    
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-center space-x-3 text-gray-300">
+                            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span>Matching con leader verificati</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-gray-300">
+                            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span>Priorità eventi speed date live</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-2xl relative text-gray-800">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; this.querySelector('button').classList.add('opacity-50','cursor-not-allowed'); setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='flex'}, 1800);">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900">Richiedi Invito</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nome e Cognome *</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-gray-50" placeholder="Mario Rossi">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Settore Professionale *</label>
+                                <select required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-gray-50">
+                                    <option value="">Seleziona il tuo settore...</option>
+                                    <option value="IT">Tecnologia & IT</option>
+                                    <option value="Finance">Finanza e Management</option>
+                                    <option value="Marketing">Marketing & Comunicazione</option>
+                                    <option value="Startups">Startup & Innovazione</option>
+                                    <option value="Other">Altro</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Anni di esperienza *</label>
+                                <input type="number" min="0" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-gray-50" placeholder="Es. 3">
+                            </div>
+                            <button type="submit" class="w-full btn-primary mt-6 py-4 text-lg">Invia Candidatura Rete</button>
+                            <p class="text-xs text-center text-gray-500 mt-4">Inviando il modulo accetti i nostri termini relativi alla gestione del profilo per la valutazione.</p>
+                        </div>
+                    </form>
+
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="success-msg" class="hidden flex-col items-center justify-center h-full min-h-[300px] text-center">
+                        <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-4">
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Candidatura Ricevuta!</h4>
+                        <p class="text-gray-600">Il nostro team valuterà il tuo profilo. Se risulterà in linea con le aperture attuali, riceverai un avviso tramite i canali selezionati per accedere all'App.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER & LEGAL -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-auto border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 border-b border-gray-800 pb-8 text-center md:text-left">
+                <span class="text-2xl font-black text-white tracking-tighter">COPODUA<span class="text-primary">VENTURES</span></span>
+                <p class="mt-2 text-sm max-w-xl">L'innovazione nel campo del networking professionale. Crea relazioni solide, scopri mentor esperti e accelera in modo esponenziale i tuoi risultati aziendali.</p>
+                <div class="mt-4 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                    <p class="text-xs text-gray-300 font-mono italic leading-relaxed">
+                        DISCLAIMER MANDATORIO: Questo è un sito promozionale indipendente gestito da Copodua Ventures, che agisce come affiliato per speed2net. Tutti i marchi registrati, i nomi commerciali o i loghi visualizzati in questo materiale promozionale sono di proprietà dei rispettivi proprietari originari e il loro utilizzo è a solo scopo identificativo dell'offerta originaria.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm text-left">
+                
+                <!-- PRIVACY POLICY VERBATIM (>15 Sentences) -->
+                <details>
+                    <summary class="text-white hover:text-primary transition">Informativa sulla Privacy</summary>
+                    <div class="text-xs text-gray-500 mt-2 space-y-2 max-h-48 overflow-y-auto pr-2 bg-gray-800 p-3 rounded">
+                        Questa è la nostra completa e dettagliata Informativa sulla Privacy, fornita in ossequio al Regolamento UE 2016/679, noto comunemente come GDPR.
+                        Teniamo in altissima considerazione la tutela dei dati personali dei nostri visitatori e degli utenti che inviano moduli sulla nostra piattaforma.
+                        I dati personali che raccogliamo attraverso questo portale web sono esclusivamente quelli forniti in modo volontario dagli interessati durante la compilazione dei moduli per richiedere una candidatura o maggiori informazioni.
+                        Tali informazioni raccolte includono di norma il nome completo, l'occupazione o il settore professionale di competenza, e la regione di residenza dell'utente.
+                        È fondamentale sottolineare che queste informazioni vengono trattate al solo ed unico scopo di evadere le specifiche richieste pervenute, nello specifico valutare la candidatura per l'ingresso nell'applicazione di mentoring.
+                        Le basi giuridiche che legittimano l'elaborazione dei tuoi dati personali poggiano in maniera primaria sull'esecuzione di misure precontrattuali che tu stesso hai generato inviando una esplicita richiesta.
+                        Il titolare del trattamento mette in atto e supervisiona continuamente tutte le adeguate ed idonee misure di sicurezza sia tecniche che di natura prettamente organizzativa necessarie.
+                        Queste rigide procedure sono finalizzate a scongiurare e prevenire attivamente qualsiasi rischio legato ad alterazioni, modifiche non autorizzate o alla perdita dolosa o fortuita dei dati.
+                        Ci impegniamo inoltre affinché tali dati in nessuna circostanza, se non per ordini dell'Autorità Giudiziaria, non subiscano accessi fraudolenti né siano oggetto di indebite diffusioni a soggetti di terze parti a mero scopo di profilazione senza il tuo assoluto assenso formale.
+                        Per tutta la fase operativa e di valutazione tecnica i dati personali da te comunicati vengono allocati e diligentemente immagazzinati all'interno di un perimetro virtuale collocato in strutture in Europa che dispongono di solidi requisiti contrattuali aderenti alle leggi europee vigenti.
+                        Per quanto attiene la tempistica concernente la fase della conservazione pratica, i tuoi riferimenti verranno mantenuti all'interno dei nostri database digitali soltanto per il tempo in cui si rivelano temporalmente strettamente essenziali.
+                        Ovviamente, una volta cessato lo scopo, verranno oscurati. Ti garantiamo il diritto imprescindibile, in conformità agli articoli dal 15 in poi del GDPR, di presentare formale reclamo agli enti statali atti al controllo delle privacy come il Garante.
+                        Ti confermiamo, a titolo di dovere di cronaca e trasparenza legale, che avrai sempre pieno e assoluto titolo per richiederci tempestiva visibilità per scoprire che entità specifica possediamo sui tuoi identificativi archiviati dai server del dominio attuale.
+                        Al medesimo livello e alla stessa valenza di intervento, hai sempre totale potere di ordinare formalmente la rimozione definitiva ed immediata di qualsivoglia tua voce a sistema contattando il responsabile designato dal team web di amministrazione di questi server.
+                        Noi, come distributori affiliati indipendenti dei servizi menzionati in ambito prettamente commerciale e non istituzionale aziendale, garantiamo ai cittadini dell'Unione Europea questo documento in linea continua e con futuri periodici riadattamenti legali resi per adeguarci al quadro direttivo generale mutabile.
+                    </div>
+                </details>
+
+                <!-- TERMS VERBATIM (>15 Sentences) -->
+                <details>
+                    <summary class="text-white hover:text-primary transition">Termini e Condizioni di Utilizzo</summary>
+                    <div class="text-xs text-gray-500 mt-2 space-y-2 max-h-48 overflow-y-auto pr-2 bg-gray-800 p-3 rounded">
+                        Il documento a seguire tratteggia con doverosa e profonda precisione l'architettura legale nota come i "Termini e Condizioni Ufficiali di Servizio e Concessione Web" essenziali e propedeutici.
+                        Questi sono i pilastri legali stabiliti da Copodua Ventures per il transito e l'agevolazione dell'esperienza legata all'indirizzo url per navigare i nostri landing promozionali dedicati al brand descritto.
+                        Pertanto se tu come persona di norma entri in uno qualsiasi dei nostri link, procedendo e sfogliando senza ritirarti entro pochi secondi i concetti su display a matrice attiva o smartphone, con la tua tacita volontà e operazione confermi.
+                        In parole povere tu sottoscrivi virtualmente di sposare a pieno titolo, senza appello alcuno, tutti e in assoluto gli adempimenti descritti da questo statuto elettronico esposto in fondo pagina in piena buona fede.
+                        Qualsivoglia testo narrativo digitale redatto o raffigurazione stilizzata colorimetrica o non, di grafica raster e ogni altro strumento divulgato dalla struttura che accoglie e fa da server per questo spazio vetrina in questione di proprietà privata appartiene di fatto ai promotori unici titolari e legittimati detentori intellettuali originari come il vero target speed2net.
+                        Ogni utente utilizzatore finale detiene formalmente e temporaneamente un espresso severo divieto insindacabile imposto dal copyright per l'espletazione pratica di clonazioni massive, rivisitazioni integrali estrapolate e tentativi commerciali finalizzati alle locazioni distributive delle frasi e forme estetiche.
+                        Nel malaugurato ed improbabile caso in cui non sussista nel lettore il desiderio o semplicemente la condivisione mentale e programmatica dei concetti vincolanti sopracitati, chiediamo con la massima e professionale premura di provvedere celermente e subitaneamente alla disconnessione o allo stacco temporaneo allontanandosi in sicurezza dalle view visive del portale che eroghiamo senza creare vincolo prima di ogni compilazione e raccolta consensi attivi.
+                        L'amministrazione in toto, incluso i preposti allo sviluppo codice web di natura infrastrutturale che monitora con protocollo https i server generati per Copodua Ventures declinano irrevocabilmente da adesso ogni insorgere potenziale o fattuale e accollamento di problematiche monetarie correlate ad alterazioni fisiche, finanziarie logiche su sistemi dovute all'azione o presunte letture di informazioni su questi nostri display temporanei a scopo lead.
+                        Come prassi ci riserviamo di fatto la grandissima autonomia strutturale unilaterale volta senza notifica alcuna per operare un blocco delle istanze inviate laddove esse dovessero trasparire incomplete non attendibili moralmente deprecabili o false nel modulo richiesto.
+                        Vige da qui ed ora un ulteriore norma: la redazione ed eventuale esposizione per vie interattive legali in giudizio, tra parte promotrice nostra vetrina contro ente utilizzatore privato o partita iva utente su cui la fruibilità virtuale applicherà come per giurisdizione normativa italiana di riferimento che sovrasta questo trattato specifico.
+                        Vien specificato apertamente senza retorica la possibilità oggettiva di ritardi, bug informatici da sovraccarico della memoria sui processori del server per form submissions ad oggi purtroppo impensabili totalmente prima e imprevedibili se accertati che ritardino l'efficienza reale che blocchino un invito, di cui nessun attore nostro dipendente promotore si carica dell'onere al ristoro economico se ritardi bloccano o pregiudicano matching in app.
+                        È onere proprio primario di navigante quello di non agire da entità non ammesse (quali BOT generativi), garantendo tu la forma essenziale vera umana ad inserimenti digitati alacremente sui database tramite interazioni mouse cursore o touchscreen veri.
+                        Per qualsivoglia variazione impattante che dovesse nei futuri cicli legiferativi intervenire ad inficiare ed annullare totalmente a seguito di sentenza un capo riga qui in lista questo decadrebbe ex tunc isolato dai restanti altri termini stabili senza condannare nullità sul volume legale sottoscritto qui globalmente con la semplice fruizione su Copodua Ventures Landing.
+                    </div>
+                </details>
+
+                <!-- REFUNDS VERBATIM (>15 Sentences) -->
+                <details>
+                    <summary class="text-white hover:text-primary transition">Politica di Resi e Rimborsi</summary>
+                    <div class="text-xs text-gray-500 mt-2 space-y-2 max-h-48 overflow-y-auto pr-2 bg-gray-800 p-3 rounded">
+                        Le dinamiche procedurali a scopo e titolo di tutela transattiva di Politica di Resi e garanzia dei Rimborsi Economici si incastrano specificamente con l'attuale tipologia di commercio per i prodotti di entità "immateriali virtuali consumabili" presenti all'interno dell'app del provider ultimo originario.
+                        In conformità ai moderni Codici che regolamentano globalmente nel suolo comunitario europeo le attività finali a Consumo o fruizioni per il consumatore si ha e sussiste di base costitutiva legale un diritto naturale per recedere a garanzia contrattale pattuita che consta ordinariamente nell'arco non superante quattordici giorni totali e calendarizzati a partizionare tempistiche dall'acquisto eseguito.
+                        Tuttavia ed a pieno titolo giuridico insito è da chiarire vigorosamente che all'interno di un applicativo scaricato ad altezza mobile, specializzato nella finalizzazione dei pacchetti inerenti iscrizioni ticket ad eventi speed networking programmati le casistiche di tutela differiscono ed i termini sono profondamente alterati in ragione dell'entità logica non solida fisica soggetta alla prestazione già ultimata prima dello spirare cronologico pattuito.
+                        Nel particolare momento specifico d'azione in cui tu esegui il matching od abiliti in forma telematica di attivazione i canali di dialogo e scambio networking via App si presume avvenuta formalizzazione erogatoria del sistema precludendo un riposizionamento formale a tutela totale standard.
+                        Risultato ed effetto logistico applicato indica dunque un inevitabile azzeramento retroattivo: l'utente decade ed ammette scientemente perdendo la piena opzione standard di fruire un intero importo di prelievo se le direttive d'abbinamento dei professionisti da Mentore avviati su base richiesta hanno consumato banda o energie dell'evento temporale schedulato.
+                        Esistono comunque e si profilano finestre eccezionali inusuali legate specificamente non alla qualità del colloquio o alle performance avute a patto formativo, difatti nel solo unico frangente in caso disastroso estremo se eventi "digital hub room" falliscano ad avviare flusso dati per ragioni imputabili a crolli massivi al codice centrale per noi tracciabile allora in tale rarità tecnica scatteranno le dinamiche di valutazione reclami su base e log temporali appositamente letti.
+                        Per porre richiesta proiettata al rimbalzo monetario dell'avvenimento digital saltato interamente sarai interamente esortato ad imbastire celermente un iter burocratico virtuale unicamente via ticket assistenziale fornito negli slot e pannelli assistenza presenti nella vera e nativa dashboard app in log.
+                        Tale richiesta dovrà con tassatività per forza maggiore ospitare descrittori concreti: in primo luogo i dettagli seriali correlativi dello step dell'acquisto della room matchata, con motivazione correlata ad id evento per facilitarne pronti check sulle registrazioni.
+                        Dal singolo invio formale il comitato gestionale dedicato e preposto ai Quality checks prenderà su sua scrivania operativa massimo trenta giornate naturali utili prima di deliberare o di respingere integralmente in assenza fondata o concedendo laddove palese torto software sussista tale rintracciabile da operatore una remissione bonifica stornando quota in base origine sui vettori d'addebito impiegati alla radice senza costi collaterali bancari dedotti.
+                        Avvisiamo solennemente di riflesso e su scala precauzionale la fetta che se la compagine dei Mentor avesse riscontro assenza od uscita dall'utente in ritardo prima di 24h dal live l'eventualità al rimborso in questo lasso zero tolleranza e non subentrerà mai come norma a tutela per chi investe suo oneroso prezioso frangente ed organizzatore esentato da colpe d'ignavia ed assenze e svogliatezze altrui da penale sanzione e trattenimento acconti conferiti pienamente pretesi ed incamerati a titolo coperture costi struttura software ed onorario ore allocate dei maestri ed esperti.
+                    </div>
+                </details>
+
+            </div>
+            
+            <div class="mt-12 text-center text-xs text-gray-600 border-t border-gray-800 pt-6">
+                &copy; 2026 Copodua Ventures. Tutti i diritti riservati.<br>
+                Sito vetrina indipendente generato automaticamente. Tutte le pratiche legali fanno capo all'effettivo sviluppatore del servizio dell'applicativo target.
+            </div>
+        </div>
+    </footer>
+
+    <!-- FIXED COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 border-t border-gray-800 text-white p-4 shadow-2xl transition-transform duration-500 translate-y-full flex flex-col sm:flex-row justify-between items-center z-50">
+        <div class="text-sm text-gray-300 mb-4 sm:mb-0 max-w-4xl pr-4">
+            Copodua Ventures impiega tecnologie (cookie tecnici essenziali) nel codice HTML temporaneo per ottimizzare la leggibilità ed un eventuale fluidità locale. Nessun cookie di tracciamento terzo ad oggi è istituito o monitorante naviganti da questa lander passiva verso gli scambi moduli limitata solo alle session base del server e alle sue policy di sistema nativo del browser locale di questo client.
+        </div>
+        <div class="flex-shrink-0">
+            <button onclick="acceptCookies()" class="bg-primary hover:bg-opacity-90 text-white font-bold py-2 px-6 rounded-md shadow-md text-sm transition">
+                Accetto Termini e Condizioni e Navigo
+            </button>
+        </div>
+    </div>
+
+    <!-- CORE INTERACTIVITY SCRIPT -->
+    <script>
+        // SMART ROUTING (Self-Healing Navigation / The Gravity Well)
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Success: Target exists -> Smooth Scroll
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else {
+                        // Fallback: The Gravity Well -> Force to #contact
+                        console.warn(`Target ${targetId} not found. Routing to Contact.`);
+                        const fallbackTarget = document.getElementById('contact');
+                        if(fallbackTarget) {
+                            fallbackTarget.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Cookie Banner Logic
+            const banner = document.getElementById('cookie-banner');
+            if (!localStorage.getItem('cookies_accepted')) {
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookies_accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
