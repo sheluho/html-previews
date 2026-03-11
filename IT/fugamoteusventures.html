@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fugamoteus Ventures | Confronto Conti Deposito e Tassi Interesse</title>
+    <meta name="description" content="Ottieni il massimo dai tuoi risparmi. Confronta il miglior conto deposito, analizza il rendimento offerto da ogni banca e trova il tasso più alto.">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <!-- CSS INJECTION: Design DNA Matrix -->
+    <style>
+        :root {
+            /* VAR D: Palette (Emerald for Finance) */
+            --primary: #10b981;
+            /* VAR C: Surface (Domain Last Letter K % 3 = 2 -> Cool White) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry (Domain Length 24 % 3 = 0 -> Sharp) */
+            --radius: 0px;
+            /* VAR B: Physics (Domain First Letter F ASCII 102 % 3 = 0 -> Flat Border) */
+            --shadow: 0 0 0 1px #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Base Light Gray */
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+             background-color: var(--primary);
+             color: #ffffff !important;
+             border-radius: var(--radius);
+             box-shadow: var(--shadow);
+             padding: 1rem 2rem;
+             transition: all 0.2s;
+             font-weight: bold;
+             display: inline-flex;
+             justify-content: center;
+             align-items: center;
+             cursor: pointer;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-1px); 
+        }
+
+        .text-primary { 
+            color: var(--primary); 
+        }
+
+        /* Custom Input Styling */
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: var(--radius);
+            margin-top: 0.5rem;
+            background-color: #ffffff;
+            transition: border-color 0.2s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Hero Image Overlay Adjustment */
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.6));
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-white border-b border-gray-200" style="box-shadow: var(--shadow);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-xl font-extrabold text-gray-900 tracking-tighter">
+                        Fugamoteus <span class="text-primary">Ventures</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">Vantaggi</a>
+                    <a href="#come-funziona" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">Confronto</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">Testimonianze</a>
+                    <a href="#faq" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">Domande Frequenti</a>
+                </nav>
+
+                <!-- CTA -->
+                <div class="hidden md:flex">
+                    <a href="#contact" class="btn-primary text-sm px-6 py-2">Trova il Tasso Migliore</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Vantaggi</a>
+                <a href="#come-funziona" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Confronto</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Testimonianze</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Domande Frequenti</a>
+                <a href="#contact" class="block px-3 py-2 mt-4 text-center btn-primary">Richiedi Confronto</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="pt-16 pb-20">
+
+        <!-- Full Width Hero Section -->
+        <section class="relative bg-gray-900 h-screen min-h-[600px] flex items-center">
+            <img src="https://images.pexels.com/photos/164527/pexels-photo-164527.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80" 
+                 alt="Pila di monete che rappresenta crescita dei risparmi" 
+                 class="absolute inset-0 w-full h-full object-cover" 
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/2c3e50/ecf0f1?text=Confronto+Conti+Deposito'">
+            <div class="absolute inset-0 hero-overlay"></div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white w-full">
+                <div class="max-w-2xl">
+                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-4 block">Proteggi e fai crescere il tuo capitale</span>
+                    <!-- Bridging Slogan H1 -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                        La migliore <span class="text-primary">Venture</span> per i tuoi risparmi: trova il conto col massimo rendimento.
+                    </h1>
+                    <p class="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed">
+                        Non lasciare che l'inflazione eroda il tuo capitale. Utilizza il nostro servizio di confronto conti deposito e tassi interesse per individuare la banca più solida e l'offerta più remunerativa oggi disponibile sul mercato.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="btn-primary text-lg">Inizia il Confronto Gratuito</a>
+                        <a href="#features" class="inline-flex justify-center items-center px-6 py-3 border border-gray-400 hover:border-white text-white rounded-[var(--radius)] font-semibold transition-colors">
+                            Scopri come funziona
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Indicator Bar -->
+        <div class="bg-gray-800 text-gray-400 py-6 text-sm text-center w-full mb-12">
+            <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center px-4 gap-4">
+                <span>✓ Confronto Indipendente al 100%</span>
+                <span>✓ Aggiornamento Quotidiano dei Tassi</span>
+                <span>✓ Analisi Istituti Garantiti dal FITD</span>
+                <span>✓ Zero Costi Nascosti</span>
+            </div>
+        </div>
+
+        <!-- Layout Wrapper for Components -->
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Core Value / Services Section -->
+            <section id="features" class="dna-card mt-[-4rem] relative z-10">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Ottimizza i Tuoi Risparmi con Dati Reali</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Scegliere il giusto conto deposito richiede tempo e competenza. Noi semplifichiamo il processo mettendoti di fronte ai numeri reali, per massimizzare il rendimento limitando i rischi.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="p-4 border-l-4 border-primary">
+                        <div class="text-primary text-3xl mb-4">📈</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Massimizza il Tasso</h3>
+                        <p class="text-gray-600">Esaminiamo continuamente le offerte del mercato bancario per segnalarti chi offre il tasso d'interesse netto più alto per i tuoi depositi.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="p-4 border-l-4 border-primary">
+                        <div class="text-primary text-3xl mb-4">🛡️</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Garanzia e Sicurezza</h3>
+                        <p class="text-gray-600">Verifichiamo che la banca scelta aderisca al Fondo Interbancario. I tuoi fondi sono protetti per darti una rendita totalmente priva di pensieri.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="p-4 border-l-4 border-primary">
+                        <div class="text-primary text-3xl mb-4">⚖️</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Vincolato o Libero</h3>
+                        <p class="text-gray-600">Hai bisogno della massima liquidità o preferisci bloccare i capitali per una rendita superiore? Ti aiutiamo a scegliere la tipologia perfetta di conto deposito.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Text Content Expansion / SEO Relevance -->
+            <section id="come-funziona" class="dna-card">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-6">Perché affidarsi al nostro servizio di confronto?</h2>
+                        <div class="space-y-4 text-gray-600">
+                            <p>Oggi ogni <strong class="text-gray-900">banca</strong> lancia promozioni continue, rendendo difficile distinguere il vero vantaggio commerciale dal semplice marketing. Capire se conviene optare per un <strong class="text-gray-900">conto</strong> libero o se valga la pena congelare una parte del patrimonio richiede chiarezza.</p>
+                            <p>Fugamoteus Ventures ti offre un cruscotto intuitivo e indipendente: non vendiamo direttamente alcun servizio bancario, ma esploriamo le condizioni reali del mercato. Dalle penali per lo svincolo anticipato all'imposta di bollo, calcoliamo il vero <strong class="text-gray-900">rendimento</strong> finale che finirà nelle tue tasche.</p>
+                            <p>Tutelare e accrescere i propri <strong class="text-gray-900">risparmi</strong> oggi significa trovare chi sa offrirti un <strong class="text-gray-900">tasso</strong> competitivo senza rinunciare alla stabilità finanziaria dell'istituto prescelto.</p>
+                        </div>
+                    </div>
+                    <div class="relative h-64 md:h-full min-h-[300px]">
+                         <img src="https://images.pexels.com/photos/730564/pexels-photo-730564.jpeg?auto=compress&cs=tinysrgb&w=800&q=80" 
+                              alt="Uomo d'affari che analizza documenti bancari" 
+                              class="absolute inset-0 w-full h-full object-cover rounded-[var(--radius)]"
+                              style="box-shadow: var(--shadow);"
+                              referrerpolicy="no-referrer"
+                              loading="lazy"
+                              onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffffff/10b981?text=Analisi+Mercato'">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Proof / Testimonials -->
+            <section id="reviews" class="dna-card">
+                <h2 class="text-2xl font-bold text-center text-gray-900 mb-10">Storie di chi ha fatto rendere i propri capitali</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Review 1 -->
+                    <div class="bg-gray-50 p-6 rounded-[var(--radius)] border border-gray-100">
+                        <div class="text-primary mb-4">★★★★★</div>
+                        <p class="text-gray-700 italic mb-4">"Cercavo un'alternativa sicura per i miei risparmi, ferma da troppo tempo a zero. Grazie a questo strumento ho scovato una banca che offre un tasso eccellente per un vincolo a 12 mesi."</p>
+                        <div class="font-bold text-gray-900">— Lorenzo M., Dirigente</div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="bg-gray-50 p-6 rounded-[var(--radius)] border border-gray-100">
+                        <div class="text-primary mb-4">★★★★★</div>
+                        <p class="text-gray-700 italic mb-4">"Credevo fosse complicato capire la differenza tra lordo e netto su un conto deposito. Qui è spiegato benissimo. Ora il mio investimento mi garantisce una cedola fissa costante."</p>
+                        <div class="font-bold text-gray-900">— Elena R., Insegnante</div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="bg-gray-50 p-6 rounded-[var(--radius)] border border-gray-100">
+                        <div class="text-primary mb-4">★★★★★</div>
+                        <p class="text-gray-700 italic mb-4">"Ottimo servizio di confronto. Volevo aprire un conto e in cinque minuti ho confrontato più di venti opzioni, trovando l'offerta promozionale più redditizia sul mercato."</p>
+                        <div class="font-bold text-gray-900">— Marco D., Imprenditore</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="dna-card">
+                <h2 class="text-2xl font-bold text-gray-900 mb-8">Domande Frequenti (FAQ)</h2>
+                <div class="space-y-4">
+                    <details class="group bg-white border border-gray-200 p-4 rounded-[var(--radius)] cursor-pointer open:bg-gray-50 transition-colors">
+                        <summary class="font-semibold text-gray-900 list-none flex justify-between items-center">
+                            1. Qual è la differenza tra conto deposito libero e vincolato?
+                            <span class="text-primary group-open:rotate-180 transition-transform duration-200">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            Il conto libero ti permette di versare e ritirare i tuoi fondi in qualsiasi momento, solitamente a fronte di un rendimento più modesto. Un deposito vincolato richiede di bloccare le somme per un periodo prestabilito (es. 6, 12, 24 mesi) in cambio di un tasso d'interesse significativamente superiore offerto dalla banca.
+                        </p>
+                    </details>
+
+                    <details class="group bg-white border border-gray-200 p-4 rounded-[var(--radius)] cursor-pointer open:bg-gray-50 transition-colors">
+                        <summary class="font-semibold text-gray-900 list-none flex justify-between items-center">
+                            2. Il servizio di confronto tassi è gratuito?
+                            <span class="text-primary group-open:rotate-180 transition-transform duration-200">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            Assolutamente sì. Il nostro sistema per individuare il miglior tasso e calcolare il rendimento dei tuoi risparmi è completamente gratuito per gli utenti. Veniamo retribuiti direttamente dalle istituzioni qualora un utente scelga di aderire a un'offerta tramite i nostri partner di affiliazione.
+                        </p>
+                    </details>
+
+                    <details class="group bg-white border border-gray-200 p-4 rounded-[var(--radius)] cursor-pointer open:bg-gray-50 transition-colors">
+                        <summary class="font-semibold text-gray-900 list-none flex justify-between items-center">
+                            3. I miei risparmi sono al sicuro?
+                            <span class="text-primary group-open:rotate-180 transition-transform duration-200">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            Nei paesi dell'Unione Europea, Italia compresa, le somme depositate sui conti presso istituti bancari autorizzati sono protette dal Fondo Interbancario di Tutela dei Depositi (FITD) fino all'importo massimo di 100.000 euro per singolo correntista e per istituto di credito.
+                        </p>
+                    </details>
+
+                    <details class="group bg-white border border-gray-200 p-4 rounded-[var(--radius)] cursor-pointer open:bg-gray-50 transition-colors">
+                        <summary class="font-semibold text-gray-900 list-none flex justify-between items-center">
+                            4. Che imposte gravano sul rendimento ottenuto?
+                            <span class="text-primary group-open:rotate-180 transition-transform duration-200">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            In Italia, gli interessi generati sono soggetti a una ritenuta fiscale alla fonte del 26%. Inoltre, è dovuta l'imposta di bollo proporzionale dello 0,20% sul capitale investito, calcolata annualmente. Alcune offerte in corso potrebbero prevedere che la banca si faccia carico dell'imposta di bollo.
+                        </p>
+                    </details>
+
+                    <details class="group bg-white border border-gray-200 p-4 rounded-[var(--radius)] cursor-pointer open:bg-gray-50 transition-colors">
+                        <summary class="font-semibold text-gray-900 list-none flex justify-between items-center">
+                            5. Come ottengo la panoramica personalizzata?
+                            <span class="text-primary group-open:rotate-180 transition-transform duration-200">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            Basta compilare il modulo rapido sottostante indicando il capitale indicativo che desideri impiegare. Valuteremo istantaneamente le promozioni bancarie in vigore restituendoti le soluzioni con le proiezioni più elevate per il tuo caso specifico.
+                        </p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Contact / Lead Form Generation -->
+            <section id="contact" class="dna-card mb-20 border-t-4 border-primary">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Richiedi la Classifica Tassi</h2>
+                        <p class="text-gray-600 mb-6">Compila i dati per visualizzare senza alcun impegno quali istituti bancari ti garantiscono l'utile più profittevole sui tuoi capitali e valuta comodamente la tua prossima mossa finanziaria.</p>
+                        
+                        <div class="mt-8 space-y-4">
+                            <h3 class="font-bold text-gray-900 border-b pb-2">I nostri riferimenti societari Partner:</h3>
+                            <p class="text-gray-600">
+                                <strong>Operatore Comparatore:</strong> Fugamoteus Ventures<br>
+                                <strong>Provider Originario:</strong> Segugio.it S.p.A.<br>
+                                <strong>Sede Operativa Provider:</strong> Via B. Crespi 19, MAC2, 20159 Milano, Italia.<br>
+                            </p>
+                            <p class="text-sm text-gray-500 italic mt-4">Nota: Il nostro servizio clienti agisce esclusivamente in via digitale tramite richiesta scritta a gestionale. Nessun contatto telefonico attivo da operatori esterni.</p>
+                        </div>
+                    </div>
+
+                    <!-- Functional Form Module -->
+                    <div class="bg-gray-50 p-8 rounded-[var(--radius)]" style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);">
+                        <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Analisi in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1800);">
+                            
+                            <div class="mb-5">
+                                <label for="nome" class="block text-sm font-semibold text-gray-700">Nome o Alias</label>
+                                <input type="text" id="nome" required class="input-field" placeholder="Es: Mario">
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="importo" class="block text-sm font-semibold text-gray-700">Ammontare dei risparmi da valutare</label>
+                                <select id="importo" required class="input-field">
+                                    <option value="" disabled selected>Seleziona range capitale...</option>
+                                    <option value="1">Sotto i 10.000 €</option>
+                                    <option value="2">Tra 10.000 € e 50.000 €</option>
+                                    <option value="3">Tra 50.000 € e 100.000 €</option>
+                                    <option value="4">Oltre 100.000 €</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="durata" class="block text-sm font-semibold text-gray-700">Preferenza durata deposito</label>
+                                <select id="durata" required class="input-field">
+                                    <option value="libero">Conto Libero (Liquidità immediata)</option>
+                                    <option value="12m">Vincolo Breve (6-12 Mesi)</option>
+                                    <option value="36m">Vincolo Medio/Lungo (Oltre 24 Mesi)</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-6 flex items-start">
+                                <input type="checkbox" id="privacy" required class="mt-1 h-4 w-4 text-primary rounded border-gray-300">
+                                <label for="privacy" class="ml-2 text-sm text-gray-500">Ho letto l'informativa in calce e accetto che la piattaforma compari i dati bancari. Acconsento al trattamento dati per la fornitura del servizio.</label>
+                            </div>
+
+                            <button type="submit" class="w-full btn-primary text-lg">Trova il Tasso Maggiore Ora</button>
+                        </form>
+
+                        <!-- Success Message -->
+                        <div id="success-msg" class="hidden text-center py-10">
+                            <div class="text-primary text-5xl mb-4">✓</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Ricevuta</h3>
+                            <p class="text-gray-600">Stiamo calcolando le opportunità di mercato e preparandoti l'accesso al pannello di confronto. I dettagli della proiezione saranno generati istantaneamente a sistema nei prossimi istanti.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer & Legal -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 border-b border-gray-700 pb-8 text-center md:text-left">
+                <!-- MANDATORY DISCLAIMER -->
+                <p class="text-sm font-semibold text-gray-300">Disclaimer Promozionale:</p>
+                <p class="text-sm italic text-gray-500 mt-2">
+                    Questo è un sito promozionale indipendente gestito da Fugamoteus Ventures, che agisce come affiliato per Segugio.it S.p.A. Fugamoteus Ventures non eroga servizi di natura finanziaria diretta, né svolge attività di consulenza all'investimento, ma espone informazioni e link al fine di instradare gli utenti ai comparatori ufficiali regolamentati dei propri partner.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 text-sm">
+                <div>
+                    <h4 class="text-white font-bold mb-4">Copyright © 2026</h4>
+                    <p>Fugamoteus Ventures. Tutti i diritti riservati.<br>Sviluppato per migliorare l'orientamento ai risparmiatori italiani nel panorama bancario nazionale.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Centro Sicurezza Dati</h4>
+                    <p>In aderenza rigorosa ai dettami europei GDPR per la navigazione e comparazione anonima.</p>
+                </div>
+            </div>
+
+            <!-- Verbose Legal Documents inside <details> -->
+            <div class="space-y-4 text-xs mt-10 border-t border-gray-800 pt-6">
+                <!-- PRIVACY POLICY (Min 15 sentences) -->
+                <details class="cursor-pointer bg-gray-800 p-4 rounded text-gray-300">
+                    <summary class="font-bold hover:text-white">Informativa sulla Privacy estesa (Clicca per leggere)</summary>
+                    <div class="mt-4 space-y-2">
+                        <p>La presente Privacy Policy descrive puntualmente come Fugamoteus Ventures raccoglie, protegge ed elabora le informazioni durante l'utilizzo della nostra piattaforma di confronto tassi e prodotti di accumulo. Consideriamo vitale la riservatezza e il mantenimento del segreto in materia di preferenze personali in ottica di profilazione per fini di tutela del consumatore. Nel momento in cui interagisci con la presente architettura informativa per visualizzare i parametri delle varie offerte presso qualsivoglia banca, limitiamo intrinsecamente il volume dei dettagli catturati unicamente ai riferimenti quantitativi aggregati necessari. I log generati dai nostri database web riguardano principalmente lo storico di accessi tramite IP parzialmente oscurati. L'utilizzo da parte dell'utenza della struttura di interrogazione, inclusa l’applicazione dei calcolatori o l’interazione tramite bottoni digitali non richiede iscrizioni forzose vincolanti. Tuttavia qualora vengano liberamente scelti dei parametri quantitativi per verificare un rendimento fittizio o per saggiare gli indici dei capitali potenziali da immobilizzare nel mercato o all'interno di un particolare comparto istituzionale bancario, tali selezioni di form potrebbero venire memorizzate. Ciò avviene rigorosamente come set informatico temporaneo nell'ottica dello smistamento dei link commerciali idonei agli operatori esterni. L'elaboratore originario terzo, Segugio.it, assumerà la natura di nuovo ed unico controllore effettivo, responsabile nel momento preciso in cui vi re-indirizziamo verso di loro, secondo i limiti operativi delle rispettive infrastrutture web ed esonerando quindi pienamente Fugamoteus Ventures dalle fasi amministrative e/o legali susseguenti all’approdo sul sito partner. L’operatore intermedio assicura standard crittografici conformi. Il titolare responsabile delle fasi preparatorie (noi stessi) rifiuta fin d'ora tassativamente pratiche quali compravendita in blocco del traffico su circuiti clandestini, diffusione e distribuzione a provider massivi non collegati per invii di volantinaggi informatici sgraditi. Non avvalendoci per precise policy interne del supporto a caselle di posta elettroniche dedicate ai visitatori, gli utenti impossibilitati a navigare restano invitati a non procedere mediante inserimento su modulo; chi prosegue accetta l’invio puramente digitale delle macro scelte. Rimane integro il diritto del cittadino digitale previsto dai provvedimenti della preposta Authority continentale (il cosiddetto Regolamento Europeo a favore della sfera privata - GDPR) in merito alle interrogazioni concernenti i dati temporaneamente trattenuti nelle fasi analitiche per tracciare le visite convertite ed estrapolare statistiche non legate a persona umana bensì agli impieghi percentuali del traffico in materia. La caducità o lo smaltimento definitivo dei moduli tecnici del sito che immagazzinano queste impronte avverrà ordinariamente allo scadere della chiusura contrattuale delle relative affiliazioni periodiche che abbiamo sottoscritto verso i circuiti finali erogatori delle offerte inerenti deposito libretto o fiduciari in genere, comunque mai trascorsi cicli astronomici lunghi superiori a dodici o sedici decadi da calendario calcolati a ritroso dall'istante tecnico del conferimento su database interno di Fugamoteus Ventures.</p>
+                    </div>
+                </details>
+
+                <!-- TERMS AND CONDITIONS (Min 15 sentences) -->
+                <details class="cursor-pointer bg-gray-800 p-4 rounded text-gray-300">
+                    <summary class="font-bold hover:text-white">Termini e Condizioni di Utilizzo (Clicca per leggere)</summary>
+                    <div class="mt-4 space-y-2">
+                        <p>Navigando e soffermandosi all'interno delle stanze digitali erette su questo specifico ramo della rete informatica sotto il nome provvisorio di promozione "Fugamoteus Ventures", l’utilizzatore è formalmente indotto a manifestare una chiara e ferrea accettazione volontaria ad ogni riga contrattuale redatta qui di seguito ai fini giuridico-regolamentari ed inerenti. Forniamo mediante pagine tematiche dedicate un'indagine esplicativa rivolta al comune portafogli delle famiglie o soggetti singoli tendenti ad apprendere orientamenti o simulazioni meramente descrittivi sulla fruttuosità ipotetica di un dato libretto oppure rendita. Si mette fin dall'immediato subito un accento sulla caratteristica neutra del presente luogo internet o dominio informatico in senso proprio poiché esso risulta non associabile giuridicamente ad agenzie autorizzate collocatrici di debito o emittenti azionari e in ugual maniera manlevato da licenze specifiche destinate a reti terze d'impresa attive nell'albo preposto delle consulenze professionali su asset veri e propri per gli risparmiatori o le relative borse di banchieri statali ed europei. Il nostro ruolo essenziale costituisce solo il puro instradamento pubblicitario (in senso di divulgazione comparativa su schemi grafici, tabelle numeriche provvisorie per tassi in uso, articoli descrittivi volti allo svisceramento dei requisiti basilari della salvaguardia statale di fondi congelati od assimilati ad operazioni ordinarie in denaro); di converso al presentarsi dell’opportunità in cui voi giungeste poi alle decisioni che determinano firme concrete inerenti trasferimenti a società operanti nel credito per aprire uno stralcio anagrafico od iniziare transazioni in quel medesimo attimo ci manleveremo esplicitamente senza dubbio da qualsivoglia conseguenza od errata comprensione da voi subita lungo l’itinerario istruttorio intrapreso sulla rete telematica di cui ne risponderanno nel caso le centrali istitutive titolari di dette transazioni reali. Non possiamo fornire, e conseguentemente rigettiamo categoricamente la totale obbligazione presunta al riguardo, di attestazioni ufficialmente inoppugnabili circa una ipotetica veridicità eterna dei saggi e aliquote citate nel sito di transizione essendo le percentuali variabili in misura fulminea quasi quotidianamente ad appannaggio dei tassi indetti dai consigli centrali in via di sovranità sovranazionale ed estera o politica pura. Aderiamo alla logica comportamentale secondo l’aspettativa formale per cui tutto quel che qui viene rintracciato si presuma erogato sul protocollo per ipertesti così «com’è stato redatto» ad uno specifico giorno solare del momento passato ed unicamente volto per illustrare il puro scopo introduttorio. Esentiamo in toto da obbligazioni materiali indennitarie ed espresse il network in via estensiva in casi manifesti derivati da defaillance dei gestionali che causino irraggiungibilità momentanea, spegnimenti da blocco totale dovuto al posizionamento sui server, danni collaterali a seguito d'infezioni esterne su macchine operative a valle dell'infrastruttura di visualizzazione al di là della prassi ordinaria volta a cautelare il nodo remoto d'esercizio stesso di dominio del brand mediatore od aggregato in nome. Lo scambio fra noi dell'intero complesso logico ed espressivo riassumibile come testi elaborati o impiantistica codificata permane in forza e proprietà esclusiva non trasferibile per via di divieti vigenti di copia incontrollabile ad alcun altro fine oltre l'apprendimento ed ispezione tramite applicativi grafici noti al fine unicamente informativo.</p>
+                    </div>
+                </details>
+
+                <!-- REFUND / WITHDRAWAL POLICY (Min 15 sentences) -->
+                <details class="cursor-pointer bg-gray-800 p-4 rounded text-gray-300">
+                    <summary class="font-bold hover:text-white">Politica sui Rimborsi e Diritto di Recesso (Clicca per leggere)</summary>
+                    <div class="mt-4 space-y-2">
+                        <p>Dal momento specifico dell’implementazione operativa sulle connessioni libere destinate a Fugamoteus Ventures poniamo particolare riguardo al manifestare senza margini ed in maniera assoluta che non sono mai imputati ai privati che consultano la panoramica tariffaria, canoni d’apertura forfettari preventivi né pagamenti di abbonamento fisso periodici con nessun metodo di liquidazione, bonifico ordinario e in via totale carte elettroniche di valute circolanti nazionali a saldo della prestazione divulgativa medesima presentata all’insegna esclusiva ed estrinseca del mercato d'informazione d'indirizzo tramite banner interattivo o griglia e similari su questo spazio d'approccio comparato ai saggi correnti di maturazione profitti sui giacimenti liquidi protetti ad hoc come deposito d'interesse vario oppure congelati. Ragion per cui, venendo oggettivamente a collassare in prima istanza del tutto lo spettro tecnico essenziale su una base materiale od una prassi fiduciaria d’acquisto economico e pattuito, vi cade altrettanto interamente qualsiasi materia giuridica a poter richiedere e far innescare le ordinarie consuetudini mercantili preposte da codice alla regolazione per le dinamiche risarcitorie tradizionalmente definite nel linguaggio ordinario rimborso fiduciario per corrispettivo errato ed altre variazioni per beni insoddisfacenti che normalmente i cittadini interpongono per ristoro finanziario dopo essersi resi conto del difetto insorto sulla filiera d’emissione transazionale o fatturazione con lo scontrino emesso dal mercante d'esazione iniziale del denaro incamerato od errato bonifico di compensazione a fornitura tangibile prestabilita d’inizio di cui qua mancano del tutto le origini premesse. Quella definibile formalmente quale prerogativa essenziale europea per tirarsi indietro che fa solitamente capolino tra le carte a titolo ripensamento si converte o riduce nel presente ambito, spoglio di natura reddituale diretta sui risparmi qui visionati, all'inequivocabile disponibilità garantita costantemente a ciascun visitatore a poter, da solo ed in qualsivoglia orario ritenuto solido per se, ignorare o cassare via computer la continuità relazionale in precedenza stabilita ed esaurire all’istante ed istintivamente i procedimenti comparativi abbandonando i frame originati verso questa zona d'inoltro telematico seccamente svincolata dal broker o di fatto annientare con procedure incluse nei browser le cache a voi abbinabili per preferenza generiche in locale sull’unità vostra. Tutte le istanze che in maniera reale si rivolgono ad attrarre per diritto acquisito il prelievo compensatorio delle coperture originariamente pagate verso gestori formali titolati d'emissioni, banche di raccolta finali erogatrici a cui un giorno potreste sottostare nel caso foste decisi ad immatricolare ed esigere lì posizioni reali od effettuare girofondi, apparterranno a logiche che andranno di prassi reclamate direttamente alle singole amministrazioni delle direzioni o i tesorieri dell’esecutore finale a carico prescelto dal cittadino o contribuente mediante contatti od ispettori della predetta terze parti interamente responsabili per lo snodo fiduciario dei libretti di contante in custodia. Restiamo in via preventiva sprovvisti dal farsi portatori ed erogatori intermedi a fine riaccredito al posto d'istituti, assicuratori del credito statali operanti o associazioni affilate.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Bottom Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 border-t border-gray-700 text-white py-4 px-6 z-50 transform translate-y-0 transition-transform duration-300" style="display:none;">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-sm">
+                <span class="font-bold">Privacy e Cookie:</span> Utilizziamo cookie tecnici per consentire l'utilizzo del simulatore e garantire la fluidità del calcolatore comparativo per i tuoi risparmi, analizzando traffico in modo aggregato. Proseguendo o chiudendo, accetti il deposito.
+            </div>
+            <div class="flex-shrink-0">
+                <button onclick="acceptCookies()" class="btn-primary text-sm py-2 px-4 shadow-none">
+                    Accetto i Cookie
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- The "Gravity Well" Protocol: Logic Scripts -->
+    <script>
+        // 1. Smart Routing for Anchors (Interception & Healing)
+        document.addEventListener('click', function(e) {
+            // Find closest anchor tag
+            let target = e.target.closest('a');
+            
+            // Check if it's an internal link starting with '#'
+            if (target && target.getAttribute('href') && target.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                let id = target.getAttribute('href').substring(1);
+                let element = document.getElementById(id);
+                
+                // Smart Route Fallback -> If ID missing, send to '#contact' form
+                if (!element && id !== '') {
+                    console.warn('ID ' + id + ' not found. Fallback to Contact form.');
+                    element = document.getElementById('contact');
+                }
+                
+                // Smooth scroll execution
+                if (element) {
+                    element.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open during anchor click
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            }
+        });
+
+        // 2. Cookie Banner Logic (localStorage check)
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookies_accepted')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookies_accepted', 'true');
+            let banner = document.getElementById('cookie-banner');
+            banner.style.transform = 'translateY(100%)';
+            setTimeout(() => { banner.style.display = 'none'; }, 300);
+        }
+    </script>
+</body>
+</html>
