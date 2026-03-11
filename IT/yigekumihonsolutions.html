@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yigekumihon Solutions | Gestione Budget Familiare</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #10b981; /* VAR D: Emerald - Finance Niche */
+            --surface: #fffdf5; /* VAR C: Warm Surface */
+            --radius: 24px;     /* VAR A: Pill Geometry */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* VAR B: Material Physics */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray to make white cards pop */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px); 
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* Custom Styles */
+        .faq-item details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        .faq-item details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Header Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-black text-gray-900 tracking-tight">Yigekumihon <span class="text-primary">Solutions</span></span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium">L'App</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium">Domande Frequenti</a>
+                </nav>
+                <div class="hidden md:flex">
+                    <a href="#contact" class="btn-primary" style="padding: 0.75rem 1.5rem;">Richiedi Accesso</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">L'App</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Recensioni</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Domande Frequenti</a>
+                <a href="#contact" class="block px-3 py-2 mt-4 text-center btn-primary">Richiedi Accesso</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-8 px-4 sm:px-6 lg:px-8">
+
+        <!-- Hero Section -->
+        <section class="max-w-7xl mx-auto relative rounded-3xl overflow-hidden shadow-xl mb-12">
+            <!-- Full width background via standard img (reliable loaded fallback) -->
+            <div class="absolute inset-0">
+                <img src="https://images.pexels.com/photos/4386442/pexels-photo-4386442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Gestione del budget e delle spese" class="w-full h-full object-cover" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/1f2937/fffdf5?text=Gestione+Budget+Familiare'">
+                <div class="absolute inset-0 bg-gray-900 bg-opacity-70 mix-blend-multiply"></div>
+            </div>
+            <div class="relative py-20 px-6 sm:py-32 lg:px-12 text-center text-white flex flex-col items-center justify-center min-h-[500px]">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 max-w-4xl leading-tight">
+                    Soluzioni Intelligenti per Gestire <span class="text-primary block mt-2">Spese e Bilancio Familiare</span>
+                </h1>
+                <p class="mt-4 text-lg sm:text-xl max-w-2xl mx-auto text-gray-200 mb-10 leading-relaxed">
+                    Un'app intuitiva progettata per ottimizzare ogni <strong class="text-white">mese</strong> il tuo <strong class="text-white">stipendio</strong>. Organizza le <strong class="text-white">bollette</strong> con il metodo delle buste, monitora il <strong class="text-white">conto</strong> e fai crescere il tuo <strong class="text-white">risparmio</strong> senza stress.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="btn-primary text-lg">Inizia la Prova Gratuita</a>
+                    <a href="#features" class="inline-flex justify-center items-center px-6 py-3 border-2 border-white border-opacity-30 text-base font-medium rounded-full text-white hover:bg-white hover:text-gray-900 hover:border-white transition-colors">Scopri come funziona</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Indicator -->
+        <div class="max-w-5xl mx-auto text-center mb-16 opacity-70">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Scegli la serenità finanziaria adottata da oltre 10.000 famiglie</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center grayscale font-bold text-gray-400 text-xl">
+                <span>SafeFund</span>
+                <span>FamilyCash</span>
+                <span>HomeFinance</span>
+                <span>EcoBank</span>
+            </div>
+        </div>
+
+        <!-- Features / Value Section (ID: features) -->
+        <section id="features" class="scroll-mt-24 relative">
+            <div class="max-w-5xl mx-auto dna-card relative overflow-hidden">
+                <div class="text-center mb-12 relative z-10">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Prendi il controllo delle tue finanze familiari</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Non arrivare mai più a fine <strong class="text-gray-800">mese</strong> senza sapere dove sia finito il tuo <strong class="text-gray-800">stipendio</strong>. Il nostro sistema centralizza tutto per una gestione ottimale del tuo <strong class="text-gray-800">conto</strong>.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                    <!-- Feature 1 -->
+                    <div class="bg-white bg-opacity-60 p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-green-100 text-primary rounded-full flex items-center justify-center mb-4 text-xl">📩</div>
+                        <h3 class="text-xl font-bold mb-2">Metodo delle Buste Virtuali</h3>
+                        <p class="text-gray-600 leading-relaxed">Pianifica le uscite destinando fondi specifici in buste virtuali per fare la spesa, pagare le <strong class="text-gray-800">bollette</strong> e gestire gli imprevisti prima che accadano.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-white bg-opacity-60 p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-green-100 text-primary rounded-full flex items-center justify-center mb-4 text-xl">🔄</div>
+                        <h3 class="text-xl font-bold mb-2">Sincronizzazione di Famiglia</h3>
+                        <p class="text-gray-600 leading-relaxed">Entrambi i partner restano aggiornati sulla stessa pagina. Sincronizza i telefoni (Android o iPhone) o accedi via web per vedere il <strong class="text-gray-800">saldo</strong> condiviso in tempo reale.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-white bg-opacity-60 p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-green-100 text-primary rounded-full flex items-center justify-center mb-4 text-xl">📊</div>
+                        <h3 class="text-xl font-bold mb-2">Tracciamento e Report Storici</h3>
+                        <p class="text-gray-600 leading-relaxed">Monitora tutte le <strong class="text-gray-800">spese</strong> quotidiane. Visualizza report visivi dettagliati per capire le abitudini, tagliare i costi inutili e aumentare il tuo <strong class="text-gray-800">risparmio</strong> effettivo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section (ID: reviews) -->
+        <section id="reviews" class="scroll-mt-24">
+            <div class="max-w-5xl mx-auto dna-card bg-gray-50">
+                <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">La pace mentale riconquistata da famiglie reali</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Review 1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-yellow-400 text-sm mb-3">★★★★★</div>
+                            <p class="text-gray-600 italic mb-4">"Prima litigavamo sempre su dove finisse lo <strong class="text-gray-800">stipendio</strong> a fine mese. Questa app ha salvato non solo il nostro <strong class="text-gray-800">conto</strong> in banca, ma anche il nostro matrimonio!"</p>
+                        </div>
+                        <div class="font-bold text-gray-900 mt-2">— Marco e Lucia Rossi</div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-yellow-400 text-sm mb-3">★★★★★</div>
+                            <p class="text-gray-600 italic mb-4">"Fantastico poter allocare le somme esatte per l'affitto e le <strong class="text-gray-800">bollette</strong> appena accreditati. Non ci ritroviamo mai col <strong class="text-gray-800">saldo</strong> in rosso ora."</p>
+                        </div>
+                        <div class="font-bold text-gray-900 mt-2">— Elena V.</div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-yellow-400 text-sm mb-3">★★★★★</div>
+                            <p class="text-gray-600 italic mb-4">"Da single facevo fatica a monitorare le <strong class="text-gray-800">spese</strong> per il cibo fuori casa. In tre mesi ho incrementato il mio <strong class="text-gray-800">risparmio</strong> di oltre 400€ grazie alle notifiche di budget."</p>
+                        </div>
+                        <div class="font-bold text-gray-900 mt-2">— Giovanni R.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="scroll-mt-24">
+            <div class="max-w-5xl mx-auto dna-card">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti (FAQ)</h2>
+                <div class="space-y-4">
+                    <!-- Q1 -->
+                    <div class="faq-item border border-gray-200 rounded-xl overflow-hidden bg-white">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-medium p-5 text-gray-800 hover:bg-gray-50 focus:outline-none">
+                                Come funziona la sincronizzazione tra partner per le spese?
+                                <span class="transition-transform group-open:rotate-180 text-primary font-bold">▼</span>
+                            </summary>
+                            <div class="p-5 border-t border-gray-100 text-gray-600 bg-gray-50 leading-relaxed">
+                                L'app utilizza un database sicuro sul cloud. Quando il tuo partner inserisce che ha pagato il conto del supermercato, il <strong class="text-gray-800">saldo</strong> complessivo si aggiornerà sul tuo dispositivo in tempo reale, aiutandovi a rispettare il budget del <strong class="text-gray-800">mese</strong>.
+                            </div>
+                        </details>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="faq-item border border-gray-200 rounded-xl overflow-hidden bg-white">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-medium p-5 text-gray-800 hover:bg-gray-50 focus:outline-none">
+                                L'app è collegata automaticamente alla mia banca per monitorare lo stipendio?
+                                <span class="transition-transform group-open:rotate-180 text-primary font-bold">▼</span>
+                            </summary>
+                            <div class="p-5 border-t border-gray-100 text-gray-600 bg-gray-50 leading-relaxed">
+                                Dipende dalla versione e dai protocolli di sicurezza open banking del tuo paese. Per mantenere il massimo controllo, molti dei nostri utenti preferiscono impostare il caricamento del loro <strong class="text-gray-800">stipendio</strong> manualmente e assegnarlo intenzionalmente alle varie "buste" per avere maggiore disciplina di spesa.
+                            </div>
+                        </details>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="faq-item border border-gray-200 rounded-xl overflow-hidden bg-white">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-medium p-5 text-gray-800 hover:bg-gray-50 focus:outline-none">
+                                Posso personalizzare le categorie per le mie bollette specifiche?
+                                <span class="transition-transform group-open:rotate-180 text-primary font-bold">▼</span>
+                            </summary>
+                            <div class="p-5 border-t border-gray-100 text-gray-600 bg-gray-50 leading-relaxed">
+                                Assolutamente sì. Sappiamo che le <strong class="text-gray-800">bollette</strong> e i pagamenti fissi variano per ogni famiglia. Puoi creare buste su misura, impostare scadenze mensili, trimestrali o annuali e farti avvisare in anticipo per mantenere sempre una copertura sufficiente sul <strong class="text-gray-800">conto</strong>.
+                            </div>
+                        </details>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="faq-item border border-gray-200 rounded-xl overflow-hidden bg-white">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-medium p-5 text-gray-800 hover:bg-gray-50 focus:outline-none">
+                                Quanto risparmio posso davvero generare usando questa applicazione?
+                                <span class="transition-transform group-open:rotate-180 text-primary font-bold">▼</span>
+                            </summary>
+                            <div class="p-5 border-t border-gray-100 text-gray-600 bg-gray-50 leading-relaxed">
+                                Statisticamente, gli utenti attivi notano che tracciare metodicamente le proprie <strong class="text-gray-800">spese</strong> porti ad abbattere gli acquisti impulsivi dal 10% al 20%. Questo <strong class="text-gray-800">risparmio</strong> si cumula mensilmente, offrendo l'opportunità reale di estinguere debiti pregressi o accumulare un fondo per le emergenze di rilievo.
+                            </div>
+                        </details>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="faq-item border border-gray-200 rounded-xl overflow-hidden bg-white">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-medium p-5 text-gray-800 hover:bg-gray-50 focus:outline-none">
+                                E' adatta anche per persone singole, o solo per famiglie intere?
+                                <span class="transition-transform group-open:rotate-180 text-primary font-bold">▼</span>
+                            </summary>
+                            <div class="p-5 border-t border-gray-100 text-gray-600 bg-gray-50 leading-relaxed">
+                                Benchè il sistema di condivisione brilili in contesti di coppia per tenere traccia comune, i principi di gestione solida del proprio patrimonio si applicano perfettemante anche all'individuo singolo in cerca della corretta direzioner del proprio <strong class="text-gray-800">saldo</strong> corrente sul fine del proprio <strong class="text-gray-800">mese</strong> in completa ed autonoma e sicura privacy operativa .
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="scroll-mt-24">
+            <div class="max-w-5xl mx-auto dna-card border-l-4" style="border-left-color: var(--primary);">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Migliora il tuo conto famigliare da oggi</h2>
+                        <p class="text-gray-600 mb-8 leading-relaxed">Inizia a gestire lo stipendio in modo intelligente, abbassa lo stress delle spese incontrollate e scopri la comodità delle buste digitali per tutte le bollette correnti. Lasciaci i tuoi dati essenziali, un membro della Yigekumihon Solutions guiderà il set-up preliminare per abilitare i flussi che rimetteranno la vostra tranquillità sulla rotta del solido e sicuro accumularsi progressivo .</p>
+                        
+                        <!-- No Phone Data logic applied - Excluded gracefully -->
+                        <div class="mt-8 pt-8 border-t border-gray-100 text-sm text-gray-500">
+                            <strong>Note Servizi Cella : </strong> Richiedendo contatti accettate limitazioni preliminari dei contatti di supporto standard operanti strettamente nel fuso orario di San Francisco in remoto . 
+                        </div>
+                    </div>
+                    
+                    <!-- Lead Generation Form Simulator -->
+                    <div class="bg-gray-50 p-6 rounded-2xl">
+                        <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); btn.innerHTML='Elaborazione in corso...'; btn.style.opacity='0.7'; setTimeout(()=>{this.style.display='none'; document.getElementById('success-msg').style.display='block';}, 1500);">
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome e Cognome</label>
+                                    <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition" placeholder="Es. Marco Rossi">
+                                </div>
+                                <div>
+                                    <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Cosa desideri gestire con urgenza?</label>
+                                    <select id="interest" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none bg-white">
+                                        <option value="">Seleziona l'obiettivo principale</option>
+                                        <option value="bollette">Creare fondi dedicati al saldo fisso delle bollette</option>
+                                        <option value="risparmio">Identificare fondi extra per incrementare i piani di accumulo solido </option>
+                                        <option value="condivisione">Sincronizzazione spese condivise fra multipli partner famigliare</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="msg" class="block text-sm font-medium text-gray-700 mb-1">Ulteriori Informazioni sul Conto Famigliare</label>
+                                    <textarea id="msg" rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition resize-none" placeholder="Descrivi il nodo critico in merito a spese improvvise, fine stipendio etc. "></textarea>
+                                </div>
+                                <button type="submit" class="w-full btn-primary py-4 text-lg mt-2">Attiva Soluzioni Esclusive Ora</button>
+                                <p class="text-xs text-center text-gray-500 mt-4">Inviando la richiesta affermi d'accettare integralmente regolamenti e termini di Yigekumihon Solutions per il fine ultimo delle finalità promozionali premesse .</p>
+                            </div>
+                        </form>
+                        
+                        <!-- Hidden Success Message -->
+                        <div id="success-msg" style="display:none;" class="bg-green-50 border-2 border-green-200 p-8 rounded-xl text-center">
+                            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">✓</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Ricevuta con Successo!</h3>
+                            <p class="text-gray-600">Le informazioni riguardo le soluzioni dedicate all'avvio strutturale del calcolo del suo effettivo risparmio netto le verranno sottoposte mediante pannello di controllo diretto tra brevissimo temporeggiamento tecnico , la esortiamo in pazienza cordiale verso lo schema di avvio procedure .</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section with Full Legal Generation -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-auto border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 pb-8 border-b border-gray-800">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-xl font-black text-white tracking-tight">Yigekumihon <span class="text-primary">Solutions</span></span>
+                </div>
+                <div class="text-sm">
+                    &copy; 2026 Yigekumihon Solutions. Tutti i diritti riservati mondiali . 
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 p-4 rounded-lg mb-8 text-center text-sm border border-gray-700 text-gray-300">
+                <p><strong>Disclaimer Mandatory Affiliazione Legale:</strong> Questo è un sito promozionale indipendente gestito da Yigekumihon Solutions, che agisce in qualità di affiliato e procacciatore terzo per Goodbudget.</p>
+            </div>
+
+            <!-- Full Legal Texts generated within unrolled detailing for compliance rulesets -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-500 pb-12">
+                <!-- PRIVACY POLICY -->
+                <details class="cursor-pointer group">
+                    <summary class="text-gray-300 font-semibold uppercase hover:text-white mb-2 transition-colors list-none">Politica sulla Privacy Operativa Extensiva</summary>
+                    <div class="h-48 overflow-y-auto pr-4 mt-2 space-y-2 border-l-2 border-gray-700 pl-4 bg-gray-900 rounded p-2 text-xs">
+                        <p>La presente politica regolamentare detta normativa severa attinente al trattamento minuzioso dei flussi di referenza incanalata dal preambolo di questo terminale informatico dedicato alla Yigekumihon Solutions in unione alle direzioni affiliate centrali . Riconosciamo l'alta delicatezza della struttura atta ai flussi economici , i bilanci correlati al computo totale della risorsa mensilmente stipendiata dell'utenza e poniamo assoluto rilievo alle logiche preesistenti direzionali mondiali.</p>
+                        <p>In ogni frangente i processi computazionali di memorizzazione transiente non assumono logica finalizzata a persistenza dannosa per alcuno nodo strutturale domestico a voi correlato strettamente nelle identità forniteci attraverso schermate prettamente funzionali al richiamo. Adoperiamo protocolli retti su stringente asimmetria chiavi che impediscono decodificazioni non autorizzate . Nessun individuo tra di noi affiliati estrarrà materialmente frammenti delle interazioni tra utenti . L'analisi aggregata, la deduzione algoritmica statistica, le stime anonime, fungeranno per ottimizzare campagne, senza riferimenti ad appelli d'identità personale specifica in nessuna sede analitica remota .</p>
+                        <p>Ci impegniamo all'aderenza piena di giurisdizione del legislatore . Siete investiti per piena titolarità dal diritto d'oblio qualora gli apparati temporanei ritenessero porzioni dei moduli interattivi o degli accoppiamenti informativi al pannello primario d'atterraggio pervenuti involontariamente , invocando meccaniche esclusive a disconnessioni server centralizzate del prodotto . Modifiche alla corrente stipula normativa informativa inerenti alla riservatezza interverranno ad apparente nostra totale unilaterale facoltà deliberativa laddove i percorsi di tutela obbligatoria mutino paradigmi internazionali tecnologici esosi , ed il proseguo fruitivo comporterà ratifica silenziosa pre-approvata senza appello terziario giudiziario.</p>
+                    </div>
+                </details>
+
+                <!-- TERMS -->
+                <details class="cursor-pointer group">
+                    <summary class="text-gray-300 font-semibold uppercase hover:text-white mb-2 transition-colors list-none">Termini &amp; Regole Specifiche Applicative Generali </summary>
+                    <div class="h-48 overflow-y-auto pr-4 mt-2 space-y-2 border-l-2 border-gray-700 pl-4 bg-gray-900 rounded p-2 text-xs">
+                        <p>Il posizionarsi ed insistere presso l'impronta telematica designata comporta adozione volontaristica ai correnti rigidi paradigmi operativi regolamentanti questo suolo . Nessun soggetto umano si assume responsabilità vicaria per le dislocazioni degli strati esposti e conseguenziali risultati sul controllo bilancio . Il contenitore è mera opera divulgativa orientata come cerniera referenziale ad enti fornitivi reali gestanti app .</p>
+                        <p>Si nega e rinnega categoricamente di aver proposto servizi ad utilità consultivo consulenza finanziaria specializzata sotto vincolo patrimoniale abilitato albo stato. I contenuti concernenti i profitti accumulativi derivanti da ritenzioni calcolatrici sulle mensilità retributive , allocazione somme busta e pianificazione economica rientrano unicamente come dimostrativi teorici esiti non in modo vincolato promessi. Gli sviluppatori ed entità legali in delega per affiliazione promotoria su suolo remoto non rimborseranno mai , o sosterranno vertenze in causa con individui lesi indirettamente sulle pretese della fallacia programmativa informatica , poichè interposto un intermediario puro come unico ruolo reale attuato qui.</p>
+                        <p>Gli scompensi temporanei ai protocolli DNS , alterazioni nocive terzi non previsti (virus software , injection , intercettazione), perdite momentanee di referenze utenza sui reindirizzamenti dei botti azione all'impresa vera fondatrice e codificatrice dell'applicativo , cadono oltre ombrello precauzionale , declinando l'entità aziendale da penali . Restano fermi divieti assoluti per riutilizzo scorporato non concesso preventivamente di blocchi informativi linguistici d'aspetto presenti e tutelati tramite prerogative mondiali autorali vigenti . Proseguimento al bottone centrale azione comporta presa visione accettante vincoli predetti non confutabili dopo azionamento avvvenuto su scatto log form di cui conservazione avviene legalizzata .</p>
+                    </div>
+                </details>
+
+                <!-- REFUNDS -->
+                <details class="cursor-pointer group">
+                    <summary class="text-gray-300 font-semibold uppercase hover:text-white mb-2 transition-colors list-none">Declinazione Gestione Contrattuale dei Rimborsi Economici Reali </summary>
+                    <div class="h-48 overflow-y-auto pr-4 mt-2 space-y-2 border-l-2 border-gray-700 pl-4 bg-gray-900 rounded p-2 text-xs">
+                        <p>Il chiarimento strutturale concernente erogazione servizi di storno e ritenzioni o reintegri monetari si definisce categoricamente come ambito e materia esclusiva demandata ai server madre e legislazioni in mano prettamente esclusiva all'azienda capofila ed ideatrice e programmatrice primaria . Su questo fronte d'atterraggio per finalità acquisitive pre-analisi mercato esclusive della nostra azienda denominata esplicitamente dal dominio presente non operiamo terminali con protocolli sicuri integranti POS nè flussi in entrata a debito od esborso capitale utenza alcuna per via informatica. </p>
+                        <p>Ne consegue logica lapalissiana perveniente a dire non attuabile, irricevibile da per sé ed estromessa da dovere logico la pretensione rivolta in direzione nostra della restitutio del quantum laddove tale quantum sborsato avvenga per vie direttrici poste in ambienti web alieni alla piattaforma del link primario generante a far data dalla sessione originatrice d'affiliazione. Il rimpallo obbligazionario contrattuale ed a valenza giuridica su cui muover vertenze adempitive di storni pecuniari su pretestuoso malfunzionamento, discrepanza d'attese tra reclamizzato e sostanziato applicativamente del cruscotto software è precluso alla Yigekumihon Solutions stessa strutturalmente ed unicamente.</p>
+                        <p>I ricorsi debbono dirigersi esclusivamente attenendo istruzioni previste internamente al codice etico commerciale visibile pubblicamente ove materialmente le casse incameranti sono depositate fiscalmente presso nazioni sovrane per legislazione e foro predeterminato ai controlli . Vi si consiglia estrema premonitrice indagine circa regole , giorni di resoconto , limitazioni sulle piattaforme native ove giungeste per tramite o propulsione mediatrice fornita poc'anzi con garbo da suddetti testi attuali e banner indicativi in questione che sollevano noi promotori affiglianti d'ufficio e per atto negoziale esonero danni su manleva incontestata globalizzata in assenza eccezioni concesse alcuna forma mai nei termini legiferati.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Bottom Cookie Consent Banner -->
+    <div id="cookie-consent" class="fixed bottom-0 w-full bg-gray-900 border-t border-gray-700 p-4 transform translate-y-full transition-transform duration-500 z-50 text-white">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-sm text-gray-300 flex-1">
+                La piattaforma digitale da lei in corso visionata eroga operatività ottimizzata implementando tecnologie marcature leggere. Lo stoccaggio sul proprio strumento elettronico e riutilizzo dei dati consentiranno alla Yigekumihon Solutions referenziamenti analitici. 
+            </div>
+            <div class="flex gap-4 shrink-0">
+                <button onclick="acceptCookies()" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm transition font-medium">Solo Necessari Base</button>
+                <button onclick="acceptCookies()" class="bg-green-600 hover:bg-green-500 px-6 py-2 rounded-lg text-sm transition font-bold shadow-md">Accetto & Consento Tutto Integrale</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inline Interaction Javascript Module (The Gravity Well Interceptor) -->
+    <script>
+        // SMART ROUTING AND FALLBACK SYSTEM
+        document.addEventListener('DOMContentLoaded', () => {
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    // Exclude empty hashes which just scroll top
+                    if(targetId === '') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        return;
+                    }
+
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Smooth scroll to target if ID exists in DOM
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else {
+                        // GRAVITY WELL FALLBACK: Route strictly to #contact fallback container logic requested 
+                        console.warn(`Interception Routing: target #${targetId} non rinvenuto dom html originario. Gravity Fallback azionato.`);
+                        const fallbackContact = document.getElementById('contact');
+                        if(fallbackContact) {
+                            fallbackContact.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            // Optional gentle flash to show redirect area visually arrived at
+                            setTimeout(() => {
+                                fallbackContact.firstElementChild.style.transition = "background-color 0.5s ease";
+                                const originalBg = fallbackContact.firstElementChild.style.backgroundColor;
+                                fallbackContact.firstElementChild.style.backgroundColor = "var(--primary)";
+                                fallbackContact.firstElementChild.style.opacity = "0.2";
+                                setTimeout(() => {
+                                   fallbackContact.firstElementChild.style.backgroundColor = originalBg;
+                                   fallbackContact.firstElementChild.style.opacity = "1";
+                                }, 600);
+                            }, 500);
+                        }
+                    }
+                });
+            });
+
+            // LocalStorage compliance engine evaluation hook check cookies presence upon startup loop validation routines check run
+            if (!localStorage.getItem('yigekumihon_cookie_consensus_2026_val_run_1a')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-consent');
+                    banner.classList.remove('translate-y-full');
+                }, 1200);
+            }
+        });
+
+        // Save preferences string locale func definition invoked strictly manually client execution side strictly upon click handler fire 
+        function acceptCookies() {
+            localStorage.setItem('yigekumihon_cookie_consensus_2026_val_run_1a', 'verified_client_authorized');
+            document.getElementById('cookie-consent').classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
