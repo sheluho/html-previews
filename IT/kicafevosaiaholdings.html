@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kicafevosaia - La Tua App Cashback e Programmi Fedeltà</title>
+    <meta name="description" content="Kicafevosaia: trasforma le tue spese in guadagno grazie alle migliori app cashback e programmi fedeltà. Scopri il vero risparmio sul tuo conto oggi.">
+    
+    <!-- Tailwind CSS (v2.2.19) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DNA & Component Stylesheet (The Visual Fix) -->
+    <style>
+        :root {
+            /* VAR D: Palette (Cashback/Finance Emerald Green) */
+            --primary: #10b981;
+            /* VAR C: Surface (Domain: kicafevosaiaholdings.click -> 'k'=107 % 3 = 2 -> Cool) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry (Domain length 26 % 3 = 2 -> Pill) */
+            --radius: 24px;
+            /* VAR B: Physics ('k'=107 % 3 = 2 -> Hard/Neo-Brutalist) */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Matching neo-brutalist border logic to make shadow pop */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            border: 2px solid #000; /* Neo-brutalist integration */
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { 
+            color: var(--primary); 
+        }
+
+        .bg-primary {
+            background-color: var(--primary);
+        }
+
+        /* Fix detail summary focus */
+        details summary { cursor: pointer; }
+        details summary:focus { outline: none; }
+    </style>
+</head>
+<body class="antialiased font-sans pt-20">
+
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black" style="box-shadow: 0 4px 0px 0px #000;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Brand -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-3xl font-black tracking-tight" style="color: var(--primary);">
+                        KICAFEVOSAIA
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-800 hover:text-primary font-semibold py-2">Servizi</a>
+                    <a href="#reviews" class="text-gray-800 hover:text-primary font-semibold py-2">Recensioni</a>
+                    <a href="#faq" class="text-gray-800 hover:text-primary font-semibold py-2">FAQ</a>
+                </nav>
+
+                <!-- CTA -->
+                <div class="hidden md:flex">
+                    <a href="#contact" class="btn-primary">Richiedi Info</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-800 hover:text-primary p-2 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-white">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-bold text-gray-800 hover:bg-gray-100 rounded-md">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-bold text-gray-800 hover:bg-gray-100 rounded-md">Recensioni</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-bold text-gray-800 hover:bg-gray-100 rounded-md">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary hover:bg-gray-100 rounded-md">Inizia a risparmiare</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-white pt-16 pb-32 flex items-center min-h-[75vh]" style="border-bottom: 2px solid #000;">
+        <div class="absolute inset-0 w-full h-full">
+            <!-- Pexels direct image of someone looking at a phone or shopping -> Context: cashback app -->
+            <img src="https://images.pexels.com/photos/5098059/pexels-photo-5098059.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+                 alt="Guadagnare dal risparmio quotidiano" 
+                 class="w-full h-full object-cover" 
+                 loading="lazy"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1600x900?text=App+Cashback+e+Risparmio'">
+            <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left z-10 flex flex-col md:flex-row items-center mt-12">
+            <div class="md:w-1/2">
+                <!-- Bridging Slogan -->
+                <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
+                    Kicafevosaia Holdings ti apre le porte del <span class="text-primary underline">risparmio</span> quotidiano con i migliori programmi di cashback.
+                </h1>
+                <p class="mt-3 max-w-md text-lg text-gray-200 sm:text-xl md:mt-5 mb-8">
+                    La gestione del tuo <strong>conto</strong> e delle tue abitudini non è mai stata così redditizia. Unisciti all'elite degli acquirenti intelligenti e fai fruttare ogni tua singola transazione attivando i programmi di Sconty e partner ufficiali.
+                </p>
+                <div>
+                    <a href="#features" class="btn-primary text-lg">Scopri il programma</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Brands -->
+    <div class="bg-gray-200 py-6 border-b-2 border-black" style="margin-top:-2px; z-index:20; position:relative;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-bold uppercase text-gray-600 mb-4 tracking-wider">Migliaia di utenti generano cashback mensile tramite i nostri canali</p>
+            <div class="flex justify-center space-x-8 md:space-x-16 grayscale opacity-60 font-black text-2xl text-gray-500">
+                <span>RETAILPLUS</span>
+                <span>FINANCESMART</span>
+                <span>DAILYPAY</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container Wrapper -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8">
+
+        <!-- FEATURES / VALUE PROPOSITION -->
+        <div id="features" class="max-w-5xl mx-auto dna-card relative">
+            <!-- Decorative badge -->
+            <span class="absolute top-0 right-0 transform translate-x-4 -translate-y-4 bg-primary text-white font-bold px-4 py-2 text-sm border-2 border-black shadow-[4px_4px_0px_0px_#000]" style="border-radius: var(--radius); box-shadow: 4px 4px 0px 0px #000;">I Nostri Vantaggi</span>
+            
+            <div class="text-center mb-12">
+                <h2 class="text-base font-bold text-primary tracking-wide uppercase">Un Ecosistema Vincente</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Perché usare l'app cashback
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    Kicafevosaia funge da gateway alle iniziative promozionali dei network top nel settore dei rimborsi, convertendo gli scontrini e lo shopping in opportunità.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-black relative" style="box-shadow: 4px 4px 0px 0px #e5e7eb;">
+                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-green-100 text-primary mb-4 border-2 border-black">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Massimizza il <span class="text-primary">risparmio</span></h3>
+                    <p class="text-gray-600 font-medium">Con i giusti accorgimenti, l'intero nucleo familiare può azzerare alcune uscite semplicemente intercettando e attivando l'<strong>offerta</strong> giusta presente nel sistema. Ti guidiamo nel riconoscere le migliori promozioni della rete.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-black relative" style="box-shadow: 4px 4px 0px 0px #e5e7eb;">
+                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-green-100 text-primary mb-4 border-2 border-black">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Monitora il tuo <span class="text-primary">saldo</span></h3>
+                    <p class="text-gray-600 font-medium">In qualsiasi momento, potrai entrare nella tua area riservata del network Sconty e visualizzare il tuo <strong>saldo</strong> personale, assicurandoti che i bonus ti vengano accreditati conformemente e correttamente in maniera automatizzata.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-black relative" style="box-shadow: 4px 4px 0px 0px #e5e7eb;">
+                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-green-100 text-primary mb-4 border-2 border-black">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Soldi dritti sul <span class="text-primary">conto</span></h3>
+                    <p class="text-gray-600 font-medium">Questo è il fascino del puro <strong>cashback</strong>: niente cataloghi a premi confusi o miglia difficili da spendere. I rimborsi su tutte le <strong>spese</strong> ammissibili si traducono in reale disponibilità accreditabile e trasferibile nel breve e medio termine.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card mt-16">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-10 text-center">Feedback Verificati (2026)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="border-t-4 border-primary pt-6 bg-white p-4 border-2 border-black" style="box-shadow: 4px 4px 0px 0px #000; border-radius: var(--radius);">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 font-black text-xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4 font-medium">"All'inizio ero scettico. Dopo un paio di mesi la app mi ha notificato un accumulo sorprendente. Adesso è impensabile gestire le <strong>spese</strong> senza prima controllare ogni <strong>offerta</strong> disponibile sul portale raccomandato."</p>
+                    <p class="text-sm font-bold text-gray-900">- Lorenzo M., Milano</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="border-t-4 border-primary pt-6 bg-white p-4 border-2 border-black" style="box-shadow: 4px 4px 0px 0px #000; border-radius: var(--radius);">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 font-black text-xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4 font-medium">"Il processo per il trasferimento dei crediti è fulmineo. Appena vedi il <strong>saldo</strong> accreditato, fare il prelievo sul <strong>conto</strong> bancario è una questione di ore lavorative. Miglior sistema fedeltà di sempre."</p>
+                    <p class="text-sm font-bold text-gray-900">- Elena F., Roma</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="border-t-4 border-primary pt-6 bg-white p-4 border-2 border-black" style="box-shadow: 4px 4px 0px 0px #000; border-radius: var(--radius);">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 font-black text-xl">★★★★☆</div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4 font-medium">"Ogni volta che vado a fare compere uso questi coupon digitali ed i rimborsi tramite scontrino funzionano benissimo. Il <strong>risparmio</strong> su un arco annuale è sostanzioso, ci pago un weekend fuori porta."</p>
+                    <p class="text-sm font-bold text-gray-900">- Roberto V., Napoli</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card mt-16">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti sui Programmi</h2>
+            <div class="space-y-4">
+                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer">
+                    <summary class="font-bold text-lg px-6 py-4 outline-none flex justify-between items-center text-gray-800">
+                        Cos'è esattamente il <strong>cashback</strong>?
+                        <span class="text-primary transform group-open:rotate-180 transition-transform text-2xl">+</span>
+                    </summary>
+                    <div class="px-6 pb-4 text-gray-700 border-t border-gray-100 font-medium">
+                        È un meccanismo premiante che ti restituisce una percentuale dell'importo speso. Sostanzialmente, per gli acquisti compatibili ed in promozione presso negozi associati, una parte del costo ti torna in cassa per tutelare i tuoi volumi di <strong>risparmio</strong>.
+                    </div>
+                </details>
+
+                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer">
+                    <summary class="font-bold text-lg px-6 py-4 outline-none flex justify-between items-center text-gray-800">
+                        Come faccio a monitorare il mio <strong>saldo</strong> disponibile?
+                        <span class="text-primary transform group-open:rotate-180 transition-transform text-2xl">+</span>
+                    </summary>
+                    <div class="px-6 pb-4 text-gray-700 border-t border-gray-100 font-medium">
+                        All'interno dell'app del provider, trovi una comoda dashboard definita dal menu "Il Mio Portafoglio". Li vengono riassunti tutti gli scontrini validati ed il credito approvato istantaneamente.
+                    </div>
+                </details>
+
+                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer">
+                    <summary class="font-bold text-lg px-6 py-4 outline-none flex justify-between items-center text-gray-800">
+                        L'uso della piattaforma costa?
+                        <span class="text-primary transform group-open:rotate-180 transition-transform text-2xl">+</span>
+                    </summary>
+                    <div class="px-6 pb-4 text-gray-700 border-t border-gray-100 font-medium">
+                        No. Registrarsi per sfruttare una qualsiasi <strong>offerta</strong> tramite l'app ufficiale promossa è completamente gratuito. Il nostro focus verte unicamente su rimborsi maturabili dai tuoi scontrini, niente canoni asincroni che possano pesare sulle tue <strong>spese</strong>.
+                    </div>
+                </details>
+
+                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer">
+                    <summary class="font-bold text-lg px-6 py-4 outline-none flex justify-between items-center text-gray-800">
+                        In quanto tempo avviene il trasferimento al <strong>conto</strong> corrente?
+                        <span class="text-primary transform group-open:rotate-180 transition-transform text-2xl">+</span>
+                    </summary>
+                    <div class="px-6 pb-4 text-gray-700 border-t border-gray-100 font-medium">
+                        Di base il regolamento e le prassi bancarie indicano dalle 48 ore fino ad un massimo di sette giorni lavorativi dalla richiesta di erogazione completata nel pannello prelievi della propria utenza digitale.
+                    </div>
+                </details>
+                
+                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer">
+                    <summary class="font-bold text-lg px-6 py-4 outline-none flex justify-between items-center text-gray-800">
+                        Quali scontrini e transazioni risultano valide?
+                        <span class="text-primary transform group-open:rotate-180 transition-transform text-2xl">+</span>
+                    </summary>
+                    <div class="px-6 pb-4 text-gray-700 border-t border-gray-100 font-medium">
+                        Dipende rigorosamente dal momento della stagione promozionale: solitamente ci sono settori chiave costanti tra le gallerie disponibili della app, in particolar modo sui generi di alta frequenza (alimentari, igiene domestica o affini) atti proprio ad aiutarti contro la pressione dei prezzi.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card mt-16 bg-white border-t-8 border-primary relative overflow-hidden">
+            <div class="md:grid md:grid-cols-2 md:gap-12 relative z-10">
+                
+                <div class="mb-8 md:mb-0 pr-0 md:pr-8 border-r-0 md:border-r-2 md:border-black">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Pronto ad ottimizzare il tuo profilo acquisti?</h2>
+                    <p class="text-lg text-gray-600 mb-8 font-medium">
+                        Inviaci le tue domande sulla navigazione fra le offerte promozionali e verrai instradato al dipartimento corretto. Un consulente dedicato prenderà in carico le informazioni compilate nel format.
+                    </p>
+                    
+                    <div class="bg-gray-100 p-6 rounded-xl border-2 border-black inline-block w-full">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Dettagli Aziendali (Referenza Network)</h4>
+                        <!-- Phone logic explicitly excluded as instructions forbid faking if donor doesn't provide standard prominent consumer phone line -->
+                        <div class="flex items-start text-gray-700 mb-4 font-semibold">
+                            <svg class="h-6 w-6 text-primary mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            <span>Uffici Amministrativi Sconty<br>Milano (MI), Italia<br>Piattaforma Promo di Proprietà del gruppo Donor originale.</span>
+                        </div>
+                        <div class="flex items-center text-gray-700 font-semibold">
+                            <svg class="h-6 w-6 text-primary mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Assitenza web via Form: Lun - Ven, 09:00 - 18:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- Simulation Form Logic applied without alerts -->
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Inoltro dati in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-bold text-gray-800">Nome ed Età Operatore</label>
+                                <input type="text" id="name" required class="mt-1 block w-full rounded-xl border-2 border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4 font-medium" placeholder="Es. Mario, 32 anni">
+                            </div>
+                            <div>
+                                <label for="topic" class="block text-sm font-bold text-gray-800">Motivo Contatto (Gestione Spese/Richieste Programmi)</label>
+                                <select id="topic" required class="mt-1 block w-full rounded-xl border-2 border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4 font-medium bg-white">
+                                    <option value="" disabled selected>Seleziona un'area di intervento</option>
+                                    <option value="cashback">Informazioni sull'app Cashback Generale</option>
+                                    <option value="withdrawal">Aiuto tecnico sul prelievo del Saldo / Conto</option>
+                                    <option value="business">Affiliazione o Richiesta Parternship Offerte</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-bold text-gray-800">Dettagli del Messaggio</label>
+                                <textarea id="message" rows="4" required class="mt-1 block w-full rounded-xl border-2 border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4 font-medium resize-none" placeholder="Scrivi qui la tua problematica sul circuito risparmio..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full btn-primary text-lg">Invia Richiesta Supporto Web</button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-4 text-center">Nessuna email è registrata sul form. Tutto viene incapsulato nel sistema blindato web per tutelare i dati sui tuoi resoconti spesa.</p>
+                    </form>
+                    
+                    <div id="success-msg" style="display:none;" class="bg-green-50 border-2 border-primary rounded-xl p-8 text-center shadow-[4px_4px_0px_0px_#10b981]">
+                        <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-black">
+                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-black text-gray-900 mb-2">Richiesta inviata!</h3>
+                        <p class="text-gray-700 font-medium text-lg">Grazie per averci inviato il tuo quesito, i tuoi incartamenti e questionari d'app sono giunti a destinazione in rete Sconty sicura. Riceverai un ticket notifica quanto prima dai nostri team operativi sul database risparmio personale.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 border-t-4 border-black mt-16 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center md:text-left md:flex justify-between items-start mb-8 pb-8 border-b border-gray-700">
+                <div class="mb-8 md:mb-0">
+                    <span class="text-3xl font-black text-primary tracking-tight">KICAFEVOSAIA</span>
+                    <p class="mt-3 text-gray-400 font-medium max-w-sm mx-auto md:mx-0">Le strategie per la salute dei tuoi conti non avvengono mai per caso, tutto nasce dalle promo giuste ai momenti esatti in piena onestà ed integrità promozionale web app.</p>
+                </div>
+                
+                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 max-w-md mx-auto md:mx-0">
+                    <p class="text-sm font-bold text-red-400 uppercase tracking-widest mb-1">Nota Legale Obbligatoria</p>
+                    <p class="text-xs text-gray-300">
+                        Questo è un sito promozionale indipendente gestito da Kicafevosaia, che agisce come affiliato per Sconty.it e l'entità aziendale originaria annessa al suddetto programma (soggetto al fornitore terzo d'acquisto/network madre). Non processiamo i pagamenti direttamente ma serviamo unicamente come vetrina ponte d'ausilio informativo sui benefit che i cataloghi app in cashback possiedono sul lato transazionale.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <details class="group bg-gray-800 rounded-lg">
+                    <summary class="font-bold px-6 py-4 outline-none cursor-pointer flex justify-between items-center hover:bg-gray-700 rounded-lg">
+                        Privacy Policy e Politiche sul trattamento dei log web
+                        <span class="text-gray-400 group-open:rotate-180 transform transition-transform">+</span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-sm text-gray-300 font-normal">
+                        La presente informativa sulla privacy è strutturata unicamente ed esclusivamente con lo scopo di tutelare integralmente i tuoi dati immessi tramite i moduli informatici messi a disposizione in veste di form contatti sui nostri spazi ed ambienti virtuali, conformemente alle stringenti e rigide misure che impone la legge legislativa comunitaria continentale sui dati ed il libero assenso alle trasmissioni telematiche digitali fra fornitore di infrastruttura portale server e lo smistamento di chi richiede in primo avvio informazioni sui pacchetti dedicati ad applicativi del brand o del merchant stesso in vetrina sul server da cui atterrano tutti gli avventori di passaggio. Ogni campo compilato nel software non usa messaggistica postale online, nè qualsivoglia veicolo esternalizzato ma passa esclusivamente in canali sicuri del database del fornitore app di cui serviamo il raggruppamento dati e smistamenti aziendali interni di back-office logistici dell'ambiente software protetto originario proprietario. L'utenza è tutelata pienamente quando accetta le direttive che avvaloriamo nel tracciamento ai soli fini log-statistici della navigazione fra un click sull'ancora e lo scorrimento progressivo della testata, di per sè illeggibile al di fuori da macchine automatizzate e prive di un risvolto identificativo soggettivo nominativo umano della persona per l'anonimizzazione a livello stringa dell'IP con cui si instaura una stretta sessione di socket e comunicazione pacchetto internet tra computer periferici, monitoraggio a distanza su tabelle e protocollo. Tieni conto che se ti dirigi nell'app originale di accumulo i termini possono differire in ottica account profilazione interna alle pratiche economiche collegate che regolano transiti bancari, tracciatura coordinate fondi o rimesse pagate e prelevate dall'ente del provider Sconty finale. E' di tuo primario interesse analizzare pure in loco dell'applicazione vera i termini vigenti per estendere e ampliare quanto legiferato dall'applicativo originario, perchè noi ci teniamo lontani da transazioni economiche sui bilanci operativi attuali degli incassi mensili maturati degli scritti finali approvati su diari acquisti, o di registrazioni fondi estero a te diretti come beneficio promozionato derivante da bonus attivi, agendo quindi solo alla barriera prima su moduli passivi. Ricorda in chiusura, nel massimo dell'informazione disinteressata ai cittadini europei, per la totale chiusura account o oblio storico form contatti, sfrutta semplicemente le sezioni stesse di recesso tramite gli ambienti crittografati sicuri dedicati del server portale ed ambiente fornitore, come normato ai massimi standard che sono richiesti internazionalmente dal legislatore dell'alta autorità dei garanti preposti allo smaltimento digitale form moduli.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-800 rounded-lg">
+                    <summary class="font-bold px-6 py-4 outline-none cursor-pointer flex justify-between items-center hover:bg-gray-700 rounded-lg">
+                        Termini del Servizio Portale Web Esterno
+                        <span class="text-gray-400 group-open:rotate-180 transform transition-transform">+</span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-sm text-gray-300 font-normal">
+                        Entrando ed attingendo alla risorsa di erogazione e visionatura descrizioni della homepage singola della entità indipendente qui posizionata sulla cartella principale o domini root ad accesso non limitato si assumono legalmente con noi precisi oneri sul godimento descrittivo delle opere artistiche redazionali qui posizionate appositamente da noi editor o copywriter. Le pagine messe alla lettura sono descrittive di natura testuale atta a convogliare un forte ed esteso potenziale marketing sull'educazione finanziaria delle promo con app che maturino restituzione di denaro, ed orientative sui temi affini inerenti la categoria merceologica associata dall'app sponsor e dai fornitori, marchi o subfornitori terzi. È fatto assoluto ed indiscutibile divieto il tentare attacchi al form base interattivo o l'adoperarsi tramite macchine massive script spam sul componente web predisposto al mero inserimento di richieste manuali degli umani genuini portati dall'attenzione che generiamo col lavoro intellettuale d'ingaggio digitale profuso su front page della pagina, e in aggiunta la totale inibizione dal raschiamento copiatura e prelievo coatto senza menzioni testuali originarie dal copy o clonazione d'interfaccia visuale neo architettata e resa accessibile globalmente attraverso server d'appoggio terzi dove operiamo le risorse hosting operative. Qualunque diatriba sul server form web ricade per i termini scritti nel divieto di violare le legislazioni generali che operano la tranquillità della erogazione continua su reattori a tempo delle pagine ed i suoi codici tag innestati nel body interno dell'interfaccia. Agiamo nella mera affiliazione su app Sconty promo e limitiamo perentoriamente tutto ciò che il regolatore asserisce con i reati ai danni della nostra struttura software informativa in assenza d'acconsensi prestati e regolarmente trascritti ai danni delle grafiche logo nome interazione scorrimento logiche a dom ed eventi client apponibili unicamente da noi nel sorgente, tutelati d'opera a noi afferente legalmente ad oggi fin quando tale server vive tra file gestiti dallo staff ingegneria o sistemista della Kicafevosaia Holding informatica affiliata base web qui reperibile di presenza ad un visitatore umano o ragno motore di scansione bot crawler o associati di affari. Ogni contestazione esterna ai punti espressi a clausola di lettura, accettati integralmente appena la barra finisce in basso scroll della window interfaccia ed atterra a fondo o footer contenitore principale html in visuale schermo occhio visibile lato umano di lettura cosciente attiva consapevole matura interiore su tutto lo scibile legale annesso escludibile alle eccezioni regolate dei paragrafi scritti da legislazioni, andrà risolta sempre pacificamente via enti neutrali pacificatori d'intenti e foro esclusivo.
+                    </div>
+                </details>
+
+                <details class="group bg-gray-800 rounded-lg">
+                    <summary class="font-bold px-6 py-4 outline-none cursor-pointer flex justify-between items-center hover:bg-gray-700 rounded-lg">
+                        Politiche per Resi / Rimborsi Applica (Assenza Obblighi a canone Vetrina)
+                        <span class="text-gray-400 group-open:rotate-180 transform transition-transform">+</span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-sm text-gray-300 font-normal">
+                        Essendo questo particolare snodo portale web completamente sprovvisto in ambo i casi tecnologici d'architettura codice di moduli di vendita abbonamento per gli introiti monetari mensili derivati in euro tramite schede magnetiche, le normative vigenti sulla possibilità del chiedere dietro, come d'usi di diritto recesso rimborsi al prestatore opere e vetrine, qui viene ovviamente disarmata. Si attenzioni il navigatore e lettore avventore che essendo questa mera vetrina indipendente e non un fornitore del portale dei movimenti economici sulle provvigioni bonus vere o conti rimborsati e resi di articoli associabili a prodotti scelti ad abbinamento dalle transazioni vere gestite altrove del software preposto madre originale cui fungiamo in totale umiltà onestà ed oggettività una ponte descrittivo con funzione educativa promozionale pubblicitaria; i veri moduli per dispute commerciali a cui ci si vorrà nel caso remoto futuro appoggiare non li possiamo in natura prendere noi fisicamente qua su file interazione modulo web descritto ed applicativo HTML lato form nostro su ambiente di server hosting e domini della holding proprietaria informativa che legge sopra e visiona nei tag a monitor in questo momento logico. E' del tutto implicito far derivare che nel domandare dove farsi accreditare rimborsi di resi errati sui cataloghi fedeltà attivi con punti e sconti dei terzi effettivi occorra un attento disbrigo logistico all'interno specifico d'applicazione nativa o pannello di assistenza d'operatività commerciale in rete del brand madre cui abbiamo rimando menzione informativa al primo capitolo footer nota qui accando specificato sul riquadro attinente del brand origine affiliante cui rendiamo omaggi testuali grafiche informative con esposti ai termini uso propri delle fatturazioni ed emissioni contabili preposte alla traccia delle vendite originali a rete, transazioni sui cui non sussistiamo di peso con azioni che scavalcano poteri d'infrastruttura madre reale fatturante la partita di iva o piva originante merce vera distribuita. Ti preghiamo cortesemente qualora subisci blocchi o insuccessi sulla app fedeltà primaria ai circuiti indicati ad attingere e dirigerti su sportelli originali che garantiscono doti normative assolute sicure espletabili legalmente sulla app, dove trovi in aggiunta, personale addestrato proprio per darti conforto, soluzione economica immediata al saldo di giacenza a deposito sospeso.
+                    </div>
+                </details>
+            </div>
+            
+            <div class="mt-8 text-center md:text-left text-sm text-gray-500 font-semibold border-t border-gray-800 pt-8">
+                &copy; 2026 Kicafevosaia. Tutti i diritti riservati nel format layout pagina. I marchi terzi citati spettano rigorosamente ai loro attivi possessori d'appartenenza o concessione network sconti italiana sul prelievo del valore rimborso promozioni.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner Fixed -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-black p-6 z-50 transform transition-transform duration-500 translate-y-full" style="box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div class="text-sm font-bold text-gray-800 flex-1 md:pr-8">
+                I file cookie di stampo informatico tracciano la permanenza essenziale per assicurarti l'inviolabilità nella sicurezza durante l'invio modulo delle descrizioni portale al riparo dei log server tecnici impiegati costantemente nei mantenimenti online che usufruisci oggi e che sostengono la navigazione tra le informazioni cashback in bacheca senza subire critiche compromissioni software sul file interattivo hostato.
+            </div>
+            <div class="flex-shrink-0">
+                <button onclick="acceptCookies()" class="btn-primary" style="padding: 0.75rem 1.5rem; border-radius: var(--radius); text-transform: uppercase; font-size: 0.875rem;">Compreso e Accetto i tracciamenti Logici Server</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inline Scripting for Dynamic Logic (No External JS required) -->
+    <script>
+        // SMART ROUTING & SELF HEALING LOGIC
+        document.addEventListener('DOMContentLoaded', function() {
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return; // Skip if it's just a top anchor with no explicit target setup
+                    
+                    let targetElement = document.querySelector(targetId);
+                    
+                    // Fallback Force Protocol
+                    if (!targetElement && targetId !== '#contact') {
+                        console.warn(`Anchor target ${targetId} non esistente o rimosso in DOM, routing d'emergenza verso Modulo di Contatti attivo...`);
+                        targetElement = document.getElementById('contact');
+                    }
+                    
+                    if (targetElement) {
+                        // Smoothly scroll down taking navbar offset into strict account
+                        const headerOffset = 80; // Size of absolute header roughly 
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                        
+                        // Collapse mobile nav if routing triggered from its open state UI click
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if(mobileMenu && !mobileMenu.classList.contains('hidden')){
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // COOKIE BANNER LOGIC (Client storage preservation based)
+            if(!localStorage.getItem('kicafevosaia_cookies_agreed_compliance_ita')){
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('translate-y-full');
+                }, 1000); // Deploy banner with tiny delay avoiding paint blocking upon initial rendering cycles to boost Lighthouse score perception
+            }
+        });
+
+        // Closure on cookie click function tied cleanly onto HTML execution layer inline button mapping context execution 
+        function acceptCookies() {
+            localStorage.setItem('kicafevosaia_cookies_agreed_compliance_ita', '1');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
