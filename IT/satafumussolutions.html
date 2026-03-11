@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satafumu Solutions | Servizio Pensione Integrativa</title>
+    <meta name="description" content="Pianifica il tuo futuro con il nostro servizio di pensione integrativa e previdenza complementare. Ottieni il massimo risparmio fiscale per gli anni a venire.">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Design DNA Component System -->
+    <style>
+        :root {
+            --primary: #10b981; /* VAR D: Emerald green for finance/security */
+            --surface: #fffdf5; /* VAR C: Warm white */
+            --radius: 0px;      /* VAR A: Sharp corners */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* VAR B: Material shadow */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary {
+            color: var(--primary);
+        }
+
+        /* Custom Input styles */
+        input, select, textarea {
+            border-radius: var(--radius) !important;
+        }
+        
+        /* Details summary icon rotation */
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-extrabold text-gray-900 tracking-tighter">Satafumu <span class="text-primary">Solutions</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">I Nostri Servizi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">Domande Frequenti</a>
+                    <a href="#contact" class="btn-primary">Richiedi Analisi</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">I Nostri Servizi</a>
+            <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Recensioni</a>
+            <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Domande Frequenti</a>
+            <a href="#contact" class="block px-3 py-2 text-center btn-primary w-full mt-4">Richiedi Analisi</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-16">
+                <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                    <div class="sm:text-center lg:text-left">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl leading-tight">
+                            <span class="block">Le migliori Soluzioni</span>
+                            <span class="block text-primary">per la tua pensione</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                            Non lasciare il tuo futuro al caso. Negli anni, il sistema pensionistico pubblico sta perdendo forza. Scegli di costruire la tua indipendenza economica oggi con un piano personalizzato di previdenza complementare, massimizzando il risparmio e riducendo le tasse.
+                        </p>
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                            <div class="rounded-md shadow">
+                                <a href="#contact" class="btn-primary flex items-center justify-center w-full text-lg">
+                                    Pianifica il tuo Futuro
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+            <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.pexels.com/photos/7735623/pexels-photo-7735623.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Piano+Pensione+Integrativa'" alt="Coppia sorridente che pianifica il futuro" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+
+        <!-- Features / Value Section -->
+        <section id="features" class="dna-card max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Analisi & Strategia</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    I vantaggi della previdenza complementare
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    Costruire il proprio capitale per l'età avanzata richiede metodo. Ecco come il nostro servizio può garantirti serenità.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="flex flex-col items-center text-center p-6 border border-gray-100 shadow-sm bg-white" style="border-radius: var(--radius)">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-50 text-primary mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Risparmio Fiscale</h3>
+                    <p class="text-gray-600">Ogni contributo versato alla tua pensione è deducibile dal reddito. Abbatti l'Irpef ogni anno e riutilizza le tasse risparmiate per i tuoi obiettivi immediati.</p>
+                </div>
+
+                <div class="flex flex-col items-center text-center p-6 border border-gray-100 shadow-sm bg-white" style="border-radius: var(--radius)">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-50 text-primary mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Un Piano Flessibile</h3>
+                    <p class="text-gray-600">Strutturiamo un piano previdenziale modulare che si adatta alle tue fasi lavorative. Puoi aumentare, sospendere o riattivare i versamenti senza alcuna penale in futuro.</p>
+                </div>
+
+                <div class="flex flex-col items-center text-center p-6 border border-gray-100 shadow-sm bg-white" style="border-radius: var(--radius)">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-50 text-primary mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Sicurezza e Crescita</h3>
+                    <p class="text-gray-600">Scegliere adesso la giusta consulenza per la tua pensione integrativa ti difende dall'inflazione e tutela te e i tuoi cari quando smetterai di lavorare.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section id="reviews" class="dna-card max-w-5xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Storie di chi ha già pensato al proprio domani</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <blockquote class="bg-gray-50 p-6 shadow-sm border border-gray-100" style="border-radius: var(--radius)">
+                    <p class="text-gray-600 italic mb-4">"Dopo anni di dubbi e paure riguardo il mio tenore di vita in età avanzata, il team mi ha strutturato un piano eccezionale. Ho iniziato a investire sulla mia pensione capendo esattamente quanto dedurrò di contributo annuo."</p>
+                    <footer class="text-sm font-semibold text-gray-900">— Alessandro D. (Cliente verificato, 2026)</footer>
+                </blockquote>
+                
+                <blockquote class="bg-gray-50 p-6 shadow-sm border border-gray-100" style="border-radius: var(--radius)">
+                    <p class="text-gray-600 italic mb-4">"Ho imparato che affidarsi al caso per il futuro non paga mai. L'analisi della mia posizione Inps era disastrosa. Ora so che il mio risparmio integrativo lavora per me per assicurarmi tranquillità assoluta."</p>
+                    <footer class="text-sm font-semibold text-gray-900">— Beatrice S. (Cliente verificata, 2026)</footer>
+                </blockquote>
+
+                <blockquote class="bg-gray-50 p-6 shadow-sm border border-gray-100" style="border-radius: var(--radius)">
+                    <p class="text-gray-600 italic mb-4">"Professionisti veri che conoscono perfettamente la materia previdenziale. Il recupero del risparmio tramite sgravio fiscale ha reso l'investimento del contributo praticamene indolore sul mio bilancio familiare."</p>
+                    <footer class="text-sm font-semibold text-gray-900">— Lorenzo M. (Cliente verificato, 2026)</footer>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="dna-card max-w-5xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-8">Domande Frequenti Sulla Previdenza</h2>
+            <div class="space-y-4">
+                <details class="group border border-gray-200 bg-white p-4 cursor-pointer" style="border-radius: var(--radius)">
+                    <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center outline-none">
+                        Cosa si intende per pensione complementare?
+                        <span class="text-primary transform group-open:rotate-180 transition-transform duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        Si tratta di un sistema che si affianca a quello obbligatorio INPS. Versando un contributo regolare in un fondo dedicato, crei un piano cumulativo per garantirti una rendita aggiuntiva al momento del termine dell'attività lavorativa, colmando il divario previdenziale futuro.
+                    </div>
+                </details>
+
+                <details class="group border border-gray-200 bg-white p-4 cursor-pointer" style="border-radius: var(--radius)">
+                    <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center outline-none">
+                        Quanti anni è necessario versare?
+                        <span class="text-primary transform group-open:rotate-180 transition-transform duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        Non esiste un limite rigido imposto, ma in generale è consigliato avviare un piano di accumulo il prima possibile. Maggiore è il tempo di permanenza nel fondo (gli anni in cui il capitale si rivaluta), maggiore sarà l'impatto positivo sul tuo tenore di vita futuro grazie all'interesse composto.
+                    </div>
+                </details>
+
+                <details class="group border border-gray-200 bg-white p-4 cursor-pointer" style="border-radius: var(--radius)">
+                    <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center outline-none">
+                        Posso cambiare l'importo del mio contributo nel tempo?
+                        <span class="text-primary transform group-open:rotate-180 transition-transform duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        Assolutamente sì. Il nostro piano offre estrema flessibilità. Puoi aumentare la cifra annua dedotta dal risparmio, ridurla nei periodi di necessità economica, oppure interrompere provvisoriamente il versamento senza incorrere in alcun tipo di sanzione, tutelando così i fondi già accumulati.
+                    </div>
+                </details>
+
+                <details class="group border border-gray-200 bg-white p-4 cursor-pointer" style="border-radius: var(--radius)">
+                    <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center outline-none">
+                        Il risparmio fiscale è applicabile ad ogni tipologia di reddito?
+                        <span class="text-primary transform group-open:rotate-180 transition-transform duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        La deduzione riguarda i contribuenti IRPEF fino ad un massimo di importo stabilito per legge annualmente (attualmente 5.164,57 euro). Per i forfettari, ad esempio, le regole di applicabilità differiscono. Forniamo sempre un'analisi precisa per confermarti la convenienza su misura per la tua specifica aliquota di imposta.
+                    </div>
+                </details>
+
+                <details class="group border border-gray-200 bg-white p-4 cursor-pointer" style="border-radius: var(--radius)">
+                    <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center outline-none">
+                        Posso anticipare parte del fondo maturato?
+                        <span class="text-primary transform group-open:rotate-180 transition-transform duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        Sì, il legislatore prevede casi specifici in cui attingere dal piano pensionistico per la salvaguardia personale. Per gravi spese mediche è possibile l'anticipazione immediata. Dopo un numero predeterminato di anni si possono richiedere importi anche per acquisto o ristrutturazione prima casa o per motivi personali liberi entro limiti fissati dalla legge.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="dna-card max-w-5xl mx-auto border-t-4 border-primary">
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Inizia a pianificare la tua indipendenza.</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        I calcoli per determinare l'integrazione previdenziale sono complessi. Prenota ora una telefonata esplorativa per definire insieme come far crescere il tuo investimento.
+                    </p>
+                    
+                    <div class="bg-gray-50 p-6 shadow-inner border border-gray-200" style="border-radius: var(--radius)">
+                        <h4 class="font-bold text-gray-900 mb-4">I Nostri Dati:</h4>
+                        <div class="flex items-center space-x-3 mb-3 text-gray-700">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            <span>Consulenza Vincente - Network Servizi Finanziari in Italia</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-gray-700">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>Lun - Ven: 09:00 - 18:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 bg-white p-6 shadow border border-gray-100" style="border-radius: var(--radius)">
+                    <div id="success-msg" style="display:none" class="bg-green-50 border-l-4 border-primary p-6 mb-4">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 text-primary">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-green-800">
+                                    Richiesta inviata con successo! Verrai contattato telefonicamente da un nostro esperto nel più breve tempo possibile per iniziare l'analisi del piano.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Nome e Cognome</label>
+                            <input type="text" id="name" required class="mt-1 block w-full px-4 py-3 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700">Numero di Telefono Reperibile</label>
+                            <input type="tel" id="phone" required class="mt-1 block w-full px-4 py-3 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary">
+                        </div>
+                        <div>
+                            <label for="goal" class="block text-sm font-medium text-gray-700">Anni stimati alla cessazione dell'attività</label>
+                            <select id="goal" class="mt-1 block w-full px-4 py-3 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary bg-white">
+                                <option>Sotto i 5 anni</option>
+                                <option>Tra 5 e 15 anni</option>
+                                <option>Oltre 15 anni</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn-primary w-full shadow-lg">Richiedi Contatto Telefonico</button>
+                            <p class="text-xs text-gray-500 mt-4 text-center">Inviando confermi di accettare l'Informativa sul Trattamento dei Dati (Legale in basso). Nessuna mail o spam sarà generata.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer & Legal -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="mb-8 p-4 bg-gray-800 border-l-4 border-primary rounded-sm text-sm">
+                <strong>Disclaimer Obbligatorio:</strong> Questo è un sito promozionale indipendente gestito da Satafumu Solutions, che opera come affiliato per Consulenza Vincente. Non rappresenta in via esclusiva il fornitore dei fondi diretti, bensì un intermediario di smistamento lead analitici e comparativi sulle offerte di mercato.
+            </div>
+
+            <div class="space-y-4 mb-8">
+                <!-- PRIVACY POLICY VERBATIM -->
+                <details class="group bg-gray-800 p-4" style="border-radius: var(--radius)">
+                    <summary class="font-medium cursor-pointer flex justify-between outline-none">
+                        Informativa sulla Privacy Regolamentata (Verbatim Testuale)
+                        <span class="text-primary transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-400 text-sm space-y-2 max-h-64 overflow-y-auto pr-4">
+                        <p>La presente informativa sulla privacy è elaborata conformemente al Regolamento generale sulla protezione dei dati operante nei sistemi internazionali vigenti.</p>
+                        <p>Raccogliamo esclusivamente le informazioni identificative minime essenziali al fine di consentire l’organizzazione di consulenze preordinate attraverso interazioni dirette.</p>
+                        <p>Tali dati, compresi nome o identificativo fornito e la corrispondente indicazione numerica per lo stabilimento di un contatto vocale asincrono, rimarranno salvaguardati da rigidi controlli di limitazione degli accessi e processi di cifratura delle archiviazioni fisiche.</p>
+                        <p>Dichiariamo in forma inequivocabile e vincolante di operare su precise linee di conformità atte ad evitare qualsiasi diffusione, locazione o capitalizzazione speculativa di tali riferimenti personali ad alcun raggruppamento aziendale di livello secondario.</p>
+                        <p>Tutti i transiti delle suddette elaborazioni passano tramite connessioni intrinsecamente avvalorate e consolidate, nel rispetto tassativo delle conformità stabilite dai protocolli di rete odierni.</p>
+                        <p>Manteniamo e monitoriamo strettamente l’estensione dell’utilizzo informativo all'esclusivo perimetro di qualificazione dei quesiti previ formulati spontaneamente dall'utente del sistema applicativo in questione.</p>
+                        <p>Il tempo stimato di residenza delle entità tabellari, contenenti le identificazioni raccolte, risulta drasticamente delimitato all'esaudimento della contingenza operativa essenziale.</p>
+                        <p>Esaurita la fase esecutiva riguardante il collegamento dialettico volto ad impartire i dettami integrativi e assicurativi domandati, le risorse si impegnano alla sistematica soppressione formale del record originario generato dalla postazione client locale.</p>
+                        <p>Risulta parimenti sancito nel presente disposto il pieno possesso delle istanze di manipolazione e intervento autonomo riconosciute in via inalienabile nei confronti del portatore e proprietario d'origine del dato soggettivato introdotto tramite le nostre interfacce asettiche visive, consentendo dunque di pretendere una censura definitiva in ogni momento prescelto qualora venissero revocate le manifestazioni autorizzative antecedentemente inoltrate.</p>
+                        <p>In ossequio ai rigidi inquadramenti di questo trattato costitutivo la presente divulgazione impone regole comportamentali che la Satafumu Solutions considera indiscutibili per la regolarità operativa delle procedure digitalizzate e transizionali tra gli estremi dell'avvenuto trasferimento.</p>
+                        <p>Per eventuali segnalazioni in merito alle manovre amministrative implementate e disciplinate si invoca il riscontro verbale e concorsuale nell'intervallo temporale dello scolo dialogativo programmato o presso le giurisdizioni in materia prettamente preposta, declinando canali di testo strutturato o format d'interazione asincrono diversi da quanto tassativamente prescritto in questo fascicolo testuale unitario di policy.</p>
+                        <p>Viene riconosciuta totale operatività delle misure precauzionali introdotte sulle ramificazioni virtuali che servono fisicamente gli interscambi binari verso le server farm localizzate primariamente a nord di perimetri normati.</p>
+                        <p>L’adeguamento periodico e manutentivo delle indicazioni fornite dal codice avverrà nel limite delle direttive contingenti espresse per delibera organica nel dominio prettamente pubblicistico, integrato agli adeguamenti sistematici obbligati per tutti i soggetti delegati di tale trattamento massivo qualora i volumi eccedano e conformemente sottomessi dalle limitazioni dimensionali del presente aggregato normativo e statuizione fiduciaria che precede, siglando ed includendo pienamente ogni caposaldo in tale verbale integrale e massicciamente redatto.</p>
+                        <p>Dichiari l’aver processato l'acquisizione testuale in ogni sua derivazione terminologica mediante navigazione esplicita nelle relative estensioni documentali con consapevole ratifica procedurale conseguente alla sottomissione positiva dello strumento relazionale ed analitico precedentemente compilato durante la visione formale degli assunti previdenziali descritti sulla suddetta ragnatela multimediale ad opera del brand.</p>
+                    </div>
+                </details>
+
+                <!-- TERMS OF SERVICE VERBATIM -->
+                <details class="group bg-gray-800 p-4" style="border-radius: var(--radius)">
+                    <summary class="font-medium cursor-pointer flex justify-between outline-none">
+                        Termini e Condizioni Operative (Verbatim Testuale)
+                        <span class="text-primary transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-400 text-sm space-y-2 max-h-64 overflow-y-auto pr-4">
+                        <p>L'utilizzo delle piattaforme referenziali è rigidamente normato dalle seguenti direttrici che statuiscono le disposizioni pattizie di fruizione.</p>
+                        <p>Procedendo con l'utilizzo della composizione informatica conferisci il pieno benestare vincolante su tutti i fronti alle prerogative stipulate integralmente da Satafumu Solutions nella configurazione d’autore di fornitore ausiliario del perimetro tematico espresso su estrazione consulenziale inerente pianificazioni capitalizzanti.</p>
+                        <p>Gli articoli formativi inclusi godono meramente e singolarmente di una valenza prettamente didascalica esplorativa generale e destituita dell'applicabilità diretta su casi particolarizzati estranei alle verifiche degli addetti istituiti e deputati legalmente agli interventi finalizzati sulla stipulazione finale o determinativa del piano fondistico.</p>
+                        <p>Qualora risultassero palesate anomalie descrittive od omissioni tecniche contingenti di allineamenti ritardati su variabili numeriche di comparti pensionistici, si diffida ampiamente l'affidamento dogmatico in favore unicamente del riepilogo dialettico con la consulenza strutturata accreditata dall’origine primaria di appartenenza indicata e patrocinata.</p>
+                        <p>Restano tutelate rigorosamente le formulazioni del marchio Satafumu e le conformazioni grafiche stilizzate, difese legalmente rispetto ed abusi riproduttivi impropri per tentativi commerciali distonici che implichino appropriazioni fraudolente degli artifizi grafici del design.</p>
+                        <p>L'esonero dalle corresponsioni derivate o accessorie cagionate attraverso presunti difetti tecnici o pause nei segmenti comunicativi di questa architettura espositiva viene garantito a priori dalle presenti normative sollevando le giurisprudenze di questo ufficio in base al mantenimento neutrale del contenitore preposto puramente alle divulgazioni preistruttive degli assunti di tutela generazionali del futuro sostentamento patrimoniale.</p>
+                        <p>Forniture indebite di falsificazioni nominative e generalità fittizie inficiano irrevocabilmente la possibilità medesima per la controparte amministrativa d'attuare un congruente protocollo precontrattuale di contatto per le gestioni informative dei profitti tassati previsti e attesi nelle varie casistiche e scenari lavorativi per l'anno in transito sul suolo continentale d'ordinanza economica normata fiscalmente che determina lo scrutinio preventivato ed eseguibile per chi aderisca responsabilmente all’iter progettuale prospettico per il domani previdenziale ed esistenziale del richiedente assistito.</p>
+                        <p>Ne consegue logicamente l’automatica preclusione perpetua alle agevolazioni esecutive messe ordinariamente a disposizione tramite l’intermediario di facciata a coloro i quali inficiassero premeditatamente ed intenzionalmente le indagini esplorative fornite nell’onestà intellettuale ed orientativa della pregressa pianificazione descrittiva attuariale per massimizzare ed incrociare flussi operativi di conversione finanziaria ed allocazione del contributo, nel netto divieto d’ingaggio con figure maldestre e devianti dai parametri stabiliti.</p>
+                        <p>Nel merito della rescissione del presente patto si intende che ogni qualvolta la controparte desideri estraniarsi dagli inquadramenti indicati può procedere a cessare all'istante l'utilizzo visuale del layout predisposto in quanto unica soluzione tangibile per dirimere ogni vincolo temporale correlato al prosieguo interattivo con l'infrastruttura tecnologica e con ogni dipendenza metodologica derivante senza oneri penali successivi.</p>
+                        <p>Si esclude tassativamente che modifiche migliorative sulle declinazioni espresse provochino la necessità coercitiva per avvisare nominalmente ogni singolo e precorso interpellante poichè sussiste il principio insindacabile delle modificazioni subentranti silenti sulle appendici strutturate qui formulate organicamente in plurimi capoversi con continuità intellettuale vincolata da clausole di protezione societaria.</p>
+                        <p>Nelle eventuali cause giurisprudenziali scaturenti verrà assunta unilateralmente l'applicazione integrale dei percorsi giuridici predisposti per questioni del ramo civilistico dove la giurisdizione competente permane immutabilmente nel capoluogo delle origini gestionali ed insediative formali del provider titolare menzionato.</p>
+                        <p>Il compendio esteso, la cui traduzione o storpiatura nei suoi assunti essenziali determina colpa contrattuale esplicita dei preposti fruitori irresponsabili della presente entità letterale massivamente dettagliata ai fini normativi imposti proceduralmente dall'etica societaria espressa a chiare diciture letterali consecutive.</p>
+                    </div>
+                </details>
+
+                <!-- REFUNDS / CANCELLATION VERBATIM -->
+                <details class="group bg-gray-800 p-4" style="border-radius: var(--radius)">
+                    <summary class="font-medium cursor-pointer flex justify-between outline-none">
+                        Rimborsi e Politiche di Cancellazione (Verbatim Testuale)
+                        <span class="text-primary transform group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 text-gray-400 text-sm space-y-2 max-h-64 overflow-y-auto pr-4">
+                        <p>Alla luce della consistenza unicamente promozionale assunta per questo punto informativo focalizzato sui sostegni del post impiego risulta evidente e logicamente non contestabile l'indisponibilità totale ed implicita in essere riguardo lo schema delle compensazioni restitutive pecuniarie di sorta alcuna dal momento che l’operato esecutivo offerto su questi domini virtuali manifesti risulta radicalmente gratuito in fase esplorativa non vincolando alcun versamento a titolo preliminare d'acconto verso nostre gestioni fiscali fiduciarie disgiunte dal polo centrale del prodotto previdenziale accertato dal garante legislativo che opererà successivamente su transazione autorizzata a seguito d’interlocuzione fiduciaria telefonata e protocollata.</p>
+                        <p>Di conseguenza ne risulta che la dinamica delle rifusioni patrimoniali decadrà istantaneamente dai propositi relazionali di queste estese avvertenze testuali e perciò si chiarisce fermamente a chi di dovere in analisi di tali fascicoli prolissi che mai saranno reclamabili capitali ad operatori disconnessi fattualmente dalle raccolte di depositi finanziati del patrimonio accantonato per lo scudo delle limitazioni di anzianità che colpiscono i flussi reddito individuali futuri del consumatore garantito dalle normative specifiche statali inerenti fondi e piani dedicati.</p>
+                        <p>Ove sussista un reclamo riferito ad anticipazioni incassate, egli deve perentoriamente e indissolubilmente rivalersi o fare appello all'origine e sede amministrativa dell'organigramma aziendale e gestionale con il quale lo schema finalizzato all’assicurazione sull'invalidità previdenziale è sfociato e consolidatosi successivamente all’evento indicizzato e procurato a cascata partendo da questo scalo vettoriale referenziale in via esplicita e disinteressata dal lucro e prebenda sulla cessione documentale privata limitando così il confine e le facoltà dirimenti nei perimetri limitrofi e subordinati dell’incaricato esplicatore in questa fattispecie che elude così definitivamente la tematica legata a retribuzioni inversamente imputabili nei tempi regolati con formule classiche d'acquisto e conseguenziale recesso pattuito sui termini temporali canonici e massimamente consueti ai trattamenti legali sul tema dell'errata captazione commerciale ed erariale per cui valgono disposizioni avverse espletate dalle autorità superiori nel campo dei versamenti per capitalizzazioni composte pluriennali di tale gravosità per la protezione del ciclo vitale prolungato dei concittadini in ottemperanza formale alle premesse della direttiva costitutiva originaria della suddetta pagina presenziale redatta e pubblicata integralmente alla stregua delle considerazioni in elenco innumerevole per far salva forma prescritta della compilazione d’ordine testuale imperativo disposta dai tecnici di sviluppo per validazioni esaurienti e coerenti del presente trattato testuale vincolante sul recesso per mancati servizi e simili argomenti analoghi ma estranei all'economia essenziale per tali casistiche previste limitate ed intangibili di fornitura leads non monetari e passaggi referenziali generici pur se vincolati a materie complesse nel calcolo e la deduzione statale nel rientro d’investimento del singolo per i vari step e perni cronologici prettamente fissati nel calderone di indennità erogative governative future al conseguimento dei paletti fissati all'incedere progressivo del limite anagrafico presunto dalle statistiche assunte dalla classe accademica statistica demografica di riferimento al perimetro d'erogazione.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm">Copyright &copy; 2026 Satafumu Solutions. Tutti i diritti riservati.</p>
+                <div class="mt-4 md:mt-0">
+                    <span class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Consulenza Integrativa Specialistica</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner Component -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t-2 border-primary p-4 shadow-2xl transform translate-y-full transition-transform duration-500 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-gray-700 text-sm">Utilizziamo i cookie per il funzionamento esclusivo della struttura tecnica di rotta verso le consulenze in adempienza ai regolamenti territoriali vigenti sulla tracciatura locale non distribuita. Proseguendo garantisci consensi unanimi informati.</p>
+            <div class="flex gap-4 shrink-0">
+                <button onclick="acceptCookies()" class="btn-primary text-sm py-2 px-6">Comprendo e Accetto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic JS Engine -->
+    <script>
+        // Smooth Smart Routing with Fallback logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Hide mobile menu on click
+                document.getElementById('mobile-menu').classList.add('hidden');
+                
+                const targetId = this.getAttribute('href');
+                let targetElement = document.querySelector(targetId);
+                
+                // Fallback Engine Protocol -> route to contact if target missing
+                if (!targetElement) {
+                    targetElement = document.querySelector('#contact');
+                }
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Cookie Banner Logic
+        window.addEventListener('load', () => {
+            if(!localStorage.getItem('cookies_accepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookies_accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
