@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FojeFais | Blog Consigli Risparmio e Gestione Denaro</title>
+    <meta name="description" content="Strategie pratiche per la gestione del denaro, del tuo stipendio e il controllo delle spese quotidiane.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* VAR D: Palette - Niche: Personal Finance -> Emerald */
+            --primary: #10b981; 
+            /* VAR C: Surface - Metaskill 'l' (108 % 3 = 0) -> Clean */
+            --surface: #ffffff;
+            /* VAR A: Geometry - Domain Length 17 (17 % 3 = 2) -> Pill */
+            --radius: 24px;
+            /* VAR B: Physics - Metaskill 'm' (109 % 3 = 1) -> Material */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px); 
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { 
+            color: var(--primary); 
+        }
+
+        .bg-primary {
+            background-color: var(--primary);
+        }
+
+        /* Details styling for FAQ and Legal */
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary {
+            cursor: pointer;
+            outline: none;
+        }
+        
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #111827;
+            color: white;
+            padding: 1rem;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 -4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-black tracking-tighter text-gray-900">
+                        Foje<span class="text-primary">Fais</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">I Nostri Consigli</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Storie di Successo</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
+                </nav>
+                <div class="hidden md:flex items-center">
+                    <a href="#contact" class="btn-primary text-sm px-6 py-2">Inizia Ora</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Consigli</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Storie</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Contatti</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section (Full width, exception allowed) -->
+    <section class="relative bg-gray-900 py-24 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/4386446/pexels-photo-4386446.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+                 alt="Gestione del denaro e risparmio" 
+                 class="w-full h-full object-cover opacity-30"
+                 loading="lazy" 
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/111827/ffffff?text=Finanza+Personale'">
+            <div class="absolute inset-0 bg-black/60 mix-blend-multiply"></div>
+        </div>
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- H1 Bridging Slogan -->
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6">
+                Le migliori <span class="text-primary">operazioni</span> per il tuo risparmio quotidiano.
+            </h1>
+            <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-300 mb-10">
+                Scopri le strategie definitive per amministrare il tuo <strong class="text-white">stipendio</strong>, tagliare le <strong class="text-white">spese</strong> superflue e arrivare a fine <strong class="text-white">mese</strong> con un <strong class="text-white">conto</strong> più ricco. Il blog dedicato alla tua libertà finanziaria.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#features" class="btn-primary">Scopri le Guide</a>
+                <a href="#contact" class="bg-white text-gray-900 font-bold px-6 py-3 rounded-full hover:bg-gray-100 transition shadow-lg border border-transparent" style="border-radius: var(--radius)">Iscriviti alla Newsletter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
+
+        <!-- Features / Services -->
+        <div id="features" class="dna-card scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Metodo FojeFais</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    I pilastri della tua educazione finanziaria
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Le tattiche che i nostri lettori utilizzano per massimizzare ogni euro in entrata.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Pianificazione Mensile</h3>
+                    <p class="text-gray-600">
+                        Impara a suddividere il tuo <strong class="text-gray-900">stipendio</strong> non appena arriva. Le nostre guide ti mostrano come creare un budget sostenibile e gestire le <strong class="text-gray-900">spese</strong> in modo da accantonare sempre una percentuale prima di spenderla.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Abbattimento Costi Fissi</h3>
+                    <p class="text-gray-600">
+                        Strategie aggressive ma legali per ridurre drasticamente l'impatto di <strong class="text-gray-900">bollette</strong> e costi della casa. Se paghi l'<strong class="text-gray-900">affitto</strong>, scopri le tecniche per ottimizzare i consumi e mantenere liquidità.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Ottimizzazione del Conto</h3>
+                    <p class="text-gray-600">
+                        Analizziamo e confrontiamo le migliori soluzioni bancarie. Assicurati che il tuo <strong class="text-gray-900">conto</strong> non generi spese inutili e ti aiuti strutturalmente nel percorso verso un <strong class="text-gray-900">risparmio</strong> concreto alla fine di ogni <strong class="text-gray-900">mese</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Callout Banner inside Content Area -->
+        <div class="dna-card bg-primary text-white p-8 sm:p-12 text-center mb-16 shadow-xl relative overflow-hidden">
+            <div class="absolute inset-0 bg-black/10"></div>
+            <div class="relative z-10">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4">Non rimandare il tuo benessere finanziario</h3>
+                <p class="text-green-50 text-lg mb-8 max-w-2xl mx-auto">Unisciti ai migliaia di lettori che hanno trasformato il loro approccio al denaro attraverso la nostra newsletter gratuita. Consigli operativi ogni settimana direttamente da FojeFais.</p>
+                <a href="#contact" class="bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-gray-100 transition shadow-lg border border-transparent" style="border-radius: var(--radius)">Accedi alle Guide Gratuite</a>
+            </div>
+        </div>
+
+        <!-- Social Proof / Reviews -->
+        <div id="reviews" class="dna-card scroll-mt-24">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">I risultati della nostra community</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+                    <div class="flex text-yellow-400 mb-3">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Leggere FojeFais ha cambiato le mie abitudini. Grazie alle loro guide pratiche sono riuscita a ridurre le <strong class="text-gray-900">spese</strong> mensili superflue di quasi il 20%. Finalmente non ho più ansia a ridosso del prossimo stipendio."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold">LM</div>
+                        <div>
+                            <p class="text-sm font-bold text-gray-900">Laura M.</p>
+                            <p class="text-xs text-gray-500">Lettrice da 2 anni</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+                    <div class="flex text-yellow-400 mb-3">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Non credevo fosse materialmente possibile mettere da parte dei soldi dopo aver pagato l'<strong class="text-gray-900">affitto</strong>, le <strong class="text-gray-900">bollette</strong> e aver fatto la spesa. Ho applicato il metodo descritto qui e ora il mio salvadanaio cresce ogni 30 giorni."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold">MT</div>
+                        <div>
+                            <p class="text-sm font-bold text-gray-900">Marco T.</p>
+                            <p class="text-xs text-gray-500">Iscritto Newsletter</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+                    <div class="flex text-yellow-400 mb-3">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Gli articoli sulla gestione bancaria sono unici. Seguendo le recensioni, ho cambiato istituto eliminando le commissioni. Ora guardo il mio <strong class="text-gray-900">conto</strong> a fine <strong class="text-gray-900">mese</strong> e provo un reale senso di sicurezza. Eccellente blog."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold">GS</div>
+                        <div>
+                            <p class="text-sm font-bold text-gray-900">Giulia S.</p>
+                            <p class="text-xs text-gray-500">Lettrice assidua</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Area -->
+        <div id="faq" class="dna-card scroll-mt-24">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti (FAQ)</h2>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <details class="group bg-gray-50 rounded-lg border border-gray-100 p-4 transition duration-200">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Quanto costa accedere ai vostri consigli?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"/></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Il nostro blog e gli articoli base sulla gestione del denaro sono completamente gratuiti. L'obiettivo principale è educare, mostrando come migliorare la situazione economica mensile attraverso decisioni più intelligenti sulle proprie uscite.</p>
+                </details>
+                
+                <details class="group bg-gray-50 rounded-lg border border-gray-100 p-4 transition duration-200">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Come posso ottimizzare il pagamento di luce e gas?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"/></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Pubblichiamo periodicamente articoli che analizzano le migliori fasce orarie e contratti per il mercato dell'energia. Mettendo in competizione i fornitori, spesso è possibile limare significativamente il costo delle tue <strong>bollette</strong>.</p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-lg border border-gray-100 p-4 transition duration-200">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Il mio reddito è basso. Queste strategie funzionano per me?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"/></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Assolutamente sì. Anzi, le tecniche di micro-<strong>risparmio</strong> e tracciamento delle <strong>spese</strong> sono vitali quando le entrate non sono elevatissime. L'attenzione ai dettagli fa la più grande differenza a fine mese quando i margini sono ridotti.</p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-lg border border-gray-100 p-4 transition duration-200">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Date consigli su dove investire i risparmi generati?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"/></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Siamo focalizzati principalmente sulla corretta gestione corrente (amministrazione dell'<strong>affitto</strong>, spese quotidiane, controllo conti correnti e budget dello <strong>stipendio</strong>). Per questioni complesse di natura fiscale e grandi investimenti consigliamo di rivolgersi a un professionista autorizzato, benché copriamo concetti introduttivi legati a piani di accumulo.</p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-lg border border-gray-100 p-4 transition duration-200">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Con che frequenza aggiornate il blog?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"/></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Pubblichiamo dai 2 ai 3 articoli strategici a settimana, insieme ad aggiornamenti macroeconomici rilevanti che potrebbero impattare le finanze delle famiglie e i costi strutturali in Italia.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- Contact Form / Action Box -->
+        <div id="contact" class="dna-card scroll-mt-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Ricevi i migliori insight finanziari.</h2>
+                    <p class="text-gray-600 mb-6 text-lg">
+                        Migliora il bilancio tra il tuo <strong>stipendio</strong> e le tue <strong>spese</strong>. Compila il modulo per unirti alla nostra newsletter esclusiva e sbloccare immediatamente i modelli scaricabili per tracciare il tuo <strong>conto</strong> e monitorare le uscite di fine <strong>mese</strong>.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-700">
+                            <svg class="h-5 w-5 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Guide esclusive e inedite sul web.
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <svg class="h-5 w-5 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Modelli Excel per la rendicontazione mensile.
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <svg class="h-5 w-5 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Nessuno spam, i tuoi dati restano sicuri al 100%.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl border border-gray-100">
+                    <form id="lead-form" class="space-y-6" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome completo</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition border" placeholder="Mario Rossi">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Indirizzo Email Principale</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition border" placeholder="mario@esempio.com">
+                        </div>
+                        <div>
+                            <label for="goal" class="block text-sm font-medium text-gray-700 mb-1">Il tuo obiettivo principale</label>
+                            <select id="goal" name="goal" class="w-full px-4 py-3 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition border bg-white">
+                                <option value="stipendio">Voglio gestire meglio lo stipendio</option>
+                                <option value="spese">Voglio tagliare bollette/affitto</option>
+                                <option value="risparmio">Voglio accumulare vero risparmio</option>
+                                <option value="altro">Voglio apprendere concetti generali</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-lg">Sblocca il Materiale Gratuito</button>
+                        <p class="text-xs text-gray-400 text-center mt-3">Sottoscrivendo accetti i nostri termini e le politiche sulla privacy in materia di erogazione newsletter tematiche.</p>
+                    </form>
+                    
+                    <div id="success-msg" style="display:none;" class="bg-green-50 border border-green-200 p-6 rounded-lg text-center h-full flex flex-col justify-center">
+                        <svg class="h-16 w-16 text-primary mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Benvenuto a bordo!</h3>
+                        <p class="text-gray-600">Abbiamo registrato correttamente la tua iscrizione alla newsletter di FojeFais. Preparati a gestire le tue finanze con una marcia in più.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 border-b border-gray-800 pb-8">
+                <div class="lg:col-span-2">
+                    <span class="text-2xl font-black tracking-tighter text-white mb-4 block">
+                        Foje<span class="text-primary">Fais</span>
+                    </span>
+                    <p class="text-gray-400 mb-4 max-w-sm">
+                        La risorsa autorevole che accompagna le famiglie nella complicata arte di far durare il proprio <strong class="text-gray-200 font-normal">conto</strong> bancario, ottimizzando in totale autonomia le scelte di spesa sul lungo periodo.
+                    </p>
+                    <p class="text-xs text-gray-500 italic max-w-md">
+                        MANDATORY DISCLAIMER: Questo è un sito promozionale indipendente gestito da FojeFais, che opera come affiliato per Metaskill. Le informazioni condivise costituiscono riflessioni e pareri volti alla sensibilizzazione del lettore sull'economia domestica.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Esplora</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#features" class="hover:text-primary transition">Gestione Stipendi</a></li>
+                        <li><a href="#reviews" class="hover:text-primary transition">Successi Lettori</a></li>
+                        <li><a href="#faq" class="hover:text-primary transition">Domande Comuni</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition">Diventa Iscritto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Area Legale Complessa</h4>
+                    
+                    <details class="text-sm cursor-pointer group">
+                        <summary class="hover:text-white transition flex items-center justify-between">Politica sulla Privacy <span class="text-gray-600 group-open:rotate-180 transition">+</span></summary>
+                        <div class="mt-2 text-xs text-gray-400 bg-gray-800 p-4 rounded-lg overflow-y-auto max-h-48">
+                            Benvenuti all'Informativa sulla Privacy del progetto web FojeFais e relativi partner affiliati. La tutela della riservatezza dei dati immessi in questa piattaforma costituisce la massima priorità dei nostri processi infrastrutturali ed amministrativi interni. Ci dedichiamo a difendere e proteggere meticolosamente l'integrità del tuo ecosistema personale nel momento stesso in cui inizi a navigare e consumare risorse divulgative. Acquisiamo ed elenchiamo precise tipologie di dati analitici e metriche di registrazione del server al mero fine di decodificare modelli statistici collettivi senza associazioni inequivocabili al singolo cittadino. Schediamo perciò con approccio metodologico stringente stringhe anonimizzate di navigazione essenziali allo svolgimento intrinseco del software CMS. Qualora decidessi spontaneamente di sottoscrivere servizi redazionali e bollettini promozionali digitali intercettando i nostri specifici e volontari canali formulari interattivi dislocati nel dominio web corrente, procederemo legalmente e con esplicito consenso fornito mediante opt-in proattivo ad assimilare i soli dettagli basici inseriti dall'individuo consenziente per scopi informativi previsti dalla piattaforma. Sottolineiamo a chiare lettere e con categorico accento procedurale il tassativo diniego perpetuo verso pratiche illecite di compravendita dati anagrafici ceduti furtivamente a network esterni privi di legami trasparenti esibiti sulle interfacce operative del nostro raggio d'azione documentato. Adottiamo standardizzati ma eccezionali livelli criptografici simmetrici atti ad inficiare ed obliterare istantaneamente potenziali estrazioni e furti architettati fraudolentemente su larga scala ai danni di chi visita le pagine FojeFais e derivate architetture server comunicanti online. Conserviamo con diligenza ogni frammento logico di informazione utente in ambienti ad accesso logicamente protetto tramite sofisticati e multistrato livelli perimetrali invalicabili senza espliciti e gerarchizzati gradi autorizzativi detenuti e supervisionati soltanto dagli ingegneri informatici fiduciari appositamente selezionati durante gli audit stringenti aziendali. Tu mantieni saldo il legittimo perimetro della tua individualità detendendo incrollabile autorità esecutiva tesa in ogni momento verso la cancellazione parziale e definitiva ed irrevocabile dal registro dei nostri attivi o inattivi server delle copie salvate previo tempestivo modulo formale approntato ad hoc senza inutili ostacoli amministrativi lenti. La fruizione degli strati informativi redatti ed esposti digitalmente a titolo non oneroso sancisce indubitabilmente l'incondizionata accettazione pattuita verso codesti basilari fondamenti esposti analiticamente in queste note testuali permanenti di dominio esplicitamente documentale. Nessun contatto telefonico arbitrario o abuso relazionale non desiderato né atteso avverrà nei futuri step evolutivi del servizio per conto della dirigenza FojeFais erogante contenuti informazionali in rete sotto il dominio operativo originario registrato. Qualora future ingenti e corpose revisioni concettuali rendessero antiquata questa prima ma incrollabile struttura legale garantiamo comunicazioni immeditamente evidenti implementate strutturalmente tramite chiari notificatori disposti ad apertura istantanea dei canali telematici FojeFais regolarmente frequentati. Questo documento costituisce palesemente solido testamento redazionale sull'impiego virtuoso di metriche personali con il sommo intento di arricchire un'esperienza senza travalicare paletti logici che rendono inospitale l'odierno palcoscenico informatico e comunicazionale del World Wide Web espanso a misura collettiva tutelante l'autodeterminazione e trasparenza intellettuale globale.
+                        </div>
+                    </details>
+
+                    <details class="text-sm cursor-pointer group mt-2">
+                        <summary class="hover:text-white transition flex items-center justify-between">Condizioni del Servizio <span class="text-gray-600 group-open:rotate-180 transition">+</span></summary>
+                        <div class="mt-2 text-xs text-gray-400 bg-gray-800 p-4 rounded-lg overflow-y-auto max-h-48">
+                            Inizializzare in forma autonoma, attiva o accidentale connessioni web capaci di instradare segnali, richieste documentali HTTP o esplorare ramificazioni tassonomiche presenti sull'architettura radicata del sito web e portale indipendente FojeFais si attesta giuridicamente pari ad apporre ferma condivisione verso le presenti complesse disposizioni negoziali e disciplinari elencate integralmente nelle pagine fondative a garanzia reciproca stabilita preventivamente dalle parti co-protagoniste ed essenziali in questo rapporto virtuale e divulgativo di settore predeterminato alla sottoscrizione delle presenti estese clausole procedurali. Tassativa preclusione regna in ordine a qualsivoglia forma subdola ed inconfessata ma non autorizzata dedita fermamente al plagio smodato, manomissione occulta alterata artificialmente senza concessioni editoriali approvate della proprietà concettuale o distorta emulazione visiva estesa inerente grafismi vettoriali originali inibiti severamente dal replicarli non dichiaratamente all'esterno delle giurisdizioni elettroniche originali FojeFais concepite appositamente dal reparto progettuale impiegante personale specifico tutelante diritti editoriali del progetto qui menzionato per trasparenza d'esposizione informativa intellettuale del team erogante. L'acquisizione testuale libera da pesi in denaro riguardanti le stesure teorico metodologiche sul denaro da noi elargite volontariamente costituisce bagaglio e monito di generico ed imparziale panorama in divenire costante e sotto alcuna condizione, pressione esterna logica inusuale ingiustificata possono materialmente e moralmente sostituire minuziosi consigli professionali ed altamente complessi generati regolarmente in contesti separati protetti gestiti fisicamente per ragioni d'emergenza o di gestione del rischio fiduciario ad istituti previdenziali certificati ed autorizzati ai canoni delle correnti leggi bancarie locali, e la ricezione visiva intellettualizzata ed immagazzinamento o condivisione tra parenti affini logici dedotti o applicati materialmente dagli utenti dei testi gratuiti postati senza richieste contrattuali preliminari scaricano irrevocabilmente d'istante qualsivoglia ipotesi d'imputazione colposa da attribuire alla totalità composita degli autori operanti nel team per variazioni accidentali di quotazioni azionarie fallimentari non inerenti l'ecosistema narrato dai curatori fiduciari non accollanti rischi d'azzardo imputati impropriamente da speculazioni ignote terziarie da essi derivate in maniera subdola. L'estesa presenza reticolare digitale implicante e concatenante vastità intertestuale di ramificazioni o ipertesti recanti collegamenti URL esponenti puntualmente entità aziendali ed imprese eterogenee totalmente sconnesse materialmente ad una conduzione finanziaria e sociale originata internamente a noi resta esposta come mero strumento facilitatore per indagini ed argomentazioni integrative senza instaurare legalmente alcuna solida omologazione solidale di supporto implicante approvazione totale morale incondizionata garantista alle prassi industriali, qualitative produttive condotte abitualmente internamente agli orizzonti aziendali limitrofi terzi appena raggruppati telematicamente senza accordi in esubero sui formali processi collaborativi stipulabili regolarmente e validi e verificabili apertamente dal lettore informato con adeguato metro distanziato d'accusa giudiziosa ponderante autonomie produttive totalmente terze nel merito del World Wide Web diffuso a garanzia FojeFais e Metaskill in fase indipendente associata esplicitamente chiarificata senza ombre documentate pubblicamente all'unisono e confermate dall'audit procedurale a difesa integrata dei fornitori testuali e non materiali della fonte ispirativa formativa presentata e protocollata globalmente nell'odierna stipulazione accessoria. Manteniamo saldo in qualsiasi momento evolutivo del sistema e senza vincoli storici il diritto incrollabile non obbiettabile esigibile senza limiti o comunicazioni d'emergenza preventive l'insindacabilità per dismettere limitare od occultare intere branchie espositive documentate ed accessi a perimetri circoscritti e catalogati d'erogazione per far rispettare vincolanti ordini, abusi d'estrazioni dati tramite spider massivi illeciti inondanti risorse in contrasto letale alle linee di sicurezza e salvaguardia server pattuite coi gestori provider d'host stabiliti ed investiti regolarmente nel progetto informativo editoriale erogante su menzionato prima con fermezza contrattuale garantendo flussi d'erogazione protocollati legittimi, integri solidamente in vigore nel presente storico evolutivo di rete per stabilità tecnica operativa FojeFais senza limiti incerti ai consumatori ed esponenti fiduciari regolarizzati operanti in sincronia attiva online e su piattaforme connesse regolate dai diritti sovrani d'esercizio protetto digitale per divulgazioni testuali finanziarie non istituzionali libere da legacci oppressivi non legali al di sopra delle normative standardizzate e ratificate nell'anno duemilaventisei e correnti al momento dell'allacciamento informatico descritto esaustivamente in questo perimetro di validità legislativa astratta di rete pattuita solennemente come testo regolatorio per servizi eroganti FojeFais digital blog.
+                        </div>
+                    </details>
+
+                    <details class="text-sm cursor-pointer group mt-2">
+                        <summary class="hover:text-white transition flex items-center justify-between">Garanzie ed Assenze Resi <span class="text-gray-600 group-open:rotate-180 transition">+</span></summary>
+                        <div class="mt-2 text-xs text-gray-400 bg-gray-800 p-4 rounded-lg overflow-y-auto max-h-48">
+                            A scanso di speculazioni e diatribe e a rigore indiscusso della presente prassi codificata FojeFais espone pubblicamente a perenne disposizione del perito e per consultazione aperta ed universale da remoto la chiara evidenza operativa inerente metodiche economiche implicanti rimborsi fiduciari e meccanismi per l'involuzione e recessione documentaria del credito materiale non concretizzabili in assenza fisica strutturata del fatto originario da confutare analiticamente qui di seguito discusso e documentato esplicitamente senza margine scivoloso all'interpretazione ambigua degli interessati o di terzi non interpellati pattuendo le basi della natura intrinseca digitale dell'elaborazione fornita ed accettata volontariamente a costo base innalzato ai consumatori telematici FojeFais operanti globalmente al presente o nel futuro prossimo informatico in questione e tema attuale del testo erogato integralmente senza aggiunte successive taciute in fase di redazione fondante iniziale d'impresa digital blog descritta accuratamente nell'intestazione originaria prima riportata legalmente tra le informative documentali in vigore al momento di creazione server del presente ramo aziendale web qui di pertinenza giurisdizionale palese ed incrollabile e consolidata prassi aziendalista consolidata per non erogazione fondi immessa sul file. Considerata primariamente d'obbligo formale ed evidenziabile dalla configurazione essenziale del portale espositivo tematico erogante esclusivi perimetri composti meramente ad unicamente ad approfondimento descrittivo cognitivo testuale e metodologie operative e strategie divulgative ed illustrative senza controparti fisse, senza beni trasferiti solidamente misurabili ed attuando metodiche informative basilarmente disposte con la clausola fondamentale gratuita o con erogazione d'elementi digitali eterei smaterializzati prelevabili all'unisono post compimento di compili d'esplicita scelta formulare online non prevedente abbonamenti forzosi od accrediti deducibili dal contocorrente e circuiti prepagati d'un portafoglio terzi senza consenso o transazioni pecuniarie dirette regolarizzate internamente per il possesso, svanisce del tutto nell'assolutezza legislativa inerente l'imposizione od obbligo coercitivo la prerogativa standard d'esigere meccanismi lenti per rientri economici forfettari derivati od inversione fatture documentate e transitate mancanti nel principio all'istanza fondamentale che attesterebbe con ricevuta di valuta regolarizzata l'eventuale base fondante da stornare e annullare operativamente sui conti della piattaforma corrente, cancellando logicamente all'istante dell'interazione qualsivoglia dubbio di risarcimenti per prodotti a costo base assente documentabili integralmente gratuiti, forniti liberamente. Dettata tale e profonda irreprensibile situazione strutturale immutabile palesiamo e riaffermiamo in solenne e fermo tono non alterabile procedurale un categorico incrollabile esonero assoluto globale di adempiere resi monetari non materializzati originariamente in transazioni preordinate di denaro non essendosi verificate su questo portale di front end accessibile al pubblico per acquisti e cessione fisiche merceologiche tracciate, rigettando a livello d'ordinario meccanismo richieste formulate indebitamente e fuori contesto applicativo tese in astruso modo ad ottenere riscontri pecuniari a seguito consumo di consigli intellettuali non sottoposti nel modello d'esordio d'impalcatura FojeFais in veste vendibile materialmente per lucro fiduciario incamerato ed imputabile, confermando totale serenità fruitiva utente alienata e preclusa a logiche stringenti non esplicitate per commercio beni e prodotti reali assoggettati diversamente ed applicabili in settori divergenti dal presente spazio formativo e informativo indipendente escludente pratiche speculanti. Esautorato pertanto qualunque possibile equivoco generato malevolmente da parti ignote sul World Wide Web o per ignoranza materiale dell'asset prettamente descrittivo ed istruttivo escluso dallo stampo negozio digitale non gestito da queste memorie in codice erogante le stringhe presentemente analizzate nei testi correnti si invitano tutti al logico discernimento delle pratiche libere, alla responsabilità fruitiva scevra d'aspettativa di ritorni monetari tangibili da transazioni immaginate nullatenenti che rafforzano il pregio base divulgante libero senza condanne di bilanci ed emissioni formali fiscalizzanti derivanti dall'esposizione metodica non sottoposta a tributo primario forzato su questo sistema ininterrotto web garantendo un uso pacato disteso ed intellettualmente arricchente esente stress post-transazione su tutti fronti d'aggancio ai consumatori fruitori dei testi forniti e mantenuti sui database aperti incondizionatamente pattuendo queste innegabili costrizioni procedurali assenti sul capitale esente fiduciosamente FojeFais operante e Metaskill partner.
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+            <div class="text-center text-gray-500 text-sm">
+                &copy; 2026 FojeFais. Tutti i diritti riservati. Progetto editoriale e promotore per una cultura del risparmio mensile ottimizzato ed educato alla base della conduzione finanziaria autonoma.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Cookie Banner -->
+    <div id="cookie-banner">
+        <div class="mb-2 md:mb-0 max-w-4xl text-sm">
+            Questo dominio impiega meccanismi a matrice codificata identificati storicamente nel perimetro digitale con accezione informatica denominativa comunemente di protocolli denominati in gergo tecnico anglosassone <em>Cookie</em>. Questa implementazione assicura fermezza esecutiva della rete infrastrutturale ospitante incrementando significativamente flessibilità personalizzabile di rendiconto esplorazione e ottimizzando erogazioni prestazionali tecniche e funzionali e non maliziose nel tuo quotidiano impiego del web espanso e interfacce operative online che proponiamo esposti all'utenza in corso per migliorare tracciati metrici aggregati puramente statistici essenziali al bilanciamento del network documentale informativo attuale esibito da FojeFais per l'istruzione pubblica economica non rimborsabile e priva lucro transitorio palese come precedentemente asserito e validato a sistema informatico protetto logicamente contro derive esterne malevoli del darknet informatico assalitore odierno respinto al mittente ed arginato solennemente e rigorosamente mediante questo annuncio di garanzia d'eccellenza. 
+        </div>
+        <div class="flex gap-4">
+            <button onclick="acceptCookies()" class="bg-primary hover:bg-green-600 text-white font-bold py-2 px-6 rounded transition shadow-md border-0 cursor-pointer">Ho inteso ed Acconsento Formale</button>
+        </div>
+    </div>
+
+    <script>
+        // Cookie Logic
+        if(localStorage.getItem('fojefais_cookies') === 'accepted') {
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('fojefais_cookies', 'accepted');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        // Smart Routing (Gravity Well Protocol)
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[href^="#"]');
+            if(link) {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetEl = document.getElementById(targetId);
+                
+                if(targetEl) {
+                    targetEl.scrollIntoView({behavior: 'smooth'});
+                } else {
+                    // Fallback gravity well
+                    const contactEl = document.getElementById('contact');
+                    if(contactEl) {
+                        contactEl.scrollIntoView({behavior: 'smooth'});
+                    }
+                }
+                
+                // Close mobile menu if open when clicking a link
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden') && link.closest('#mobile-menu')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
