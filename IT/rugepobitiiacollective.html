@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rugepo Bitiia Collective | App Networking e Mentoring Professionale</title>
+    <meta name="description" content="Accellera la tua carriera attraverso il networking strategico e il mentoring. Entra in contatto con leader del settore.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- BRAND DNA COMPONENT INJECTION -->
+    <style>
+        :root {
+            /* 
+             VAR A (Domain length 28 % 3 = 1) -> Soft
+             VAR B (First letter 'r'=114 % 3 = 0) -> Flat border
+             VAR C (Last letter 'k'=107 % 3 = 2) -> Slate White
+             VAR D (Networking/Mentoring niche) -> Deep Indigo
+            */
+            --primary: #4f46e5;
+            --surface: #f8fafc;
+            --radius: 12px;
+            --shadow: 0 0 0 1px #e5e7eb;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Ensure cards pop against background */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: border-color 0.3s ease;
+        }
+
+        .dna-card:hover {
+            border-color: rgba(79, 70, 229, 0.3); /* Slight primary tint on hover */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary {
+            color: var(--primary);
+        }
+        
+        .bg-primary-light {
+            background-color: rgba(79, 70, 229, 0.1);
+        }
+
+        /* Detailed accordion styling */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#home" class="text-2xl font-extrabold tracking-tighter text-gray-900">
+                        RugepoBitiia<span class="text-primary">.Collective</span>
+                    </a>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium">Servizi</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium">Testimonianze</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium">FAQ</a>
+                </nav>
+                
+                <div class="hidden md:flex items-center">
+                    <a href="#contact" class="btn-primary text-sm px-6 py-2">Inizia Ora</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50">Testimonianze</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary">Iscriviti</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section (Full Width exception) -->
+    <div id="home" class="relative bg-white overflow-hidden border-b border-gray-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-20 px-4 sm:px-6 lg:px-8">
+                <main class="mt-10 mx-auto max-w-7xl sm:mt-12 md:mt-16 lg:mt-20 xl:mt-28">
+                    <div class="sm:text-center lg:text-left">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-light text-primary mb-4">
+                            L'app numero uno per il business
+                        </span>
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                            <span class="block xl:inline">La</span>
+                            <span class="block text-primary xl:inline">connessione</span>
+                            <span class="block xl:inline">che trasforma la tua carriera in un percorso di successo.</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                            Entra a far parte del Collective. La nostra piattaforma di app networking e mentoring professionale abbina il tuo talento alle menti più brillanti del tuo settore.
+                        </p>
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                            <div class="rounded-md shadow">
+                                <a href="#contact" class="btn-primary w-full flex items-center justify-center md:py-4 md:text-lg md:px-10">
+                                    Crea il tuo profilo
+                                </a>
+                            </div>
+                            <div class="mt-3 sm:mt-0 sm:ml-3">
+                                <a href="#features" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-primary-light hover:bg-gray-50 md:py-4 md:text-lg md:px-10" style="border-radius: var(--radius)">
+                                    Scopri di più
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 hidden lg:block bg-gray-100">
+            <!-- Pexels valid business meeting image fallback via placehold.co -->
+            <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" 
+                 src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                 alt="Networking professionale tra colleghi" 
+                 loading="lazy"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/800x600/f3f4f6/1f2937?text=Business+Networking'">
+        </div>
+    </div>
+
+    <!-- Trust Banner -->
+    <div class="bg-gray-900 text-white py-6">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold uppercase tracking-wide text-gray-400 mb-4">Professionisti connessi provenienti dalle migliori realtà</p>
+            <div class="flex justify-center space-x-8 opacity-70 flex-wrap gap-4">
+                <span class="text-xl font-bold font-mono">TechNova Systems</span>
+                <span class="text-xl font-bold font-serif">Aura Finance</span>
+                <span class="text-xl font-bold">Horizon Group</span>
+                <span class="text-xl font-bold font-mono">Alpha Logistics</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Sections (Using DNA Card logic) -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-8">
+
+        <!-- FEATURES SECTION -->
+        <div id="features" class="dna-card">
+            <div class="text-center mb-12">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Il Tuo Acceleratore</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Un sistema progettato per l'eccellenza
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    La nostra piattaforma unisce strumenti di comunicazione avanzati a una rete verificata di esperti.
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+                    
+                    <!-- Feature 1 -->
+                    <div class="flex flex-col items-start">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white mb-4" style="border-radius: var(--radius)">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Mentorship 1-a-1</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Trova il Mentor ideale per accelerare il tuo <strong>percorso</strong> professionale. I nostri algoritmi ti abbinano a leader del settore pronti a condividere esperienze cruciali e darti un reale <strong>vantaggio</strong> nel mercato del lavoro.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="flex flex-col items-start">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white mb-4" style="border-radius: var(--radius)">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Network Dinamico</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Non sei solo un utente, ma parte di una cerchia ristretta. Connettiti con ogni futuro <strong>collega</strong>, co-founder o partner d'affari. Il networking diventa un processo fluido, intelligente e mirato al business.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="flex flex-col items-start">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white mb-4" style="border-radius: var(--radius)">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Risorse di Carriera</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Accesso esclusivo a masterclass, webinar e documentazione strategica. Ottimizza ogni step della tua <strong>carriera</strong> con strumenti che ti permettono di gestire appuntamenti e monitorare i progressi.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Le storie di chi ha scelto Rugepo Bitiia Collective</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="h-10 w-10 bg-primary-light rounded-full flex items-center justify-center text-primary font-bold">M</div>
+                        <div class="ml-4">
+                            <div class="text-sm font-bold text-gray-900">Marco Rinaldi</div>
+                            <div class="text-xs text-gray-500">Marketing Director</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Grazie all'app ho trovato una guida fondamentale per la transizione del mio <strong>percorso</strong> professionale. La qualità della <strong>connessione</strong> è impareggiabile. In sole tre settimane ho finalizzato due partnership vitali per il mio dipartimento."</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="h-10 w-10 bg-primary-light rounded-full flex items-center justify-center text-primary font-bold">E</div>
+                        <div class="ml-4">
+                            <div class="text-sm font-bold text-gray-900">Elena Sartori</div>
+                            <div class="text-xs text-gray-500">Software Engineer</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Cercavo un Mentor che mi capisse. Ho non solo trovato una persona incredibile, ma anche un intero network. Ogni <strong>collega</strong> virtuale che ho incrociato qui si è dimostrato un professionista serio e focalizzato sugli obiettivi di crescita comune."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="dna-card">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                
+                <details class="bg-white border border-gray-200 p-4 rounded-lg group">
+                    <summary class="font-bold text-gray-900 flex justify-between items-center focus:outline-none">
+                        <span>A chi è rivolto il Rugepo Bitiia Collective?</span>
+                        <span class="text-primary transform group-open:rotate-180 transition-transform duration-200">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600">L'app è sviluppata per professionisti di tutti i livelli, dai neolaureati in cerca della prima vera <strong>connessione</strong> aziendale, ai manager esperti che vogliono espandere il proprio raggio d'azione o dare indietro alla community fungendo da mentori.</p>
+                </details>
+
+                <details class="bg-white border border-gray-200 p-4 rounded-lg group">
+                    <summary class="font-bold text-gray-900 flex justify-between items-center focus:outline-none">
+                        <span>Come avviene il matching con il mentor ideale?</span>
+                        <span class="text-primary transform group-open:rotate-180 transition-transform duration-200">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600">Utilizziamo un sistema intelligente che analizza le tue competenze, il settore di interesse e i tuoi obiettivi di <strong>carriera</strong>. Verrai abbinato a un esperto in grado di colmare le tue lacune e fornire un immediato <strong>vantaggio</strong> strategico.</p>
+                </details>
+
+                <details class="bg-white border border-gray-200 p-4 rounded-lg group">
+                    <summary class="font-bold text-gray-900 flex justify-between items-center focus:outline-none">
+                        <span>Ci sono eventi di networking fisici?</span>
+                        <span class="text-primary transform group-open:rotate-180 transition-transform duration-200">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600">Il nostro nucleo è digitale per consentire connessioni globali in modo istantaneo. Tuttavia, organizziamo incontri trimestrali esclusivi nelle principali città per permetterti di stringere la mano ad ogni <strong>collega</strong> conosciuto online, consolidando le relazioni.</p>
+                </details>
+
+                <details class="bg-white border border-gray-200 p-4 rounded-lg group">
+                    <summary class="font-bold text-gray-900 flex justify-between items-center focus:outline-none">
+                        <span>Quali strumenti per la gestione delle sessioni sono inclusi?</span>
+                        <span class="text-primary transform group-open:rotate-180 transition-transform duration-200">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-gray-600">La piattaforma funge anche da business maker a tutto tondo: include scheduling integrato per fissare incontri video, task manager per tracciare gli obiettivi del <strong>percorso</strong> di mentoring, e un sistema di feedback bilaterale al termine di ogni confronto.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT & CTA SECTION -->
+        <div id="contact" class="dna-card text-center sm:text-left sm:flex items-center justify-between">
+            <div class="sm:w-1/2 mb-8 sm:mb-0">
+                <h2 class="text-3xl font-extrabold text-gray-900">Inizia il tuo salto di qualità oggi.</h2>
+                <p class="mt-4 text-lg text-gray-600">
+                    Smetti di navigare al buio. Richiedi l'invito per accedere alla nostra community privata di networking e scarica l'app sul tuo dispositivo. Iscrizione riservata per mantenere elevata la qualità del collective.
+                </p>
+                <!-- Adddress Data Logic Applied -->
+                <div class="mt-6 border-t border-gray-200 pt-6">
+                    <p class="text-sm text-gray-500 font-bold mb-1">Rugepo Bitiia Collective HQ</p>
+                    <p class="text-sm text-gray-500">Business District Innovation Center<br>Milano, MI 20100<br>Orario Uffici: Lun-Ven, 9:00 - 18:00</p>
+                    <p class="text-xs text-gray-400 mt-2">*Non effettuiamo assistenza telefonica, ma garantiamo un processo di ammissione rapido via app.</p>
+                </div>
+            </div>
+
+            <div class="sm:w-5/12 bg-white p-6 rounded-lg border border-gray-200 shadow-sm relative">
+                
+                <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Richiedi l'accesso all'App</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Nome e Cognome Professionale</label>
+                            <input type="text" id="name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                        </div>
+                        <div>
+                            <label for="job" class="block text-sm font-medium text-gray-700">Qualifica / Ruolo Attuale</label>
+                            <input type="text" id="job" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                        </div>
+                        <div>
+                            <label for="goal" class="block text-sm font-medium text-gray-700">Il tuo obiettivo di Carriera Principale</label>
+                            <select id="goal" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                                <option>Trovare un Mentore per crescita leadership</option>
+                                <option>Conoscere nuovi partner d'affari (Networking)</option>
+                                <option>Diventare Mentor per la community</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary w-full mt-4">Invio Richiesta Profilo</button>
+                    </div>
+                </form>
+
+                <div id="success-msg" class="hidden text-center py-8">
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                        <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900">Richiesta Ricevuta con Successo!</h3>
+                    <p class="mt-2 text-sm text-gray-500">I nostri curatori valuteranno la tua application. Se approvata, riceverai le credenziali di accesso per scaricare l'App a breve direttamente sui tuoi sistemi sicuri.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Smart Routing Inline JS (Failsafe execution) -->
+    <script>
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('a[href^="#"]');
+            if(target) {
+                e.preventDefault();
+                const id = target.getAttribute('href').substring(1);
+                let element = document.getElementById(id);
+                
+                // The "Gravity Well" Fallback Rule
+                if(!element && id !== '') { 
+                    element = document.getElementById('contact'); 
+                    console.log('Element not found. Routing to Contact.');
+                }
+                
+                if(element) {
+                    element.scrollIntoView({behavior: 'smooth'});
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            }
+        });
+    </script>
+
+    <!-- Footer & Strict Compliance Layer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <p class="text-lg font-bold text-white mb-2">Rugepo Bitiia Collective</p>
+                <p class="text-sm max-w-2xl mx-auto text-gray-400">Piattaforma avanzata per lo sviluppo del talento tramite connessioni umane, formazione mirata e networking aziendale evoluto in ambito tech, management ed enterprise.</p>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 Rugepo Bitiia Collective. Tutti i diritti riservati.</p>
+                <p class="mt-4 md:mt-0 text-center md:text-right font-semibold text-gray-400 bg-gray-800 p-3 rounded">
+                    Questo è un sito promozionale indipendente gestito da Rugepo Bitiia Collective, che agisce in qualità di affiliato per Business Maker App.
+                </p>
+            </div>
+
+            <!-- Mandatory Deep Legal Text Injection IN ITALIAN -->
+            <div class="mt-10 space-y-4">
+                
+                <details class="text-xs text-gray-500 bg-gray-800 rounded p-4 border border-gray-700">
+                    <summary class="cursor-pointer font-bold uppercase text-gray-400 hover:text-white transition">Informativa sulla Privacy Policy Completa</summary>
+                    <div class="mt-4 space-y-2 leading-relaxed h-48 overflow-y-auto">
+                        <p>Informativa sulla privacy per il trattamento dei dati degli utenti del nostro portale web e applicazione mobile connessa alle logiche del sistema. L'elaborazione, in base alle direttive imposte dai regolamenti correnti applicabili sul territorio nazionale ed europeo (in conformità alle stringenti indicazioni del noto Regolamento Europeo noto per la protezione del soggetto), richiede trasparenza totale. Raccogliamo esclusivamente informazioni di profilo aziendale fornite con esplicito consenso al fine di istruire gli algoritmi di compatibilità strutturati dalla nostra infrastruttura tecnologica. Rugepo Bitiia Collective impiega metodologie di crittografia end-to-end avanzate per la totale sicurezza delle interrogazioni immesse nelle form o applicate sui processi interattivi delle app da terzi soggetti di monitoraggio della rete interna. I dati registrati servono all’efficientamento sistematico dell'account durante ogni interazione e ogni incrocio per facilitare incontri professionali, per determinare percorsi idonei o segnalare metriche di analisi collettive per uso e ottimizzazione dei mercati, ma si evidenzia la ferma intenzione da parte del servizio di escludere assolutamente finalità diverse non dichiarate chiaramente all’utente originario. Il soggetto garantisce espressamente che ogni informazione personale sarà gelosamente preservata in nodi database certificati, situati in posizioni idonee alle legislazioni di tutela per il salvataggio o di backup o cloud dislocato localmente dove è registrato ed elabora tecnicamente tali interfacce aziendali del nodo affiliato descritto in conformità d'operazione su tale modulo. Sono implementati traccianti e metriche necessarie a garantire continuità diagnostica dei nodi interni. Le modifiche avverranno ad aggiornamento normativo o mutazione dei prodotti aziendali erogati sulla filiera in essere, riservandoci la facoltà e onere procedurale d'obbligo circa eventuali correzioni testuali al presente paragrafo descrittivo che non ledano e assicurino tutele maggiori rispetto alle clausole oggi previste ai consumatori operanti con mezzi telematici moderni conformi.</p>
+                        <p>A tutti è data garanzia esplicita per attivare procedure atte a ottenere oblio, blocco temporaneo dei record salvati da questo pannello digitale o rimozione, salvo obblighi di conservazione previsti o richieste di blocco del titolare principale affiliato responsabile dello stoccaggio al dettaglio descritto nelle norme della rete che sovrintende operatività e interazioni del networking stesso qui illustrato tramite interconnessioni logiche garantendo sicurezza delle reti digitali contro attività anomale da script automatizzati avversi nel totale rispetto di tutela preventiva al cliente navigante da qualsivoglia origine web validata da proxy esteriori in linea globale su queste macchine ospitanti autorizzate.</p>
+                    </div>
+                </details>
+
+                <details class="text-xs text-gray-500 bg-gray-800 rounded p-4 border border-gray-700">
+                    <summary class="cursor-pointer font-bold uppercase text-gray-400 hover:text-white transition">Termini e Condizioni di Utilizzo del Servizio</summary>
+                    <div class="mt-4 space-y-2 leading-relaxed h-48 overflow-y-auto">
+                        <p>Accettazione espressa e stringente di tutte le condizioni generali necessarie all'esecuzione sicura di protocolli e moduli offerti via interfaccia per accedere regolarmente ai circuiti virtuali e agli inviti promozionali riservati illustrati poc'anzi nei paragrafi redazionali sopracitati su questa particolare esibizione tecnologica indipendente per le pratiche online gestite ai fini del presente mandato contrattuale stabilito implicitamente tramite inserimento dati e richiesta partecipazione del potenziale membro attivo sull'applicazione o rete estesa ad essa intrinsecamente abbinata al fine esclusivo di generare valore comune fra iscritti certificati da organi interni e garanti della nostra conformità generale al sistema. Navigando e adoperando qualsiasi mezzo del pannello in parola, compilando ogni forma in input proposta sui livelli operativi, premete una convalida delle tutele applicabili sia all’host proprietario del frontend qui esposto, denominato come descritto nel banner, sia alla società creatrice software del prodotto madre originale per il quale effettuiamo mediazione divulgativa. Vi è vincolo all'impiego per scopi professionali genuini senza intenzioni dolose mirate ad alterazione dell'equilibrio e ordine tecnico tra infrastruttura fisica e virtualizzazione dell’utenza. Violazioni accertate comporteranno estromissione drastica, l’annullamento progressivo dai cluster centralizzati degli indici pregressi creati come identificativo, fermo che eventuali perdite cagionate non comportino reclamo risarcitorio dalle cause non afferibili a difetti intrinseci per il software per conto d'uso improprio generato, o comunque esenti in virtù delle limitazioni sancite da tutti i principi base del servizio elettronico distribuito come piattaforma. I suddetti parametri descritti mantengono attuazione rigorosa nel tempo salvo le riforme normative nazionali su internet applicate per tutela sia ad operatore che ad intestatario della connessione erogante l'ingresso primario tramite reti globalmente approvate a mantenere tali sistemi raggiungibili via nodo aperto dal provider originario, regolati inoltre da ulteriori norme imposte sulle restrizioni circa il traffico generabile dal client per cui ogni abuso garantisce revoche permanenti del sistema di abilitazione, sospensione o totale esclusione.</p>
+                        <p>I patti tra fruitori sono regolarizzati da prassi civile, il nodo declina l'implicazione in attriti relazionali intercorsi online con parti slegate che incrocino comunicazione sulla community creata mediante funzionalità integrate non direttamente filtrate o mitigate ma esentando operatori dalle controversie o interpretazioni private nate durante transazioni professionali libere sui panel forniti gratuitamente tra due soggetti pari iscritti nei nostri log elettronici ad approvazione previa documentata dai regolamenti estensivi delle direttive per la piattaforma. Nessun pretesto autorizza la falsificazione e i documenti descrivono il sistema ad erogazione informatica del nodo gestore unico dell’host delegato, fermo ed irrevocabile nel mantenere conformità applicativa sulle funzioni qui redatte e poste in vetrina visibile pubblicamente secondo norma base delle regolamentazioni dell’esibizione digitale pubblicitaria con riserva perpetua del mutamento degli apparati tecnologici connessi di questo documento strutturale globale descrittivo senza preavviso notificato via strumenti offline.</p>
+                    </div>
+                </details>
+
+                <details class="text-xs text-gray-500 bg-gray-800 rounded p-4 border border-gray-700">
+                    <summary class="cursor-pointer font-bold uppercase text-gray-400 hover:text-white transition">Politica Rimborso Qualifiche Avanzate (Refund)</summary>
+                    <div class="mt-4 space-y-2 leading-relaxed h-48 overflow-y-auto">
+                        <p>Qualora un consumatore, inteso nella facoltà della persona che ha perfezionato, attraverso percorsi o canali correlati non limitati esclusivamente alle metodiche del sito, procedimenti mirati a confermare opzioni di miglioramento e pagamenti circa i prodotti connessi della ditta fornitrice centrale presentata tramite questa affiliazione indipendente per un accesso prioritario, è istituita norma per richiedere lo scioglimento formale che sancisce clausole a ritroso su valute elettroniche secondo leggi sulla stipulazione contrattualistica a distanza vigenti nelle ere attuali. Qualora subentrassero circostanze ammesse ove sia documentabile impossibilità oggettiva comprovante il fallimento tecnico reiterato della distribuzione della app promossa ed acquistata tramite i fornitori referenziati su questa vetrina, sono definite le finestre massime di segnalazione a tutela totale della serietà contrattuale garantita ai nuovi operatori aderenti che procedono attraverso gli scivoli approntati dal presente modello commerciale web promosso in veste esclusiva dalla rete espositiva. Tali scadenze fisse permetteranno un eventuale ricalcolo contabile sulle garanzie fornite in cooperazione dell'applicativo, ma non esenta dal rigoroso giudizio di perizia accertamento per definire e chiarire che eventuali insoddisfazioni siano oggettivamente riconducibili non ad uso superficiale dello strumento, del cui approvvigionamento ha piena discrezionalità il fruitore ed il fornitore ufficiale menzionato al banner di pagina base della vetrina web dell'incaricato Rugepo. I procedimenti verranno avviati dalle piattaforme originali dell'erogante effettivo in rispetto di specifiche clausole della holding d'emissione per il business maker finale secondo istruzioni e disposizioni scritte per i recessi dei servizi digitali deperibili di accesso protetto di abbonamenti limitati attivati nei tempi, seguendo modalità non ascrivibili direttamente ad alcuna responsabilità amministrativa pecuniaria a nome dell'host attualmente navigabile.</p>
+                        <p>Il presente documento regolamentare di indennizzo per esborsi definisce ulteriormente che nessuna elaborazione diretta sarà evasa a valere sulle proprietà dell'identità gestita in tale sessione a meno che non intervengano modifiche giurisdizionali a riguardo, con precisazione ferrea riguardo spese di espletazione burocratica o procedure bancarie per trasferimento denari internazionali legate al blocco non indennizzabili direttamente ai costi effettivi ma puramente ricalcate ai tetti prestabiliti massimali degli acquirenti originari dal circuito esterno collegato ed illustrato nelle note in evidenza poste sotto la cura dei relativi disclaimer previsti a legge corrente delle pubblicazioni digitali su reti aperte. L’atto pratico verrà subordinato alla conformità delle dichiarazioni sulle tempistiche d’accesso stabilito dai contratti originali cui viene sottoposto ad onere di rispetto nel suo uso professionale durante l’esperimento interattivo al fine che non provengano abusi dalle dinamiche contrattuali per richieste rimborso non consone secondo legislazioni applicate alla fornitura sui mercati odierni virtuali senza deroga ammissibile da altre direzioni estranee del network di provenienza in tale stato operativo documentato in pieno testo per obblighi normativi d’utilizzo o clausole generali approntate sulla trasparenza fiscale e direttiva sulle garanzie d'affiliazione redatte dal curatore di interfaccia promotrice online su questa istanza digitale pubblicizzata come strumento collettivo primario aziendale.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Bottom Cookie Banner (Zero alerts, localstorage implementation via standard script mechanics if it was fully integrated, here UI simulated for design completion and interaction setup) -->
+    <div id="cookie-banner" class="fixed bottom-0 inset-x-0 pb-2 sm:pb-5 z-50">
+        <div class="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div class="p-4 rounded-lg bg-gray-900 shadow-xl sm:p-4 border border-gray-700 flex items-center justify-between flex-wrap">
+                <div class="w-0 flex-1 flex items-center">
+                    <span class="flex p-2 rounded-lg bg-gray-800">
+                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </span>
+                    <p class="ml-3 font-medium text-white truncate text-sm text-wrap">
+                        Questo sito Rugepo Bitiia Collective utilizza traccianti di navigazione minimi per il bilanciamento rete come previsto dalle direttive. Continuando, ne accetti l'esistenza base obbligata a norma EU.
+                    </p>
+                </div>
+                <div class="mt-4 flex-shrink-0 w-full sm:mt-0 sm:w-auto">
+                    <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('rbc_cookies_accepted', 'true');" class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-900 bg-white hover:bg-gray-100 w-full sm:w-auto">
+                        Comprendo e Accetto
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Script to check if cookies were already accepted to not show the banner upon refresh (Simulated interaction enhancement) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if(localStorage.getItem('rbc_cookies_accepted')) {
+                const banner = document.getElementById('cookie-banner');
+                if(banner) banner.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
