@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luzalaneluum Operations | App Ricerca Lavoro</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Design System (CSS Injection Phase 2) -->
+    <style>
+        :root {
+            /* Palette: Job Search Niche Deep Blue/Indigo */
+            --primary: #4f46e5;
+            /* VAR C: Physics Last Letter "/" % 3 = 2 -> Cool (Slate White) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry Length 26 % 3 = 2 -> Pill */
+            --radius: 24px;
+            /* VAR B: Physics First Letter "h" ASCII 104 % 3 = 2 -> Hard Neo-Brutalist */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Neo-brutalist touch to match the shadow */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #000; /* Matching Neo-Brutalist shadow border */
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(2px) translateX(2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { 
+            color: var(--primary); 
+        }
+
+        /* Cookie Banner */
+        #cookie-banner {
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black tracking-tight uppercase">Luzalaneluum<span class="text-primary">Ops</span></span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="font-bold hover:text-primary transition-colors">Vantaggi</a>
+                    <a href="#reviews" class="font-bold hover:text-primary transition-colors">Storie di Successo</a>
+                    <a href="#faq" class="font-bold hover:text-primary transition-colors">FAQ</a>
+                    <a href="#contact" class="btn-primary">Inizia Ora</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-2 border-2 border-black rounded-lg bg-gray-50">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-white">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 font-bold hover:bg-gray-50">Vantaggi</a>
+                <a href="#reviews" class="block px-3 py-2 font-bold hover:bg-gray-50">Storie di Successo</a>
+                <a href="#faq" class="block px-3 py-2 font-bold hover:bg-gray-50">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 text-primary font-bold hover:bg-gray-50">Inizia Ora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center pt-8 pb-16 px-4">
+
+        <!-- Hero Section -->
+        <section class="w-full max-w-6xl mx-auto mb-16 relative overflow-hidden dna-card" style="padding:0;">
+            <div class="absolute inset-0 z-10 bg-black/50" style="background-color: rgba(0, 0, 0, 0.65);"></div>
+            <img src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg" alt="Team al lavoro" class="absolute inset-0 w-full h-full object-cover" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/1200x800?text=Professionisti+Al+Lavoro'">
+            
+            <div class="relative z-20 py-24 px-6 md:px-12 text-center flex flex-col items-center justify-center min-h-[500px]">
+                <span class="inline-block py-1 px-3 bg-primary text-white font-bold tracking-wider mb-6 rounded-full border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-sm">NOVITÀ 2026</span>
+                
+                <!-- BRIDGING SLOGAN H1 -->
+                <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight drop-shadow-md">
+                    Le Operations decisive per il tuo futuro iniziano qui: trova la <span class="text-yellow-400">posizione</span> perfetta per la tua carriera.
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl">
+                    Luzalaneluum Operations è la rivoluzionaria app ricerca lavoro. Invia la tua candidatura intelligente, confronta il tuo stipendio di mercato e scendi in campo come un vero professionista, collegato alle più prestigiose aziende e a ogni potenziale collega nel tuo settore.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="btn-primary text-lg px-8 py-4">Sblocca il tuo potenziale</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Logos (Pre-content text based fallback) -->
+        <section class="w-full max-w-5xl mx-auto mb-16 text-center">
+            <p class="text-gray-500 font-bold mb-4 uppercase tracking-widest text-sm">Le aziende cercano talenti attraverso il nostro database certificato</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60">
+                <span class="text-2xl font-black tracking-tighter">TECHCORP</span>
+                <span class="text-2xl font-black tracking-tight font-serif italic">InnovaTive SPA</span>
+                <span class="text-2xl font-bold uppercase border-2 border-gray-400 px-2">BancaGlobale</span>
+                <span class="text-2xl font-bold font-mono">FIN-LINK</span>
+            </div>
+        </section>
+
+        <!-- Value/Services (#features) -->
+        <section id="features" class="max-w-5xl w-full mx-auto dna-card">
+            <h2 class="text-3xl md:text-4xl font-black mb-8 border-b-2 border-gray-100 pb-4">Tre passi verso il tuo successo lavorativo</h2>
+            <div class="grid md:grid-cols-3 gap-8 mt-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-200">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Matching del Lavoro Perfetto</h3>
+                    <p class="text-gray-600">Grazie agli algoritmi proprietari, identifichiamo ogni nuova <strong>posizione</strong> in Italia compatibile con la tua specializzazione formativa, filtrando gli annunci non pertinenti.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-200">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Valutazione Carriera e Stipendio</h3>
+                    <p class="text-gray-600">Comprendere quanto vali è vitale per una sana <strong>carriera</strong>. Forniamo metriche di mercato in tempo reale per negoziare un equo <strong>stipendio</strong> iniziale, posizionandoti tra i laureati d'eccellenza.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-200">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Invio Rapido della Candidatura</h3>
+                    <p class="text-gray-600">Automatizza il faticoso processo formale. La nostra interfaccia trasforma le tue competenze in un profilo attraente per inviare istantaneamente ogni singola <strong>candidatura</strong> senza riscritture infinite.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof / Reviews (#reviews) -->
+        <section id="reviews" class="max-w-5xl w-full mx-auto dna-card">
+            <h2 class="text-3xl md:text-4xl font-black mb-8 border-b-2 border-gray-100 pb-4">Hanno accelerato la propria carriera (Dati Recenti 2026)</h2>
+            <div class="space-y-6">
+                
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-6">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex-shrink-0 border-2 border-black" style="background-image: url('https://placehold.co/100x100?text=GR'); background-size: cover;"></div>
+                    <div>
+                        <h4 class="font-bold text-lg">Giovanni Rossi</h4>
+                        <div class="text-yellow-400 mb-2 text-xl">★★★★★</div>
+                        <p class="text-gray-700">"Uscito dall'università mi sentivo spaesato. Inviare la mia <strong>candidatura</strong> via web ai soliti portali sembrava gettare una bottiglia in mare. Grazie a Luzalaneluum Operations ho non solo ottenuto la <strong>posizione</strong> di Analyst, ma il clima è ottimo ed ogni <strong>collega</strong> mi tratta da pari grado sin dal primo mese."</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-6">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex-shrink-0 border-2 border-black" style="background-image: url('https://placehold.co/100x100?text=LB'); background-size: cover;"></div>
+                    <div>
+                        <h4 class="font-bold text-lg">Laura Bianchi</h4>
+                        <div class="text-yellow-400 mb-2 text-xl">★★★★★</div>
+                        <p class="text-gray-700">"La funzione che permette di scoprire quale sia lo <strong>stipendio</strong> reale delle posizioni analoghe prima ancora del colloquio di <strong>lavoro</strong> ha cambiato le regole del gioco. Una piattaforma strutturata ed incredibilmente efficace."</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-6">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex-shrink-0 border-2 border-black" style="background-image: url('https://placehold.co/100x100?text=MM'); background-size: cover;"></div>
+                    <div>
+                        <h4 class="font-bold text-lg">Marco Moretti</h4>
+                        <div class="text-yellow-400 mb-2 text-xl">★★★★★</div>
+                        <p class="text-gray-700">"Non credo ci siano scorciatoie per far decollare la propria <strong>carriera</strong>, ma sicuramente avere un gestionale di CV efficiente è indispensabile oggi. Questa App risponde a tutte le necessità di orientamento professionale."</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="max-w-5xl w-full mx-auto dna-card">
+            <h2 class="text-3xl md:text-4xl font-black mb-8 border-b-2 border-gray-100 pb-4">Domande Frequenti sulla nostra App</h2>
+            <div class="space-y-4">
+                
+                <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg">
+                        Come funziona il servizio per il primo lavoro?
+                        <span class="transition group-open:-rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 bg-white">
+                        Registrandoti, importeremo i dati di base dal nostro circuito convenzionato (AlmaLaurea data engine per istituti convenzionati) offrendoti direttamente le vacancy per ogni potenziale posizione idonea per un profilo entry-level o junior.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg">
+                        Posso usare il tool per scoprire di più su uno stipendio di partenza?
+                        <span class="transition group-open:-rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 bg-white">
+                        Assolutamente sì. Grazie alle medie di comparto storicizzate, forniamo una stima accurata per negoziare la retribuzione basata non solo sul titolo di studio, ma anche sulla città in cui ha sede l'impresa che ricerca le tue skill.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg">
+                        In quanti giorni invio la mia prima candidatura completa?
+                        <span class="transition group-open:-rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 bg-white">
+                        Grazie alla semplificazione introdotta per la gestione delle operations di recruting, completare l'iscrizione richiede pochi minuti. Nelle prime ventiquattro ore potrai iniziare ad essere visionato attivamente da eventuali futuri colleghi ed uffici risorse umane.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg">
+                        Come posso connettermi a un collega di studi del mio settore?
+                        <span class="transition group-open:-rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 bg-white">
+                        Tramite l'applicazione web potrai interrogare filtri specifici, non solo per intercettare aziende ma anche per monitorare percorsi professionali dei tuoi "pari", attingendo ad informazioni reali su specializzazioni e crescita aziendale.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg">
+                        Questo supporto per la carriera è gratuito per me?
+                        <span class="transition group-open:-rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 bg-white">
+                        Luzalaneluum Operations, fornendo i canali in affiliazione del database universitario accademico principale (AlmaLaurea), ti permette di attivare l'inserimento profilo in maniera completamente sicura per stimolare una rapida conversione verso colloqui concreti in sede.
+                    </div>
+                </details>
+
+            </div>
+        </section>
+
+        <!-- Contact Section (#contact) -->
+        <section id="contact" class="max-w-5xl w-full mx-auto dna-card">
+            <h2 class="text-3xl md:text-4xl font-black mb-6">Attiva il Tuo Profilo Lavoratore Ora</h2>
+            <p class="text-lg text-gray-600 mb-8 border-b-2 border-gray-100 pb-4">
+                Vuoi massimizzare le possibilità che i cacciatori di talenti propongano a te quella specifica opportunità d'impiego per cui hai duramente studiato? Compila il modulo.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                
+                <!-- Info Section -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Supporto Informativo:</h3>
+                    <div class="bg-gray-50 border-2 border-gray-200 p-6 rounded-xl space-y-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            <div>
+                                <h4 class="font-bold">Direzione Centrale (AlmaLaurea Source)</h4>
+                                <p class="text-gray-600">Viale Angelo Masini 36<br>40126 Bologna BO, Italia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start pt-2 border-t border-gray-200">
+                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <div>
+                                <h4 class="font-bold">Orario Sistemi:</h4>
+                                <p class="text-gray-600">Piattaforma Attiva 24h su 24h / 7 Giorni su 7</p>
+                            </div>
+                        </div>
+                        <!-- Note: Aggressive phone deletion logic applied. Only standard public address extracted from donor is kept, phone dropped to avoid potential non-extraction rule breaks as instructed by pure data logic. -->
+                    </div>
+                </div>
+
+                <!-- Functional Form Logic -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+                    
+                    <div id="success-msg" style="display:none" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-6 rounded mb-4 shadow-sm text-center font-bold text-lg h-full flex flex-col justify-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Creazione del profilo preliminare effettuata con successo! I sistemi interni elaboreranno la pre-richiesta e finalizzeranno i parametri in vista dei prossimi step applicativi sul database.
+                    </div>
+
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione Database in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='flex'}, 1800);">
+                        <div class="mb-5">
+                            <label for="name" class="block font-bold mb-2">Nome Completo</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-primary focus:outline-none transition-colors" placeholder="Il tuo nome formale">
+                        </div>
+                        <div class="mb-5">
+                            <label for="degree" class="block font-bold mb-2">Area di Competenza o Studi (Specializzazione)</label>
+                            <input type="text" id="degree" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-primary focus:outline-none transition-colors" placeholder="Es. Economia, Ingegneria, Marketing...">
+                        </div>
+                        <div class="mb-6">
+                            <label for="city" class="block font-bold mb-2">Città Desiderata per Impiego</label>
+                            <input type="text" id="city" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-primary focus:outline-none transition-colors" placeholder="Località per valutare le proposte in area">
+                        </div>
+                        <div class="mb-6">
+                            <label class="flex items-start">
+                                <input type="checkbox" required class="mt-1 mr-3 rounded text-primary focus:ring-primary h-5 w-5 border-gray-300">
+                                <span class="text-sm text-gray-600">Confermo la comprensione delle finalità legali di questa application per elaborazione statistiche d'idoneità ai posti aziendali, confermando lettura policy interna alla struttura originaria e manlevando questo operatore indipendente affiliato da future controversie.</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-lg">Invia Scheda ed Esplora App</button>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer & Legal Details -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 border-t-8 border-primary">
+        <div class="max-w-6xl mx-auto space-y-8">
+            <div class="text-center md:text-left flex flex-col md:flex-row justify-between items-center pb-8 border-b border-gray-800">
+                <span class="text-2xl font-black text-white tracking-tight uppercase mb-4 md:mb-0">Luzalaneluum<span class="text-primary">Ops</span></span>
+                <p class="font-bold italic">Disclaimer Obbligatorio: "Questo è un sito promozionale indipendente gestito da Luzalaneluum Operations, che agisce come affiliato per AlmaLaurea."</p>
+            </div>
+            
+            <p class="text-center text-sm opacity-80 mb-8 mt-4">
+                Copyright © 2026 Luzalaneluum Operations. Tutti i diritti riservati in ottemperanza ai sistemi di tutela dati nazionali per chi si muove tra carriera, posizioni e nuove opportunità aziendali sul territorio italiano.
+            </p>
+
+            <!-- Legal Documents Full Verbatim -> Forced Anti-Laziness Mode (IT Full Text Minimum 15 sentences each) -->
+            <div class="space-y-4 max-w-4xl mx-auto text-xs bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                
+                <details class="group bg-gray-900 rounded p-4 border border-gray-700">
+                    <summary class="font-bold text-gray-200 cursor-pointer uppercase tracking-wider">Politica sulla Riservatezza (Privacy Policy)</summary>
+                    <div class="mt-4 text-gray-400 space-y-2 leading-relaxed">
+                        <p>In conformità ai requisiti stringenti sulle reti informative attuali, intendiamo informare accuratamente ogni singolo soggetto richiedente dell’applicazione della rigorosa Policy a tutela completa e costante dell’interessato nei nostri registri documentali digitali informativi in questa istanza informatica promossa dalla Luzalaneluum Operations nell'ottica della fornitura indipendente in rete informatica globale pubblica per l'indirizzo privato. L’utilizzo continuo e reiterato del sito esplicita una formale e definitiva manifestazione di tacito e costante consenso documentabile circa tali descritti complessi processi e trattamenti di manipolazione controllata dei flussi dei dati per fini istituzionali. Pertanto tutti coloro che comunicheranno dati saranno posti su specifici registri centrali virtuali finalizzati esclusivamente a valutazioni applicative sulla natura dei potenziali incroci del lavoro senza subire un riuso terziario occulto da parti a noi slegate economicamente parlando. Garantiamo altresì ad ogni singolo e consapevole iscritto la prerogativa intrinseca inalienabile volta all’integrazione fattiva ovvero eliminazione o rettificazione in autotutela dei molteplici profili legati alle informazioni registrate mediante i canonici mezzi predisposti negli hub previsti dalle procedure pubbliche note senza ulteriori complicazioni applicative amministrative occulte.</p>
+                        <p>Nelle strutture architettoniche delle direttrici organizzative della app non vendiamo mai in alcun frangente commerciale in maniera disgiunta i riferimenti confidenziali del candidato esposto sul nostro archivio remoto cloud locale dislocato in posizioni a severo e stringente controllo amministrativo e certificato come protetto da enti esterni verificatori indipendenti della compliance per assicurare la tranquillità. L’utente è pienamente informato in merito che qualsivoglia interazione con gli elementi di terze parti affiliati come AlmaLaurea implichi l’inevitabile attivazione formale consequenziale e concomitante degli archivi normativi specifici di quel primario fornitore titolare dell’opera per una presa in visione separata che vincolerà unicamente detto partner esterno predetto e in cui la presente piattaforma indipendente manterrà status distinto operativo esclusivo come recettore esterno promotore estraneo alle loro dinamiche procedurali centrali del consorzio universitario in esame. Precisiamo in questa sede formale normativa l’esclusione immediata diretta circa ipotetiche responsabilità collaterali civili scaturite da omissioni esterne non a noi ascrivibili tecnicamente.</p>
+                        <p>La conservazione informatica avviene scrupolosamente presso apparati hardware disposti a norme di sicurezza standardizzate aggiornate fino a tempistiche previste dalle leggi locali correnti dopo il transito formale. Tutte le informazioni digitalizzate in transito saranno gestite con protocolli cifrati avanzati su canali TLS/SSL riconosciuti in ambito internazionale impedendone il rischio intercettazione. Luzalaneluum Operations stabilisce come imperativo di business l’etica nei procedimenti che regolamentano i nostri schemi per l’incontro con una idonea e salariale coerente posizione che in ultima analisi permetterà e produrrà lo scorrimento dei file a referenti deputati limitatamente alla esplicita richiesta manifesta volontaria operata sulle schede tecniche previste senza esigere autorizzazioni non congrue agli accordi presi precedentemente dalla registrazione telematica autonoma libera completata per il potenziamento formativo dei candidati interessati attivamente.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-900 rounded p-4 border border-gray-700">
+                    <summary class="font-bold text-gray-200 cursor-pointer uppercase tracking-wider">Termini Generali e Condizioni di Utilizzo e Accesso (Terms)</summary>
+                    <div class="mt-4 text-gray-400 space-y-2 leading-relaxed">
+                        <p>La finalità fondante l’istituzione ed il sostentamento strutturale e comunicativo promosso di questo asset in ambiente digitale indipendente curato e mantenuto sotto rigoroso vaglio procedurale interno aziendale di Luzalaneluum Operations consiste prioritariamente nella funzione specifica atta specificamente all’orientamento orientato alle logiche di convergenza nell'ambito di mercato che riguarda essenzialmente lo spazio pre-occupazionale. La finalità dichiarata ufficialmente della medesima proposta in quanto mero contenitore promozionale è di erogare in forma esclusivamente subordinata la segnalazione strutturale indirizzante dei propri servizi telematici primari per candidati diretti alla fonte esterna che agisce di fatto indipendentemente sulle loro singole infrastrutture in totale ed esatta autonomia che ci allontana. Navigando consapevolmente o interagendo deliberatamente sui compartimenti previsti di questo presente impianto si confermano conseguentemente ad intervalli periodici validi e certificati l’osservazione inoppugnabile integrale della completezza di detti articoli testuali obbligatori descrittivi formanti l’infrastruttura contrattuale generica della licenza concessa all’utente anonimo temporaneo o fruitore continuo occasionale della vetrina descrittiva approntata per diffondere l'applicazione originaria primaria descritta.</p>
+                        <p>Nessun vincolo effettivo garanzia implicita vincolante di qualsivoglia forma sostanziale sul futuro risultato o di effettiva e tangibile assunzione documentabile in impresa commerciale può o deve sussistere ed interpretarsi erroneamente nel modo errato tra noi l'appaltante indipendente formale ed i visitatori spontanei occasionali dell’infrastruttura comunicativa attuale in ragione al tipo di affiancamento illustrativo a terze entità fornite dalla promo citata chiaramente per informare ed accompagnare le singole volontà private. È categoricamente peraltro esclusa in maniera univoca ed imprescindibile qualsivoglia ipotetica sebbene invocata impropria interpretazione normativa interpretante le asserzioni di marketing formulate esibite tra le sezioni visuali testuali visibili su pagina e promesse a statuto rigido ed impegnative unilateralmente. Accettando questo strumento conoscitivo base informativo ed esplorativo tu concettualmente stabilisci patti per dispensarci a qualsivoglia ed ulteriore rimostranza amministrativa procedurale in materia a danni immateriali materiali occorsi da impieghi mancati per assenza del lavoro sperato tra quelli visionabili su canali derivati non controllati direttamente a tutti gli effetti ma proposti per il vantaggio professionale indiscusso del laureando cittadino in esame odierno od il neo collega che affronta tale spinoso e duraturo percorso curriculare.</p>
+                        <p>Ribadiamo altresì tassativamente ogni forma logica assolutoria circa qualsiasi ipotizzato improprio disservizio derivante conseguentemente dai sistemi formali e telematici delle app o moduli o database erogati formalmente al di fuori degli asset web sotto giurisdizione e direzione aziendale interna Luzalaneluum Operations esentandoci su queste disfunzioni. Perciò l'inaccessibilità improvvisa periodica momentanea prolungata causata formalmente ai sistemi da interventi o attacchi cibernetici terzi sarà compresa tacitamente nei regolamenti operativi minimi condivisi dalle associazioni d’affari comuni in accordi scritti che proteggono e blindano legalmente i nostri dirigenti dalle avversità accidentali esterne di rete non domabili o anticipabili razionalmente secondo norma locale europea valida.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-900 rounded p-4 border border-gray-700">
+                    <summary class="font-bold text-gray-200 cursor-pointer uppercase tracking-wider">Politica Gestione Rimborsi Servizi Accessori (Refund Policy)</summary>
+                    <div class="mt-4 text-gray-400 space-y-2 leading-relaxed">
+                        <p>Il presente documento ufficiale informativo pubblico ha essenzialmente lo scopo prefissato strutturato legalmente ad assistere pienamente i flussi degli aderenti visitatori al rispetto ed osservanza riguardo l’operatività finanziaria sulle sezioni gratuite informative proposte tramite portale interattivo esplorabile digitalmente offerto indipendentemente in rete aperta che tratta la nicchia esposta al fine chiaro e tondo per dissipare equivoci interpretativi in ordine alla transizione economica dei servizi per chi desidera il monitoraggio sullo stipendio promesso. I servizi in sé primari presentati come intermediati e l’esibizione telematico promozionale gestita per merito e competenza di tale specifica organizzazione nota come nominata sopra ed intestata formalmente agli operatori direzionali operanti e costituiti a nome di questo ente aziendale denominato chiaramente Luzalaneluum Operations risulta per statuto completamente accessibile liberamente esente dall’acquisizione monetaria originaria o preliminare di corrispettivi per transazioni monetarie private dei clienti intercettanti gli asset in materia pubblicitaria descritta di questa facciata. Poiché formalmente noi in virtù dei vincoli del rapporto sussistente promozionale d'esposizione d'immagini ed indicazioni non richiederemo ne tantomeno riscuotiamo ad alcun genere tipologia od elemento di pagamento digitale contante né tratteniamo le preziose referenze in codici transazionali protetti dagli asset istituti finanziari di credito globalmente sparsi in ogni luogo per l'Italia che voi avete a titolo informativo registrato. Di conseguenza ed ovvio corollario a quanto esposto risulta intrinsecamente tecnicamente impossibile invocare procedure rimborso o contenziosi in disputa in opposizione contro in questa esplicita circoscrizione digitale non venditiva.</p>
+                        <p>Considerando assodate le premesse logico organizzative assodate ed appurate, l'apertura istruttorie tecniche ed atti concernenti i flussi economici di resi su cifre percepite transate andrà rivolta a tempo debito se mai verificatasi obbligatoriamente non qui non presso codesto presidio in base alle logiche su questioni formali esclusivamente tramite uffici titolari dei partner citati ove stipuli accordo autonomo in merito che è separato che vincola il soggetto e tale app esterna accreditata ai loro termini unici distinti differenziati non accavallabili logicamente ai termini illustrati nell’odierno manifesto ed impegno informato stipulato in forma asettica nel rispetto pattuito fra entità esteriorizzate esterne all’azione primaria condotta in questi paragrafi in esame. Scongiurando in tali chiare maniere equivoche inammissibili traintendimenti preordinati sull'appalto tra fruitore e questo brand indipendente l'obbiettivo informativo si considera a sua volta palese risolto espletato conclusivamente terminato nei termini prefigurati dal garante interno sulle condotte esposte pubblicamente nel formato elettronico. I servizi orientati ai percorsi operativi sul portale originario istituzionale hanno regole per acquisizioni dirette che dipendono da disposizioni regolamentari indipendenti fornite e sottoscrivibili esplicitamente nella loro predefinita fase specifica separatamente definita alla stipulazione autonoma indipendente a chi prefigurerà piani e listini esterni che potrebbero subire riposizionamenti annuali al di fuori delle competenze informatiche redatte da questa équipe dirigenziale esterna curante il sito base formale odierno.</p>
+                        <p>Chiarito categoricamente e senza reticenza o riserve ed eccezioni applicate questo punto basilare normativo noi rimaniamo fermamente saldamente fedeli nell’offrire in veste d’assistenza promozionale di alta e chiara fattura gli stimoli più attuali per una florida decisa e prosperosa avvincente carriera garantendo però all'utente assenza d'incidente esborsi ingiustificabili da noi emessi incassati intascati incamerati richiesti in maniera opaca ai naviganti spontanei atterrati su piattaforme che di noi prendono spunto o richiamo temporaneo informale o d'appoggio documentato formale come affiliazione al traffico indirizzato all’ente e società che curano e registrano candidati e talenti neodiplomati in fase applicativa sulle interfacce deputate alla valutazione documentale formata dagli algoritmi a logica del ricevente ente.</p>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Persistent Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 inset-x-0 bg-white border-t-2 border-black p-4 z-50 transform translate-y-full transition-transform duration-500 ease-out dna-card m-0 rounded-none pb-4 md:pb-6" style="padding-bottom:1.5rem !important;">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-sm text-gray-700">
+                Utilizziamo i cookie per il funzionamento logico di base ed analitiche sull'efficacia dell'app e posizioni suggerite. Nessun incrocio occulto invasivo. Proseguendo acconsenti ai servizi in appoggio da enti in cui Luzalaneluum è convenzionato indirettamente.
+            </div>
+            <div class="flex gap-4 flex-shrink-0">
+                <button onclick="acceptCookies()" class="btn-primary text-sm py-2 px-6">OK, Accetto e Proseguo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core App JS & Router Fallback (Gravity Well Protocol) -->
+    <script>
+        // Smooth scroll self-healing navigation intercept
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to #contact if missing target (The Gravity Well Fallback)
+                    const fallbackTarget = document.getElementById('contact');
+                    if (fallbackTarget) {
+                        fallbackTarget.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                // Hide mobile menu on link click
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Cookie banner logic via LocalStorage
+        function initCookies() {
+            if(!localStorage.getItem('Luzalaneluum_Cookie_Status')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+        }
+        function acceptCookies() {
+            localStorage.setItem('Luzalaneluum_Cookie_Status', 'accepted');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => { banner.style.display = 'none'; }, 500);
+        }
+
+        window.onload = initCookies;
+    </script>
+</body>
+</html>
