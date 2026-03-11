@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QabuBior Partners | Monitoraggio Conto e Patrimonio Netto</title>
+    <meta name="description" content="L'app definitiva per il monitoraggio dei conti bancari, l'analisi del saldo, l'ottimizzazione dei risparmi e il tracciamento in tempo reale del patrimonio netto e del rendimento.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* VAR D: Emerald Green - Finance Palette */
+            --primary: #059669; 
+            /* VAR C: Cool Surface (Slate White) */
+            --surface: #f8fafc; 
+            /* VAR A: Sharp Geometry */
+            --radius: 0px; 
+            /* VAR B: Hard/Neo-Brutalist Physics */
+            --shadow: 4px 4px 0px 0px #000; 
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; 
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            scroll-behavior: auto; /* Handled by JS */
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Necessary to outline neo-brutalist shadow */
+            transition: transform 0.2s ease;
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+            border: 2px solid #000;
+        }
+        
+        .btn-primary:hover { 
+            opacity: 0.95; 
+            transform: translate(2px, 2px); 
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+
+        /* Secondary internal brutalist accents */
+        .brutal-border {
+            border: 2px solid #000;
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        /* Form Inputs */
+        .brutal-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #000;
+            background: #fff;
+            border-radius: 0;
+        }
+        .brutal-input:focus {
+            outline: none;
+            box-shadow: 2px 2px 0px 0px var(--primary);
+        }
+
+        /* Cookie Banner */
+        #cookie-banner {
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-extrabold tracking-tighter">QabuBior<span class="text-primary">Partners</span></a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="font-bold hover:text-primary transition-colors">Funzionalità</a>
+                    <a href="#reviews" class="font-bold hover:text-primary transition-colors">Testimonianze</a>
+                    <a href="#faq" class="font-bold hover:text-primary transition-colors">FAQ</a>
+                    <a href="#contact" class="btn-primary">Inizia Ora</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-2 border-2 border-black brutal-border bg-white text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t-2 border-black">
+                <a href="#features" class="block px-3 py-2 font-bold text-gray-900 border-b-2 border-transparent hover:border-black">Funzionalità</a>
+                <a href="#reviews" class="block px-3 py-2 font-bold text-gray-900 border-b-2 border-transparent hover:border-black">Testimonianze</a>
+                <a href="#faq" class="block px-3 py-2 font-bold text-gray-900 border-b-2 border-transparent hover:border-black">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 font-bold text-primary border-b-2 border-transparent hover:border-black">Inizia Ora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Full Width exception) -->
+    <header class="relative bg-white overflow-hidden border-b-2 border-black">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" 
+                 src="https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Dashboard+Patrimonio+Netto'"
+                 alt="Dashboard app per monitoraggio conto bancario e risparmi"
+                 referrerpolicy="no-referrer"
+                 loading="eager">
+            <div class="absolute inset-0 bg-gray-900/80"></div>
+        </div>
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+            <div class="max-w-3xl">
+                <span class="inline-block px-4 py-1 mb-6 text-sm font-bold tracking-widest text-black bg-yellow-400 border-2 border-black brutal-border">PIATTAFORMA LEADER 2026</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                    Il Partner Digitale Ideale per il <span class="text-emerald-400">Monitoraggio</span> del tuo Patrimonio Netto e dei Conti.
+                </h1>
+                <p class="text-xl text-gray-200 mb-10 font-medium">
+                    Connetti ogni <strong class="text-white">banca</strong> in un'unica piattaforma sicura. Traccia il tuo <strong class="text-white">saldo</strong> in tempo reale, ottimizza i tuoi <strong class="text-white">risparmi</strong> e analizza il <strong class="text-white">rendimento</strong> globale dei tuoi investimenti con la nostra app avanzata.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="btn-primary text-lg">Provala Gratuitamente</a>
+                    <a href="#features" class="btn-primary bg-white text-black hover:bg-gray-100 border-black !text-black">Scopri le Funzioni</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust Banner -->
+    <div class="bg-gray-100 border-b-2 border-black py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Supportiamo istituti e broker a livello globale</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale font-extrabold text-xl text-gray-600">
+                <span>INTESA SANPAOLO</span>
+                <span>UNICREDIT</span>
+                <span>REVOLUT</span>
+                <span>BINANCE</span>
+                <span>DEGIRO</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Layout Area -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8">
+
+        <!-- FEATURES SECTION -->
+        <section id="features">
+            <div class="max-w-5xl mx-auto dna-card">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-8 border-b-2 border-black pb-4">Potenzia il Tuo Ecosistema Finanziario</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-white brutal-border">
+                        <div class="w-12 h-12 bg-primary mb-4 border-2 border-black flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Sincronizzazione della Banca Unificata</h3>
+                        <p class="text-gray-700 font-medium">Collega qualsiasi <strong class="text-black">conto</strong> corrente e piattaforma di investimento. Analizza il <strong class="text-black">saldo</strong> complessivo senza dover accedere a decine di app diverse. Tutte le tue finanze in una singola vista protetta.</p>
+                    </div>
+                    <div class="p-6 bg-white brutal-border">
+                        <div class="w-12 h-12 bg-black mb-4 border-2 border-black flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Tracciamento del Patrimonio Reale</h3>
+                        <p class="text-gray-700 font-medium">Il nostro algoritmo raggruppa asset immobiliari, liquidità e crypto per definire accuratamente il tuo <strong class="text-black">patrimonio</strong> netto giornaliero. Comprenderai esattamente quanto possiedi in ogni momento.</p>
+                    </div>
+                    <div class="p-6 bg-white brutal-border">
+                        <div class="w-12 h-12 bg-yellow-400 mb-4 border-2 border-black flex items-center justify-center">
+                            <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Ottimizzazione di Risparmi e Rendimento</h3>
+                        <p class="text-gray-700 font-medium">Individua commissioni nascoste sui tuoi fondi e ottimizza la strategia per massimizzare il <strong class="text-black">rendimento</strong>. Imposta obiettivi strutturati per aumentare progressivamente i tuoi <strong class="text-black">risparmi</strong> e l'indipendenza finanziaria.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews">
+            <div class="max-w-5xl mx-auto dna-card">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-8 border-b-2 border-black pb-4 text-center">Testimonianze della Nostra Community</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-6 brutal-border">
+                        <div class="flex items-center mb-4">
+                            <img class="w-12 h-12 object-cover border-2 border-black grayscale" 
+                                 src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Utente'"
+                                 referrerpolicy="no-referrer"
+                                 loading="lazy" alt="Marco T.">
+                            <div class="ml-4">
+                                <p class="font-extrabold text-black">Marco T.</p>
+                                <p class="text-xs font-bold text-gray-500 uppercase">Investitore • Aprile 2026</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"Poter collegare ogni mia <strong class="text-black">banca</strong> e controllare il <strong class="text-black">conto</strong> e gli investimenti azionari in un solo colpo ha rivoluzionato il modo in cui gestisco il mio <strong class="text-black">patrimonio</strong>. La migliore app del 2026."</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 brutal-border">
+                        <div class="flex items-center mb-4">
+                            <img class="w-12 h-12 object-cover border-2 border-black grayscale" 
+                                 src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Utente'"
+                                 referrerpolicy="no-referrer"
+                                 loading="lazy" alt="Elisa R.">
+                            <div class="ml-4">
+                                <p class="font-extrabold text-black">Elisa R.</p>
+                                <p class="text-xs font-bold text-gray-500 uppercase">Freelance • Marzo 2026</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"Ero persa tra vari file excel per calcolare i miei <strong class="text-black">risparmi</strong>. Ora, controllo il <strong class="text-black">saldo</strong> globale e capisco davvero quale sia il <strong class="text-black">rendimento</strong> reale dei miei fondi di emergenza e del fondo pensione."</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 brutal-border">
+                        <div class="flex items-center mb-4">
+                            <img class="w-12 h-12 object-cover border-2 border-black grayscale" 
+                                 src="https://images.pexels.com/photos/937481/pexels-photo-937481.jpeg" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Utente'"
+                                 referrerpolicy="no-referrer"
+                                 loading="lazy" alt="Giorgio M.">
+                            <div class="ml-4">
+                                <p class="font-extrabold text-black">Giorgio M.</p>
+                                <p class="text-xs font-bold text-gray-500 uppercase">Risparmiatore • Maggio 2026</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"Scovare le tariffe occulte sul mio <strong class="text-black">conto</strong> investimenti mi ha permesso di tagliare spese inutili. Quest'app di monitoraggio fa esattamente quello che promette, senza fronzoli ma con dati precisi."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq">
+            <div class="max-w-5xl mx-auto dna-card">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-8 border-b-2 border-black pb-4">Domande Frequenti sull'App</h2>
+                <div class="space-y-4">
+                    <details class="bg-white p-4 brutal-border group cursor-pointer">
+                        <summary class="font-bold text-lg marker:text-primary outline-none">Posso connettere ogni tipologia di conto bancario?</summary>
+                        <p class="mt-4 text-gray-700 font-medium">Sì, la nostra applicazione sfrutta protocolli sicuri open-banking per permetterti di sincronizzare praticamente ogni <strong class="text-black">banca</strong> operante in Europa e negli USA. Sincronizzare il tuo <strong class="text-black">conto</strong> corrente e conto deposito richiede solo pochi secondi, aggiornando automaticamente il tuo <strong class="text-black">saldo</strong> netto ogni giorno senza intervento manuale.</p>
+                    </details>
+                    
+                    <details class="bg-white p-4 brutal-border group cursor-pointer">
+                        <summary class="font-bold text-lg marker:text-primary outline-none">In che modo viene tracciato il rendimento?</summary>
+                        <p class="mt-4 text-gray-700 font-medium">Il sistema legge i prezzi degli asset (azioni, criptovalute, materie prime) associati al tuo profilo. Confrontando l'investimento iniziale con le quotazioni attuali, calcola dinamicamente il <strong class="text-black">rendimento</strong> percentuale e in valore assoluto (Money-Weighted e Time-Weighted return). In questo modo il tuo <strong class="text-black">patrimonio</strong> netto riflette sempre valori di mercato aggiornati all'ultimo minuto.</p>
+                    </details>
+                    
+                    <details class="bg-white p-4 brutal-border group cursor-pointer">
+                        <summary class="font-bold text-lg marker:text-primary outline-none">Come calcola il patrimonio netto totale?</summary>
+                        <p class="mt-4 text-gray-700 font-medium">L'algoritmo fa una somma algebrica: raggruppa tutti i saldi positivi dei tuoi <strong class="text-black">risparmi</strong>, i fondi pensione, gli investimenti speculativi, i portafogli crypto, e la stima automatica dei tuoi immobili. Successivamente, sottrae in tempo reale l'entità dei mutui in corso e prestiti bancari registrati. Il risultato netto è la reale metrica per misurare l'indipendenza finanziaria.</p>
+                    </details>
+                    
+                    <details class="bg-white p-4 brutal-border group cursor-pointer">
+                        <summary class="font-bold text-lg marker:text-primary outline-none">I dati del mio saldo sono protetti e crittografati?</summary>
+                        <p class="mt-4 text-gray-700 font-medium">Assolutamente sì. L'accesso in modalità di sola lettura implica che nessuno possa prelevare o spostare i fondi usando questa piattaforma. Otteniamo solo le informazioni riguardanti le operazioni storiche ed il <strong class="text-black">saldo</strong> del tuo <strong class="text-black">conto</strong> corrente al fine esclusivo di costruire un'analisi grafica per permetterti la visualizzazione avanzata della finanza personale, proteggendo il traffico dati con gli stessi certificati bancari RSA-2048.</p>
+                    </details>
+                    
+                    <details class="bg-white p-4 brutal-border group cursor-pointer">
+                        <summary class="font-bold text-lg marker:text-primary outline-none">Esiste uno strumento per l'analisi dei costi del conto?</summary>
+                        <p class="mt-4 text-gray-700 font-medium">Abbiamo integrato lo strumento "Tariffe Nascoste". Oltre a mostrarti il <strong class="text-black">rendimento</strong>, fa una perizia automatica incrociando i costi di custodia bancaria e commissioni sui fondi d'investimento detenuti all'interno della tua <strong class="text-black">banca</strong> fiduciaria e confronta il Total Expense Ratio indicandoti chiaramente i tuoi attuali costi invisibili e suggerendo la quota in euro da poter convertire in nuovi <strong class="text-black">risparmi</strong> all'anno eliminandoli.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT & FORM SECTION -->
+        <section id="contact">
+            <div class="max-w-5xl mx-auto dna-card bg-primary text-white">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-extrabold mb-6">Assumi il Controllo Completo delle Tue Finanze</h2>
+                        <p class="text-xl mb-6 font-medium text-emerald-100">
+                            Inserisci i tuoi dati qui accanto. Un nostro consulente onboarding ti guiderà alla prima sincronizzazione gratuita del tuo principale <strong class="text-white">conto bancario</strong> e all'impostazione degli obiettivi del tuo <strong class="text-white">patrimonio</strong>.
+                        </p>
+                        
+                        <!-- Using generic real data placeholders as instructed (donor source base) -->
+                        <div class="bg-white/10 p-6 brutal-border border-white mt-8 backdrop-blur-sm">
+                            <h4 class="font-bold text-xl mb-4 border-b-2 border-white pb-2">Informazioni Operative</h4>
+                            <p class="font-medium mb-2"><strong class="text-yellow-400">Sede Originale:</strong> Finary SAS, Paris (Francia)</p>
+                            <p class="font-medium mb-2"><strong class="text-yellow-400">Gestione Promozionale:</strong> QabuBior Partners Co.</p>
+                            <p class="font-medium"><strong class="text-yellow-400">Assistenza Orario:</strong> Lun-Ven, 09:00 - 18:00 (Fuso CET)</p>
+                            <p class="text-sm mt-4 text-emerald-200">*(L'azienda non gestisce supporto tramite telefono. Utilizzare il modulo dedicato per contatto sicuro).*</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 brutal-border text-black">
+                        <h3 class="text-2xl font-extrabold mb-6">Richiedi Accesso Anticipato</h3>
+                        
+                        <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione richiesta...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                            <div class="mb-5">
+                                <label for="nome" class="block font-bold mb-2">Nome Completo</label>
+                                <input type="text" id="nome" class="brutal-input" required placeholder="Es. Giovanni Rossi">
+                            </div>
+                            
+                            <div class="mb-5">
+                                <label for="telefono" class="block font-bold mb-2">Numero di Telefono per Setup Sincronizzazione</label>
+                                <input type="tel" id="telefono" class="brutal-input" required placeholder="+39 333...">
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="tipo_banca" class="block font-bold mb-2">Banca Principale d'Interesse</label>
+                                <select id="tipo_banca" class="brutal-input" required>
+                                    <option value="" disabled selected>Seleziona Istituto Bancario...</option>
+                                    <option value="tradizionale">Banca Tradizionale Italiana (Intesa, Unicredit, etc.)</option>
+                                    <option value="online">Fintech Online (Revolut, N26, Fineco)</option>
+                                    <option value="broker">Piattaforma Investimenti e Trading Estera</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="w-full btn-primary bg-black text-white py-4 text-xl">Registra Profilo Adesso</button>
+                            
+                            <p class="text-xs text-gray-500 mt-4 text-center font-medium">Inviando la richiesta si accettano i termini e condizioni per il tracciamento del <strong class="text-gray-900">rendimento</strong> e la misurazione avanzata ed analisi del <strong class="text-gray-900">saldo</strong> privato protetto.</p>
+                        </form>
+                        
+                        <div id="success-msg" style="display:none" class="bg-emerald-50 p-6 brutal-border border-primary text-center">
+                            <svg class="w-16 h-16 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <h3 class="text-2xl font-extrabold text-black mb-2">Ricevuta Confermata!</h3>
+                            <p class="text-gray-700 font-medium">Ti contatteremo molto presto. Stiamo assemblando le dashboard di predisposizione per mostrare le corrette variabili statistiche della sincronizzazione. Monitorare il tuo account è il primo passo della stabilità.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Area -->
+    <footer class="bg-gray-900 text-white border-t-4 border-black pt-16 pb-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 pb-8 border-b-2 border-gray-700">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-2xl font-extrabold tracking-tighter">QabuBior<span class="text-primary">Partners</span></span>
+                    <p class="text-gray-400 font-medium mt-2 max-w-sm">Tecnologie d'avanguardia per quantificare costantemente liquidità attiva e riserve globali. Sotto il tuo completo potere decisionale quotidiano senza intromissioni esterne e massime crittografie bancarie di protezione globale RSA e SSL.</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <div class="p-4 bg-gray-800 brutal-border border-gray-600 inline-block text-left">
+                        <strong class="text-yellow-400 block mb-2">NOTA DI TRASPARENZA ED AFFILIAZIONE COMMERCIALE</strong>
+                        <p class="text-sm text-gray-300">
+                            Questo è un sito promozionale indipendente gestito da QabuBior Partners Co., che agisce in qualità di partner ed affiliato esclusivo per l'acquisizione digitale in favore di <strong>Finary SAS</strong>. Servizi forniti interamente dal titolare ufficiale della piattaforma secondo regole dirette bancarie della regione geografica stabilita d'appartenenza europea. Tutte le funzionalità base e le logiche promozionali per la clientela in lingua italiana seguono la regolamentazione.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPLIANCE & LEGAL ACCORDIONS (Full Text Required) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                
+                <!-- PRIVACY POLICY -->
+                <details class="bg-gray-800 p-4 brutal-border border-gray-600 group text-sm">
+                    <summary class="font-bold uppercase tracking-widest cursor-pointer hover:text-primary outline-none text-gray-200">Informativa sulla Privacy Regolamento Europeo Completo</summary>
+                    <div class="mt-4 text-gray-400 space-y-3 h-48 overflow-y-auto pr-2 custom-scrollbar">
+                        <p>La seguente informativa sulla privacy descrive come gestiamo le tue informazioni personali quando visiti il nostro sito o interagisci con il modulo di contatto per accedere all'app. Innanzitutto, è vitale chiarire che la raccolta dei dati avviene con l'obiettivo fondamentale di facilitare la connessione sicura al tuo conto e al sistema per la panoramica e l'organizzazione visiva avanzata del tuo patrimonio.</p>
+                        <p>Raccogliamo ed elaboriamo il tuo nome o ragione sociale unicamente per identificarvi nella corrispondenza preparatoria. Raccogliamo inoltre il vostro recapito telefonico esclusivamente al fine operativo primario in caso siate selezionati per i test beta manuali preliminari, non forniamo consulenze telefoniche senza previa concordanza o richiesta esplicita diretta sul portale operativo. </p>
+                        <p>Il trattamento di informazioni finanziare profonde avviene internamente mediante protocolli PSD2 approvati centralmente da API esterne certificate di terze parti a livello continentale e mondiale bancario. Noi operatori affiliati di rete non immagazziniamo, memorizziamo né visioniamo mai il vostro rendimento assoluto segreto e i depositi monetari personali derivanti dai singoli collegamenti attivati sul sistema. Registriamo file standard di natura informatica noti comunemente sotto diciture identificative server log, ovvero quegli elenchi file generici che tengono in debita traccia chi visita quali pagine a che ore mediante indicazioni d'indirizzo elettronico anonimizzate. Usiamo inoltre marcatori standard alfanumerici chiamati estensamente cookies per stabilizzare il caricamento della nostra facciata grafica per le prossime visite del medesimo interessato utente visitatore o esploratore della piattaforma che legge questi paragrafi. Utilizziamo piattaforme esterne o agenzie analitiche di posizionamento sul motore di ricerca al mero fine quantitativo e non per sorvegliare specificamente singoli atti privati intrapresi.</p>
+                        <p>Hai pieno ed esclusivo diritto primario nel poter ritirare tale iniziale dichiarazione libera che approvava i vari elaboramenti in ogni tempo futuro e potrai fare l'obbligo, alle strutture a monte preposte d'archiviazione massiva logica o fisica dei cluster gestionali remoti o prossimi aziendali o terzi assunti temporanei esterni su procura legale societaria specifica dell'Europa in tema digital, richiamando formalmente cancellazioni delle schede cliente nominale base di prima acquisizione digitale compilate preventivamente usando banalmente il medesimo identico mezzo ovvero quel contenitore rettangolare da modulo contatto qui visibile oggi. Risponderemo cancellando i moduli cartolari memorizzati ed eliminando dalla fila la richiesta pendente commerciale promozionale prima dei quattordici mesi standardizzati in legge statale regolatrice comunitaria del trattamento tutelante GDPR in accordo col legislatore continentale.</p>
+                    </div>
+                </details>
+
+                <!-- TERMS AND CONDITIONS -->
+                <details class="bg-gray-800 p-4 brutal-border border-gray-600 group text-sm">
+                    <summary class="font-bold uppercase tracking-widest cursor-pointer hover:text-primary outline-none text-gray-200">Termini ed Accordi del Servizio Elettronico Sviluppato</summary>
+                    <div class="mt-4 text-gray-400 space-y-3 h-48 overflow-y-auto pr-2 custom-scrollbar">
+                        <p>L'utilizzo continuo, anche a puro titolo visitatore temporaneo occasionale e limitato, dei materiali esposti su queste URL equivale indiscutibilmente all'aver recepito positivamente, compreso nelle loro sfumature contrattuali piene, e accettato legalmente i patti stringenti esplicitati ora. Lo scopo ultimo della suddetta interfaccia internet e della promozione esposta riguarda l'incitazione conoscitiva circa prodotti di tracciamento software sviluppati indipendentemente ed originariamente dalla compagine transalpina e offerta mediante abbonamenti regolati digitalmente per dispositivi mobili di computo portatili od esploratori classici. Ogni soggetto interessato utilizzatore fruitore deve disporre pienamente obbligatoriamente non negoziabile della età formale massima ritenuta soglia necessaria all'accettazione valevole nei territori costitutivi europei equivalenti all'assunzione vincolante civile del proprio Stato di nazione natale primario altrimenti ogni concessione per l'utenza esploratrice decadrà nulla annullata subitaneamente per legge fondante. </p>
+                        <p>Ai soggetti regolarmente ammessi tramite approvazione, viene erogata speciale sub licenza intangibile virtuale d'intento personale ed uso interdetto alla moltiplicazione o copia specchio od analoga per attività collaterali distributive concorrenti scorrette sleali aziendalistiche. Nessun marchio aziendale proprietario illustrato come esempio nominale fiduciario è appropriazione del prestatore o del proponente promozionale dell'intermediario ed ogni eventuale logo bancario storico noto citato si conforma al principio base fair use e cronaca funzionale per esemplificare chiaramente visibilmente dove l'algoritmo possa far allacciamenti bancari. Qualsiasi violazione reiterata ed impenitente delle regole comunitarie comporterà esclusione perpetua, con possibile comunicazione in casi illeciti ai magistrati sorveglianti del traffico elettronico nazionale. Eventuali inattività croniche o comportamenti sovvertitori della sicurezza logica delle istanze software generano ban irreversibile totale dei nodi di collegamento con immediato fermo di misurazione ed operatività sincronizzativa conti utente colpevole reo senza preventivo alert inviato.</p>
+                        <p>È esclusa categoricamente irrevocabilmente tassativa assoluta globale estesa immensamente massiccia colpa, imperizia o assunzione legale causale in relazione indiretta a scelte catastrofiche perdenti sui risparmi derivate dell'aver confuso la metrica algoritmica statistica numerica neutrale come invito e suggerimento formale consultativo d'un procuratore fiduciario abilitato umano, perché si sottolinea, trattasi specificamente sempre meramente perentoriamente assolutamente non aggirabile logica quantitativa macchinale calcolatrice e non entità con autorizzazione per la vendita in opzioni finanziare con giudizi sul valore. Dispute vertenti natura commerciale scaturenti direttamente dal contenuto esatto e materiale proprietario ed editoriale redatto sulla predetta maschera sito qui accessibile cadranno d'imperio per assenso esclusivo insindacabile indiscutibile obbligato alla esclusiva giurisdizione e camera del foro prescelto territoriale dall'ideatore commerciale affiliato e dalla ditta originale promotrice fondante le operazioni finanziare con esclusione per competenza esterna. Il prestatore promozionale altera i detti articoli pattuiti unilateralmente e con la solita via temporale d'adeguamento.</p>
+                    </div>
+                </details>
+
+                <!-- REFUND POLICY -->
+                <details class="bg-gray-800 p-4 brutal-border border-gray-600 group text-sm">
+                    <summary class="font-bold uppercase tracking-widest cursor-pointer hover:text-primary outline-none text-gray-200">Garanzia ed Informativa Restituzione dei Versamenti Monetari</summary>
+                    <div class="mt-4 text-gray-400 space-y-3 h-48 overflow-y-auto pr-2 custom-scrollbar">
+                        <p>Essendo palese la natura tipica incorporea, eterea, non fisicamente riconsegnabile immateriale e consumata del pacchetto di software algoritmico sottoscritto annualmente sul servizio dell'azienda fondatrice erogatrice in via diretta dal proprio market originale di smistamento app, le presenti direttive delinea il concetto per gli esborsi eseguiti da te in caso d'insoddisfazione. A favore degli esseri umani residenti all'interno della zona unionale comunitaria sussiste storicamente diritto intrinseco detto formalmente recesso dal momento primo contrattualizzante ed operativamente limitato in termini rigorosi temporali calendarizzati precisamente nel quattordicesimo dì continuativo di rivoluzione completa. Le istanze sollevate all'esterno dal limite fissato sopra riportato cadranno decadute ed irreceperibili in difetto con automatismo immediato e reiezione definitiva sommaria protocollare, escluse disposizioni regolatrici eccezionali regionali supreme e prioritarie imperative dei territori statali imposte direttamente dai governatori dei consumatori nazionele.</p>
+                        <p>In nessuna remota possibile contingente circostanza ipotetica è concesso ripagare storni ed invertire addebiti in caso il consumatore abbia volontariamente deciso di recedere a metà d'un percorso abbonato annuale prescelto con logica frazionaria riparametrando sulle mensilità consumate proporzionali in rate posticipate ridotte decimali ma manterrà esclusivamente semplice facoltà tecnica informatica del godere del programma fino allo spirare totale ed alla decaduta del conteggio anno senza ulteriori o rinnovate riattivazioni fiscali susseguenti successive dell'utenza proponente interdetta per la richiesta ricevuta bloccante l'eventuale automaticità per difetto standardistica commerciale e comunitaria d'appartenenza o dei negozi software che trattengono loro ulteriori gabelli per spese d'istruttoria del sistema automatizzato dell'utente non imputabili.</p>
+                        <p>Ricerche indotte d'aggiramento e meccanismi dolosi abusanti per l'attivazione fraudolenta di prova promozionale continuata iterata artificiale mendace ed illusiva tramite account plurimi simultanei cancellati allo scadere produrranno irrevocabile reclusione blocco totale degli algoritmi antifrode sulle fatturazioni per prevenire reiterato furto speculativo temporaneo della disponibilità dei conti. Operativamente i ritorni validati passano mediante lo schema iniziale originale impiegato di transazione come medesimo vettore invertente monetario della liquidità bonificata impiegando le stazioni bancarie processanti tempistiche lunghe fisse che di routine e norma comunitaria coprono dieci massimi sedici intervalli consecutivi e consecutivamente non legali ma feriali a partire dalla convalida dell'ordinazione restituente emessa per vie elettroniche dalle istanze regolatrici europee fisse processate al rimborso in euro effettivi sui nodi originali usati durante abbonamento del software d'analisi d'economia privata per privati del software medesimo descritto.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="text-center text-gray-500 font-bold text-sm">
+                &copy; 2026 QabuBior Partners Co. Tutti i diritti riservati.<br>
+                La navigazione sul sito web implica accettazione di termini ed uso cookies tecnici ed operativi obbligatori.
+            </div>
+        </div>
+    </footer>
+
+    <!-- CSS Specific for Scrollbars in Legal Texts -->
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #374151; 
+            border: 1px solid #1f2937;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #6b7280; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #059669; 
+        }
+    </style>
+
+    <!-- Cookie Banner (Sticky Bottom Brutalist Style) -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-yellow-400 p-4 border-t-4 border-black z-50 transform translate-y-0 transition-transform duration-300">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-start gap-4 text-black">
+                <svg class="w-8 h-8 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <p class="font-bold text-sm leading-tight">
+                    Utilizziamo cookie traccianti puramente funzionali ed anonimizzati essenziali. Il monitoraggio serve unicamente a garantire la solidità dei caricamenti grafici dell'infrastruttura d'informazione promozionale e comprendere a fini statistici senza invadere identità e saldo privato se trovi utili le informazioni inserite in merito allo scopo finale d'esposizione d'applicativo d'archiviazione dati personali.
+                </p>
+            </div>
+            <div class="flex-shrink-0 w-full md:w-auto">
+                <button onclick="acceptCookies()" class="w-full btn-primary bg-black text-white px-8 py-3 text-sm tracking-widest uppercase">Ho Compreso & Accetto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (Gravity Well Protocol & Interactivity) -->
+    <script>
+        // Check local storage for cookies logic
+        document.addEventListener("DOMContentLoaded", function() {
+            if(localStorage.getItem('qabuCookiesAccepted') === 'true') {
+                document.getElementById('cookie-banner').style.display = 'none';
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('qabuCookiesAccepted', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.style.transform = 'translateY(100%)';
+            setTimeout(() => { banner.style.display = 'none'; }, 300);
+        }
+
+        // Intercept anchor clicks and ensure fallback navigation exists (Self-Healing Router)
+        document.addEventListener('click', function(e) {
+            let target = e.target.closest('a[href^="#"]');
+            if (target) {
+                let idAttr = target.getAttribute('href');
+                if (idAttr.length > 1) { // not just '#'
+                    e.preventDefault();
+                    let id = idAttr.substring(1);
+                    let element = document.getElementById(id);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        // Fallback logic implemented: if missing section, route to #contact form
+                        let fallbackElement = document.getElementById('contact');
+                        if(fallbackElement) {
+                            fallbackElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                    // close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
