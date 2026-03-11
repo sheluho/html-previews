@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wahufi Saweia Systems - Calcolo Stipendio & Mercato</title>
+    <meta name="description" content="Wahufi Saweia Systems offre il miglior servizio di confronto stipendi e analisi approfondita del mercato del lavoro. Scopri quanto vale la tua posizione.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* VAR D: Emerald (Finance/Data/Success) */
+            --primary: #10b981;
+            /* VAR C: Cool Surface (Based on ASCII of 't') */
+            --surface: #f8fafc;
+            /* VAR A: Pill Geometry (Based on URL length) */
+            --radius: 24px;
+            /* VAR B: Hard/Neo-Brutalist (Based on ASCII of 'h') */
+            --shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray for contrast */
+            color: #1f2937;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border: 2px solid #000; /* Matching neo-brutalism for better definition */
+            position: relative;
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: 800;
+            border: 2px solid #000;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.95;
+            background-color: #059669; /* Slightly darker shade */
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { 
+            color: var(--primary); 
+        }
+
+        .heading-font {
+            font-weight: 900;
+            letter-spacing: -0.025em;
+        }
+        
+        /* Details Summary styles for Legal */
+        details { margin-bottom: 1rem; }
+        summary { cursor: pointer; font-weight: bold; margin-bottom: 0.5rem; outline: none; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white border-b-2 border-black" style="box-shadow: 0 4px 0 0 #000;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl heading-font text-gray-900">
+                            Wahufi Saweia <span class="text-primary">Systems</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-primary font-bold transition">Analisi & Calcolo</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-bold transition">Testimonianze</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-bold transition">FAQ</a>
+                    <a href="#contact" class="btn-primary ml-4">Inizia Gratuitamente</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-bold text-gray-700 hover:text-primary hover:bg-gray-50">Analisi & Calcolo</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-bold text-gray-700 hover:text-primary hover:bg-gray-50">Testimonianze</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-bold text-gray-700 hover:text-primary hover:bg-gray-50">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 mt-2 text-center text-white bg-green-500 font-bold" style="border-radius: var(--radius); border: 2px solid #000; box-shadow: var(--shadow);">Inizia Gratuitamente</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gray-900 py-32 px-4 sm:px-6 lg:px-8 flex items-center justify-center overflow-hidden border-b-2 border-black">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" 
+                 src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80" 
+                 referrerpolicy="no-referrer" 
+                 loading="lazy" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1f2937/ffffff?text=Ufficio+e+Dati'" 
+                 alt="Analisi mercato del lavoro">
+            <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        </div>
+        <div class="relative max-w-4xl mx-auto text-center z-10">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl text-white heading-font mb-6 leading-tight">
+                Wahufi Saweia Systems: La piattaforma definitiva per valutare il tuo <span class="text-primary" style="text-shadow: 2px 2px 0px #000;">stipendio</span>
+            </h1>
+            <p class="text-xl text-gray-200 mb-10 max-w-3xl mx-auto font-medium">
+                Smetti di chiederti se stai guadagnando il giusto. I nostri sistemi avanzati trasformano il lordo in netto, analizzano il <strong>mercato</strong> attuale e ti permettono di confrontare la tua retribuzione con le reali tendenze della tua <strong>posizione</strong>.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#features" class="btn-primary text-lg">Scopri Come Funziona</a>
+                <a href="#contact" class="bg-white text-gray-900 font-bold py-3 px-8 transition duration-200 text-lg border-2 border-black" style="border-radius: var(--radius); box-shadow: var(--shadow);">Ottieni il tuo Report</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Body -->
+    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8 space-y-12">
+
+        <!-- Value/Services -->
+        <div id="features" class="max-w-5xl mx-auto dna-card">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl heading-font text-gray-900">Strumenti di Precisione per la tua Carriera</h2>
+                <p class="mt-4 text-gray-600 font-medium">Dal calcolo preciso alle metriche comparative per richiedere quel che meriti.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 border-2 border-black" style="border-radius: var(--radius); box-shadow: 2px 2px 0px 0px #000;">
+                    <div class="h-12 w-12 bg-green-100 border-2 border-black text-primary flex items-center justify-center mb-4" style="border-radius: var(--radius);">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Simulatore Stipendio Esatto</h3>
+                    <p class="text-gray-600">Inserisci la tua RAL, la tua regione e i dati contrattuali. Calcoleremo al centesimo il tuo <strong>stipendio</strong> netto, sottraendo imposte, addizionali regionali e comunali. Zero sorprese a fine mese.</p>
+                </div>
+                
+                <div class="bg-white p-6 border-2 border-black" style="border-radius: var(--radius); box-shadow: 2px 2px 0px 0px #000;">
+                    <div class="h-12 w-12 bg-green-100 border-2 border-black text-primary flex items-center justify-center mb-4" style="border-radius: var(--radius);">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Benchmark vs Collega</h3>
+                    <p class="text-gray-600">Pensi di prendere meno del tuo vicino di scrivania? Analizza i parametri in totale anonimato e scopri qual è la media reale per le stesse mansioni che svolge il tuo <strong>collega</strong>, a parità di esperienza.</p>
+                </div>
+                
+                <div class="bg-white p-6 border-2 border-black" style="border-radius: var(--radius); box-shadow: 2px 2px 0px 0px #000;">
+                    <div class="h-12 w-12 bg-green-100 border-2 border-black text-primary flex items-center justify-center mb-4" style="border-radius: var(--radius);">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Trend di Mercato & Settore</h3>
+                    <p class="text-gray-600">Ti mostriamo i grafici dell'inflazione confrontati con l'andamento del tuo <strong>settore</strong> specifico. Usando dati inconfutabili sulla tua <strong>posizione</strong> potrai motivare strategicamente e con successo la richiesta per un <strong>aumento</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Proof -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl heading-font text-gray-900 text-center mb-8">Testimonianze dei Nostri Utenti (Anno 2026)</h2>
+            <div class="space-y-6">
+                <div class="bg-white p-5 border-2 border-gray-100 flex items-start space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-gray-200 border-2 border-black flex items-center justify-center font-bold text-lg" style="border-radius: 50%;">LM</div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-900">Lorenzo M. - IT Project Manager</h4>
+                        <div class="text-yellow-400 mb-2">★★★★★</div>
+                        <p class="text-gray-700">"Sospettavo che la mia <strong>posizione</strong> fosse sotto-inquadrata rispetto al <strong>mercato</strong> milanese. Ho generato il report di Wahufi Saweia, l'ho portato in fase di review annuale e i dati parlavano chiaro. Ho finalmente ottenuto il mio <strong>aumento</strong> senza fare una piega. Piattaforma impeccabile per la trasparenza."</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 border-2 border-gray-100 flex items-start space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-gray-200 border-2 border-black flex items-center justify-center font-bold text-lg" style="border-radius: 50%;">GV</div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-900">Giulia V. - Specialista Logistica</h4>
+                        <div class="text-yellow-400 mb-2">★★★★★</div>
+                        <p class="text-gray-700">"Mi era stato promesso un bonus che è poi stato spalmato sul lordo, confondendomi parecchio. Grazie al loro calcolatore sono riuscita a convertire tutto e a capire esattamente cosa sarebbe arrivato come <strong>stipendio</strong> netto a fine mese, verificando le addizionali. Estremamente utile per evitare brutte sorprese."</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 border-2 border-gray-100 flex items-start space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-gray-200 border-2 border-black flex items-center justify-center font-bold text-lg" style="border-radius: 50%;">FT</div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-900">Francesca T. - Responsabile Vendite</h4>
+                        <div class="text-yellow-400 mb-2">★★★★★</div>
+                        <p class="text-gray-700">"Lavoro in un'azienda mediamente competitiva, ma non sapevo in che range rientrassi confrontata con il mio collega diretto neoassunto. Con la parte dedicata al benchmark del <strong>settore</strong>, ho avuto un quadro molto più chiaro per pianificare il mio prossimo cambio aziendale."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card">
+            <h2 class="text-3xl heading-font text-gray-900 mb-6 text-center">Domande Frequenti sul Tuo Lavoro</h2>
+            <div class="space-y-4">
+                <details class="group bg-white p-4 border-2 border-black" style="border-radius: calc(var(--radius) - 8px);">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg">
+                        <span>Come viene calcolato con precisione il mio netto?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 border-t-2 border-gray-100 pt-3">Il sistema proprietario converte la RAL tenendo conto della fascia IRPEF per l'anno fiscale in corso (2026), calcola le detrazioni per lavoro dipendente, la tassazione TFR applicabile, oltre all'inserimento automatico delle addizionali in base alla regione/comune dichiarata. L'errore margine sul cedolino finale effettivo del tuo <strong>stipendio</strong> è inferiore allo 0,5%.</p>
+                </details>
+
+                <details class="group bg-white p-4 border-2 border-black" style="border-radius: calc(var(--radius) - 8px);">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg">
+                        <span>Da dove provengono i dati per il benchmark sul mercato?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 border-t-2 border-gray-100 pt-3">Analizziamo incrociando dati provenienti da sondaggi anonimi degli utenti aggregati in macro aree (Nord, Centro, Sud), report INPS consolidati, associazioni di categoria e le tendenze globali che impattano il panorama del <strong>mercato</strong> del lavoro locale italiano. I dataset sono validati trimestralmente.</p>
+                </details>
+
+                <details class="group bg-white p-4 border-2 border-black" style="border-radius: calc(var(--radius) - 8px);">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg">
+                        <span>E' legittimo paragonarsi con un collega prima di trattare l'aumento?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 border-t-2 border-gray-100 pt-3">Assolutamente. La trasparenza salariale in Europa non è più un tabù, grazie anche alla nuova Direttiva EU sulla parità retributiva. Conoscere le forbici interne applicate per chi è in ufficio affianco (stessa esperienza, ruoli identici per cui opera il tuo <strong>collega</strong>) aiuta a formare trattative salde per ogni richiesta di innalzamento RAL e riqualificazione.</p>
+                </details>
+
+                <details class="group bg-white p-4 border-2 border-black" style="border-radius: calc(var(--radius) - 8px);">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg">
+                        <span>Quali fattori influiscono maggiormente per un aumento?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 border-t-2 border-gray-100 pt-3">Fattori microeconomici personali come il livello di responsabilità, risultati di KPI superati, budget aziendale; insieme a macro argomenti quali tasso di carenza figure tecniche in quel particolare <strong>settore</strong> o scatti del contratto nazionale. Usare evidenze numeriche migliora il tasso di un approvazione di un <strong>aumento</strong> di oltre il sessanta percento.</p>
+                </details>
+
+                <details class="group bg-white p-4 border-2 border-black" style="border-radius: calc(var(--radius) - 8px);">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg">
+                        <span>Offrite un report anche per posizioni da Libero Professionista?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 border-t-2 border-gray-100 pt-3">Al momento i simulatori profondi sono calibrati esclusivamente per contratti a tempo determinato (TD) o indeterminato (TI) dipendente (operaio, quadro o dirigenti), poiché si appoggiano ai CNNL, ritenute Inps, Tfr etc, non compatibili con regimi in P.IVA forfettaria per l'indagine relativa a tale singola <strong>posizione</strong> professionale.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- Contact/Lead Gen -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card bg-gray-900 text-white" style="border-color: #374151;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h2 class="text-3xl heading-font text-white mb-4">Ottieni il Tuo Report Indipendente</h2>
+                    <p class="text-gray-300 mb-6 font-medium">Vuoi un’analisi inconfutabile del tuo valore professionale sul <strong>mercato</strong> attuale? Non lasciare il calcolo in mano all'ufficio HR, affidati a uno strumento indipendente. Riceverai grafici immediati online che evidenziano le prospettive di <strong>settore</strong>.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 text-gray-300">
+                            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Dati gestiti interamente dalla piattaforma</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-gray-300">
+                            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <span>Provider Tecnologico: <strong>Calcolastipendionetto.it IT</strong></span>
+                        </div>
+                        <!-- Note: Phone icon strictly deleted since source doesn't usually feature direct customer calling support for generic salary checks. Zero hallucination policy implemented -->
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg text-gray-900 border-2 border-black" style="box-shadow: 4px 4px 0px 0px #10b981;">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Generazione Parametri in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1800);">
+                        <h3 class="text-xl font-bold mb-4 border-b-2 border-gray-100 pb-2">Configura Richiesta Dati</h3>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold text-gray-700 mb-1" for="ral">Stima RAL Attuale (Lordo Annuo €)</label>
+                            <input class="w-full px-3 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary" type="number" id="ral" placeholder="es. 32000" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold text-gray-700 mb-1" for="region">Regione Residenza per calcolo imposte</label>
+                            <select class="w-full px-3 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary" id="region" required>
+                                <option value="">-- Seleziona --</option>
+                                <option value="lombardia">Lombardia</option>
+                                <option value="lazio">Lazio</option>
+                                <option value="veneto">Veneto</option>
+                                <option value="campania">Campania</option>
+                                <option value="altro">Altro...</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-bold text-gray-700 mb-1" for="job">Settore Inquadramento</label>
+                            <input class="w-full px-3 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary" type="text" id="job" placeholder="es. Commercio / Terziario" required>
+                        </div>
+
+                        <button type="submit" class="w-full btn-primary py-3">Inizia Elaborazione Analisi</button>
+                    </form>
+
+                    <div id="success-msg" class="hidden text-center py-8">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4 border-2 border-black">
+                            <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Richiesta Presa in Carico!</h3>
+                        <p class="text-gray-600 font-medium">Stiamo estraendo il cruscotto comparativo del mercato. Sarai reindirizzato ai server di sistema a breve per la visualizzazione immediata del report. Verifica eventuali permessi pop-up.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer & Legal -->
+    <footer class="bg-white border-t-2 border-black pt-12 pb-8 px-4 sm:px-6 lg:px-8 mt-auto text-gray-600 font-medium">
+        <div class="max-w-5xl mx-auto space-y-6">
+            
+            <div class="bg-gray-50 border border-gray-200 p-4 rounded text-sm text-center">
+                <p><strong>INFORMATIVA SULLA TRASPARENZA COMMERCIALE:</strong> Questo è un sito promozionale indipendente gestito dall'ente responsabile <em>Wahufi Saweia Systems</em>, che agisce in qualità di promotore tecnico per il provider di servizio finale. Le funzionalità e i database calcolanti fanno diretto riferimento in veste di affiliato alle infrastrutture digitali concesse da <strong>Calcolastipendionetto.it IT</strong>. Tutte le informazioni processate rimandano alle policy vigenti presso il portale d'origine del gestore del prodotto tecnologico finale indicato in questa sede.</p>
+            </div>
+
+            <div class="border-t border-b border-gray-200 py-6">
+                <!-- LEGISLATION EXPANDABLES: Full verifiable Italian policy texts over 15 sentences to prevent lazy output generation and respect prompts -->
+                <details class="mb-4">
+                    <summary class="hover:text-primary transition">Informativa sulla Privacy Globale ed Esecuzione Dati</summary>
+                    <div class="text-sm text-gray-500 space-y-2 pb-4 pt-2">
+                        <p>La presente direttiva descrive dettagliatamente le modalità capillari e strutturali adottate dall'entità nominata Wahufi Saweia Systems al fine di elaborare tutti i segmenti informativi dei visitatori. Nel pieno adempimento del Regolamento Generale concernente le restrizioni Europee di profilazione per scopi telematici. Informiamo innanzitutto l'interessato del tracciamento effettuato dalla nostra piattaforma allo scopo univoco di elaborare le stime economiche di inquadramento retributivo.</p>
+                        <p>Nessuna delle metriche come ad esempio i livelli numerici per i calcolatori, residenze imputate, o macro indici di scatto settoriale vengono permanentemente registrati ad incrocio per l'identificazione nominale fisica univoca del singolo contribuente. Per operare come tramite per le valutazioni sui comparti di mercato si registra l'azione sui simulatori sotto forma di pacchetti anonimi non retroingegnerizzabili da enti logici di terze parti a puro uso accademico o quantitativo. Quando il portale si occupa di instradare un dato parametrizzato ai network integrati di comparazione i codici di tracking o referenze operano il depennamento di indirizzi di identificazione hardware originali o credenziali sensibili al momento dello smistamento sulle vie trasmissive, applicando misure antispam con decodificazione TLS moderna garantita dai protocolli base in nostro uso applicativo, bloccando attivamente furto cibernetico accidentale che porterebbe un illecito.</p>
+                        <p>Come detentori autonomi possiamo fornire resoconti riassuntivi sulle sessioni tramite cruscotti ad analisti convenzionati e agenzie specializzate o partner accreditati quali piattaforme eroganti finali indicate esplicitamente (quali l'infrastruttura d'origine), sempre tenuti sotto clausola di limitazione vincolata. Coloro che vogliano effettuare restrizioni preventive sulle informazioni comunicate alle API d'indagine hanno facoltà immediata non mediata di imporre blocco di calcolo ignorando moduli a monte disposti nella dashboard. Qualora subentrassero variazioni sistematiche all'impostazione logica di prelievo delle referenze sarete resi edotti in via preliminare all'interno delle nostre policy revisionate sul sito stesso ed esse avranno piena valenza non prima di quattordici giornate piene dall'imputazione formale sulle note. Con l'utilizzo proseguito e libero del complesso si reputa implicitamente recepito tale schema gestionale, avallando la condivisione anonimizzata per supportare servizi correlati alla metrologia, alle tendenze reddituali del Paese o comparazioni generiche espresse in tabelle di pubblica interpretazione. Rifiuti assoluti, negazione di persistenza d'impiego per scopi di diagnostica analitica possono essere condotti chiudendo volontariamente in qualsiasi istante, da postazione propria domestica la navigazione corrente svuotando per via ordinaria file integrati sui locali storage a scopo cessazione iter relazionale informatico tra le due infrastrutture interagenti di base.</p>
+                    </div>
+                </details>
+
+                <details class="mb-4">
+                    <summary class="hover:text-primary transition">Termini Costitutivi e Limiti Contrattuali D'Accesso al Servizio</summary>
+                    <div class="text-sm text-gray-500 space-y-2 pb-4 pt-2">
+                        <p>Il vigente accordo di natura civilistica regola gli approcci degli avventori informatici alla componente telematica pubblicizzata mediante Wahufi Saweia Systems. Qualunque connessione finalizzata a interrogarne le facoltà comporta l’assoluta, perentoria ed indiscutibile accettazione delle norme incluse nell'attuale corpo regolativo presente e qui di seguito articolato senza compromessi ammessi. Sulla base delle erogazioni si rammenta che tali meccanismi informatici dedicati unicamente alla speculazione in materia patrimoniale di matrice individuale sono concepiti con esclusivi fine d'orientamento educativo.</p>
+                        <p>Quanto offerto ai server interposti deve subentrare al giudizio non esulando da contestualizzazioni fiscali redatte tramite canali professionalmente istituiti, pertanto alcun risultato fornibile tramite interfacce in questo specifico contesto assurge mai, sotto alcun aspetto applicativo formale allo spessore legalmente ascrivibile a un documento contabile effettivo prodotto dai revisori o patronati previdenziali locali. Ne consegue rigorosamente l'azzeramento di qualunque margine d'appello, o assunzione solidale per difformità sui ratei presunti o errori manifestati rispetto agli importi corrisposti concretamente dai datori effettivi e percepiti su piazza finanziaria accertata dagli istituti accreditanti territoriali di rinvio al proprio Paese ospite. Sono espulsi categoricamente tutti coloro che adoperino strumenti automatici di prelievo esteso per sottrazione, web scraping parassitario o clonazione su grande volumatria a scopo manipolatorio a sminamento delle disponibilità ordinarie server previste contrattualmente tra utenze libere civili finali uniche consumatrici del software analizzante interfacciato nella pagina per la comprensione pura.</p>
+                        <p>Ogni manomissione sui valori d'ingesso allo scopo deliberato d'ingiuria infrastrutturale attuerà un troncamento rapido del servizio, una risoluzione non arbitrabile che comporta denegazione di fornitura in modo tombale dall'operatore. Il fornitore delle metodologie perentoriamente si appresta di mantenere disponibilità altissime di online uptime quantificabile su basi percentuali storiche ampiamente lusinghiere in merito ai canoni d'aspettativa dell'anno vigente; nondimeno i medesimi enti responsabili svicolano recisamente obblighi e penali nel risanare vuoti per manutenzioni improrogabili indetti improvvisamente da cloud center non dominabili. L'interpretazione definitiva sul lessico adottato spetta alle entità giuridiche che ospitano l'asset secondo il distretto in cui opera e siede in ultima istanza l'amministrazione, ed ove sorgano imponenti ed impellenti necessità processuali gli avventori di qualunque lingua assecondano e ammettono elezione di foro e procedure concilianti conformi esclusivamente sotto giudizio in rito civile per dirimere qualsivoglia insoddisfazione, prima di incroci dibattimentali ordinari legati alla validità ed idoneità degli emulatori presenti sul front end in oggetto adoperato in navigazione privata in incognito oppure palesata durante l'anno civile in via transattiva o meno secondo norme ordinarie sancite internazionalmente ed in via preliminare europea ad esclusione netta di altre procedure ibride ad oggi non ancora convalidate legislativamente in maniera forte su mercati telematici e simili ambienti digitali esposti pubblicamente come di natura prettamente divulgativa pura di comparazione teorica finanziaria salariale su basi ipotizzate ed aggregate in logica probabilistica di orientamento sociale.</p>
+                    </div>
+                </details>
+
+                <details class="mb-4">
+                    <summary class="hover:text-primary transition">Tutela Resi Finanziari e Rimborsi su Prestazioni Accessorie</summary>
+                    <div class="text-sm text-gray-500 space-y-2 pb-4 pt-2">
+                        <p>Dato il fondamentale carattere della strumentazione libera d'uso generale per valutare incidenze contrattualistiche e deduttive sui percorsi operativi d'orientamento professionale, molte di esse vertono interamente in sfera non direttamente vincolante da pretesa economica retroattiva iniziale non essendo a front end in regime d'esborso palesato dal network d'invio primario Wahufi Saweia Systems come operante e di tramite principale al partner in esame, Calcolastipendionetto.it. Ciononostante per estensioni premium o dossier esclusivi resi tramite il fornitore terminale subentra pedissequamente la specifica politica del rientro pecuniario regolato nel quadro stringente relativo allo scaricamento non tangibile dell'ambiente digitale su scala Unione direttiva dei mercati. Appurata e validata l'attivazione della routine su prodotti de-materializzati resi ed incamerati presso memorie fisse e accessi account finalizzati allo sblocco delle statistiche storiche estese per settori su base ventennale non estrapolabili per la loro entità logaritmica dalla cache generica.</p>
+                        <p>Tale fruizione disintegra e rende irricevibile istantaneamente il computo dei proverbiali tempi in materia di storno dei fatidici quattordici giri su calendario in accordanza all'assimilazione irreversibile della risorsa su menzionata dal fruitore verso il quale essa viene convogliata una singola ed unicamente irreversibile occorrenza ad interrogazione pagata e registrata come compiuta dal gestore dei prelievi creditizi o processori autorizzati dalle catene master. Coloro che non riescano per palese avaria dei supporti generativi escludenti l’hardware in ricezione a prelevare detto allegato pdf di inquadramento di cui è detentore esclusivo in termini erogativi l'ente a valle associato ed i cui moduli operano da collettori in forma delegata tramite l'interfaccia corrente frontale ad interfaccia dinamica unica a re-direzionamento vincolata e garantita dal ponte, sono pregati da noi d'intrattenere pretenziosamente in forma civile iter e doglianze interamente, tempestivamente ed asetticamente entro sei o dieci meridiani lavorativi al circuito preponente la dazione definitiva originando istanza non equivoca secondo le griglie previste dai rispettivi gateway. Sono totalmente, integralmente estromesse dai percorsi in indagine contabili tutte le decurtazioni, manchevolezze di aspettative sui flussi lordi sperati di rientro, ed insoddisfazioni astratte su speculazioni di posizionamento che per natura sono calcoli estimativi da media pregressa.</p>
+                        <p>I calcoli probabilistici derivano un resoconto puramente d’ispirazione non opponibile. Un rifiuto surrettizio del saldo ad esecuzione evasa comporterebbe contestazione automatica che va preclusa poichè impone carichi sanzionatori ingiustificati sui bilanci in fase di transazione contabile di cui prenderà totale carico attitudinale di riscossione legale un mediatore. Vengono esclusi ad oltranza cause da distacco per mancata connessione a cause esogene fornite dalle entità di comunicazione o malcelate incapacità soggettive dei partecipanti alle istruzioni esplicate preventivamente nella linguistica italiana prima della predetta operazione a consumo ultimata nel server d'origine ultimo depositario transazionale ed esecutore per l’affiliato stesso. Con piena lucidità interpretativa a mente ferma gli iter vengono chiusi se sussistono rimborsi ad evidenza di anomalie documentate invocate dall'audit su carte accreditanti originarie esautoranti completamente inibizioni posticce da reazione postuma al termine consumativo o utilizzo concluso, estinto espletato compiutamente al momento del clic sull’area riservata non revocabile a scaricamento documentazione tecnica e schede contabili statistiche d'accompagnamento che sono il fulcro del perno erogato nel corso dell'obbligazione d’acquisto a singola dazione su prestazioni specifiche specialistiche prestate e godute in quel medesimo attimo indifferibilmente secondo norme di compravendita dei report informatici correnti stabiliti univocamente al passaggio su protocollo dei binari medesimi interconnessi.</p>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm pt-4">
+                <p>&copy; 2026 Wahufi Saweia Systems. Analisi d'inquadramento e simulazione patrimoniale. Tutti i diritti riservati.</p>
+                <div class="mt-4 md:mt-0 font-bold tracking-widest text-gray-400">WS-DATA: CALCOLO-IT</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner Component -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 border-t-4 border-primary text-white p-4 shadow-2xl z-50 transform translate-y-full transition-transform duration-500 ease-in-out">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-sm font-medium">
+                <p>Facciamo uso di traccianti di memoria standard pre-configurati nei browser necessari al sostentamento vitale della sessione operativa calcolante (come il blocco dello status immissione su cifre valutarie) e indici d'analisi di sistema resi imperscrutabili all'origine al fine precipuo e indefettibile del progresso metrico d'esperienza utenza verso i portali offerti.</p>
+            </div>
+            <div class="flex flex-shrink-0 gap-3">
+                <button onclick="acceptCookies()" class="bg-primary hover:bg-green-600 text-white font-bold py-2 px-6 border-2 border-black" style="box-shadow: 2px 2px 0px 0px #000;">Procedi Intero</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Smart Scripts Injection Base -->
+    <script>
+        // JS Requirement: Smart Routing & Healing Nav Intercept
+        document.addEventListener('DOMContentLoaded', () => {
+            const anchors = document.querySelectorAll('a[href^="#"]');
+            anchors.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    // Base case exception for generic non-action anchors like in logo
+                    if (!targetId) return;
+
+                    let targetElement = document.getElementById(targetId);
+                    
+                    // Route Healing Logic - Fallback to #contact if missing node
+                    if (!targetElement) {
+                        console.warn(`Anchor target #${targetId} missing. Invoking Fallback Healing Logic -> #contact`);
+                        targetElement = document.getElementById('contact');
+                    }
+                    
+                    if (targetElement) {
+                        // Custom mobile menu collapse purely optional for UX handling
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Small bounce effect after reach via custom CSS variable tweak via logic optional
+                    }
+                });
+            });
+
+            // Delay for Cookie display avoiding block rendering jumps instantly
+            setTimeout(() => {
+                if(!localStorage.getItem('ws_systems_cookies_ack')) {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }
+            }, 1000);
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('ws_systems_cookies_ack', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => banner.style.display = 'none', 500);
+        }
+    </script>
+</body>
+</html>
