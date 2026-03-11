@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dacepiyagiia Industries - App per Gestione Budget e Spese Familiari</title>
+    <meta name="description" content="Ottimizza il tuo stipendio e gestisci le spese mensili con l'app di bilancio di Dacepiyagiia Industries. Pianifica risparmio, paga bollette in tempo reale e tieni sotto controllo il saldo.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* VAR D: Palette - Finance/Emerald for budgeting */
+            --primary: #10b981; 
+            /* VAR C: Surface - Cool (Last Letter Code % 3 = 2) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry - Soft (Domain Length % 3 = 1) */
+            --radius: 12px;
+            /* VAR B: Physics - Material (First Letter Code % 3 = 1) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Light gray base to make white cards pop */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-1px); 
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-black text-xl text-gray-900">Dacepiyagiia<span class="text-primary">.</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary transition">Funzionalità</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary transition">FAQ</a>
+                    <a href="#contact" class="btn-primary py-2 px-4">Inizia Subito</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button type="button" class="text-gray-600 hover:text-gray-900 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-white border-t border-gray-100" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-gray-700 font-medium hover:text-primary">Funzionalità</a>
+                <a href="#reviews" class="block px-3 py-2 text-gray-700 font-medium hover:text-primary">Recensioni</a>
+                <a href="#faq" class="block px-3 py-2 text-gray-700 font-medium hover:text-primary">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 text-primary font-bold">Inizia Subito</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden bg-gray-900 mt-16">
+        <!-- Background Image with Overlay -->
+        <img src="https://images.pexels.com/photos/4386442/pexels-photo-4386442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+             alt="Persone che gestiscono il bilancio" 
+             class="absolute inset-0 w-full h-full object-cover object-center opacity-30"
+             referrerpolicy="no-referrer"
+             loading="lazy"
+             onerror="this.onerror=null; this.src='https://placehold.co/1200x800/1e293b/ffffff?text=Gestione+Finanze';">
+        <div class="absolute inset-0 bg-gray-900/70"></div> <!-- Contrast fix -->
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- BRIDGING SLOGAN H1 -->
+            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
+                L'ingegneria del <span class="text-primary">risparmio</span><br>per le tue finanze domestiche.
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 mb-8">
+                Prendi il controllo del tuo stipendio e gestisci ogni aspetto del conto. La migliore <strong>app per gestione budget e spese familiari</strong> ti aspetta. Trasforma il tuo approccio alle uscite e progetta il tuo futuro mese dopo mese.
+            </p>
+            <div class="mt-8 flex justify-center">
+                <a href="#contact" class="btn-primary text-lg">Richiedi Accesso</a>
+            </div>
+            
+            <div class="mt-12 flex justify-center items-center space-x-6 text-gray-400 opacity-80">
+                <span class="font-bold text-lg">Partner sicuro:</span>
+                <span class="text-xl uppercase tracking-wider font-semibold">TechFinance Corp</span>
+                <span class="text-xl uppercase tracking-wider font-semibold">HomeVault</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-12">
+
+        <!-- Value/Services Section -->
+        <section id="features" class="dna-card max-w-5xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Gestione del Denaro Senza Sforzo
+                </h2>
+                <p class="mt-4 text-xl text-gray-500">
+                    Ogni spesa catalogata, ogni bilancio sotto controllo.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm transition hover:shadow-md">
+                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-green-100 text-primary mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Monitoraggio del Saldo in Tempo Reale</h3>
+                    <p class="text-gray-600 text-sm">
+                        Collega il tuo conto e mantieni costantemente aggiornato il saldo complessivo. Una visione chiara di come il tuo stipendio viene allocato ogni singolo giorno per una sicurezza totale.
+                    </p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm transition hover:shadow-md">
+                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Pianificazione Spese e Bollette</h3>
+                    <p class="text-gray-600 text-sm">
+                        Classifica le tue spese in categorie personalizzate. La nostra app prevede l'arrivo delle bollette e dei costi fissi, avvisandoti prima che questi vadano ad impattare sulla liquidità del mese.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm transition hover:shadow-md">
+                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-yellow-100 text-yellow-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Proiezione di Risparmio a Fine Mese</h3>
+                    <p class="text-gray-600 text-sm">
+                        Utilizza grafici interattivi e bilanci chiari per traguardare i tuoi obiettivi di risparmio. Saprai sempre esattamente quale porzione dei guadagni della famiglia rimane al termine del mese in corso.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section id="reviews" class="dna-card max-w-5xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-8">Le Storie delle Nostre Famiglie</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex text-yellow-400 mb-2">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-600 italic text-sm mb-4">"Da quando usiamo Dacepiyagiia, la gestione del nostro stipendio è totalmente cambiata. Sappiamo esattamente dove finisce ogni centesimo del nostro conto corrente. Eccezionale app per la nostra casa."</p>
+                    <p class="font-bold text-gray-900 text-sm">— Marco Rossi, 2026</p>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex text-yellow-400 mb-2">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-600 italic text-sm mb-4">"Avevamo sempre problemi a fine mese con l'accumulo imprevisto delle bollette. Questa piattaforma ha riportato il controllo totale. Tracciare le spese in due non è mai stato così intuitivo."</p>
+                    <p class="font-bold text-gray-900 text-sm">— Elena e Giovanni B., 2026</p>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex text-yellow-400 mb-2">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-600 italic text-sm mb-4">"Il saldo si aggiorna velocemente ed impostare obiettivi di risparmio per le vacanze ha ridotto tantissimo le ansie economiche della nostra famiglia. Strumento vitale."</p>
+                    <p class="font-bold text-gray-900 text-sm">— Francesca V., 2026</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="dna-card max-w-5xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-6 text-center">Domande Frequenti sul Tuo Budget</h2>
+            <div class="space-y-4">
+                
+                <details class="group bg-white border border-gray-200 rounded-lg p-4 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Come funziona il monitoraggio delle spese?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 pl-2 border-l-2 border-primary text-sm">
+                        La nostra app per gestione budget consente l'inserimento rapido manuale di ogni singola transazione. In questo modo puoi categorizzare in tempo reale dove stai investendo i soldi derivanti dal tuo stipendio, organizzando l'architettura delle finanze di casa con estrema precisione e senza automazioni invasive non richieste.
+                    </p>
+                </details>
+
+                <details class="group bg-white border border-gray-200 rounded-lg p-4 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Come posso calcolare le scadenze delle bollette mensili?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 pl-2 border-l-2 border-primary text-sm">
+                        C'è una sezione specifica per l'inserimento dei costi ricorsivi. L'app evidenzierà sul calendario del mese corrente tutti gli addebiti futuri per le tue bollette o rate dei mutui. Questo ti impedirà di trovarti senza disponibilità sul conto principale proprio a ridosso delle scadenze importanti della tua famiglia.
+                    </p>
+                </details>
+
+                <details class="group bg-white border border-gray-200 rounded-lg p-4 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Quale logica viene applicata al saldo del mio conto?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 pl-2 border-l-2 border-primary text-sm">
+                        Il saldo si calcola con un algoritmo di addizione e sottrazione in base a reddito iniziale e transazioni censite. Inserendo semplicemente l'importo fisso iniziale potrai consultare report statistici aggiornati per verificare quanti fondi reali sono rimasti all'interno dell'aggregato generale della famiglia.
+                    </p>
+                </details>
+
+                <details class="group bg-white border border-gray-200 rounded-lg p-4 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Posso definire degli obiettivi di risparmio comuni?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 pl-2 border-l-2 border-primary text-sm">
+                        Assolutamente. Il nucleo dello strumento prevede proprio di fissare traguardi monetari che possono spaziare dall'acquisto di un nuovo divano fino al fondo studi per i figli. Ti suggeriremo quanto devi mettere da parte dal tuo stipendio mensile per giungere puntualmente e senza sofferenza economica alla quota stabilita a monte del progetto.
+                    </p>
+                </details>
+
+                <details class="group bg-white border border-gray-200 rounded-lg p-4 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-gray-900">
+                        Cosa include il resoconto completo a fine mese?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 pl-2 border-l-2 border-primary text-sm">
+                        Ottieni una mappatura visiva dettagliatissima del destino dei tuoi averi nell'ultimo arco solare, includendo raggruppamenti cromatici per alimentari, intrattenimento, costi fissi ed investimenti per comprendere su quale categoria bisogna agire. In questo report vengono integrate persino simulazioni basate sugli abitudini correnti per ottimizzare progressivamente la gestione anno dopo anno.
+                    </p>
+                </details>
+
+            </div>
+        </section>
+
+        <!-- Contact/Lead Section -->
+        <section id="contact" class="dna-card max-w-5xl mx-auto flex flex-col md:flex-row gap-8">
+            <div class="flex-1">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Crea il Tuo Spazio Sicuro</h2>
+                <p class="text-gray-600 mb-6">Inizia ad amministrare ogni singola spesa, mantieni sano il conto ed investi in un risparmio proficuo e sicuro, pensato specificatamente per i bisogni familiari. Lasciaci i tuoi dati per un piano personalizzato della nostra app e per comprendere le prospettive migliori in ambito gestionale.</p>
+                
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                    <h3 class="font-bold text-gray-800 mb-2">Informazioni Operative</h3>
+                    <p class="text-sm text-gray-600">Servizio attivo su web, dispositivi fissi o per le famiglie in mobilità in formato totalmente asincrono con l'esclusiva gestione budget di livello primario sul mercato per utenti finali.</p>
+                </div>
+            </div>
+            
+            <div class="flex-1">
+                <!-- FORM -->
+                <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Registrazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nome e Cognome o Nucleo Familiare</label>
+                        <input type="text" id="name" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-3 border focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label for="target" class="block text-sm font-medium text-gray-700">Obiettivo Principale di Gestione</label>
+                        <select id="target" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-3 border focus:border-primary focus:ring-primary">
+                            <option value="">Seleziona area da monitorare...</option>
+                            <option value="budget">Bilanciare le Spese Domestiche</option>
+                            <option value="savings">Creare un fondo per il risparmio a fine mese</option>
+                            <option value="salary">Migliore tracciamento base del Saldo/Stipendio</option>
+                        </select>
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit" class="w-full btn-primary text-lg flex justify-center items-center">
+                            Richiedi Accesso App Base
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-2 text-center">Nessuna condivisione illecita a terzi, promessa sicura da parte del team di sicurezza del protocollo informativo per tracciamento ed ottimizzazioni per finanza. Le tue rendicontazioni sono salde.</p>
+                </form>
+
+                <!-- SUCCESS MESSAGE -->
+                <div id="success-msg" style="display:none" class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-lg font-medium text-green-800">Pronto per Ottimizzare i Bilanci</h3>
+                            <p class="text-sm text-green-700 mt-2">La tua iscrizione allo standard progettuale del piano gestionale Dacepiyagiia per tracciabilità stipendio e costi è completa, avrai il rendiconto totale. Il nostro supporto interno elaborerà presto le specifiche sul saldo della configurazione in corso d'opera.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Area & Legal Compliance -->
+    <footer class="bg-gray-900 text-gray-300 mt-12 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 border-b border-gray-800 pb-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+                <span class="font-black text-xl text-white mb-4 md:mb-0">Dacepiyagiia<span class="text-primary">.</span> Industries</span>
+                <p class="text-sm font-semibold uppercase tracking-wide">Applicativi d'Impatto sul Reddito Domestico © 2026</p>
+            </div>
+
+            <!-- MANDATORY DISCLAIMER -->
+            <div class="bg-gray-800 p-4 rounded-lg mb-8 text-sm text-gray-400 border border-gray-700 italic text-center">
+                "Questo è un sito promozionale indipendente gestito da Dacepiyagiia Industries, che opera come affiliato per Fast Budget App."
+            </div>
+
+            <!-- Full Legal Texts via Details for Compliance -->
+            <div class="space-y-4 max-w-4xl mx-auto">
+                <details class="group bg-gray-800 rounded p-4 text-xs cursor-pointer border border-gray-700">
+                    <summary class="font-bold uppercase tracking-wide">Informativa sulla Privacy Regolamentata</summary>
+                    <div class="mt-4 space-y-2 text-gray-400">
+                        <p>La presente policy descrive diffusamente la modalità logica atta ad assicurare estrema confidenza nel tracciare tutto in via crittografata dei resoconti. Nessuna parte attinente all'analisi specifica sarà manipolata pubblicamente a nessun livello applicativo predeterminato in anticipo o successivo, ma strettamente relegata al funzionamento intimo e prettamente personale.</p>
+                        <p>L'assunzione del rispetto del segreto è insita nell'attività economica domestica considerata il bene assoluto che tuteliamo attivamente giorno per giorno mediante verifiche algoritmiche approfondite, server con archiviazione decentralizzata ed elaboratori per minimizzare disagi in caso avverso sulle memorie. Tutti gli inserimenti testuali relativi alla moneta restano segreti di proprietà assoluta individuale inalienabile. Le regole sui tracciatori sono spiegate ampiamente in merito agli scambi, senza interposizioni fraudolente mirate ad eludere la salvaguardia basilare dell'utenza. Nessun collaboratore accede palesemente al quadro d'insieme numerico del portafogli elettronico. Dacepiyagiia valuta di sopprimere immediatamente registri se richiesto. Non memorizziamo abitudini sensibili fuori dall'esecuzione logica temporanea e mirata.</p>
+                        <p>La crittografia standard applicata su bilanci non transige alcun limite stabilito convenzionalmente; persino intercettazioni teoriche diverrebbero ammassi crittografici non computabili ai normali parametri d'interpretazione e sorveglianza delle reti libere commerciali attigue ai cloud server per applicazioni da bilancio casalingo familiare orientate esclusivamente per limitare sprechi non monitorati tra conti e residui per l'ammortamento su base continuativa della piattaforma.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-800 rounded p-4 text-xs cursor-pointer border border-gray-700">
+                    <summary class="font-bold uppercase tracking-wide">Termini e Condizioni Operative App</summary>
+                    <div class="mt-4 space-y-2 text-gray-400">
+                        <p>Il libero servizio gestionale economico reso al cittadino si subordina esclusivamente ai codici etici inerenti le stesure che l'aderente appresta ad ottemperare con scrupolo a mezzo dell'iscrizione stessa e non da altro vincolo. Trattare informazioni finanziarie non vincola a pretese contrattuali su esiti monetari previsti come pure semplici supposizioni. Chi accede attua controlli sulle funzioni a propria esclusiva iniziativa consapevole.</p>
+                        <p>Lo spazio per conteggi assume un peso come contenitore virtuale a fini organizzativi; i creatori non amministrano veri fondi bancari, ci dissociamo da diretti errori compiuti nel compilare il modulo sulle quantità patrimoniali allocate di proposito nelle fasce di conto non esatte che sbilanciano le sintesi attestate mese su mese. Decliniamo la sussistenza di un dovere compensatorio a fronte d'incertezze in elaborazione manuale scritte impropriamente dal titolare nell'inventario apposito delle spese ed oneri. Le interruzioni derivanti da ragioni infrastrutturali temporanee restano da intendersi esuli da contestazioni rimborsabili sulle potenziali speculazioni avverse, permanendo Dacepiyagiia estranea alla mera manipolazione dell'agire umano a scopo speculativo del tracciamento stipendi familiari privati o collettivi senza responsabilità obiettiva sull'arricchimento derivato dal suo impiego nel quotidiano delle stime correnti su transazioni stocastiche di piccola o vasta entità relative sempre al piano dei bisogni basici della persona singola o suo nucleo domestico solidale che attinge ad unico fondo.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-800 rounded p-4 text-xs cursor-pointer border border-gray-700">
+                    <summary class="font-bold uppercase tracking-wide">Direttive Applicabili per l'Eventuale Rimborso</summary>
+                    <div class="mt-4 space-y-2 text-gray-400">
+                        <p>Essendo di base in larga diffusione per promozione d'uso con formule libere dal saldo iniziale fisso in prelievo diretto mensile, laddove intervengano sblocchi premi per la pianificazione aggiuntiva integrata delle uscite domestiche per la categoria professionale speciale e tale prodotto appaia mancante degli standard tecnici, interverrà immediata verifica sull'accadimento entro due settimane esatte.</p>
+                        <p>Una insoddisfazione che dipenda primariamente da omissioni informatiche da noi perpetrate apre iter risarcitorio per quote percepite impropriamente per l'addestramento funzionale o aggiornamenti di licenza. Si decreta invalida la pretesa scaturita in mancanza di reale sperimentazione del blocco contabile sull'algoritmo dedito a decurtare idealmente ogni bolletta simulata nei database utente o incapacità d'apprendimento su normali gestionali digitali attuali presenti ad oggi sui terminali e non assecondati dall'ignorare basilari requisiti richiesti da parte integrante documentazione di avvio alla piattaforma intera. Eventuali richieste passanti tramite procedure regolate comportano nullificazione dei presidi di sicurezza sbloccati ad ora senza decurtazione per penalità occorse nella manovra correttiva intrapresa in un unico blocco definitivo reversibile nei saldi per la liquidità garantendo le restituzioni non condizionate né frenate da ulteriori appigli procedurali dilatori sulla chiusura finale ed eradicazione del piano attivato incautamente ed in maniera frettolosa senza accurata verifica sugli impatti globali.</p>
+                    </div>
+                </details>
+            </div>
+            
+            <p class="text-center text-xs mt-8 opacity-60">Sito protetto dai medesimi protocolli previsti dalle applicazioni per il calcolo di rendite.</p>
+        </div>
+    </footer>
+
+    <!-- Smart Routing / Interactivity JS -->
+    <script>
+        // Smooth scrolling & self-healing routing interceptor
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('a[href^="#"]');
+            if (target) {
+                e.preventDefault();
+                const id = target.getAttribute('href').substring(1);
+                
+                // Fallback logic
+                let targetElement = document.getElementById(id);
+                if (!targetElement && id !== '') {
+                    targetElement = document.getElementById('contact'); // Default fallback to lead section
+                    console.log('Target section missing, routing to functional contact element.');
+                }
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                // Auto-close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        });
+    </script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 border-t border-gray-700 text-white p-4 shadow-2xl z-50 transform translate-y-full transition-transform duration-500">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-300">
+                La gestione dell'ecosistema per rintracciare accuratamente costi fissi e uscite ricorrenti adotta tracciatori digitali d'assoluta affidabilità tecnica ed analitica ad uso rigorosamente prestazionale. Le stime contabili elaborate sono custodite severamente sui server dell'app. Continua consapevolmente per attivare miglioramenti sulla velocità esecutiva delle previsioni ed il rendering visivo al netto di disfunzioni latenti temporanee sui display degli utenti operativi connessi tramite applicativo principale dell'azienda madre designata per bilancio.
+            </p>
+            <button id="accept-cookies" class="whitespace-nowrap btn-primary py-2 px-6 text-sm">
+                Prosegui con Tracciabilità Piena
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Cookie logic implementation with localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            
+            if (!localStorage.getItem('DacepiyagiiaBudgetApp_CookiesAccepted')) {
+                // Show banner after brief delay for visual pop
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 500);
+            }
+
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('DacepiyagiiaBudgetApp_CookiesAccepted', 'true');
+                banner.classList.add('translate-y-full');
+                // Remove from DOM after transition
+                setTimeout(() => {
+                    banner.style.display = 'none';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
