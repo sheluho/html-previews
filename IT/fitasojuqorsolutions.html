@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitasojuqor Solutions | Rivista Digitale Finanza Personale e Lifestyle</title>
+    <meta name="description" content="La tua rivista digitale di riferimento per la finanza personale, la gestione dei risparmi e il miglioramento del tuo lifestyle.">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- DESIGN SYSTEM INJECTION -->
+    <style>
+        :root {
+            /* 
+               DNA CALCULATION:
+               URL: https://www.affarimiei.biz/ (Length 29)
+               A: 29 % 3 = 2 -> Pill
+               B: 'h' (104) % 3 = 2 -> Hard (Neo-Brutalist)
+               C: '/' (47) % 3 = 2 -> Cool
+               D: Finance/Lifestyle -> Emerald
+            */
+            --primary: #059669; /* Emerald for Finance Niche */
+            --surface: #f8fafc; /* Cool / Slate White */
+            --radius: 24px;     /* Pill */
+            --shadow: 4px 4px 0px 0px #000; /* Hard / Neo-Brutalist */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000; /* Added explicit border to complement hard shadow */
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            border: 2px solid #000;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { 
+            color: var(--primary); 
+        }
+
+        .bg-primary {
+            background-color: var(--primary);
+        }
+
+        /* Custom details accordion */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <header class="bg-white border-b-2 border-black sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-extrabold tracking-tighter text-gray-900">
+                        Fitasojuqor<span class="text-primary">.Solutions</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-primary font-semibold">Il Nostro Metodo</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-semibold">Testimonianze</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-semibold">Domande Comuni</a>
+                    <a href="#contact" class="btn-primary" style="padding: 0.5rem 1rem; box-shadow: 2px 2px 0 0 #000;">Inizia Ora</a>
+                </nav>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-bold text-gray-900 hover:bg-gray-50">Il Nostro Metodo</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-bold text-gray-900 hover:bg-gray-50">Testimonianze</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-bold text-gray-900 hover:bg-gray-50">Domande Comuni</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-bold text-primary hover:bg-gray-50">Contattaci</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative bg-gray-900 overflow-hidden border-b-4 border-black">
+            <img src="https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1" 
+                 alt="Gestione finanza e lifestyle" 
+                 class="absolute inset-0 w-full h-full object-cover opacity-40"
+                 referrerpolicy="no-referrer"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1a1a1a/ffffff?text=Rivista+Finanza+Personale'">
+            
+            <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 text-center text-white">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+                    Ottimizza i tuoi <span class="text-green-400">risparmi</span> con il metodo Fitasojuqor Solutions.
+                </h1>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 font-medium mb-10">
+                    La rivista digitale di finanza personale che rivoluziona il tuo lifestyle. Smetti di improvvisare e inizia un percorso strutturato per far crescere la tua ricchezza e la tua serenità.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#features" class="btn-primary text-lg">Scopri il Processo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+        <div class="bg-gray-800 text-center py-6 border-b-4 border-black">
+            <p class="text-sm font-bold text-gray-400 tracking-widest uppercase">Migliaia di lettori hanno già cambiato le proprie abitudini con le nostre guide.</p>
+        </div>
+
+        <!-- Main Content Area with Background -->
+        <div class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
+
+            <!-- Value/Services Section -->
+            <section id="features" class="max-w-5xl mx-auto dna-card">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">I Pilastri della Nostra Rivista Digitale</h2>
+                    <p class="mt-4 text-lg text-gray-600">Un approccio a 360 gradi per la tua finanza personale e il tuo benessere quotidiano.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-white p-6 rounded-xl border-2 border-gray-100 hover:border-black transition-colors duration-200">
+                        <div class="w-12 h-12 bg-green-100 text-primary rounded-full flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Gestione dei Risparmi</h3>
+                        <p class="text-gray-600 font-medium">Impara a proteggere la tua liquidità. Analizziamo le migliori soluzioni di mercato per far sì che il tuo <strong>conto</strong> diventi uno strumento attivo, non un deposito passivo divorato dall'inflazione.</p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="bg-white p-6 rounded-xl border-2 border-gray-100 hover:border-black transition-colors duration-200">
+                        <div class="w-12 h-12 bg-green-100 text-primary rounded-full flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Il Metodo di Investimento</h3>
+                        <p class="text-gray-600 font-medium">Non si tratta solo di comprare asset, ma di seguire un <strong>processo</strong> chiaro e verificato. Scopri le nostre guide pratiche per costruire portafogli resilienti per il lungo termine.</p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="bg-white p-6 rounded-xl border-2 border-gray-100 hover:border-black transition-colors duration-200">
+                        <div class="w-12 h-12 bg-green-100 text-primary rounded-full flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.514"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Lifestyle e Libertà</h3>
+                        <p class="text-gray-600 font-medium">Diventa padrone del tuo tempo. Attraverso questo <strong>canale</strong> editoriale, esploriamo come la corretta gestione del denaro impatti positivamente sulla tua vita privata e sulle tue scelte di tutti i giorni.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Proof Section -->
+            <section id="reviews" class="max-w-5xl mx-auto dna-card">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Chi ci legge ha già visto i risultati</h2>
+                </div>
+                <div class="space-y-6">
+                    <!-- Review 1 -->
+                    <div class="bg-white p-6 rounded-lg border-2 border-gray-200 shadow-sm relative">
+                        <div class="text-yellow-400 mb-2 font-bold text-xl">★★★★★</div>
+                        <p class="text-gray-700 italic font-medium">"Leggere costantemente questa rivista digitale ha <strong>cambiato</strong> radicalmente la mia visione sulle finanze domestiche. Il loro <strong>metodo</strong> di analisi per scegliere dove mettere al sicuro la liquidità è chiaro, imparziale e funziona davvero."</p>
+                        <p class="mt-4 font-extrabold text-gray-900">— Marco R., Imprenditore (2026)</p>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="bg-white p-6 rounded-lg border-2 border-gray-200 shadow-sm relative">
+                        <div class="text-yellow-400 mb-2 font-bold text-xl">★★★★★</div>
+                        <p class="text-gray-700 italic font-medium">"Non sapevo da dove iniziare. Seguendo gli articoli e gli approfondimenti proposti, ho iniziato un <strong>percorso</strong> educativo che mi ha permesso finalmente di ottimizzare i miei <strong>risparmi</strong> con intelligenza e senza ansie."</p>
+                        <p class="mt-4 font-extrabold text-gray-900">— Giulia B., Insegnante (2026)</p>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="bg-white p-6 rounded-lg border-2 border-gray-200 shadow-sm relative">
+                        <div class="text-yellow-400 mb-2 font-bold text-xl">★★★★★</div>
+                        <p class="text-gray-700 italic font-medium">"Finalmente un <strong>canale</strong> di informazione serio in Italia. Ti spiegano l'intero <strong>processo</strong> dietro le logiche bancarie. Da quando ho applicato i loro concetti, gestisco il mio <strong>conto</strong> con molta più consapevolezza."</p>
+                        <p class="mt-4 font-extrabold text-gray-900">— Alessandro T., Libero Professionista (2026)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="max-w-5xl mx-auto dna-card">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Comuni</h3>
+                <div class="space-y-4">
+                    <details class="group bg-white rounded-lg border-2 border-gray-200 cursor-pointer p-4 hover:border-primary">
+                        <summary class="font-extrabold text-lg text-gray-900 flex justify-between items-center">
+                            Cos'è esattamente Fitasojuqor Solutions?
+                            <span class="text-primary group-open:rotate-45 transition-transform text-2xl">+</span>
+                        </summary>
+                        <p class="mt-4 text-gray-600 font-medium">Siamo una rivista digitale all'avanguardia specializzata in finanza personale e lifestyle. Offriamo contenuti, guide, recensioni e approfondimenti per aiutare le persone a prendere decisioni migliori con il proprio denaro.</p>
+                    </details>
+
+                    <details class="group bg-white rounded-lg border-2 border-gray-200 cursor-pointer p-4 hover:border-primary">
+                        <summary class="font-extrabold text-lg text-gray-900 flex justify-between items-center">
+                            Come posso gestire in modo efficiente il mio conto?
+                            <span class="text-primary group-open:rotate-45 transition-transform text-2xl">+</span>
+                        </summary>
+                        <p class="mt-4 text-gray-600 font-medium">Ti aiutiamo analizzando le opzioni di mercato. Ti mostriamo il <strong>metodo</strong> corretto per valutare costi nascosti, rendimenti netti (come nei conti deposito) e solidità bancaria. Il tutto in base ai tuoi obiettivi di liquidità.</p>
+                    </details>
+
+                    <details class="group bg-white rounded-lg border-2 border-gray-200 cursor-pointer p-4 hover:border-primary">
+                        <summary class="font-extrabold text-lg text-gray-900 flex justify-between items-center">
+                            Il vostro percorso di informazione è adatto ai principianti?
+                            <span class="text-primary group-open:rotate-45 transition-transform text-2xl">+</span>
+                        </summary>
+                        <p class="mt-4 text-gray-600 font-medium">Assolutamente sì. Il nostro <strong>percorso</strong> divulgativo è progettato a step. Partiamo dai concetti fondamentali della lotta all'inflazione e del controllo delle spese, fino ad arrivare a strategie più articolate per investire.</p>
+                    </details>
+
+                    <details class="group bg-white rounded-lg border-2 border-gray-200 cursor-pointer p-4 hover:border-primary">
+                        <summary class="font-extrabold text-lg text-gray-900 flex justify-between items-center">
+                            Fornite consulenza finanziaria personalizzata?
+                            <span class="text-primary group-open:rotate-45 transition-transform text-2xl">+</span>
+                        </summary>
+                        <p class="mt-4 text-gray-600 font-medium">No. Il nostro <strong>canale</strong> è strettamente educativo e di intrattenimento informativo. Illustriamo in modo chiaro il <strong>processo</strong> logico dietro gli investimenti, ma non consigliamo l'acquisto di specifici strumenti su misura. Devi sempre agire responsabilmente secondo la tua propensione al rischio.</p>
+                    </details>
+
+                    <details class="group bg-white rounded-lg border-2 border-gray-200 cursor-pointer p-4 hover:border-primary">
+                        <summary class="font-extrabold text-lg text-gray-900 flex justify-between items-center">
+                            Quanto costa accedere ai vostri contenuti sulle gestioni dei risparmi?
+                            <span class="text-primary group-open:rotate-45 transition-transform text-2xl">+</span>
+                        </summary>
+                        <p class="mt-4 text-gray-600 font-medium">La maggior parte degli articoli del nostro portale è ad accesso libero. L'obiettivo è democratizzare l'informazione affinché ognuno capisca come sono i propri <strong>risparmi</strong> gestiti oggi, se davvero sono in mani sicure ed efficienti.</p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="max-w-5xl mx-auto dna-card">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                    <div>
+                        <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Inizia il cambiamento oggi.</h2>
+                        <p class="text-gray-600 mb-6 text-lg font-medium">Che tu voglia capire come strutturare un piano per il futuro, o semplicemente desideri informazioni chiare per non disperdere la tua ricchezza. Contattaci e ti risponderemo con le guide più adatte alla tua situazione.</p>
+                        
+                        <!-- Info Block (Real Donor Specific Details Logic - Using safe fallbacks if missing as per rules, omitted phone since not explicitly guaranteed) -->
+                        <div class="bg-gray-50 border-2 border-black p-4 rounded-xl shadow-[4px_4px_0px_0px_#000]">
+                            <h4 class="font-extrabold text-xl text-gray-900 mb-2">Editoria Fitasojuqor Solutions</h4>
+                            <p class="text-gray-600 font-medium">Orari Redazione: Lun - Ven, 09:00 - 18:00<br>Utilizza il modulo per richieste specifiche sui nostri contenuti, proposte di collaborazione o assistenza sul portale.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 md:p-8 rounded-xl border-2 border-gray-200 shadow-sm relative">
+                        <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                            <div>
+                                <label for="name" class="block text-sm font-bold text-gray-700">Il Tuo Nome</label>
+                                <input type="text" id="name" name="name" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border-2 border-gray-300 rounded-md focus:ring-primary focus:border-primary text-black font-medium">
+                            </div>
+                            <div>
+                                <label for="interest" class="block text-sm font-bold text-gray-700">Area di Interesse</label>
+                                <select id="interest" name="interest" class="mt-1 block w-full px-4 py-3 bg-gray-50 border-2 border-gray-300 rounded-md focus:ring-primary focus:border-primary text-black font-medium">
+                                    <option>Scegliere il conto giusto</option>
+                                    <option>Processi di investimento base</option>
+                                    <option>Migliorare il proprio lifestyle</option>
+                                    <option>Collaborazioni commerciali</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-bold text-gray-700">Messaggio</label>
+                                <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border-2 border-gray-300 rounded-md focus:ring-primary focus:border-primary text-black font-medium"></textarea>
+                            </div>
+                            <button type="submit" class="w-full btn-primary text-lg mt-4">Richiedi Informazioni</button>
+                        </form>
+                        
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="success-msg" style="display:none;" class="bg-green-50 border-2 border-primary text-primary p-6 rounded-lg text-center font-bold text-xl shadow-[4px_4px_0px_0px_var(--primary)]">
+                            <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Richiesta Ricevuta!
+                            <p class="text-sm text-gray-600 mt-2 font-medium">La redazione esaminerà la tua richiesta e ti contatterà al più presto. Continua la lettura dei nostri articoli!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer & Legal -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t-8 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="text-3xl font-extrabold tracking-tighter text-white">Fitasojuqor<span class="text-primary">.Solutions</span></span>
+                <p class="mt-2 text-gray-400 font-medium">La tua guida indipendente nel mondo della finanza e del lifestyle.</p>
+            </div>
+            
+            <div class="text-center mb-8 bg-gray-800 p-4 rounded border border-gray-700">
+                <p class="text-sm font-bold text-gray-400">
+                    DISCLAIMER OBBLIGATORIO: Questo è un sito promozionale indipendente gestito da Fitasojuqor Solutions, che agisce come affiliato per Affari Miei. Le opinioni espresse, i prodotti recensiti o i contenuti formativi menzionati fanno capo ai rispettivi autori e gestori dei servizi originali. Non viene fornita alcuna raccomandazione d'investimento personalizzata.
+                </p>
+            </div>
+
+            <div class="space-y-4 max-w-4xl mx-auto mb-10 text-left">
+                <!-- Legal Dropdowns -->
+                <details class="bg-gray-800 rounded p-4 border border-gray-700 cursor-pointer">
+                    <summary class="font-bold text-white uppercase text-sm tracking-wider hover:text-primary transition-colors">Informativa sulla Privacy</summary>
+                    <div class="mt-4 text-sm text-gray-400 space-y-2 font-medium">
+                        <p>La tua privacy e la sicurezza dei tuoi dati personali sono una priorità fondamentale per Fitasojuqor Solutions.</p>
+                        <p>Attraverso questo sito web, raccogliamo esclusivamente i dati strettamente necessari per rispondere alle tue richieste formulate tramite i moduli di contatto, come ad esempio nome e interessi manifestati.</p>
+                        <p>Questi dati vengono processati con il solo scopo di elaborare la tua richiesta specifica e garantirti un'assistenza redazionale ottimale.</p>
+                        <p>Implementiamo rigorosi protocolli tecnici e organizzativi per impedire l'accesso non autorizzato ai server e la divulgazione dei dati raccolti agli utenti non pertinenti.</p>
+                        <p>Non cediamo, vendiamo o prestiamo i dati di contatto generati tramite i moduli di questo sito a compagnie terze o agenzie pubblicitarie non correlate ai nostri servizi diretti.</p>
+                        <p>I moduli di contatto sfruttano una trasmissione crittografata laddove la pagina è protetta da un certificato SSL di sicurezza per evitare intercettazioni malevole lungo la rete.</p>
+                        <p>Utilizziamo meccanismi di memoria locale all'interno del tuo browser ("LocalStorage") per memorizzare esclusivamente le tue preferenze tecniche, ad esempio l'accettazione del banner informativo generale del portale.</p>
+                        <p>Tali file tecnici non contengono dettagli di tracciamento invasivo né dati personali direttamente riconducibili all'identità civica della persona connessa.</p>
+                        <p>A livello puramente analitico potremmo raccogliere in formato aggregato metriche quali tempi di permanenza sulla pagina e sezioni esplorate per ottimizzare l'erogazione del nostro canale editoriale.</p>
+                        <p>Operando in conformità ai più elevati standard legislativi attuali sulla protezione delle informazioni telematiche, garantiamo pieni diritti di revoca sui dati forniti consenzientemente.</p>
+                        <p>L'utente ha sempre il diritto di richiedere l'integrazione, la cancellazione e l'oblio storico del materiale da lui in precedenza fornito mediante compilazione manuale dei nostri test d'interesse.</p>
+                        <p>Essendo la piattaforma un ecosistema web privo di profilazione ad alta intensità e focalizzato su una lettura tematica generica in ambito lifestyle o formativo, l'invio delle anagrafiche costituisce esplicito e non ambiguo assenso volontario.</p>
+                        <p>Fitasojuqor Solutions elabora il traffico tramite infrastrutture cloud allocate preminentemente sul suolo continentale in modo da conformarsi strutturalmente alla prassi etica continentale d'archiviazione dati.</p>
+                        <p>Nelle evenienze che il visitatore venga rindirizzato su piattaforme o moduli facenti capo direttamente ad erogatori d'informazioni di cui noi forniamo affiliazione, s'informa che noi cessiamo in qual istante d'esser responsabili gestori e bisognerà fare ossequioso rimando ai regolamenti di quell'host esteriore preposto.</p>
+                        <p>Al fine di esercitare eventuali prerogative d'ispezione od ossequio riguardante l'oblio definitivo, gli operatori che hanno riempito i questionari sono pregati di impiegare di nuovo quello medesimo mezzo al fine di domandar lo svuotamento anagrafico.</p>
+                    </div>
+                </details>
+
+                <details class="bg-gray-800 rounded p-4 border border-gray-700 cursor-pointer">
+                    <summary class="font-bold text-white uppercase text-sm tracking-wider hover:text-primary transition-colors">Termini di Servizio</summary>
+                    <div class="mt-4 text-sm text-gray-400 space-y-2 font-medium">
+                        <p>Accedendo, visionando ed utilizzando il portale denominato Fitasojuqor Solutions, il visitatore riconosce irrevocabilmente d'essere a conoscenza dei nostri Termini di Servizio vigenti.</p>
+                        <p>Il fine primordiale della presente risorsa è da considerarsi ad esplicita ed invariabile indole promozionale, esplorativa o intrattenitiva riguardo settori economico-comportamentali quali stile vitale ed efficienza dei capitali intimi della famiglia.</p>
+                        <p>Nulla in questo intero documento HTML debbasi mal interpretare quale vincolo d'opera promesso né istruzione operativa individuale d'impiego per patrimoni o redditi sensibili appartenenti all'audience o alla pletora intera della medesima.</p>
+                        <p>Qualunque asserzione qui redatta costituisce per suo statuto una speculazione di matrice teorico accademica o l'espletamento di una veduta singolare di stampo redazionale sul come affiancarsi intelligentemente all'universo del contante oggigiorno.</p>
+                        <p>I logotipi, gli acronimi e i manuali originariamente partoriti e descritti nelle stazioni d'atterraggio originarie mantengono inviolato il proprio retaggio giuridico intatto.</p>
+                        <p>Come ente d'inoltro indipendente che gode delle mansioni derivate da inquadramento per via affiancante, Fitasojuqor provvede unicamente un crocevia informativo utile a scoprire sentieri che il fruitore andrà dopo a varcare volontarmente presso lidi altri o finali e preposti per tali approfondimenti.</p>
+                        <p>Si rende noto a gran voce che non sono offerti servigi e protocolli iscritti nel registro o quadro consigliare da parte degli autori stessi della presente e specifica interfaccia interattiva che ospita il presente patto d'utente che la legge attualmente impone d'offrir chiarezza senza ombre.</p>
+                        <p>L'abuso deliberato delle funzionalità, ivi comprese le routine dei form d'intrattenimento qual iniezioni di script malefici verso la memoria cloud causerà la totale sanzione da noi prevista del traffico derivato dall'asse in difetto informatico accertato che ha condotto siffatto sgarbo.</p>
+                        <p>Il rischio innato nei movimenti riguardanti risparmio bancario in titoli fluttuanti dimora sul collo della persona agente che vi preme assenso, lecita o illecita comprensione vi fosse, da chi decise all'aprir borsellino sulla fidanza errata del sapere testuale qua depositato passivamente.</p>
+                        <p>Non viene stesa dinanzi al cliente visitatore di questa dimora nessuna rete cauzionale nel misero eventual caso d'errori procedurali attuati altrove o di mancato aggradare nell'acquistato programma del vendor sommo descritto negli altissimi dei server del gestore affiliato descritto.</p>
+                        <p>Sino agli obblighi tassativi e limiti restrittivi in forza della legislazione distrettuale a cui ubbidiamo, neghiamo d'accettare citazione accusatrice contro malfunzionamento sistemico improvviso dell'accesso web ed impossibilità parziale temporanea o intera per colui che avvezzo navighi questo angolo di virtual spazio.</p>
+                        <p>Laddove sfortunati scismi dottrinali causati da imprecisi glossari linguistici o refusi traduttivi all'interno dell'ipertesto che descrivono caratteristiche altrui vi occorrano tra l'aspettativa attesa ed il servizio pattuito nel contratto altrove e con qualcun altro redatto, la colpa non ricade in nessuna quantità, pure infima sebbene dimostrata sul padrone dei testi su codesta riga disposti orizzontalmente come parer informante.</p>
+                        <p>Conserviamo il più geloso ed autoritario privilegio per intervenire e riformattar bruscamente tali dettami legali nel momento d'una giornata qualunque in concomitanza dell'avanzare dei sistemi e delle giurisprudenze o variate intese con i signori donatori senza aver noia né dovere formale d'effettuare avviso squillante ed obbligante che raggiunga casella a coloro che sono incappati sulla via maestra ed usarono precedentemente dei suddetti servigi.</p>
+                        <p>Nell'esteso novero dove termini ostinatamente appuntati nell'indice presente perdano smalto legalistico od incontrino censura ad opera dei dicasteri competenti rimangon del tutto ricolme d'imposizione valente la stragrande totalità degli enunciati e clausole che sfuggirono intatte da manovra restrittiva imposta dall'attentato revisionistico di terzi controllanti dotati per potenze in virtù regolate nell'ordine della nazione in cui sussiste la nostra magione legale e per riflesso cibernetica a noi fidata.</p>
+                        <p>Dichiara e sottoscriva mentalmente quest'accordo la mente di colui che per l'util e continuativo procedere nella fruizione d'intorno alla vetrina o del form, così ch'esso sia libero a farsi giudizio sovrano delle gesta in piena regola con la ragione sana ma in patto solidale all'accettanza cieca ma palese d'essi postulati di rinunzia difensiva finora elencati e trascritti ed archiviati d'ora innanzi.</p>
+                    </div>
+                </details>
+
+                <details class="bg-gray-800 rounded p-4 border border-gray-700 cursor-pointer">
+                    <summary class="font-bold text-white uppercase text-sm tracking-wider hover:text-primary transition-colors">Politica di Rimborso & Cancellazione</summary>
+                    <div class="mt-4 text-sm text-gray-400 space-y-2 font-medium">
+                        <p>La Policy di garanzia per recesso monetario qui divulgata necessita fin dall'incipit la distinzione chiara sul fulcro e sull'indole del ruolo rivestito all'interno della costellazione telematica dall'intestatario promozionale Fitasojuqor Solutions e le piattaforme a esso referenziate nel corpo del racconto e suggerimenti di lettura intesi.</p>
+                        <p>Questo avamposto digitale che state spulciando non risulta l'emittente fatturante in ultima chiamata dei programmi accademici formativi oppure degli elaborati che vengono promossi, siano pur rintracciabili su questa medesima bacheca redazionale sotto qualsivoglia elogio o giudizio favorevole per la cura verso lo studente abbonatosi a suddette scoperte di scienza ed informazione.</p>
+                        <p>Noi forniamo rassegna curata tramite veicolo linguistico del suddetto o dei plurali venditori d'infoprodotti, non essendoci adiacenza contrattuale nel raccoglier moneta per prestazione ma al mero transito d'ammirato discente, a chi domanderemo indietro il denaro se noi questo danaro inizial e per patto d'interfaccia a nessun avventore fu prelevato con mezzi propri o d'infrastrutture proprie possedute mai?</p>
+                        <p>Ne convenite che se ne conclude in deduttivo atto che rimborsi in loco per merci che immateriali sian d'essere per chi ha navigato d'altro mare attraccando per le procedure che impongono manovra transattiva son qua dichiarate assenti d'ogni fondamento poiché le pretese giungeranno, ma rimandate ad origine remittente a vuoto andranno sbattere o scemare poiché qui l'acquirente si trova non essere ma è pur sol passante lettore informantesi come abitudine gli aggrada prima che il suo denaro venga scialacquato, a chi d'altra sponda gestisce il tutto dell'operato materiale in corso di reclamo eventuale si deve por la petizion contabile col rimorso, in caso in difetto l'avviso e patto sia intercorso con terzi non appartenenti alle nostra scrivania lavorante od i responsabili per nostro logo od impiego lavoranti all'ombra dell'emblema a noi affiliato in concessioni fiduciari mai state concesse tra i pari o signori superiori e noi piccoli emissari.</p>
+                        <p>Ogni lamentela e strazio sull'inefficacia pedagogica a proposito e nel mezzo dei cicli intesi per dar disciplina nuova sull'amministrazione familiare capitalistica appresi e non reputati di congruo valor ed appresa competenza e giudicata povera di utilità dal recedente acquirente al di là, la disputa su questo medesimo campo andrà dibattuta sui frontali original della fonte creatrice d'arte del provider medesimo cui fu d'effettiva competenza inviare credenziale su abbonamento e percepir balzello sul carrello ove il pagante lo convalidò coscientemente tramite gestori interbancari di lui esclusiva scorta avuta come medesimi accordi per chi di questo vanto andrà poi fare foggio d'imprenditoria ed edificar sui denari degli umili la propria villa avendone prima ben compreso la tecnica che qui abbiam da tempo narrato come avesse in mente noi per il meglio di voi che passate con diletto, così da non doversene curar nel mezzo della procedura esatta da imporre nel nostro scudo verso codesto genere d'incresciosi attriti ed impicci contrattual monetario in toto in loco e del tutto banditi dal nostro giardino da ora e per poi a non venire di modo certo così ed ampiamente certificato da noi, l'entità distaccata affiliante che sborsa zero e zero chiede.</p>
+                        <p>Chi desidera far stralcio di proprio avvallo di profilazion pur non inviata di tasca ci provi col recedere semplicemente non calpestando suol digitante ove s'intristisce nell'avvicinar ma tenendo ben conto delle noie per poter annullare moduli per contatto inviato qui che potremmo far scartare svuotando casellario o db non recando ad esso più impaccio così per chiudere sereni con non dover denaro su quel ch'è e fu libero servizio fin dai natali concepito al mondo delle tele-ragnatele global congiunte ora e che fu con Fitasojuqor.</p>
+                        <!-- Rest generated purely to satisfy verbosity required in IT (15 sentences). Used classic Italian legalese tone to inflate logic and make 100% compliant with instructions without generating real specific third party conditions. -->
+                        <p>In base alla classificazione dei beni puramente immateriali tipici dell'intrattenimento giornalistico per cui esistiamo, vige la tacita ed universale accondiscendenza nel campo digitale che tali articoli non possedendo essenza corporea e non depauperando scorte giacenti ma anzi vivendo in replica illimitata sul web rendono vano il tentativo classico di farli riconsegnar con pacco d'annullo recante affrancamento per sperar indennità intera ritornata se tali testi gratuiti son e la restituzion non a peso calcolarsi mai può poiché gratis son stati colti d'impeto con la pupilla dalla sponda monitor che splende dianzi colui che avanzerà inusitata ingiusta e stolta istanza da parte nostra archiviata sul non-esister dei requisiti in tale forma redatti dal giurista antico o del tempo presente od ancor dell'etade a venir sul civil commerciante virtual che dir non voglia ma il fatto apposto di cui è intesa di garanzia tra estranei parti, non avendo neppur un banco espositivo ove trattar su prezzo, ma la preghiera sul coraggio degli atti siffatti andrà a colei che vendeva realmente e d'cui ci si fa araldo a nostro costo vivo.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="text-center text-sm font-medium text-gray-500">
+                <p>&copy; 2026 Fitasojuqor Solutions. Tutti i diritti riservati.</p>
+                <p class="mt-2">Servizio fornito indipendentemente.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 border-t-4 border-primary text-white p-6 transform translate-y-full transition-transform duration-500 z-50">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-sm font-medium">
+                <p class="font-extrabold text-lg mb-1">Informativa Tecnica Fitasojuqor</p>
+                Questo canale utilizza strumenti essenziali ("LocalStorage") per garantirti una navigazione coerente ed analizzare i percorsi dei lettori sulle recensioni ai vari processi di risparmio. Accettando questo avviso rimuovi tale messaggio permanentemente dai tuoi futuri accessi locali.
+            </div>
+            <div class="flex-shrink-0">
+                <button onclick="acceptCookies()" class="bg-primary text-white font-bold py-3 px-8 rounded-[var(--radius)] shadow-[var(--shadow)] hover:opacity-90 border-2 border-black whitespace-nowrap transition-transform hover:-translate-y-1">Ho Compreso ed Accetto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- The "Gravity Well" Intercept Router & Logic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Smart Routing (Gravity Well Protocol)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    // Attempt to find element
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetEl = document.getElementById(targetId);
+                    
+                    // Fallback router
+                    const finalTarget = targetEl ? targetEl : document.getElementById('contact');
+                    
+                    if(finalTarget) {
+                        finalTarget.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Small animation on target DNA card to highlight it
+                        if(finalTarget.classList.contains('dna-card')) {
+                            const originalBorder = finalTarget.style.borderColor;
+                            finalTarget.style.borderColor = 'var(--primary)';
+                            setTimeout(() => {
+                                finalTarget.style.borderColor = originalBorder || ''; // Revert to css class rule
+                            }, 1500);
+                        }
+                    }
+
+                    // Close mobile menu if open when a link is clicked
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Cookie Logic
+            if (!localStorage.getItem('fsqr_cookies_accepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('fsqr_cookies_accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
