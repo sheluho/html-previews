@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xuzudois Advisory | App Confronto Prezzi e Offerte Supermercato</title>
+    <meta name="description" content="Ottimizza le tue spese quotidiane. L'app definitiva per il confronto prezzi, la ricerca dell'offerta migliore e il vero risparmio al supermercato.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* VAR D: Palette (Green for Grocery/Savings) */
+            --primary: #10b981; 
+            /* VAR C: Surface (Cool Slate White based on last letter) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry (Pill radius based on domain length) */
+            --radius: 24px;
+            /* VAR B: Physics (Material shadow based on first letter) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s ease-in-out;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15), 0 3px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { 
+            color: var(--primary); 
+        }
+
+        /* Custom Input Styles */
+        input, select, textarea {
+            border-radius: calc(var(--radius) / 2);
+        }
+
+        /* Mobile Menu Setup */
+        #mobile-menu {
+            transition: all 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-extrabold text-gray-900 tracking-tight">
+                        Xuzudois <span class="text-primary">Advisory</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Le Nostre Funzioni</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">Domande Comuni</a>
+                    <a href="#contact" class="btn-primary">Richiedi Info App</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Le Nostre Funzioni</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Recensioni</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Domande Comuni</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-bold text-primary hover:bg-gray-50">Richiedi Info App</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Full width allowed) -->
+    <header class="relative bg-gray-900 pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden mt-10">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/1000633/pexels-photo-1000633.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+                 alt="Corsia supermercato e carrello spesa" 
+                 class="w-full h-full object-cover"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/111827/ffffff?text=La+tua+Spesa+Intelligente'" />
+            <div class="absolute inset-0 bg-gray-900 bg-opacity-70 mix-blend-multiply"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6">
+                L'advisory intelligente per massimizzare il <span class="text-primary">risparmio</span> sulla tua spesa.
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Scopri l'<strong>app confronto prezzi e offerte supermercato</strong> definitiva. La nostra piattaforma Xuzudois Advisory analizza ogni <strong>offerta</strong> e verifica il <strong>prezzo</strong> al centesimo, garantendoti la massima <strong>convenienza</strong> su tutte le tue <strong>spese</strong>.
+            </p>
+            <div class="flex justify-center gap-4 flex-col sm:flex-row">
+                <a href="#features" class="btn-primary text-lg">Scopri Come Funziona</a>
+                <a href="#contact" class="inline-block bg-white text-gray-900 font-bold py-4 px-8 rounded-[var(--radius)] shadow-[var(--shadow)] hover:bg-gray-50 transition transform hover:-translate-y-1 text-lg border border-transparent">
+                    Scarica L'App Ora
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust Banner -->
+    <div class="bg-white py-6 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest">Utilizzata ogni giorno da migliaia di famiglie nei supermercati di fiducia:</p>
+            <div class="mt-4 flex flex-wrap justify-center gap-8 text-xl font-bold text-gray-300">
+                <span>Conad Integrato</span>
+                <span>Coop Check</span>
+                <span>Esselunga Data</span>
+                <span>Eurospin Sync</span>
+                <span>Lidl Scan</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8 w-full max-w-7xl mx-auto space-y-8">
+
+        <!-- Value / Services -->
+        <section id="features" class="dna-card max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Le Tue Spese sotto Controllo Totale</h2>
+                <p class="text-lg text-gray-600">Strumenti avanzati in una sola app confronto prezzi e offerte supermercato.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="text-center">
+                    <div class="bg-gray-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
+                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Sfoglia i Volantini Digitali</h3>
+                    <p class="text-gray-600">Non perderti nessuna <strong class="text-gray-800">offerta</strong> della tua zona. Digitalizziamo i volantini locali affinché tu possa trovare le migliori promozioni prima ancora di uscire di casa per fare le tue spese.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-gray-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
+                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Confronto del Prezzo in Diretta</h3>
+                    <p class="text-gray-600">Scansiona o cerca un prodotto direttamente mentre cammini tra gli scaffali. Il nostro <strong class="text-gray-800">confronto</strong> intelligente ti dirà subito se il <strong class="text-gray-800">prezzo</strong> è davvero conveniente rispetto ai supermercati vicini.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="bg-gray-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
+                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Calcolo Reale della Convenienza</h3>
+                    <p class="text-gray-600">Ottieni statistiche trasparenti sul tuo <strong class="text-gray-800">risparmio</strong> mensile. Xuzudois Advisory monitora lo storico prezzi per assicurarti una vera <strong class="text-gray-800">convenienza</strong> a lungo termine, senza trucchi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Break Container -->
+        <section class="max-w-5xl mx-auto rounded-[var(--radius)] overflow-hidden shadow-[var(--shadow)] my-8">
+            <img src="https://images.pexels.com/photos/264547/pexels-photo-264547.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+                 alt="Persona che controlla le offerte sullo smartphone al supermercato" 
+                 class="w-full h-64 md:h-96 object-cover"
+                 referrerpolicy="no-referrer"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1200x800/e2e8f0/1e293b?text=Confronto+Smartphone+al+Supermercato'" />
+        </section>
+
+        <!-- Social Proof / Reviews -->
+        <section id="reviews" class="dna-card max-w-5xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">Storie di Vero Risparmio Quotidiano</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex text-lg">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Incredibile. Questa app confronto prezzi e offerte supermercato ha cambiato le regole. Uso la funzione volantini ogni giovedì, cerco il miglior <strong>prezzo</strong> per pannolini e caffè e vedo subito un taglio netto sulle mie <strong>spese</strong> a fine mese."</p>
+                    <p class="font-bold text-gray-900">- Marco Rossi, 2026</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex text-lg">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Non pensavo che il vero <strong>risparmio</strong> potesse essere così semplice. Il <strong>confronto</strong> incrociato tra i vari ipermercati è fulmineo. Finalmente capisco dove c'è reale <strong>convenienza</strong> o se è solo un'illusione ottica sugli scaffali."</p>
+                    <p class="font-bold text-gray-900">- Elena Bianchi, 2026</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex text-lg">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Cercavo un'<strong>offerta</strong> valida sui detersivi, ho aperto Xuzudois e mi ha indicato che il negozio a 1km da casa li aveva a metà prezzo. Tagliare le <strong>spese</strong> non è mai stato così metodico."</p>
+                    <p class="font-bold text-gray-900">- Giulia Ferrari, 2026</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Area -->
+        <section id="faq" class="dna-card max-w-5xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Tutto quello che c'è da sapere</h2>
+            <div class="space-y-4">
+                <details class="group bg-white rounded-lg border border-gray-200 open:border-primary transition duration-300">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg text-gray-800">
+                        <span>Come funziona esattamente il confronto dei prezzi sull'app?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 pt-0 text-gray-600">
+                        La nostra app sincronizza quotidianamente le promozioni e i listini da centinaia di punti vendita locali. Cercando un articolo, il motore genera un <strong>confronto</strong> diretto mettendo in cima il negozio con il <strong>prezzo</strong> minore o la migliore percentuale di sconto, garantendoti il massimo <strong>risparmio</strong>.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-lg border border-gray-200 open:border-primary transition duration-300">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg text-gray-800">
+                        <span>Scaricare questa app confronto prezzi e offerte supermercato è gratis?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 pt-0 text-gray-600">
+                        Assolutamente sì. Xuzudois Advisory permette il download e l'utilizzo delle funzioni principali senza alcun costo. Il nostro obiettivo è ridurre le tue <strong>spese</strong>, non aumentarle.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-lg border border-gray-200 open:border-primary transition duration-300">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg text-gray-800">
+                        <span>Come faccio a sapere se un'offerta segnalata è ancora valida?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 pt-0 text-gray-600">
+                        Analizziamo e processiamo solo i volantini ufficiali e validi per i giorni correnti. Accanto ad ogni <strong>offerta</strong> trovi sempre indicata la data di scadenza della promozione, permettendoti di calcolare l'effettiva <strong>convenienza</strong>.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-lg border border-gray-200 open:border-primary transition duration-300">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg text-gray-800">
+                        <span>Posso aggiungere i prodotti in una lista e calcolare le spese totali previste?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 pt-0 text-gray-600">
+                        Sì, integra una funzionalità "Lista Intelligente". Mentre navighi per <strong>prezzo</strong>, puoi aggiungere i beni desiderati. L'app elaborerà un percorso di acquisti o ti indicherà se recandoti in un unico supermercato otterrai comunque il miglior rapporto di <strong>convenienza</strong> globale.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-lg border border-gray-200 open:border-primary transition duration-300">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg text-gray-800">
+                        <span>Quali tipi di negozi sono inclusi per il confronto?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 pt-0 text-gray-600">
+                        Tracciamo supermercati classici, hard discount, e megastore di elettronica e prodotti per la casa. Il raggio per trovare l'<strong>offerta</strong> migliore si basa sulla tua precisa posizione per darti solo dati che influiscano tangibilmente sul tuo <strong>risparmio</strong>.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Contact / Form -->
+        <section id="contact" class="dna-card max-w-5xl mx-auto border-t-4" style="border-top-color: var(--primary);">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Inizia a strutturare le tue spese.</h2>
+                    <p class="text-gray-600 mb-6">Siamo costantemente al lavoro per aggiungere nuovi negozi. Segnala la tua catena preferita per il <strong>confronto</strong> o richiedi il link prioritario di download della nostra piattaforma e unisciti a chi vive quotidianamente il <strong>risparmio</strong>.</p>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-gray-900 uppercase tracking-wide text-sm mb-2">Informazioni App</h4>
+                        <p class="text-gray-600 mb-1">Piattaforma Base: PromoQui Hub Digitale</p>
+                        <p class="text-gray-600">Disponibilità Territoriale: Attiva su tutta Italia.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 sm:p-8 rounded-xl border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Compila il modulo di accesso rapido</h3>
+                    
+                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Inoltro richiesta...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome e Cognome</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 focus:ring-primary focus:border-primary bg-white">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Numero di Cellulare</label>
+                            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 focus:ring-primary focus:border-primary bg-white">
+                        </div>
+                        <div>
+                            <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Area di Interesse</label>
+                            <select id="interest" name="interest" required class="w-full px-4 py-2 border border-gray-300 focus:ring-primary focus:border-primary bg-white">
+                                <option value="">Seleziona...</option>
+                                <option value="download">Richiesta link App (Android/iOS)</option>
+                                <option value="suggest">Segnalazione nuovo Supermercato</option>
+                                <option value="support">Aiuto nell'utilizzo / Supporto Tecnico</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Il tuo messaggio</label>
+                            <textarea id="message" name="message" rows="3" class="w-full px-4 py-2 border border-gray-300 focus:ring-primary focus:border-primary bg-white"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-lg mt-4">Invia Richiesta Sicura</button>
+                    </form>
+                    
+                    <div id="success-msg" class="hidden text-center py-8">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+                            <svg class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Richiesta Ricevuta!</h4>
+                        <p class="text-gray-600">Il nostro team elaborerà la tua domanda e ti fornirà i dati al numero indicato per attivare il tuo percorso verso il risparmio quotidiano. Grazie per aver scelto l'intelligenza sulle spese.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Area with Anti-Laziness Legal Text Requirements -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-8 mb-8">
+                <div class="text-2xl font-extrabold text-white tracking-tight mb-4 md:mb-0">
+                    Xuzudois <span class="text-primary">Advisory</span>
+                </div>
+                <div class="text-sm text-gray-500 max-w-xl text-right">
+                    <em>Questo è un sito promozionale indipendente gestito da Xuzudois Advisory, che agisce come affiliato informazionale per PromoQui e altri aggregatori digitali di spese intelligenti.</em>
+                </div>
+            </div>
+
+            <div class="space-y-4 max-w-4xl mx-auto">
+                <!-- PRIVACY POLICY (Full Content) -->
+                <details class="bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition">
+                    <summary class="font-bold text-gray-100 outline-none">Privacy Policy (Informativa Estesa) & GDPR</summary>
+                    <div class="mt-4 text-sm text-gray-400 space-y-2 leading-relaxed h-64 overflow-y-auto pr-2 custom-scrollbar">
+                        <p>La tutela della privacy e la protezione dei dati personali costituiscono una priorità imprescindibile per Xuzudois Advisory in conformità al Regolamento Europeo 2016/679 (GDPR). Questa estesa informativa privacy delinea in maniera chiara, esplicita ed esaustiva il modo in cui gestiamo, raccogliamo, elaboriamo e tuteliamo ogni singola informazione fornita dall'utente. Utilizzando le nostre piattaforme orientate all'ottimizzazione del prezzo e al risparmio quotidiano, dichiari esplicitamente di aver compreso e accettato integralmente il presente documento.</p>
+                        <p>Raccogliamo prevalentemente le informazioni fornite in maniera consapevole e volontaria, incluse quelle digitate nei moduli telematici di adesione volti alla richiesta dell'app di riferimento per le proprie spese domestiche. Non preleviamo né salviamo in alcun archivio le cronologie di elaborazione dati inerenti lo stato di cassa dell'utente. Oltre a queste, potremmo rilevare in automatico gli identificativi basilari quali l'indirizzo IP del dispositivo in uso, strettamente necessario a finalità legate all'amministrazione di sistema e all'analisi statistica generale dei comportamenti all'interno della struttura informatica di confronto per l'offerta. Raccogliamo inoltre stringhe identificative relative a dati analitici inerenti l'effettiva convenienza dimostrata dall'uso nel contesto supermercato. Questi flussi di dati rimangono rigidamente stivati in cluster server protetti secondo gli standard crittografici globali di massima allerta per combattere furti informatici.</p>
+                        <p>Il trattamento avviene con modalità sia automatizzate che manuali da personale accuratamente selezionato e munito di speciali garanzie d'onestà e riserbo tecnico circa la conservazione dei dati dei clienti e l'identificazione anonimizzata in un network di partner aggregatori. Le uniche motivazioni di trattamento risiedono nell’erogazione funzionale per informare l’utenza su quanto riguarda i supermercati, eventuali promozioni digitalizzate o invio di modulistica inerente questioni funzionali collegate al servizio, ove consentito dalle direttive territoriali previste per l’Italia. Tutti i server che sostengono queste massicce elaborazioni sono tenuti costantemente entro confini giurisdizionali facenti capo agli Accordi Transatlantici o Comunitari. Nessun dato raccolto sarà giammai venduto ad aggregatori terzi estranei allo scopo commerciale legato allo sgravio dei costi o agenzie pubblicitarie manipolative per profitti esterni e contrari ai dettami comunitari odierni e futuri.</p>
+                        <p>I soggetti in veste di interessati che si palesano avendone fornito testimonianza e log intercettabile godono ad nutum dei famosi ed indiscutibili diritti legali all'estrazione totale e distruttiva delle loro tracce come previsto nei principi dell'art 15 in avanti per il vigente codice GDPR europeo e disposizioni correlate. Tra questi sono compresi il diritto categorico alla cancellazione immediata in gergo chiamata oblio digitale totale sulle nostre piattaforme in hosting presso lo stesso Xuzudois Advisory, così come su quelli delle terze parti o partner affiliate di Promozione e aggregatori esterni in nostra connessione di fornitura servizi telematici associati all'acquisto fisico in market point specifici.</p>
+                    </div>
+                </details>
+
+                <!-- TERMINI E CONDIZIONI (Full Content) -->
+                <details class="bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition">
+                    <summary class="font-bold text-gray-100 outline-none">Termini di Servizio & Utilizzo dell'App</summary>
+                    <div class="mt-4 text-sm text-gray-400 space-y-2 leading-relaxed h-64 overflow-y-auto pr-2 custom-scrollbar">
+                        <p>Il presente complesso contrattuale dei Termini e Condizioni generali governa globalmente in ogni sua singola istanza ed eventualità d’uso della piattaforma interattiva gestita autonomamente o affiliatamente per quanto concerne il marchio commerciale esibito e relativo dominio web corrente Xuzudois Advisory, avente come scopo principe della sua attuazione tecnica l'informazione del risparmio. Proseguendo l’iter operativo tramite invio del form e/o fruendo della simulazione di confronto si attua formalmente l'irrevocabile presa di coscienza d'impegnarsi verso noi mediante patto giurisdizionalmente stringente di queste linee scritte e messe a chiare lettere nella nazione italiana ed eventuale transazione legislativa continentale collegata all'Unione stessa e dintorni europei applicabili dal giudice ordinario.</p>
+                        <p>Tutti coloro, nessuno escluso ed in via categoricamente obbligatoria tra utilizzatori generici o consumatori veri che usano questa landing page esplicativa o interfaccia tecnica atta al download virtuale dello strumento digitale inerente le offerte dei centri, assicurano formalmente agendo sui controlli del web form che le proprie informazioni e lo status giuridico non vertano nel divieto d'utilizzo software derivanti dalla minore età dei contraenti o limitazione governative e censure informatiche relative al possesso di algoritmi di calcolo spese quotidiane familiari, aziendali, aziendalistici di convenienza su vasta o scala infima nei vari comparti alimentazione e casalingo supermercato diffuso nel Belpaese. Noi stessi quali entità che pubblica non concediamo in garanzia ne forniamo pretesa assoluta formale circa le manchevolezze di connettività hardware derivante per causa del dispositivo endogeno utente verso nostri o affiliati database dedicati ai flussi sui valori monetari imposti dalle terze agenzie di fornitura, scontrino da supermercato e simili beni rifugio e consumo basilare per spesa domestica, pregressa od in fase attuale del conteggio prezzo generato in display.</p>
+                        <p>Noi rigettiamo irrevocabilmente cause civili su mancanze che generino smarrimento psicologico dovuto ad interruzioni sistematiche su elaborati statistici relativi alle fatturazioni attuali delle promozioni in volantino qualora si verifichino asimmetrie ed irregolarità tra lo stampato cartaceo visivo offerto fisicamente negli iper e il suo gemello elettronico a noi giunto via rete da server proprietari dei gestori supermercato od in ultima analisi dall'algoritmo di scarto interno a piattaforme associate ad esempio la sopra citata piattaforma hub madre originante codici software analizzati per le convenienza della spesa finale esibita sul telefonino app dell'interlocutore visitatore attento del budget suo settimanale.</p>
+                        <p>Noi come operatori della manutenzione o i dipendenti impiegati non ci faremo assolutamente carico per indennizzo di incidenti gravi ed imprevisti perdite finanziarie supposte durante esami delle tabelle ed anagrafiche merceologiche esplicate nei monitor di output finali ai lettori finali, intendendosi codesti materiali testuali a solo ambito per lettura descrittiva informativa amatoriale indicativa ed istruttiva generica seppur altamente calcolata matematicamente nel totale rispetto logaritmico. Questo vincolo rimane immodificabile per l'intero ciclo o lifespan utile di permanenza dell'ente corporativo digitale preposto ai sistemi in via online od applicativo ed esclude con preclusione le vertenze con base mancato profitto derivante da affare sfumato dal consumatore o pretesa truffa nel prezzo mostrato e reale sullo scontrino non concordante alla cassa o nel reparto vendite fisiche in quanto gli algoritmi dipendono terzi flussi dati imperscrutabili dalla sola entità in vetrina web per voi mostrata a causa limitazioni in sincrono ed aggiornamenti con lag tipici dell'informatica distribuita, a scanso degli equivoci giuridici comuni che regolano web services italiani ed il codice consumatori annesso e modifiche continue su norme transitorie in tema risparmi personali tracciabili.</p>
+                    </div>
+                </details>
+
+                <!-- POLICY RIMBORSO (Full Content - Adjusted for mostly free / potential pro tier App) -->
+                <details class="bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition">
+                    <summary class="font-bold text-gray-100 outline-none">Politica di Annullamento & Gestione Rimborsi</summary>
+                    <div class="mt-4 text-sm text-gray-400 space-y-2 leading-relaxed h-64 overflow-y-auto pr-2 custom-scrollbar">
+                        <p>La fornitura operativa del software denominato come strumento primario per il paragone dei prezzari d’acquisto al consumo privato viene esplicata dal gruppo aziendale informatico nella massiva parte delle proprie implementazioni algoritmiche sotto veste del gratuito titolo ed assoluto approccio promozionale non oneroso volto unicamente ad informare gli astanti ed abbassare o livellare convenienza monetaria tra carrelli virtuali o listini della spesa fisica. Ne deriverà la semplice presa di coscienza logica che per tale base erogata non sussiste fondamento alcun al procedimento e processazione d’ordine ed incasso finanziario nei database dell’utilizzatore consumatore. Da tali corollari si evincono le decise inapplicabilità del capitolo standard che esigerebbe meccanismi automatici o contabili e manuali inerenti al storno fattura oppure procedure per stornare flussi valuta su conti da zero debiti pregressi o conti virtualizzati.</p>
+                        <p>Esulando tale base vi e' casistica che attui procedure previste dal legislatore europeo sulle digital property applicative nel panorama informatico dei beni incorporei nel momento l'ipotetico consumatore decida arbitrariamente procedere ad erogare denaro sbloccando abbonamento in app detti anche canoni Pro premium volti espandere il motore del sistema verso orizzonti elaborativi più rapidi, annullamenti limitatori traffico volantino o calcoli su liste illimitate a base decennale del piano vita casalingo o condominiale sui discount preferiti inseriti di tasca e spinta o clic da cellulare e carta credito, prestandosi queste azioni via mercati d'acquisto esterni denominati Store, dove avvengono incassi terzi ed alienati al dominio xuzudoisadvisory web proprietario che promuove in questo contesto solo il canale dell’advisory di primo avviso sulle comodità casalinghe per cui in tale contingenza i protocolli per revoca contratto o la retrocessione fiduciaria si assoggettano di totale diritto ai padroni di Store specificato non essendo gli aggregatori qui indicati materialmente destinatari in conto terzi od intestati.</p>
+                        <p>Tuttavia i medesimi per questioni interne relative account log in o anagrafica salvataggi su database Xuzudois o associati server hub concedono con immediato effetto istantaneo facoltà dirimente senza attese il pulsante "termina sottoscrizione/cancellazione file mio" integrato comodamente ed utilmente nella scheda visiva del setup personale nel telefonino ed elaborazione richiesta a valere 0 ore di esitazione annullando legame utente col framework di riferimento del centro commerciale salvato dal visitatore escludendolo e vietando altri refresh volantino promo locale nei paraggi dell'abitato per cui per chi desiderasse far cessare operazione interattiva la disdetta non patisce ne ritardo ne vessatorietà ne penale o trattenuta su future versioni espletata questa mediante azione chiara volontaria ed elettronica. Ne evince totale esenzione da doveri amministrativi o reclami ritardati nei rimborsi sui conti non tassati non emessi. La filosofia operativa qui sancita in forma piena vuole sgravare ogni ansia sul capitolo fondi per un uso pacato di confronto che deve restare sano gioioso puro esercizio informazionale libero sulla nazione ove presente ed usato dallo user abituale al compimento del sedicesimo ciclo anni se legale e preteso dalle leggi patrie od espansioniste locali. La cancellazione account recede dal trattamento automatico o la profilazione comportamentale associata all'uso app che da quel momento diventa nulla distrutti bit di permanenza del signore nei datacenter con certificati a regola europea standard odierna per salvaguardia diritto chi consuma od effettua recesso istantaneo libero illimitato a discrezione assoluta e senza giustificazioni formali ne risposte motivate necessarie.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-8 text-center text-sm text-gray-500">
+                &copy; 2026 Xuzudois Advisory - Soluzioni Avanzate. Tutti i diritti riservati.<br>
+                <em>Aggiornamento finale policy: 01.01.2026</em>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Smart Routing Logic & Navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Self-Healing Navigation Script
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    let targetElement = null;
+
+                    if(targetId && targetId !== '#') {
+                        targetElement = document.querySelector(targetId);
+                    }
+
+                    // Fallback Routing: If element doesn't exist, route to contact section
+                    if (!targetElement) {
+                        targetElement = document.getElementById('contact');
+                    }
+
+                    if (targetElement) {
+                        // Smooth Scroll execution
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Offset for sticky navbar
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if(mobileMenu && !mobileMenu.classList.contains('hidden')){
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Essential Cookie Banner Protocol -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t border-gray-200 p-4 shadow-2xl transform translate-y-full transition-transform duration-500 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-600 font-medium">
+                Utilizziamo stringhe identificative e tracce locali per scopi strettamente tecnici per assicurarti l'accesso all'hub. Il sito di base serve funzioni d'interfaccia verso l'app per il confronto del prezzo e lo studio del risparmio ottimale sui supermercati a noi interconnessi. Cliccando "Procedi al servizio", confermi la lettura senza riserve delle Condizioni d'Uso in allegato sopra citate, procedendo nella spesa informata ed essenziale per il sistema, secondo regolamentazione standard d'adeguamento normativo sulle tecnologie d'informazione in rete.
+            </p>
+            <div class="flex shrink-0">
+                <button onclick="acceptCookies()" class="bg-gray-900 text-white font-bold px-6 py-2 rounded-[var(--radius)] hover:bg-gray-800 transition">Procedi al servizio</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        if (!localStorage.getItem('xuz_cookie_policy_accepted')) {
+            setTimeout(() => {
+                document.getElementById('cookie-banner').classList.remove('translate-y-full');
+            }, 1000);
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('xuz_cookie_policy_accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
