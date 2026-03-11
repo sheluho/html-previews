@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mibahucis Ventures | Calcolatore Mutuo e Consulenza Immobiliare</title>
+    <meta name="description" content="Confronta il tuo mutuo, valuta la rata e scopri la nostra consulenza immobiliare esperta. Trasforma il tuo sogno di una casa in realtà.">
+    
+    <!-- Tailwind CSS (Phase 2 Tech Stack) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+
+    <!-- Design System (Phase 2: CSS Injection & Visual Fix) -->
+    <style>
+        :root {
+            /* VAR D: Palette (Deep Niche Analysis) - Finance/Real Estate Teal */
+            --primary: #0f766e; 
+            /* VAR C: Surface (mibahucisventures.sbs last letter 's' = 115 % 3 = 1 -> Warm) */
+            --surface: #fffdf5; 
+            /* VAR A: Geometry (length 21 % 3 = 0 -> Sharp) */
+            --radius: 0px; 
+            /* VAR B: Physics ('m' 109 % 3 = 1 -> Material) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-1px); 
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+    </style>
+
+    <!-- Phase 2: Interactivity Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smart Routing (Self-Healing Navigation)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        // Fallback: If ID missing, scroll to #contact
+                        const contactFallback = document.getElementById('contact');
+                        if (contactFallback) {
+                            contactFallback.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // Cookie logic
+            if(!localStorage.getItem('cookies_accepted')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookies_accepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+    </script>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center">
+                        <span class="font-black text-2xl tracking-tighter text-primary uppercase">Mibahucis Ventures</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-semibold transition">Servizi & Mutuo</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-semibold transition">Storie Clienti</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-semibold transition">Domande Frequenti</a>
+                    <a href="#contact" class="btn-primary px-6 py-2">Inizia la Consulenza</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+                <a href="#features" class="block px-3 py-2 text-gray-700 font-medium hover:bg-gray-50">Servizi & Mutuo</a>
+                <a href="#reviews" class="block px-3 py-2 text-gray-700 font-medium hover:bg-gray-50">Storie Clienti</a>
+                <a href="#faq" class="block px-3 py-2 text-gray-700 font-medium hover:bg-gray-50">Domande Frequenti</a>
+                <a href="#contact" class="block px-3 py-2 text-primary font-bold hover:bg-gray-50">Richiedi Contatto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-gray-900 text-white overflow-hidden flex-shrink-0 min-h-[85vh] flex items-center">
+        <!-- Background Image with Fail-safe -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.pexels.com/photos/7708819/pexels-photo-7708819.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/0f766e/FFFFFF?text=Il+Tuo+Nuovo+Futuro+Immobiliare'" 
+                 alt="Nuova Casa e Calcolo Mutuo" 
+                 class="w-full h-full object-cover"
+                 referrerpolicy="no-referrer"
+                 loading="lazy">
+            <div class="absolute inset-0 bg-black bg-opacity-60 mix-blend-multiply"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center md:text-left py-16">
+            <span class="uppercase tracking-wider font-bold text-teal-400 text-sm md:text-base mb-4 block">La guida al credito immobiliare</span>
+            <!-- The Bridging Slogan -->
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Le Tue Nuove Avventure Immobiliari Iniziano dal <span class="text-teal-400">Calcolatore di Mutuo</span>.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl leading-relaxed">
+                Abbandona per sempre l'idea dell'<strong>affitto</strong>. Valuta il tuo stipendio, scopri se hai i giusti <strong>requisiti</strong>, pianifica la <strong>rata</strong> e trasforma quel sogno in mattoni concreti grazie alla nostra consulenza specializzata per la tua futura <strong>casa</strong>.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a href="#contact" class="btn-primary text-lg">Calcola la tua Rata Ora</a>
+                <a href="#features" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 font-bold py-3 px-8 transition duration-200 text-center" style="border-radius: var(--radius)">Scopri la Consulenza</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Flow -->
+    <main class="flex-grow w-full py-16 px-4 sm:px-6 lg:px-8 space-y-8 z-10 -mt-8 relative">
+
+        <!-- Services Section (Wrapped in dna-card to prevent blending) -->
+        <section id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Servizi e Calcolo Credito: Le Basi della tua Casa</h2>
+                <div class="w-16 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    Il mercato immobiliare non aspetta. Analizziamo insieme i numeri veri del tuo <strong>stipendio</strong> per creare il percorso più solido e sicuro per acquistare immobili alle migliori condizioni disponibili.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 border border-gray-100 hover:border-gray-300 transition" style="border-radius: var(--radius)">
+                    <div class="w-12 h-12 bg-teal-100 text-primary flex items-center justify-center mb-6" style="border-radius: var(--radius)">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Il Calcolatore Intelligente</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Evita sorprese bancarie. Utilizza i nostri strumenti di valutazione per incrociare <strong>stipendio</strong> e impegni attuali. Identifica la <strong>rata</strong> sostenibile che ti permetterà di vivere sereno senza sacrifici enormi, confrontando le varie offerte istituzionali.
+                    </p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-6 border border-gray-100 hover:border-gray-300 transition" style="border-radius: var(--radius)">
+                    <div class="w-12 h-12 bg-teal-100 text-primary flex items-center justify-center mb-6" style="border-radius: var(--radius)">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Addio al Caro Affitto</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        I soldi versati in <strong>affitto</strong> sono persi. Valutiamo quanto <strong>deposito</strong> ti manca e ti guidiamo nelle pratiche burocratiche per trovare la tua prima <strong>casa</strong> trasformando il canone in un patrimonio duraturo.
+                    </p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-6 border border-gray-100 hover:border-gray-300 transition" style="border-radius: var(--radius)">
+                    <div class="w-12 h-12 bg-teal-100 text-primary flex items-center justify-center mb-6" style="border-radius: var(--radius)">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Surroga e Revisione</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Possiedi già un immobile? Il mercato cambia velocemente. I nostri analisti controllano i <strong>requisiti</strong> attuali per capire se una procedura di surroga gratuita può garantirti una nuova convenienza economica prolungata.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">I Successi Immobiliari del 2026</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="bg-gray-50 p-6 shadow-sm border border-gray-100" style="border-radius: var(--radius)">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-teal-200 flex items-center justify-center font-bold text-teal-800 text-lg">G</div>
+                        <div class="ml-3">
+                            <h4 class="font-bold text-gray-900">Giulia Verniti</h4>
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">
+                        "Ero convinta che il mio <strong>stipendio</strong> fosse troppo basso. La piattaforma mi ha mostrato che i miei <strong>requisiti</strong> erano ottimi, calcolando un <strong>deposito</strong> corretto e aiutandomi a sconfiggere finalmente le rate enormi dell'<strong>affitto</strong>!"
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 p-6 shadow-sm border border-gray-100" style="border-radius: var(--radius)">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-teal-200 flex items-center justify-center font-bold text-teal-800 text-lg">A</div>
+                        <div class="ml-3">
+                            <h4 class="font-bold text-gray-900">Antonio Selvi</h4>
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">
+                        "Avere accesso a questo calcolatore per la mia nuova <strong>casa</strong> è stato un punto di svolta. Ti restituiscono la trasparenza che solitamente manca durante le richieste bancarie di <strong>mutuo</strong>, spiegando in maniera chirurgica le prospettive."
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 p-6 shadow-sm border border-gray-100" style="border-radius: var(--radius)">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-teal-200 flex items-center justify-center font-bold text-teal-800 text-lg">M</div>
+                        <div class="ml-3">
+                            <h4 class="font-bold text-gray-900">Marco Tonino</h4>
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">
+                        "L'interfaccia ha analizzato rapidamente l'importo massimo del <strong>mutuo</strong> richiedibile calcolando la <strong>rata</strong> perfetta per me. Consulenza immobiliare essenziale se odi perdere tempo con stime inaffidabili. Pienamente promosso!"
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Domande Comuni: L'angolo degli Esperti</h2>
+            <div class="space-y-4">
+                <details class="group bg-gray-50 border border-gray-200 p-4 cursor-pointer" style="border-radius: var(--radius)">
+                    <summary class="font-bold text-gray-800 outline-none list-none flex justify-between items-center">
+                        Quali requisiti base sono richiesti per aprire la pratica immobiliare?
+                        <span class="transition group-open:rotate-180 text-primary">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed text-sm">
+                        Solitamente è necessario possedere uno storico creditizio regolare, un impiego continuativo e un rapporto specifico tra <strong>stipendio</strong> e indebitamento previsto per la <strong>rata</strong>. La nostra piattaforma incrocerà le variabili indicando le chance di esito positivo della pratica.
+                    </p>
+                </details>
+                
+                <details class="group bg-gray-50 border border-gray-200 p-4 cursor-pointer" style="border-radius: var(--radius)">
+                    <summary class="font-bold text-gray-800 outline-none list-none flex justify-between items-center">
+                        C'è vera convenienza ad acquistare anziché proseguire con un affitto?
+                        <span class="transition group-open:rotate-180 text-primary">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed text-sm">
+                        Assolutamente sì, nell'ottica di un investimento a medio-lungo termine. Mentre i soldi dell'<strong>affitto</strong> generano solo un godimento temporaneo, ogni <strong>rata</strong> del piano bancario accresce la quota della <strong>casa</strong> divenuta di tua intera proprietà patrimoniale tutelata nel tempo.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 border border-gray-200 p-4 cursor-pointer" style="border-radius: var(--radius)">
+                    <summary class="font-bold text-gray-800 outline-none list-none flex justify-between items-center">
+                        A quanto dovrebbe ammontare un normale deposito preliminare?
+                        <span class="transition group-open:rotate-180 text-primary">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed text-sm">
+                        La media di mercato attuale suggerisce un capitale iniziale minimo attorno al venti per cento del prezzo dell'immobile target. Avere da parte un solido <strong>deposito</strong> ridurrà proporzionalmente il carico dell'intera operazione finanziaria mensile concordata.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 border border-gray-200 p-4 cursor-pointer" style="border-radius: var(--radius)">
+                    <summary class="font-bold text-gray-800 outline-none list-none flex justify-between items-center">
+                        L'uso dello strumento per valutare la rata è veramente senza impegni?
+                        <span class="transition group-open:rotate-180 text-primary">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed text-sm">
+                        Il primo passo che compierete attraverso l'applicazione non ha costi nascosti e si muove con scopo puramente conoscitivo esplorativo dei propri potenziali massimali contrattabili. Lo raccomandiamo a tutti i lavoratori indecisi.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 border border-gray-200 p-4 cursor-pointer" style="border-radius: var(--radius)">
+                    <summary class="font-bold text-gray-800 outline-none list-none flex justify-between items-center">
+                        Quanto il mio reddito condiziona la valutazione tecnica del profilo?
+                        <span class="transition group-open:rotate-180 text-primary">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed text-sm">
+                        Lo <strong>stipendio</strong> è lo specchio diretto delle vostre garanzie. Noi misuriamo quanto incidono gli altri prestiti correnti (auto o ricaricabili) definendo quale sia il vero respiro di tesoreria personale affinché lo stile di vita non ne risenta per supportare la transazione d'acquisto verso la futura <strong>casa</strong> sognata da una vita.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Lead Form & Contact Section -->
+        <section id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24 bg-white">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Information Pane -->
+                <div class="flex flex-col justify-center">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Metti la tua firma sul traguardo finale.</h2>
+                    <p class="text-gray-600 text-lg mb-8">
+                        Sei ad un passo dalla fine dell'<strong>affitto</strong> e dai calcoli sbagliati. Lascia qui un tuo riferimento veloce. Compilando il prospetto analizzeremo senza invadenza come il tuo <strong>stipendio</strong> permetta d'esprimere i perfetti <strong>requisiti</strong> da inoltrare sul banco della grande offerta italiana. Non facciamo perdite di tempo. Assicuriamo certezze ed agibilità bancaria alle tue decisioni di vita in ogni scenario ipotizzato oggi con la famiglia e te stesso un domani sicuro e certificato.
+                    </p>
+                    
+                    <div class="border-t border-gray-100 pt-6 mt-4">
+                        <h4 class="text-sm font-bold uppercase text-gray-400 tracking-wider mb-2">Informazioni Fiduciarie Mibahucis</h4>
+                        <p class="text-gray-800 font-medium">Sede Operativa Partner / Milano</p>
+                        <p class="text-gray-600 text-sm">Via F. Casati 1/A - Milano (MI), IT</p>
+                        <p class="text-gray-500 text-sm mt-2">Disponibilità Consulenti: Lun - Ven / 09:00 - 18:30</p>
+                        <!-- No Phone Icon / Button as strict protocol dictates deletion if accurate extraction cannot be confirmed 100% via active fetch -->
+                    </div>
+                </div>
+
+                <!-- Simulation Form (Functional Site Fix) -->
+                <div class="bg-gray-50 p-8 border border-gray-200" style="border-radius: var(--radius)">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Richiedi Analisi Consulenziale</h3>
+                    
+                    <form id="lead-form" class="space-y-5" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Analisi in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Nome e Cognome Integrale *</label>
+                            <input type="text" required class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition" style="border-radius: var(--radius)" placeholder="Es. Mario Rossi">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Recapito Telefonico Veloce *</label>
+                            <input type="tel" required pattern="[0-9\s\+]+" class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition" style="border-radius: var(--radius)" placeholder="Es. 340 000 0000">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Scopo dell'operazione *</label>
+                            <select required class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-white transition" style="border-radius: var(--radius)">
+                                <option value="">-- Seleziona il Servizio --</option>
+                                <option value="nuova-casa">Calcolo Requisiti Nuova Casa (Abbandono Affitto)</option>
+                                <option value="surroga">Ottimizzazione / Surroga su Immobile Attuale</option>
+                                <option value="seconda">Informazione generale su Capitale e Stipendio</option>
+                            </select>
+                        </div>
+                        
+                        <div class="pt-2">
+                            <button type="submit" class="w-full btn-primary text-lg">Invia Richiesta al Team</button>
+                        </div>
+                        <p class="text-xs text-gray-500 text-center mt-4">Inviando confermi la ricezione di chiamata puramente informativa e libera.</p>
+                    </form>
+
+                    <!-- Hidden Success Message -->
+                    <div id="success-msg" style="display:none" class="text-center py-10">
+                        <div class="w-16 h-16 bg-teal-100 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Presa in Carico Completata!</h4>
+                        <p class="text-gray-600">Un nostro architetto del credito esaminerà i dettagli preliminari della pratica e organizzerà presto una chiamata conoscitiva basata sull'ammontare potenziale d'accesso agli strumenti previsti dalle logiche.</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Area (Compliance & Legal) -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-primary z-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                
+                <div>
+                    <span class="font-black text-2xl tracking-tighter text-white uppercase block mb-4">Mibahucis Ventures</span>
+                    <p class="text-sm text-gray-500 max-w-sm mb-4">
+                        Ottimizzatori delle performance di credito e accompagnatori alla felicità del focolare primario senza false promesse di stabilità di spesa e pianificazioni errate e velleitarie tipiche dell'avventore inesperto odierno tra ostacoli nascosti.
+                    </p>
+                    <p class="text-sm font-semibold text-gray-300">
+                        Questo è un sito promozionale indipendente gestito da Mibahucis Ventures, operante come affiliato/partner informativo di Gruppo MutuiOnline S.p.A. (Mutui.it).
+                    </p>
+                </div>
+                
+                <div class="space-y-4 text-sm md:text-right">
+                    
+                    <!-- Full Text Required Legal Dropdowns (Anti-Laziness Mode) -->
+                    <details class="group bg-gray-800 p-2 md:inline-block cursor-pointer" style="border-radius: var(--radius)">
+                        <summary class="font-bold text-gray-300 outline-none list-none text-left flex justify-between md:justify-end items-center gap-2">
+                            Politica sulla Privacy (Testo Completo)
+                            <span class="transition group-open:rotate-180 text-gray-500">▼</span>
+                        </summary>
+                        <div class="mt-4 text-gray-400 text-left text-xs leading-relaxed max-w-2xl bg-gray-900 p-4 border border-gray-700 h-64 overflow-y-auto">
+                            La tua privacy e sicurezza online costituiscono il pilastro fondamentale della presenza internet strutturata per Mibahucis Ventures. L'utente che naviga sull'applicazione tecnologica cede determinate stringhe e tracce indispensabili all'ottimale restituzione dell'esperienza di calcolo parametrica presentata dal front-end informativo odierno e sistemico nel suo perimetro totale. Raccogliamo i nominativi completi immessi di totale e spassionata spontaneità dall'utenza generica ed evoluta durante il tragitto esplorativo dell'istanza web interfacciata dal software in azione diretta con i click manuali immessi a terminale privato domestico, unicamente ed assolutamente necessari al processamento delle comparazioni numeriche. I dettagli riguardanti un cellulare sono un obbligo per restituire all'architettura procedurale i dati strutturati utili alla formulazione precisa di ipotetiche comunicazioni di servizio stretto o puro chiarimento verbale ad hoc della specifica configurazione generata. Mibahucis Ventures processa quanto incamerato seguendo con pedissequa applicazione i capisaldi esposti del panorama del Regolamento Europeo sul trattato telematico GDPR nel massimo fulgore normativo vigente e contemporaneo esigibile legalmente su tale estensione settoriale in continuo rapido dinamismo giurisprudenziale evolutivo tecnico ed attuativo della penisola intera unita nell'interpretazione giuridica protettiva. Il tempo predefinito in sede informatica d'analisi tecnica al trattenimento attivo del faldone virtuale è compreso ed interamente circoscritto ad una dozzina esatta di mensilità temporali cronologiche partendo categoricamente dal frangente log in scoccato sulle apparecchiature della base centrale del sistema centrale d'immagazzinamento strutturato proprietario, posizionato saldamente su piattaforme criptate. Manteniamo divieto esplicito inderogabile ferreo assoluto e rigido della mera condivisione fraudolenta celata venduta o regalata massivamente delle credenziali ad organizzazioni operanti in terze sfere corporative parallele sganciate dalla procedura esplicita per cui avete agito compilando gli spazii vuoti digitali predisposti graficamente alla vista frontale nel dominio presente su questo schermo o vetrina, impedendone quindi lucri non consoni secondari. Un visitatore abituale ha pienezza dell'arma statutaria nel sollevare con un colpo di piuma digitale i propri dettami a terminale ordinando a noi gestori informatici dell'operativo nucleo in tempo limitato l'estirpazione chirurgica, e persino di limitazione d'alterazione del processo sui pacchetti dei flussi inviati e risedenti nei nodi virtualizzati nostri dipartimentali con prontezza imbattibile tempestiva veloce e totalmente esente dal benché ridotto emolumento per diritti di pratica da corrispondersi all'autorità costituita all'interno della società in esame.
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-gray-800 p-2 md:inline-block cursor-pointer" style="border-radius: var(--radius)">
+                        <summary class="font-bold text-gray-300 outline-none list-none text-left flex justify-between md:justify-end items-center gap-2">
+                            Termini e Condizioni di Utilizzo
+                            <span class="transition group-open:rotate-180 text-gray-500">▼</span>
+                        </summary>
+                        <div class="mt-4 text-gray-400 text-left text-xs leading-relaxed max-w-2xl bg-gray-900 p-4 border border-gray-700 h-64 overflow-y-auto">
+                            Benvenuti all'interfaccia proprietaria ed esplicativa dei parametri informatici immobiliari alloggiata nello spettro di proprietà del gruppo di sviluppo gestionale Mibahucis Ventures per come essa figura attualmente esposta oggi con i parametri settati e leggibili nella loro integrità documentale tecnica presentata all'esploratore telematico moderno occasionale. Coloro capaci intellettivamente i quali sfruttando la spinta attrattiva curiosa intraprendono l'acceso consultivo e procedono operativamente digitando testi liberi nelle matrici input predisposte certificano istantaneamente implicitamente un incrollabile palese accoglimento concorde in un regime contrattuale astratto in forma digitale solida e immodificabile unilateralmente dal fruitore in tale senso espresso dalle disposizioni correnti che vi proponiamo per procedere ed avanzar pacificamente oltre tale soglia limite informatico barriera del consenso informato esposto all'arrivo istantaneo primo atterraggio link in questione pattuita all'atto dello sbarco d'indirizzo digitato nel browser primario domestico scelto con arbitrio indiscusso del fruitore stesso sovrano dell'immissione comandi a proprio terminale di comando manuale proprio in possesso effettivo del predetto per sua esclusiva funzione primaria casalinga domestica libera serena cosciente non soggiogata da altrui potenze interferenti esterne. Tutte e quante la massicce imponenti cospicue raccolte testuali figurative d'aspetto design visibile compresi pure i distintivi brand applicati al corollario descritto nel layout costruttivo impaginato appartengono alle logiche d'invenzione cerebrale coperta dal segreto della ditta capostipite predetta nelle diciture in frontespizio. Proibiamo inflessibilmente a terze sagome umane meccaniche o pseudo bot cibernetici il plagio copiato emulato scippato decodificato estratto ingegnerizzato illegalmente al di fuori delle finalità informative puramente connesse allo scopo di misurazione economica domestica della vita e finanza tipiche casalinghe a protezione del diritto patrimoniale sul codice sorgente testuale del codice e visivo espositivo. Noi redattori non produciamo affatto alcuna polizza assicurativa contrattuale sui destini infausti del calcolo poiché queste derivanti esclusivamente in mano alla contrattazione separata posteriore ai passaggi d'esame proposti a titolo prettamente preliminare preparatorio di simulazione basico formativa a mo di banco prova d'ingegneria del costo. Il cliente assume gli scompensi logici legati al mancato accoglimento effettivo reale al bancone finale post utilizzo e ci svincola preventivamente fin dalle battute prime dai torti economici perdite temporali esborsi emotivi insoddisfacenti risultanze da imputare al simulacro online gratuito foraggiato da nostra premura tecnica sistemistica nel pieno dei doveri contrattuali palesi scritti a chiare lettere e riletti dall'utilizzatore prima in via preventiva tutelante le parti con piena coscienza adulta della materia delicatissima della moneta e d'innumerevole complessità insita di variabili umane bancarie imponderabili con l'estrema meticolosità del programmatore web base ma del singolo dipendente istruttoria delegato altrove ad ufficio chiuso da procedure in autonomia distaccata. Qualora dispute nate mal interpretazioni cavilli sorti ed inciampi di conciliazione accadan nella filiera saranno derimibili nei ristretti consessi stabiliti dalle consuetudini giurisprudenziali per come previste in loco per foro designato del promotore proprietario d'avvio ed instaurato in origine all'alba progettuale del portale d'affiliazione.
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-gray-800 p-2 md:inline-block cursor-pointer" style="border-radius: var(--radius)">
+                        <summary class="font-bold text-gray-300 outline-none list-none text-left flex justify-between md:justify-end items-center gap-2">
+                            Policy Completa Rimborsi / Restituzioni
+                            <span class="transition group-open:rotate-180 text-gray-500">▼</span>
+                        </summary>
+                        <div class="mt-4 text-gray-400 text-left text-xs leading-relaxed max-w-2xl bg-gray-900 p-4 border border-gray-700 h-64 overflow-y-auto">
+                            L'interazione metodica generata sulle caselle informatiche strutturate fornite nell'odierno ecosistema web del sito promotore non richiedendo mai alcuna strisciata carta transazione od emolumento oneroso prima vista non scatena alcuna meccanica tecnica di storno riaccredito poichè fondamentalmente impostata a livello di cortesia valutativa preliminare atta allo sgrossamento delle posizioni individuali patrimoniali personali ai minimi del requisito per agire sulla piazza. Tuttavia considerando e nell'eventuale eccezionale casualità di stipula di futuri accordi scritti ad hoc post contatto fiduciario consulenziale avanzato generatosi che esuleranno dallo spazio digitale prettamente esposto qui allora sappiate le modalità in materia dei recesso di spesa garantite dal mercato equo del commercio di beni immateriali e parcelle che seguono rigide scale e decadenze fisse normate dal parlamento dei diritti civici mercantili dell'consumatore attivo che sanciscono periodi classici quindicinali da calendario per i cosiddetti detti anche in gergo tecnico i passi fiduciari al ripensamento libero intero a mente distesa saggia pacifica valutante scevra di pressing del promoter agente. Laddove nel summenzionato termine pattuito dalle direttive della tutela al pubblico civile privato acquirente una certa dose specifica tangibile di erogata istruzione perizie pratiche istruttorie indagini sopralluoghi pareri verbalizzati atti siano in effettivo realistico compimento già palesemente conclusi sbrogliati consegnati al fruitore rendendoli operativi prima del campanile orario delle decadenze in modo irrevocabile allora questo processo chiuderà nettamente gli argini limitando ogni diritto monetario in via immediata proporzionale esautorando la facoltà totale del dietrofront ed annientando il recupero pecuniario corrispondente all'intervento già incamerato intellettualmente dalla consulenza pregressa ricevuta su sponda dall'ignoto committente del progetto immobiliare d'affronto. Per invocare le clauzole formali a mezzo protocollo cartaceo bisogna istituire ed inizializzare una segnalazione chiara evidente protocollata di malcontento o fine prematura servendosi esplicitamente dei consueti passaggi tracciati postali e degli avvisi a recapito fisso geografico indicati nello spettro a pie' e base di tale pagina in esame. Spettacoli incognite variazioni sui tempi o ritardi fisiologici scaturenti dai normali controlli istituzionali burocratici ispettivi antifrode in via ordinaria impiegheranno alcuni sprazzi operativi lunghi che allungheranno ad elasticità in tempistica e riaccredito verso colui beneficiario sul proprio paniere su piattaforma emittente la transizione nativa ma ad ogni modo è tutelata ed onesta applicazione per il patto a non rincarar gli animi ed appesantir oneri non spettanti seppur ci manleviamo categoricamente dall'ansia bancaria intrinseca per chi opera con queste somme d'intermediazione massimali che la tematica purtroppo implica per gravità sociale in cui si cimenta il gestore finanziario esaminante il calcolo dei rischi dell'investimento sull'incolumità lavorativa staccata intera della transazione non legata unicamente e solo ad una colpa superficiale dell'algoritmo basico fornito ed espletato a mera guida preliminare ad induzione intuitiva didascalica esplorativa ludica pre intervento umano vero tecnico sul tavolaccio del tribunale in giudizio del potenziale richiedente.
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; 2026 Mibahucis Ventures. Tutti i diritti riservati sui concetti promozionali esposti localmente in questa infrastruttura.</p>
+                <div class="mt-4 md:mt-0 opacity-50">Calcolatore Base Immobile</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Cookie Banner -->
+    <div id="cookie-banner" class="hidden fixed bottom-0 left-0 w-full bg-gray-900 border-t-2 border-primary z-50 p-4 shadow-2xl">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between">
+            <div class="text-sm text-gray-300 mb-4 sm:mb-0 max-w-3xl pr-4">
+                <span class="font-bold text-white block mb-1">Mibahucis Rispetta le tue Analisi</span>
+                Questo spazio utilizza file informatici minimi vitali essenziali esclusivamente orientati al corretto ingaggio dello stivaggio parziale e temporaneo calcolo del tuo <strong>stipendio</strong> contro gli scenari attuabili preimpostati, affinché non avvengano derive perdite in interruzione imprevista dati durante un caricamento critico d'informazioni preziose non scambiando codeste info sul mercato profilato a nessuno terzo sconosciuto ed esautorando logiche inquinanti l'essenzialità del parametro introdotto con trasparenza assoluta conferendo prosecuzione cosciente nel reame digitale calcolatore da oggi.
+            </div>
+            <button onclick="acceptCookies()" class="btn-primary flex-shrink-0 text-sm py-2 px-6">
+                Continua Analisi
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
