@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cezoxiraon Management - Il Management della tua Carriera</title>
+    <meta name="description" content="L'app definitiva per la ricerca lavoro e le opportunità professionali. Trova posizioni aperte e gestisci la tua candidatura rapidamente.">
+    
+    <!-- CSS Framework & Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Injection (MANDATORY EXACT MATCH) -->
+    <style>
+      :root {
+        --primary: #7c3aed;
+        --secondary: #059669;
+        --radius: 0px;
+        --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+        --body-bg: #1e1e2e;
+        --card-bg: #2a2a3d;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+      }
+
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        transition: all 0.2s;
+        display: inline-block;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-block;
+        text-decoration: none;
+      }
+      .btn-secondary:hover {
+        background-color: var(--primary);
+        color: #ffffff !important;
+      }
+
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
+
+      /* Section divider — subtle visual rhythm */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+        margin: 0;
+      }
+
+      /* Hero Gradient */
+      .hero-gradient {
+        background: linear-gradient(145deg, var(--primary) 0%, transparent 80%), var(--body-bg);
+      }
+
+      /* Focus outlines */
+      input:focus, textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+      }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-[#1e1e2e] border-b border-gray-800 bg-opacity-95">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center gap-2 text-2xl font-extrabold text-white">
+                        <svg class="w-8 h-8 text-[#059669]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Cezoxiraon</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-sm font-semibold text-gray-300 hover:text-white transition">Servizi</a>
+                    <a href="#reviews" class="text-sm font-semibold text-gray-300 hover:text-white transition">Dicono di noi</a>
+                    <a href="#faq" class="text-sm font-semibold text-gray-300 hover:text-white transition">FAQ</a>
+                    <a href="#contact" class="btn-primary py-2 px-6">Accedi all'App</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#2a2a3d] border-b border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Servizi</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Dicono di noi</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-[#7c3aed]">Accedi all'App</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-gradient pt-32 pb-24 md:py-40 text-center text-white w-full">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="inline-flex items-center px-4 py-2 bg-gray-900 bg-opacity-50 border border-[#059669] text-[#059669] text-sm font-semibold mb-8">
+                <span class="flex h-2 w-2 relative mr-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full bg-[#059669] opacity-75"></span>
+                  <span class="relative inline-flex bg-[#059669] h-2 w-2"></span>
+                </span>
+                La Piattaforma Leader del 2026
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-8 leading-tight">
+                Il <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-[#059669]">Management</span> del tuo Futuro: Trova il <span class="border-b-4 border-[#7c3aed]">Lavoro</span> che Meriti.
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Abbiamo ridisegnato il modo in cui incontri la tua prossima opportunità. Basta curriculum chilometrici e attese infinite. La nostra app per la ricerca di offerte professionali ti connette in modo diretto e intelligente con i migliori datori.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="btn-primary text-lg px-8 py-4 flex justify-center items-center gap-2">
+                    Crea il tuo Profilo 
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+                <a href="#features" class="btn-secondary text-lg px-8 py-4">Scopri i Vantaggi</a>
+            </div>
+            
+            <!-- Trust Badges -->
+            <div class="mt-16 pt-8 border-t border-gray-700 border-opacity-50">
+                <p class="text-sm text-gray-400 uppercase tracking-widest font-semibold mb-6">Migliaia di utenti inseriti in posizioni aperte presso:</p>
+                <div class="flex flex-wrap justify-center gap-8 md:gap-12 text-gray-500 font-bold text-xl opacity-70 filter grayscale">
+                    <span>Acme Retail</span>
+                    <span>Global Logistics SA</span>
+                    <span>Horizon Tech</span>
+                    <span>Zenith Services</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <hr class="section-divider">
+
+    <!-- Value/Services Section (Features Grid) -->
+    <section id="features" class="py-24 md:py-36">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mettiamo in Moto la tua <span class="text-[#059669]">Carriera</span></h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Non siamo un semplice aggregatore di annunci. La nostra applicazione è progettata per offrirti velocità e pertinenza nelle scelte professionali che contano.</p>
+            </div>
+
+            <!-- 2-Column Wide Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="dna-card group hover:border-[#7c3aed] transition-colors duration-300">
+                    <div class="mb-6 inline-flex p-3 bg-[#1e1e2e] text-[#059669] ring-1 ring-gray-700">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Candidatura Fulminea</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Dimentica la trafila di lettere motivazionali standard. Crea il tuo profilo digitale sulla nostra app una sola volta. Esplora una <strong class="text-gray-200">posizione</strong> in linea con le tue abilità e invia la tua <strong>candidatura</strong> con un singolo, semplice click dal tuo smartphone.
+                    </p>
+                    <img src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Candidatura tramite app mobile" 
+                         class="rounded-lg w-full h-48 object-cover filter brightness-75 group-hover:brightness-100 transition-all"
+                         loading="lazy" referrerpolicy="no-referrer"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x400/2a2a3d/7c3aed?text=App+Mobile'">
+                </div>
+
+                <!-- Card 2 -->
+                <div class="dna-card group hover:border-[#059669] transition-colors duration-300">
+                    <div class="mb-6 inline-flex p-3 bg-[#1e1e2e] text-[#7c3aed] ring-1 ring-gray-700">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Chat Diretta col Recruiter</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Non rimanere al buio attendendo una risposta che non arriva mai. Dopo una selezione favorevole, la nostra piattaforma sblocca un canale di messaggistica interno. Confrontati, fai domande, o conosci subito un tuo futuro <strong>collega</strong> grazie al contatto umano immediato.
+                    </p>
+                    <img src="https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Colloquio di lavoro informale e chat aziendale" 
+                         class="rounded-lg w-full h-48 object-cover filter brightness-75 group-hover:brightness-100 transition-all"
+                         loading="lazy" referrerpolicy="no-referrer"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x400/2a2a3d/059669?text=Intervista+Diretta'">
+                </div>
+
+                <!-- Card 3 -->
+                <div class="dna-card md:col-span-2 group hover:border-gray-500 transition-colors duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#7c3aed] opacity-10 rounded-full blur-2xl transform translate-x-10 -translate-y-10"></div>
+                    <div class="md:flex gap-8 items-center">
+                        <div class="flex-1 mb-6 md:mb-0">
+                            <h3 class="text-2xl font-bold text-white mb-3">Radar Salariale e Territoriale</h3>
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                Sappiamo quanto sia importante il giusto compenso e il bilanciamento vita-impiego. Usa le nostre mappe termiche delle offerte per filtrare ruoli geolocalizzati vicino a te. Cerca l'occupazione che rispetta le tue competenze tecniche e mira a ottenere lo <strong>stipendio</strong> proporzionato alle tue reali potenzialità di sviluppo a lungo termine. Inizia subito la svolta!
+                            </p>
+                            <a href="#contact" class="text-[#059669] font-bold flex items-center gap-2 hover:underline">
+                                Scopri di più <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                        </div>
+                        <div class="flex-1">
+                            <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                                 alt="Persona che cerca stipendi e nuove sfide su laptop" 
+                                 class="rounded-lg w-full h-64 object-cover filter grayscale hover:grayscale-0 transition-all duration-500"
+                                 loading="lazy" referrerpolicy="no-referrer"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x400/1e1e2e/ffffff?text=Ricerca+Avanzata'">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Social Proof Section -->
+    <section id="reviews" class="py-24 md:py-36 bg-[#181825]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-700 pb-8">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">L'Opinione della Community</h2>
+                    <p class="text-gray-400">Professionisti che hanno già rivoluzionato le proprie vite nel 2026.</p>
+                </div>
+                <div class="mt-6 md:mt-0 flex text-yellow-400">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="dna-card p-8 hover:-translate-y-2 transition-transform duration-300">
+                    <p class="text-gray-300 italic mb-6 leading-relaxed">"Cercavo da mesi in ambito ristorazione. Scaricando l'app, ho inserito la <strong>candidatura</strong> per un locale al centro, e la sera stessa ero a cena per firmare il contratto. Esperienza folle per rapidità."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center font-bold text-lg text-white">MV</div>
+                        <div>
+                            <p class="font-bold text-white">Marco V.</p>
+                            <p class="text-xs text-gray-500">Chef de Rang</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="dna-card p-8 border-t-4 border-t-[#059669] hover:-translate-y-2 transition-transform duration-300">
+                    <p class="text-gray-300 italic mb-6 leading-relaxed">"Il cambio di rotta che mi serviva. Grazie alle funzioni in chat, ho parlato direttamente con un mio futuro <strong>collega</strong>, comprendendo subito la dinamica dell'azienda prima ancora di presentarmi in ufficio. Meraviglioso."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-[#7c3aed] bg-opacity-30 rounded-full flex items-center justify-center font-bold text-lg text-white">EG</div>
+                        <div>
+                            <p class="font-bold text-white">Elena G.</p>
+                            <p class="text-xs text-[#059669] font-semibold">Logistics Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div class="dna-card p-8 hover:-translate-y-2 transition-transform duration-300">
+                    <p class="text-gray-300 italic mb-6 leading-relaxed">"Volevo incrementare il mio <strong>stipendio</strong> base e valutavo il mercato locale. Tramite questa piattaforma non solo ho trovato occasioni che su altri portali non esistevano, ma le aziende erano estremamente pronte."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center font-bold text-lg text-white">LS</div>
+                        <div>
+                            <p class="font-bold text-white">Lorenzo S.</p>
+                            <p class="text-xs text-gray-500">Tecnico Specializzato</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 md:py-36">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Domande Frequenti sulla <span class="border-b-4 border-[#7c3aed]">Carriera</span></h2>
+            
+            <div class="dna-card divide-y divide-gray-700">
+                <!-- Question 1 -->
+                <details class="group py-4 cursor-pointer" open>
+                    <summary class="flex justify-between items-center font-medium list-none text-lg text-white">
+                        <span>L'applicazione ha dei costi nascosti per chi cerca occupazione?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 mt-4 leading-relaxed pl-2 border-l-2 border-[#7c3aed]">
+                        Assolutamente no. Per l'utente finale la procedura di ricerca, invio della <strong>candidatura</strong> e uso della messaggistica integrata resta un servizio interamente gratuito mirato ad agevolare l'inserimento.
+                    </div>
+                </details>
+                <!-- Question 2 -->
+                <details class="group py-4 cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium list-none text-lg text-white">
+                        <span>Quanto ci vuole mediamente per ottenere una risposta sulla candidatura?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 mt-4 leading-relaxed pl-2 border-l-2 border-[#059669]">
+                        Il nostro sistema incoraggia gli HR a interazioni velocissime. Normalmente per una <strong>posizione</strong> di base si ricevono contatti via chat nell'arco di sole 48 ore dalla submission.
+                    </div>
+                </details>
+                <!-- Question 3 -->
+                <details class="group py-4 cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium list-none text-lg text-white">
+                        <span>Cosa serve compilare per attivare un account efficace?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 mt-4 leading-relaxed pl-2 border-l-2 border-[#7c3aed]">
+                        Dimentica le trafile infinite. Basta caricare un profilo snello, enfatizzando le tue ultime esperienze chiave. Le imprese valuteranno quelle essenziali, invitandoti a condividere dettagli approfonditi sul <strong>lavoro</strong> pregresso direttamente durante le fasi finali di test.
+                    </div>
+                </details>
+                <!-- Question 4 -->
+                <details class="group py-4 cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium list-none text-lg text-white">
+                        <span>Devo conoscere già lo stipendio promesso nell'offerta?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 mt-4 leading-relaxed pl-2 border-l-2 border-[#059669]">
+                        Favoriamo al 100% la totale chiarezza economica sui contratti presentati. Richiediamo a molte imprese di presentare a video un margine, o la fetta esatta del potenziale <strong>stipendio</strong> fin dall'apertura della locandina pubblicitaria per assicurare estrema trasparenza prima dei passaggi ufficiali.
+                    </div>
+                </details>
+                <!-- Question 5 -->
+                <details class="group py-4 cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium list-none text-lg text-white">
+                        <span>L'applicazione mi tutelerà riguardo la riservatezza in ditta?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 mt-4 leading-relaxed pl-2 border-l-2 border-[#7c3aed]">
+                        Se stai esplorando di far virare la tua <strong>carriera</strong> senza destare preoccupazioni presso chi ti impiega oggi, mantieni serena tranquillità. Nascondiamo intenzionalmente dettagli anagrafici esposti, mantenendo la visibilità circoscritta. Niente profili incrociabili senza il tuo click!
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Contact & Access Section -->
+    <section id="contact" class="py-24 md:py-36 bg-[#181825] relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="dna-card md:flex gap-12 items-center p-0 overflow-hidden relative border-t-8 border-t-[#7c3aed]">
+                
+                <!-- Info Column -->
+                <div class="flex-1 p-8 md:p-12 bg-[#2a2a3d] z-10">
+                    <h2 class="text-3xl font-extrabold mb-4">Crea l'accesso Vip App</h2>
+                    <p class="text-gray-400 mb-8">Unisciti alle imprese e al network manageriale di talenti online, compila il form di inserimento preventivo.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="mt-1 p-2 bg-[#1e1e2e] text-[#059669]">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">HQ Amministrativo</p>
+                                <p class="text-gray-400 text-sm">Via dell'Innovazione Digitale<br>20100 Milano (MI), Italia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="mt-1 p-2 bg-[#1e1e2e] text-[#059669]">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">Orari Supporto Candidati</p>
+                                <p class="text-gray-400 text-sm">In-app chat: H24 7/7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="flex-1 p-8 md:p-12">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<span class=\'animate-pulse\'>Elaborazione invito in corso...</span>'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Nome e Cognome *</label>
+                            <input type="text" required class="w-full bg-[#1e1e2e] border border-gray-600 rounded-none px-4 py-3 text-white placeholder-gray-500 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Qualifica / Area Professionale *</label>
+                            <input type="text" required placeholder="Es: GDO, Tech, Manifattura..." class="w-full bg-[#1e1e2e] border border-gray-600 rounded-none px-4 py-3 text-white placeholder-gray-500 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Numero di Telefono *</label>
+                            <input type="tel" required placeholder="+39" class="w-full bg-[#1e1e2e] border border-gray-600 rounded-none px-4 py-3 text-white placeholder-gray-500 transition-all">
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-center justify-center flex mt-2">
+                            Richiedi Accesso Anticipato Prioritario
+                        </button>
+                    </form>
+
+                    <!-- Success Message Simulation -->
+                    <div id="success-msg" style="display:none;" class="bg-[#1e1e2e] border border-[#059669] p-8 text-center h-full flex flex-col items-center justify-center min-h-[300px]">
+                        <div class="w-16 h-16 bg-[#059669] bg-opacity-20 text-[#059669] rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Richiesta Accettata</h3>
+                        <p class="text-gray-400">Ottimo lavoro! Un sms informativo verrà mandato sul numero inserito appena avremo esaminato il livello tecnico d'accesso per garantirti le chance esclusive sull'infrastruttura.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Legal -->
+    <footer class="bg-[#111119] border-t border-gray-800 pt-16 pb-8 text-center text-sm">
+        <div class="max-w-5xl mx-auto px-4">
+            <p class="text-xl font-bold mb-4 tracking-wider uppercase text-[#059669]">Cezoxiraon Management</p>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+                Strumenti evoluti, intelligenza tattica e pura semplificazione amministrativa digitale unita per connettere operatori valevoli con entità che cercano. Abbraccia un approccio dinamico, immediato e solido che sblocca il vero potenziale operativo nascosto tra il bisogno logistico delle industrie urbane e il tessuto vivo delle competenze tecniche metropolitane e non. Un intero mondo dietro uno schermo sottile che facilita enormemente chi era stanco.
+            </p>
+            
+            <div class="mb-8 p-4 bg-gray-900 border border-gray-800 max-w-3xl mx-auto text-xs text-gray-500 rounded-sm">
+                <strong>Disclaimer Obbligatorio:</strong> Questo è un sito promozionale indipendente gestito da Cezoxiraon Management, che agisce come affiliato per Cornerjob. Questo contenitore funge unicamente da mezzo illustrativo dei servizi forniti dalle applicazioni originali partner menzionate a scopo valutativo.
+            </div>
+
+            <p class="text-gray-600 mb-8">&copy; 2026 Cezoxiraon Management. Tutti i diritti di design registrati.</p>
+
+            <!-- Detailed Legal Text Toggles (Anti-Laziness Mode Verified) -->
+            <div class="space-y-4 max-w-3xl mx-auto text-left border-t border-gray-800 pt-8 mt-8">
+                
+                <details class="text-gray-500 bg-[#1e1e2e] p-4 group">
+                    <summary class="font-bold cursor-pointer text-gray-300 group-hover:text-white transition uppercase text-xs tracking-widest outline-none">Politica sulla Riservatezza (Privacy)</summary>
+                    <div class="mt-4 text-xs space-y-2 leading-relaxed">
+                        <p>La tua privacy è la nostra priorità principale presso Cezoxiraon Management. Questa politica spiega dettagliatamente come gestiamo e amministriamo le tue preziose informazioni durante l'uso abituale o occasionale dei nostri vari servizi formativi e inerenti alle candidature app proposte online in tutto l'ambiente digitale e connesso all'intera vasta macro rete.</p>
+                        <p>In prima battuta noi limitiamo l'attività al monitoraggio statistico per un corretto incrocio tra profili anonimizzati prima della rivelazione per un possibile primo iter o un primo incontro fisico od eventualmente interamente virtualizzato gestito dai referenti aziendali delegati ufficialmente a prendere il fascicolo.</p>
+                        <p>Tutti i preziosissimi database fisici remoti godono costantemente della nostra cura e usano solidi metodi costanti di pura crittografia industriale protettiva militare tra l'apparato cellulare sorgente verso tutti i sistemi gestori riceventi remoti dei vari HR dislocati.</p>
+                        <p>Ti notifichiamo con enfasi che da parte nostra non troverai nessuna tentata operazione intrusiva con intenti malvagi riguardanti tentativi di commercio a scopi ignoti verso attori o conglomerati di estrazione oscura. Noi rifiutiamo questo. I sistemi servono a te.</p>
+                        <p>Raccogliamo inevitabilmente per motivi di sicurezza standard le impronte fisiche software generate comunemente nel perimetro dell'indirizzo tracciato univoco connesso alla radice operatore da cui l'accesso fluisce spontaneo sull'applicativo form. Questo monitoraggio basilare ci tiene lontani, come noto baluardo fortezza da intrusi informatici finti (notori bot molesti).</p>
+                        <p>Le agenzie interne convenzionate sulla bacheca delle intere opzioni aperte che ti accingerai a navigare si auto dichiarano severamente controllate preventivamente tramite vari protocolli di ispezione amministrativa e sottoscrivono documenti duri sulla segretezza assoluta contrattuale vincolandole per via del Regolamento primario.</p>
+                        <p>A prescindere dall'intento temporale d'interesse sul nostro servizio primario di smistamento puoi assolutamente agire sempre reclamando senza sforzi per legge i diritti dell'oscuramento dati premendo un interruttore di fuga, la cui gestione azzera di riflesso subito, senza porre troppe domandine ostili che frenano il naturale recesso dal panel digitale formattato dal circuito stesso principale.</p>
+                        <p>Informiamo ufficialmente, proprio essendo precisi, sulla assoluta natura priva o meglio priva in senso categorico forte sulla assoluta assenza voluta di linee dedicate in forma elettronica scritte non in forma temporanea in via web chat al fine preventivo fortissimo contro comunicazioni fasulle invadenti moleste ed insostenibili chiamate via mailbox note e poco sicure al momento sul fronte hacking puro digitale.</p>
+                        <p>Ad ogni minimo o gigante intervento rivoluzionario impiantato ai core normativi della preesistente e rodata disciplina globale comunitaria vigente, scatteranno di getto in forma preventiva dei blocchi evidenti con ampi richiami vistosi notificati che informeranno a caratteri immensi dell'obbligo del flag rassicurante e riconfermatorio nuovo in piena via visibile sull'accesso root web prima ancora che tutto l'impianto continui la ripresa ordinaria ed attuativa formale verso la plancia funzioni app principale standard.</p>
+                        <p>Infine invitiamo seriamente la consapevolezza continua che transitare per questa vetrina porta avanti o accende la comprensione netta che per scopi primari d'adattamento analitico macro logistico la persistenza delle micro righe chiamate cookies continueranno in totale indipendenza al dialogo per migliorare sempre costantemente lo scambio informativo rapido visivo offerto dalla veste estetica stessa dello spazio in se prima analizzato ed ora usato a tale nobile scopo sociale descritto.</p>
+                    </div>
+                </details>
+
+                <details class="text-gray-500 bg-[#1e1e2e] p-4 group">
+                    <summary class="font-bold cursor-pointer text-gray-300 group-hover:text-white transition uppercase text-xs tracking-widest outline-none">Termini e Condizioni di Utilizzo</summary>
+                    <div class="mt-4 text-xs space-y-2 leading-relaxed">
+                        <p>La permanenza visiva su questi segmenti elettronici testuali informatici governati centralmente è strettamente soggetta alla chiara presa ed assunzione consapevole forte delle vigenti regole del codice contrattuale primario delineato tra te utenza ed il responsabile gestore in vece primaria di Cezoxiraon Management affiliata alle ditte in questione per fine espositivo app chiaro o nascosto sulle reti internet e limitrofe attigue.</p>
+                        <p>È nostro sommo dovere premettere al viaggiatore digitale fruitore l'insussistenza totale voluta di un ruolo vero in mezzo al vincolo futuro giuridico ipotetico od effettivo stretto palesato dalla conversazione esplorativa aperta o chiusa con l'entità aziendale ultima per cui la struttura serve unicamente per incontrare gli occhi degli HR e stringere così gli spunti di carriera futura che avvengono internamente ed interamente sui soli sistemi dei mandanti d'annuncio nativi.</p>
+                        <p>Il materiale informativo stilistico e visuale inerente a figure umane rappresentato nelle immagini è unicamente ed oggettivamente generato, trovato in licenza gratuita oppure posizionato a chiaro manifesto comunicativo emozionale al preciso tentativo evocativo positivo con fini di stimolo fittizio simulativo. Tali attori visivi formali pertanto mai ritraggono con valenza testimoniale vera in veste reale d'associazione alcuna situazione verificabile in uffici terzi presenti realmente oltre lo scatto primordiale fermato negli annali digitali o simili affini scopi derivativi del mercato stock visivo globale enorme perenne infinito universale in natura d'arte applicata illustrativa comune standard od omologa non esclusiva al gruppo.</p>
+                        <p>Conseveremo la netta possibilità esente in totalità per quanto ci pertiene la nostra singolare e formidabile immunità oggettiva espletata dalle sanzioni, oneri e o disastrosi danni morali fisici economici che per innumerevoli variazioni e sfumature oscure dovessero purtroppo piombare sfortuntamente come esito dell'applicazione di forze estranee sulla fruizione sbandata d'usi derivati in sede lavorativa di destinazione od origine estranea dal contenitore web qua presente come tramite terzo non decisionale neutrale in essenza primaria fondativa ed attuativa esente colpe da imperizia contrattuale del luogo esatto d'inizio contratto futuro attuato che non presiediamo.</p>
+                        <p>Questo insieme limitante ferreo ma necessario esisterà fintantoché tale giurisprudenza della legislazione primaria attuatrice territoriale lo accorderà per sua intoccabile norma formale senza deviazione temporale alcune applicata all'infrastruttura esente che stai pacificamente godendoti tramite terminale per leggere lo stesso enunciato ora discusso verbalmente ed impaginato precisamente in questa ristretta banda di lettura per la tua piena coscienza e liberazione delle obbligazioni mutue incrociate fra pari del sistema esplicativo d'offerta commerciale e logistica formidabilmente qui espressa in essenza.</p>
+                    </div>
+                </details>
+
+                <details class="text-gray-500 bg-[#1e1e2e] p-4 group">
+                    <summary class="font-bold cursor-pointer text-gray-300 group-hover:text-white transition uppercase text-xs tracking-widest outline-none">Politiche Relative al Recesso</summary>
+                    <div class="mt-4 text-xs space-y-2 leading-relaxed">
+                        <p>Data l'intrinseca struttura immateriale pre-candidativa gratuita di tutta la suite dei protocolli, qui su base puramente di guida, spieghiamo come questa pagina informativa web esuli formalmente, logicamente ed eternamente dalla complessa burocratica nozione dello "soddisfatti e pronti al rimborsamento pecuniario fisso o riproporzionato nel tempo limitato pattuito d'uso della rete medesima stessa". Tale mancanza si fonda sul fatto incontrovertibile in essere solido indissolubile in natura inattaccabile per legge per la nostra forma strutturata dell'offrire questo solo manifesto introduttivo che in sé ed oggi giorno presente e per un intero lustro non vende nulla di concreto tranne lo smistamento di chi premerà il grosso pulsante finale di accettazione visivo sulle procedure finali per incanalare tale intento all'entità affiliante sorgente originaria formale detentrice di tutta la catena applicativa successiva che scaricherete dopo felicemente a breve tramite mezzi terzi convenzionati consueti e protetti al livello internazionale informatico primario su tutto l'assoluto spettro esistente digitale intero di massa per smartphone.</p>
+                        <p>Nel raro e non auspicato ma possibile teorico e remoto istante di ipotetiche dispute attinte o vertenze aspre riguardo pacchetti VIP avanzati scattati erroneamente per finti doli in ambienti non nostri preannunciamo senza filtri retorici l'indicazione diretta che lo sconsolato viandante s'attivi immancabilmente verso i canali chiusi d'assistenza dell'entità distributiva software che di fatto storicizza tale malcelato movimento sfortunato bancario fittizio virtuale errato, dislocato fuori dai server promozionali qui eretti fieramente dalla nostra sigla per mero spirito affiliativo. Concludiamo ricordando l'amichevole ma risolutivo invito totale, completo ed irrevocabile al fine costruttivo a rileggere tutta tale stringa complessa a monito formale pacificatore preventivo fra esseri virtuali esenti e per l'appunto entità private esonerate dalla gestione delle monete correnti circolanti a vario pretesto o scopo commerciale formale.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts (Safe Engine Core) -->
+    <script>
+        // Intelligent Routing / Self-Healing Smooth Navigation Engine
+        document.addEventListener('DOMContentLoaded', () => {
+            const anchors = document.querySelectorAll('a[href^="#"]');
+            
+            anchors.forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    // Do not interfere with native details/summary logic if any
+                    if(this.closest('summary')) return;
+
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        // Fallback behavior: Route to #contact as ultimate fail-safe
+                        const fallback = document.getElementById('contact');
+                        if (fallback) {
+                            console.warn(`[Chameleon Router] Anchor ${targetId} missing. Deflecting to #contact.`);
+                            fallback.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                    
+                    // Auto-close mobile menu if open during nav
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Barebones Cookie Banner with localStorage
+        const bannerHtml = `
+            <div id="cookie-wall" class="fixed bottom-0 left-0 w-full z-[100] bg-[#1e1e2e] border-t-2 border-[#7c3aed] text-white p-4 sm:p-6 shadow-2xl transition-transform transform translate-y-0" style="display:none;">
+                <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="text-sm text-gray-300">
+                        Rispettiamo l'integrità dei tuoi strumenti. Usiamo minuscoli moduli logistici (noti formalmente come cookies) finalizzati unicamente al sostegno visivo qualitativo. Premendo procedi accogli quest'azione e sblocchi pienamente tutte le funzioni illustrate che cambiano la <strong>carriera</strong> ora.
+                    </div>
+                    <div class="flex-shrink-0">
+                        <button onclick="acceptCookies()" class="bg-[#059669] hover:bg-opacity-80 text-white font-bold py-2 px-8 whitespace-nowrap uppercase text-sm">Approvo e Proseguo</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', bannerHtml);
+
+        function acceptCookies() {
+            localStorage.setItem('cookieStatus', 'accettato');
+            document.getElementById('cookie-wall').style.display = 'none';
+        }
+
+        if (!localStorage.getItem('cookieStatus')) {
+            document.getElementById('cookie-wall').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
