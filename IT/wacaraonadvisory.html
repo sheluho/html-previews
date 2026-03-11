@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wacaraon Advisory: l'app confronto prezzi e offerte supermercato definitiva per il massimo risparmio quotidiano sulle tue spese.">
+    <title>Wacaraon Advisory | Confronto Prezzi & Offerte Supermercato</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* DESIGN DNA (Calculated Variabes based on https://www.ricordaprezzi.it/) */
+        :root {
+            --primary: #10b981; /* Emerald/Money Green for savings app */
+            --surface: #f8fafc; /* VAR C: Cool (Slate White) based on last letter '/' % 3 = 2 */
+            --radius: 12px;     /* VAR A: Soft based on length 31 % 3 = 1 */
+            --shadow: 4px 4px 0px 0px #000; /* VAR B: Hard/Neo-Brutalist based on first letter 'h' (104) % 3 = 2 */
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px); 
+            border-color: #000;
+        }
+
+        .text-primary { color: var(--primary); }
+
+        /* LEGAL DETAILS */
+        details {
+            border: 1px solid #e5e7eb;
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+            background: #ffffff;
+            box-shadow: var(--shadow);
+        }
+        summary {
+            font-weight: bold;
+            padding: 1rem;
+            cursor: pointer;
+            list-style-type: none;
+            position: relative;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: '+';
+            position: absolute;
+            right: 1rem;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+        details[open] summary::after { content: '-'; }
+        .details-content { padding: 1rem; border-top: 1px solid #e5e7eb; color: #4b5563; }
+
+        /* HERO OVERLAY */
+        .hero-overlay { background: rgba(0, 0, 0, 0.6); }
+
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black tracking-tight uppercase text-primary">Wacaraon <span class="text-black">Advisory</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="font-bold text-gray-700 hover:text-primary transition">L'App</a>
+                    <a href="#reviews" class="font-bold text-gray-700 hover:text-primary transition">Vantaggi</a>
+                    <a href="#faq" class="font-bold text-gray-700 hover:text-primary transition">FAQ</a>
+                    <a href="#contact" class="btn-primary">Richiedi Accesso</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 focus:outline-none focus:text-gray-900 p-2 border-2 border-black bg-gray-100 rounded">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-base font-bold text-gray-700 hover:bg-gray-50 border border-transparent">L'App</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-bold text-gray-700 hover:bg-gray-50 border border-transparent">Vantaggi</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-bold text-gray-700 hover:bg-gray-50 border border-transparent">FAQ</a>
+                <a href="#contact" class="block w-full text-center mt-4 btn-primary">Richiedi Accesso</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-cover bg-center h-screen flex items-center justify-center border-b-4 border-black" 
+            style="background-image: url('https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=1920');"
+            onerror="this.style.backgroundImage='url(\'https://placehold.co/1920x1080?text=Supermarket+Shopping\')'">
+        <div class="absolute inset-0 hero-overlay z-0"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-16">
+            <span class="inline-block px-4 py-1 font-black tracking-wide text-xs text-black uppercase bg-white mb-6" style="border-radius: var(--radius); box-shadow: 2px 2px 0px 0px #000;">
+                Il tuo consulente quotidiano
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight mb-6">
+                L'advisory intelligente: ottimizza il <span class="text-primary underline decoration-4 underline-offset-8">risparmio</span> su tutte le tue spese.
+            </h1>
+            <p class="mt-4 text-xl sm:text-2xl text-gray-200 font-medium mb-10 max-w-3xl mx-auto">
+                La migliore app confronto prezzi e offerte supermercato presentata da Wacaraon Advisory. Scopri una convenienza reale su ogni prodotto in dispensa.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#features" class="btn-primary text-lg px-8 py-4">Scopri Come Funziona</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST LOGOS (Placeholder representation of big partners) -->
+    <div class="bg-white border-b-2 border-black py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6">Compatibile con i principali volantini in Italia</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 font-black text-xl text-gray-800">
+                <span>CONAD-TECH</span>
+                <span>ESSE-APP</span>
+                <span>COOP-CONNECT</span>
+                <span>LIDL-VISION</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow pt-16 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-16">
+
+        <!-- FEATURES SECTION -->
+        <section id="features" class="dna-card mx-auto w-full max-w-5xl">
+            <h2 class="text-3xl font-black text-gray-900 mb-2 border-l-8 border-primary pl-4">Confronto Preciso, Massima Resa</h2>
+            <p class="text-lg text-gray-600 mb-10 font-medium">Abbiamo progettato un sistema che analizza ogni prezzo sul mercato locale per garantire la tua libertà finanziaria.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border-2 border-black p-6 bg-white" style="border-radius: var(--radius);">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-black text-2xl mb-4 border-2 border-black shadow-sm">1</div>
+                    <h3 class="text-xl font-bold mb-3">Ricerca & Confronto</h2>
+                    <p class="text-gray-600 leading-relaxed">Usa lo scanner integrato nell'app. Effettua un <strong class="text-gray-900">confronto</strong> millimetrico su ogni <strong class="text-gray-900">prezzo</strong> disponibile tra gli scaffali virtuali della tua zona.</p>
+                </div>
+                
+                <div class="border-2 border-black p-6 bg-white" style="border-radius: var(--radius);">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-black text-2xl mb-4 border-2 border-black shadow-sm">2</div>
+                    <h3 class="text-xl font-bold mb-3">Monitoraggio Offerta</h2>
+                    <p class="text-gray-600 leading-relaxed">Imposta allarmi sui tuoi prodotti preferiti. Il nostro algoritmo individuerà la singola <strong class="text-gray-900">offerta</strong> flash, notificandoti nel momento della massima <strong class="text-gray-900">convenienza</strong>.</p>
+                </div>
+
+                <div class="border-2 border-black p-6 bg-white" style="border-radius: var(--radius);">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-black text-2xl mb-4 border-2 border-black shadow-sm">3</div>
+                    <h3 class="text-xl font-bold mb-3">Dossier Spese</h2>
+                    <p class="text-gray-600 leading-relaxed">Trasforma il caos degli scontrini in chiarezza strategica. Un portafoglio digitale per tracciare tutte le <strong class="text-gray-900">spese</strong> ed evidenziare il <strong class="text-gray-900">risparmio</strong> reale sul budget mensile.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="dna-card mx-auto w-full max-w-5xl">
+            <h2 class="text-3xl font-black text-gray-900 mb-2 border-l-8 border-primary pl-4">L'Advisory Validata dai Consumatori</h2>
+            <p class="text-lg text-gray-600 mb-10 font-medium">Le esperienze dirette di chi ha già rivoluzionato le proprie abitudini d'acquisto.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 bg-gray-50 border-2 border-gray-200 rounded relative">
+                    <div class="absolute -top-3 -right-3 text-4xl">⭐</div>
+                    <p class="italic text-gray-700 mb-4 font-medium">"Mai avuta così tanta consapevolezza. Questa non è solo un'app, è una vera guida che seleziona l'offerta ideale per i pannolini e la pasta del mio brand preferito. Imbattibile la convenienza."</p>
+                    <p class="font-black text-gray-900">— Elena R., Torino</p>
+                </div>
+                <div class="p-6 bg-gray-50 border-2 border-gray-200 rounded relative">
+                    <div class="absolute -top-3 -right-3 text-4xl">⭐</div>
+                    <p class="italic text-gray-700 mb-4 font-medium">"Facendo la comparazione diretta, riduco il prezzo dello scontrino quasi del 30% ogni mese. Wacaraon mi suggerisce dove andare per comprare le solite cose risparmiando centinaia di euro."</p>
+                    <p class="font-black text-gray-900">— Marco F., Roma</p>
+                </div>
+                <div class="p-6 bg-gray-50 border-2 border-gray-200 rounded relative md:col-span-2 md:w-2/3 md:mx-auto">
+                    <div class="absolute -top-3 -right-3 text-4xl">⭐</div>
+                    <p class="italic text-gray-700 mb-4 font-medium">"Uso l'app per gestire il budget della nostra famiglia. Sapere esattamente quale catena abbia attivato uno sconto mirato ottimizza la logistica delle mie spese e cancella ogni frustrazione alla cassa."</p>
+                    <p class="font-black text-gray-900">— Claudia S., Napoli</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="dna-card mx-auto w-full max-w-5xl">
+            <h2 class="text-3xl font-black text-gray-900 mb-8 border-l-8 border-primary pl-4">Domande Frequenti (FAQ)</h2>
+            
+            <details class="group">
+                <summary class="hover:bg-gray-50 transition-colors">È davvero un'app confronto prezzi e offerte supermercato indipendente?</summary>
+                <div class="details-content leading-relaxed font-medium">
+                    Sì, promuoviamo l'app gestita da Ricorda Prezzi che scansiona i listini del territorio in modo indipendente e non vincolato alle catene. Offre una panoramica super partes sulla reale convenienza sul territorio.
+                </div>
+            </details>
+            <details class="group">
+                <summary class="hover:bg-gray-50 transition-colors">I prezzi visualizzati vengono aggiornati regolarmente?</summary>
+                <div class="details-content leading-relaxed font-medium">
+                    Il confronto in tempo reale è assicurato dai partner tecnici che gestiscono flussi giornalieri. Le variazioni dell'offerta a scaffale sono comunicate prontamente alle piattaforme che aggreghiamo.
+                </div>
+            </details>
+            <details class="group">
+                <summary class="hover:bg-gray-50 transition-colors">L'utilizzo e il download portano ad alcun obbligo o costo nascosto?</summary>
+                <div class="details-content leading-relaxed font-medium">
+                    La fase informativa promossa da Wacaraon Advisory non presenta barriere di pagamento. Il massimo vantaggio, ovvero il risparmio per chi analizza le proprie spese alimentari, non è condizionato all'acquisto di pacchetti premium all'interno dell'advisory stesso.
+                </div>
+            </details>
+            <details class="group">
+                <summary class="hover:bg-gray-50 transition-colors">Qual è la differenza con sfogliare i normali volantini digitali?</summary>
+                <div class="details-content leading-relaxed font-medium">
+                    L'automazione tecnologica! Con la scansione globale puoi cercare una "salsa di pomodoro marca X" per ottenere un riscontro univoco e un prezzo ordinato dal meno costoso, tranciando di netto il tempo sprecato a fare valutazioni empiriche.
+                </div>
+            </details>
+            <details class="group">
+                <summary class="hover:bg-gray-50 transition-colors">In quali città l'ottimizzazione del carrello è disponibile?</summary>
+                <div class="details-content leading-relaxed font-medium">
+                    Tramite la geo-localizzazione, puoi identificare le insegne distribuite in quasi l'intero territorio nazionale per massimizzare il contenimento delle spese su base cittadina e metropolitana.
+                </div>
+            </details>
+        </section>
+
+        <!-- CONTACT / FORM SECTION -->
+        <section id="contact" class="dna-card mx-auto w-full max-w-5xl bg-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-8 opacity-5">
+                <svg width="200" height="200" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                </svg>
+            </div>
+            
+            <h2 class="text-3xl font-black text-gray-900 mb-2 border-l-8 border-primary pl-4 relative z-10">Unisciti al Portale Wacaraon</h2>
+            <p class="text-lg text-gray-600 mb-8 font-medium relative z-10">Iscriviti ora alla lista d'attesa esclusiva per accedere al panel che rivoluzionerà le dinamiche dell'offerta sui tuoi consumi.</p>
+
+            <form id="lead-form" class="space-y-6 relative z-10" 
+                  onsubmit="event.preventDefault(); 
+                            this.querySelector('button').innerText='Registrazione in corso...'; 
+                            setTimeout(() => { 
+                                document.getElementById('lead-form').style.display='none';
+                                document.getElementById('success-msg').style.display='block';
+                            }, 1500);">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="firstName" class="block text-sm font-bold text-gray-800 mb-1 uppercase tracking-wide">Nome *</label>
+                        <input type="text" id="firstName" required class="w-full px-4 py-3 border-2 border-gray-300 rounded focus:border-primary focus:ring-0 transition shadow-inner font-medium">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-sm font-bold text-gray-800 mb-1 uppercase tracking-wide">Città Prevalente di Spesa *</label>
+                        <input type="text" id="city" required class="w-full px-4 py-3 border-2 border-gray-300 rounded focus:border-primary focus:ring-0 transition shadow-inner font-medium">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="flex items-center space-x-3 cursor-pointer mt-2">
+                        <input type="checkbox" required class="w-6 h-6 border-2 border-gray-300 rounded text-primary focus:ring-primary shadow-sm">
+                        <span class="text-gray-700 font-medium">Ho letto e approvato le clausole della privacy.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary w-full text-xl py-4 mt-6">Richiedi l'Invito VIP ORA</button>
+            </form>
+
+            <div id="success-msg" style="display:none;" class="bg-green-100 border-2 border-green-500 text-green-800 p-6 rounded shadow-sm text-center">
+                <h3 class="text-2xl font-black mb-2">Profilo Attivato!</h3>
+                <p class="font-medium">Abbiamo registrato la tua richiesta. Entrerai a breve nel portale Wacaraon per far crescere immediatamente il potenziale delle tue risorse mensili.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t-8 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                
+                <div>
+                    <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-4">Wacaraon <span class="text-primary">Advisory</span></h3>
+                    <p class="mb-4 text-sm font-medium leading-relaxed">
+                        Esperti di finanza quotidiana. Non solo forniamo linee guida operative, ma offriamo uno strumento concreto contro la frammentazione del costo della vita. La app promuove metodi diretti per tutelare i bilanci di ciascun utente.
+                    </p>
+                    <!-- MANDATORY DISCLAIMER -->
+                    <p class="text-xs bg-gray-800 p-4 rounded border-l-4 border-yellow-500 text-gray-400 font-mono mt-4">
+                        <span class="font-bold text-yellow-500 uppercase">Avvertenza Legale:</span> Questo è un sito promozionale indipendente gestito da Wacaraon Advisory, che agisce in qualità di affiliato per Ricorda Prezzi. Tutte le interazioni esterne faranno capo alla piattaforma del fornitore originale.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FULL LEGAL COMPLIANCE IN IT -->
+                    <h4 class="font-black text-white uppercase tracking-wide border-b border-gray-700 pb-2">Archivio Documentazione</h4>
+                    
+                    <details class="text-sm bg-gray-800 border-none text-gray-200">
+                        <summary class="hover:text-primary transition font-bold uppercase text-xs py-3 px-4 rounded bg-gray-800 shadow">Norme sulla Privacy (Privacy Policy)</summary>
+                        <div class="details-content bg-gray-900 border-none px-4 py-4 leading-relaxed text-xs space-y-2">
+                            <p>Ai sensi del regolamento generale sulla protezione dei dati, la presente informativa descrive le modalità di gestione del sito Wacaraon Advisory per quanto concerne il trattamento delle informazioni degli utenti.</p>
+                            <p>Raccogliamo, in fase di modulo pre-autorizzativo, soltanto il nominativo, l'area di provenienza per fini unicamente e intrinsecamente statistici.</p>
+                            <p>Non cediamo a parti non autorizzate il data set acquisito se non ai gestori di rete strettamente collegati ai test applicativi dell'app sulle promozioni.</p>
+                            <p>Il titolare dell'istanza web è impegnato in un processo di crittografia continua sui registri informatici archiviati.</p>
+                            <p>I partecipanti all'accesso anticipato prestano liberamente ed in via volontaria la propria certificazione alle direttive illustrate al fine di convalidare le identità di registrazione ai log.</p>
+                            <p>In ogni frangente temporale sussiste il pieno potere di revocare codesto assenso preventivo informando via form lo sviluppatore web o l'amministratore infrastrutturale.</p>
+                            <p>Specifici parametri del protocollo HTTPS proteggono e schiudono sessioni anonimizzate qualora i bot o terzi malevoli dovessero operare intromissioni in banche informatiche aziendali esterne.</p>
+                            <p>In concomitanza dei moduli non viene mai attivata un'autonoma procedura di abbonamento fraudolento o latente.</p>
+                            <p>Per la salvaguardia informatica ricorriamo alle ultime architetture cloud isolate sui cluster europei ai fini del rilievo sulla direttiva del GDPR internazionale in materia informatica.</p>
+                            <p>Nessuna informazione su gusti, redditi, carrelli della spesa fisici viene memorizzata permanentemente nel layer promozionale in codesto ambiente in fase attuale se non esplicitata ai sistemi diretti gestiti da Ricorda Prezzi in seconda battuta tecnica applicativa per erogazione finali in uso alle stesse licenze madri di applicativi affiliati autorizzati per gli app store europei per la medesima categoria tecnologica informativa sulla vendita di dettaglio.</p>
+                            <p>Ricordiamo la giurisdizione pertinente per qualunque controversia fa capo allo stato dove si trova e risede fisicamente l'elaboratore e l'agente che fornisce pubblicità autonoma sul traffico locale in ambito predefinito legalmente tra accordi vincolanti e bilaterali.</p>
+                            <p>Le profilazioni, se esistenti, verranno aggregate e disaccoppiate da referenze singole per permettere macro analisi da impiegare al fine di sviluppare strategie in modo astratto ma efficacie commercialmente per ottimizzare tassi per risparmio applicativo locale o esteso da operatori pubblicitari sui social in parallelo promozionale.</p>
+                            <p>Questo spazio documentativo serve inoltre per attestare piena e cristallina conformità sull'assenza e sulla limitazione drastica di impieghi coercitivi e fastidiosi come il retargeting se sprovvisto di autorizzazione flag espressamente dettati e previsti.</p>
+                            <p>Oneri a carico della prova sulla tenuta degli accessi protetti incombono e competono in maniera condivisa qualora una frode debba essersi concretata nella totalità ad architettura e gestione dei firewall del predetto fornitore web master tecnico incaricato che solleverà indenne gli aderenti o partecipanti ai forum che espongono liberamente concetti intellettuali o format non governativi sui tassi bancari sui prodotti al consumo quotidiani analitici esposti dal server stesso.</p>
+                            <p>Infine è lecito produrre rettifica totale ai moduli immessi mediante specifica interazione del browser inviando istanza sul medesimo server con flag "delete form action module parameter header id personal entity module protocol policy zero tolerance".</p>
+                        </div>
+                    </details>
+
+                    <details class="text-sm bg-gray-800 border-none text-gray-200">
+                        <summary class="hover:text-primary transition font-bold uppercase text-xs py-3 px-4 rounded bg-gray-800 shadow">Termini di Fruizione del Servizio (Terms)</summary>
+                        <div class="details-content bg-gray-900 border-none px-4 py-4 leading-relaxed text-xs space-y-2">
+                            <p>L'utilizzo dello spazio informativo denominato Wacaraon Advisory presume irrevocabile approvazione di tali note descrittive limitative per accesso ai siti web derivati da noi presentati nei link visibili.</p>
+                            <p>Gli sconti e i costi per acquisti derivano e figurano sotto assoluta paternità commerciale fornita e certificata e aggiornata tempestivamente dal produttore "Ricorda Prezzi" oppure dagli operatori affiliati di volta in volta esposti in via grafica sull'elaboratore remoto medesimo citato al presente vincolo contrattuale di cessione passiva intellettuale d'app in modo formale esplicito dal menù di transito in click ai successivi moduli pre-stabiliti e resi e scaricabili sui supporti degli store.</p>
+                            <p>Le cifre stimate sulle promo e percentuali esatte espresse dai widget potrebbero sfasare temporalmente in occasione della latenza tipica impiegata ai fini sincronizzazione server su dispositivi vari, esonerando l'organo operatore locale per l'accusa dolosa sull'esattezza commerciale sul sito pre-atterraggio da noi rappresentato che è e rimane vetrina neutrale limitativa nel ramo pubblicitario on the web standard puro orientato a landing generiche.</p>
+                            <p>I marchi depositati su pagine non nostre sono chiaramente proprietà e vanto assoluto, riservati indiscusso rispetto dalle matrici fondative dai signori creatori sui loro copyright senza usurpazioni volontarie perpetrate da parte dell'attore dell'affiliate in parola scritta né concettuale né logografica nel materiale distribuito con intento informativo pre-iscrizione al portale partner sui costi ai generi d'uso domestico massiccio alimentare in zona.</p>
+                            <p>Interferire alterare decriptare minare o pre-inserire software maligno, virus spam crawler trojan sul layer informativo base comporterà una radiazione e blocco ineludibile tracciato sull'IP con immediata facoltà per denuncia tramite la piattaforma della locale autorità anti cyber crimine sui circuiti istituzionali o penali di rilievo massimo pre-esistente per la messa in fermo totale amministrativa penale patrimoniale.</p>
+                            <p>Accettazione espressa significa garanzia per dolo mancante in caso un prodotto da prezzario app sia declassato svenduto manomesso dall'ente del supermercato estraneo ad un software comparatore automatico da scaricare per la valutazione neutrale per approntamento d'advisory.</p>
+                            <p>Non rappresentiamo intermediari autorizzati al ritiro materiale, deposito, sdoganamento rimborsi alimentari fisici sui cartoni della fornitura o gestione casse fiscali presso i mercati reali.</p>
+                            <p>Wacaraon fornisce essenzialmente parere divulgativo analitico informale senza che ciò generi consulenza monetaria autorizzata legalmente ai tavoli fiscali ed economici professionali con sigillo governativo su base investimenti monetari ad interesse speculativo od obbligazionario in Borsa ed Affini, trattando qui unicamente di spese minute consumabili in carrelli della quotidianità civile in base comparazione libera dei valori tra listini ad estensione massiva pubblica ai margini di app esterne ai database promotori base originaria testata localmente per stima convenienza media applicata sulle reti grande distribuzione generica statale metropolitana in sede esame dei carichi applicativi su listino prezzi supermercati limitrofi o aggregati storicamente analizzabili sull'intero suolo ed intero territorio d'esercizio dell'advisory base su promo esposto con log file ed assenso contrattuale base qui richiamato in toto ed essenzialmente al preambolo costitutivo sui disclaimer legali obbligatori.</p>
+                        </div>
+                    </details>
+
+                    <details class="text-sm bg-gray-800 border-none text-gray-200">
+                        <summary class="hover:text-primary transition font-bold uppercase text-xs py-3 px-4 rounded bg-gray-800 shadow">Politiche di Reso & Estinzione Abbonamenti (Refund)</summary>
+                        <div class="details-content bg-gray-900 border-none px-4 py-4 leading-relaxed text-xs space-y-2">
+                            <p>Il progetto Wacaraon Advisory, nel perimetro temporale di utilizzo odierno per finalità illustrativa, opera da collettore digitale svincolato totalmente dall'onere della gestione rimborsi di tipo logistico finanziario od accreditativo.</p>
+                            <p>Ribadiamo che nessuna moneta, nessuna valuta o asset viene versata mediante questa stazione e dunque lo scorrimento del modulo formativo non avvia né accoda iter debitorio mensile e per diretta derivazione logica procedurale un iter restitutivo materiale sui conti degli applicativi a monte della catena promozionale citata all'origine contrattuale delle parti afferenti su reti informatiche estese.</p>
+                            <p>Tuttavia ci corre prassi illustrare seppur indirettamente le regole basi, qualora il partner di origine offrisse futuri upgrade in store ufficiali o pacchetti speciali, precisiamo che ciascuno storno transazioni apparterrà e andrà preteso sul cruscotto della società madre menzionata come titolare finale della somministrazione di servizio di comparazione estesa.</p>
+                            <p>Tipicamente la tempistica dei recessi normata nell'unione sul codice telematico si calcola in 14 solari decorrenti della attivazione sottoscrizione in abbonamento informatico senza obbligo apposizione e argomentazione della scusante o prova di deficienza dello strumento o fallibilità tecnica o pre-installazione sul sistema fallace.</p>
+                            <p>Laddove non via sia la soddisfazione sul calcolo sul risparmio tra le pareti del market o dei mercati su scala aggregata non scatterà automatico lo scomputo sui corrispettivi poiché le variazioni esogene dei gestori alimentari sono fluide, arbitrarie estranee completamente all'autore degli scontrini archiviati sui file gestionali di consulto d'uso informato tra le pareti web applicativo estensivo precompilato.</p>
+                            <p>In sintesi non diamo, non neghiamo, ma rimandiamo fermamente alle Policy di Pagamento ed annesse policy di Storno sui gateway definiti dalle matrici contrattuali di Apple, Google, Stripe o fornitore d'opera del fornitore app aggregante prezzi a titolo d'uso locale.</p>
+                            <p>Nel malaugurato ed improbabile caso in cui errori software procurassero la perdita sui report della cronologia non costituisce presupposto materiale logico neppure residualmente un reclamo di indennità monetaria per ammanchi informatici in base ad assenso su uso "cosi come è ed appare" all'inizio dell'istallazione e della configurazione sul telefono di terze generazioni ed ultima generazione impiegabile sui consumatori mass market ad appuntamento al fine formativo estensivo d'apprezzamento sulle merci locali dislocate nei market aderenti all'iniziativa prezzistica o volontariamente immessi mediante scanner ed operatori logistici autonomi estranei ma complementari al server fornitore origine del flusso dati monetari quantificabili oggettivamente al tempo odierno.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm font-medium">
+                <p>&copy; 2026 Wacaraon Advisory. Piattaforma Tutti I Diritti Riservati In Ambito D'uso E Commerciale Nazionale Promozionale.</p>
+                <div class="mt-4 md:mt-0 flex gap-4 uppercase font-black tracking-widest text-xs">
+                    <span class="text-gray-500">Ottimizzazione Budget</span>
+                    <span class="text-gray-500">Intelligenza Acquisto</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FIXED COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 border-t-4 border-primary text-white p-6 z-50 transform transition-transform duration-300 translate-y-full" style="display:none;">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex-1">
+                <p class="font-medium text-sm leading-relaxed text-gray-300">
+                    <span class="font-bold text-white uppercase text-base mb-1 block">Esperienza Sicura</span>
+                    Facciamo uso di frammenti di tracciamento al solo fine di mantenere operativa questa finestra informativa sull'advisory delle spese, evitando sprechi logici. Proseguendo o accettando approvi il consolidato posizionamento limitato interno alla pagina medesima per analizzare prestazioni.
+                </p>
+            </div>
+            <div class="flex shrink-0 gap-3">
+                <button onclick="acceptCookies()" class="btn-primary text-sm px-6 py-3 whitespace-nowrap border-none">Concordo & Ottimizzo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC (ROUTING, COOKIES, FALLBACKS) -->
+    <script>
+        // ROUTING SYSTEM (The "Gravity Well" Protocol)
+        document.addEventListener('click', function(e) {
+            const anchor = e.target.closest('a');
+            if (!anchor) return;
+            
+            const href = anchor.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                
+                let targetId = href.substring(1);
+                let targetElement = document.getElementById(targetId);
+                
+                // FALLBACK ROUTING to #contact if target missing
+                if (!targetElement && targetId !== '') {
+                    console.warn(`Anchor #${targetId} missing. Redirecting to #contact...`);
+                    targetElement = document.getElementById('contact');
+                }
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            }
+        });
+
+        // COOKIE LOGIC
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const banner = document.getElementById('cookie-banner');
+            const hasConsent = localStorage.getItem('wacaraon_cookies');
+            
+            if (!hasConsent) {
+                banner.style.display = 'block';
+                // Slide in effect
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 100);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('wacaraon_cookies', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 300);
+        }
+    </script>
+</body>
+</html>
