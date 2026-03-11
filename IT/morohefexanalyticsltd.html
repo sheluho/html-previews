@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoroHefex Analytics | App Monitoraggio Conti Bancari e Patrimonio Netto</title>
+    <meta name="description" content="Controlla conto, saldo, banca e ottimizza il rendimento dei tuoi risparmi e del patrimonio. La migliore app di monitoraggio finanziario avanzato.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* VAR D: Palette (Deep Niche Analysis) - Indigo/Finance Analytics */
+            --primary: #4f46e5;
+            /* VAR C: Surface (Cool - 'k' ASCII 107 % 3 = 2) */
+            --surface: #f8fafc;
+            /* VAR A: Geometry (Domain 'morohefexanalyticsltd.click' length 29 % 3 = 2 -> Pill) */
+            --radius: 24px;
+            /* VAR B: Physics ('m' ASCII 109 % 3 = 1 -> Material) */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* GLOBAL CONTRAST BASE */
+        body {
+            background-color: #f3f4f6; /* Always light gray to make white cards pop */
+            color: #1f2937;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* BRAND COMPONENT: The DNA Card */
+        .dna-card {
+            background-color: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* BRAND COMPONENT: Primary Button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* UTILITY: Text Accent */
+        .text-primary { 
+            color: var(--primary); 
+        }
+
+        /* Form Controls customized with border-radius based on Geometry VAR A */
+        .form-input {
+            border-radius: var(--radius);
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-md relative z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-black text-2xl text-primary tracking-tight">MoroHefex Analytics</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Analisi e Funzioni</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Testimonianze</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">Domande Frequenti</a>
+                    <a href="#contact" class="btn-primary">Richiedi Accesso App</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-primary focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-gray-700 font-medium hover:bg-gray-50 rounded-md">Analisi e Funzioni</a>
+                <a href="#reviews" class="block px-3 py-2 text-gray-700 font-medium hover:bg-gray-50 rounded-md">Testimonianze</a>
+                <a href="#faq" class="block px-3 py-2 text-gray-700 font-medium hover:bg-gray-50 rounded-md">Domande Frequenti</a>
+                <a href="#contact" class="block px-3 py-2 text-primary font-bold hover:bg-gray-50 rounded-md">Richiedi Accesso App</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Full width exception, uses overlay for readability) -->
+    <header class="relative bg-gray-900 pb-16 pt-24 md:pt-32 mb-16 overflow-hidden">
+        <div class="absolute inset-0">
+            <!-- Pexels valid source with fallback -->
+            <img src="https://images.pexels.com/photos/4386442/pexels-photo-4386442.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=App+Monitoraggio+Finanziario'" 
+                 class="w-full h-full object-cover" 
+                 alt="Smartphone dashboard showing net worth tracking" 
+                 referrerpolicy="no-referrer">
+            <div class="absolute inset-0 bg-black bg-opacity-70 mix-blend-multiply"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                MoroHefex Analytics<br>
+                <span class="text-blue-300">Le Analitiche perfette per dominare il tuo patrimonio.</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 mb-10">
+                La prima vera app progettata unicamente per connettere ogni <strong class="text-white">conto</strong> e <strong class="text-white">banca</strong>. Ottimizza il <strong class="text-white">rendimento</strong> aggregando il <strong class="text-white">saldo</strong> in tempo reale e tutelando i tuoi preziosi <strong class="text-white">risparmi</strong> all'interno di un'unica dashboard focalizzata interamente sulla crescita del tuo <strong class="text-white">patrimonio</strong> netto.
+            </p>
+            <div class="flex justify-center flex-col sm:flex-row gap-4">
+                <a href="#contact" class="btn-primary text-lg">Inizia la Valutazione Ora</a>
+                <a href="#features" class="inline-block px-8 py-4 rounded-full border border-white text-white font-semibold hover:bg-white hover:text-gray-900 transition-colors" style="border-radius: var(--radius);">Esplora le funzioni</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <!-- FEATURES SECTION wrapped in DNA Card -->
+        <div id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-4">L'Infrastruttura del tuo Benessere Finanziario</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Non perdere tempo tra mille schermate. Collega la tua <strong>banca</strong>, monitora il tuo <strong>saldo</strong> ed eleva i tuoi <strong>risparmi</strong> al livello successivo. Le funzioni più richieste per la gestione finanziaria di alto livello.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 bg-white bg-opacity-50 border border-gray-100 rounded-xl">
+                    <div class="h-12 w-12 text-white bg-indigo-600 rounded-lg flex items-center justify-center mb-6" style="border-radius: calc(var(--radius) * 0.5); background-color: var(--primary);">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Aggregazione Multibanca</h3>
+                    <p class="text-gray-600">Connetti qualsiasi <strong>banca</strong> europea con pochi clic. Ricevi gli aggiornamenti di ogni tuo <strong>conto</strong> automaticamente su una singola app unificata e sicura.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-6 bg-white bg-opacity-50 border border-gray-100 rounded-xl">
+                    <div class="h-12 w-12 text-white rounded-lg flex items-center justify-center mb-6" style="border-radius: calc(var(--radius) * 0.5); background-color: var(--primary);">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Analisi del Rendimento</h3>
+                    <p class="text-gray-600">Studia attivamente come lavorano i tuoi <strong>risparmi</strong> nel tempo. Genera simulazioni che calcolano il <strong>rendimento</strong> effettivo sulle spese analizzate storicamente dall'algoritmo.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-6 bg-white bg-opacity-50 border border-gray-100 rounded-xl">
+                    <div class="h-12 w-12 text-white bg-indigo-600 rounded-lg flex items-center justify-center mb-6" style="border-radius: calc(var(--radius) * 0.5); background-color: var(--primary);">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Cruscotto del Patrimonio</h3>
+                    <p class="text-gray-600">Verifica in tempo reale il <strong>saldo</strong> consolidato totale, sommando beni liquidi e tracciamenti di spesa, misurando oggettivamente il <strong>patrimonio</strong> netto reale di anno in anno.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">La Voce di chi Controlla il proprio Destino Finanziario</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <blockquote class="bg-gray-50 p-6 border-l-4 rounded-r-xl" style="border-left-color: var(--primary);">
+                    <p class="text-gray-700 italic mb-4">"Da quando ho sincronizzato la mia prima <strong>banca</strong> e la seconda contemporaneamente, la frustrazione è sparita. Poter guardare i miei <strong>risparmi</strong> e l'esatto <strong>patrimonio</strong> connettersi visivamente tramite analytics in 3D sul mio smartphone mi dà una tranquillità inestimabile."</p>
+                    <footer class="font-bold text-gray-900">— Alessandro D. (Imprenditore, 2026)</footer>
+                </blockquote>
+
+                <blockquote class="bg-gray-50 p-6 border-l-4 rounded-r-xl" style="border-left-color: var(--primary);">
+                    <p class="text-gray-700 italic mb-4">"Stavo impazzendo con l'uso di fogli Excel complessi e obsoleti solo per calcolare quanto <strong>saldo</strong> mi avanzasse tra un mese e l'altro per via degli imprevisti e per ricalcolare un ipotetico <strong>rendimento</strong> annuo da conservare sul <strong>conto</strong> primario. Questa app fa tutto il lavoro grezzo automaticamente. Strabiliante!"</p>
+                    <footer class="font-bold text-gray-900">— Maria V. (Architetto, 2026)</footer>
+                </blockquote>
+
+                <blockquote class="bg-gray-50 p-6 border-l-4 rounded-r-xl" style="border-left-color: var(--primary);">
+                    <p class="text-gray-700 italic mb-4">"Consigliato. Strumento potente e mai noioso. L'app non ti consiglia, ti documenta semplicemente il presente nudo e crudo dei conti sparsi evidenziando il peggior <strong>conto</strong> operativo che svuota il mio totale rispetto a dove effettivamente cresce un po' di <strong>rendimento</strong> vero. Chiaro, preciso, analitico e professionale in ogni scheda di consultazione visiva."</p>
+                    <footer class="font-bold text-gray-900">— Lorenzo P. (Designer, 2026)</footer>
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">Domande Frequenti Sull'App</h2>
+            <div class="space-y-4">
+                
+                <details class="bg-white p-5 rounded-lg border border-gray-200 cursor-pointer shadow-sm group">
+                    <summary class="font-bold text-gray-900 text-lg flex justify-between items-center outline-none">
+                        Quante connessioni alla banca sono possibili nel cruscotto dell'App?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-indigo-100">Al momento attuale, l'utente iscritto possiede un limite base con la possibilità di agganciare simultaneamente fino ad otto istituti indipendenti differenti con funzione PSD2 (Open Banking), integrando immediatamente qualsiasi tipologia di <strong>banca</strong> europea con credenziali e token, raccogliendo un vasto quadro globale dei vostri conti.</p>
+                </details>
+
+                <details class="bg-white p-5 rounded-lg border border-gray-200 cursor-pointer shadow-sm group">
+                    <summary class="font-bold text-gray-900 text-lg flex justify-between items-center outline-none">
+                        Il saldo viene mostrato in differita oppure elaborato al centesimo?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-indigo-100">Dipende fondamentalmente da quanto velocemente i vostri fornitori abilitano l'interconnessione lato software ma il nostro modulo cloud interrogativo processa l'elaborazione su ogni utenza, offrendo l'evidenza finale del totale <strong>saldo</strong> praticamente live con margine di una decina di secondi per poterlo visualizzare sulla barra alta sul cellulare ed ovunque.</p>
+                </details>
+
+                <details class="bg-white p-5 rounded-lg border border-gray-200 cursor-pointer shadow-sm group">
+                    <summary class="font-bold text-gray-900 text-lg flex justify-between items-center outline-none">
+                        Riesce a fare tracking automatico dividendo le spese e tutelando il risparmio?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-indigo-100">L'algoritmo rileva automaticamente categorie quali Ristoranti, Cibo, Acquisti mensili, Energia, Bollette etc per mostrare l'ammontare dissipato al mese isolandolo da quello da ritenere accumulato in base statistica e potenziando quindi con forte senso di consapevolezza i sudati <strong>risparmi</strong> senza bisogno di compilare infiniti form informatici.</p>
+                </details>
+
+                <details class="bg-white p-5 rounded-lg border border-gray-200 cursor-pointer shadow-sm group">
+                    <summary class="font-bold text-gray-900 text-lg flex justify-between items-center outline-none">
+                        Dove va il mio patrimonio netto e chi vede tutto questo potenziale loggato?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-indigo-100">Si tratta rigorosamente e solamente dell'interazione passiva per permettervi il cruscotto visivo interno apposita: MoroHefex Analytics processa i tabulati numericamente schermando completamente l'identità del cliente ed a zero visibilità a noi operatori, l'effettivo <strong>patrimonio</strong> e tracciato personale lo potrai accedere mediante biometria esclusiva del tuo mobile.</p>
+                </details>
+
+                <details class="bg-white p-5 rounded-lg border border-gray-200 cursor-pointer shadow-sm group">
+                    <summary class="font-bold text-gray-900 text-lg flex justify-between items-center outline-none">
+                        Vedo il mio fondo indicizzato con le variazioni e i guadagni giornalieri o annualizzati inclusi?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-indigo-100">Se si aggiungono le API di specifici istituti accreditati ed applicati sul mercato e da questi abilitata la connettività sui depositi titoli posseduti ed inseribili tramite la lista disponibile e sincronizzabile online e certificata dall'Unione Europa da poco tempo per i tool appositi come questo si può ottenere senza fatica il diagramma che include pienamente il calcolato <strong>rendimento</strong> periodico e l'andamento base sui portafogli stessi collegati su uno o l'altro <strong>conto</strong> operativo monitorato in background dalla dashboard centrale personale dell'applicativo.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- CONTACT & FORM SECTION -->
+        <div id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24 mb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Attiva il Tuo Profilo Analytics</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">Le registrazioni pubbliche all'app attualmente richiedono approvazione per calibrare correttamente le risorse del cluster dati di MoroHefex Analytics e dei fornitori per Open Banking. Inviaci il modulo ed accedi presto a una visione straordinaria e superiore di controllo che include monitoraggio assoluto e totale aggregando agevolmente tutti quegli istituti separati offrendoti una potenza decisionale mai così trasparente con dati cristallizzati in app pronte e sempre veloci da scaricare dopo l'ok.</p>
+                    
+                    <div class="flex flex-col gap-4 text-gray-700">
+                        <div class="flex items-center">
+                            <svg class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            <span class="font-medium">MoroHefex Headquarter IT (Analytics Hub App): <br> Via dell'Innovazione Finanziaria, 20100 Milano MI, Italia</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Appunto Orario Cloud Sync 24/7 - Hub Analisi dalle 9:00 alle 18:00 (Fuso EU/Rome)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 relative">
+                    <form id="lead-form" class="space-y-5" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Registrazione richiesta Accesso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Nome Completo</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 form-input focus:ring-primary focus:border-primary focus:outline-none transition-all" placeholder="Es. Mario Rossi">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="surname">Cognome Anagrafico</label>
+                            <input type="text" id="surname" required class="w-full px-4 py-3 border border-gray-300 form-input focus:ring-primary focus:border-primary focus:outline-none transition-all" placeholder="Inserisci il cognome vero usato dalle tue banche">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="bank">Istituto Bancario o Conto Principale da Agganciare</label>
+                            <input type="text" id="bank" required class="w-full px-4 py-3 border border-gray-300 form-input focus:ring-primary focus:border-primary focus:outline-none transition-all" placeholder="Scegli Banca o Servizio Es. Unicredit o Simile...">
+                        </div>
+                        <p class="text-xs text-gray-500 italic mt-2">Dato il rispetto assoluto e vincolo alla privacy totale non elaboreremo, né conserveremo ed ovviamente in conformità non chiediamo MAI via operatore web o ticket o form o ticket la compilazione ed immissione numerica reale per IBAN personali sui pannelli front-end in cloud a norma per proteggere i veri ed essenziali risparmi.</p>
+                        
+                        <button type="submit" class="w-full btn-primary text-lg mt-6">Completa e Attiva Richiesta Download Sicuro</button>
+                    </form>
+
+                    <div id="success-msg" class="hidden text-center py-12 px-6 bg-white border border-green-200 rounded-xl">
+                        <svg class="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta di Abilitazione al Database inviata</h3>
+                        <p class="text-gray-600">Sarai presto contattato sulle piattaforme prescelte ed autorizzate con i successivi sicurissimi ed agevoli passi volti ad assicurarti l'unica via per scaricare il cruscotto e poter cominciare le prime sync verso l'agognato controllo patrimoniale su tutto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER WITH LEGAL & COMPLIANCE TEXTS IN DETAILS TAGS -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-indigo-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-1 gap-8 mb-8 text-center md:text-left">
+                <div>
+                    <span class="text-white font-black text-2xl tracking-tight block mb-4">MoroHefex Analytics</span>
+                    <!-- MANDATORY DISCLAIMER TEXT (Anti-Laziness Mode) -->
+                    <p class="text-sm border-l-2 border-indigo-500 pl-4 py-1 text-gray-400 italic bg-gray-800 bg-opacity-50 max-w-2xl mx-auto md:mx-0">
+                        "Questo è un sito promozionale indipendente gestito da MoroHefex Analytics, che agisce come affiliato per Moneyfarm."
+                    </p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 mt-4 space-y-4">
+                
+                <!-- FULL VERBATIM PRIVACY POLICY TEXT IN OUTPUT_LANGUAGE: IT -->
+                <details class="text-sm bg-gray-800 p-4 rounded text-gray-400 outline-none">
+                    <summary class="cursor-pointer font-bold text-gray-300">Informativa Estesa Sulla Tutela Completa Della Privacy Totale (Minimo Formale)</summary>
+                    <div class="mt-4 space-y-2 text-justify">
+                        <p>La presente dichiarazione, rilasciata formalmente agli attori, esplicita l'attenzione dell'azienda sulla salvaguardia accurata della sicurezza telematica dell'interessato rispetto agli impegni vincolanti sull'utilizzo legittimo ed espresso della rete dell'hub software in app MoroHefex Analytics.</p>
+                        <p>I calcolatori interni e gli schemi server non memorizzeranno, copieranno e processeranno indiscriminatamente il valore segreto che costituisce l'onorato capitale oppure un qualsiasi vero rendimento associabile alla reale situazione che l'applicativo genera sul monitor del device per consultazione.</p>
+                        <p>Come fornitore indipendente promotore dei principi operativi essenziali informiamo specificamente che tutti gli accessi in transito presso l'operatore cloud che si affaccia sulla vetrina web e successiva acquisizione digitale form passano sempre ed univocamente tramite flussi strettamente e solidamente e massivamente criptati secondo standard bancario o pseudo-finanziario protocollato dai più moderni SSL (Secure Sockets Layer).</p>
+                        <p>È categorico divieto interno incrociare in maniere terze od arbitrarie le informazioni in archivio estraendo il saldo o elaborazioni relative al proprio tesoro da depositare nei cruscotti a scopi divulgativi estranei e mai concordati contrattualmente nella stringa iniziale.</p>
+                        <p>Se sussiste incrocio ed aggregazione di log operativi a fine di misurazione di diagnostica ed analisi sull'usura da uso di funzioni front end (come tocchi su tab di aggregatore ed annessi per gestire appositi schemi del conto operativo monitorabile) gli output restituiti verranno catalogati interamente tramite una pseudonimizzazione completa ad hashing cieco senza riferimento reversibile verso lo schema di nome o vero cognome imputato nel modulo di primissima iscrizione provvisoria.</p>
+                        <p>Tutelando pienamente ogni attore partecipante il responsabile assoluto che governa i server di pertinenza designato provvisorio e principale al sistema app per lo sviluppo tecnico dell'architettura digitale è MoroHefex Analytics nella sua sede operativa esplicitamente indicata.</p>
+                        <p>A tutti coloro e a qualunque visitatore si presentino i moduli di adesione con il legittimo desiderio d'interfaccia si assicura costantemente ed apertamente il possesso al totale ed incontestato, irrevocabile esercizio di portabilità ai sensi imposti specifici della direttiva continentale detta e riconosciuta con GDPR (General Data Protection Regulation).</p>
+                        <p>L'erogazione precisa e senza macchia di elaborazione sull'integrazione informatica ai partner open-banking garantisce di norma non si possa agire tecnicamente in fase esecutiva sui tabulati e su somme stanziali visibili come deposito base effettivo e sui medesimi risparmi conservati dall'aderente nelle vere banche originali, bloccando attivamente azioni ed impostazioni su app col divieto stringente all'uso pro-attivo prelevato dell'imposto software.</p>
+                        <p>L'individuo navigante per qualsivoglia dubbio esecutivo inerente la tenuta privata delle cartelle fisiche disposte negli schedari europei ed i file database di pertinenza potrà notificarci istantaneamente richiesta mediante posta tracciata recapitata al centro organizzativo, inviando quindi moduli legali ufficiali da recapitare alla sede stessa di Milano presso la casella d'indirizzo sopra trascritta nel box contattaci della landing di iscrizione per agire su rimozione veloce.</p>
+                        <p>Nell'esteso adempimento formale la visura o copia integrale contenente frammenti ed identità si ottiene legalmente producendo per iscritto con firme d'identificazione certe presso la giurisdizione competente italiana un documento da trasmettere integralmente sempre presso i gestori designati promotori effettivi.</p>
+                        <p>Oltre questo confine espletiamo la categorica astensione volontaria nell'istituire invii non sollecitati e campagne invadenti spingendo il patrimonio sotto la sfera delle pratiche nocive da blocco forzoso su elenchi di comunicazione ed è quindi garanzia certa per questo circuito digitale che MoroHefex manterrà integrità formale nell'architettura informativa generale ed il suo ambiente telematico analitico costantemente sicuro dai contatti indesiderati esterni per ogni individuo abbonato attivo nell'accesso mobile fornito dalla dashboard dedicata allo stoccaggio sicuro e trasparente della vera ricchezza individuale calcolata sui sistemi analizzati dall'utente stesso nel display fornito senza alcuna riserva tecnica al corretto funzionamento quotidiano garantito formalmente nell'hub cloud operativo connesso online via app ai sistemi preposti e conformi normati dalle specifiche severe.</p>
+                    </div>
+                </details>
+
+                <!-- FULL VERBATIM TERMS TEXT IN OUTPUT_LANGUAGE: IT -->
+                <details class="text-sm bg-gray-800 p-4 rounded text-gray-400 outline-none">
+                    <summary class="cursor-pointer font-bold text-gray-300">Termini Pieni d'Utenza, Accordi Ufficiali Generali ed Avvisi Espliciti Legali</summary>
+                    <div class="mt-4 space-y-2 text-justify">
+                        <p>Ogni disposizione formalizzata presente all'interno del sottoscritto capitolo giuridico-informativo determina vincolo obbligatorio d'utenza stabilito senza compromessi formali fin dal primissimo e banale scroll operato, anche inconsapevole ed indiretto sui documenti che compongono il sito odierno esplicativo afferente al brand noto ed esplicitato col logo stampato e collaudato sulla dashboard MoroHefex Analytics con ogni estensione digitale d'interazione software associata ai servizi che compongono le applicazioni prodotte.</p>
+                        <p>Noi, essendo gestori di interfaccia front-end al netto della struttura indipendente, dichiariamo senza appelli ed ombre un fine unicamente limitato sul permettere l'evidente appercezione ed il palese uso consultativo del preposto cruscotto per analizzare appositamente l'assieme patrimoniale in oggetto del tracciamento scelto individualmente ed imputato coscientemente sulla periferica dall'adoperante loggato ed accertato col suo identificativo privato sicuro salvato a monte dal terminale stesso prescelto col download dal gestore app store d'origine normata internamente e dalle società di erogazione terze indipendenti dallo sviluppatore indicato a monte delle documentazioni incluse sulla nota landing descrittiva al sistema interconnesso tramite PSD2 integrabile tramite API esposte col massimo livello di compliance sul mercato continentale e non.</p>
+                        <p>Mettiamo al corrente attivamente che tutto l'elaborato di carattere analitico-grafico compresa simulazione ed animazione generata internamente dalla suddetta piattaforma analizzatrice del rendimento supposto è concepito unicamente secondo stime puramente fittizie su basi matematiche probabilistiche storiche isolate estraibili teoricamente dalle transazioni permesse ed è destinata, ad onor del vero legale sancito da codice, come esclusivo calcolo informativo visivo provvisorio mai costituendo pertanto, nel modo in cui un attore può fraintendere od assumere per valido dogmaticamente ed in alcuna ed assolutamente mai in misura limitata di espressione diretta consulenza finanziaria su acquisti futuri al portafoglio reale e tantomeno configurazione garantita ad invito estorto su qualsivoglia mirato genere d'impiego ed uso destinabile formalmente al proprio specifico investimento od alla collocazione e deposito presso enti e/o derivati speculativi per moltiplicare le reali sostanze liquide possedute ad oggi ed indicate numericamente sullo specchio digitale dal vero istituto d'aggancio effettivo selezionabile al click che aggiorna e palesa su grafico a video la natura esatta del deposito.</p>
+                        <p>Questa dichiarata natura strettamente passiva interdice alla nostra società software il posizionamento operativo verso intermediario con mandati monetari effettivi di gestione del saldo medesimo, quindi in nessun tribunale od evento ci potrete definire gestori finanziari né tantomeno custodi tangibili dei capitali depositati legalmente nelle banche a garanzia che solo gli utenti scelgono a chi affidare liberamente assumendosene il rischio intrinseco in carico costante fuori e parallelamente all'infrastruttura d'analisi sviluppata dai progettisti ed informatici che costruiscono unicamente il tool esplicativo per agevolare solo e puramente le misurazioni ed affini calcolatori aggreganti visivi connettibili liberamente nel quadro delle leggi stabilite sull'app designata al mercato italiano e transnazionale nei limiti legali e regolamenti validi alle giurisdizioni d'appartenenza sui terminali operanti da cui agisce attivamente per configurare ad integrazione completa senza vizi sui server della sede presidiata a monitorare operatività cloud al pieno regime contrattualizzato in accordo fra fornitore hardware e utente licenziatario possessore app registrata al form della medesima landing pubblicata in affiliazione chiara per Moneyfarm a scopo esplorativo sul settore fintech con cui si dialoga tecnicamente nel campo aggregatori patrimonio tramite questa singolare vetrina interattiva funzionante su questo stesso dominio esplicito registrato regolarmente all'estensione web dedicata all'uso promozionale corretto, continuo ed ampiamente validato normativamente per i sistemi del prodotto licenziato esaminabile con approvazione da form d'ingresso obbligato per operatività base garantita d'ora e da data postera sull'aggiornamento legale depositato presso foro del sito erogante in sede in Milano centro con validità imperativa all'apertura d'esecuzione locale software al cliente approvato e pronto al suo proprio operato d'osservazione sui fondi integrati dal modulo ed il programma eseguito dallo storage.</p>
+                    </div>
+                </details>
+
+                <!-- FULL VERBATIM REFUNDS TEXT IN OUTPUT_LANGUAGE: IT -->
+                <details class="text-sm bg-gray-800 p-4 rounded text-gray-400 outline-none">
+                    <summary class="cursor-pointer font-bold text-gray-300">Resi Formali, Ripensamenti Sulla Dashboard E Rimborso Specificato Ed Ammesso</summary>
+                    <div class="mt-4 space-y-2 text-justify">
+                        <p>Questo spazio enuncia chiaramente tutto lo statuto formale vigente sulle facoltà congiunte, normando specificatamente sull'applicabilità od eventuali impossibilità oggettive afferenti a dinamiche e procedure di rientro capitali relativi all'ambito puro e stretto legato intrinsecamente ad acquisti facoltativi inerenti esclusive tipologie ed espansioni d'integrazione di pacchetti puramente digitali e/o di licenza premio od accessorio avanzato erogabili strettamente all'uso massimizzato applicativo denominato chiaramente dal gestore software MoroHefex Analytics all'interno degli store digitali designati fornitori ai consumatori del servizio software monitoraggio su citata piattaforma web ed interamente erogabile post installazione nel suo formato intangibile telematico codificato sui mercati previsti dallo statuto fondatore ad impiego sui dispositivi idonei operati dall'adoperante fruitore loggato con dati autenticati di riconoscimento personale in banca da se stesso interconnesso sul tabellone visivo app fornito funzionante ed accessibile senza obblighi preventivi o barriere temporali ingiuste ed arbitrarie sulle versioni software gratuite base in promozione sulla root site d'ingresso al form modulo fornito in landing di contatto primario a scopo rilascio del permesso ed ammissione d'ingresso digitale postuma al check utente completato correttamente dai sistemi di automazione.</p>
+                        <p>Costituendo rigorosamente tale pacchetto app un prodotto intangibile totalmente dematerializzato erogabile nel flusso d'una intera connessione via onde aeree sulla rete protocollata di cui l'uso avviene nel medesimo avvio e l'installazione produce ed consuma l'acceso primario nel momento che l'impronta esecutiva digitale si plasma nell'identità mobile del possessore al touch che produce lo storico ed inizializzazione locale permanente delle dipendenze d'uso operative non sussiste in alcuna base naturale materiale rientrabile il reso pacco analogo in termini per prodotti tangibili logistici che necessitano transazioni con magazzini resi.</p>
+                        <p>Viene comunque riconosciuto senza indugi legislativi che la preminenza dei dritti del cittadino online sovrasta i blocchi logici se il difetto imputato è riscontrabile sui livelli minimi pattuiti d'usabilità erogata quindi al verificarsi evidente con le logiche probanti fornite ed evidenti in cui l'aggregatore conti e monitor banca principale e non, soffrisse intrinsecamente d'anomalia cronica severa da escluderlo a priori al compito calcolatore sul rendimento d'esercizio per il periodo esibito ed appurato dalla manutenzione l'avente diritto alla restituzione del controvalore premium o similare in abbonamento erogato su fattura del provider può esibire per le disposizioni in termine d'ammissione per le piattaforme digitali sui mercati app ed il relativo tempo di preavviso previsto solitamente da estendere nel confine e limitato tempo normato in ambito unione europea a quattordici decadi feriali continue per presentare istanze su portale da cui il prelievo fu effettuato primariamente ed ove le leggi europee a salvaguardia forzano congiuntamente l'assolvimento dello scioglimento in restituzione all'utente in misura esatta equivalente ad ogni eroso importo dedotto a tale fine dal proprio effettivo salvadanaio da prelevarlo dal credito accumulato riattivando status corretto post storno sui tabulati e saldo totale visualizzato al traguardo di operazione chiusa e verificabile dall'utenza al riscontro avvenuto regolarmente nei tempi stabiliti standard garantito e documentato appieno d'ufficio dal dipartimento che annulla irrevocabilmente i vincoli contratti per adesione pregressa alla funzione premium analizzata e respinta come sopra espresso con estesa precisazione senza lasciar ambiguità legali all'utenza della succitata architettura d'indagine monetaria online denominata in premessa a quest'ultimo termine steso sulla base giuridica in tutela con le norme attive, espletando così definitivamente tutti gli inquadramenti vincolanti l'impiego palese dell'app, erogabile per fine monitoraggio, estensione conto, salvataggi capitali ed aggregazione sul bilancio reale personale e patrimoni che la formula descrittiva intera su citata racchiude esplicitamente ed ampiamente e dettagliatamente nell'informativa di rientro al reso stesa nei caratteri correnti e ben intellegibili in documentazione ad accessibilità continuativa al portale in basso a scroll perenne per verifica formale sempre e pubblicamente assicurata all'apertura web del brand operativo.</p>
+                    </div>
+                </details>
+
+            </div>
+
+            <div class="mt-8 text-sm text-center">
+                &copy; 2026 MoroHefex Analytics. Tutti i diritti rigorosamente ed inderogabilmente riservati all'autore sviluppatore piattaforma di analisi conti e risparmi.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS SMART ROUTING PROTOCOL (Self-Healing Gravity Well + Analytics fix) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetEl = document.getElementById(targetId);
+                    
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        // Gravity Fallback Protocol -> route strictly to contact
+                        const fallback = document.getElementById('contact');
+                        if (fallback) {
+                            fallback.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                    // Close mobile menu organically if active upon click routing
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- FIXED COOKIE BANNER AND LOCALSTORAGE SCRIPT -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 border-t-2 border-indigo-500 p-4 md:p-6 z-50 transform translate-y-full transition-transform duration-500 ease-in-out flex flex-col md:flex-row justify-between items-center shadow-2xl">
+        <div class="text-gray-300 text-sm mb-4 md:mb-0 max-w-4xl pr-0 md:pr-4">
+            Rigoroso rispetto normativo. Analizziamo tracciamenti prettamente operativi sull'uso app con coockie tecnico ai soli fini log-on ed avvio erogazione della dashboard conto a livello d'architettura telematica sicura non-invasiva ad elevatissimo grado per la completa tutela ed assoluta garanzia salvaguardia dei movimenti patrimonio aggregato. Interagire coi bottoni, l'avanzare ed uso dei form è consenso esplicito rilasciato valido di proseguimento consenziente all'elaborato dei calcolatori web per MoroHefex.
+        </div>
+        <div class="flex space-x-4 flex-shrink-0">
+            <button onclick="acceptCookies()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-6 rounded-lg transition-colors shadow-lg" style="border-radius: calc(var(--radius) * 0.5);">Capito e Avvio Sessione</button>
+        </div>
+    </div>
+
+    <script>
+        // Execution fix: Slide banner logic
+        function checkCookieConsent() {
+            if (!localStorage.getItem('morohefex_cookie_accepted_app')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('translate-y-full');
+                }, 1000); // 1 sec offset purely mechanical execution pattern
+            }
+        }
+        function acceptCookies() {
+            localStorage.setItem('morohefex_cookie_accepted_app', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+        }
+        window.addEventListener('load', checkCookieConsent);
+    </script>
+
+</body>
+</html>
