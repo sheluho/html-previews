@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Bedcap Tech | Corsi Professionali e Certificazioni</title><meta name="description" content="Accelera la tua carriera con i corsi professionali e le certificazioni riconosciute di Bedcap Tech. Sviluppa nuove competenze per il tuo futuro."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #0d9488;
+            --secondary: #dc2626;
+            --radius: 24px;
+            --card-radius: 24px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --body-bg: #f0fdf4;
+            --card-bg: #ffffff;
+            --text: #14532d;
+            --muted: #4b5563;
+        }
+
+        body {
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .dna-card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative Accent for Cards */
+        .dna-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--secondary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .dna-card:hover::before {
+            opacity: 1;
+        }
+
+        nav {
+            background-color: var(--card-bg); /* Use card-bg for solid navbar */
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            border: 2px solid var(--primary);
+        }
+        .btn-primary:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 12px rgba(13,148,136,0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary) !important;
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: #ffffff !important;
+        }
+
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
+
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
+        }
+
+        /* Fixed navbar compensation */
+        main, main + footer { scroll-margin-top: 5rem; }
+
+        /* Form inputs */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(13,148,136,0.15);
+        }
+
+        /* Links */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(13,148,136,0.2), transparent);
+            margin: 0;
+        }
+
+        /* Custom details/summary for FAQ & Legal */
+        details {
+            background-color: var(--body-bg);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        summary {
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            color: var(--text);
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+        details[open] summary::after { content: '-'; }
+        details > div {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            background-color: rgba(220, 38, 38, 0.1);
+            color: var(--secondary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+    </style> </head><body class="antialiased selection:bg-teal-200 selection:text-teal-900"><nav class="fixed w-full z-50 top-0 transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold text-primary flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg> Bedcap Tech </a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="font-medium hover:text-primary transition-colors">I Corsi</a><a href="#reviews" class="font-medium hover:text-primary transition-colors">Recensioni</a><a href="#faq" class="font-medium hover:text-primary transition-colors">FAQ</a><a href="#contact" class="btn-primary"> Inizia il Percorso <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-primary hover:text-secondary focus:outline-none p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full px-4 pt-2 pb-6 space-y-2"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-green-50">I Corsi</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-green-50">Recensioni</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-green-50">FAQ</a><a href="#contact" class="block px-3 py-2 mt-4 text-center btn-primary w-full">Inizia Ora</a></div></nav><main><section class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><div class="w-full md:w-1/2 space-y-6"><span class="badge">Formazione Riconosciuta</span><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-gray-900"> Bedcap Tech: Accelera la Tua <span class="text-primary">Carriera</span> con il <span class="text-secondary">Corso</span> Giusto. </h1><p class="text-lg md:text-xl text-muted font-medium"> Costruisci il tuo futuro con il nostro <strong>percorso</strong> formativo. Ottieni certificazioni riconosciute, sviluppa nuove <strong>competenze</strong> e trasforma le tue ore di <strong>studio</strong> in opportunità reali. </p><div class="flex flex-col sm:flex-row gap-4 pt-4"><a href="#contact" class="btn-primary justify-center text-lg"> Scopri i Corsi <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></a><a href="#features" class="btn-secondary justify-center text-lg"> Come Funziona </a></div><div class="flex items-center gap-4 pt-4 text-sm text-muted"><div class="flex -space-x-2"><img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Studente" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0d9488/ffffff?text=S'"><img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Studentessa" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0d9488/ffffff?text=S'"><img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Studente" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0d9488/ffffff?text=S'"></div><p>Oltre <strong class="text-gray-900">5.000+</strong> professionisti formati.</p></div></div><div class="w-full md:w-1/2 relative"><div class="absolute inset-0 bg-primary opacity-10 rounded-[32px] transform translate-x-4 translate-y-4"></div><img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Professionisti che studiano e lavorano" class="rounded-[32px] shadow-xl relative z-10 object-cover w-full h-[400px] md:h-[500px]" loading="eager" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/0d9488/ffffff?text=Formazione+Professionale'"><div class="absolute bottom-8 -left-8 bg-white p-4 rounded-2xl shadow-lg z-20 flex items-center gap-3 border border-gray-100 hidden md:flex"><div class="bg-green-100 p-2 rounded-full text-green-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><p class="text-sm font-bold text-gray-900">Certificazioni Valide</p><p class="text-xs text-muted">Riconosciute dal MIUR</p></div></div></div></div></div></section><hr class="section-divider"><section id="features" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-3xl mx-auto mb-16"><h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Un <span class="text-primary">Percorso</span> Su Misura per la Tua Crescita</h2><p class="text-lg text-muted">Scegli tra centinaia di opportunità formative. Che tu voglia migliorare le tue competenze informatiche, linguistiche o avanzare nella pubblica amministrazione, abbiamo il <strong>corso</strong> ideale per te.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="dna-card group"><div class="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300"><svg class="w-8 h-8 text-secondary group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div><h3 class="text-2xl font-bold mb-3 text-gray-900">Certificazioni Informatiche e Lingue</h3><p class="text-muted mb-4">Aumenta il tuo punteggio in graduatoria e arricchisci il CV. Offriamo percorsi per certificazioni EIPASS, PEKIT e attestati linguistici (Inglese B2, C1, C2) riconosciuti a livello internazionale.</p><ul class="space-y-2"><li class="flex items-start gap-2 text-sm font-medium text-gray-700"><svg class="w-5 h-5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Validità per concorsi pubblici </li><li class="flex items-start gap-2 text-sm font-medium text-gray-700"><svg class="w-5 h-5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Esami completamente online </li></ul></div><div class="dna-card group"><div class="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300"><svg class="w-8 h-8 text-secondary group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div><h3 class="text-2xl font-bold mb-3 text-gray-900">Corsi Professionali e Master</h3><p class="text-muted mb-4">Sviluppa nuove <strong>competenze</strong> altamente richieste dal mercato del lavoro. Dai master in digital marketing ai corsi di contabilità, prepara la tua <strong>carriera</strong> per il salto di qualità.</p><ul class="space-y-2"><li class="flex items-start gap-2 text-sm font-medium text-gray-700"><svg class="w-5 h-5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Attestati di qualifica professionale </li><li class="flex items-start gap-2 text-sm font-medium text-gray-700"><svg class="w-5 h-5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Docenti esperti del settore </li></ul></div><div class="dna-card group"><div class="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300"><svg class="w-8 h-8 text-secondary group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg></div><h3 class="text-2xl font-bold mb-3 text-gray-900">Formazione Docenti e ATA</h3><p class="text-muted mb-4">Percorsi specifici per il personale scolastico. Acquisisci i CFU necessari per l'insegnamento, aggiorna le tue metodologie didattiche e scala le graduatorie provinciali (GPS).</p><ul class="space-y-2"><li class="flex items-start gap-2 text-sm font-medium text-gray-700"><svg class="w-5 h-5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Corsi riconosciuti dal MIUR </li><li class="flex items-start gap-2 text-sm font-medium text-gray-700"><svg class="w-5 h-5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Acquisizione punteggio garantita </li></ul></div><div class="dna-card group"><div class="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300"><svg class="w-8 h-8 text-secondary group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><h3 class="text-2xl font-bold mb-3 text-gray-900">Studio Flessibile E-Learning</h3><p class="text-muted mb-4">La nostra piattaforma ti permette di gestire lo <strong>studio</strong> in totale autonomia. Accedi alle lezioni 24/7 da qualsiasi dispositivo, ottimizzando il tempo senza rinunciare ai tuoi impegni lavorativi.</p><ul class="space-y-2"><li class="flex items-start gap-2 text-sm font-medium text-gray-700"><svg class="w-5 h-5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Piattaforma attiva 24 ore su 24 </li><li class="flex items-start gap-2 text-sm font-medium text-gray-700"><svg class="w-5 h-5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Tutoraggio dedicato incluso </li></ul></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Storie di <span class="text-secondary">Crescita</span> Professionale</h2><p class="text-lg text-muted">Scopri come i nostri studenti hanno trasformato la loro <strong>carriera</strong>.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card p-8"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted mb-6 italic">"Grazie al corso di certificazione informatica ho ottenuto il punteggio necessario per scalare la graduatoria ATA. Piattaforma intuitiva e materiale didattico eccellente. Un vero e proprio investimento sul mio futuro."</p><div class="flex items-center gap-3"><div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600">MR</div><div><p class="font-bold text-gray-900 text-sm">Marco R.</p><p class="text-xs text-muted">Personale Scolastico</p></div></div></div><div class="dna-card p-8"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted mb-6 italic">"Lavorando full-time pensavo fosse impossibile rimettermi a studiare. La flessibilità dell'e-learning mi ha permesso di conseguire la certificazione d'inglese B2 studiando la sera. Consigliatissimo!"</p><div class="flex items-center gap-3"><div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600">EL</div><div><p class="font-bold text-gray-900 text-sm">Elena L.</p><p class="text-xs text-muted">Impiegata</p></div></div></div><div class="dna-card p-8"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted mb-6 italic">"Il master in Digital Marketing mi ha fornito le competenze pratiche che mancavano al mio curriculum. Dopo due mesi dalla fine del percorso ho trovato lavoro in agenzia."</p><div class="flex items-center gap-3"><div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600">GF</div><div><p class="font-bold text-gray-900 text-sm">Giulia F.</p><p class="text-xs text-muted">Digital Marketer</p></div></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36 bg-white/50"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Domande Frequenti</h2><p class="text-lg text-muted">Tutto ciò che devi sapere sui nostri <strong>corsi</strong> e certificazioni.</p></div><div class="space-y-4"><details class="dna-card !p-0 !mb-0 group"><summary class="hover:text-primary transition-colors">I vostri corsi sono riconosciuti dal MIUR?</summary><div>Sì, la maggior parte dei nostri percorsi formativi, in particolare le certificazioni informatiche (es. EIPASS, PEKIT), linguistiche e i corsi di aggiornamento per docenti e personale ATA, sono regolarmente riconosciuti dal Ministero dell'Istruzione e del Merito (MIUR) e sono validi per l'acquisizione di punteggio nelle graduatorie provinciali e d'istituto.</div></details><details class="dna-card !p-0 !mb-0 group"><summary class="hover:text-primary transition-colors">Come funziona la modalità di studio E-learning?</summary><div>Il nostro metodo di <strong>studio</strong> è 100% flessibile. Una volta iscritto, avrai accesso a una piattaforma online disponibile 24 ore su 24, 7 giorni su 7. Potrai seguire le videolezioni, scaricare il materiale didattico e svolgere le esercitazioni nei momenti più adatti alla tua routine quotidiana, utilizzando PC, tablet o smartphone.</div></details><details class="dna-card !p-0 !mb-0 group"><summary class="hover:text-primary transition-colors">È previsto un supporto durante il percorso formativo?</summary><div>Assolutamente sì. Non sarai mai lasciato solo durante il tuo <strong>percorso</strong>. Offriamo assistenza tecnica per l'utilizzo della piattaforma e supporto didattico tramite tutor esperti che risponderanno ai tuoi dubbi e ti aiuteranno a prepararti al meglio per gli esami finali.</div></details><details class="dna-card !p-0 !mb-0 group"><summary class="hover:text-primary transition-colors">Come si svolgono gli esami finali per le certificazioni?</summary><div>Per la quasi totalità delle nostre certificazioni, gli esami finali si svolgono interamente online tramite piattaforme proctoring sicure e certificate. Questo significa che potrai sostenere l'esame comodamente da casa tua, seguendo le semplici istruzioni che ti verranno fornite al momento della prenotazione della sessione d'esame.</div></details><details class="dna-card !p-0 !mb-0 group"><summary class="hover:text-primary transition-colors">Quali sono i tempi per ricevere l'attestato dopo l'esame?</summary><div>Le tempistiche variano leggermente a seconda dell'ente certificatore. In media, per le certificazioni informatiche, l'attestato provvisorio è disponibile entro pochi giorni dal superamento dell'esame, mentre il certificato ufficiale viene rilasciato entro 30-45 giorni lavorativi direttamente nella tua area riservata, pronto per essere scaricato e allegato al tuo CV.</div></details></div></div></section><hr class="section-divider"><section id="contact" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card overflow-hidden"><div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"><div><h2 class="text-3xl font-bold text-gray-900 mb-4">Inizia Ora il Tuo <span class="text-primary">Percorso</span></h2><p class="text-muted mb-8">Richiedi informazioni senza impegno. Un nostro consulente ti aiuterà a scegliere il <strong>corso</strong> più adatto alle tue esigenze di <strong>crescita</strong> professionale e ti spiegherà come acquisire nuove <strong>competenze</strong>.</p><div class="space-y-6"><div class="flex items-center gap-4"><div class="w-12 h-12 bg-teal-50 rounded-full flex items-center justify-center text-primary shrink-0"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></div><div><h4 class="font-bold text-gray-900">Sede Amministrativa (Online)</h4><p class="text-sm text-muted">Servizi erogati interamente in modalità E-learning su tutto il territorio nazionale.</p></div></div><div class="flex items-center gap-4"><div class="w-12 h-12 bg-teal-50 rounded-full flex items-center justify-center text-primary shrink-0"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><h4 class="font-bold text-gray-900">Orari Supporto Didattico</h4><p class="text-sm text-muted">Lunedì - Venerdì: 09:00 - 18:00<br>Piattaforma E-learning: 24/7</p></div></div></div></div><div class="bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-100"><form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Invio in corso...'; setTimeout(()=>{this.style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div><label class="block text-sm font-medium text-gray-700 mb-1">Nome e Cognome *</label><input type="text" required placeholder="Es. Mario Rossi" class="w-full"></div><div><label class="block text-sm font-medium text-gray-700 mb-1">Area di Interesse *</label><select required class="w-full"><option value="">Seleziona un'opzione...</option><option value="cert-it">Certificazioni Informatiche (EIPASS, PEKIT)</option><option value="cert-lingue">Certificazioni Linguistiche</option><option value="docenti">Formazione Docenti / ATA</option><option value="master">Master e Corsi Professionali</option><option value="altro">Altro / Consulenza generica</option></select></div><div><label class="block text-sm font-medium text-gray-700 mb-1">Messaggio (Opzionale)</label><textarea rows="3" placeholder="Parlaci dei tuoi obiettivi di carriera..." class="w-full"></textarea></div><div class="flex items-start gap-2 mt-4"><input type="checkbox" required id="privacy" class="mt-1"><label for="privacy" class="text-xs text-muted">Accetto il trattamento dei dati personali in conformità con la Privacy Policy per la gestione della richiesta.</label></div><button type="submit" class="btn-primary w-full mt-4"> Richiedi Informazioni Gratuite </button></form><div id="success-msg" style="display:none" class="text-center py-8"><div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Inviata!</h3><p class="text-muted">Grazie per averci contattato. Un nostro consulente didattico analizzerà la tua richiesta e ti ricontatterà al più presto per guidarti verso il corso ideale per te.</p></div></div></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8 mt-12"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-8"><p class="text-sm text-gray-500 max-w-3xl mx-auto italic bg-gray-50 p-4 rounded-lg border border-gray-100"> Questo è un sito promozionale indipendente gestito da Bedcap Tech, che agisce come affiliato per Alteredu. Le informazioni presentate hanno scopo puramente informativo e promozionale. Per i dettagli contrattuali, i programmi completi dei corsi e le condizioni specifiche di erogazione, si rimanda ai canali ufficiali del fornitore del servizio. </p></div><div class="space-y-2 mb-8 max-w-3xl mx-auto text-left"><details class="text-sm text-gray-500 bg-gray-50 rounded-lg"><summary class="font-medium p-3 cursor-pointer hover:text-gray-900 transition-colors border border-transparent hover:border-gray-200 rounded-lg">Privacy Policy</summary><div class="p-4 pt-0 text-xs space-y-2"><p>La presente Privacy Policy descrive le modalità di gestione del sito web in riferimento al trattamento dei dati personali degli utenti che lo consultano e che interagiscono con i servizi web di Bedcap Tech. L'informativa è resa ai sensi del Regolamento (UE) 2016/679 (GDPR) e delle normative nazionali vigenti in materia di protezione dei dati personali. Il Titolare del trattamento dei dati raccolti attraverso questo sito è Bedcap Tech. I dati personali forniti volontariamente dagli utenti attraverso la compilazione dei form di contatto presenti sul sito sono utilizzati al solo fine di eseguire il servizio o la prestazione richiesta, specificamente per fornire informazioni relative ai corsi professionali e alle certificazioni promosse. I dati raccolti possono includere nome, cognome, numero di telefono (se fornito) e area di interesse formativo. Il conferimento dei dati è facoltativo, ma il rifiuto a fornirli comporta l'impossibilità di ottenere le informazioni richieste. I dati personali sono trattati con strumenti automatizzati per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti. Specifiche misure di sicurezza sono osservate per prevenire la perdita dei dati, usi illeciti o non corretti ed accessi non autorizzati. I dati raccolti tramite questo sito promozionale potranno essere comunicati al fornitore effettivo del servizio (Alteredu) esclusivamente per le finalità legate all'erogazione delle informazioni commerciali o dei servizi formativi richiesti dall'utente. I dati non saranno in alcun caso diffusi al pubblico. I soggetti cui si riferiscono i dati personali hanno il diritto in qualunque momento di ottenere la conferma dell'esistenza o meno dei medesimi dati e di conoscerne il contenuto e l'origine, verificarne l'esattezza o chiederne l'integrazione o l'aggiornamento, oppure la rettificazione. Ai sensi del medesimo articolo si ha il diritto di chiedere la cancellazione, la trasformazione in forma anonima o il blocco dei dati trattati in violazione di legge, nonché di opporsi in ogni caso, per motivi legittimi, al loro trattamento. Le richieste vanno rivolte al Titolare del trattamento. Bedcap Tech si riserva il diritto di modificare la presente Privacy Policy in qualsiasi momento, dandone evidenza su questa pagina. Si prega dunque di consultare regolarmente questa pagina, prendendo come riferimento la data di ultima modifica indicata in fondo.</p></div></details><details class="text-sm text-gray-500 bg-gray-50 rounded-lg"><summary class="font-medium p-3 cursor-pointer hover:text-gray-900 transition-colors border border-transparent hover:border-gray-200 rounded-lg">Termini di Servizio</summary><div class="p-4 pt-0 text-xs space-y-2"><p>I presenti Termini di Servizio regolano l'utilizzo del sito web gestito da Bedcap Tech. Accedendo o utilizzando questo sito, l'utente accetta di essere vincolato dai presenti Termini. Se non si accettano tutti i termini e le condizioni qui indicati, si prega di non utilizzare il sito. Bedcap Tech opera come affiliato indipendente e piattaforma promozionale per la diffusione di corsi professionali, master e certificazioni informatiche o linguistiche erogate da soggetti terzi (es. Alteredu). Bedcap Tech non è l'erogatore diretto dei servizi formativi, né l'ente certificatore. Di conseguenza, Bedcap Tech declina ogni responsabilità in merito alla qualità, all'aggiornamento, alla validità legale o alla conformità dei contenuti dei corsi e degli esami gestiti dal fornitore finale. Le informazioni fornite su questo sito sono redatte con la massima cura, tuttavia Bedcap Tech non garantisce che esse siano prive di errori, complete o costantemente aggiornate. L'utente comprende e accetta che l'iscrizione effettiva ai corsi, la fatturazione, l'accesso alle piattaforme e-learning e il rilascio degli attestati sono procedure gestite interamente dal fornitore del servizio. Qualsiasi contratto stipulato dall'utente per l'acquisto di un corso è da intendersi concluso esclusivamente tra l'utente e il fornitore terzo. Bedcap Tech si riserva il diritto di modificare, sospendere o interrompere, temporaneamente o permanentemente, il sito web o qualsiasi parte di esso, con o senza preavviso. L'utente accetta che Bedcap Tech non sarà responsabile verso di lui o verso terzi per qualsiasi modifica, sospensione o interruzione del sito. Tutti i contenuti presenti sul sito, inclusi testi, grafiche, loghi e immagini, sono di proprietà di Bedcap Tech o dei rispettivi proprietari e sono protetti dalle leggi sul diritto d'autore. È severamente vietata la riproduzione, distribuzione o modifica di tali contenuti senza esplicita autorizzazione scritta. L'utilizzo improprio dei moduli di contatto, l'invio di spam o il tentativo di compromettere la sicurezza del sito comporteranno il blocco immediato dell'accesso e la potenziale segnalazione alle autorità competenti.</p></div></details><details class="text-sm text-gray-500 bg-gray-50 rounded-lg"><summary class="font-medium p-3 cursor-pointer hover:text-gray-900 transition-colors border border-transparent hover:border-gray-200 rounded-lg">Politica sui Rimborsi</summary><div class="p-4 pt-0 text-xs space-y-2"><p>In conformità al ruolo di Bedcap Tech quale sito promozionale affiliato, la presente Politica sui Rimborsi ha scopo puramente informativo e rimanda integralmente alle condizioni di vendita stabilite dal fornitore effettivo dei corsi. Poiché Bedcap Tech non processa direttamente alcun pagamento e non incassa somme dagli utenti per l'acquisto dei corsi o delle certificazioni, non può in alcun modo elaborare, autorizzare o negare richieste di rimborso. Tutte le transazioni economiche avvengono sulle piattaforme sicure del fornitore del servizio formativo (Alteredu). Gli utenti che desiderano esercitare il diritto di recesso o richiedere un rimborso devono rivolgersi direttamente al servizio clienti del fornitore, seguendo le procedure e le tempistiche indicate nei loro Termini e Condizioni di Vendita. Generalmente, ai sensi della normativa europea sui contratti a distanza (Codice del Consumo), l'utente ha il diritto di recedere dal contratto entro 14 giorni dall'acquisto senza fornire alcuna motivazione, purché il servizio non sia stato interamente prestato. Nel caso di corsi online (e-learning), si fa presente che l'accesso ai contenuti digitali (es. login alla piattaforma, visualizzazione delle lezioni, download del materiale didattico) potrebbe comportare, secondo le policy del fornitore, la perdita del diritto di recesso. Invitiamo pertanto tutti gli utenti a leggere attentamente i termini di acquisto e rimborso sul sito ufficiale del fornitore prima di procedere al pagamento. Bedcap Tech si impegna a fornire, ove possibile, assistenza informativa per indirizzare l'utente verso i canali corretti per la gestione delle proprie pratiche amministrative, ma declina ogni responsabilità legale e finanziaria in merito a controversie relative a rimborsi, resi, storni o mancata erogazione dei servizi formativi. Per qualsiasi dubbio prima dell'acquisto, è consigliabile contattare il supporto dedicato del fornitore finale per avere conferme ufficiali sulle loro specifiche politiche di cancellazione.</p></div></details></div><div class="text-center text-sm text-gray-500 mt-8"> &copy; 2026 Bedcap Tech. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 shadow-2xl transform translate-y-full transition-transform duration-500 z-50"><div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-300"> Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito e per analizzare il traffico legato ai nostri <strong>corsi</strong>. Continuando a navigare, accetti la nostra Privacy Policy e l'uso dei cookie. </div><div class="flex gap-4 shrink-0"><button onclick="acceptCookies()" class="bg-primary hover:bg-teal-500 text-white px-6 py-2 rounded-full text-sm font-bold transition-colors"> Accetta Tutti </button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to contact section if ID is missing
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Cookie Banner Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("cookiesAccepted_bedcap")) {
+                setTimeout(() => {
+                    document.getElementById("cookie-banner").classList.remove("translate-y-full");
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem("cookiesAccepted_bedcap", "true");
+            document.getElementById("cookie-banner").classList.add("translate-y-full");
+        }
+    </script> </body></html>
