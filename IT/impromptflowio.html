@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ImpromptFlowIO | Monitora il tuo Patrimonio Netto</title><meta name="description" content="L'app definitiva per il monitoraggio dei conti bancari, dei risparmi e del patrimonio netto. Tieni traccia del saldo e del rendimento in un unico posto."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #059669;
+            --secondary: #ea580c;
+            --radius: 24px;
+            --card-radius: 24px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --body-bg: #fefce8;
+            --card-bg: #ffffff;
+            --text: #1a2e05;
+            --muted: #71717a;
+        }
+
+        body {
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        .dna-card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        nav {
+            background-color: var(--body-bg);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
+
+        /* Mobile menu — always opaque */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
+        }
+
+        /* Fixed navbar compensation */
+        main, main + footer { scroll-margin-top: 5rem; }
+
+        /* Form inputs */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(5,150,105,0.15);
+        }
+
+        /* Links */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(5,150,105,0.12), transparent);
+            margin: 0;
+        }
+
+        /* Store Badge Styling */
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #000;
+            color: #fff !important;
+            border-radius: 8px;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            height: 48px;
+        }
+        .store-badge:hover {
+            transform: scale(1.05);
+        }
+        .store-badge svg {
+            height: 24px;
+            margin-right: 10px;
+            fill: #fff;
+        }
+        .store-badge-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+        .store-badge-small {
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        .store-badge-large {
+            font-size: 16px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        
+        /* Custom Accent Elements */
+        .accent-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            margin-bottom: 4px;
+        }
+        .accent-border-left {
+            border-left: 4px solid var(--secondary);
+            padding-left: 1rem;
+        }
+    </style> </head><body class="antialiased"><nav class="fixed w-full z-50 top-0 transition-all duration-300 shadow-sm"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center gap-2"><svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" /></svg><a href="#" class="font-extrabold text-xl tracking-tight" style="font-family: 'DM Serif Display', serif;">ImpromptFlowIO</a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="font-medium">Funzionalità</a><a href="#how-it-works" class="font-medium">Come Funziona</a><a href="#reviews" class="font-medium">Recensioni</a><a href="#faq" class="font-medium">FAQ</a><a href="#download" class="btn-primary text-sm px-4 py-2">Scarica Ora</a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 px-4 pt-2 pb-6 space-y-2"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium">Funzionalità</a><a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium">Come Funziona</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium">Recensioni</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium">FAQ</a><a href="#download" class="block w-full text-center btn-primary mt-4">Scarica Ora</a></div></nav><main><section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8"><div class="max-w-3xl mx-auto text-center"><div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-800 text-sm font-semibold mb-6"><span class="accent-dot"></span> App Finanziaria n.1 </div><h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight"> Monitora ogni <span class="text-primary">conto</span>. Domina il tuo patrimonio. </h1><p class="text-lg md:text-xl text-muted mb-10 leading-relaxed"> ImpromptFlowIO promuove <strong>getquin</strong>, l'app definitiva per avere il controllo totale sui tuoi soldi. Collega la tua banca, analizza i risparmi e scopri il vero rendimento del tuo patrimonio netto in tempo reale. </p><div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span class="store-badge-small">Scarica su</span><span class="store-badge-large">App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span class="store-badge-small">DISPONIBILE SU</span><span class="store-badge-large">Google Play</span></div></a></div><div class="relative w-full max-w-2xl mx-auto"><div class="absolute inset-0 bg-primary opacity-10 rounded-3xl transform rotate-3 scale-105"></div><img src="https://placehold.co/800x600/059669/ffffff?text=Dashboard+Patrimonio+Netto" alt="App per monitoraggio conto e patrimonio" class="relative z-10 rounded-3xl shadow-2xl border border-gray-100 w-full object-cover" loading="lazy" referrerpolicy="no-referrer"></div></div></section><hr class="section-divider"><section id="features" class="py-20 md:py-28"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Tutto il tuo mondo finanziario, <span class="text-secondary">in tasca</span></h2><p class="text-lg text-muted max-w-2xl mx-auto">Scopri perché migliaia di persone utilizzano l'app getquin per gestire banca, risparmi e investimenti in modo intelligente.</p></div><div class="flex flex-col gap-20"><div class="flex flex-col md:flex-row items-center gap-10"><div class="w-full md:w-1/2"><img src="https://placehold.co/600x600/059669/ffffff?text=Sincronizza+Banca" alt="Sincronizzazione conti bancari" class="rounded-[24px] shadow-lg w-full" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2 accent-border-left"><div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-primary mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Sincronizza ogni Conto e Banca</h3><p class="text-muted text-lg leading-relaxed"> Dimentica i login multipli. Collega in modo sicuro tutti i tuoi conti correnti, conti deposito e carte di credito. Visualizza il tuo <strong>saldo</strong> sempre aggiornato senza dover aprire mille app diverse. La tua <strong>banca</strong>, finalmente unificata. </p></div></div><div class="flex flex-col md:flex-row-reverse items-center gap-10"><div class="w-full md:w-1/2"><img src="https://placehold.co/600x600/ea580c/ffffff?text=Patrimonio+Netto" alt="Calcolo patrimonio netto" class="rounded-[24px] shadow-lg w-full" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2 accent-border-left" style="border-color: var(--primary);"><div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-secondary mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></div><h3 class="text-2xl font-bold mb-4">Calcola il tuo Patrimonio Netto</h3><p class="text-muted text-lg leading-relaxed"> La ricchezza non è solo liquidità. Inserisci manualmente o collega automaticamente immobili, criptovalute, azioni ed ETF. Ottieni una visione completa, chiara e in tempo reale dei tuoi <strong>risparmi</strong> e della tua vera ricchezza totale. </p></div></div><div class="flex flex-col md:flex-row items-center gap-10"><div class="w-full md:w-1/2"><img src="https://placehold.co/600x600/059669/ffffff?text=Analisi+Rendimento" alt="Analisi rendimento investimenti" class="rounded-[24px] shadow-lg w-full" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2 accent-border-left"><div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-primary mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Analizza il Rendimento</h3><p class="text-muted text-lg leading-relaxed"> Scopri esattamente quanto stanno fruttando i tuoi investimenti. Utilizza grafici intuitivi per capire il <strong>rendimento</strong> del tuo portafoglio nel tempo, tracciare i dividendi e ottimizzare le tue scelte finanziarie per far crescere il tuo <strong>patrimonio</strong>. </p></div></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-20 md:py-28"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Inizia in <span class="text-primary">3 semplici passi</span></h2><p class="text-muted">Prendere il controllo delle tue finanze non è mai stato così facile e veloce.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"><div class="p-6"><div class="w-16 h-16 mx-auto bg-green-50 rounded-full flex items-center justify-center mb-6 shadow-sm border border-green-100"><span class="text-2xl font-bold text-primary">1</span></div><h4 class="text-xl font-bold mb-2">Scarica l'App</h4><p class="text-muted">Ottieni getquin gratuitamente dall'App Store o da Google Play sul tuo smartphone.</p></div><div class="p-6"><div class="w-16 h-16 mx-auto bg-green-50 rounded-full flex items-center justify-center mb-6 shadow-sm border border-green-100"><span class="text-2xl font-bold text-primary">2</span></div><h4 class="text-xl font-bold mb-2">Collega i Conti</h4><p class="text-muted">Sincronizza in modo sicuro la tua banca e i tuoi portafogli di investimento.</p></div><div class="p-6"><div class="w-16 h-16 mx-auto bg-orange-50 rounded-full flex items-center justify-center mb-6 shadow-sm border border-orange-100"><span class="text-2xl font-bold text-secondary">3</span></div><h4 class="text-xl font-bold mb-2">Vedi la Crescita</h4><p class="text-muted">Monitora il tuo saldo, analizza il rendimento e guarda crescere il tuo patrimonio.</p></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-20 md:py-28"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Amata da chi gestisce i propri <span class="text-secondary">risparmi</span></h2><div class="flex justify-center items-center gap-1 text-yellow-400 mb-2"><svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="text-sm text-muted">Valutazione media basata sulle recensioni degli store</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card m-0"><div class="flex justify-between items-start mb-4"><div><h4 class="font-bold">Marco T.</h4><p class="text-xs text-muted">Gennaio 2025</p></div><div class="flex text-yellow-400"><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg></div></div><p class="text-gray-700 italic">"Finalmente riesco a vedere il saldo di tutte le mie banche in un solo posto. Ottima per gestire i risparmi senza impazzire tra mille applicazioni diverse."</p></div><div class="dna-card m-0"><div class="flex justify-between items-start mb-4"><div><h4 class="font-bold">Giulia S.</h4><p class="text-xs text-muted">Marzo 2025</p></div><div class="flex text-yellow-400"><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg></div></div><p class="text-gray-700 italic">"Calcolare il patrimonio netto era un incubo con i fogli Excel. Questa app calcola il rendimento in automatico e include anche le mie crypto. Fantastica!"</p></div><div class="dna-card m-0"><div class="flex justify-between items-start mb-4"><div><h4 class="font-bold">Luca R.</h4><p class="text-xs text-muted">Febbraio 2026</p></div><div class="flex text-yellow-400"><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg></div></div><p class="text-gray-700 italic">"L'interfaccia è bellissima e mi aiuta a tenere sotto controllo ogni singolo conto. I grafici sul rendimento dei dividendi sono super dettagliati."</p></div></div></div></section><hr class="section-divider"><section id="faq" class="py-20 md:py-28"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card"><h2 class="text-3xl font-bold mb-8 text-center">Domande Frequenti</h2><div class="space-y-4"><details class="group bg-gray-50 rounded-xl p-4 cursor-pointer"><summary class="font-bold flex justify-between items-center outline-none"> L'app è gratuita? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Sì, il download e l'utilizzo delle funzionalità di base per monitorare il tuo saldo e il patrimonio sono gratuiti. Sono disponibili funzionalità premium opzionali per analisi avanzate del rendimento.</p></details><details class="group bg-gray-50 rounded-xl p-4 cursor-pointer"><summary class="font-bold flex justify-between items-center outline-none"> I dati della mia banca sono al sicuro? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Assolutamente sì. L'app utilizza standard di crittografia bancaria per collegarsi ai tuoi istituti in modalità di sola lettura. Nessuno, nemmeno l'app, può effettuare transazioni o spostare i tuoi risparmi.</p></details><details class="group bg-gray-50 rounded-xl p-4 cursor-pointer"><summary class="font-bold flex justify-between items-center outline-none"> Posso monitorare conti di banche diverse? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Certamente. L'obiettivo principale è unificare. Puoi collegare contemporaneamente il conto della tua banca principale, il tuo conto deposito, le tue carte prepagate e i tuoi broker di investimento in un'unica dashboard.</p></details><details class="group bg-gray-50 rounded-xl p-4 cursor-pointer"><summary class="font-bold flex justify-between items-center outline-none"> Calcola anche il rendimento degli investimenti? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Sì, oltre al saldo liquido, puoi monitorare azioni, ETF, criptovalute e immobili. L'app calcola il rendimento storico e in tempo reale, inclusi i dividendi, per darti un quadro esatto del tuo patrimonio netto.</p></details><details class="group bg-gray-50 rounded-xl p-4 cursor-pointer"><summary class="font-bold flex justify-between items-center outline-none"> Come inizio? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-3 leading-relaxed">È semplicissimo! Clicca sui pulsanti di download qui sotto, installa l'app sul tuo dispositivo iOS o Android, crea un account gratuito e inizia a collegare i tuoi conti per vedere crescere il tuo patrimonio.</p></details></div></div></div></section><hr class="section-divider"><section id="download" class="py-20 md:py-28"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card text-center bg-green-50 border-green-100"><h2 class="text-4xl md:text-5xl font-extrabold mb-4">Scarica <span class="text-primary">getquin</span> Oggi</h2><p class="text-xl text-muted mb-10 max-w-2xl mx-auto">Smetti di usare vecchi fogli di calcolo. Inizia a monitorare il tuo conto, ottimizzare i risparmi e dominare il tuo patrimonio netto in modo professionale.</p><div class="flex flex-col sm:flex-row justify-center items-center gap-6"><a href="#" class="store-badge transform hover:scale-105 transition-transform" style="height: 60px; padding: 0 24px;"><svg viewBox="0 0 384 512" style="height: 32px;"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span class="store-badge-small">Scarica su</span><span class="store-badge-large" style="font-size: 20px;">App Store</span></div></a><a href="#" class="store-badge transform hover:scale-105 transition-transform" style="height: 60px; padding: 0 24px;"><svg viewBox="0 0 512 512" style="height: 32px;"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span class="store-badge-small">DISPONIBILE SU</span><span class="store-badge-large" style="font-size: 20px;">Google Play</span></div></a></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-8"><span class="font-extrabold text-2xl tracking-tight text-primary" style="font-family: 'DM Serif Display', serif;">ImpromptFlowIO</span><p class="mt-4 text-sm text-muted max-w-2xl mx-auto border-t border-gray-100 pt-4"><em>Questa è una pagina promozionale indipendente gestita da ImpromptFlowIO, per l'app getquin sviluppata da getquin.</em></p></div><div class="space-y-4 max-w-3xl mx-auto text-left text-sm text-gray-600"><details class="bg-gray-50 p-4 rounded-lg"><summary class="font-bold cursor-pointer outline-none">Informativa sulla Privacy</summary><div class="mt-4 space-y-2"><p>La tua privacy è la nostra priorità assoluta in ImpromptFlowIO. Questa pagina descrive come gestiamo le informazioni quando visiti la nostra landing page promozionale. Noi, in qualità di promotori, non raccogliamo direttamente i tuoi dati bancari o finanziari. Quando decidi di scaricare l'app getquin, verrai reindirizzato agli store ufficiali di Apple o Google. Qualsiasi dato inserito all'interno dell'applicazione getquin è soggetto esclusivamente all'informativa sulla privacy dello sviluppatore originario. Noi potremmo utilizzare cookie analitici anonimizzati per comprendere il traffico della nostra pagina web. Questi cookie ci aiutano a migliorare l'esperienza utente e a misurare l'efficacia delle nostre campagne di marketing. Non vendiamo, scambiamo o trasferiamo a terzi le tue informazioni personali identificabili. Qualsiasi dato di navigazione raccolto viene utilizzato esclusivamente per scopi statistici interni. Ci riserviamo il diritto di aggiornare questa politica sulla privacy in qualsiasi momento per adeguarci alle nuove normative legali. Le modifiche saranno effettive immediatamente dopo la pubblicazione su questa pagina. Ti invitiamo a rivedere periodicamente questa sezione per essere sempre informato su come proteggiamo le tue informazioni. Se continui a utilizzare il nostro sito, accetti le condizioni descritte in questa informativa. Riserviamo un'attenzione particolare alla trasparenza e ci impegniamo a mantenere i più alti standard di sicurezza per il nostro sito web. Ricorda sempre di verificare le impostazioni di privacy del tuo dispositivo prima di scaricare qualsiasi applicazione mobile. La tua sicurezza finanziaria inizia dalla consapevolezza di come vengono gestiti i tuoi dati personali.</p></div></details><details class="bg-gray-50 p-4 rounded-lg"><summary class="font-bold cursor-pointer outline-none">Termini e Condizioni</summary><div class="mt-4 space-y-2"><p>Benvenuto su ImpromptFlowIO. Accedendo a questo sito web, accetti di essere vincolato da questi Termini e Condizioni di utilizzo. Se non sei d'accordo con una qualsiasi parte di questi termini, sei pregato di non utilizzare il nostro sito. Il contenuto di questa pagina web ha il solo scopo di fornire informazioni generali e promuovere l'applicazione mobile getquin. Noi non siamo gli sviluppatori dell'applicazione e non ci assumiamo alcuna responsabilità per il suo funzionamento, per i bug o per eventuali perdite finanziarie derivanti dal suo utilizzo. Le informazioni fornite su questo sito riguardanti le funzionalità dell'app, come il monitoraggio del saldo o il calcolo del patrimonio netto, sono basate sulle descrizioni fornite dallo sviluppatore e possono essere soggette a modifiche senza preavviso. Non offriamo consulenza finanziaria, legale o fiscale attraverso questo sito. Qualsiasi decisione di investimento o gestione dei risparmi presa utilizzando l'app promossa è a tuo esclusivo rischio. ImpromptFlowIO si riserva il diritto di modificare, sospendere o interrompere qualsiasi aspetto del sito web in qualsiasi momento. Tutti i marchi, i loghi e i nomi commerciali (incluso getquin) appartengono ai rispettivi proprietari. Il nostro utilizzo di tali marchi è esclusivamente a scopo descrittivo e promozionale. L'utente si impegna a non utilizzare il sito in modo illegale o per scopi vietati dai presenti termini. Non garantiamo che il sito sarà ininterrotto, tempestivo, sicuro o privo di errori. Accettando questi termini, manlevi ImpromptFlowIO da qualsiasi reclamo derivante dall'uso di applicazioni di terze parti promosse su questa pagina. Questi termini sono regolati e interpretati in conformità con le leggi vigenti nel territorio di operatività del dominio.</p></div></details><details class="bg-gray-50 p-4 rounded-lg"><summary class="font-bold cursor-pointer outline-none">Politica sui Rimborsi</summary><div class="mt-4 space-y-2"><p>Poiché ImpromptFlowIO è esclusivamente una piattaforma promozionale indipendente, non gestiamo direttamente transazioni finanziarie, acquisti o abbonamenti per l'app getquin. Qualsiasi download, acquisto in-app o sottoscrizione premium avviene esclusivamente attraverso le piattaforme ufficiali Apple App Store o Google Play Store. Pertanto, la nostra organizzazione non ha la capacità tecnica o legale di emettere rimborsi per gli acquisti effettuati. Se hai scaricato l'app e hai attivato un abbonamento a pagamento che desideri annullare, devi procedere attraverso le impostazioni del tuo account sul rispettivo store digitale. Per gli utenti iOS, i rimborsi devono essere richiesti direttamente ad Apple attraverso il portale "Report a Problem". Per gli utenti Android, la richiesta di rimborso deve essere inoltrata a Google Play seguendo le loro linee guida specifiche. È responsabilità dell'utente comprendere e rispettare le politiche di rimborso degli store digitali prima di effettuare qualsiasi acquisto. Non possiamo intervenire in dispute commerciali tra l'utente, lo sviluppatore dell'app o i fornitori degli store digitali. Se riscontri problemi tecnici con il monitoraggio dei conti bancari o con il calcolo del patrimonio netto all'interno dell'app, ti invitiamo a contattare il supporto clienti ufficiale dello sviluppatore getquin. Noi non forniamo assistenza tecnica per l'applicazione promossa. Qualsiasi richiesta di rimborso inviata ai nostri canali non potrà essere processata. Ti consigliamo di leggere attentamente i termini di prova gratuita eventualmente offerti dall'app per evitare addebiti indesiderati sui tuoi conti. Questa politica di trasparenza garantisce che tu sappia esattamente a chi rivolgerti per la gestione dei tuoi abbonamenti finanziari.</p></div></details></div><div class="text-center mt-12 text-sm text-muted"> &copy; 2026 ImpromptFlowIO. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 text-white p-4 z-50 transform transition-transform duration-300 translate-y-full"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4"><p class="text-sm">Utilizziamo i cookie per assicurarti la migliore esperienza sul nostro sito promozionale. Continuando la navigazione, accetti il nostro utilizzo dei cookie.</p><button onclick="acceptCookies()" class="bg-primary text-white px-6 py-2 rounded-full font-bold whitespace-nowrap hover:bg-green-700 transition-colors"> Accetta Tutto </button></div></div> <script>
+        // Smooth Scrolling logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    if (targetElement) {
+                        // Element exists, smooth scroll to it
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else if (targetId !== '') {
+                        // Fallback: Force smooth scroll to #download
+                        const downloadSection = document.getElementById('download');
+                        if (downloadSection) {
+                            downloadSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script> </body></html>
