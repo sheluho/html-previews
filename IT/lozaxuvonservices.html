@@ -1,420 +1,162 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lozaxuvon Services | Confronto Stipendi e Analisi Mercato</title>
-    <meta name="description" content="Servizio leader per il confronto dello stipendio e l'analisi del mercato del lavoro in Italia. Scopri i trend di settore e prepara il tuo prossimo aumento.">
-    
-    <!-- Tailwind CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- Design DNA Component Stack -->
-    <style>
-      :root {
-        --primary: #10b981; /* Emerald Green for Financial/Growth Niche */
-        --surface: #f8fafc; /* Cool Slate White */
-        --radius: 0px;      /* Sharp Geometry */
-        --shadow: 4px 4px 0px 0px #000; /* Hard Neo-Brutalist Physics */
-      }
+<!DOCTYPE html><html lang="it" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Lozaxuvon | Rivista Domotica e Casa Intelligente</title><meta name="description" content="Scopri le migliori guide, recensioni e servizi per l'automazione casa. Trasforma la tua abitazione in una smart home con i dispositivi connessi consigliati da Lozaxuvon."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #ea580c;
+            --secondary: #0891b2;
+            --radius: 16px;
+            --card-radius: 16px;
+            --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.05);
+            --body-bg: #f9fafb;
+            --card-bg: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+        }
 
-      /* GLOBAL CONTRAST BASE */
-      body {
-        background-color: #f3f4f6; /* Light gray to make white cards pop */
-        color: #1f2937;
-        font-family: system-ui, -apple-system, sans-serif;
-      }
+        body {
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
+        }
 
-      /* BRAND COMPONENT: The DNA Card */
-      .dna-card {
-        background-color: var(--surface);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 2.5rem;
-        margin-bottom: 2rem;
-        border: 2px solid #000; /* Accentuated for Neo-Brutalist shadow */
-      }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
 
-      /* BRAND COMPONENT: Primary Button */
-      .btn-primary {
-         background-color: var(--primary);
-         color: #ffffff !important;
-         border-radius: var(--radius);
-         box-shadow: var(--shadow);
-         padding: 1rem 2rem;
-         transition: all 0.2s;
-         font-weight: bold;
-         border: 2px solid #000;
-         display: inline-block;
-      }
-      .btn-primary:active { 
-         box-shadow: 0px 0px 0px 0px #000; 
-         transform: translate(4px, 4px); 
-      }
-      .btn-primary:hover { opacity: 0.9; }
+        .dna-card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
 
-      /* UTILITY: Text Accent */
-      .text-primary { color: var(--primary); }
+        nav {
+            background-color: var(--card-bg); /* Made card-bg for better contrast as fixed header */
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
 
-      /* Additional Neo-brutalist touches */
-      .form-input {
-          border: 2px solid #000;
-          border-radius: 0;
-      }
-      .form-input:focus {
-          outline: none;
-          box-shadow: 4px 4px 0px 0px #10b981;
-      }
-    </style>
-</head>
-<body class="antialiased flex flex-col min-h-screen">
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    <!-- Navbar -->
-    <header class="bg-white border-b-2 border-black sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-black tracking-tight text-gray-900 uppercase">
-                        Lozaxuvon <span class="text-primary">Services</span>
-                    </a>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-900 font-bold hover:text-primary">Servizi</a>
-                    <a href="#reviews" class="text-gray-900 font-bold hover:text-primary">Testimonianze</a>
-                    <a href="#faq" class="text-gray-900 font-bold hover:text-primary">FAQ</a>
-                    <a href="#contact" class="btn-primary">Inizia Analisi</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(234,88,12,0.05);
+        }
+
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
+
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+        main, main + footer { scroll-margin-top: 5rem; }
+
+        /* Form inputs */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(234,88,12,0.15);
+        }
+
+        /* Links */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(234,88,12,0.12), transparent);
+            margin: 0;
+        }
+
+        /* Custom details/summary for FAQ */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
         
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-white">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 text-base font-bold text-gray-900">Servizi</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-bold text-gray-900">Testimonianze</a>
-                <a href="#faq" class="block px-3 py-2 text-base font-bold text-gray-900">FAQ</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary">Inizia Analisi</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="flex-grow pb-12">
-        
-        <!-- Hero Section -->
-        <section class="bg-white border-b-2 border-black">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 flex flex-col md:flex-row items-center gap-12">
-                <div class="w-full md:w-1/2 space-y-8">
-                    <h1 class="text-5xl lg:text-6xl font-black text-gray-900 leading-tight uppercase">
-                        Lozaxuvon Services:<br>
-                        <span class="text-primary">Dati Reali</span> per il tuo <span class="bg-black text-white px-2">Stipendio</span>.
-                    </h1>
-                    <p class="text-xl text-gray-700 font-medium">
-                        Il nostro servizio ti offre l'analisi definitiva del mercato del lavoro. Scopri quanto guadagna in media un <span class="font-bold underline">collega</span> con la tua esperienza, studia le tendenze del tuo <span class="font-bold underline">settore</span> e acquisisci le informazioni giuste per richiedere il prossimo meritato <span class="font-bold underline">aumento</span>.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#contact" class="btn-primary text-lg uppercase tracking-wide">Scopri il tuo Valore</a>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2">
-                    <div class="relative w-full aspect-w-4 aspect-h-3 border-4 border-black" style="box-shadow: 8px 8px 0px 0px #000;">
-                        <img src="https://placehold.co/800x600/f8fafc/10b981?text=Analisi+Mercato+Lavoro" alt="Dashboard di analisi stipendi e trend del mercato" loading="lazy" class="w-full h-full object-cover">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Trust Section -->
-        <section class="bg-gray-900 py-6 border-b-2 border-black">
-            <div class="max-w-6xl mx-auto px-4 text-center">
-                <p class="text-sm font-bold text-white tracking-widest uppercase mb-4">Migliaia di utenti supportati nelle aziende del settore</p>
-                <div class="flex flex-wrap justify-center gap-8 text-gray-400 font-black text-2xl uppercase">
-                    <span>Informatica</span>
-                    <span>Finanza</span>
-                    <span>Consulenza</span>
-                    <span>Ingegneria</span>
-                </div>
-            </div>
-        </section>
-
-        <div class="mt-16 px-4">
-            
-            <!-- Features Container -->
-            <section id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-                <h2 class="text-3xl font-black uppercase border-b-4 border-black inline-block mb-8">I Nostri Servizi di Analisi</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 border-2 border-black p-6 hover:bg-gray-100 transition duration-200">
-                        <h3 class="text-xl font-bold mb-3 text-primary uppercase">Confronto Stipendio</h3>
-                        <p class="text-gray-700 font-medium leading-relaxed">
-                            Analizza in profondità la tua remunerazione. Confronta il tuo attuale pacchetto retributivo con le medie reali per assicurarti di ricevere uno <strong class="text-black">stipendio</strong> equo e competitivo rispetto agli standard di mercato.
-                        </p>
-                    </div>
-                    
-                    <div class="bg-gray-50 border-2 border-black p-6 hover:bg-gray-100 transition duration-200">
-                        <h3 class="text-xl font-bold mb-3 text-primary uppercase">Mappatura Settore</h3>
-                        <p class="text-gray-700 font-medium leading-relaxed">
-                            Ottieni un quadro chiaro del tuo ambiente. Comprendi chi paga di più nel tuo <strong class="text-black">settore</strong>. Offriamo dati precisi per valutare dove risiedono le vere opportunità di crescita per la tua <strong class="text-black">posizione</strong> attuale.
-                        </p>
-                    </div>
-
-                    <div class="bg-gray-50 border-2 border-black p-6 hover:bg-gray-100 transition duration-200">
-                        <h3 class="text-xl font-bold mb-3 text-primary uppercase">Strategia per l'Aumento</h3>
-                        <p class="text-gray-700 font-medium leading-relaxed">
-                            Non affidarti al caso. Utilizza le nostre ricerche avanzate del <strong class="text-black">mercato</strong> del lavoro per avere basi solide. Sapere che un tuo <strong class="text-black">collega</strong> in un'altra azienda percepisce di più è l'inizio per richiedere e ottenere il tuo <strong class="text-black">aumento</strong>.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Social Proof / Reviews -->
-            <section id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24 mt-12">
-                <h2 class="text-3xl font-black uppercase border-b-4 border-black inline-block mb-8">Storie di Negoziazione (2026)</h2>
-                
-                <div class="space-y-6">
-                    <div class="border-l-8 border-primary pl-6 py-2 bg-gray-50 p-4 border-t-2 border-r-2 border-b-2 border-black">
-                        <p class="italic text-lg text-gray-800 font-medium mb-4">"Lavoravo in quell'azienda da 3 anni e pensavo di guadagnare il giusto. Grazie al servizio di analisi di Lozaxuvon ho visto i numeri del mio <span class="font-bold underline text-primary">settore</span>: ero decisamente sotto pagata. Ho stampato i dati del <span class="font-bold underline text-primary">mercato</span> e ho negoziato con successo."</p>
-                        <p class="font-black text-gray-900">— Chiara L., Senior Analyst</p>
-                    </div>
-
-                    <div class="border-l-8 border-black pl-6 py-2 bg-gray-50 p-4 border-t-2 border-r-2 border-b-2 border-black">
-                        <p class="italic text-lg text-gray-800 font-medium mb-4">"Sapere in modo anonimo qual è la reale fascia retributiva per una <span class="font-bold underline text-primary">posizione</span> equivalente alla mia mi ha dato una marcia in più ai colloqui. È molto più facile chiedere un <span class="font-bold underline text-primary">aumento</span> o una nuova ral se sai con precisione il tuo valore."</p>
-                        <p class="font-black text-gray-900">— Francesco T., Sviluppatore IT</p>
-                    </div>
-
-                    <div class="border-l-8 border-primary pl-6 py-2 bg-gray-50 p-4 border-t-2 border-r-2 border-b-2 border-black">
-                        <p class="italic text-lg text-gray-800 font-medium mb-4">"Spesso tra i dipendenti vige omertà sulle cifre. Scoprire i parametri che regolano ogni singolo <span class="font-bold underline text-primary">stipendio</span> ed evitare di essere pagato meno del proprio <span class="font-bold underline text-primary">collega</span>, a parità di competenze, non ha prezzo."</p>
-                        <p class="font-black text-gray-900">— Giulia M., Marketing Specialist</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ Section -->
-            <section id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24 mt-12">
-                <h2 class="text-3xl font-black uppercase border-b-4 border-black inline-block mb-8">Domande Frequenti (FAQ)</h2>
-                
-                <div class="space-y-4">
-                    <details class="group bg-white border-2 border-black [&_summary::-webkit-details-marker]:hidden">
-                        <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-4 font-black text-gray-900 hover:bg-gray-50 uppercase">
-                            Da dove provengono i dati per l'analisi dello stipendio?
-                            <span class="relative h-5 w-5 shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 opacity-100 group-open:opacity-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="square" stroke-linejoin="miter" d="M12 4v16m8-8H4" /></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 opacity-0 group-open:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="square" stroke-linejoin="miter" d="M20 12H4" /></svg>
-                            </span>
-                        </summary>
-                        <p class="border-t-2 border-black p-4 text-gray-700 font-medium bg-gray-50">
-                            I nostri report combinano migliaia di informazioni in forma anonima rilasciate dai lavoratori italiani e statistiche ufficiali sulle assunzioni, garantendo uno specchio reale della situazione in ogni specifico settore e regione.
-                        </p>
-                    </details>
-
-                    <details class="group bg-white border-2 border-black [&_summary::-webkit-details-marker]:hidden">
-                        <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-4 font-black text-gray-900 hover:bg-gray-50 uppercase">
-                            Quanto incide la posizione geografica sull'offerta di mercato?
-                            <span class="relative h-5 w-5 shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 opacity-100 group-open:opacity-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="square" stroke-linejoin="miter" d="M12 4v16m8-8H4" /></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 opacity-0 group-open:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="square" stroke-linejoin="miter" d="M20 12H4" /></svg>
-                            </span>
-                        </summary>
-                        <p class="border-t-2 border-black p-4 text-gray-700 font-medium bg-gray-50">
-                            La tua sede influisce molto, specialmente in Italia. La medesima <span class="font-bold text-black">posizione</span> lavorativa, con responsabilità identiche, in città grandi avrà una fascia compensativa sensibilmente diversa rispetto ad una provincia del sud. I nostri report considerano questo elemento come vitale.
-                        </p>
-                    </details>
-
-                    <details class="group bg-white border-2 border-black [&_summary::-webkit-details-marker]:hidden">
-                        <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-4 font-black text-gray-900 hover:bg-gray-50 uppercase">
-                            Può il mio datore scoprire che sto monitorando il mercato?
-                            <span class="relative h-5 w-5 shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 opacity-100 group-open:opacity-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="square" stroke-linejoin="miter" d="M12 4v16m8-8H4" /></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 opacity-0 group-open:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="square" stroke-linejoin="miter" d="M20 12H4" /></svg>
-                            </span>
-                        </summary>
-                        <p class="border-t-2 border-black p-4 text-gray-700 font-medium bg-gray-50">
-                            No. Utilizzare gli strumenti forniti da Lozaxuvon per ottenere dati su chi, come e quando si assumono le persone o qual è la retribuzione di un <span class="font-bold text-black">collega</span> omologo non lascerà alcuna traccia presso la tua direzione risorse umane. È totalmente confidenziale.
-                        </p>
-                    </details>
-
-                    <details class="group bg-white border-2 border-black [&_summary::-webkit-details-marker]:hidden">
-                        <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-4 font-black text-gray-900 hover:bg-gray-50 uppercase">
-                            Esiste davvero il rischio che chi ha le stesse mansioni venga pagato meno?
-                            <span class="relative h-5 w-5 shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 opacity-100 group-open:opacity-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="square" stroke-linejoin="miter" d="M12 4v16m8-8H4" /></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 opacity-0 group-open:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="square" stroke-linejoin="miter" d="M20 12H4" /></svg>
-                            </span>
-                        </summary>
-                        <p class="border-t-2 border-black p-4 text-gray-700 font-medium bg-gray-50">
-                            Purtroppo sì. Questo fenomeno è assai comune; entra chi è più capace di gestire la fase di colloquio. Ed è proprio per ridurre le differenze dove è ingiusto, e capire lo stato dell'intero <span class="font-bold text-black">settore</span>, che interveniamo con precisione statistica.
-                        </p>
-                    </details>
-
-                    <details class="group bg-white border-2 border-black [&_summary::-webkit-details-marker]:hidden">
-                        <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-4 font-black text-gray-900 hover:bg-gray-50 uppercase">
-                            Che peso do alle cifre se sto chiedendo un aumento al mio manager?
-                            <span class="relative h-5 w-5 shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 opacity-100 group-open:opacity-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="square" stroke-linejoin="miter" d="M12 4v16m8-8H4" /></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 opacity-0 group-open:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="square" stroke-linejoin="miter" d="M20 12H4" /></svg>
-                            </span>
-                        </summary>
-                        <p class="border-t-2 border-black p-4 text-gray-700 font-medium bg-gray-50">
-                            Presentarti con le stampe comparative in riunione trasforma l'essere pretenzioso in obiettività commerciale: dimostra di conoscere che lo <span class="font-bold text-black">stipendio</span> fornito attualmente non allinea la media della posizione per chi sta erogando il medesimo output lavorativo e cerchi con i dati oggettivi un <span class="font-bold text-black">aumento</span> di compensazione giustificato.
-                        </p>
-                    </details>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24 mt-12 bg-white">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
-                        <h2 class="text-3xl font-black uppercase border-b-4 border-black inline-block mb-6">Invia una Richiesta Analitica</h2>
-                        <p class="text-gray-700 font-medium mb-6">
-                            Iscriviti per essere contattato dai nostri analisti. Prepareremo i dati che contano per il tuo ruolo specifico sul <strong class="text-black">mercato</strong> italiano e discuteremo dei gap compensativi. La consulenza per comprendere le nostre metriche di piattaforma non ha alcun obbligo o costo d'iscrizione iniziale nascosto.
-                        </p>
-                    </div>
-                    
-                    <div>
-                        <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='IN ELABORAZIONE...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                            <div>
-                                <label for="name" class="block text-sm font-bold text-gray-900 uppercase mb-1">Nome e Cognome</label>
-                                <input type="text" id="name" name="name" required class="w-full p-3 form-input font-medium bg-gray-50" placeholder="Mario Rossi">
-                            </div>
-                            <div>
-                                <label for="role" class="block text-sm font-bold text-gray-900 uppercase mb-1">Posizione Attuale</label>
-                                <input type="text" id="role" name="role" required class="w-full p-3 form-input font-medium bg-gray-50" placeholder="Es. Project Manager">
-                            </div>
-                            <div>
-                                <label for="industry" class="block text-sm font-bold text-gray-900 uppercase mb-1">Settore Operativo</label>
-                                <select id="industry" name="industry" required class="w-full p-3 form-input font-medium bg-gray-50">
-                                    <option value="" disabled selected>Seleziona il tuo settore...</option>
-                                    <option value="IT">IT & Software</option>
-                                    <option value="Finance">Finanza e Banche</option>
-                                    <option value="Engineering">Ingegneria</option>
-                                    <option value="Healthcare">Sanità</option>
-                                    <option value="Retail">Vendite al dettaglio</option>
-                                    <option value="Other">Altro</option>
-                                </select>
-                            </div>
-                            <div class="pt-2">
-                                <button type="submit" class="w-full btn-primary text-center">RICHIEDI CONSULENZA GRATUITA</button>
-                            </div>
-                        </form>
-                        
-                        <div id="success-msg" style="display:none" class="bg-primary p-6 border-4 border-black text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                            <h3 class="text-2xl font-black text-white uppercase mb-2">Richiesta Ricevuta</h3>
-                            <p class="text-white font-medium">Un analista prenderà in carico i tuoi parametri. Riceverai i dettagli per accedere all'ambiente diagnostico protetto a breve.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black text-white border-t-8 border-primary py-12 mt-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center md:text-left mb-8">
-                <span class="text-2xl font-black tracking-tight uppercase">Lozaxuvon Services</span>
-                <p class="text-gray-400 font-medium mt-2">Intelligence Retributiva dal 2026.</p>
-            </div>
-            
-            <div class="bg-gray-900 p-6 border-2 border-gray-700 text-sm font-medium text-gray-300 text-center mb-8 uppercase tracking-wide">
-                MANDATORY DISCLAIMER: Questo è un sito promozionale indipendente gestito da Lozaxuvon Services, che agisce come affiliato per Stipendee.
-            </div>
-
-            <!-- Legal Documents Details -->
-            <div class="space-y-4 text-sm mt-8 border-t border-gray-800 pt-8">
-                <details class="cursor-pointer group">
-                    <summary class="font-bold text-gray-300 hover:text-white uppercase mb-2">Informativa sulla Privacy (Dettagli)</summary>
-                    <div class="pl-4 py-2 text-gray-400 space-y-2 text-justify">
-                        La presente informativa illustra le regole rigorose per la salvaguardia dei propri dati qualora veniate in possesso della documentazione di accesso al network operativo. In ogni momento, ogni soggetto operatore assicura massimo rispetto nella raccolta o trattamento di dati analitici inseriti volontariamente nel pannello comparativo. I valori o retribuzioni indicati restano completamente anonimizzati secondo le legislazioni sul continente europeo per scongiurare ritorni sgradevoli sulle infrastrutture originali e sul lavoro che svolgete in ambito corporativo aziendale attuale. Sappiamo quanto possa essere spinosa e sensibile la discussione pecuniaria nel paese reale ed è lo standard fondamentale isolare ogni stringa da riferimenti nominali personali. Ad oggi non implementeremo rivendita verso organizzatori sindacali per rispetto della neutralità di posizionamento analitico aziendale. Noi garantiamo, ai fini statistici macroscopici e aggregati, lo snellimento informatico verso grafici puri estrapolati dai server centralizzati in territorio sovranazionale. Coloro i quali immettono dati si riconoscono padroni intellettivi dell'istanza compilata cedendo i diritti unicamente alla visione in un contesto globale generalizzato da terzi o dagli affiliati che supervisionano tali database transazionali per lo sviluppo software. Avete garantito il controllo sull'oblio della cartella creata e ogni elemento aggregato cesserà qualora presentiate richiesta protocollata alla nostra sede giuridica responsabile del servizio web primario offerto in partnership come delineato al disclamer commerciale. Ogni informazione viene allocata fino alla prescritta risoluzione da ambedue le parti senza gravami giudiziari non pattuiti o comunicati verbalmente nei format dedicati. Assicuriamo con cifratura massima l'invalicabilità cibernetica dei documenti reddituali qualora venissero sottoposti sotto prova documentaria certificata in PDF, necessari se decideste volontariamente di fare autenticare o porre la spunta blu ufficiale al profilo, ma anche tale azione non comprometterebbe lo statuto protettivo appena citato nelle righe sovrastanti relative all’isolamento della natura della postazione da occhi indiscreti come reclutatori, caporeparto e dirigenti associati. Il consenso esplicieto vi permette in definitiva libertà e controllo continuo di poter maneggiare le stime.
-                    </div>
-                </details>
-
-                <details class="cursor-pointer group">
-                    <summary class="font-bold text-gray-300 hover:text-white uppercase mb-2">Termini e Condizioni di Utilizzo</summary>
-                    <div class="pl-4 py-2 text-gray-400 space-y-2 text-justify">
-                        I vincoli, la stipula d'uso, o la semplice continuazione sulla navigazione implicano presa coscienza per chi utilizza l'offerta in merito a ciò che può presentarsi ed esplicitare su queste infrastrutture informatiche legate a misuratori di performance pecuniarie mensili. Le conclusioni suggerite riguardo le fasce per il posizionamento dei ruoli devono essere sempre recepite a scopo puramente ed unicamente formativo o speculativo. È proibito adire le vie processuali verso il brand a causa di trattative sul personale non andate in maniera esatta od omogenea al grafico restituito nel file di uscita della dashboard offerta. È compito finale esclusivo contrattuale del proponente capire il peso vero ed intrinseco posseduto assieme alla forza in fase di redazione e lettura, in accordo all'ambiente specifico al netto della mole quantitativa estratta in rete o calcolata dai sistemi e bot automatici integrati al front-end dal nostro team ingegneristico per simulare proiezioni. L’utilizzo per la redazione di tesi, articoli da magazine, testate in pubblicazione in ambito giuslavoristico oppure in ambito sociologico va richiesto anticipatamente sotto permessi ufficiali timbrati dal consorzio stesso poiché il copyright è strettamente depositato su questi calcoli proprietari per garantire aiuti al semplice privato nell’ottenere vantaggi nella discussione aziendale contrattuale. Se l’utente si trovasse implicato su server aziendali che bloccano questi host informativi decliniamo garanzie sulle visualizzazioni intere a chi usufruisse tramite VPN o tunneling crittografati che potrebbero nascondere metriche cruciali geo-identificate necessarie a localizzare un impiegato ed affidare comparazione esatta ed equa in merito alla sua città (permettendo ad un milanese la corretta taratura rispetto a un napoletano, evitando anomalie sul livello base statale o nazionale globale sfalsato dalle imposte zonali e abitudini spese che rientrano in moltiplicatori della formula segreta applicata nei file o moduli visualizzati sulla scocca utente e monitor dello stesso). Pertanto rispettando i termini accetti l’acquisizione della responsabilità sulle interpretazioni di questi risultati statistici esposti come report e proiezioni approssimate anche se vicine oltre l'ottantanove per cento alla realtà dichiarata dalle buste paga nazionali esibite ufficialmente per controlli di garanzia incrociati dal nucleo analisti, se presenti. Non potrete diffamare questo metodo o fare ingegneria inversa.
-                    </div>
-                </details>
-
-                <details class="cursor-pointer group">
-                    <summary class="font-bold text-gray-300 hover:text-white uppercase mb-2">Politiche sui Rimborsi delle Funzionalità Premium</summary>
-                    <div class="pl-4 py-2 text-gray-400 space-y-2 text-justify">
-                        Benché le nostre valutazioni base offrano già in formato precompilato un numero strabiliante di spunti ad un utente desideroso d’incrementi mensili monetari a cui non è costata l’erogazione iniziale un importo fatturato sul sistema di acquisizione online transazioni, vi rammentiamo regole riguardo i piani maggiormente sofisticati a pagamento di tipo premium a cui molti giungono attratti dai bonus documentali ed accessori previsti dall'amministrazione locale. Esaminati questi vantaggi esclusivi l’invio ed il disbrigo della documentazione completa è totalmente a mano digitale e, una volta che è stata trasmessa tale informazione personalizzata compilata sul database incrociato verso i vostri nodi in un quadro comparativo a schermo senza macchia di inquinamento o filtro non sussiste motivo materiale né appoggio tecnico adibibile ad ammissione procedurale al rimborso in fase di pretenzione da carta di credito non gradita. Un bene puramente software intangibile scaricabile non soffre usura e rende non contestabile la somma a norma sul codice civile per materiale d’aiuto non soggetto a resi simili agli equivalenti da pacco recapitato per merci o strumenti da banco o d’artigianato. Pertanto raccomandiamo riflessioni ed avvedutezze, valutando gli accessi free, ponderati in relazione prima di far procedere bonifici internazionali in addebito oppure ad autorizzare gateway su app portafoglio addebitando e attivando l’investimento di consultazione a carattere speciale e profondo come le simulazioni contrattualistiche manageriali di picco. Non accettiamo lettere cartacee se inviate appositamente per generare trambusti d'avvocatura perché respingeremo le pretese al cospetto degli accordi elettronici accettati esplicitamente, garantendo semmai supporto tecnico se vi fosse intoppo reale di natura bug e problematica severa di erogazione e malfunzionamenti generici a non poter recapitare via digitale l'accesso e in qual frangente il rimborso andrà autorizzato celermente non dipendendo dalla preferenza finale ma da causa di forza severamente maggiore attribuibile all'erogazione per il disservizio certificato da downtime protratto nel sistema hostato dalla società in causa fornitrice d'hosting e connettività, garantendo professionalità in ogni dove fino a normalizzazione. Non gestiamo mai la cassa di fondi senza scrupolosità.
-                    </div>
-                </details>
-            </div>
-            
-            <div class="text-center text-gray-500 font-bold mt-8">
-                &copy; 2026 Lozaxuvon Services. Tutti i diritti riservati.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Fixed Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t-4 border-black p-4 shadow-[0_-4px_0px_0px_rgba(0,0,0,1)] z-50 transform translate-y-full transition-transform duration-300">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between">
-            <p class="text-gray-900 font-medium mb-4 sm:mb-0">
-                Utilizziamo i cookie per analizzare anonimamente l'uso del sito e darti indicazioni ottimali sull'andamento del <strong>mercato</strong>, assicurandoci che tu possa avere sempre i migliori strumenti di misurazione tecnica per il tuo dispositivo e personalizzare la proposta visiva come delineato nelle policy contrattuali approvate.
-            </p>
-            <div class="flex space-x-4 shrink-0">
-                <button onclick="acceptCookies()" class="btn-primary text-sm whitespace-nowrap">Accetta Tutto</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Smart Routing & Interaction Scripts -->
-    <script>
-        // Smooth scroll for internal links & Smart Routing Fallback
+        .accent-border {
+            border-left: 4px solid var(--secondary);
+        }
+    </style> </head><body><nav class="fixed w-full z-50 top-0 transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16 items-center"><div class="flex-shrink-0 flex items-center gap-2"><svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg><span class="font-bold text-xl tracking-tight">Lozaxuvon</span></div><div class="hidden md:flex space-x-8 items-center"><a href="#servizi" class="text-sm font-medium hover:text-primary transition-colors">Servizi & Guide</a><a href="#recensioni" class="text-sm font-medium hover:text-primary transition-colors">Testimonianze</a><a href="#faq" class="text-sm font-medium hover:text-primary transition-colors">Domande Frequenti</a><a href="#contact" class="btn-primary text-sm px-4 py-2">Richiedi Info</a></div><div class="md:hidden flex items-center"><button id="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg pb-4 px-4"><div class="flex flex-col space-y-4 pt-4"><a href="#servizi" class="text-base font-medium" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Servizi & Guide</a><a href="#recensioni" class="text-base font-medium" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Testimonianze</a><a href="#faq" class="text-base font-medium" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Domande Frequenti</a><a href="#contact" class="btn-primary justify-center w-full" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Richiedi Info</a></div></div></nav><main><section id="hero" class="py-20 md:py-32"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-primary text-sm font-semibold mb-6"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg> Rivista Domotica N.1 in Italia </div><h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-8 leading-tight"> I migliori servizi informativi per trasformare la tua abitazione in una vera <span class="text-primary">casa intelligente</span>. </h1><p class="text-lg md:text-xl text-muted mb-10 max-w-2xl mx-auto leading-relaxed"> Lozaxuvon è il tuo punto di riferimento per l'automazione casa. Scopri recensioni imparziali, guide pratiche e consigli sui migliori dispositivi connessi per rendere la tua vita più semplice, sicura ed efficiente. </p><div class="flex flex-col sm:flex-row gap-4 justify-center items-center"><a href="#servizi" class="btn-primary w-full sm:w-auto justify-center"> Esplora i Servizi <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a><a href="#contact" class="btn-secondary w-full sm:w-auto justify-center"> Iscriviti agli Aggiornamenti </a></div><div class="mt-16 pt-8 border-t border-gray-200"><p class="text-sm text-muted font-medium mb-4 uppercase tracking-wider">Le nostre guide supportano i principali ecosistemi</p><div class="flex flex-wrap justify-center gap-8 text-gray-400 font-semibold text-lg"><span>Amazon Alexa</span><span>Google Home</span><span>Apple HomeKit</span><span>SmartThings</span></div></div></div></section><hr class="section-divider"><section class="py-12 md:py-16 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><img src="https://images.pexels.com/photos/10325087/pexels-photo-10325087.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Interno di una casa intelligente con dispositivi connessi" class="w-full h-auto rounded-2xl shadow-xl object-cover" style="max-height: 500px;" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1200x500/ea580c/ffffff?text=Casa+Intelligente'"></div></section><hr class="section-divider"><section id="servizi" class="py-20 md:py-28"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="mb-16 text-center md:text-left"><h2 class="text-3xl md:text-4xl font-bold mb-4">Servizi e Guide per la tua Smart Home</h2><p class="text-lg text-muted max-w-2xl">Offriamo contenuti approfonditi e consulenze editoriali per aiutarti a navigare nel mondo della domotica e scegliere i dispositivi connessi perfetti per le tue esigenze.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="dna-card accent-border"><div class="w-14 h-14 rounded-lg bg-orange-50 flex items-center justify-center mb-6"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Recensioni Dispositivi Connessi</h3><p class="text-muted leading-relaxed"> Analizziamo e testiamo rigorosamente lampadine smart, termostati, telecamere e assistenti vocali. Le nostre recensioni ti guidano verso l'acquisto migliore, evitando sprechi di denaro e garantendo la massima compatibilità. </p></div><div class="dna-card accent-border"><div class="w-14 h-14 rounded-lg bg-orange-50 flex items-center justify-center mb-6"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Tutorial Automazione Casa</h3><p class="text-muted leading-relaxed"> Guide passo-passo per creare scenari personalizzati. Impara come far accendere le luci al tuo arrivo o come regolare la temperatura automaticamente. L'automazione casa non è mai stata così semplice. </p></div><div class="dna-card accent-border"><div class="w-14 h-14 rounded-lg bg-orange-50 flex items-center justify-center mb-6"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Integrazione Ecosistemi</h3><p class="text-muted leading-relaxed"> Ti aiutiamo a far dialogare dispositivi di marche diverse. Scopri i nostri servizi informativi su come unificare il controllo della tua casa intelligente tramite un'unica app o assistente vocale. </p></div><div class="dna-card accent-border"><div class="w-14 h-14 rounded-lg bg-orange-50 flex items-center justify-center mb-6"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Sicurezza e Risparmio</h3><p class="text-muted leading-relaxed"> La domotica non è solo comfort. Esplora le nostre sezioni dedicate alla sicurezza smart (allarmi, videocitofoni) e all'ottimizzazione energetica per ridurre i costi in bolletta grazie a prese e sensori intelligenti. </p></div></div></div></section><hr class="section-divider"><section id="recensioni" class="py-20 md:py-28 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa dicono i nostri lettori</h2><p class="text-lg text-muted">La community di appassionati di domotica che si affida ai nostri consigli.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card flex flex-col h-full"><div class="flex text-primary mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted mb-6 flex-grow">"Grazie alle guide di Lozaxuvon sono riuscito a configurare la mia casa intelligente da zero. Le recensioni sui dispositivi connessi sono oneste e mi hanno evitato acquisti sbagliati."</p><div class="font-semibold text-text">— Marco R., Milano (2026)</div></div><div class="dna-card flex flex-col h-full"><div class="flex text-primary mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted mb-6 flex-grow">"I tutorial per l'automazione casa sono spiegati benissimo. Finalmente ho capito come far comunicare le mie luci smart con il termostato per risparmiare energia."</p><div class="font-semibold text-text">— Elena C., Roma (2026)</div></div><div class="dna-card flex flex-col h-full"><div class="flex text-primary mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted mb-6 flex-grow">"Una rivista domotica davvero completa. Leggo sempre i loro articoli per rimanere aggiornato sulle ultime novità della smart home. Consigliatissimo!"</p><div class="font-semibold text-text">— Luca B., Torino (2026)</div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-20 md:py-28"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti sulla Domotica</h2><p class="text-lg text-muted">Tutto quello che devi sapere per iniziare con la tua casa intelligente.</p></div><div class="space-y-4"><details class="dna-card !p-6 !mb-0 group"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Cos'è esattamente la domotica e a cosa serve? <span class="text-secondary group-open:rotate-180 transition-transform"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="mt-4 text-muted leading-relaxed">La domotica è la disciplina che si occupa dell'automazione casa. Serve a migliorare la qualità della vita all'interno degli ambienti domestici, integrando dispositivi connessi che gestiscono illuminazione, riscaldamento, sicurezza e intrattenimento in modo intelligente e spesso automatico.</p></details><details class="dna-card !p-6 !mb-0 group"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Quali dispositivi connessi mi servono per iniziare? <span class="text-secondary group-open:rotate-180 transition-transform"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="mt-4 text-muted leading-relaxed">Per iniziare a creare una casa intelligente, consigliamo di partire dalle basi: uno smart speaker (come Amazon Echo o Google Nest) che fungerà da hub centrale, un paio di lampadine smart e una presa intelligente. Da lì, potrai espandere il sistema in base alle tue necessità.</p></details><details class="dna-card !p-6 !mb-0 group"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Avere una smart home è sicuro per la privacy? <span class="text-secondary group-open:rotate-180 transition-transform"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="mt-4 text-muted leading-relaxed">La sicurezza è fondamentale. Nei nostri servizi informativi sottolineiamo sempre l'importanza di utilizzare password forti, mantenere aggiornati i firmware dei dispositivi connessi e scegliere marchi affidabili che offrono crittografia end-to-end e politiche sulla privacy chiare.</p></details><details class="dna-card !p-6 !mb-0 group"><summary class="flex justify-between items-center font-semibold text-lg text-text"> L'automazione casa è difficile da configurare? <span class="text-secondary group-open:rotate-180 transition-transform"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="mt-4 text-muted leading-relaxed">Assolutamente no. I moderni sistemi per la casa intelligente sono progettati per essere "plug and play". Inoltre, grazie ai nostri tutorial e guide dettagliate, ti accompagniamo passo dopo passo nella configurazione di ogni singolo dispositivo.</p></details><details class="dna-card !p-6 !mb-0 group"><summary class="flex justify-between items-center font-semibold text-lg text-text"> I vostri servizi di consulenza e le guide sono gratuiti? <span class="text-secondary group-open:rotate-180 transition-transform"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="mt-4 text-muted leading-relaxed">Sì, Lozaxuvon opera come rivista domotica indipendente. Tutti i nostri articoli, le recensioni sui dispositivi connessi e le guide all'automazione casa sono accessibili gratuitamente per aiutarti a prendere le decisioni migliori per la tua abitazione.</p></details></div></div></section><hr class="section-divider"><section id="contact" class="py-20 md:py-28 bg-white"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card"><div class="text-center mb-10"><h2 class="text-3xl font-bold mb-4">Iscriviti alla nostra Newsletter Domotica</h2><p class="text-muted">Ricevi in anteprima le nostre guide esclusive, le recensioni dei nuovi dispositivi connessi e i migliori trucchi per l'automazione casa direttamente nella tua casella.</p></div><form id="lead-form" class="space-y-6 max-w-lg mx-auto" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Iscrizione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div><label for="name" class="block text-sm font-medium text-text mb-1">Nome Completo</label><input type="text" id="name" required placeholder="Es. Mario Rossi"></div><div><label for="interest" class="block text-sm font-medium text-text mb-1">Area di interesse principale</label><select id="interest" required><option value="">Seleziona un'opzione</option><option value="recensioni">Recensioni Dispositivi Connessi</option><option value="guide">Guide Automazione Casa</option><option value="sicurezza">Sicurezza Smart Home</option><option value="altro">Altro</option></select></div><button type="submit" class="btn-primary w-full justify-center text-lg mt-4"> Iscriviti Ora <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button><p class="text-xs text-center text-muted mt-4">Rispettiamo la tua privacy. Nessuno spam, solo contenuti di altissima qualità sulla domotica.</p></form><div id="success-msg" style="display:none" class="text-center py-10"><div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold mb-2">Iscrizione Confermata!</h3><p class="text-muted">Grazie per esserti unito alla community di Lozaxuvon. Riceverai presto i nostri migliori contenuti sulla casa intelligente.</p></div></div></div></section></main><footer class="bg-gray-50 border-t border-gray-200 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"><div><div class="flex items-center gap-2 mb-4"><svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg><span class="font-bold text-xl tracking-tight text-text">Lozaxuvon</span></div><p class="text-sm text-muted max-w-xs"> La tua bussola nel mondo della domotica. Ti guidiamo passo dopo passo verso la realizzazione della perfetta casa intelligente. </p></div><div class="md:text-right"><p class="text-sm text-muted italic font-medium"> "Questo è un sito promozionale indipendente gestito da Lozaxuvon Services, che agisce come affiliato per SmartDomotica.it." </p></div></div><div class="space-y-4 mb-12 border-t border-gray-200 pt-8"><details class="text-sm text-muted"><summary class="cursor-pointer hover:text-primary font-medium">Informativa sulla Privacy</summary><div class="mt-4 p-4 bg-white rounded-lg border border-gray-100 text-xs leading-relaxed"><p>La presente Informativa sulla Privacy descrive come Lozaxuvon Services raccoglie, utilizza e protegge i dati personali degli utenti che visitano il nostro sito web dedicato alla domotica e alla casa intelligente. Raccogliamo esclusivamente i dati strettamente necessari per fornire i nostri servizi informativi e gestire le richieste di iscrizione alla newsletter. I dati raccolti possono includere nome, preferenze sui dispositivi connessi e dati di navigazione anonimizzati. Utilizziamo i cookie per migliorare l'esperienza utente e analizzare il traffico del sito. Non vendiamo, affittiamo o cediamo a terzi i dati personali dei nostri utenti per scopi di marketing senza un consenso esplicito. I dati sono conservati su server sicuri e protetti da misure tecniche e organizzative adeguate per prevenire accessos non autorizzati. L'utente ha il diritto di richiedere l'accesso, la rettifica o la cancellazione dei propri dati in qualsiasi momento. Per esercitare tali diritti, è possibile utilizzare il modulo di contatto presente sul sito. Ci riserviamo il diritto di aggiornare questa policy per riflettere i cambiamenti normativi o le nuove funzionalità del sito. L'utilizzo continuato del sito dopo le modifiche implica l'accettazione della nuova policy. Incoraggiamo gli utenti a leggere attentamente questa sezione per comprendere appieno le nostre pratiche. La tutela della privacy è per noi una priorità assoluta, specialmente trattando argomenti sensibili come la sicurezza della smart home. Per ulteriori dettagli sulle specifiche tecnologie di tracciamento, si rimanda alla sezione dedicata ai cookie. La presente informativa è redatta in conformità alle normative vigenti in materia di protezione dei dati personali.</p></div></details><details class="text-sm text-muted"><summary class="cursor-pointer hover:text-primary font-medium">Termini e Condizioni</summary><div class="mt-4 p-4 bg-white rounded-lg border border-gray-100 text-xs leading-relaxed"><p>I presenti Termini e Condizioni regolano l'utilizzo del sito web Lozaxuvon Services e l'accesso ai nostri contenuti editoriali riguardanti l'automazione casa. Accedendo al sito, l'utente accetta integralmente i presenti termini. Il sito fornisce guide, recensioni e tutorial a scopo puramente informativo. Non ci assumiamo responsabilità per eventuali danni a dispositivi connessi derivanti dall'applicazione errata dei nostri tutorial. L'utente è tenuto a verificare la compatibilità dei prodotti smart home prima dell'acquisto. Tutti i contenuti testuali, grafici e i loghi presenti sul sito sono protetti da copyright e non possono essere riprodotti senza autorizzazione. Lozaxuvon Services opera come piattaforma di affiliazione; pertanto, potremmo ricevere una commissione per gli acquisti effettuati tramite i link presenti nei nostri articoli, senza alcun costo aggiuntivo per l'utente. Ci impegniamo a mantenere le informazioni il più accurate e aggiornate possibile, ma non garantiamo l'assenza di errori tecnici o tipografici. Ci riserviamo il diritto di modificare o interrompere i servizi in qualsiasi momento senza preavviso. L'utente si impegna a utilizzare il sito in modo lecito e a non inserire dati falsi nei moduli di richiesta. Eventuali controversie legali saranno regolate dalla legge vigente e sottoposte al foro competente. L'utilizzo del sito implica l'accettazione di queste regole di condotta. Consigliamo di consultare regolarmente questa pagina per verificare eventuali aggiornamenti ai Termini e Condizioni. La navigazione del sito costituisce accettazione tacita delle regole qui esposte.</p></div></details><details class="text-sm text-muted"><summary class="cursor-pointer hover:text-primary font-medium">Politica di Rimborso e Servizi</summary><div class="mt-4 p-4 bg-white rounded-lg border border-gray-100 text-xs leading-relaxed"><p>La presente Politica chiarisce la natura dei servizi offerti da Lozaxuvon Services nel settore della domotica. Essendo il nostro un sito puramente editoriale e informativo, non vendiamo direttamente prodotti fisici o dispositivi connessi. Pertanto, non offriamo una politica di rimborso per l'acquisto di hardware, in quanto le transazioni avvengono su piattaforme di terze parti (es. Amazon, siti dei produttori). Qualora l'utente riscontri problemi con un dispositivo recensito sul nostro sito, dovrà fare riferimento esclusivo alle politiche di reso e garanzia del venditore originale. I nostri servizi di iscrizione alla newsletter e accesso alle guide sull'automazione casa sono completamente gratuiti. Non sono previsti addebiti ricorrenti o costi nascosti per la consultazione dei nostri contenuti. Nel caso in cui in futuro dovessimo introdurre servizi di consulenza premium personalizzata a pagamento, questi saranno regolati da contratti specifici e, in tal caso, verrà fornita una chiara politica di recesso entro 14 giorni come previsto dalla legge per i servizi digitali. Al momento, ribadiamo che il nostro ruolo è quello di divulgatori e recensori indipendenti per la casa intelligente. Invitiamo gli utenti a leggere attentamente le condizioni di vendita sui siti partner prima di finalizzare qualsiasi acquisto di tecnologia smart home. La nostra responsabilità si limita alla fornitura di informazioni accurate al momento della pubblicazione dell'articolo. Per qualsiasi dubbio relativo a questa politica, vi invitiamo a contattarci tramite gli appositi canali presenti sul sito.</p></div></details></div><div class="text-center text-sm text-muted pt-8 border-t border-gray-200"> &copy; 2026 Lozaxuvon Services. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t border-gray-200 shadow-lg z-50 transform transition-transform duration-300 translate-y-full"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm text-muted text-center sm:text-left"> Utilizziamo i cookie per assicurarti la migliore esperienza sul nostro sito dedicato alla domotica. Continuando a navigare, accetti il nostro utilizzo dei cookie. </p><div class="flex gap-4 shrink-0"><button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm">Accetta Tutti</button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href').substring(1);
-                let targetElement = document.getElementById(targetId);
+                const targetElement = document.getElementById(targetId);
                 
-                // Fallback Logic: if missing, go to #contact
-                if (!targetElement && targetId !== '') {
-                    console.warn(`Target section #${targetId} missing. Redirecting to #contact.`);
-                    targetElement = document.getElementById('contact');
-                }
-                
-                // If it is mobile menu linking, close the menu
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-
                 if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to contact section
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
             });
         });
 
         // Cookie Banner Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const banner = document.getElementById('cookie-banner');
-            if (!localStorage.getItem('lozaxuvon_cookie_consent')) {
-                // Short delay before showing for visual entry effect
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("cookiesAccepted")) {
                 setTimeout(() => {
-                    banner.classList.remove('translate-y-full');
-                }, 500);
+                    document.getElementById("cookie-banner").classList.remove("translate-y-full");
+                }, 1000);
             }
         });
 
         function acceptCookies() {
-            localStorage.setItem('lozaxuvon_cookie_consent', 'accepted');
-            const banner = document.getElementById('cookie-banner');
-            banner.classList.add('translate-y-full');
+            localStorage.setItem("cookiesAccepted", "true");
+            document.getElementById("cookie-banner").classList.add("translate-y-full");
         }
-    </script>
-</body>
-</html>
+    </script> </body></html>
