@@ -1,455 +1,185 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luzalaneluum Operations | App Ricerca Lavoro</title>
-    
-    <!-- Tailwind CSS (CDN) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- Design System (CSS Injection Phase 2) -->
-    <style>
-        :root {
-            /* Palette: Job Search Niche Deep Blue/Indigo */
-            --primary: #4f46e5;
-            /* VAR C: Physics Last Letter "/" % 3 = 2 -> Cool (Slate White) */
-            --surface: #f8fafc;
-            /* VAR A: Geometry Length 26 % 3 = 2 -> Pill */
-            --radius: 24px;
-            /* VAR B: Physics First Letter "h" ASCII 104 % 3 = 2 -> Hard Neo-Brutalist */
-            --shadow: 4px 4px 0px 0px #000;
-        }
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Luzala Neluum Operations | Portale Notizie Intelligenza Artificiale</title><meta name="description" content="Il portale di riferimento per le ultime notizie sull'intelligenza artificiale, innovazione e nuove tecnologie. Scopri il futuro digitale con Luzala Neluum Operations."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
+      :root {
+        --primary: #ea580c;
+        --secondary: #dc2626;
+        --radius: 8px;
+        --card-radius: 8px;
+        --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+        --body-bg: #f0fdf4;
+        --card-bg: #ffffff;
+        --text: #14532d;
+        --muted: #4b5563;
+      }
 
-        /* GLOBAL CONTRAST BASE */
-        body {
-            background-color: #f3f4f6; /* Always light gray to make white cards pop */
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
-        }
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'Outfit', sans-serif;
+      }
 
-        /* BRAND COMPONENT: The DNA Card */
-        .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 2px solid #000; /* Neo-brutalist touch to match the shadow */
-        }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Outfit', sans-serif;
+      }
 
-        /* BRAND COMPONENT: Primary Button */
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s;
-            font-weight: bold;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid #000; /* Matching Neo-Brutalist shadow border */
-        }
-        
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(2px) translateX(2px);
-            box-shadow: 2px 2px 0px 0px #000;
-        }
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
 
-        /* UTILITY: Text Accent */
-        .text-primary { 
-            color: var(--primary); 
-        }
+      nav {
+        background-color: var(--body-bg);
+      }
 
-        /* Cookie Banner */
-        #cookie-banner {
-            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body class="antialiased flex flex-col min-h-screen">
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'Outfit', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    <!-- Navbar -->
-    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center">
-                    <span class="text-2xl font-black tracking-tight uppercase">Luzalaneluum<span class="text-primary">Ops</span></span>
-                </div>
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="font-bold hover:text-primary transition-colors">Vantaggi</a>
-                    <a href="#reviews" class="font-bold hover:text-primary transition-colors">Storie di Successo</a>
-                    <a href="#faq" class="font-bold hover:text-primary transition-colors">FAQ</a>
-                    <a href="#contact" class="btn-primary">Inizia Ora</a>
-                </div>
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-2 border-2 border-black rounded-lg bg-gray-50">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-white">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 font-bold hover:bg-gray-50">Vantaggi</a>
-                <a href="#reviews" class="block px-3 py-2 font-bold hover:bg-gray-50">Storie di Successo</a>
-                <a href="#faq" class="block px-3 py-2 font-bold hover:bg-gray-50">FAQ</a>
-                <a href="#contact" class="block px-3 py-2 text-primary font-bold hover:bg-gray-50">Inizia Ora</a>
-            </div>
-        </div>
-    </nav>
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-secondary:hover { background-color: rgba(234,88,12,0.05); }
 
-    <!-- Main Content -->
-    <main class="flex-grow flex flex-col items-center pt-8 pb-16 px-4">
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
 
-        <!-- Hero Section -->
-        <section class="w-full max-w-6xl mx-auto mb-16 relative overflow-hidden dna-card" style="padding:0;">
-            <div class="absolute inset-0 z-10 bg-black/50" style="background-color: rgba(0, 0, 0, 0.65);"></div>
-            <img src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg" alt="Team al lavoro" class="absolute inset-0 w-full h-full object-cover" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/1200x800?text=Professionisti+Al+Lavoro'">
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
+
+      /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+      main, main + footer { scroll-margin-top: 5rem; }
+      body { padding-top: 4rem; }
+
+      /* Form inputs — consistent styling regardless of Gemini output */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(234,88,12,0.15);
+      }
+
+      /* Links — readable on any theme */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
+
+      /* Section divider — subtle visual rhythm */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(234,88,12,0.12), transparent);
+        margin: 0;
+      }
+      
+      /* Custom Details/Summary styling for FAQ */
+      details > summary {
+        list-style: none;
+        cursor: pointer;
+        position: relative;
+        padding-right: 1.5rem;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+      details[open] summary ~ * {
+        animation: slideDown 0.3s ease-in-out;
+      }
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style> </head><body class="antialiased"><nav class="fixed top-0 left-0 w-full z-50 shadow-sm transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16 items-center"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold text-primary tracking-tight">Luzala<span class="text-secondary">Neluum</span></a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="font-medium">Notizie & Focus</a><a href="#reviews" class="font-medium">Community</a><a href="#faq" class="font-medium">Domande Frequenti</a><a href="#contact" class="btn-primary py-2 px-4 text-sm">Resta Aggiornato</a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-xl pb-4 pt-2 px-4 absolute w-full left-0"><a href="#features" class="block py-3 border-b border-gray-100 font-medium">Notizie & Focus</a><a href="#reviews" class="block py-3 border-b border-gray-100 font-medium">Community</a><a href="#faq" class="block py-3 border-b border-gray-100 font-medium">Domande Frequenti</a><a href="#contact" class="block py-3 font-medium text-primary">Resta Aggiornato</a></div></nav><main><section class="py-16 md:py-24 relative overflow-hidden"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"><div class="inline-block mb-4 px-3 py-1 rounded-full bg-red-100 text-secondary text-sm font-bold tracking-wide uppercase shadow-sm"> Il Futuro è Adesso </div><h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight"> Ottimizza le tue <span class="text-primary">Operations</span> con le Ultime Notizie sull'<span class="text-secondary">Intelligenza Artificiale</span></h1><p class="text-lg md:text-xl text-muted mb-10 leading-relaxed"> Benvenuto sul portale di riferimento di AI Italia. Scopri come le nuove tecnologie e l'innovazione continua stanno plasmando il futuro digitale delle aziende. Approfondimenti, notizie e strumenti per non restare indietro. </p><div class="flex flex-col sm:flex-row justify-center gap-4"><a href="#features" class="btn-primary justify-center"> Esplora le Notizie <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a><a href="#contact" class="btn-secondary justify-center"> Iscriviti al Portale </a></div></div><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-16"><img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/ea580c/ffffff?text=Innovazione+e+Tecnologia'" alt="Innovazione e Intelligenza Artificiale" class="w-full h-auto rounded-xl shadow-2xl border border-gray-200" loading="lazy" referrerpolicy="no-referrer"></div></section><hr class="section-divider"><section id="features" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-2xl mx-auto mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Il Cuore dell'<span class="text-primary">Innovazione</span> in Italia</h2><p class="text-lg text-muted">Il nostro portale aggrega e analizza le tendenze cruciali per comprendere l'impatto dell'intelligenza artificiale nel mondo reale.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 left-0 w-2 h-full bg-primary"></div><div class="mb-6 inline-flex p-3 rounded-lg bg-orange-100 text-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Ultime Notizie AI</h3><p class="text-muted leading-relaxed">Aggiornamenti quotidiani, precisi e puntuali sulle scoperte più recenti. Dagli LLM ai sistemi di visione artificiale, copriamo ogni aspetto del futuro digitale per mantenerti sempre un passo avanti.</p></div><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 left-0 w-2 h-full bg-secondary"></div><div class="mb-6 inline-flex p-3 rounded-lg bg-red-100 text-secondary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Recensioni Strumenti</h3><p class="text-muted leading-relaxed">Analizziamo approfonditamente i migliori software basati sull'intelligenza artificiale. Scopri quali tool possono ottimizzare le tue operations aziendali e aumentare la produttività del tuo team.</p></div><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 left-0 w-2 h-full bg-primary"></div><div class="mb-6 inline-flex p-3 rounded-lg bg-orange-100 text-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg></div><h3 class="text-xl font-semibold mb-3">Guide e Formazione</h3><p class="text-muted leading-relaxed">Non solo notizie, ma anche risorse pratiche. Il nostro portale offre guide dettagliate per comprendere le nuove tecnologie e applicarle concretamente nella vita lavorativa di tutti i giorni.</p></div><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 left-0 w-2 h-full bg-secondary"></div><div class="mb-6 inline-flex p-3 rounded-lg bg-red-100 text-secondary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div><h3 class="text-xl font-semibold mb-3">La Community AI Italia</h3><p class="text-muted leading-relaxed">Unisciti a migliaia di professionisti, sviluppatori e curiosi. Condividi idee, partecipa ai dibattiti e costruisci il tuo network nel settore più in crescita dell'economia globale.</p></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-16 md:py-20 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa Dicono i Nostri <span class="text-secondary">Lettori</span></h2><p class="text-lg text-muted">Professionisti che hanno trasformato le loro operations grazie alle nostre informazioni.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card bg-gray-50 border-none"><div class="flex items-center gap-1 text-primary mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted italic mb-6">"Leggere questo portale ogni mattina è diventato il mio rito. Le notizie sull'intelligenza artificiale sono spiegate in modo chiaro, permettendomi di capire quali nuovi tool adottare per la mia agenzia."</p><div class="font-bold">Marco R.</div><div class="text-sm text-gray-500">Direttore Operativo</div></div><div class="dna-card bg-gray-50 border-none"><div class="flex items-center gap-1 text-primary mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted italic mb-6">"La risorsa definitiva per l'AI in Italia. Le recensioni degli strumenti sono oneste e mi hanno fatto risparmiare centinaia di euro in abbonamenti inutili. Consigliatissimo."</p><div class="font-bold">Elena T.</div><div class="text-sm text-gray-500">Imprenditrice Digitale</div></div><div class="dna-card bg-gray-50 border-none"><div class="flex items-center gap-1 text-primary mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted italic mb-6">"Non sono un tecnico, ma gli articoli del portale mi hanno permesso di capire le basi del futuro digitale e di integrare processi automatizzati nel mio piccolo negozio."</p><div class="font-bold">Luca B.</div><div class="text-sm text-gray-500">Commerciante</div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-16 md:py-20"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande <span class="text-primary">Frequenti</span></h2><p class="text-lg text-muted">Tutto ciò che devi sapere sul nostro portale e sulle nuove tecnologie.</p></div><div class="dna-card"><details class="mb-4 border-b border-gray-100 pb-4 group"><summary class="font-semibold text-lg flex justify-between items-center text-text hover:text-primary transition-colors"> Di cosa tratta esattamente questo portale? <svg class="w-5 h-5 text-secondary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><p class="text-muted mt-3 leading-relaxed">Siamo un hub informativo dedicato all'intelligenza artificiale e all'innovazione in Italia. Pubblichiamo notizie quotidiane, recensioni di software, approfondimenti e guide pratiche per aiutare aziende e privati a navigare il futuro digitale.</p></details><details class="mb-4 border-b border-gray-100 pb-4 group"><summary class="font-semibold text-lg flex justify-between items-center text-text hover:text-primary transition-colors"> L'accesso alle notizie è gratuito? <svg class="w-5 h-5 text-secondary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><p class="text-muted mt-3 leading-relaxed">Sì, la stragrande maggioranza dei nostri articoli e delle notizie quotidiane è completamente gratuita. Offriamo anche sezioni premium e newsletter specifiche per chi desidera analisi di mercato più approfondite.</p></details><details class="mb-4 border-b border-gray-100 pb-4 group"><summary class="font-semibold text-lg flex justify-between items-center text-text hover:text-primary transition-colors"> Come posso unirmi alla Community AI Italia? <svg class="w-5 h-5 text-secondary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><p class="text-muted mt-3 leading-relaxed">Puoi iscriverti tramite il nostro forum o i nostri canali social ufficiali. La community è aperta a tutti: dai principianti curiosi agli sviluppatori esperti che vogliono condividere le loro scoperte sulle nuove tecnologie.</p></details><details class="mb-4 border-b border-gray-100 pb-4 group"><summary class="font-semibold text-lg flex justify-between items-center text-text hover:text-primary transition-colors"> Posso proporre un articolo o un tool da recensire? <svg class="w-5 h-5 text-secondary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><p class="text-muted mt-3 leading-relaxed">Certamente! Siamo sempre alla ricerca di nuove soluzioni innovative. Puoi utilizzare il modulo di contatto in fondo alla pagina per inviarci le tue segnalazioni. La nostra redazione valuterà il materiale il prima possibile.</p></details><details class="group"><summary class="font-semibold text-lg flex justify-between items-center text-text hover:text-primary transition-colors"> Siete affiliati con enti governativi? <svg class="w-5 h-5 text-secondary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><p class="text-muted mt-3 leading-relaxed">No, siamo un portale di notizie indipendente gestito da appassionati e professionisti del settore tech. Il nostro obiettivo è divulgare l'innovazione in modo neutrale e accessibile a tutti.</p></details></div></div></section><hr class="section-divider"><section id="contact" class="py-16 md:py-20"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Resta Connesso col <span class="text-primary">Futuro</span></h2><p class="text-lg text-muted">Iscriviti per ricevere aggiornamenti o contattaci per collaborazioni.</p></div><div class="dna-card max-w-2xl mx-auto relative overflow-hidden"><div class="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-bl-full -z-10"></div><form id="lead-form" class="space-y-6" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<svg class=\'animate-spin h-5 w-5 mr-2 inline-block\' viewBox=\'0 0 24 24\'><circle class=\'opacity-25\' cx=\'12\' cy=\'12\' r=\'10\' stroke=\'currentColor\' stroke-width=\'4\' fill=\'none\'></circle><path class=\'opacity-75\' fill=\'currentColor\' d=\'M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z\'></path></svg> Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="name" class="block text-sm font-medium text-text mb-1">Nome Completo</label><input type="text" id="name" name="name" required placeholder="Mario Rossi"></div><div><label for="azienda" class="block text-sm font-medium text-text mb-1">Azienda (Opzionale)</label><input type="text" id="azienda" name="azienda" placeholder="La Tua Azienda Srl"></div></div><div><label for="argomento" class="block text-sm font-medium text-text mb-1">Argomento di Interesse</label><select id="argomento" name="argomento" required><option value="">Seleziona un'opzione...</option><option value="newsletter">Iscrizione Newsletter AI</option><option value="segnalazione">Segnalazione Notizia/Tool</option><option value="collaborazione">Proposta di Collaborazione</option><option value="altro">Altro</option></select></div><div><label for="message" class="block text-sm font-medium text-text mb-1">Il tuo messaggio</label><textarea id="message" name="message" rows="4" required placeholder="Scrivi qui il tuo messaggio o la tua richiesta..."></textarea></div><div class="pt-2"><button type="submit" class="btn-primary w-full justify-center text-lg"> Invia Richiesta <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg></button></div><p class="text-xs text-center text-gray-500 mt-4">I tuoi dati sono al sicuro. Non inviamo spam.</p></form><div id="success-msg" style="display:none" class="text-center py-12"><div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-6"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold mb-2">Messaggio Inviato!</h3><p class="text-muted">Grazie per averci contattato. La nostra redazione prenderà in carico la tua richiesta il prima possibile.</p><button onclick="document.getElementById('success-msg').style.display='none'; document.getElementById('lead-form').reset(); document.getElementById('lead-form').style.display='block'; document.querySelector('#lead-form button').innerHTML='Invia Richiesta <svg class=\'w-5 h-5 inline-block ml-1\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M13 5l7 7-7 7M5 5l7 7-7 7\'></path></svg>';" class="mt-8 text-primary font-semibold hover:underline">Invia un altro messaggio</button></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"><div><a href="#" class="text-2xl font-extrabold text-primary tracking-tight block mb-4">Luzala<span class="text-secondary">Neluum</span> Operations</a><p class="text-muted mb-4 max-w-sm">Il portale di riferimento per chi vuole restare sempre aggiornato sull'intelligenza artificiale, le nuove tecnologie e il futuro digitale in Italia.</p></div><div class="md:text-right"><h4 class="font-bold text-lg mb-4">Navigazione Rapida</h4><ul class="space-y-2"><li><a href="#features" class="text-muted hover:text-primary transition-colors">Notizie & Focus</a></li><li><a href="#reviews" class="text-muted hover:text-primary transition-colors">Community</a></li><li><a href="#faq" class="text-muted hover:text-primary transition-colors">Domande Frequenti</a></li></ul></div></div><div class="bg-gray-50 p-4 rounded-lg mb-8 text-sm text-gray-600 text-center border border-gray-100"><strong>Disclaimer:</strong> Questo è un sito promozionale indipendente gestito da Luzala Neluum Operations, che agisce come affiliato per Intelligenza Artificiale Italia. I marchi citati appartengono ai legittimi proprietari. </div><div class="space-y-4 mb-8"><details class="text-sm text-gray-500 group"><summary class="cursor-pointer hover:text-primary font-medium border-b border-gray-100 pb-2 inline-block">Termini e Condizioni di Servizio</summary><div class="pt-4 pb-6 leading-relaxed space-y-3"><p>Benvenuto sul sito di Luzala Neluum Operations. L'accesso e l'utilizzo di questo sito web costituiscono l'accettazione incondizionata dei presenti Termini e Condizioni. Se non si accettano tali termini, si prega di astenersi dall'utilizzare la piattaforma. Il nostro portale fornisce contenuti informativi, notizie e analisi inerenti al mondo dell'intelligenza artificiale e dell'innovazione tecnologica. I contenuti presenti su questo sito sono forniti a scopo esclusivamente informativo e non costituiscono consulenza professionale, finanziaria o legale.</p><p>Luzala Neluum Operations si impegna a mantenere le informazioni il più possibile accurate e aggiornate; tuttavia, non possiamo garantire l'assoluta correttezza, completezza o tempestività di ogni singolo articolo o recensione pubblicata. Le tecnologie digitali evolvono rapidamente e alcune informazioni potrebbero risultare obsolete poco dopo la pubblicazione. L'utente si assume la piena responsabilità per qualsiasi azione intrapresa sulla base delle informazioni reperite su questo sito.</p><p>Ci riserviamo il diritto di modificare, sospendere o interrompere qualsiasi aspetto del servizio in qualsiasi momento, inclusa la disponibilità di specifiche funzionalità, database o contenuti. Inoltre, Luzala Neluum Operations può imporre limiti su determinate funzionalità e servizi o restringere l'accesso dell'utente a parti o a tutto il sito senza preavviso o responsabilità. L'utilizzo continuato del sito in seguito alla pubblicazione di eventuali modifiche ai presenti Termini e Condizioni implica l'accettazione di tali modifiche. Tutti i contenuti originali, inclusi testi, grafiche, loghi e layout, sono di proprietà intellettuale di Luzala Neluum Operations e non possono essere riprodotti senza esplicito consenso.</p><p>Il sito può contenere link verso siti web di terze parti o risorse esterne (come Intelligenza Artificiale Italia). Non abbiamo alcun controllo su tali siti e non siamo responsabili per i loro contenuti, le loro politiche di privacy o le loro pratiche. L'inclusione di tali link non implica necessariamente un'approvazione del materiale in essi contenuto. L'utente accetta di difendere, indennizzare e tenere indenne Luzala Neluum Operations e i suoi affiliati da qualsiasi reclamo, responsabilità, danni, perdite e spese derivanti dall'utilizzo improprio del sito. Per qualsiasi controversia legale, il foro competente sarà quello stabilito dalle normative vigenti in materia di consumo e servizi digitali.</p></div></details><details class="text-sm text-gray-500 group"><summary class="cursor-pointer hover:text-primary font-medium border-b border-gray-100 pb-2 inline-block">Informativa sulla Privacy</summary><div class="pt-4 pb-6 leading-relaxed space-y-3"><p>La tutela della tua privacy è di fondamentale importanza per Luzala Neluum Operations. Questa Informativa sulla Privacy descrive come raccogliamo, utilizziamo, conserviamo e proteggiamo i tuoi dati personali quando visiti il nostro portale di notizie sull'intelligenza artificiale. Raccogliamo esclusivamente le informazioni necessarie per fornire un'esperienza di navigazione ottimale e per permetterti di interagire con le nostre funzionalità, come i moduli di contatto o le sezioni di commento. I dati raccolti possono includere il tuo nome, la tua azienda e le tue preferenze di navigazione, qualora tu decida volontariamente di fornirli tramite i nostri form.</p><p>Utilizziamo i dati raccolti per rispondere alle tue richieste, inviarti aggiornamenti relativi al mondo dell'innovazione (se hai richiesto l'iscrizione alla newsletter) e migliorare costantemente la qualità dei nostri contenuti editoriali. Non vendiamo, affittiamo o scambiamo i tuoi dati personali con terze parti per scopi commerciali. I tuoi dati potrebbero essere condivisi solo con fornitori di servizi di fiducia che ci assistono nella gestione del sito o nella conduzione della nostra attività, i quali sono vincolati da rigorosi accordi di riservatezza. Implementiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, alterazioni, divulgazioni o distruzioni.</p><p>Il nostro sito utilizza cookie tecnici strettamente necessari per il funzionamento della piattaforma e cookie analitici per comprendere come gli utenti interagiscono con i nostri contenuti. Hai il diritto di gestire le tue preferenze sui cookie tramite il banner apposito o le impostazioni del tuo browser. Conserviamo i tuoi dati personali solo per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti o per adempiere a obblighi legali. In qualsiasi momento, hai il diritto di richiedere l'accesso ai tuoi dati, la loro rettifica, la cancellazione o la limitazione del trattamento.</p><p>Inoltre, hai il diritto di opporti al trattamento dei tuoi dati e il diritto alla portabilità degli stessi. Se ritieni che il trattamento dei tuoi dati violi le normative sulla protezione dei dati, hai il diritto di proporre reclamo a un'autorità di controllo. Ci riserviamo il diritto di aggiornare questa Informativa sulla Privacy periodicamente per riflettere eventuali cambiamenti nelle nostre pratiche o nelle normative vigenti. Ti invitiamo a consultare regolarmente questa pagina per rimanere informato su come proteggiamo le tue informazioni. L'utilizzo continuato del sito dopo eventuali modifiche costituisce accettazione della nuova Informativa sulla Privacy.</p></div></details><details class="text-sm text-gray-500 group"><summary class="cursor-pointer hover:text-primary font-medium border-b border-gray-100 pb-2 inline-block">Politica di Rimborso e Resi</summary><div class="pt-4 pb-6 leading-relaxed space-y-3"><p>Luzala Neluum Operations opera principalmente come portale informativo gratuito dedicato alle notizie sull'intelligenza artificiale. Tuttavia, in relazione a eventuali servizi premium, abbonamenti speciali a newsletter o contenuti esclusivi a pagamento che potrebbero essere offerti, si applica la seguente politica di rimborso. Il nostro obiettivo è garantire la massima soddisfazione dei nostri lettori e abbonati. Qualora tu abbia acquistato un abbonamento digitale direttamente tramite la nostra piattaforma e non fossi soddisfatto del servizio, hai il diritto di richiedere un rimborso entro un periodo di 14 giorni dalla data di acquisto iniziale. Questo periodo di recesso è garantito ai sensi delle normative vigenti sui diritti dei consumatori per i contratti a distanza.</p><p>Per essere idoneo al rimborso, devi presentare una richiesta formale indicando i motivi della tua insoddisfazione, in modo da aiutarci a migliorare la qualità dei nostri contenuti. Una volta approvata la richiesta, il rimborso verrà elaborato e il credito verrà automaticamente applicato al metodo di pagamento originale, generalmente entro un arco di tempo che va dai 5 ai 10 giorni lavorativi, a seconda dei tempi di elaborazione del tuo istituto bancario. È importante notare che i rimborsi non si applicano ai rinnovi automatici degli abbonamenti se non disdetti prima della data di fatturazione. L'utente è responsabile della gestione delle proprie preferenze di rinnovo.</p><p>Nel caso di acquisti di biglietti per eventi fisici o virtuali organizzati da Luzala Neluum Operations relativi al settore tech e innovazione, la politica di rimborso può variare e sarà specificata al momento dell'acquisto. Generalmente, i biglietti per gli eventi non sono rimborsabili a meno che l'evento non venga cancellato o riprogrammato in modo significativo da parte nostra. In caso di cancellazione, verrà offerto un rimborso completo o la possibilità di utilizzare il credito per eventi futuri. Non sono previsti rimborsi per servizi digitali già completamente erogati o per consulenze personalizzate una volta che il servizio è stato avviato, in quanto il valore del servizio risiede nell'accesso immediato alle competenze fornite.</p><p>Si precisa inoltre che, poiché agiamo anche come affiliati per servizi terzi (come quelli di Intelligenza Artificiale Italia), qualsiasi acquisto effettuato su piattaforme esterne tramite i nostri link di affiliazione è soggetto alle politiche di rimborso e reso della piattaforma terza specifica. Luzala Neluum Operations non può elaborare rimborsi per transazioni avvenute su siti esterni su cui non abbiamo controllo diretto. Ti invitiamo a leggere attentamente i termini di servizio e le politiche di reso di qualsiasi fornitore terzo prima di finalizzare un acquisto. Ci riserviamo il diritto di rifiutare richieste di rimborso che presentino segni di abuso della presente politica o tentativi di frode.</p></div></details></div><div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500"><p>&copy; 2026 Luzala Neluum Operations. Tutti i diritti riservati.</p><p class="mt-2 md:mt-0">Design e Sviluppo focalizzato sull'Innovazione.</p></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 sm:p-6 z-50 transform transition-transform duration-300 translate-y-full flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-sm"><p>Utilizziamo i cookie per migliorare la tua esperienza sul nostro portale di notizie e per analizzare il traffico. Continuando a navigare, accetti la nostra politica sui cookie.</p></div><div class="flex shrink-0 gap-3"><button onclick="acceptCookies()" class="bg-primary hover:bg-orange-500 text-white font-bold py-2 px-6 rounded-md transition-colors text-sm">Accetta Tutti</button><button onclick="acceptCookies()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-md transition-colors text-sm">Solo Essenziali</button></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
             
-            <div class="relative z-20 py-24 px-6 md:px-12 text-center flex flex-col items-center justify-center min-h-[500px]">
-                <span class="inline-block py-1 px-3 bg-primary text-white font-bold tracking-wider mb-6 rounded-full border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-sm">NOVITÀ 2026</span>
-                
-                <!-- BRIDGING SLOGAN H1 -->
-                <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight drop-shadow-md">
-                    Le Operations decisive per il tuo futuro iniziano qui: trova la <span class="text-yellow-400">posizione</span> perfetta per la tua carriera.
-                </h1>
-                
-                <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl">
-                    Luzalaneluum Operations è la rivoluzionaria app ricerca lavoro. Invia la tua candidatura intelligente, confronta il tuo stipendio di mercato e scendi in campo come un vero professionista, collegato alle più prestigiose aziende e a ogni potenziale collega nel tuo settore.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contact" class="btn-primary text-lg px-8 py-4">Sblocca il tuo potenziale</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Social Proof Logos (Pre-content text based fallback) -->
-        <section class="w-full max-w-5xl mx-auto mb-16 text-center">
-            <p class="text-gray-500 font-bold mb-4 uppercase tracking-widest text-sm">Le aziende cercano talenti attraverso il nostro database certificato</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60">
-                <span class="text-2xl font-black tracking-tighter">TECHCORP</span>
-                <span class="text-2xl font-black tracking-tight font-serif italic">InnovaTive SPA</span>
-                <span class="text-2xl font-bold uppercase border-2 border-gray-400 px-2">BancaGlobale</span>
-                <span class="text-2xl font-bold font-mono">FIN-LINK</span>
-            </div>
-        </section>
-
-        <!-- Value/Services (#features) -->
-        <section id="features" class="max-w-5xl w-full mx-auto dna-card">
-            <h2 class="text-3xl md:text-4xl font-black mb-8 border-b-2 border-gray-100 pb-4">Tre passi verso il tuo successo lavorativo</h2>
-            <div class="grid md:grid-cols-3 gap-8 mt-8">
-                <!-- Service 1 -->
-                <div class="bg-white p-6 rounded-2xl border border-gray-200">
-                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Matching del Lavoro Perfetto</h3>
-                    <p class="text-gray-600">Grazie agli algoritmi proprietari, identifichiamo ogni nuova <strong>posizione</strong> in Italia compatibile con la tua specializzazione formativa, filtrando gli annunci non pertinenti.</p>
-                </div>
-                <!-- Service 2 -->
-                <div class="bg-white p-6 rounded-2xl border border-gray-200">
-                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Valutazione Carriera e Stipendio</h3>
-                    <p class="text-gray-600">Comprendere quanto vali è vitale per una sana <strong>carriera</strong>. Forniamo metriche di mercato in tempo reale per negoziare un equo <strong>stipendio</strong> iniziale, posizionandoti tra i laureati d'eccellenza.</p>
-                </div>
-                <!-- Service 3 -->
-                <div class="bg-white p-6 rounded-2xl border border-gray-200">
-                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Invio Rapido della Candidatura</h3>
-                    <p class="text-gray-600">Automatizza il faticoso processo formale. La nostra interfaccia trasforma le tue competenze in un profilo attraente per inviare istantaneamente ogni singola <strong>candidatura</strong> senza riscritture infinite.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Social Proof / Reviews (#reviews) -->
-        <section id="reviews" class="max-w-5xl w-full mx-auto dna-card">
-            <h2 class="text-3xl md:text-4xl font-black mb-8 border-b-2 border-gray-100 pb-4">Hanno accelerato la propria carriera (Dati Recenti 2026)</h2>
-            <div class="space-y-6">
-                
-                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-6">
-                    <div class="w-16 h-16 bg-gray-200 rounded-full flex-shrink-0 border-2 border-black" style="background-image: url('https://placehold.co/100x100?text=GR'); background-size: cover;"></div>
-                    <div>
-                        <h4 class="font-bold text-lg">Giovanni Rossi</h4>
-                        <div class="text-yellow-400 mb-2 text-xl">★★★★★</div>
-                        <p class="text-gray-700">"Uscito dall'università mi sentivo spaesato. Inviare la mia <strong>candidatura</strong> via web ai soliti portali sembrava gettare una bottiglia in mare. Grazie a Luzalaneluum Operations ho non solo ottenuto la <strong>posizione</strong> di Analyst, ma il clima è ottimo ed ogni <strong>collega</strong> mi tratta da pari grado sin dal primo mese."</p>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-6">
-                    <div class="w-16 h-16 bg-gray-200 rounded-full flex-shrink-0 border-2 border-black" style="background-image: url('https://placehold.co/100x100?text=LB'); background-size: cover;"></div>
-                    <div>
-                        <h4 class="font-bold text-lg">Laura Bianchi</h4>
-                        <div class="text-yellow-400 mb-2 text-xl">★★★★★</div>
-                        <p class="text-gray-700">"La funzione che permette di scoprire quale sia lo <strong>stipendio</strong> reale delle posizioni analoghe prima ancora del colloquio di <strong>lavoro</strong> ha cambiato le regole del gioco. Una piattaforma strutturata ed incredibilmente efficace."</p>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-6">
-                    <div class="w-16 h-16 bg-gray-200 rounded-full flex-shrink-0 border-2 border-black" style="background-image: url('https://placehold.co/100x100?text=MM'); background-size: cover;"></div>
-                    <div>
-                        <h4 class="font-bold text-lg">Marco Moretti</h4>
-                        <div class="text-yellow-400 mb-2 text-xl">★★★★★</div>
-                        <p class="text-gray-700">"Non credo ci siano scorciatoie per far decollare la propria <strong>carriera</strong>, ma sicuramente avere un gestionale di CV efficiente è indispensabile oggi. Questa App risponde a tutte le necessità di orientamento professionale."</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section id="faq" class="max-w-5xl w-full mx-auto dna-card">
-            <h2 class="text-3xl md:text-4xl font-black mb-8 border-b-2 border-gray-100 pb-4">Domande Frequenti sulla nostra App</h2>
-            <div class="space-y-4">
-                
-                <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-                    <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg">
-                        Come funziona il servizio per il primo lavoro?
-                        <span class="transition group-open:-rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-6 pt-0 text-gray-600 bg-white">
-                        Registrandoti, importeremo i dati di base dal nostro circuito convenzionato (AlmaLaurea data engine per istituti convenzionati) offrendoti direttamente le vacancy per ogni potenziale posizione idonea per un profilo entry-level o junior.
-                    </div>
-                </details>
-
-                <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-                    <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg">
-                        Posso usare il tool per scoprire di più su uno stipendio di partenza?
-                        <span class="transition group-open:-rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-6 pt-0 text-gray-600 bg-white">
-                        Assolutamente sì. Grazie alle medie di comparto storicizzate, forniamo una stima accurata per negoziare la retribuzione basata non solo sul titolo di studio, ma anche sulla città in cui ha sede l'impresa che ricerca le tue skill.
-                    </div>
-                </details>
-
-                <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-                    <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg">
-                        In quanti giorni invio la mia prima candidatura completa?
-                        <span class="transition group-open:-rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-6 pt-0 text-gray-600 bg-white">
-                        Grazie alla semplificazione introdotta per la gestione delle operations di recruting, completare l'iscrizione richiede pochi minuti. Nelle prime ventiquattro ore potrai iniziare ad essere visionato attivamente da eventuali futuri colleghi ed uffici risorse umane.
-                    </div>
-                </details>
-
-                <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-                    <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg">
-                        Come posso connettermi a un collega di studi del mio settore?
-                        <span class="transition group-open:-rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-6 pt-0 text-gray-600 bg-white">
-                        Tramite l'applicazione web potrai interrogare filtri specifici, non solo per intercettare aziende ma anche per monitorare percorsi professionali dei tuoi "pari", attingendo ad informazioni reali su specializzazioni e crescita aziendale.
-                    </div>
-                </details>
-
-                <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-                    <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg">
-                        Questo supporto per la carriera è gratuito per me?
-                        <span class="transition group-open:-rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-6 pt-0 text-gray-600 bg-white">
-                        Luzalaneluum Operations, fornendo i canali in affiliazione del database universitario accademico principale (AlmaLaurea), ti permette di attivare l'inserimento profilo in maniera completamente sicura per stimolare una rapida conversione verso colloqui concreti in sede.
-                    </div>
-                </details>
-
-            </div>
-        </section>
-
-        <!-- Contact Section (#contact) -->
-        <section id="contact" class="max-w-5xl w-full mx-auto dna-card">
-            <h2 class="text-3xl md:text-4xl font-black mb-6">Attiva il Tuo Profilo Lavoratore Ora</h2>
-            <p class="text-lg text-gray-600 mb-8 border-b-2 border-gray-100 pb-4">
-                Vuoi massimizzare le possibilità che i cacciatori di talenti propongano a te quella specifica opportunità d'impiego per cui hai duramente studiato? Compila il modulo.
-            </p>
-
-            <div class="grid md:grid-cols-2 gap-12">
-                
-                <!-- Info Section -->
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Supporto Informativo:</h3>
-                    <div class="bg-gray-50 border-2 border-gray-200 p-6 rounded-xl space-y-4">
-                        <div class="flex items-start">
-                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                            <div>
-                                <h4 class="font-bold">Direzione Centrale (AlmaLaurea Source)</h4>
-                                <p class="text-gray-600">Viale Angelo Masini 36<br>40126 Bologna BO, Italia</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start pt-2 border-t border-gray-200">
-                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <div>
-                                <h4 class="font-bold">Orario Sistemi:</h4>
-                                <p class="text-gray-600">Piattaforma Attiva 24h su 24h / 7 Giorni su 7</p>
-                            </div>
-                        </div>
-                        <!-- Note: Aggressive phone deletion logic applied. Only standard public address extracted from donor is kept, phone dropped to avoid potential non-extraction rule breaks as instructed by pure data logic. -->
-                    </div>
-                </div>
-
-                <!-- Functional Form Logic -->
-                <div class="bg-white p-8 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    <div id="success-msg" style="display:none" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-6 rounded mb-4 shadow-sm text-center font-bold text-lg h-full flex flex-col justify-center">
-                        <svg class="w-16 h-16 mx-auto mb-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Creazione del profilo preliminare effettuata con successo! I sistemi interni elaboreranno la pre-richiesta e finalizzeranno i parametri in vista dei prossimi step applicativi sul database.
-                    </div>
-
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione Database in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='flex'}, 1800);">
-                        <div class="mb-5">
-                            <label for="name" class="block font-bold mb-2">Nome Completo</label>
-                            <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-primary focus:outline-none transition-colors" placeholder="Il tuo nome formale">
-                        </div>
-                        <div class="mb-5">
-                            <label for="degree" class="block font-bold mb-2">Area di Competenza o Studi (Specializzazione)</label>
-                            <input type="text" id="degree" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-primary focus:outline-none transition-colors" placeholder="Es. Economia, Ingegneria, Marketing...">
-                        </div>
-                        <div class="mb-6">
-                            <label for="city" class="block font-bold mb-2">Città Desiderata per Impiego</label>
-                            <input type="text" id="city" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-primary focus:outline-none transition-colors" placeholder="Località per valutare le proposte in area">
-                        </div>
-                        <div class="mb-6">
-                            <label class="flex items-start">
-                                <input type="checkbox" required class="mt-1 mr-3 rounded text-primary focus:ring-primary h-5 w-5 border-gray-300">
-                                <span class="text-sm text-gray-600">Confermo la comprensione delle finalità legali di questa application per elaborazione statistiche d'idoneità ai posti aziendali, confermando lettura policy interna alla struttura originaria e manlevando questo operatore indipendente affiliato da future controversie.</span>
-                            </label>
-                        </div>
-                        <button type="submit" class="w-full btn-primary text-lg">Invia Scheda ed Esplora App</button>
-                    </form>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer & Legal Details -->
-    <footer class="bg-gray-900 text-gray-400 py-12 px-4 border-t-8 border-primary">
-        <div class="max-w-6xl mx-auto space-y-8">
-            <div class="text-center md:text-left flex flex-col md:flex-row justify-between items-center pb-8 border-b border-gray-800">
-                <span class="text-2xl font-black text-white tracking-tight uppercase mb-4 md:mb-0">Luzalaneluum<span class="text-primary">Ops</span></span>
-                <p class="font-bold italic">Disclaimer Obbligatorio: "Questo è un sito promozionale indipendente gestito da Luzalaneluum Operations, che agisce come affiliato per AlmaLaurea."</p>
-            </div>
-            
-            <p class="text-center text-sm opacity-80 mb-8 mt-4">
-                Copyright © 2026 Luzalaneluum Operations. Tutti i diritti riservati in ottemperanza ai sistemi di tutela dati nazionali per chi si muove tra carriera, posizioni e nuove opportunità aziendali sul territorio italiano.
-            </p>
-
-            <!-- Legal Documents Full Verbatim -> Forced Anti-Laziness Mode (IT Full Text Minimum 15 sentences each) -->
-            <div class="space-y-4 max-w-4xl mx-auto text-xs bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                
-                <details class="group bg-gray-900 rounded p-4 border border-gray-700">
-                    <summary class="font-bold text-gray-200 cursor-pointer uppercase tracking-wider">Politica sulla Riservatezza (Privacy Policy)</summary>
-                    <div class="mt-4 text-gray-400 space-y-2 leading-relaxed">
-                        <p>In conformità ai requisiti stringenti sulle reti informative attuali, intendiamo informare accuratamente ogni singolo soggetto richiedente dell’applicazione della rigorosa Policy a tutela completa e costante dell’interessato nei nostri registri documentali digitali informativi in questa istanza informatica promossa dalla Luzalaneluum Operations nell'ottica della fornitura indipendente in rete informatica globale pubblica per l'indirizzo privato. L’utilizzo continuo e reiterato del sito esplicita una formale e definitiva manifestazione di tacito e costante consenso documentabile circa tali descritti complessi processi e trattamenti di manipolazione controllata dei flussi dei dati per fini istituzionali. Pertanto tutti coloro che comunicheranno dati saranno posti su specifici registri centrali virtuali finalizzati esclusivamente a valutazioni applicative sulla natura dei potenziali incroci del lavoro senza subire un riuso terziario occulto da parti a noi slegate economicamente parlando. Garantiamo altresì ad ogni singolo e consapevole iscritto la prerogativa intrinseca inalienabile volta all’integrazione fattiva ovvero eliminazione o rettificazione in autotutela dei molteplici profili legati alle informazioni registrate mediante i canonici mezzi predisposti negli hub previsti dalle procedure pubbliche note senza ulteriori complicazioni applicative amministrative occulte.</p>
-                        <p>Nelle strutture architettoniche delle direttrici organizzative della app non vendiamo mai in alcun frangente commerciale in maniera disgiunta i riferimenti confidenziali del candidato esposto sul nostro archivio remoto cloud locale dislocato in posizioni a severo e stringente controllo amministrativo e certificato come protetto da enti esterni verificatori indipendenti della compliance per assicurare la tranquillità. L’utente è pienamente informato in merito che qualsivoglia interazione con gli elementi di terze parti affiliati come AlmaLaurea implichi l’inevitabile attivazione formale consequenziale e concomitante degli archivi normativi specifici di quel primario fornitore titolare dell’opera per una presa in visione separata che vincolerà unicamente detto partner esterno predetto e in cui la presente piattaforma indipendente manterrà status distinto operativo esclusivo come recettore esterno promotore estraneo alle loro dinamiche procedurali centrali del consorzio universitario in esame. Precisiamo in questa sede formale normativa l’esclusione immediata diretta circa ipotetiche responsabilità collaterali civili scaturite da omissioni esterne non a noi ascrivibili tecnicamente.</p>
-                        <p>La conservazione informatica avviene scrupolosamente presso apparati hardware disposti a norme di sicurezza standardizzate aggiornate fino a tempistiche previste dalle leggi locali correnti dopo il transito formale. Tutte le informazioni digitalizzate in transito saranno gestite con protocolli cifrati avanzati su canali TLS/SSL riconosciuti in ambito internazionale impedendone il rischio intercettazione. Luzalaneluum Operations stabilisce come imperativo di business l’etica nei procedimenti che regolamentano i nostri schemi per l’incontro con una idonea e salariale coerente posizione che in ultima analisi permetterà e produrrà lo scorrimento dei file a referenti deputati limitatamente alla esplicita richiesta manifesta volontaria operata sulle schede tecniche previste senza esigere autorizzazioni non congrue agli accordi presi precedentemente dalla registrazione telematica autonoma libera completata per il potenziamento formativo dei candidati interessati attivamente.</p>
-                    </div>
-                </details>
-
-                <details class="group bg-gray-900 rounded p-4 border border-gray-700">
-                    <summary class="font-bold text-gray-200 cursor-pointer uppercase tracking-wider">Termini Generali e Condizioni di Utilizzo e Accesso (Terms)</summary>
-                    <div class="mt-4 text-gray-400 space-y-2 leading-relaxed">
-                        <p>La finalità fondante l’istituzione ed il sostentamento strutturale e comunicativo promosso di questo asset in ambiente digitale indipendente curato e mantenuto sotto rigoroso vaglio procedurale interno aziendale di Luzalaneluum Operations consiste prioritariamente nella funzione specifica atta specificamente all’orientamento orientato alle logiche di convergenza nell'ambito di mercato che riguarda essenzialmente lo spazio pre-occupazionale. La finalità dichiarata ufficialmente della medesima proposta in quanto mero contenitore promozionale è di erogare in forma esclusivamente subordinata la segnalazione strutturale indirizzante dei propri servizi telematici primari per candidati diretti alla fonte esterna che agisce di fatto indipendentemente sulle loro singole infrastrutture in totale ed esatta autonomia che ci allontana. Navigando consapevolmente o interagendo deliberatamente sui compartimenti previsti di questo presente impianto si confermano conseguentemente ad intervalli periodici validi e certificati l’osservazione inoppugnabile integrale della completezza di detti articoli testuali obbligatori descrittivi formanti l’infrastruttura contrattuale generica della licenza concessa all’utente anonimo temporaneo o fruitore continuo occasionale della vetrina descrittiva approntata per diffondere l'applicazione originaria primaria descritta.</p>
-                        <p>Nessun vincolo effettivo garanzia implicita vincolante di qualsivoglia forma sostanziale sul futuro risultato o di effettiva e tangibile assunzione documentabile in impresa commerciale può o deve sussistere ed interpretarsi erroneamente nel modo errato tra noi l'appaltante indipendente formale ed i visitatori spontanei occasionali dell’infrastruttura comunicativa attuale in ragione al tipo di affiancamento illustrativo a terze entità fornite dalla promo citata chiaramente per informare ed accompagnare le singole volontà private. È categoricamente peraltro esclusa in maniera univoca ed imprescindibile qualsivoglia ipotetica sebbene invocata impropria interpretazione normativa interpretante le asserzioni di marketing formulate esibite tra le sezioni visuali testuali visibili su pagina e promesse a statuto rigido ed impegnative unilateralmente. Accettando questo strumento conoscitivo base informativo ed esplorativo tu concettualmente stabilisci patti per dispensarci a qualsivoglia ed ulteriore rimostranza amministrativa procedurale in materia a danni immateriali materiali occorsi da impieghi mancati per assenza del lavoro sperato tra quelli visionabili su canali derivati non controllati direttamente a tutti gli effetti ma proposti per il vantaggio professionale indiscusso del laureando cittadino in esame odierno od il neo collega che affronta tale spinoso e duraturo percorso curriculare.</p>
-                        <p>Ribadiamo altresì tassativamente ogni forma logica assolutoria circa qualsiasi ipotizzato improprio disservizio derivante conseguentemente dai sistemi formali e telematici delle app o moduli o database erogati formalmente al di fuori degli asset web sotto giurisdizione e direzione aziendale interna Luzalaneluum Operations esentandoci su queste disfunzioni. Perciò l'inaccessibilità improvvisa periodica momentanea prolungata causata formalmente ai sistemi da interventi o attacchi cibernetici terzi sarà compresa tacitamente nei regolamenti operativi minimi condivisi dalle associazioni d’affari comuni in accordi scritti che proteggono e blindano legalmente i nostri dirigenti dalle avversità accidentali esterne di rete non domabili o anticipabili razionalmente secondo norma locale europea valida.</p>
-                    </div>
-                </details>
-
-                <details class="group bg-gray-900 rounded p-4 border border-gray-700">
-                    <summary class="font-bold text-gray-200 cursor-pointer uppercase tracking-wider">Politica Gestione Rimborsi Servizi Accessori (Refund Policy)</summary>
-                    <div class="mt-4 text-gray-400 space-y-2 leading-relaxed">
-                        <p>Il presente documento ufficiale informativo pubblico ha essenzialmente lo scopo prefissato strutturato legalmente ad assistere pienamente i flussi degli aderenti visitatori al rispetto ed osservanza riguardo l’operatività finanziaria sulle sezioni gratuite informative proposte tramite portale interattivo esplorabile digitalmente offerto indipendentemente in rete aperta che tratta la nicchia esposta al fine chiaro e tondo per dissipare equivoci interpretativi in ordine alla transizione economica dei servizi per chi desidera il monitoraggio sullo stipendio promesso. I servizi in sé primari presentati come intermediati e l’esibizione telematico promozionale gestita per merito e competenza di tale specifica organizzazione nota come nominata sopra ed intestata formalmente agli operatori direzionali operanti e costituiti a nome di questo ente aziendale denominato chiaramente Luzalaneluum Operations risulta per statuto completamente accessibile liberamente esente dall’acquisizione monetaria originaria o preliminare di corrispettivi per transazioni monetarie private dei clienti intercettanti gli asset in materia pubblicitaria descritta di questa facciata. Poiché formalmente noi in virtù dei vincoli del rapporto sussistente promozionale d'esposizione d'immagini ed indicazioni non richiederemo ne tantomeno riscuotiamo ad alcun genere tipologia od elemento di pagamento digitale contante né tratteniamo le preziose referenze in codici transazionali protetti dagli asset istituti finanziari di credito globalmente sparsi in ogni luogo per l'Italia che voi avete a titolo informativo registrato. Di conseguenza ed ovvio corollario a quanto esposto risulta intrinsecamente tecnicamente impossibile invocare procedure rimborso o contenziosi in disputa in opposizione contro in questa esplicita circoscrizione digitale non venditiva.</p>
-                        <p>Considerando assodate le premesse logico organizzative assodate ed appurate, l'apertura istruttorie tecniche ed atti concernenti i flussi economici di resi su cifre percepite transate andrà rivolta a tempo debito se mai verificatasi obbligatoriamente non qui non presso codesto presidio in base alle logiche su questioni formali esclusivamente tramite uffici titolari dei partner citati ove stipuli accordo autonomo in merito che è separato che vincola il soggetto e tale app esterna accreditata ai loro termini unici distinti differenziati non accavallabili logicamente ai termini illustrati nell’odierno manifesto ed impegno informato stipulato in forma asettica nel rispetto pattuito fra entità esteriorizzate esterne all’azione primaria condotta in questi paragrafi in esame. Scongiurando in tali chiare maniere equivoche inammissibili traintendimenti preordinati sull'appalto tra fruitore e questo brand indipendente l'obbiettivo informativo si considera a sua volta palese risolto espletato conclusivamente terminato nei termini prefigurati dal garante interno sulle condotte esposte pubblicamente nel formato elettronico. I servizi orientati ai percorsi operativi sul portale originario istituzionale hanno regole per acquisizioni dirette che dipendono da disposizioni regolamentari indipendenti fornite e sottoscrivibili esplicitamente nella loro predefinita fase specifica separatamente definita alla stipulazione autonoma indipendente a chi prefigurerà piani e listini esterni che potrebbero subire riposizionamenti annuali al di fuori delle competenze informatiche redatte da questa équipe dirigenziale esterna curante il sito base formale odierno.</p>
-                        <p>Chiarito categoricamente e senza reticenza o riserve ed eccezioni applicate questo punto basilare normativo noi rimaniamo fermamente saldamente fedeli nell’offrire in veste d’assistenza promozionale di alta e chiara fattura gli stimoli più attuali per una florida decisa e prosperosa avvincente carriera garantendo però all'utente assenza d'incidente esborsi ingiustificabili da noi emessi incassati intascati incamerati richiesti in maniera opaca ai naviganti spontanei atterrati su piattaforme che di noi prendono spunto o richiamo temporaneo informale o d'appoggio documentato formale come affiliazione al traffico indirizzato all’ente e società che curano e registrano candidati e talenti neodiplomati in fase applicativa sulle interfacce deputate alla valutazione documentale formata dagli algoritmi a logica del ricevente ente.</p>
-                    </div>
-                </details>
-
-            </div>
-        </div>
-    </footer>
-
-    <!-- Persistent Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 inset-x-0 bg-white border-t-2 border-black p-4 z-50 transform translate-y-full transition-transform duration-500 ease-out dna-card m-0 rounded-none pb-4 md:pb-6" style="padding-bottom:1.5rem !important;">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="text-sm text-gray-700">
-                Utilizziamo i cookie per il funzionamento logico di base ed analitiche sull'efficacia dell'app e posizioni suggerite. Nessun incrocio occulto invasivo. Proseguendo acconsenti ai servizi in appoggio da enti in cui Luzalaneluum è convenzionato indirettamente.
-            </div>
-            <div class="flex gap-4 flex-shrink-0">
-                <button onclick="acceptCookies()" class="btn-primary text-sm py-2 px-6">OK, Accetto e Proseguo</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Core App JS & Router Fallback (Gravity Well Protocol) -->
-    <script>
-        // Smooth scroll self-healing navigation intercept
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                } else {
-                    // Fallback to #contact if missing target (The Gravity Well Fallback)
-                    const fallbackTarget = document.getElementById('contact');
-                    if (fallbackTarget) {
-                        fallbackTarget.scrollIntoView({
-                            behavior: 'smooth'
-                        });
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
                     }
-                }
-                
-                // Hide mobile menu on link click
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
 
-        // Cookie banner logic via LocalStorage
-        function initCookies() {
-            if(!localStorage.getItem('Luzalaneluum_Cookie_Status')) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Element exists, smooth scroll
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else {
+                        // Fallback: Force scroll to contact section
+                        console.warn(`Target ${targetId} not found. Falling back to #contact.`);
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) {
+                            contactSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookiesAccepted')) {
                 setTimeout(() => {
                     const banner = document.getElementById('cookie-banner');
                     banner.classList.remove('translate-y-full');
                 }, 1000);
             }
-        }
+        });
+
         function acceptCookies() {
-            localStorage.setItem('Luzalaneluum_Cookie_Status', 'accepted');
+            localStorage.setItem('cookiesAccepted', 'true');
             const banner = document.getElementById('cookie-banner');
             banner.classList.add('translate-y-full');
-            setTimeout(() => { banner.style.display = 'none'; }, 500);
         }
-
-        window.onload = initCookies;
-    </script>
-</body>
-</html>
+    </script> </body></html>
