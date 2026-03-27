@@ -1,477 +1,161 @@
-<!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeyarium Partners | Portale Bonus Statali e Agevolazioni Fiscali</title>
-    <meta name="description" content="Resta aggiornato su bonus, agevolazioni fiscali e requisiti per cittadini. Scopri i dettagli dell'ultimo decreto per massimizzare il tuo risparmio.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- DESIGN SYSTEM (DNA: yeyariumpartners.click -> L22, Y121, K107) -->
-    <style>
-        :root {
-            /* VAR D: Palette (Blue/Sky for Trust & Finance) */
-            --primary: #0284c7;
-            /* VAR C: Surface (ASCII k % 3 = 2 -> Cool Slate White) */
-            --surface: #f8fafc;
-            /* VAR A: Geometry (Length 22 % 3 = 1 -> Soft) */
-            --radius: 12px;
-            /* VAR B: Physics (ASCII y % 3 = 1 -> Material) */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Yeyarium Partners | Guida ai Mercati Artigianali e Botteghe Italiane</title><meta name="description" content="Scopri i migliori mercati artigianali, le botteghe artigiane storiche e il vero artigianato italiano con la guida esclusiva di Yeyarium Partners."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
+      :root {
+        --primary: #dc2626;
+        --secondary: #059669;
+        --radius: 16px;
+        --card-radius: 16px;
+        --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        --body-bg: #f0fdf4;
+        --card-bg: #ffffff;
+        --text: #14532d;
+        --muted: #4b5563;
+      }
 
-        /* GLOBAL CONTRAST BASE */
-        body {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
 
-        /* BRAND COMPONENT: The DNA Card */
-        .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
 
-        /* BRAND COMPONENT: Primary Button */
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2.5rem;
-            transition: all 0.2s ease-in-out;
-            font-weight: 700;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
 
-        /* UTILITY: Text Accent */
-        .text-primary { 
-            color: var(--primary); 
-        }
+      nav {
+        background-color: var(--body-bg);
+      }
 
-        /* Form Inputs */
-        .dna-input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid #d1d5db;
-            border-radius: var(--radius);
-            background-color: #ffffff;
-            transition: border-color 0.2s;
-        }
-        .dna-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
-        }
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        /* Details summary fix */
-        details > summary { list-style: none; cursor: pointer; }
-        details > summary::-webkit-details-marker { display: none; }
-    </style>
-</head>
-<body class="antialiased flex flex-col min-h-screen">
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
 
-    <!-- NAVIGATION -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-black text-gray-900 tracking-tight">
-                        Yeyarium <span class="text-primary">Partners</span>
-                    </a>
-                </div>
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Servizi</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Testimonianze</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">FAQ</a>
-                </nav>
-                <div class="hidden md:flex">
-                    <a href="#contact" class="btn-primary">Verifica Agevolazioni</a>
-                </div>
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-gray-900 focus:outline-none p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-2 pt-2 pb-4 space-y-1 shadow-lg absolute w-full">
-            <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Servizi</a>
-            <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Testimonianze</a>
-            <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">FAQ</a>
-            <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary mt-4">Verifica Ora</a>
-        </div>
-    </header>
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
 
-    <!-- HERO SECTION -->
-    <div class="relative bg-gray-900 overflow-hidden w-full">
-        <div class="absolute inset-0">
-            <!-- Pexels source: related to savings/finance -->
-            <img src="https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80" 
-                 referrerpolicy="no-referrer"
-                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1f2937/ffffff?text=Agevolazioni+Statali'"
-                 alt="Gestione del Risparmio" 
-                 class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gray-900 bg-opacity-75"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
-                Yeyarium Partners: La Tua Guida Certa alle <span class="text-blue-400">Agevolazioni Fiscali</span> e ai Bonus.
-            </h1>
-            <p class="mt-4 max-w-3xl text-xl text-gray-200 mb-10 leading-relaxed">
-                Interpreta il complesso panorama degli incentivi. Scopri subito i dettagli dell'ultimo <strong class="text-white font-semibold">decreto</strong>, verifica se possiedi i <strong class="text-white font-semibold">requisiti</strong> e aiuta la tua famiglia ad ottenere il massimo <strong class="text-white font-semibold">risparmio</strong> grazie ai fondi dedicati ai <strong class="text-white font-semibold">cittadini</strong> italiani.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-lg mx-auto">
-                <a href="#contact" class="btn-primary w-full sm:w-auto text-lg">Inizia la Valutazione Gratuita</a>
-                <a href="#features" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-md text-white bg-white bg-opacity-10 hover:bg-opacity-20 transition" style="border-radius: var(--radius)">
-                    Scopri di Più
-                </a>
-            </div>
-        </div>
-    </div>
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="flex-grow py-16 px-4 sm:px-6 lg:px-8 space-y-8">
-        
-        <!-- Trust Indicators -->
-        <div class="max-w-5xl mx-auto text-center mb-12">
-            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6">Informazioni aggiornate basate su fonti istituzionali</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale font-black text-xl text-gray-400">
-                <span>MEF Data</span>
-                <span>INPS Updates</span>
-                <span>Fiscalità Nazionale</span>
-                <span>Bonus Alert</span>
-            </div>
-        </div>
+      /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+      main, main + footer { scroll-margin-top: 5rem; }
+      body { padding-top: 4rem; }
 
-        <!-- FEATURES / SERVICES SECTION -->
-        <div id="features" class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-12">
-                <h2 class="text-primary font-bold tracking-wide uppercase">Cosa Offriamo</h2>
-                <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Soluzioni per le Tue Esigenze Fiscali
-                </h3>
-                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-                    Il nostro portale trasforma norme complesse in indicazioni pratiche per farti accedere ai sussidi che ti spettano.
-                </p>
-            </div>
+      /* Form inputs — consistent styling regardless of Gemini output */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(220,38,38,0.15);
+      }
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="p-6 border border-gray-100 rounded-xl bg-white hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-blue-50 text-primary mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">Bonus Famiglia e Sussidi</h4>
-                    <p class="text-gray-600">Aggiornamenti costanti su Assegno Unico, bonus nido e aiuti contro il caro vita previsti dall'ultimo decreto governativo.</p>
-                </div>
-                <!-- Feature 2 -->
-                <div class="p-6 border border-gray-100 rounded-xl bg-white hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-blue-50 text-primary mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">Agevolazioni Edilizie</h4>
-                    <p class="text-gray-600">Scopri come riqualificare la tua casa accedendo ai fondi statali, ottimizzando i tempi e assicurandoti un reale risparmio.</p>
-                </div>
-                <!-- Feature 3 -->
-                <div class="p-6 border border-gray-100 rounded-xl bg-white hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-blue-50 text-primary mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">Guide Pagamenti INPS</h4>
-                    <p class="text-gray-600">Calendario aggiornato, calcolo degli importi e controllo dei requisiti minimi per non perdere nemmeno una mensilità.</p>
-                </div>
-            </div>
-        </div>
+      /* Links — readable on any theme */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
 
-        <!-- REVIEWS SECTION -->
-        <div id="reviews" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">L'Esperienza dei Cittadini (Aggiornate 2026)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Testimonial 1 -->
-                <div class="bg-white p-6 rounded-lg border border-gray-100 relative">
-                    <div class="text-primary mb-4">
-                        <svg class="h-8 w-8 opacity-25" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
-                    </div>
-                    <p class="text-gray-600 italic mb-4">"Grazie a Yeyarium Partners ho finalmente capito quali bonus mi spettavano per la nascita di mio figlio. Hanno spiegato il decreto in modo semplice."</p>
-                    <div class="font-bold text-gray-900">- Marco T.</div>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="bg-white p-6 rounded-lg border border-gray-100 relative">
-                    <div class="text-primary mb-4">
-                        <svg class="h-8 w-8 opacity-25" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
-                    </div>
-                    <p class="text-gray-600 italic mb-4">"Precisi sulle date di pagamento INPS e cristallini nell'esporre i requisiti. Il mio portale di riferimento per le agevolazioni fiscali."</p>
-                    <div class="font-bold text-gray-900">- Giulia B.</div>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="bg-white p-6 rounded-lg border border-gray-100 relative">
-                    <div class="text-primary mb-4">
-                        <svg class="h-8 w-8 opacity-25" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
-                    </div>
-                    <p class="text-gray-600 italic mb-4">"Il reale risparmio passa dall'informazione corretta. Con Yeyarium sono riuscito a sbloccare un'agevolazione bloccata da mesi."</p>
-                    <div class="font-bold text-gray-900">- Antonio M.</div>
-                </div>
-            </div>
-        </div>
+      /* Section divider — subtle visual rhythm */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(220,38,38,0.12), transparent);
+        margin: 0;
+      }
 
-        <!-- FAQ SECTION -->
-        <div id="faq" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-8">Domande Frequenti (FAQ)</h2>
-            <div class="space-y-4">
-                <details class="bg-white border border-gray-200 p-4 rounded-lg group">
-                    <summary class="flex justify-between items-center font-bold text-lg text-gray-900 focus:outline-none">
-                        Come posso verificare i miei requisiti per un bonus?
-                        <span class="transition group-open:rotate-180 text-primary">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                        </span>
-                    </summary>
-                    <p class="mt-4 text-gray-600 leading-relaxed">
-                        Per valutare la tua idoneità, è fondamentale analizzare parametri come ISEE, composizione del nucleo familiare e situazione reddituale. Il nostro servizio decifra per te i complessi testi normativi per guidare ogni cittadino alla corretta comprensione dei propri diritti.
-                    </p>
-                </details>
-
-                <details class="bg-white border border-gray-200 p-4 rounded-lg group">
-                    <summary class="flex justify-between items-center font-bold text-lg text-gray-900 focus:outline-none">
-                        Quanto tempo serve per l'erogazione di un'agevolazione?
-                        <span class="transition group-open:rotate-180 text-primary">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                        </span>
-                    </summary>
-                    <p class="mt-4 text-gray-600 leading-relaxed">
-                        Le tempistiche variano in base all'istituto erogante (es. INPS o Agenzia delle Entrate) e a quanto specificato nel singolo decreto attuativo. Solitamente vanno da 30 a 90 giorni dal completamento corretto della pratica e dall'accertamento dei requisiti.
-                    </p>
-                </details>
-
-                <details class="bg-white border border-gray-200 p-4 rounded-lg group">
-                    <summary class="flex justify-between items-center font-bold text-lg text-gray-900 focus:outline-none">
-                        Le agevolazioni fiscali coprono i lavori di casa?
-                        <span class="transition group-open:rotate-180 text-primary">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                        </span>
-                    </summary>
-                    <p class="mt-4 text-gray-600 leading-relaxed">
-                        Assolutamente sì. A seconda delle norme in vigore, è possibile ottenere un forte risparmio tramite detrazioni IRPEF per ristrutturazioni ed efficientamento energetico. Monitoriamo costantemente questi incentivi per offrirti dati aggiornati.
-                    </p>
-                </details>
-
-                <details class="bg-white border border-gray-200 p-4 rounded-lg group">
-                    <summary class="flex justify-between items-center font-bold text-lg text-gray-900 focus:outline-none">
-                        Questo portale elabora le pratiche direttamente?
-                        <span class="transition group-open:rotate-180 text-primary">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                        </span>
-                    </summary>
-                    <p class="mt-4 text-gray-600 leading-relaxed">
-                        Noi fungiamo da guida informativa e bussola strategica per i cittadini. Aiutiamo a identificare i bonus spettanti sulla base del quadro legislativo corrente, affinché l'utente possa poi procedere tramite i canali ufficiali o il proprio patronato in piena consapevolezza.
-                    </p>
-                </details>
-
-                <details class="bg-white border border-gray-200 p-4 rounded-lg group">
-                    <summary class="flex justify-between items-center font-bold text-lg text-gray-900 focus:outline-none">
-                        Il servizio di consulenza formativa è per tutti?
-                        <span class="transition group-open:rotate-180 text-primary">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                        </span>
-                    </summary>
-                    <p class="mt-4 text-gray-600 leading-relaxed">
-                        Sì, crediamo fermamente che il risparmio derivante dalle misure statali debba essere accessibile e comprensibile a qualsiasi cittadino o impresa, garantendo così uguaglianza di opportunità su tutto il territorio nazionale.
-                    </p>
-                </details>
-            </div>
-        </div>
-
-        <!-- CONTACT SECTION (Lead Form Simulator) -->
-        <div id="contact" class="max-w-5xl mx-auto dna-card">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Valutazione Preliminare dei Requisiti</h2>
-                    <p class="text-lg text-gray-600 mb-6">
-                        Inserisci i tuoi dati nel modulo per ricevere informazioni mirate sui prossimi incentivi statali, calcolare il potenziale risparmio della tua famiglia o conoscere le ultime scadenze dell'attuale decreto legge.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-center text-gray-700">
-                            <svg class="h-6 w-6 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                            Analisi Gratuita del Contesto
-                        </li>
-                        <li class="flex items-center text-gray-700">
-                            <svg class="h-6 w-6 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                            Aggiornamenti Legislativi Prioritari
-                        </li>
-                        <li class="flex items-center text-gray-700">
-                            <svg class="h-6 w-6 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                            Tutela Completa della Privacy
-                        </li>
-                    </ul>
-                </div>
+      /* Decorative accents */
+      .accent-border-left {
+          border-left: 4px solid var(--secondary);
+      }
+      .accent-dot::before {
+          content: '•';
+          color: var(--secondary);
+          font-weight: bold;
+          display: inline-block;
+          width: 1em;
+          margin-left: -1em;
+      }
+    </style> </head><body class="antialiased"><nav class="fixed w-full z-50 top-0 left-0 shadow-sm transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16 items-center"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold text-primary flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Yeyarium Partners </a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="font-medium hover:text-primary transition-colors">La Guida</a><a href="#reviews" class="font-medium hover:text-primary transition-colors">Testimonianze</a><a href="#faq" class="font-medium hover:text-primary transition-colors">FAQ</a><a href="#contact" class="btn-primary text-sm px-6 py-2">Richiedi Info</a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg pb-4 px-4"><a href="#features" class="block py-3 font-medium border-b border-gray-100">La Guida</a><a href="#reviews" class="block py-3 font-medium border-b border-gray-100">Testimonianze</a><a href="#faq" class="block py-3 font-medium border-b border-gray-100">FAQ</a><a href="#contact" class="block py-3 font-medium text-primary">Richiedi Info</a></div></nav><main><section class="py-16 md:py-20 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><div class="w-full md:w-1/2 space-y-6"><div class="inline-block px-4 py-1.5 rounded-full bg-green-50 text-secondary font-semibold text-sm border border-green-100 mb-2"> La tua bussola per l'eccellenza </div><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-text"> Scopri il vero <span class="text-primary">artigianato italiano</span> nei migliori mercatini. </h1><p class="text-lg text-muted"> Yeyarium Partners è la guida definitiva per esplorare i mercati artigianali più autentici e le botteghe storiche del nostro paese. Trova prodotti fatti a mano unici e sostieni i veri creatori locali. </p><div class="pt-4 flex flex-col sm:flex-row gap-4"><a href="#features" class="btn-primary justify-center"> Esplora la Guida <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a><a href="#contact" class="btn-secondary justify-center">Contattaci</a></div><div class="flex items-center gap-4 pt-6 text-sm text-muted font-medium"><div class="flex -space-x-2"><div class="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-xs">👤</div><div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs">👤</div><div class="w-8 h-8 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs">👤</div></div><p>Oltre 10.000 appassionati ci seguono</p></div></div><div class="w-full md:w-1/2 relative"><div class="absolute inset-0 bg-secondary rounded-2xl transform translate-x-3 translate-y-3 opacity-20"></div><img src="https://images.pexels.com/photos/110854/pexels-photo-110854.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/dc2626/ffffff?text=Mercato+Artigianale'" alt="Mercato artigianale italiano" class="relative rounded-2xl shadow-xl w-full object-cover h-[400px] md:h-[500px]" loading="lazy" referrerpolicy="no-referrer"><div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3"><div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-secondary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><div><p class="text-sm font-bold text-text">100% Autentico</p><p class="text-xs text-muted">Selezione rigorosa</p></div></div></div></div></div></section><div class="bg-primary text-white py-6"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><p class="text-lg font-medium opacity-90">Supportiamo la rete di <span class="font-bold text-green-200">Botteghe d'Eccellenza</span> in tutta Italia.</p></div></div><hr class="section-divider"><section id="features" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-3xl mx-auto mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">La tua chiave d'accesso al mondo del fatto a mano</h2><p class="text-lg text-muted">Scopri come la nostra guida trasforma la tua ricerca di prodotti unici in un'esperienza indimenticabile attraverso i migliori mercati artigianali.</p></div><div class="flex flex-col gap-16 md:gap-24"><div class="flex flex-col md:flex-row gap-8 md:gap-16 items-center"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/159613/ghettos-jews-krakow-market-159613.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/059669/ffffff?text=Mercatini+Locali'" alt="Calendario Mercatini" class="rounded-2xl shadow-lg w-full object-cover aspect-video" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2 space-y-4"><div class="w-12 h-12 bg-green-50 text-secondary rounded-lg flex items-center justify-center mb-4"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><h3 class="text-2xl font-bold">Calendario dei Mercati Artigianali</h3><p class="text-muted leading-relaxed"> Non perdere mai un evento. Curiamo un calendario aggiornato dei migliori <strong>mercatini</strong> su tutto il territorio nazionale. Che tu stia cercando ceramiche dipinte a mano, pelletteria o tessuti tradizionali, ti indichiamo dove e quando trovare i creatori dal vivo. </p><ul class="space-y-2 mt-4 text-muted font-medium pl-4 accent-border-left"><li>Aggiornamenti settimanali sugli eventi</li><li>Mappe dettagliate per raggiungere le piazze</li><li>Focus sulle fiere di settore e feste locali</li></ul></div></div><div class="flex flex-col md:flex-row-reverse gap-8 md:gap-16 items-center"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/2208882/pexels-photo-2208882.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/dc2626/ffffff?text=Botteghe+Artigiane'" alt="Botteghe Artigiane" class="rounded-2xl shadow-lg w-full object-cover aspect-video" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2 space-y-4"><div class="w-12 h-12 bg-red-50 text-primary rounded-lg flex items-center justify-center mb-4"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></div><h3 class="text-2xl font-bold">Selezione di Botteghe Artigiane</h3><p class="text-muted leading-relaxed"> Oltre agli eventi temporanei, ti guidiamo alla scoperta delle <strong>botteghe artigiane</strong> permanenti. Luoghi storici dove il tempo sembra essersi fermato e dove i maestri portano avanti tradizioni secolari dell'<strong>artigianato italiano</strong>. </p><ul class="space-y-2 mt-4 text-muted font-medium pl-4 accent-border-left"><li>Recensioni di laboratori storici</li><li>Interviste esclusive ai maestri artigiani</li><li>Itinerari tematici per città d'arte</li></ul></div></div><div class="flex flex-col md:flex-row gap-8 md:gap-16 items-center"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/1148955/pexels-photo-1148955.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/059669/ffffff?text=Prodotti+Fatti+a+Mano'" alt="Prodotti Fatti a Mano" class="rounded-2xl shadow-lg w-full object-cover aspect-video" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2 space-y-4"><div class="w-12 h-12 bg-green-50 text-secondary rounded-lg flex items-center justify-center mb-4"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg></div><h3 class="text-2xl font-bold">Guida ai Prodotti Fatti a Mano</h3><p class="text-muted leading-relaxed"> Impara a riconoscere la qualità. Le nostre guide dettagliate ti insegnano a valutare i materiali, le tecniche di lavorazione e il vero valore dei <strong>prodotti fatti a mano</strong>, mettendoti al riparo dalle imitazioni industriali. </p><ul class="space-y-2 mt-4 text-muted font-medium pl-4 accent-border-left"><li>Guide all'acquisto consapevole</li><li>Certificazioni e marchi di garanzia spiegati</li><li>Consigli per la cura e manutenzione dei manufatti</li></ul></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-16 md:py-20 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa dicono i nostri esploratori</h2><p class="text-lg text-muted">Storie reali di chi ha scoperto tesori nascosti grazie alla nostra guida.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="dna-card relative"><div class="absolute top-0 right-0 p-6 text-gray-200"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg></div><p class="text-muted mb-6 relative z-10">"Grazie a questa guida ho scoperto una ceramista fantastica in un piccolo mercatino in Toscana. Un pezzo unico che ora arreda il mio salotto. Servizio indispensabile!"</p><div class="flex items-center gap-4"><div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl">M</div><div><h4 class="font-bold text-text">Marco D.</h4><p class="text-sm text-secondary">Appassionato di design</p></div></div></div><div class="dna-card relative border-t-4 border-t-primary"><div class="absolute top-0 right-0 p-6 text-gray-200"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg></div><p class="text-muted mb-6 relative z-10">"La mappa delle botteghe artigiane è precisissima. Ho organizzato un weekend a Firenze visitando solo laboratori storici del cuoio. Un'esperienza autentica."</p><div class="flex items-center gap-4"><div class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center font-bold text-xl">G</div><div><h4 class="font-bold text-text">Giulia F.</h4><p class="text-sm text-secondary">Turista consapevole</p></div></div></div><div class="dna-card relative"><div class="absolute top-0 right-0 p-6 text-gray-200"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg></div><p class="text-muted mb-6 relative z-10">"Sostenere l'artigianato italiano è importante per me. Le loro guide sui prodotti fatti a mano mi aiutano a capire cosa c'è dietro il prezzo e il lavoro di un artigiano."</p><div class="flex items-center gap-4"><div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl">L</div><div><h4 class="font-bold text-text">Lorenzo S.</h4><p class="text-sm text-secondary">Sostenitore del Made in Italy</p></div></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-16 md:py-20"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl font-bold mb-4">Domande Frequenti</h2><p class="text-muted">Tutto quello che devi sapere per esplorare i mercati artigianali.</p></div><div class="dna-card space-y-4"><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>Come trovo i migliori mercati artigianali?</span><span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Attraverso la nostra piattaforma, aggiorniamo costantemente un calendario diviso per regioni. Selezioniamo solo i mercatini che garantiscono la presenza di veri creatori e non di rivenditori commerciali, per assicurarti un'esperienza autentica.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>Quali tipi di prodotti fatti a mano posso scoprire?</span><span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">La varietà è immensa: dalle ceramiche dipinte a mano alla lavorazione del cuoio, dalla gioielleria contemporanea ai tessuti lavorati a telaio, fino alla falegnameria artistica e ai prodotti enogastronomici di nicchia.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>La guida alle botteghe artigiane è aggiornata?</span><span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Assolutamente sì. Il nostro team verifica periodicamente le informazioni, gli orari di apertura e la disponibilità degli artigiani, per offrirti itinerari sempre precisi e affidabili nelle città italiane.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>Come posso riconoscere il vero artigianato italiano?</span><span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Le nostre guide dettagliate ti forniscono gli strumenti per valutare i materiali, osservare i dettagli della lavorazione (che spesso presentano piccole, affascinanti imperfezioni) e fare le domande giuste all'artigiano per capirne la storia.</p></details><details class="group"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>Segnalate mercatini in tutta Italia?</span><span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Sì, la nostra copertura è nazionale. Dalle fiere storiche del Nord Italia, ai pittoreschi mercatini nei borghi del Centro, fino alle vibranti esposizioni dell'artigianato del Sud e delle Isole.</p></details></div></div></section><section id="contact" class="py-16 md:py-20 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card border-t-4 border-t-primary"><div class="flex flex-col md:flex-row gap-12"><div class="w-full md:w-5/12 space-y-6"><h2 class="text-3xl font-bold">Inizia la tua esplorazione</h2><p class="text-muted leading-relaxed"> Compila il modulo per ricevere la nostra guida esclusiva ai migliori mercati artigianali della tua zona. Unisciti alla community che valorizza il fatto a mano. </p><div class="space-y-4 pt-4"><div class="flex items-start gap-4"><div class="w-10 h-10 bg-green-50 text-secondary rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg></div><div><h4 class="font-bold">Area Coperta</h4><p class="text-muted">Tutto il territorio nazionale Italiano</p></div></div><div class="flex items-start gap-4"><div class="w-10 h-10 bg-green-50 text-secondary rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><h4 class="font-bold">Aggiornamenti</h4><p class="text-muted">Guide mensili e alert settimanali</p></div></div></div></div><div class="w-full md:w-7/12"><form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div><label class="block text-sm font-bold text-text mb-1">Nome e Cognome *</label><input type="text" required placeholder="Mario Rossi" class="w-full"></div><div><label class="block text-sm font-bold text-text mb-1">Interesse Principale *</label><select required class="w-full"><option value="">Seleziona...</option><option value="mercatini">Trovare Mercatini</option><option value="botteghe">Mappa Botteghe Artigiane</option><option value="prodotti">Guide ai Prodotti</option></select></div></div><div><label class="block text-sm font-bold text-text mb-1">Regione di preferenza</label><input type="text" placeholder="Es. Toscana, Lombardia..." class="w-full"></div><div><label class="block text-sm font-bold text-text mb-1">Cosa cerchi in particolare?</label><textarea rows="3" placeholder="Es. Cerco ceramiche fatte a mano o mercatini del cuoio..." class="w-full"></textarea></div><div class="pt-2"><button type="submit" class="btn-primary w-full justify-center text-lg py-3"> Richiedi l'Accesso alla Guida </button></div><p class="text-xs text-center text-muted mt-2">I tuoi dati sono al sicuro. Non facciamo spam.</p></form><div id="success-msg" style="display:none" class="bg-green-50 border border-green-200 text-secondary p-8 rounded-xl text-center"><svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="text-2xl font-bold mb-2">Richiesta Inviata!</h3><p>Grazie per il tuo interesse. Prepareremo la tua guida personalizzata ai mercati artigianali e ti contatteremo a breve.</p></div></div></div></div></div></section></main><footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-8"><span class="text-2xl font-extrabold text-white flex items-center justify-center gap-2 mb-4"><svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Yeyarium Partners </span><p class="text-sm">La bussola per l'autentico artigianato italiano.</p></div><div class="bg-gray-800 p-4 rounded-lg text-sm text-center mb-8 border border-gray-700"><em>Questo è un sito promozionale indipendente gestito da Yeyarium Partners, che opera come affiliato per Unico Fatto a Mano.</em></div><div class="space-y-4 text-xs text-gray-500"><details class="group cursor-pointer"><summary class="font-bold hover:text-white transition-colors">Informativa sulla Privacy</summary><div class="mt-2 p-4 bg-gray-800 rounded text-left space-y-2"><p>La presente Informativa sulla Privacy descrive le modalità di gestione del sito web in riferimento al trattamento dei dati personali degli utenti che lo consultano. L'informativa è resa ai sensi del Regolamento (UE) 2016/679 (GDPR). Il titolare del trattamento dei dati è Yeyarium Partners. Raccogliamo i dati personali forniti volontariamente dagli utenti tramite il modulo di contatto presente sul sito. Questi dati includono nome, cognome, preferenze di ricerca e regione di interesse. La finalità della raccolta è esclusivamente quella di fornire le informazioni richieste relative ai mercati artigianali e alle botteghe italiane. Non raccogliamo dati sensibili o giudiziari. I dati vengono trattati con strumenti informatici e telematici, adottando tutte le misure di sicurezza adeguate a prevenire la perdita dei dati, usi illeciti o non corretti e accessi non autorizzati. I dati raccolti non saranno in alcun modo diffusi o comunicati a terzi senza il consenso esplicito dell'utente, ad eccezione degli obblighi di legge. Utilizziamo i cookie tecnici necessari per il corretto funzionamento del sito e per salvare le preferenze dell'utente relative al banner dei cookie. Non utilizziamo cookie di profilazione per inviare messaggi pubblicitari in linea con le preferenze manifestate dall'utente nell'ambito della navigazione in rete. I dati personali sono conservati per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti. L'utente ha il diritto in qualunque momento di ottenere la conferma dell'esistenza o meno dei medesimi dati e di conoscerne il contenuto e l'origine. L'utente può altresì verificarne l'esattezza o chiederne l'integrazione, l'aggiornamento, oppure la rettificazione. Inoltre, l'utente ha il diritto di chiedere la cancellazione, la trasformazione in forma anonima o il blocco dei dati trattati in violazione di legge. Le richieste vanno rivolte al titolare del trattamento tramite i canali ufficiali indicati nel sito. Ci riserviamo il diritto di modificare la presente privacy policy in qualsiasi momento, dandone comunicazione agli utenti su questa pagina. Si prega dunque di consultare spesso questa pagina, prendendo come riferimento la data di ultima modifica indicata in fondo.</p></div></details><details class="group cursor-pointer"><summary class="font-bold hover:text-white transition-colors">Termini e Condizioni</summary><div class="mt-2 p-4 bg-gray-800 rounded text-left space-y-2"><p>I presenti Termini e Condizioni regolano l'utilizzo del sito web gestito da Yeyarium Partners. Accedendo e utilizzando questo sito, l'utente accetta di essere vincolato dai presenti termini. Il sito ha lo scopo di fornire una guida informativa sui mercati artigianali, le botteghe e i prodotti fatti a mano in Italia. Yeyarium Partners opera come sito promozionale indipendente e affiliato. Tutte le informazioni fornite sul sito sono da intendersi a scopo puramente indicativo e informativo. Non garantiamo l'accuratezza, la completezza o l'attualità delle informazioni relative a date, orari o ubicazioni dei mercatini, in quanto soggetti a variazioni da parte degli organizzatori terzi. L'utente è responsabile della verifica autonoma di tali informazioni prima di intraprendere qualsiasi viaggio o spostamento. Yeyarium Partners non si assume alcuna responsabilità per eventuali danni, diretti o indiretti, derivanti dall'utilizzo delle informazioni contenute nel sito. Tutto il contenuto del sito, inclusi testi, grafiche, loghi e immagini, è protetto da copyright e non può essere riprodotto senza autorizzazione. L'utente si impegna a utilizzare il sito in modo lecito e a non compiere azioni che possano comprometterne la sicurezza o il funzionamento. Ci riserviamo il diritto di interrompere o sospendere l'accesso al sito in qualsiasi momento, senza preavviso. L'utente accetta di manlevare Yeyarium Partners da qualsiasi pretesa o azione legale derivante da un uso improprio del sito. I presenti termini possono essere modificati in qualsiasi momento; le modifiche avranno efficacia dalla data di pubblicazione sul sito. L'uso continuato del sito costituisce accettazione dei termini modificati. Per qualsiasi controversia derivante dall'utilizzo del sito sarà competente il foro stabilito dalla normativa vigente. Se una qualsiasi disposizione di questi termini dovesse risultare invalida o inapplicabile, le restanti disposizioni rimarranno in pieno vigore ed efficacia. L'utente riconosce che le informazioni sui prodotti artigianali rappresentano opinioni e guide generali e non costituiscono garanzia di qualità dei prodotti acquistati presso terzi.</p></div></details><details class="group cursor-pointer"><summary class="font-bold hover:text-white transition-colors">Politica di Rimborso</summary><div class="mt-2 p-4 bg-gray-800 rounded text-left space-y-2"><p>La presente Politica di Rimborso si applica ai servizi di consulenza e alle guide digitali premium eventualmente offerti tramite Yeyarium Partners. Poiché forniamo principalmente informazioni digitali e servizi di guida ai mercati artigianali, la natura dei nostri prodotti è immateriale. Pertanto, una volta che l'accesso alla guida digitale o al servizio informativo è stato erogato e fruito dall'utente, non è previsto un diritto di recesso standard come per i beni fisici. Tuttavia, ci impegniamo a garantire la massima soddisfazione dei nostri utenti. Se l'utente riscontra problemi tecnici nell'accesso ai materiali forniti, dovrà segnalarlo tempestivamente entro 14 giorni dalla richiesta iniziale. Il nostro team valuterà la segnalazione e, qualora il problema tecnico sia imputabile ai nostri sistemi e non risolvibile, procederemo con un rimborso o con l'erogazione alternativa del servizio. Non si effettuano rimborsi per insoddisfazione soggettiva riguardo al contenuto delle guide, in quanto le informazioni sui mercatini e le botteghe artigiane sono presentate "così come sono" e si basano su ricerche indipendenti. Non siamo responsabili per l'annullamento di eventi, mercati o chiusure di botteghe indipendenti dalla nostra volontà, e tali eventualità non costituiscono motivo di rimborso. Per richiedere assistenza o valutare un caso eccezionale, l'utente deve utilizzare i moduli di contatto del sito fornendo dettagli precisi sulla problematica. Le richieste verranno elaborate entro 10 giorni lavorativi. Qualsiasi rimborso approvato verrà emesso utilizzando lo stesso metodo impiegato per l'eventuale transazione originaria, salvo diversi accordi. Ci riserviamo il diritto di rifiutare richieste di rimborso che appaiano fraudolente o in violazione dei nostri Termini e Condizioni. Questa politica è redatta in conformità alle direttive europee sui contenuti digitali, che prevedono eccezioni al diritto di recesso una volta iniziata l'esecuzione del servizio con l'accordo espresso del consumatore. Modifiche a questa politica verranno pubblicate su questa pagina e applicate alle richieste successive alla data di modifica.</p></div></details></div><div class="mt-8 text-center text-xs text-gray-600"> &copy; 2026 Yeyarium Partners. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 md:p-6 z-50 transform transition-transform duration-300 translate-y-full"><div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"><div class="text-sm"><p>Utilizziamo cookie tecnici per garantirti la migliore esperienza sul nostro sito, ricordando le tue preferenze per la ricerca di mercati artigianali. Continuando a navigare accetti l'uso dei cookie.</p></div><div class="flex gap-4 flex-shrink-0"><button onclick="acceptCookies()" class="bg-primary hover:bg-red-700 text-white px-6 py-2 rounded-lg font-bold transition-colors">Accetta e Chiudi</button></div></div></div> <script>
+        // Smooth Scrolling & Routing Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
                 
-                <div class="bg-gray-50 p-6 md:p-8 rounded-xl border border-gray-200 relative">
-                    <form id="lead-form" class="space-y-5" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Nome Completo</label>
-                            <input type="text" id="name" required class="dna-input" placeholder="Mario Rossi">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1" for="interest">Area di Interesse (Agevolazione/Bonus)</label>
-                            <select id="interest" required class="dna-input">
-                                <option value="" disabled selected>Seleziona una categoria</option>
-                                <option value="famiglia">Bonus Famiglia / Assegno Unico</option>
-                                <option value="casa">Agevolazioni Edilizie / Superbonus</option>
-                                <option value="fisco">Crediti d'Imposta e Detrazioni</option>
-                                <option value="pensioni">Aggiornamento Pagamenti INPS / Pensioni</option>
-                            </select>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                                <input id="privacy" type="checkbox" required class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
-                            </div>
-                            <div class="ml-3 text-sm">
-                                <label for="privacy" class="text-gray-500">Acconsento al trattamento dei dati personali ai fini della ricezione informativa.</label>
-                            </div>
-                        </div>
-                        <button type="submit" class="w-full btn-primary text-lg mt-4">Richiedi Contatto Informativo</button>
-                    </form>
-                    
-                    <!-- Hidden Success Message -->
-                    <div id="success-msg" class="hidden text-center py-10">
-                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
-                            <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Ricevuta!</h3>
-                        <p class="text-gray-600">I nostri consulenti elaboreranno i tuoi dati e verrai ricontattato a breve con tutte le indicazioni sul potenziale risparmio a te spettante.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
 
-    </main>
-
-    <!-- FOOTER & COMPLIANCE -->
-    <footer class="bg-gray-900 pt-16 pb-8 px-4 sm:px-6 lg:px-8 border-t-4 border-primary mt-auto text-gray-400">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-            <div>
-                <span class="text-2xl font-black text-white tracking-tight block mb-4">
-                    Yeyarium <span class="text-primary">Partners</span>
-                </span>
-                <p class="text-sm text-gray-400 mb-4 max-w-sm">
-                    L'eccellenza informativa a servizio dei cittadini. Supportiamo le persone nella comprensione del sistema fiscale e dei decreti attuativi statali per massimizzare il risparmio consapevole.
-                </p>
-                <div class="text-xs bg-gray-800 p-4 rounded-lg inline-block border border-gray-700 text-gray-300 w-full">
-                    <strong>Disclaimer Legale Obbligatorio:</strong><br>
-                    Questo è un sito promozionale indipendente gestito da Yeyarium Partners, che opera come affiliato informativo per bonusepagamenti.it.
-                </div>
-            </div>
-            
-            <div class="space-y-4">
-                <h4 class="text-white font-bold uppercase tracking-wider mb-6">Pagine Legali e Policy</h4>
-                
-                <!-- VERBATIM LEGAL ACCORDIONS IN IT -->
-                <details class="bg-gray-800 border border-gray-700 p-4 rounded-md group text-sm">
-                    <summary class="font-bold text-gray-200 hover:text-white transition cursor-pointer">Informativa sulla Privacy (Privacy Policy)</summary>
-                    <div class="mt-4 space-y-2 text-gray-400">
-                        <p>La presente Informativa sulla Privacy ha lo scopo di illustrare in maniera chiara, trasparente e puntuale come Yeyarium Partners gestisce la raccolta, l'uso e la divulgazione dei dati personali dei visitatori. Navigando su questo portale alla ricerca di aggiornamenti sui bonus o agevolazioni fiscali, acconsenti espressamente alle pratiche qui descritte. Ci impegniamo a mantenere gli standard di sicurezza previsti dalla normativa europea, al fine di tutelare il cittadino che ripone in noi la sua fiducia. Le informazioni raccolte tramite moduli volontari, cookie tecnici o analitici, servono in primo luogo a fornire il miglior servizio informativo possibile riguardo al decreto legislativo vigente e alle opportunità di risparmio connesse. Nessun dato raccolto sarà in alcun modo rivenduto, affittato, noleggiato o alienato a soggetti terzi non autorizzati senza il preventivo consenso esplicito dell'utente interessato. Quando raccogliamo dati mediante l'utilizzo del nostro form per la verifica dei requisiti, le informazioni sono cifrate in transito e conservate solo per il periodo strettamente necessario al disbrigo della richiesta. Utilizziamo piattaforme server sicure in Europa e applichiamo controlli severi sui privilegi di accesso da parte dei nostri incaricati. In relazione alle suddette informazioni, gli interessati mantengono il diritto indiscutibile di richiederne l'accesso integrale, l'aggiornamento, la portabilità oppure la totale cancellazione dai nostri archivi in un qualunque momento senza che ciò comporti alcun onere a loro carico. Registriamo inoltre dati aggregati, anonimizzati ex ante, sulle statistiche relative all'utilizzo delle pagine per migliorare l'organizzazione e la reperibilità delle guide redazionali destinate al vasto pubblico. È responsabilità del titolare del sito comunicare proattivamente eventuali incidenti in merito alla violazione dell'infrastruttura (cd. Data Breach) ai garanti nei tempi previsti dai decreti vigenti in materia di sicurezza telematica. Modifiche a questa politica verranno annotate qui con relativo tracciamento storico delle versioni prodotte, garantendo perenni e costanti controlli per restare del tutto uniformati e rispondenti alla legislatura per i cittadini.</p>
-                    </div>
-                </details>
-
-                <details class="bg-gray-800 border border-gray-700 p-4 rounded-md group text-sm">
-                    <summary class="font-bold text-gray-200 hover:text-white transition cursor-pointer">Termini e Condizioni di Utilizzo</summary>
-                    <div class="mt-4 space-y-2 text-gray-400">
-                        <p>L'accesso, l'esplorazione e la consultazione sistematica dei contenuti messi a disposizione in questo sito telematico costituiscono da parte dell'utente accettazione integrale e tacita dei presenti Termini di Utilizzo e dell'assunzione della responsabilità associata alla fruizione degli elaborati. Tutte le istruzioni esposte o fornite nell'intento di delineare metodologie per approfittare di determinate agevolazioni possiedono un intrinseco ed essenziale carattere unicamente esplicativo-didattico. Noi elaboriamo resoconti a fronte di disposizioni e un qualsiasi decreto emesso dai dipartimenti preposti, offrendo letture riassunte della complessità del requisito fiscale o del presupposto burocratico volto all'acquisizione. Questo non è da considerare, né mai intende esserlo, l'alternativa in alcun modo a specifiche consulenze presso professionisti qualificati del campo fiscale, contabile, oppure previdenziale e istituti patronali designati. A tal fine decliniamo fermamente ogni derivante e ipotizzata forma di imputazione causale legata al deperimento o decremento degli averi dipendente in primis, o derivatamente, dalla confidenza in merito ad affermazioni o concetti ospitati negli spazi della nostra organizzazione promozionale, giacché lo scopo del sistema permane essenzialmente il fornire riepiloghi aggiornati riguardanti misure che producono risparmio. Nessuna promessa inappellabile di percepimento tangibile e sicuro può e mai deve intendersi garantita; ogni incentivo sottostà difatti all'insindacabile controllo documentale governativo, statale o della branca accertatrice preposta prima di concludersi a favore dell'interessato avente supposti requisiti in oggetto e analizzati preliminarmente, fermo restando il mutevole avvicendamento delle direttive, il limitato quantitativo dello stanziamento di plafond finanziari e i sopraggiunti mutamenti formali in sede normativa nazionale da parte dello stato sovrano per tutelare i propri interessi, le entrate e regolarne per esteso l'intero andamento verso l'adattabilità progressiva ai piani e scenari che reggono ed orientano storicamente il tessuto civico per l'amministrazione dei fondi disponibili a favor dei singoli o aggregazioni nucleari di persone e dei comuni fruitori di agevolazione di turno.</p>
-                    </div>
-                </details>
-
-                <details class="bg-gray-800 border border-gray-700 p-4 rounded-md group text-sm">
-                    <summary class="font-bold text-gray-200 hover:text-white transition cursor-pointer">Informativa su Recesso e Rimborsi</summary>
-                    <div class="mt-4 space-y-2 text-gray-400">
-                        <p>In base all'assetto procedurale e operativo con cui le delucidazioni informative operano attraverso gli elaborati redatti sul tema dei contributi fiscali o statali per favorire un tangibile risparmio a vantaggio della cittadinanza attiva e diligente interessata allo scrutinio metodologico, delineiamo formalmente la normativa atta a regolarizzare eventuali discrasie nei pagamenti eseguiti o presunti, delineando come questo dominio virtuale svolga esclusivamente azioni propedeutiche senza effettuare addebiti o concludere una esplicita compravendita delocalizzata di tipo e-commerce classico riguardante materiali non intangibili. Malgrado quanto sopra specificato, qualora, nell'alveo di iniziative peculiari di natura formativa esclusive accessibili in area riservata soggetta a canone per documentazione avanzata riguardante una definita tematica attinente l'accesso a specifici bandi, bonus o complessa istruzione fiscale legata ad agevolazioni per le ristrutturazioni, un individuo versasse delle quote al nostro istituto d'intermediazione, vigono indiscutibili diritti legati al consumatore previsti rigorosamente in Italia dai testi e codici del comparto dedicato agli scambi mercantili civili. Nello specifico panorama, il periodo delineato in via standard garantisce comunemente ben quattordici giornate calendari successive a partire esattamente all'attivazione del modulo per esprimere in assenza assolute di penali imposte formalmente al sottoscrittore il recesso dal piano sottoscritto, e far scaturire parallelamente ed obbligatoriamente procedure contabili finalizzate all'indietro fino alla ricompensazione fiduciaria di quelle specifiche somme sborsate ed inviate dalla corrispondente via telematica adottata inizialmente nel check-out prescelto e processato da acquirente all'avvio temporale stipula. Ciò deve incontestabilmente avvenire entro due settimane massimali di transizione mediante comunicazione, esonerando altresì ogni contenuto intangibile e formativo da sé istantaneamente scaricato in forma totale all'istante dopo finalizzazione come previsto dai recenti riadattamenti sui medesimi contratti distanti di erogazione e provvigione dematerializzata tutelando ambo le rispettive ragioni o interessi tra cittadino ed attore mercantile o mediatore di tale utilità di studio finalizzato all'interpretazione corretta del susseguente o corrente emanato decreto, di prassi vigente nel frangente odierno locale applicabile ai patti formativi conclusi in rete interattiva informatica dal browser medesimo verso questo server centrale ricevente istruzione dell'avventore stesso desideroso o dubbioso al punto dall'inviare il corrispettivo stabilito all'origine esposta dell'accettazione formale esatta di scambio.</p>
-                    </div>
-                </details>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-sm text-center">
-            &copy; 2026 Yeyarium Partners. Tutti i diritti riservati. Sede Legale Indipendente per Analisi Informativa ed Editoriale.
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-50 transform transition-transform duration-300 translate-y-full" style="display:none;">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="text-sm text-gray-700 max-w-3xl">
-                Utilizziamo i cookie per analizzare il traffico sul sito e assicurarti la migliore esperienza di navigazione durante la consultazione delle informative sui requisiti per le agevolazioni ed i bonus. Continuando ad utilizzare questo sito acconsenti al nostro utilizzo dei cookie in conformità al rispetto normativo di protezione dei dati europei previsti dal decreto per il cittadino online.
-            </div>
-            <div class="flex shrink-0 gap-3 w-full md:w-auto">
-                <button onclick="acceptCookies()" class="btn-primary w-full md:w-auto !py-2 !px-4 text-sm whitespace-nowrap">Accetta Tutto</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCRIPTS (The "Gravity Well" Self-Healing Protocol & Cookie Logic) -->
-    <script>
-        // SMART ROUTING: Self-Healing Navigation Protocol
-        document.addEventListener('DOMContentLoaded', () => {
-            const anchors = document.querySelectorAll('a[href^="#"]');
-            anchors.forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    
-                    // Close mobile menu if open
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to contact section
+                    const contactSection = document.querySelector('#contact');
+                    if(contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
                     }
-
-                    if (targetElement) {
-                        // Smooth scroll to existing target
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                        // FALLBACK: Force smooth scroll to #contact section if target doesn't exist
-                        console.warn(`Target #${targetId} missing. Invoking Self-Healing Fallback -> #contact`);
-                        const contactElement = document.getElementById('contact');
-                        if (contactElement) {
-                            contactElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    }
-                });
+                }
             });
-
-            // COOKIE BANNER LOGIC
-            const banner = document.getElementById('cookie-banner');
-            if (!localStorage.getItem('yeyarium_cookie_consent')) {
-                // Show banner after short delay
-                setTimeout(() => {
-                    banner.style.display = 'block';
-                    // trigger animation reflow
-                    setTimeout(() => banner.classList.remove('translate-y-full'), 10);
-                }, 1000);
-            }
         });
 
-        // Accept Cookies Function
+        // Cookie Banner Logic
+        window.onload = function() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
+        };
+
         function acceptCookies() {
-            localStorage.setItem('yeyarium_cookie_consent', 'accepted');
-            const banner = document.getElementById('cookie-banner');
-            banner.classList.add('translate-y-full');
-            setTimeout(() => { banner.style.display = 'none'; }, 300);
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
         }
-    </script>
-</body>
-</html>
+    </script> </body></html>
