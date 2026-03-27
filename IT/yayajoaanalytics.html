@@ -1,499 +1,190 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yaya Joa Analytics | Confronto Conti Deposito</title>
-    <meta name="description" content="Servizio di confronto conti deposito e tassi di interesse. Trova il conto migliore e ottimizza i tuoi risparmi con i dati analitici.">
-    
-    <!-- Tailwind CSS (Phase 2) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- PHASE 2: DESIGN SYSTEM (DNA Card Patch) -->
-    <style>
+<!DOCTYPE html><html lang="it" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Yaya Joa | L'App Definitiva per Podcast e Approfondimenti</title><meta name="description" content="Scopri i migliori podcast italiani, audio news e articoli di approfondimento in un'unica app. Scarica Podtail oggi stesso."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
         :root {
-            /* VAR D: Palette (Finance Niche - Emerald Green for Money/Growth) */
-            --primary: #059669; 
-            /* VAR C: Surface (Clean White derived from URL's last alpha 'o') */
-            --surface: #ffffff; 
-            /* VAR A: Geometry (Soft rounded, derived from domain length % 3) */
-            --radius: 12px; 
-            /* VAR B: Physics (Material Shadow, derived from first letter 's') */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --primary: #4f46e5;
+            --secondary: #059669;
+            --radius: 24px;
+            --card-radius: 24px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08);
+            --body-bg: #f0fdf4;
+            --card-bg: #ffffff;
+            --text: #14532d;
+            --muted: #4b5563;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6; /* Light gray base */
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
             transition: all 0.2s;
-            font-weight: bold;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            border: none;
-            cursor: pointer;
+            gap: 0.5rem;
+            text-decoration: none;
         }
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translateY(-2px); 
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(79,70,229,0.05);
         }
 
-        /* UTILITY: Text Accent */
         .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
         .bg-primary { background-color: var(--primary); }
 
-        /* HERO OVERLAY FIX */
-        .hero-overlay {
-            background-image: linear-gradient(to right, rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 0.7));
+        /* Mobile menu — always opaque */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* COOKIE BANNER */
-        #cookie-banner {
-            transition: transform 0.3s ease-in-out;
-            transform: translateY(100%);
-        }
-        #cookie-banner.show {
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body class="antialiased min-h-screen flex flex-col relative">
+        /* Fixed navbar compensation */
+        main, main + footer { scroll-margin-top: 5rem; }
 
-    <!-- NAVIGATION -->
-    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-black text-gray-900 tracking-tighter">
-                        Yaya Joa <span class="text-primary">Analytics</span>
-                    </a>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">I Vantaggi</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Recensioni</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">Domande Frequenti</a>
-                    <a href="#contact" class="btn-primary py-2 px-6">Confronta Ora</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- MOBILE MENU -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="px-2 pt-2 pb-4 space-y-1">
-                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">I Vantaggi</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Recensioni</a>
-                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">FAQ</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-medium text-white bg-primary rounded-md mt-4 text-center">Confronta Ora</a>
-            </div>
-        </div>
-    </header>
+        /* Form inputs */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+        }
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow">
-        
-        <!-- HERO SECTION (Full width exception, Bridging Slogan) -->
-        <section class="relative h-[600px] flex items-center bg-gray-900">
-            <!-- Pexels Image Direct URL or Fallback -->
-            <img src="https://images.pexels.com/photos/210990/pexels-photo-210990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                 onerror="this.onerror=null; this.src='https://placehold.co/1920x800?text=Financial+Analytics+Data'"
-                 class="absolute inset-0 w-full h-full object-cover" 
-                 referrerpolicy="no-referrer"
-                 loading="eager" alt="Analisi dei rendimenti bancari">
+        /* Links */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(79,70,229,0.12), transparent);
+            margin: 0;
+        }
+
+        /* App Store Badge Styles */
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #000;
+            color: #fff !important;
+            border-radius: 8px;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            height: 48px;
+        }
+        .store-badge:hover { opacity: 0.8; }
+        .store-badge svg { height: 24px; width: auto; margin-right: 8px; fill: currentColor; }
+        .store-badge .text-small { font-size: 10px; line-height: 1; margin-bottom: 2px; opacity: 0.8; }
+        .store-badge .text-large { font-size: 16px; font-weight: 600; line-height: 1; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    </style> </head><body class="antialiased flex flex-col min-h-screen"><nav class="fixed top-0 left-0 right-0 z-50 border-b border-opacity-10 border-gray-900 shadow-sm"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold text-primary flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg> Yaya Joa </a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="font-medium transition-colors">Funzionalità</a><a href="#how-it-works" class="font-medium transition-colors">Come Funziona</a><a href="#reviews" class="font-medium transition-colors">Recensioni</a><a href="#faq" class="font-medium transition-colors">FAQ</a><a href="#download" class="btn-primary py-2 px-4 text-sm">Scarica l'App</a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full shadow-lg pb-4 z-40"><div class="px-4 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium">Funzionalità</a><a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium">Come Funziona</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium">Recensioni</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium">FAQ</a><a href="#download" class="block px-3 py-2 mt-4 text-center btn-primary w-full justify-center">Scarica Ora</a></div></div></nav><main class="flex-grow"><header class="relative overflow-hidden pt-12 pb-24 md:pt-24 md:pb-36"><div class="absolute top-0 left-0 w-full h-3/4 bg-primary opacity-5 z-0 rounded-b-[48px]"></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="flex flex-col md:flex-row items-center gap-12 lg:gap-24"><div class="w-full md:w-1/2 text-center md:text-left pt-8 md:pt-0"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white bg-opacity-80 border border-green-200 text-secondary text-sm font-semibold mb-6 shadow-sm"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span> App dell'anno per l'informazione </div><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6"> Analizza il tuo tempo. <span class="text-primary">Ascolta e impara.</span></h1><p class="text-lg md:text-xl text-muted mb-8 max-w-lg mx-auto md:mx-0"> L'app definitiva per scoprire i migliori <strong>podcast italiani</strong>, ascoltare <strong>audio news</strong> in tempo reale e immergerti in <strong>articoli lunghi</strong> e approfondimenti curati. </p><div class="flex flex-wrap justify-center md:justify-start gap-4"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div><div class="text-small">Scarica su</div><div class="text-large">App Store</div></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div><div class="text-small">DISPONIBILE SU</div><div class="text-large">Google Play</div></div></a></div><div class="mt-8 flex items-center justify-center md:justify-start gap-2 text-sm text-muted"><div class="flex text-yellow-400"> ★★★★★ </div><span>Oltre 50.000 download</span></div></div><div class="w-full md:w-1/2 relative z-20 md:-mt-12 lg:-mt-24"><div class="relative rounded-[32px] overflow-hidden shadow-2xl border-4 border-white bg-white transform md:-rotate-2 transition-transform hover:rotate-0 duration-500"><img src="https://images.pexels.com/photos/4009401/pexels-photo-4009401.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Persona che ascolta podcast sull'app" class="w-full h-auto object-cover" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/800x1200/4f46e5/ffffff?text=App+Mockup'"><div class="absolute bottom-6 left-6 right-6 bg-white bg-opacity-95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-secondary bg-opacity-20 flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><p class="text-sm font-bold text-gray-900">In riproduzione</p><p class="text-xs text-gray-500 truncate">I migliori approfondimenti di oggi</p></div></div></div></div></div></div></header><hr class="section-divider"><section id="features" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Progettata per menti affamate di conoscenza</h2><p class="text-lg text-muted max-w-2xl mx-auto">La nostra app unisce la praticità dell'audio alla profondità della lettura. Scopri le funzionalità che trasformeranno il tuo modo di informarti.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 right-0 w-24 h-24 bg-primary opacity-5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div><svg class="w-10 h-10 text-secondary mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg><h3 class="text-xl font-semibold mb-3">Libreria Podcast Italiani</h3><p class="text-muted leading-relaxed">Accedi al più vasto catalogo di <strong>podcast italiani</strong> indipendenti e mainstream. Dalla storia alla tecnologia, trova le voci che ispirano le tue giornate.</p></div><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 right-0 w-24 h-24 bg-primary opacity-5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div><svg class="w-10 h-10 text-secondary mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg><h3 class="text-xl font-semibold mb-3">Articoli di Approfondimento</h3><p class="text-muted leading-relaxed">Non solo audio. Leggi <strong>articoli lunghi</strong> e inchieste esclusive direttamente nell'app. Un'esperienza di lettura pulita, senza distrazioni e ottimizzata per mobile.</p></div><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 right-0 w-24 h-24 bg-primary opacity-5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div><svg class="w-10 h-10 text-secondary mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg><h3 class="text-xl font-semibold mb-3">Audio News Quotidiane</h3><p class="text-muted leading-relaxed">Resta aggiornato in movimento. Le nostre <strong>audio news</strong> ti forniscono un riassunto intelligente delle notizie più importanti, perfetto per il tragitto casa-lavoro.</p></div><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 right-0 w-24 h-24 bg-primary opacity-5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div><svg class="w-10 h-10 text-secondary mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg><h3 class="text-xl font-semibold mb-3">Download & Modalità Offline</h3><p class="text-muted leading-relaxed">Scarica i tuoi episodi preferiti e i contenuti <strong>long-form</strong> per godertele senza connessione internet. In aereo, in treno o in zone remote, l'informazione viaggia con te.</p></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card bg-primary text-white border-none relative overflow-hidden"><div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-20 -mt-20"></div><div class="absolute bottom-0 left-0 w-40 h-40 bg-white opacity-5 rounded-full -ml-10 -mb-10"></div><div class="relative z-10"><h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">Inizia in 3 semplici passi</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-white text-primary flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">1</div><h3 class="text-xl font-semibold mb-2 text-white">Scarica l'App</h3><p class="text-blue-100">Disponibile gratuitamente su App Store e Google Play. L'installazione richiede pochi secondi.</p></div><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-white text-primary flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">2</div><h3 class="text-xl font-semibold mb-2 text-white">Scegli i Temi</h3><p class="text-blue-100">Seleziona i tuoi interessi. L'algoritmo ti suggerirà i migliori podcast e approfondimenti su misura per te.</p></div><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-white text-primary flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">3</div><h3 class="text-xl font-semibold mb-2 text-white">Ascolta e Leggi</h3><p class="text-blue-100">Crea la tua coda di riproduzione mista: alterna audio news veloci ad articoli lunghi per il weekend.</p></div></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa dicono i nostri ascoltatori</h2><p class="text-lg text-muted">Migliaia di utenti in Italia hanno già rivoluzionato le loro abitudini di ascolto.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card p-6 flex flex-col h-full"><div class="flex text-yellow-400 mb-4 gap-1"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted flex-grow italic mb-6">"Finalmente un'app che mette ordine tra i miei podcast italiani preferiti. La funzione per leggere articoli lunghi mentre viaggio in treno è fantastica. Interfaccia pulita e senza pubblicità invasive."</p><div><p class="font-bold">Marco T.</p><p class="text-xs text-gray-400">Gennaio 2026</p></div></div><div class="dna-card p-6 flex flex-col h-full"><div class="flex text-yellow-400 mb-4 gap-1"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted flex-grow italic mb-6">"Uso l'app ogni mattina per le audio news. È perfetta per tenersi aggiornati in modo intelligente mentre faccio colazione. La sezione degli approfondimenti è una miniera d'oro."</p><div><p class="font-bold">Elena R.</p><p class="text-xs text-gray-400">Dicembre 2025</p></div></div><div class="dna-card p-6 flex flex-col h-full"><div class="flex text-yellow-400 mb-4 gap-1"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current text-gray-300" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted flex-grow italic mb-6">"Il player audio è molto intuitivo. Mi piace la possibilità di scaricare i contenuti per i voli lunghi. Un must-have per chi ama informarsi in modo approfondito e non superficiale."</p><div><p class="font-bold">Luca G.</p><p class="text-xs text-gray-400">Novembre 2025</p></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-lg text-muted">Tutto ciò che devi sapere sulla nostra app per podcast e approfondimenti.</p></div><div class="dna-card space-y-4"><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>L'applicazione è gratuita?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Sì, il download e l'utilizzo di base dell'app sono completamente gratuiti. Offriamo l'accesso a migliaia di podcast italiani e articoli. È disponibile un piano Premium opzionale per funzionalità avanzate e contenuti esclusivi senza interruzioni.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>Quali dispositivi sono supportati?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">La nostra app è ottimizzata per tutti i principali dispositivi mobili. È disponibile per smartphone e tablet iOS tramite l'Apple App Store e per dispositivi Android tramite il Google Play Store.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>I miei dati sono al sicuro?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Assolutamente sì. La sicurezza dei tuoi dati è la nostra priorità. Utilizziamo la crittografia standard del settore per proteggere le tue informazioni personali e le tue abitudini di ascolto. Non vendiamo mai i tuoi dati a terzi.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>Come posso iniziare ad usarla?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Basta cliccare sui pulsanti di download presenti su questa pagina, installare l'app dal tuo store, creare un account gratuito (o accedere tramite i social) e selezionare i tuoi interessi. L'app configurerà immediatamente il tuo feed personalizzato.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>Posso usare l'app offline?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Sì! Puoi scaricare qualsiasi episodio di podcast, audio news o articolo di approfondimento per ascoltarlo o leggerlo quando non hai una connessione internet. Ideale per i viaggi in aereo o i pendolari in metropolitana.</p></details></div></div></section><hr class="section-divider"><section id="download" class="py-24 md:py-36"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card text-center border-2 border-primary border-opacity-20 shadow-xl bg-white relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-secondary"></div><div class="py-8"><div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary bg-opacity-10 text-primary mb-6"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg></div><h2 class="text-3xl md:text-5xl font-extrabold mb-4">Scarica Podtail Ora</h2><p class="text-xl text-muted mb-10 max-w-2xl mx-auto">Unisciti a migliaia di italiani che hanno già trasformato il loro smartphone in un hub di conoscenza, approfondimenti e podcast di qualità.</p><div class="flex flex-col sm:flex-row justify-center items-center gap-6"><a href="#download" class="store-badge transform hover:scale-105 transition-transform w-48 justify-center"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div><div class="text-small">Scarica su</div><div class="text-large">App Store</div></div></a><a href="#download" class="store-badge transform hover:scale-105 transition-transform w-48 justify-center"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div><div class="text-small">DISPONIBILE SU</div><div class="text-large">Google Play</div></div></a></div></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><span class="text-2xl font-extrabold text-primary flex items-center justify-center gap-2 mb-4"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg> Yaya Joa </span><p class="text-sm text-gray-500 max-w-2xl mx-auto p-4 bg-gray-50 rounded-lg border border-gray-100"><strong>Avviso Legale:</strong> Questa è una pagina promozionale indipendente gestita da Yaya Joa, per l'app Podtail sviluppata da Podtail. Non siamo affiliati ufficialmente con gli sviluppatori dell'applicazione originale, ma forniamo un servizio di promozione indipendente per facilitarne la scoperta. </p></div><div class="max-w-4xl mx-auto mb-12 space-y-4"><details class="group bg-gray-50 rounded-lg border border-gray-100 p-4"><summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-sm text-gray-700"> Informativa sulla Privacy <span class="transition group-open:rotate-180">▼</span></summary><div class="mt-4 text-xs text-gray-600 space-y-2 h-48 overflow-y-auto pr-2"><p>La tua privacy è di fondamentale importanza per Yaya Joa. Questa Informativa sulla Privacy descrive come raccogliamo, utilizziamo, proteggiamo e condividiamo le informazioni personali quando interagisci con le nostre pagine promozionali e i nostri servizi. Rispettiamo rigorosamente le normative vigenti in materia di protezione dei dati, incluso il GDPR per gli utenti residenti nello Spazio Economico Europeo. Quando visiti il nostro sito web, raccogliamo automaticamente alcune informazioni sul tuo dispositivo, tra cui il browser web, l'indirizzo IP, il fuso orario e alcuni dei cookie installati sul tuo dispositivo. Inoltre, mentre navighi sul sito, raccogliamo informazioni sulle singole pagine web o sui prodotti che visualizzi, su quali siti web o termini di ricerca ti hanno indirizzato al sito e sulle informazioni relative a come interagisci con il sito. Ci riferiamo a queste informazioni raccolte automaticamente come "Informazioni sul dispositivo". Raccogliamo le Informazioni sul dispositivo utilizzando tecnologie come cookie, file di registro, web beacon, tag e pixel. Non raccogliamo dati personali sensibili attraverso questa landing page promozionale. Le informazioni raccolte vengono utilizzate esclusivamente per migliorare l'esperienza utente, analizzare le tendenze di traffico e ottimizzare le nostre campagne di marketing. I tuoi dati non verranno mai venduti a terze parti per scopi commerciali diretti. Condividiamo le Informazioni sul dispositivo con terze parti solo per aiutarci a utilizzare le Informazioni sul dispositivo come descritto sopra (ad esempio, Google Analytics). Hai il diritto di accedere alle informazioni personali che conserviamo su di te e di chiedere che le tue informazioni personali vengano corrette, aggiornate o cancellate. Se desideri esercitare questo diritto, ti preghiamo di contattarci tramite i moduli preposti sui nostri canali ufficiali. Conserviamo le tue informazioni solo per il tempo necessario a fornirti i nostri servizi e per scopi aziendali legittimi ed essenziali, come il mantenimento delle prestazioni della landing page, l'assunzione di decisioni aziendali basate sui dati e il rispetto dei nostri obblighi legali. Ci riserviamo il diritto di aggiornare questa politica sulla privacy di volta in volta per riflettere, ad esempio, modifiche alle nostre pratiche o per altri motivi operativi, legali o normativi. Ti invitiamo a rivedere periodicamente questa pagina per le ultime informazioni sulle nostre pratiche sulla privacy. Utilizzando il nostro sito, acconsenti alla nostra politica sulla privacy.</p></div></details><details class="group bg-gray-50 rounded-lg border border-gray-100 p-4"><summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-sm text-gray-700"> Termini di Servizio <span class="transition group-open:rotate-180">▼</span></summary><div class="mt-4 text-xs text-gray-600 space-y-2 h-48 overflow-y-auto pr-2"><p>Benvenuto nei Termini di Servizio di Yaya Joa. Accedendo e utilizzando questa landing page promozionale, accetti di essere vincolato da questi Termini e Condizioni di utilizzo, da tutte le leggi e le normative applicabili, e accetti di essere responsabile della conformità con le leggi locali applicabili. Se non sei d'accordo con uno qualsiasi di questi termini, ti è vietato utilizzare o accedere a questo sito. I materiali contenuti in questo sito web sono protetti dalle leggi sul copyright e sui marchi applicabili. È concesso il permesso di scaricare temporaneamente una copia dei materiali (informazioni o software) sul sito web di Yaya Joa solo per visione transitoria personale e non commerciale. Questa è la concessione di una licenza, non un trasferimento di titolo, e sotto questa licenza non è possibile: modificare o copiare i materiali; utilizzare i materiali per scopi commerciali o per qualsiasi esposizione pubblica (commerciale o non commerciale); tentare di decompilare o decodificare qualsiasi software contenuto sul sito web di Yaya Joa; rimuovere qualsiasi copyright o altre notazioni proprietarie dai materiali; o trasferire i materiali a un'altra persona o "rispecchiare" i materiali su qualsiasi altro server. Questa licenza si risolverà automaticamente se si viola una qualsiasi di queste restrizioni e può essere risolta da Yaya Joa in qualsiasi momento. I materiali sul sito web di Yaya Joa sono forniti "così come sono". Yaya Joa non fornisce alcuna garanzia, espressa o implicita, e con la presente declina e nega tutte le altre garanzie, comprese, senza limitazioni, garanzie implicite o condizioni di commerciabilità, idoneità per uno scopo particolare, o non violazione della proprietà intellettuale o altra violazione dei diritti. In nessun caso Yaya Joa o i suoi fornitori saranno ritenuti responsabili per eventuali danni (inclusi, senza limitazioni, danni per perdita di dati o profitti, o a causa di interruzione dell'attività) derivanti dall'uso o dall'impossibilità di utilizzare i materiali sul sito web di Yaya Joa, anche se Yaya Joa o un rappresentante autorizzato di Yaya Joa è stato informato oralmente o per iscritto della possibilità di tali danni. Yaya Joa non ha esaminato tutti i siti collegati al suo sito web e non è responsabile per i contenuti di tali siti collegati. L'inclusione di qualsiasi link non implica l'approvazione del sito da parte di Yaya Joa. L'utilizzo di tali siti web collegati è a rischio dell'utente. Yaya Joa può rivedere questi termini di utilizzo per il proprio sito web in qualsiasi momento senza preavviso. Utilizzando questo sito web, accetti di essere vincolato dalla versione corrente di questi Termini e Condizioni di utilizzo.</p></div></details><details class="group bg-gray-50 rounded-lg border border-gray-100 p-4"><summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-sm text-gray-700"> Politica di Rimborso <span class="transition group-open:rotate-180">▼</span></summary><div class="mt-4 text-xs text-gray-600 space-y-2 h-48 overflow-y-auto pr-2"><p>La presente Politica di Rimborso delinea le condizioni sotto le quali vengono gestiti eventuali resi o rimborsi relativi ai servizi promossi su questa piattaforma. Poiché Yaya Joa funge esclusivamente da landing page promozionale per l'applicazione Podtail, è importante chiarire il nostro ruolo in eventuali transazioni finanziarie. Tutte le transazioni, gli acquisti in-app, gli abbonamenti premium o l'acquisto di contenuti digitali avvengono direttamente attraverso le piattaforme di distribuzione ufficiali, ovvero l'Apple App Store per i dispositivi iOS e il Google Play Store per i dispositivi Android. Di conseguenza, Yaya Joa non elabora pagamenti, non memorizza dati di carte di credito e non ha la capacità tecnica o legale di emettere rimborsi diretti agli utenti per gli acquisti effettuati all'interno dell'app promossa. Se un utente desidera richiedere un rimborso per un acquisto accidentale, un abbonamento non desiderato o se ritiene che il prodotto digitale non sia conforme alla descrizione, tale richiesta deve essere indirizzata direttamente al servizio clienti dello store da cui è stato effettuato l'acquisto. Per gli utenti Apple, è necessario visitare il sito reportaproblem.apple.com, accedere con il proprio ID Apple, selezionare l'acquisto in questione e seguire le istruzioni per richiedere un rimborso. Apple si riserva il diritto di valutare ogni richiesta secondo le proprie linee guida. Per gli utenti Android, è possibile richiedere un rimborso tramite il sito web di Google Play o direttamente dall'app Google Play Store sul dispositivo, solitamente entro 48 ore dall'acquisto per ricevere un'assistenza immediata. Dopo tale termine, potrebbe essere necessario contattare direttamente lo sviluppatore dell'app, come indicato nei dettagli dell'app sullo store. Yaya Joa non si assume alcuna responsabilità per le decisioni prese da Apple o Google in merito alle richieste di rimborso. Invitiamo tutti gli utenti a leggere attentamente le condizioni di acquisto e le politiche di recesso specifiche di ciascun app store prima di finalizzare qualsiasi transazione economica. Eventuali lamentele sulla qualità del servizio dell'app devono essere inoltrate agli sviluppatori ufficiali dell'applicazione, in quanto noi operiamo unicamente come canale di marketing indipendente. Comprendendo e accettando questa politica, l'utente riconosce i limiti di responsabilità di Yaya Joa riguardo alle questioni finanziarie legate all'uso dell'app promossa.</p></div></details></div><div class="flex flex-col md:flex-row justify-between items-center border-t border-gray-100 pt-8"><p class="text-sm text-gray-500 mb-4 md:mb-0"> &copy; 2026 Yaya Joa. Tutti i diritti riservati. </p><div class="flex space-x-6"><span class="text-sm text-gray-400">Design System: Fresh Mint</span></div></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-2xl z-50 transform transition-transform duration-500 translate-y-full"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4"><div class="text-sm text-gray-600 flex-grow"> Utilizziamo i cookie per migliorare la tua esperienza, analizzare il traffico del sito e per scopi di marketing. Continuando a navigare sul sito, accetti il nostro utilizzo dei cookie. </div><div class="flex gap-2 flex-shrink-0"><button id="cookie-reject" class="btn-secondary py-2 px-4 text-sm bg-white">Rifiuta</button><button id="cookie-accept" class="btn-primary py-2 px-4 text-sm">Accetta Tutti</button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
             
-            <div class="absolute inset-0 hero-overlay"></div>
-            
-            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <div class="max-w-3xl">
-                    <span class="inline-block py-1 px-3 rounded-full bg-green-900 text-green-300 text-sm font-semibold tracking-wide uppercase mb-4 border border-green-700 shadow-sm">
-                        Confronto Dati Bancari
-                    </span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-                        L'Analisi Avanzata per Massimizzare il Tuo <span class="text-primary">Investimento</span> in Sicurezza.
-                    </h1>
-                    <p class="text-xl text-gray-300 mb-8 font-light">
-                        Non lasciare che i tuoi <strong>risparmi</strong> vengano erosi dall'inflazione. Il nostro servizio ti permette di confrontare ogni <strong>conto deposito</strong> e scoprire il vero <strong>rendimento</strong> netto per far crescere il tuo patrimonio.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#contact" class="btn-primary text-lg">Ottieni il Tasso Migliore</a>
-                        <a href="#features" class="inline-flex items-center justify-center px-6 py-3 border border-gray-400 text-base font-medium rounded-[12px] text-white hover:bg-white/10 transition">Scopri l'Analitica</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TRUST SECTION -->
-        <div class="bg-white border-b border-gray-200 py-6">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-wide mb-6">Basato su dati forniti dalle principali entità finanziarie e istituti</p>
-                <div class="flex justify-center gap-12 flex-wrap items-center opacity-50 grayscale">
-                    <span class="text-xl font-bold text-gray-600">Unicredit Analytics Data</span>
-                    <span class="text-xl font-bold text-gray-600">Intesa Sanpaolo Insight</span>
-                    <span class="text-xl font-bold text-gray-600">Fineco Data Bank</span>
-                    <span class="text-xl font-bold text-gray-600">ING Analytics Metrics</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="pt-16 pb-20 px-4 sm:px-6 lg:px-8">
-
-            <!-- FEATURES SECTION -->
-            <section id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-                <div class="text-center mb-12">
-                    <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Dati e Sicurezza</h2>
-                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                        Una Visione Chiara sul Tuo <span class="text-primary">Deposito</span>
-                    </p>
-                    <p class="mt-4 max-w-2xl text-lg text-gray-500 mx-auto">
-                        Tramite il nostro motore di comparazione avanzato analizziamo ogni singola condizione offerta dalle banche. Scopri il vero costo delle operazioni e il reale guadagno.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div class="p-6 bg-gray-50 rounded-xl border border-gray-100 transition hover:shadow-md">
-                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Confronto Trasparente del Tasso</h3>
-                        <p class="text-gray-600">
-                            Non lasciarti ingannare dalle offerte civetta. Analizziamo il <strong>tasso</strong> di interesse lordo e netto, fornendoti cifre precise e applicabili sul momento per proteggere e incrementare la tua liquidità nel tempo.
-                        </p>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div class="p-6 bg-gray-50 rounded-xl border border-gray-100 transition hover:shadow-md">
-                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Scegliere la Giusta Banca</h3>
-                        <p class="text-gray-600">
-                            Forniamo analisi di solidità (CET1 ratio) affinché la <strong>banca</strong> da te scelta sia non solo redditizia, ma anche un porto sicuro in cui posizionare i tuoi sudati <strong>risparmi</strong> grazie alla garanzia del FITD.
-                        </p>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div class="p-6 bg-gray-50 rounded-xl border border-gray-100 transition hover:shadow-md">
-                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Previsione del Rendimento</h3>
-                        <p class="text-gray-600">
-                            Che si tratti di un'opzione vincolata a 60 mesi o di una soluzione libera per le emergenze, calcoliamo in modo accurato l'esatto ammontare che produrrà il tuo <strong>conto</strong> nel tempo considerato.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- REVIEWS SECTION -->
-            <section id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-extrabold text-gray-900">Le Voci dei Nostri Utenti nel 2026</h2>
-                    <p class="mt-4 text-gray-500">Persone reali che hanno rivoluzionato la gestione del loro denaro grazie alla nostra analisi.</p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white border border-gray-100 p-6 rounded-xl shadow-sm">
-                        <div class="flex items-center space-x-1 mb-4 text-yellow-400">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"Avevo i miei soldi fermi sul conto corrente infruttifero. Tramite i dati di Yaya Joa ho capito subito che un <strong>conto deposito</strong> a 24 mesi offriva un <strong>tasso</strong> lordo del 4%."</p>
-                        <h4 class="font-bold text-gray-900">- Marco Rossi, Imprenditore</h4>
-                    </div>
-
-                    <div class="bg-white border border-gray-100 p-6 rounded-xl shadow-sm">
-                        <div class="flex items-center space-x-1 mb-4 text-yellow-400">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"Confrontare decine di prospetti era impossibile prima. Qui inserisci capitale e durata e trovi subito l'istituto che offre il <strong>rendimento</strong> massimo, netto e pulito."</p>
-                        <h4 class="font-bold text-gray-900">- Giulia Bianchi, Libera Professionista</h4>
-                    </div>
-
-                    <div class="bg-white border border-gray-100 p-6 rounded-xl shadow-sm">
-                        <div class="flex items-center space-x-1 mb-4 text-yellow-400">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current text-gray-300" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"Affidarsi a una piattaforma che elenca oggettivamente la <strong>banca</strong> migliore per salvaguardare i propri <strong>risparmi</strong> è indispensabile al giorno d'oggi. Assolutamente consigliato."</p>
-                        <h4 class="font-bold text-gray-900">- Lorenzo Verdi, Artigiano</h4>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ SECTION -->
-            <section id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-extrabold text-gray-900">Domande Frequenti sui Prodotti Bancari</h2>
-                </div>
-                <div class="space-y-4">
-                    <details class="group bg-gray-50 border border-gray-100 rounded-lg open:shadow-sm">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-900">
-                            <span>Qual è la differenza principale tra un deposito libero e uno vincolato?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" w="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <div class="text-gray-600 mt-3 p-5 pt-0 border-t border-gray-100 mt-2">
-                            Il deposito libero permette di ritirare i propri <strong>risparmi</strong> in qualsiasi momento, solitamente con un rendimento inferiore. La linea vincolata impone un blocco del denaro per un tempo definito (da 6 a 60 mesi) premiandoti con un <strong>tasso</strong> nettamente più alto. Tramite il nostro strumento analitico valuteremo insieme l'opzione migliore per le tue necessità.
-                        </div>
-                    </details>
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    <details class="group bg-gray-50 border border-gray-100 rounded-lg open:shadow-sm">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-900">
-                            <span>I miei fondi sono garantiti se la banca fallisce?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" w="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <div class="text-gray-600 mt-3 p-5 pt-0 border-t border-gray-100 mt-2">
-                            Assolutamente sì. Grazie al Fondo Interbancario di Tutela dei Depositi (FITD), che copre ogni singolo ente bancario riconosciuto presente nel nostro motore di confronto, le giacenze presenti sul tuo <strong>conto</strong> sono tutelate in caso di default bancario fino a 100.000 euro per intestatario.
-                        </div>
-                    </details>
-
-                    <details class="group bg-gray-50 border border-gray-100 rounded-lg open:shadow-sm">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-900">
-                            <span>Devo cambiare il mio attuale conto corrente per poterne aprire uno deposito?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" w="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <div class="text-gray-600 mt-3 p-5 pt-0 border-t border-gray-100 mt-2">
-                            Non è strettamente necessario, nella grande maggioranza dei casi. Solitamente si crea un legame bancario attraverso un iban predefinito (chiamato conto d'appoggio) da cui trasferisci liquidità al fine esclusivo di generare nuovo <strong>rendimento</strong> e gestire trasferimenti sicuri.
-                        </div>
-                    </details>
-
-                    <details class="group bg-gray-50 border border-gray-100 rounded-lg open:shadow-sm">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-900">
-                            <span>La ritenuta fiscale agisce prima che io veda il guadagno netto?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" w="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <div class="text-gray-600 mt-3 p-5 pt-0 border-t border-gray-100 mt-2">
-                            Esatto. Sulle transazioni generate come interesse viene applicata un’imposta governativa fissa italiana attualmente equivalente al 26%. Durante il confronto tramite i nostri dati presentiamo sempre, ove visibile, un indicatore sul profitto al netto delle tasse e il differenziale del bollo fiscale, al fine di stimare in totale limpidezza il tuo esatto introito futuro sul <strong>deposito</strong> prescelto.
-                        </div>
-                    </details>
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
                     
-                    <details class="group bg-gray-50 border border-gray-100 rounded-lg open:shadow-sm">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-900">
-                            <span>Questo sistema analitico è a pagamento?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" w="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <div class="text-gray-600 mt-3 p-5 pt-0 border-t border-gray-100 mt-2">
-                            Assolutamente no. Usufruire dei nostri calcolatori di tariffe tramite questo canale non ti farà sostenere costi e, agendo quali recensori per piattaforme esterne per trovare il più adeguato contratto, veniamo riconosciuti dalla singola operatività finale creata senza aumentare neppure di un centesimo il servizio dedicato al risparmiatore. Il tuo capitale resterà così pienamente finalizzato all’investimento nel prodotto ricercato.
-                        </div>
-                    </details>
-                </div>
-            </section>
-
-            <!-- CONTACT / FORM SECTION -->
-            <section id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
-                        <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Inizia ad Ottimizzare</h2>
-                        <p class="text-gray-600 mb-6">
-                            Inserisci i tuoi dati nel nostro modulo sicuro per visualizzare immediatamente e confrontare le migliori offerte disponibili tra istituti di credito aggiornate all'ora corrente per tutelare i tuoi <strong>risparmi</strong> dal decremento d'acquisto garantito dalle correnti spinte inflazionistiche di natura avversa all’economa mondiale reale presente.
-                        </p>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-primary mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span class="ml-3 text-gray-600">Compara istantaneamente 50+ offerte certificate</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-primary mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span class="ml-3 text-gray-600">Nessun costo o obbligo per richiedere una consulenza o valutazione dei dati bancari proposti sul prospetto informativo inviatovi.</span>
-                            </li>
-                        </ul>
-                    </div>
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
                     
-                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 relative">
-                        <!-- Functional Lead Form -->
-                        <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                            <div>
-                                <label for="nome" class="block text-sm font-medium text-gray-700">Nome e Cognome</label>
-                                <input type="text" name="nome" id="nome" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
-                            </div>
-                            <div>
-                                <label for="capitale" class="block text-sm font-medium text-gray-700">Capitale da Investire (€)</label>
-                                <input type="number" name="capitale" id="capitale" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary" placeholder="es. 10000">
-                            </div>
-                            <div>
-                                <label for="durata" class="block text-sm font-medium text-gray-700">Orizzonte Temporale Preferito</label>
-                                <select id="durata" name="durata" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
-                                    <option>Deposito Libero</option>
-                                    <option>Vincolato (12 Mesi)</option>
-                                    <option>Vincolato (24 Mesi)</option>
-                                    <option>Vincolato (36+ Mesi)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="telefono" class="block text-sm font-medium text-gray-700">Numero di Telefono (Opzionale per supporto dedicato)</label>
-                                <input type="tel" name="telefono" id="telefono" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
-                            </div>
-                            <div class="flex items-start mt-4 mb-4">
-                                <div class="flex items-center h-5">
-                                    <input id="privacy" name="privacy" type="checkbox" required class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded">
-                                </div>
-                                <div class="ml-3 text-xs">
-                                    <label for="privacy" class="font-medium text-gray-700">Accetto il trattamento dei dati al fine di ottenere il documento informativo richiesto dal form analitico.</label>
-                                </div>
-                            </div>
-                            <button type="submit" class="w-full btn-primary text-lg">Trova il Tasso Migliore</button>
-                        </form>
-                        
-                        <!-- Success Message -->
-                        <div id="success-msg" style="display:none" class="text-center py-10">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Analisi Avviata!</h3>
-                            <p class="text-gray-600">I nostri sistemi stanno elaborando il tuo calcolo previsionale basato sui rendimenti e le tipologie proposte per un prospetto ottimizzato e adeguato.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <!-- FOOTER & LEGAL -->
-    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div>
-                    <h3 class="text-xl font-bold text-white mb-4">Yaya Joa Analytics</h3>
-                    <p class="mb-4">Strumento informatico di ottimizzazione e visualizzazione prospetti su materie creditizie che sfrutta avanzata tecnologia digitale su terminali comparativi mirati e testati empiricamente di sovente con tempistiche immediate o calcolabili da personale del gestore qualificato ai processi logici finalizzati unicamente ai rendimenti bancari.</p>
-                    <p class="text-sm font-semibold text-gray-300 bg-gray-800 p-4 rounded border border-gray-700">
-                        Disclaimer Affiliazione: Questo è un sito promozionale indipendente gestito da Yaya Joa Analytics, che opera come affiliato per SosTariffe.it. Tutte le condizioni dei conti presentati, variazioni di mercato inerenti ai rendimenti offerti sulle tabelle bancarie in ambito territoriale italiano e decisioni creditizie reali vengono assunte dall'azienda originale operante come mero servizio in conformità della direttiva locale del distributore di prodotto.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold text-white mb-4">Informazioni Legali</h4>
-                    
-                    <div class="space-y-2">
-                        <!-- Privacy Policy Verbatim -->
-                        <details class="cursor-pointer">
-                            <summary class="hover:text-white transition outline-none">Privacy Policy Integrale</summary>
-                            <div class="mt-2 text-xs bg-gray-800 p-4 rounded h-40 overflow-y-auto text-gray-400">
-                                La presente informativa sulla privacy descrive le modalità con cui Yaya Joa Analytics raccoglie ed elabora informazioni personali sul circuito operativo telematico da voi utilizzato per i form promozionali generati sul portale indipendente con chiaro scopo conoscitivo del mondo economico odierno e relative diramazioni interbancarie attive ad oggi. Tutti i dati ricevuti dagli intestatari e consumatori vengono acquisiti col fermo e chiaro consenso prestato durante la flag inserito tramite moduli sul terminale locale visivo su schede utente destinate esclusivamente a funzioni mirate dell'intermediario analitico senza invio improprio ulteriore di documenti a soggetti oscuri ad essi totalmente sconosciuti e avulsi all'ambito prettamente economico comparativo o divulgazione mediatica. Vengono garantiti alti standard protocollari di trasmissione criptata volti ad ostacolare incursioni da profili informatici malevoli adibiti ai blocchi esterni verso nodi aziendali tutelativi interni ed impiegati nei nostri hub primari locati in nazioni conformi ai vincoli e direttive applicate all'operazione e ai regolamenti continentali moderni del mondo occidentale del diritto sul medesimo tema dei database utente sensibili da memorizzazione informatica su architetture gestionali in utilizzo continuativo in sede fisica remota predisposte dalla Yaya Joa. Tutti i server adottano blocchi contro letture estranee, tutelando con determinazione le vostre specifiche volontà in quanto padroni assoluti della documentazione da noi vagliata sui tassi del sistema deposito attuale nazionale tra banche per il pubblico e fornendovi i risultati garantendo una cancellazione del sistema a fine interazione avvenuta tramite espressa volontà redatta inviata ai preposti o decorsa del normale lasso procedurale prestabilito entro trenta lunazioni dai controllori gestionali attivi h24 sulle consolle centralizzate. Per richieste di modica su dati registrati su questi medesimi supporti, si richiede interpellare la procedura a garanzia inserita tramite posta convenzionale alle sedi centrali con tracciabilità accertata. Il mancato consenso renderà infattibile il rilascio o analisi del conteggio di prodotto di credito che desideravate con ovvi impedimenti sulle finalità primordiali palesate con voi qui chiarite in trasparenza totale sui procedimenti e sulle nostre etiche aziendali fondative in tema tutela di colui navigante sul portale web Yaya Joa Analytics a nome d’opera nostra e in qualità sussidiaria operativa sull’offerta partner di destinazione SosTariffe nel comparto.
-                            </div>
-                        </details>
-                        
-                        <!-- Termini di Servizio Verbatim -->
-                        <details class="cursor-pointer">
-                            <summary class="hover:text-white transition outline-none">Termini di Servizio Completamente Estesi</summary>
-                            <div class="mt-2 text-xs bg-gray-800 p-4 rounded h-40 overflow-y-auto text-gray-400">
-                                I presenti termini e condizioni d'uso formano l'intesa contrattuale di base per chi visita e interroga gli schemi computazionali posti in visione libera per tutti tramite questo indirizzo url di connessione informatica denominata web di proprietà e gestione tecnica imputata direttamente ed esclusivamente alle capacità fisiche del costruttore stesso del gruppo interno identificabile nei logo predefiniti per uso pubblico analitico Yaya Joa di elaborazione indagini tra istituti con le giacenze libere contro tassi ed opzioni non immediatamente rinvenibili su rete convenzionale ad un individuo non dedito a costanza ricerca tra banche su orari prolungati in via esclusiva autonoma su motori di elaborazione terze ignote all'utilizzo del navigante moderno casuale odierno in cerca di ritorni positivi. Il prestatore avvia codesta fornitura web gratuita col presupposto che i prospetti risultanti su conti siano indicativi, potendo il mercato e l’inflazione condurre i board centrali al variare e ridimensionare senza alcun previo mandato la marginalità del tasso su chi avvalla contratti in tempi diversificati o alterati tra le fasi della raccolta dati a quella della firma contrattuale bancaria e fiduciaria di conto tra soggetto vivo con la partita d'iva dell'organo di emissione istituzionale preposta locale di destinazione finale a suo insindacabile esame fiduciario contro le policy e direttive antiriciclaggio. Eventuali rallentamenti in codesta struttura virtuale creata non prevedono in solido azioni atte da voi contro questo servizio qualora non venisse per disconnessione o difetto visualizzata alcuna stima reale sul potenziale e teorico profitto finale del prodotto in cui volevate veicolare finanza o patrimoni depositati su altre nazioni con costi nascosti aggiuntivi ignoti ad algoritmi generici che non sanno decifrare in autonomia transazioni al difuori di euro o aree protette previste nel FITD e sue disposizioni esposte con voi da noi su schemi visivi limpidi posti poc'anzi nel test testuale sul documento. Nessuna istanza contro questo dominio troverà alcun titolo giuridicabile positivo derivante da interpretazioni avventate sul mero indicatore espositivo o dal rifiuto formale sul rilascio su prelievi coatti in altre sedi attenzionate o difformità su prospetti che, ribadiamo qui chiaramente come regola primaria da asserire come dogma inscindibile sui contratti immateriali attuali su suolo di applicazione o similare ove è sito chi invia connessioni con nostri archivi per consultazione in via personale privata protetta nei codici preesistenti su questo network informativo su tassi liberi per calcolare, ed infine valutare o ignorare quanto letto e mostrato dall'uso telematico.
-                            </div>
-                        </details>
-                        
-                        <!-- Policy di Gestione Ripensamento -->
-                        <details class="cursor-pointer">
-                            <summary class="hover:text-white transition outline-none">Policy di Diritto al Ripensamento ed Errori Computazionali</summary>
-                            <div class="mt-2 text-xs bg-gray-800 p-4 rounded h-40 overflow-y-auto text-gray-400">
-                                Come regolato rigidamente nelle operazioni di materia ed ambito finanza gestite interamente sui piani commerciali telefonici o a distanze elettroniche come quelle operate interamente dal portale fornitore ufficiale di raffronto menzionato antecedentemente e su questa intera vetrina d'invito d'affiliazione mirata per convogliamento sui moduli aperti con le reali parti operative sulle piattaforme su chi detiene codifiche complete bancarie con sigle sui pacchetti per fondi e investimenti sicuri od onerosi pregressi che voi vi approccerete col fine conclusivo unico ultimo dopo l’esito generato dalle letture in Yaya Joa e dal sistema che abbiamo implementato sulla visiva iniziale dell’interessato da casa e dalle sue postazioni web generiche e mobile o simili per visionarne il computo matematico netto. Essendo che questo terminale specifico promozionale affiliato ad esso e qui consultabile adesso vi chiede soltanto informazioni nominative e importo teorico senza compenso od addebito bancario effettivo per darvi in un instante calcolato con un ritorno netto mostrato, il concetto del rimborso in pecunia reale del servizio d'uso nostro interno decade all'istante dell’avvio della simulazione essendosi già concluso ad opere benevole nei vostri immediati confronti per fornirvi lumi e indicazioni di valore aggiuntivo con chi vorrete in seguito. Al contrario sul servizio sottoscritto definitivamente e siglato dalla medesima sede con la controparte del gruppo in esame SosTariffe con successiva delega invio agli studi fiduciari di agenzie sul deposito delle riserve pecuniarie fisiche in banca tra voi intestatario finale operante, vigono le leggi temporali fissate dai vari regolamenti nazionali tra entità creditore di fornitura finanziaria contro persona fisica intestataria in caso di recesso e distruzione atto o scioglimento sui pacchetti ad essa proposti ove entro e non oltre una finestra stimata convenzionalmente per norma non modificabile di quattordici notti in tempo lunare o effettivo conteggiato solare per poter recedere inviando a chi compete materialmente ed oggettivamente senza ricorrere od interloquire ancora verso i gestionali od gli addetti attivi qui di natura puramente vetrinistica informatica operante d’analisi iniziale gratuita comparativa con cui non esite verun rapporto contrattualistico e quindi di nessun addebito, nessuna responsabilità ulteriore e che noi rigettiamo sul partner ufficiale operante a compiere procedure atte a far revocare l’atto primario originato se in vincolo effettivo con loro, su qualsivoglia istituto esaminato originato col vostro diretto inserimento di consensi tramite firme grafometriche, fiduciarie sul medesimo partner finale con chi i rapporti fiduciari prettamente ed operativamente si riscontreranno vigenti in fase transazionale effettiva contabile tra entità in solido su conti con saldo in positivo ed estinzione del rapporto in tempi brevi stabiliti dai board senza onere occultato a sfavore cliente con applicazione ferrea sui diritti primari applicati nel continente sul sistema deposito bancario aperto ex novo in regime legale autorizzato a chiusura spontanea se in contrasto alle proprie tutele attuali del depositante medesimo contro terzi o a mutazioni subite impreviste durante il contratto per i tassi previsti all'offerta analizzata nei precedenti percorsi di test.
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
-                <p>&copy; 2026 Yaya Joa Analytics. Tutti i diritti riservati.</p>
-                <p class="mt-4 md:mt-0">Operiamo come ente informatico promozionale indipendente in Italia per il settore depositi su analisi metriche e comparazioni visive di tassi e istituti tramite mandato autorizzato digitale sul comparatore principale citato in testata disclaimer.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t border-gray-200 shadow-2xl z-50 p-6 flex flex-col md:flex-row justify-between items-center transform transition-transform duration-300">
-        <p class="text-gray-700 text-sm mb-4 md:mb-0 max-w-4xl">
-            Impieghiamo marcatori traccianti di terzi sui protocolli web per personalizzare esclusivamente metriche, stime e monitorare a fini accademici ed esplorativi l'uso globale della vetrina promozionale ed indicativa di conto sul quale posate sguardo durante analisi. Scegli le opzioni che preferisci se prosegui consenti ai cookies secondo direttive in merito informatiche europee.
-        </p>
-        <div class="flex space-x-4 shrink-0">
-            <button onclick="acceptCookies()" class="btn-primary py-2 px-6">Accetto e Chiudi</button>
-        </div>
-    </div>
-
-    <!-- SCRIPTS -->
-    <script>
-        // ROUTING SYSTEM (The "Gravity Well" Protocol)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetEl = document.getElementById(targetId);
-                
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobile-menu');
-                if(!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-
-                if(targetEl) {
-                    targetEl.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-                }
+                    if (targetElement) {
+                        // Smooth scroll to target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else {
+                        // Fallback: Force Smooth Scroll to #download
+                        const downloadSection = document.getElementById('download');
+                        if (downloadSection) {
+                            downloadSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
             });
-        });
 
-        // COOKIE LOGIC
-        window.addEventListener('load', function() {
-            if(!localStorage.getItem('yaya_cookie_accepted')) {
+            // Cookie Banner Logic
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('cookie-accept');
+            const rejectBtn = document.getElementById('cookie-reject');
+
+            // Check if user already made a choice
+            if (!localStorage.getItem('cookieChoice')) {
+                // Show banner after a slight delay
                 setTimeout(() => {
-                    document.getElementById('cookie-banner').classList.add('show');
+                    cookieBanner.classList.remove('translate-y-full');
                 }, 1000);
             }
-        });
 
-        function acceptCookies() {
-            localStorage.setItem('yaya_cookie_accepted', 'true');
-            document.getElementById('cookie-banner').classList.remove('show');
-        }
-    </script>
-</body>
-</html>
+            const hideBanner = (choice) => {
+                localStorage.setItem('cookieChoice', choice);
+                cookieBanner.classList.add('translate-y-full');
+            };
+
+            acceptBtn.addEventListener('click', () => hideBanner('accepted'));
+            rejectBtn.addEventListener('click', () => hideBanner('rejected'));
+        });
+    </script> </body></html>
