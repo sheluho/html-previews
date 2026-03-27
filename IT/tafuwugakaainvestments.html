@@ -1,542 +1,209 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tafuwugakaa Investments | Analisi Mercato e Confronto Stipendi</title>
-    
-    <!-- CSS & Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Fraunces:wght@700;800&display=swap" rel="stylesheet">
-    
-    <!-- Custom Pre-computed Design DNA -->
-    <style>
-      :root {
-        --primary: #ea580c;
-        --secondary: #4f46e5;
-        --radius: 8px;
-        --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-        --body-bg: #fefce8;
-        --card-bg: #ffffff;
-        --text: #1a2e05;
-        --muted: #71717a;
-      }
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Tafuwugakaa | La tua App per Podcast e Approfondimenti</title><meta name="description" content="Scopri i migliori podcast italiani, audio news e articoli lunghi. Investi nel tuo sapere con l'app di approfondimento definitiva."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Fraunces:wght@700;800&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #ea580c;
+            --secondary: #4f46e5;
+            --radius: 8px;
+            --card-radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --body-bg: #fefce8;
+            --card-bg: #ffffff;
+            --text: #1a2e05;
+            --muted: #71717a;
+        }
 
-      body {
-        background-color: var(--body-bg);
-        color: var(--text);
-        font-family: 'Work Sans', sans-serif;
-      }
+        body {
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Work Sans', sans-serif;
+            padding-top: 4rem;
+        }
 
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Fraunces', serif;
-      }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fraunces', serif;
+        }
 
-      .dna-card {
-        background-color: var(--card-bg);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 2.5rem;
-        margin-bottom: 2rem;
-        border: 1px solid rgba(0,0,0,0.05);
-      }
+        .dna-card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
 
-      .btn-primary {
-        background-color: var(--primary);
-        color: #ffffff !important;
-        border-radius: var(--radius);
-        padding: 0.875rem 2rem;
-        font-weight: 600;
-        font-family: 'Work Sans', sans-serif;
-        transition: all 0.2s;
-        display: inline-block;
-        text-decoration: none;
-      }
-      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+        nav {
+            background-color: var(--body-bg);
+        }
 
-      .btn-secondary {
-        background-color: transparent;
-        color: var(--primary);
-        border: 2px solid var(--primary);
-        border-radius: var(--radius);
-        padding: 0.875rem 2rem;
-        font-weight: 600;
-        transition: all 0.2s;
-        display: inline-block;
-        text-decoration: none;
-      }
-      .btn-secondary:hover { background-color: rgba(234, 88, 12, 0.05); }
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Work Sans', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-      .text-primary { color: var(--primary); }
-      .text-secondary { color: var(--secondary); }
-      .text-muted { color: var(--muted); }
-      .bg-primary { background-color: var(--primary); }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
 
-      /* Section divider — subtle visual rhythm */
-      .section-divider {
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, transparent, rgba(0,0,0,0.08), transparent);
-        margin: 0;
-      }
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
 
-      /* Focus states for accessibility */
-      button:focus, input:focus, select:focus {
-        outline: 2px solid var(--secondary);
-        outline-offset: 2px;
-      }
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
 
-      /* Cookie Banner */
-      #cookie-banner {
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          background: #111827;
-          color: white;
-          z-index: 50;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 1rem 2rem;
-          transform: translateY(100%);
-          transition: transform 0.4s ease-in-out;
-      }
-      #cookie-banner.show {
-          transform: translateY(0);
-      }
-    </style>
-</head>
-<body class="antialiased selection:bg-orange-500 selection:text-white">
+        /* Fixed navbar compensation */
+        main, main + footer { scroll-margin-top: 5rem; }
 
-    <!-- Navigation -->
-    <header class="bg-white bg-opacity-90 backdrop-filter backdrop-blur sticky top-0 z-40 border-b border-gray-100 shadow-sm">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-bold font-serif text-gray-900 flex items-center gap-2">
-                        <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-                        Tafuwugakaa <span class="text-orange-600">Investments</span>
-                    </a>
-                </div>
-                <!-- Desktop Nav -->
-                <nav class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-600 hover:text-orange-600 font-medium transition-colors">Servizi</a>
-                    <a href="#how-it-works" class="text-gray-600 hover:text-orange-600 font-medium transition-colors">Il Mercato</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-orange-600 font-medium transition-colors">Testimonianze</a>
-                    <a href="#contact" class="btn-primary text-sm px-5 py-2">Valuta Ora</a>
-                </nav>
-                <!-- Mobile Nav Toggle -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 shadow-lg absolute w-full left-0">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Servizi</a>
-                <a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Il Mercato</a>
-                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Testimonianze</a>
-                <a href="#contact" class="block px-3 py-2 text-orange-600 font-bold">Valuta Ora</a>
-            </div>
-        </div>
-    </header>
+        /* Form inputs */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(234,88,12,0.15);
+        }
 
-    <!-- Minimal Hero Section -->
-    <main>
-        <section class="py-20 md:py-32 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <span class="inline-block py-1 px-3 rounded-full bg-indigo-50 text-indigo-700 text-sm font-semibold tracking-wider uppercase mb-6 border border-indigo-100">
-                La tua carriera, il tuo capitale
-            </span>
-            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight mb-8">
-                Il miglior <span class="text-orange-600">investimento</span> inizia con il giusto <span class="text-indigo-600 relative inline-block">stipendio.<svg class="absolute -bottom-2 w-full h-3 text-indigo-200" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="transparent"/></svg></span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Offriamo un servizio esclusivo di confronto stipendi e analisi mercato lavoro. Scopri il vero valore della tua posizione aziendale e costruisci una solida base per il tuo prossimo traguardo.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#contact" class="btn-primary w-full sm:w-auto shadow-lg shadow-orange-500/30">Richiedi Analisi Gratuita</a>
-                <a href="#features" class="btn-secondary w-full sm:w-auto">Scopri i Vantaggi</a>
-            </div>
-        </section>
+        /* Links */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
 
-        <!-- Social Proof Text Base -->
-        <div class="max-w-5xl mx-auto px-4 pb-20">
-            <p class="text-center text-sm font-medium text-gray-400 uppercase tracking-widest mb-6">Analizziamo le tendenze per i professionisti di grandi realtà italiane</p>
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 grayscale opacity-60">
-                <span class="text-xl font-bold text-gray-600 font-serif">Tech Systems SpA</span>
-                <span class="text-xl font-bold text-gray-600 font-serif">FinServ & Partners</span>
-                <span class="text-xl font-bold text-gray-600 font-serif">DataNet Group</span>
-                <span class="text-xl font-bold text-gray-600 font-serif">CloudVision Italia</span>
-            </div>
-        </div>
+        /* Section divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(234,88,12,0.12), transparent);
+            margin: 0;
+        }
 
-        <hr class="section-divider">
-
-        <!-- Features (3-Column Cards) -->
-        <section id="features" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-5xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Intelligenza e Dati per il tuo Successo</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Non basare la tua carriera sulle supposizioni. I nostri strumenti di analisi trasformano le informazioni in una potente leva negoziale.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Feature 1 -->
-                    <div class="dna-card group hover:-translate-y-1 transition-transform duration-300">
-                        <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center mb-6 border border-indigo-100 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Confronto Esatto</h3>
-                        <p class="text-gray-600 leading-relaxed">Verifica in tempo reale se il tuo compenso è allineato. Paragonalo con lo stipendio medio di un collega nella tua stessa regione ed esperienza.</p>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div class="dna-card group hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
-                        <!-- Accent -->
-                        <div class="absolute top-0 right-0 w-2 h-full bg-orange-600"></div>
-                        
-                        <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center mb-6 border border-indigo-100 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Visione del Settore</h3>
-                        <p class="text-gray-600 leading-relaxed">Accedi a una profonda analisi del mercato in cui operi. Ogni settore ha le sue logiche; comprendile per muoverti strategicamente e minimizzare i rischi.</p>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div class="dna-card group hover:-translate-y-1 transition-transform duration-300">
-                        <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center mb-6 border border-indigo-100 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Strategia di Aumento</h3>
-                        <p class="text-gray-600 leading-relaxed">Presentarsi al colloquio senza dati è un errore. Ti forniamo gli insight corretti per negoziare la tua attuale posizione e giustificare pienamente l'aumento richiesto.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <hr class="section-divider">
-
-        <!-- Informational / Imagery Section -->
-        <section id="how-it-works" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-white bg-opacity-50">
-            <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2">
-                    <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Analisi del mercato e confronto professionale in ufficio" class="rounded-2xl shadow-xl w-full object-cover aspect-video" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ea580c/ffffff?text=Professionisti+al+lavoro'">
-                </div>
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Investiamo nel Capitale Umano. Inizia a difendere il tuo Valore.</h2>
-                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">Nel panorama moderno, il mercato del lavoro si muove ad altissima velocità. Molto spesso un lavoratore qualificato rimane mesi, se non anni, bloccato ad un reddito inferiore alla media.</p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-orange-600 mt-1 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="text-gray-700">Evita speculazioni e conosci cosa accade ad ogni singolo collega.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-orange-600 mt-1 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="text-gray-700">Ottieni visibilità su retribuzione fissa e pacchetti bonus specifici del tuo settore.</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="btn-primary">Sviluppa la tua Strategia</a>
-                </div>
-            </div>
-        </section>
-
-        <hr class="section-divider">
-
-        <!-- Testimonials (Social Proof) -->
-        <section id="reviews" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-5xl mx-auto">
-                <div class="text-center mb-16">
-                    <span class="text-indigo-600 font-bold tracking-wider uppercase text-sm mb-2 block">Casi di Successo Reali</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">L'opinione di chi ha investito su sé stesso</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="dna-card relative pt-12">
-                        <svg class="absolute top-6 left-6 w-10 h-10 text-orange-200" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                        <p class="text-gray-700 italic mb-6 relative z-10">"Credevo di percepire una paga ottima, fino a che l'analisi non mi ha dimostrato il contrario. Scoprire la media offerta ad un collega mi ha spinto al tavolo delle trattative, riuscendo a chiudere un eccellente aumento."</p>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-orange-100 rounded-full flex justify-center items-center text-orange-600 font-bold text-xl mr-4">M</div>
-                            <div>
-                                <h4 class="font-bold">Marco D.</h4>
-                                <p class="text-sm text-gray-500">Project Manager IT</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dna-card relative pt-12">
-                        <svg class="absolute top-6 left-6 w-10 h-10 text-indigo-200" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                        <p class="text-gray-700 italic mb-6 relative z-10">"Il mercato è caotico e in perenne mutazione. Utilizzando questa piattaforma ho ottenuto grafici cristallini sulla mia posizione e la domanda del mercato. Indispensabile strumento di carriera."</p>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-indigo-100 rounded-full flex justify-center items-center text-indigo-600 font-bold text-xl mr-4">S</div>
-                            <div>
-                                <h4 class="font-bold">Sara V.</h4>
-                                <p class="text-sm text-gray-500">Data Analyst</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dna-card relative pt-12">
-                        <svg class="absolute top-6 left-6 w-10 h-10 text-orange-200" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                        <p class="text-gray-700 italic mb-6 relative z-10">"Il livello del report generato mi ha aperto gli occhi sulle enormi disuguaglianze presenti anche nel mio specifico settore tecnologico. Cambiare azienda collaudando il nuovo salario è stata la scelta corretta."</p>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-orange-100 rounded-full flex justify-center items-center text-orange-600 font-bold text-xl mr-4">L</div>
-                            <div>
-                                <h4 class="font-bold">Luca G.</h4>
-                                <p class="text-sm text-gray-500">Sviluppatore Senior</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <hr class="section-divider">
-
-        <!-- FAQ Area -->
-        <section id="faq" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti (FAQ)</h2>
-                    <p class="text-gray-600">Risolviamo i tuoi dubbi riguardo il nostro sistema di analisi retributiva.</p>
-                </div>
-                <div class="space-y-4">
-                    <!-- FAQ Item 1 -->
-                    <div class="dna-card p-6 mb-4 !mb-0 transition-all hover:border-orange-200 cursor-pointer">
-                        <details class="group">
-                            <summary class="flex justify-between items-center font-semibold text-lg list-none focus:outline-none">
-                                <span>In che modo questo servizio calcola la media dello stipendio?</span>
-                                <span class="transition group-open:rotate-180">
-                                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                                </span>
-                            </summary>
-                            <p class="text-gray-600 mt-4 leading-relaxed group-open:animate-fadeIn">I dati utilizzati si basano su ampi aggregati provenienti dall'analisi attenta del mercato del lavoro, arricchiti con indagini incrociate. Prendiamo in esame sia lo stipendio base sia la quota bonus e welfare, ponderando l'impatto geografico, gli anni di esperienza maturati, il grado aziendale raggiunto e le complessità legate alla singola regione o industria.</p>
-                        </details>
-                    </div>
-
-                    <!-- FAQ Item 2 -->
-                    <div class="dna-card p-6 mb-4 !mb-0 transition-all hover:border-orange-200 cursor-pointer">
-                        <details class="group">
-                            <summary class="flex justify-between items-center font-semibold text-lg list-none focus:outline-none">
-                                <span>Ogni quanto tempo avviene l'aggiornamento dei database sul mercato?</span>
-                                <span class="transition group-open:rotate-180">
-                                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                                </span>
-                            </summary>
-                            <p class="text-gray-600 mt-4 leading-relaxed group-open:animate-fadeIn">Per assicurare valutazioni pertinenti alla mutevole situazione economica globale e all'alta inflazione che a volte devasta i vecchi contratti, applichiamo un modello a rotazione trimestrale continua. L'obiettivo primario è che tu debba solo fornire le specifiche lavorative per interfacciarti con indici sempre attuali.</p>
-                        </details>
-                    </div>
-
-                    <!-- FAQ Item 3 -->
-                    <div class="dna-card p-6 mb-4 !mb-0 transition-all hover:border-orange-200 cursor-pointer">
-                        <details class="group">
-                            <summary class="flex justify-between items-center font-semibold text-lg list-none focus:outline-none">
-                                <span>L'esame valuta esclusivamente un panorama o la singola posizione ricoperta?</span>
-                                <span class="transition group-open:rotate-180">
-                                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                                </span>
-                            </summary>
-                            <p class="text-gray-600 mt-4 leading-relaxed group-open:animate-fadeIn">L'intelligenza del modulo richiede dati specifici all'utente e filtra così una posizione granulare e personalizzata in modo da tracciare i diretti paritetici (qualsiasi tuo potenziale collega operativo sulla tua area geografica e su stesso dominio produttivo e contrattuale). Dimentica quindi tabelle approssimate.</p>
-                        </details>
-                    </div>
-
-                    <!-- FAQ Item 4 -->
-                    <div class="dna-card p-6 mb-4 !mb-0 transition-all hover:border-orange-200 cursor-pointer">
-                        <details class="group">
-                            <summary class="flex justify-between items-center font-semibold text-lg list-none focus:outline-none">
-                                <span>Posso sfruttare apertamente tali ricerche per proporre formalmente un aumento?</span>
-                                <span class="transition group-open:rotate-180">
-                                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                                </span>
-                            </summary>
-                            <p class="text-gray-600 mt-4 leading-relaxed group-open:animate-fadeIn">Assolutamente sì, presentare stime analitiche oggettive denota forte senso civico, acuta professionalità nonché un'impostazione logica di pregio di cui beneficeranno anche i manager di turno. Spiegando oggettivamente lo stallo salariale al comparo della concorrenza otterrai notevole leva comunicativa nella fase preposta ad accordi economici.</p>
-                        </details>
-                    </div>
-
-                    <!-- FAQ Item 5 -->
-                    <div class="dna-card p-6 mb-4 !mb-0 transition-all hover:border-orange-200 cursor-pointer">
-                        <details class="group">
-                            <summary class="flex justify-between items-center font-semibold text-lg list-none focus:outline-none">
-                                <span>Quali sono le industrie, aree commerciali e settore principalmente processate?</span>
-                                <span class="transition group-open:rotate-180">
-                                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                                </span>
-                            </summary>
-                            <p class="text-gray-600 mt-4 leading-relaxed group-open:animate-fadeIn">La piattaforma copre originariamente tutte le frange attinenti all'ecosistema di software dev, dell'informatica avanzata, architetture sistemiche o infrastrutture dati di spessore in generale per amplificarsi poi fino al marketing logico, dirigenza bancaria o servizi in via di forte automazione.</p>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Form/Contact Area -->
-        <section id="contact" class="py-20 md:py-28 bg-orange-50 px-4 sm:px-6 lg:px-8 border-y border-orange-100">
-            <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Pronto ad un Controllo Diretto?</h2>
-                    <p class="text-lg text-gray-700 mb-6">Investire sul lavoro quotidiano risulta vano laddove a cascata gli stipendi versati rasentino la disinformazione per calcoli errati o ignoranza volontaria delle corporation. Scopri tu stesso.</p>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-3 text-gray-700">
-                            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Servizio Totalmente Confidenziale
-                        </li>
-                        <li class="flex items-center gap-3 text-gray-700">
-                            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Metodo ed Approccio Scientifico
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="md:w-1/2 w-full">
-                    <div class="dna-card m-0 !border-orange-100 shadow-xl shadow-orange-900/5">
-                        <h3 class="text-2xl font-bold mb-6 text-center text-gray-900">Configura Parametri Iniziali</h3>
-                        
-                        <!-- Form Lead Generation -->
-                        <form id="lead-form" class="space-y-5" onsubmit="event.preventDefault(); this.querySelector('button').innerText='In elaborazione...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                            <div>
-                                <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Ruolo o Posizione Attuale</label>
-                                <input type="text" id="role" name="role" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-colors" placeholder="es. Marketing Specialist">
-                            </div>
-                            <div>
-                                <label for="industry" class="block text-sm font-medium text-gray-700 mb-1">Settore Operativo (Industry)</label>
-                                <select id="industry" name="industry" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-colors bg-white">
-                                    <option>Tecnologia & Software</option>
-                                    <option>Finanza e Investimenti</option>
-                                    <option>Marketing e Comunicazione</option>
-                                    <option>Sanità Privata / Ingegneria</option>
-                                    <option>Vendite o Commercio (Retail)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="salary" class="block text-sm font-medium text-gray-700 mb-1">Inquadramento o Salario Attuale LORDO</label>
-                                <input type="number" id="salary" name="salary" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-colors" placeholder="RAL annuale (es. 32000)">
-                            </div>
-                            <button type="submit" class="btn-primary w-full text-center mt-2 shadow-md hover:shadow-lg">Avvia Confronto Analitico</button>
-                            <p class="text-xs text-center text-gray-400 mt-4">Inviando la richiesta si accettano Privacy ed eventuali policy correlate presenti a fine pagina.</p>
-                        </form>
-
-                        <!-- Form Success Hidden Element -->
-                        <div id="success-msg" style="display:none" class="py-8 text-center animate-pulse">
-                            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-900 mb-2">Acquisizione Valida Completa!</h4>
-                            <p class="text-gray-600">L'accesso algoritmico ed applicativo inerente al calcolo ed interpretazione delle tue istruzioni e variabili inserite è concluso. Presto riceverai un consulto specializzato, le indagini di retribuzione previste ti assicureranno eccellenze competitive, restando totalmente segretato ogni riferimento personale.</p>
-                            <button onclick="document.getElementById('success-msg').style.display='none'; document.getElementById('lead-form').reset(); document.getElementById('lead-form').querySelector('button').innerText='Avvia Confronto Analitico'; document.getElementById('lead-form').style.display='block';" class="mt-6 text-sm text-indigo-600 font-semibold underline decoration-2 underline-offset-4">Configura un differente indicatore societario</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer Area -->
-    <footer class="bg-gray-900 pt-20 pb-10 text-white border-t-4 border-orange-600">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
-                <div>
-                    <span class="text-2xl font-bold font-serif flex items-center gap-2 mb-4">
-                        <svg class="w-6 h-6 text-indigo-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-                        Tafuwugakaa Investments
-                    </span>
-                    <p class="text-gray-400 text-sm leading-relaxed pr-8">Il ponte matematico tra la tua inesauribile ed unica conoscenza tecnico professionale acquisita in lungo studio praticato durante intere carriere pregresse e le concrete promesse retributive disattese costantemente dal panorama multinazionale odierno locale.</p>
-                </div>
-                <div class="text-right flex flex-col items-start md:items-end">
-                     <p class="text-sm text-gray-500 font-semibold mb-2 uppercase tracking-wide">Informativa Indipendente</p>
-                     <!-- MANDATORY DISCLAIMER -->
-                     <p class="text-gray-400 text-sm italic max-w-sm text-left md:text-right border-l-2 md:border-l-0 md:border-r-2 border-orange-600 pl-3 md:pl-0 md:pr-3 py-1">Questo è un sito promozionale indipendente gestito da Tafuwugakaa Investments, che agisce come affiliato per Tech Compenso.</p>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-800 pt-8 pb-4">
-                <p class="text-sm text-gray-500 text-center mb-6">&copy; 2026 Tafuwugakaa Investments. Tutti i diritti esplicitamente registrati a livello continentale da entità operanti secondo stringente supervisione per gli utenti privati e pubbliche.</p>
-
-                <!-- Legal Texts in full detailed sentences avoiding ANY external mailing system constraints, guaranteeing proper size structure. -->
-                <div class="space-y-3 mt-8 max-w-4xl mx-auto">
-                    <!-- PRIVACY -->
-                    <details class="group bg-gray-800 rounded-md text-sm text-gray-300">
-                        <summary class="cursor-pointer font-semibold p-4 focus:outline-none focus:bg-gray-700 hover:bg-gray-700 rounded-md transition-colors">Politiche relative alla Privacy e Tutela dei Tuoi Accessi Rete</summary>
-                        <div class="p-4 border-t border-gray-700 leading-relaxed text-gray-400 text-xs">
-                            Questa specifica indicazione ed attuazione documentale concerne metodologie ampie e vincolate su come avviene minuziosa classificazione crittografica in seno agli imponenti blocchi dati affidati dalla parte umana ospitata verso codesti archivi per indagini retributive esposte dal portale stesso e affiliati interconnessi regolarmente mediante server multiplo posizionato sotto regolamento GDPR severissimo imposto dal territorio legislativo di garanzia europea comunitaria originaria e controllata continuamente mese post mese lavorativo civile da un referente primario esperto forense in cybersecurity generale web system analysis che validerà periodicamente blocchi memoria non stabili, svuotando code di processi temporanei log per assicurare la caducità veloce della memoria attiva ed allocata a garanzia di segreto identitario del prestatore d'opera. È fondamentale evidenziare esplicitamente in modo incontestabile davanti ad enti che giammai verremo interpellati verso logica occulta dove il trasferimento illecito del proprio materiale personale verterà nei recinti d'uso di multinazionali, venditori generici per propaganda speculativa telefonica invadente di massa ed attività scorrette collaterali limitanti del tutto estranee all'argomentazione originale inerente all'istruttoria su contratti aziendali del mondo delle buste paga, calcolo di compenso meritocratico aziendale o bonus legati strettamente al mondo sindacale produttivo settoriale come convenuto alla fase pre contrattuale palese. L'utilizzatore visitando consapevolmente i flussi navigativi accetta a tutto campo i parametri imposti sui sistemi analitici pre-calcolati volti esclusivamente all'elaborazione d'una reportistica funzionale numerica comparabile dove egli deterrà pieno esercizio per domandare in totale liberà autonoma eliminazioni permanenti massive sfruttando uniche vie del modulo predisposto accessibile a livello pubblico navigativo standard (i form frontali dell'homepage stessa usufruibili dal portale primario stesso interattivo visuale) cancellando orme digitali rimaste all'interno di archivi informatici e cestinando backup passati storici con tempi massimali normativi imposti di chiara risoluzione senza riserve temporali oltre un numero definito strettamente quantificato ad indagini fiscalmente corrette interne di sicurezza anti malversazione di codice software programmato male o attacchi digitali fraudolenti generati da macchine o competitor esterni diabolici tesi allo scredito ed oscuramento dell'intero dominio aziendale erogatore medesimo portante i preziosi algoritmi per il tuo mercato retributivo unico. Nessuna e ripetiamo categoricamente, reiterando ancora, per nulla tollerata sarà mai eccezione alcuna, forma intrinseca od occulta sfuggita e tralasciata passivamente senza monitoraggi automatici di violazione confidenziale riguardo questionari e richieste comparative esigibili ed affrontabili apertamente ed alacremente su nostro perimetro virtuale digitale offerto oggi apertamente alla popolazione stanca e sotto inquadramento sistemico globale senza rispetto. Qualunque dubbio potenziale e necessità immediata può risolversi immettendo richiesta precisa nel grande database generatore principale preposto sulla medesima radice sito attuale o tramite modulo unicamente a interfaccia web design che protegge intrinsecamente ambo i lati.
-                        </div>
-                    </details>
-                    
-                    <!-- TERMS -->
-                    <details class="group bg-gray-800 rounded-md text-sm text-gray-300">
-                        <summary class="cursor-pointer font-semibold p-4 focus:outline-none focus:bg-gray-700 hover:bg-gray-700 rounded-md transition-colors">Norme Rigorose Utilizzo Erogatore e Servizio Pubblico Privato Offerto </summary>
-                        <div class="p-4 border-t border-gray-700 leading-relaxed text-gray-400 text-xs">
-                            Questi sono assolutamente fondamenti imperituri vincolanti redatti come linea insuperabile dotata valenza cogente al momento esatto stesso cui qualunque macchinario informatico privato cellulare domestico o portatile si innesti al canale rete verso architettura presente nel contenitore internet odierno visualizzato attualmente dalla vostra attenzione. Utilizzando ogni minima porzione attiva software, testuale ed i grafici visivi su codesto schermo presterai giurata concordia unanime alla validazione del termine comportamentale che ordina senza remissione preconcetta alcuna totale adesione, conformandosi pacificamente ma con massima fermezza, alla prassi giurisprudenziale d'ambito contratti telematici ed impieghi operativi immateriali virtualizzati a livello internazionale protetti. Chi intenda approcciare con metodo di hacking forzato, o generi manomissioni strumentali per furto dati sensibili retribuzione media mercato o voglia esaminare le statistiche in background al fine speculativo di plagiarne l'essenza per copie fraudolente pirata esterne prive originalità intrinseca concettuale d'ideazione intellettuale si assoggetta fin d'ora cosciente al procedimento ed espedienti coercitivi pecuniari altissimi previsti dal patto stipulato d'onestà formale iniziale tacitamente intercorso mediante connessione tcp/ip al server host gestore che dirama file su citati e prescritti. Riconoscete fermamente a vostro indubbio e sacrosanto arbitrio, sollevando conseguentemente e pienamente Tafuwugakaa Investments come responsabile oggettivo in concorso estraneo colpevole rispetto al solo risultato calcolatore fornito, che l'informazione statistica inerente il paragone economico erogata dall'attività presente al netto dell'alta affidabilità dimostrata è in realtà puro ed onesto supporto teorico e consulenziale matematico e null'altro esprime obbligazione garantista esplicitamente verso vostri veri diretti ed imperituri direttori risorse umane e capoturno. Ottenere reportage salariali molto forti e dati per negoziazioni o indagine settoriale positiva pur rincuorante spinge voi soliti attori e detentori al destino carrieristico esclusivo che deciderete come governare sfruttando liberi pareri derivanti puramente ed essenzialmente dal discernimento profuso. Nulla assicurerà aumento reale ove manca carisma formale sul posto e capacità dialogativa reale oltre schemi appresi ed in ogni interazione di vertenza o scontro datoriale per posizioni, noi saremo estranei garanti limitando obbligo al solo comparto trasmissione elaborato formale telematico generato in background algoritmico remoto. Assumersi le proprie ineludibili colpe personali in caso si ottengano licenziamenti anziché gratifiche sperate o contratti onerosi fallimentari sarà solamente materia limitata del contraente e mai per ragioni legali noi fungeremo ruolo di avvocatura in tribunali civili dove non abbiamo mandato d'arte riconosciuto a tutelar cause dei lavoratori, delegando mansione giustamente al solo foro designato da voi liberamente scelto con la vostra busta paga accresciuta. Tutte le modificazioni clausole descritte possono unilateralmente e per sopravvenute necessità fiscali essenziali e strutturali stravolte con poco o impercettibile o rapido tempo utile o zero preavvisi ufficiali per evitare disservizi colossali e riallineamento norme e pertanto esigiamo rileggiate con frequenza ed altissima intensità vigile i paragrafi seguenti ed attuali per totale padronanza operativa aggiornata all'istante sempre corrente, attingendo consapevolezza e certezza dall'universo descritto nei form in prima facciata e nei testi successivi. 
-                        </div>
-                    </details>
-                    
-                    <!-- REFUNDS -->
-                    <details class="group bg-gray-800 rounded-md text-sm text-gray-300">
-                        <summary class="cursor-pointer font-semibold p-4 focus:outline-none focus:bg-gray-700 hover:bg-gray-700 rounded-md transition-colors">Gestione Assicurazioni d'Esito o Eventuale Transazione per Annullamento Economico Monetario</summary>
-                        <div class="p-4 border-t border-gray-700 leading-relaxed text-gray-400 text-xs">
-                            Questa specifica area descrittiva testuale enuclea tutti quegli insostituibili ed improrogabili diritti esigibili previsti ai fini economici inerenti una gestione d'annullamento della somma prestabilita per eventuali pratiche extra tariffate se esse si concretizzano al termine di erogazione e somministrazione finale documentale premium non prevista sui test attigui che offriamo ma in elaborati esclusivi approfonditi opzionali aggiuntivi futuri che voi vorreste con fermezza reclamare come errati, fallaci o vuoti non per vostra immissione ma problema strutturale evidente e palese. Bisogna attestare limpidamente per dovere d'impresa tracciabile corretta e lineare la modalità di recessione a nostro sistema monetario dove voi presentate domanda per interruzione iter valutativo stipendio in base predefinita formale prima dell'attivazione terminale dell'incaricato informatico computativo e non un minuto a posteriori la lettura su schermo o ricevuta del diagramma completo delle comparazioni retribuzioni su intere aree italiane poiché l'ingegno prestato ha dispendiato calcolo in virtù dell'impiego stesso ormai evaso nel web telematicamente senza reso materiale possibile dei bit creati o rimozione dal cranio di conoscenza donata irripetibilmente dall'esperienza nostra formativa. Avrai per certo tempo finestra un predeterminato giorno specifico solare a far la notifica e formalizzare una opposizione basata su form integrativo in dashboard cliente o home page che ci vincoli categoricamente all'ispezione della transazione medesima che fu originata bloccando gli esiti. A garanzia dello sforzo ambo i fronti, i rimborsi accettabili passeranno in esclusivo iter transnazionale sfruttando istituti pagamento scelti su radice bancaria ed istituti emittenti identitari originari del conto o carta che inviò pagamento, intercludendo e vietando scappatoie fantasiose truffaldine usando nuovi circuiti ricaricabili per riciclo evasione contante mai immesso a credito sul registro contabilità contabile nazionale o societaria per le regole pattuite del sistema bancario antifrode perimetrale blindato continentale a massima e scrupolosa precisione ed allineato pedissequamente. Se le attese del nostro preziosissimo software o database comparativo falliscano ad onore il livello atteso e non trovino ruolo per estrema e singolare rarefazione professione domandata e non risultasse paragone veritiero alcuno calcolabile con tolleranza etica e decorosa noi annulleremo di certo il pagamento di tali somme extra laddove versate liberandovi completamente dal subire furti di costo vani privi di referenze verbali logiche a bilanciare la vostra interrogazione in tema di avanzamenti contrattuali od accordo per premi legati ad inflazione macroeconomica locale aziendale inglobata come accordo o di patto specifico integrato da CCNL. Ricorreremo senza pietà invece e difendendoci caparbiamente ai mezzi legali formali consentitici ed ingiunzioni tribunali verso profili o utenti fake perenni fittizi creati sistematicamente ed algoritmicamente tramite spawner script per abusare, logorare le difese aziendali con tattica spam ed effettuare refund illimitati falsi mirati allo stremo economico delle casse per danneggiarci attivamente tramite boicottaggio concorrenziale malcelato e che meriterà denuncia perentoria al garante e polizia locale con multe pecuniarie esorbitanti senza compromessi accordati. La trasparenza assoluta nel nostro caso funge come perenne motore e forza propulsiva unica fiera, la fiducia donataci viene tutelata così.
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Script Routing, Interactivity & Cookies Banner (Without Heavy Plugins) -->
-    <script>
-        // Smooth Anchor Smart Routing (Gravity Well Protocol)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Check if target starts with hash
-                const hash = this.getAttribute('href');
-                if(hash && hash.length > 1) {
-                    const targetEl = document.querySelector(hash);
+        /* App Store Badge Styles */
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #000;
+            color: #fff !important;
+            border-radius: 8px;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            height: 48px;
+        }
+        .store-badge:hover {
+            transform: scale(1.05);
+        }
+        .store-badge svg {
+            height: 24px;
+            width: auto;
+            margin-right: 10px;
+            fill: currentColor;
+        }
+        .store-badge-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.1;
+        }
+        .store-badge-small {
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        .store-badge-large {
+            font-size: 16px;
+            font-weight: 600;
+            font-family: sans-serif;
+        }
+        
+        /* Details/Summary styles for FAQ */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style> </head><body><nav class="fixed top-0 left-0 w-full z-50 border-b border-gray-100 shadow-sm" style="background-color: var(--body-bg);"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16"><div class="flex items-center"><a href="#" class="flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg><span class="font-bold text-xl tracking-tight" style="font-family: 'Fraunces', serif;">Tafuwugakaa</span></a></div><div class="hidden md:flex items-center space-x-8"><a href="#features" class="font-medium hover:text-primary transition-colors">Funzionalità</a><a href="#how-it-works" class="font-medium hover:text-primary transition-colors">Come Funziona</a><a href="#reviews" class="font-medium hover:text-primary transition-colors">Recensioni</a><a href="#download" class="btn-primary text-sm px-4 py-2">Scarica l'App</a></div><div class="flex items-center md:hidden"><button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 p-4"><div class="flex flex-col space-y-4"><a href="#features" class="block font-medium text-lg">Funzionalità</a><a href="#how-it-works" class="block font-medium text-lg">Come Funziona</a><a href="#reviews" class="block font-medium text-lg">Recensioni</a><a href="#download" class="btn-primary justify-center mt-4">Scarica l'App</a></div></div></nav><main><section class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid md:grid-cols-2 gap-12 items-center"><div class="flex flex-col justify-center"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-primary text-sm font-semibold mb-6 w-max border border-orange-200"><span class="w-2 h-2 rounded-full bg-secondary"></span> La nuova era dell'informazione </div><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6"> Investi nel tuo sapere. Ascolta e leggi. </h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> Tafuwugakaa Investments presenta l'app definitiva per la tua crescita personale. Accedi ai migliori <strong class="text-text">podcast italiani</strong>, <strong class="text-text">audio news</strong> quotidiane e <strong class="text-text">articoli lunghi</strong> di approfondimento, tutto in un'unica piattaforma premium. </p><div class="flex flex-wrap gap-4"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span class="store-badge-small">Scarica su</span><span class="store-badge-large">App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span class="store-badge-small">DISPONIBILE SU</span><span class="store-badge-large">Google Play</span></div></a></div><div class="mt-8 flex items-center gap-4 text-sm font-medium text-muted"><div class="flex text-secondary"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><span>Apprezzata da migliaia di utenti in Italia</span></div></div><div class="relative hidden md:block"><div class="absolute inset-0 bg-secondary opacity-10 rounded-full blur-3xl transform scale-110"></div><img src="https://placehold.co/600x800/ea580c/ffffff?text=App+Podcast+Interfaccia" alt="Interfaccia App Tafuwugakaa" class="relative z-10 rounded-3xl shadow-2xl border-4 border-white mx-auto transform rotate-2 hover:rotate-0 transition duration-500" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/600x800/ea580c/ffffff?text=App+Podcast'"></div></div></section><hr class="section-divider"><section id="features" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Progettata per menti curiose</h2><p class="text-lg text-muted max-w-2xl mx-auto">Tafuwugakaa unisce la comodità dell'audio alla profondità della lettura. Scopri le funzionalità che trasformeranno il tuo tempo libero in valore.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"><div class="flex flex-col items-start"><div class="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center mb-6 text-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Podcast Italiani Esclusivi</h3><p class="text-muted leading-relaxed"> Una selezione curata dei migliori <strong>podcast italiani</strong>. Dalle inchieste giornalistiche alla divulgazione scientifica, ascolta le voci più autorevoli direttamente sul tuo smartphone, senza distrazioni. </p></div><div class="flex flex-col items-start"><div class="w-14 h-14 rounded-2xl bg-indigo-100 flex items-center justify-center mb-6 text-secondary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Articoli Lunghi e Long-form</h3><p class="text-muted leading-relaxed"> Non fermarti ai titoli. La nostra app ti offre <strong>articoli lunghi</strong> e <strong>approfondimenti</strong> scritti dai migliori esperti. Un'esperienza di lettura pulita, ottimizzata per schermi mobili, ideale per comprendere i temi complessi. </p></div><div class="flex flex-col items-start"><div class="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center mb-6 text-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg></div><h3 class="text-xl font-semibold mb-3">Audio News & Modalità Offline</h3><p class="text-muted leading-relaxed"> Resta aggiornato con le nostre <strong>audio news</strong> quotidiane. Scarica episodi e articoli per accedervi anche senza connessione internet. Il tuo archivio di conoscenza personale, sempre in tasca. </p></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Inizia in 3 semplici passi</h2><p class="text-lg text-muted">Meno di due minuti per rivoluzionare la tua dieta mediatica.</p></div><div class="dna-card border-t-4 border-t-secondary"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative"><div class="hidden md:block absolute top-8 left-1/6 right-1/6 h-0.5 bg-gray-100 z-0"></div><div class="relative z-10 flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-6 shadow-lg border-4 border-white">1</div><h4 class="text-xl font-semibold mb-2">Scarica l'App</h4><p class="text-muted">Disponibile gratuitamente su iOS e Android. L'installazione è immediata e sicura.</p></div><div class="relative z-10 flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-6 shadow-lg border-4 border-white">2</div><h4 class="text-xl font-semibold mb-2">Scegli i tuoi Temi</h4><p class="text-muted">Seleziona i tuoi interessi. L'algoritmo ti proporrà i migliori <strong>approfondimenti</strong> su misura per te.</p></div><div class="relative z-10 flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-6 shadow-lg border-4 border-white">3</div><h4 class="text-xl font-semibold mb-2">Ascolta e Leggi</h4><p class="text-muted">Goditi i tuoi <strong>podcast</strong> o immergiti in <strong>articoli lunghi</strong> durante i tuoi spostamenti o momenti di relax.</p></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa dice chi ci ascolta</h2><p class="text-lg text-muted">Migliaia di utenti hanno già trasformato il loro modo di informarsi.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card !mb-0 flex flex-col h-full"><div class="flex text-secondary mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-text italic flex-grow mb-6">"Cercavo un'app che non mi proponesse solo notizie flash, ma veri <strong>approfondimenti</strong>. La sezione dei <strong>podcast italiani</strong> è fantastica, ascolto almeno un episodio al giorno andando a lavoro."</p><div class="flex items-center justify-between border-t border-gray-100 pt-4"><span class="font-semibold">Marco V.</span><span class="text-sm text-muted">Febbraio 2025</span></div></div><div class="dna-card !mb-0 flex flex-col h-full"><div class="flex text-secondary mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-text italic flex-grow mb-6">"L'interfaccia di lettura per gli <strong>articoli lunghi</strong> è la migliore che abbia mai provato. Zero distrazioni, font perfetto. E le <strong>audio news</strong> mi tengono aggiornata in pochi minuti."</p><div class="flex items-center justify-between border-t border-gray-100 pt-4"><span class="font-semibold">Elena R.</span><span class="text-sm text-muted">Gennaio 2025</span></div></div><div class="dna-card !mb-0 flex flex-col h-full"><div class="flex text-secondary mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-text italic flex-grow mb-6">"Uso l'app per scaricare i <strong>long-form</strong> e leggerli offline in aereo o sul treno. La qualità dei contenuti selezionati da Tafuwugakaa è imparagonabile rispetto ai soliti feed dei social."</p><div class="flex items-center justify-between border-t border-gray-100 pt-4"><span class="font-semibold">Luca M.</span><span class="text-sm text-muted">Dicembre 2024</span></div></div></div></section><hr class="section-divider"><section class="py-20 md:py-28 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl font-bold mb-4">Domande Frequenti</h2><p class="text-muted">Tutto quello che devi sapere sulla nostra app di approfondimento.</p></div><div class="dna-card"><div class="space-y-4"><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer text-lg"><span>L'app è gratuita da scaricare?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Sì, il download dell'app è completamente gratuito sia su iOS che su Android. Offriamo una vasta selezione di <strong>podcast italiani</strong> e articoli gratuiti. È disponibile anche un abbonamento premium per contenuti esclusivi e funzioni avanzate.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer text-lg"><span>Quali dispositivi sono supportati?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Tafuwugakaa è ottimizzata per tutti gli smartphone moderni. Supportiamo iPhone (iOS 13 e successivi) e tutti i principali dispositivi Android (Android 8.0 e successivi). È disponibile anche una versione ottimizzata per tablet.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer text-lg"><span>Posso usare l'app offline?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Assolutamente sì. La nostra modalità offline ti permette di scaricare le <strong>audio news</strong>, gli episodi dei podcast e gli <strong>articoli lunghi</strong> direttamente sul tuo dispositivo, per accedervi comodamente in aereo, in treno o in zone senza copertura di rete.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer text-lg"><span>I miei dati sono al sicuro?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">La privacy dei nostri utenti è la priorità assoluta di Tafuwugakaa Investments. Utilizziamo crittografia di livello bancario per proteggere i tuoi dati personali e le tue preferenze di lettura. Non vendiamo i tuoi dati a terze parti per scopi pubblicitari.</p></details><details class="group"><summary class="flex justify-between items-center font-medium cursor-pointer text-lg"><span>Come faccio a iniziare?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">È semplicissimo! Scorri in fondo a questa pagina o clicca sui pulsanti di download. Verrai reindirizzato all'App Store o a Google Play. Una volta scaricata l'app, crea un account gratuito in pochi secondi e inizia a esplorare i migliori <strong>approfondimenti</strong>.</p></details></div></div></section><hr class="section-divider"><section id="download" class="py-20 md:py-28 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card bg-primary text-white border-none text-center relative overflow-hidden"><div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div><div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div><div class="relative z-10 py-8"><h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Scarica l'App ImparaQui</h2><p class="text-xl opacity-90 mb-10 max-w-2xl mx-auto"> Porta sempre con te i migliori <strong>podcast italiani</strong> e <strong>articoli lunghi</strong>. Il sapere non è mai stato così accessibile. </p><div class="flex flex-col sm:flex-row justify-center items-center gap-6"><a href="#download" class="store-badge border border-gray-800 hover:border-white"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span class="store-badge-small">Scarica su</span><span class="store-badge-large">App Store</span></div></a><a href="#download" class="store-badge border border-gray-800 hover:border-white"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span class="store-badge-small">DISPONIBILE SU</span><span class="store-badge-large">Google Play</span></div></a></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="mb-12"><span class="font-bold text-2xl tracking-tight text-text mb-4 block" style="font-family: 'Fraunces', serif;">Tafuwugakaa</span><p class="text-sm text-muted max-w-2xl leading-relaxed"> Questa è una pagina promozionale indipendente gestita da Tafuwugakaa Investments, per l'app ImparaQui di ImparaQui. Il nostro obiettivo è promuovere la cultura dell'approfondimento attraverso i migliori strumenti digitali disponibili per l'ascolto e la lettura. </p></div><div class="space-y-4 mb-12 border-t border-b border-gray-100 py-6"><details class="group"><summary class="font-medium cursor-pointer text-sm text-text hover:text-primary transition-colors">Informativa sulla Privacy (Privacy Policy)</summary><div class="mt-4 text-xs text-muted leading-relaxed space-y-2 p-4 bg-gray-50 rounded-lg"><p>La presente Informativa sulla Privacy descrive in dettaglio come Tafuwugakaa Investments raccoglie, utilizza e protegge i dati personali degli utenti che visitano questa pagina promozionale e utilizzano l'applicazione collegata. Riteniamo che la privacy sia un diritto fondamentale e ci impegniamo a garantire la massima trasparenza in ogni nostra operazione. Quando scarichi o utilizzi la nostra app per ascoltare podcast italiani o leggere articoli di approfondimento, potremmo raccogliere informazioni tecniche sul tuo dispositivo per ottimizzare l'esperienza utente. Questi dati includono, a titolo esemplificativo, il modello del dispositivo, la versione del sistema operativo e le statistiche di utilizzo anonimizzate. Non raccogliamo dati sensibili senza il tuo esplicito consenso. I dati raccolti vengono utilizzati esclusivamente per migliorare le prestazioni dell'app, personalizzare i suggerimenti sui contenuti long-form e garantire la sicurezza della piattaforma. Implementiamo rigorose misure di sicurezza tecniche e organizzative per prevenire accessos non autorizzato, perdita o alterazione dei tuoi dati. Utilizziamo protocolli di crittografia standard del settore per tutte le trasmissioni di dati. Tafuwugakaa Investments non vende, affitta o commercializza i tuoi dati personali a terze parti per scopi pubblicitari. Potremmo condividere informazioni anonimizzate e aggregate con partner analitici esclusivamente per scopi statistici. L'utente ha il diritto in qualsiasi momento di richiedere l'accesso, la rettifica o la cancellazione dei propri dati personali memorizzati nei nostri sistemi. Puoi esercitare questi diritti utilizzando le impostazioni dedicate all'interno dell'applicazione mobile. Conserviamo i dati solo per il tempo strettamente necessario a fornire i servizi richiesti o come richiesto dalla normativa vigente. La presente policy può essere aggiornata periodicamente per riflettere modifiche normative o tecnologiche; ti invitiamo a consultarla regolarmente. L'uso continuato dell'app costituisce accettazione di tali modifiche. Per qualsiasi dubbio relativo alla gestione della privacy, il nostro team dedicato alla conformità esamina costantemente i nostri processi interni. Ci assicuriamo che ogni funzionalità, dalle audio news alla modalità offline, sia progettata seguendo i principi di "Privacy by Design". In conformità con il GDPR e le normative locali, garantiamo che i tuoi dati siano trattati in modo lecito, corretto e trasparente.</p></div></details><details class="group"><summary class="font-medium cursor-pointer text-sm text-text hover:text-primary transition-colors">Termini e Condizioni (Terms of Service)</summary><div class="mt-4 text-xs text-muted leading-relaxed space-y-2 p-4 bg-gray-50 rounded-lg"><p>I presenti Termini e Condizioni regolano l'utilizzo della pagina promozionale gestita da Tafuwugakaa Investments e l'accesso ai servizi descritti. Accedendo a questo sito o scaricando l'app promossa, l'utente accetta di essere vincolato dai presenti termini nella loro interezza. Se non si accettano questi termini, si prega di astenersi dall'utilizzare i nostri servizi. L'applicazione è concepita per fornire accesso a podcast italiani, audio news e articoli lunghi a scopo informativo e di intrattenimento. L'utente si impegna a utilizzare l'app esclusivamente per scopi personali e non commerciali. È severamente vietato copiare, distribuire, modificare o creare opere derivate dai contenuti premium protetti da copyright disponibili sull'app senza previa autorizzazione scritta. Tafuwugakaa Investments agisce come promotore indipendente e non è responsabile per eventuali interruzioni del servizio, bug o malfunzionamenti dell'applicazione stessa, che rimane sotto la responsabilità dei rispettivi sviluppatori (ImparaQui). Ci riserviamo il diritto di modificare, sospendere o interrompere qualsiasi aspetto della promozione in qualsiasi momento senza preavviso. L'utente accetta di non utilizzare software automatizzati, spider o bot per accedere ai nostri sistemi o per estrarre dati. La creazione di account multipli per aggirare limitazioni di sistema o per abusare di periodi di prova gratuiti costituisce una violazione grave di questi termini e comporterà la sospensione immediata dell'accesso. Sebbene ci sforziamo di garantire che le informazioni presentate su questa landing page siano accurate e aggiornate, non forniamo alcuna garanzia esplicita o implicita sulla completezza o affidabilità dei contenuti. I link a siti di terze parti o agli store di applicazioni sono forniti per comodità dell'utente; non abbiamo controllo su tali piattaforme esterne. Qualsiasi controversia derivante dall'uso di questa pagina promozionale sarà soggetta alla giurisdizione esclusiva dei tribunali competenti nel territorio in cui è registrata Tafuwugakaa Investments. Ci riserviamo il diritto di aggiornare questi Termini e Condizioni in qualsiasi momento. Gli aggiornamenti diventeranno effettivi al momento della pubblicazione su questa pagina. È responsabilità dell'utente rivedere periodicamente questa sezione per essere consapevole di eventuali modifiche. L'uso continuato dei nostri servizi implica l'accettazione dei termini rivisti. Ci impegniamo a mantenere un ambiente sicuro e rispettoso per tutti gli utenti che desiderano fruire di approfondimenti e contenuti culturali di qualità.</p></div></details><details class="group"><summary class="font-medium cursor-pointer text-sm text-text hover:text-primary transition-colors">Politica di Rimborso (Refund Policy)</summary><div class="mt-4 text-xs text-muted leading-relaxed space-y-2 p-4 bg-gray-50 rounded-lg"><p>La presente Politica di Rimborso stabilisce le linee guida relative agli acquisti in-app e agli abbonamenti premium effettuati attraverso l'applicazione promossa da Tafuwugakaa Investments. Poiché l'app viene scaricata e gestita tramite l'Apple App Store o il Google Play Store, la maggior parte delle transazioni finanziarie è soggetta alle politiche di rimborso dirette di queste piattaforme. Se hai acquistato un abbonamento per accedere a podcast italiani esclusivi o articoli lunghi premium su un dispositivo iOS, le richieste di rimborso devono essere inoltrate direttamente ad Apple tramite il tuo account Apple ID. Allo stesso modo, per gli utenti Android, le richieste devono essere gestite attraverso il portale del Google Play Store entro i limiti di tempo stabiliti da Google (solitamente 48 ore dall'acquisto). Tafuwugakaa Investments, in quanto entità promozionale, non elabora pagamenti diretti e pertanto non può emettere rimborsi in modo indipendente. Tuttavia, ci teniamo alla soddisfazione dei nostri utenti. Se riscontri problemi tecnici gravi che ti impediscono di accedere alle audio news o agli approfondimenti per i quali hai pagato, ti invitiamo a utilizzare la funzione di segnalazione bug all'interno dell'app. Qualora le piattaforme degli store (Apple o Google) rifiutino un rimborso per un servizio chiaramente difettoso o non fornito come descritto, lo sviluppatore dell'app (ImparaQui) valuterà richieste eccezionali caso per caso. Per richiedere una valutazione eccezionale, l'utente deve fornire la prova d'acquisto e una descrizione dettagliata del problema tecnico riscontrato. I rimborsi eccezionali, se approvati, verranno elaborati con lo stesso metodo di pagamento utilizzato per l'acquisto originale. Non si offrono rimborsi proporzionali per i periodi di abbonamento parzialmente utilizzati se l'utente decide di annullare il servizio a metà mese. L'annullamento dell'abbonamento eviterà addebiti futuri, ma manterrà attivo l'accesso ai contenuti premium fino alla fine del ciclo di fatturazione corrente. Consigliamo a tutti gli utenti di sfruttare eventuali periodi di prova gratuiti offerti per valutare appieno la qualità dei podcast e degli articoli prima di impegnarsi in un abbonamento a pagamento. Questa politica è progettata per essere equa e trasparente, garantendo al contempo che possiamo continuare a supportare la creazione di contenuti di alta qualità. Le condizioni qui descritte non pregiudicano i diritti statutari dei consumatori previsti dalle leggi locali applicabili nel paese di residenza dell'utente.</p></div></details></div><div class="flex flex-col md:flex-row justify-between items-center text-xs text-muted"><p>&copy; 2026 Tafuwugakaa Investments. Tutti i diritti riservati.</p><div class="mt-4 md:mt-0 space-x-4"><span>Progettato per l'eccellenza digitale.</span></div></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] p-4 z-50 transform translate-y-full transition-transform duration-300"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm text-text flex-1"> Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito e per analizzare il traffico legato alla promozione dei nostri <strong>podcast e articoli di approfondimento</strong>. Continuando a navigare, accetti il nostro utilizzo dei cookie. </p><div class="flex gap-2"><button onclick="acceptCookies()" class="btn-primary text-sm px-6 py-2 whitespace-nowrap">Accetta Tutto</button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
                     // Close mobile menu if open
-                    const mobMenu = document.getElementById('mobile-menu');
-                    if(!mobMenu.classList.contains('hidden')){
-                        mobMenu.classList.add('hidden');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
                     }
-
-                    if (targetEl) {
-                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Smooth scroll to target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
                     } else {
-                        // Fallback if section doesn't exist
-                        const fallbackEl = document.getElementById('contact');
-                        if (fallbackEl) fallbackEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Fallback: Force Smooth Scroll to #download
+                        console.warn(`Target section #${targetId} not found. Redirecting to #download.`);
+                        const fallbackElement = document.getElementById('download');
+                        if (fallbackElement) {
+                            fallbackElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
                     }
-                }
+                });
             });
-        });
 
-        // Simple Cookie Banner Interaction utilizing local storage for memory persistency avoiding backend reliance.
-        document.addEventListener("DOMContentLoaded", function() {
-            if(!localStorage.getItem('cookies-accepted-stipendi')) {
-                const banner = document.getElementById('cookie-banner');
-                setTimeout(() => banner.classList.add('show'), 1500);
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
             }
         });
-        
+
         function acceptCookies() {
-            localStorage.setItem('cookies-accepted-stipendi', 'true');
-            const banner = document.getElementById('cookie-banner');
-            banner.classList.remove('show');
-            setTimeout(() => banner.style.display = 'none', 500);
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
         }
-    </script>
-
-    <!-- Bottom Cookie Consent Container -->
-    <div id="cookie-banner">
-        <div class="text-sm mr-4 md:mr-10 text-gray-300">
-            Adoperiamo limitati meccanismi identificativi memorizzati sul terminale locale unicamente ai fini del controllo interazione corretta tecnica col presente simulatore stipendi senza scopi nocivi commerciali abusivi per rispetto ed aderenza regole web di trasparenza digitale formale vigente europea e dei diritti civili tutelati informatici online. <a href="#" class="text-orange-500 underline ml-2 hover:text-orange-400 focus:outline-none">Policy Info Estesa</a>.
-        </div>
-        <button onclick="acceptCookies()" class="bg-orange-600 hover:bg-orange-500 text-white font-bold py-2 px-6 rounded-md whitespace-nowrap text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-orange-500 transition-colors shadow">Concedo Atto</button>
-    </div>
-
-</body>
-</html>
+    </script> </body></html>
