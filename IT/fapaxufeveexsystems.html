@@ -1,542 +1,247 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veex Systems - Confronto Tariffe Luce e Gas</title>
-    <meta name="description" content="Sistemi intelligenti per l'analisi e il confronto delle tariffe luce e gas. Riduci le tue spese e massimizza il risparmio sulle bollette.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <style>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sistemi intelligenti per il tuo business | Fapaxufeveex Systems</title><meta name="description" content="Scopri l'app Userbot AI promossa da Fapaxufeveex Systems. L'app leader per strumenti AI, automazione e gestione clienti tramite chatbot e assistente virtuale."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet"> <style>
         :root {
-            --primary: #2563eb; /* Elettric Blue (Niche fitting) */
-            --surface: #fffdf5; /* Warm / Cream White (VAR C) */
-            --radius: 12px;     /* Soft (VAR A) */
-            --shadow: 0 0 0 1px #e5e7eb; /* Flat (VAR B) */
+            --primary: #dc2626;
+            --secondary: #b91c1c;
+            --radius: 8px;
+            --card-radius: 8px;
+            --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.05);
+            --body-bg: #f0fdf4;
+            --card-bg: #ffffff;
+            --text: #14532d;
+            --muted: #4b5563;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            scroll-behavior: smooth;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Nunito Sans', sans-serif;
+            padding-top: 4rem;
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        /* BRAND COMPONENT: Primary Button */
-        .btn-primary {
-             background-color: var(--primary);
-             color: #ffffff !important;
-             border-radius: var(--radius);
-             box-shadow: var(--shadow);
-             padding: 1rem 2rem;
-             transition: all 0.2s;
-             font-weight: bold;
-             text-align: center;
-             display: inline-block;
-             cursor: pointer;
-             border: none;
-        }
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translateY(-1px); 
-        }
-
-        /* UTILITY: Text Accent */
-        .text-primary { color: var(--primary); }
-
-        /* Specific Component Tweaks */
-        details > summary { cursor: pointer; }
-        details > summary::-webkit-details-marker { display: none; }
-        .hero-section {
             position: relative;
-            background-image: url('https://images.pexels.com/photos/4386404/pexels-photo-4386404.jpeg?auto=compress&cs=tinysrgb&w=1920');
-            background-size: cover;
-            background-position: center;
-            min-height: 80vh;
+            overflow: hidden;
         }
-        .hero-overlay {
+        
+        /* Decorative accent for cards */
+        .dna-card::before {
+            content: '';
             position: absolute;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.65); /* Ensures white text pops */
-        }
-
-        /* Cookie Banner */
-        #cookie-banner {
-            position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
-            right: 0;
-            background-color: #1f2937;
-            color: #fff;
-            padding: 1rem;
-            z-index: 50;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
+            width: 4px;
+            height: 100%;
+            background-color: var(--secondary);
+            opacity: 0.8;
         }
-    </style>
-</head>
-<body class="antialiased">
 
-    <!-- Header Navigation -->
-    <header class="bg-white shadow-sm sticky top-0 z-40 border-b" style="border-bottom: var(--shadow);">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-black tracking-tight text-gray-900">
-                        VEEX<span class="text-primary">SYSTEMS</span>
-                    </a>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Servizi</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Testimonianze</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">FAQ</a>
-                </nav>
+        nav {
+            background-color: var(--body-bg);
+        }
 
-                <div class="hidden md:flex">
-                    <a href="#contact" class="btn-primary" style="padding: 0.75rem 1.5rem;">Calcola Risparmio</a>
-                </div>
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Nunito Sans', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(220,38,38,0.05);
+        }
 
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Servizi</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Testimonianze</a>
-                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">FAQ</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold">Inizia Ora</a>
-            </div>
-        </div>
-    </header>
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
 
-    <!-- Full-width Hero Section -->
-    <main>
-        <div class="hero-section flex items-center mb-12 relative">
-            <div class="hero-overlay"></div>
-            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center lg:text-left text-white py-20">
-                <div class="lg:w-2/3">
-                    <span class="inline-block py-1 px-3 rounded-full bg-blue-600 text-xs font-bold uppercase tracking-wider mb-4">Servizio di Confronto Premium</span>
-                    <!-- H1 Logic Bridge -->
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-                        Veex Systems: I sistemi intelligenti per il tuo <span class="text-blue-300">risparmio</span> su luce e gas.
-                    </h1>
-                    <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl leading-relaxed">
-                        Non sprecare i tuoi soldi in tariffe obsolete. Sfrutta il nostro sistema di <strong>confronto</strong> per abbattere immediatamente le tue <strong>spese</strong> ed ottimizzare il costo delle <strong>bollette</strong>.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#contact" class="btn-primary text-lg px-8 py-4">Inizia l'Analisi Gratuita</a>
-                        <a href="#features" class="bg-white bg-opacity-10 hover:bg-opacity-20 text-white font-bold py-4 px-8 border border-gray-300 rounded transition-all" style="border-radius: var(--radius)">
-                            Scopri Come Funziona
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
 
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 pb-16">
+        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+        main, main + footer { scroll-margin-top: 5rem; }
+        
+        /* Smooth scrolling for anchor links */
+        html { scroll-behavior: smooth; }
 
-            <!-- Trust Bar / Placeholder Logos -->
-            <div class="py-6 border-b border-gray-300 mb-8 opacity-60">
-                <p class="text-center text-sm font-semibold text-gray-500 uppercase tracking-widest mb-4">Siamo in partnership per le migliori offerte del mercato libero</p>
-                <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center grayscale">
-                    <span class="text-xl font-bold text-gray-400">ReteNazionale</span>
-                    <span class="text-xl font-bold text-gray-400">EcoEnergia SPA</span>
-                    <span class="text-xl font-bold text-gray-400">PowerIt Italia</span>
-                    <span class="text-xl font-bold text-gray-400">SmartGas</span>
-                </div>
-            </div>
+        /* Form inputs — consistent styling */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220,38,38,0.15);
+        }
 
-            <!-- Features Section wrapped in DNA Card -->
-            <section id="features" class="dna-card">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Taglia i Costi. Scegli la Efficienza.</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Il nostro sistema proprietario elabora migliaia di combinazioni per individuare la <strong>tariffa</strong> più adatta ai tuoi reali consumi.
-                    </p>
-                </div>
+        /* Links — readable on any theme */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div class="p-6 bg-white rounded-lg border border-gray-100 transition-shadow hover:shadow-lg">
-                        <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-blue-100 text-primary mb-5">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-gray-900">Confronto Luce</h3>
-                        <p class="text-gray-600 leading-relaxed">Analizziamo la tua attuale spesa energetica per offrirti le condizioni di fornitura più economiche. Scopri come far scendere l'importo della tua bolletta elettrica.</p>
-                    </div>
+        /* Section divider — subtle visual rhythm */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(220,38,38,0.12), transparent);
+            margin: 0;
+        }
 
-                    <!-- Feature 2 -->
-                    <div class="p-6 bg-white rounded-lg border border-gray-100 transition-shadow hover:shadow-lg">
-                        <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-blue-100 text-primary mb-5">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-gray-900">Miglior Tariffa Gas</h3>
-                        <p class="text-gray-600 leading-relaxed">In un mercato instabile, ti aiutiamo a bloccare i costi del riscaldamento e cottura scegliendo una fornitura di <strong>gas</strong> trasparente e protetta.</p>
-                    </div>
+        /* App Store Badge Styling */
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #000;
+            color: #fff !important;
+            border-radius: 8px;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            border: 1px solid #333;
+            min-width: 160px;
+        }
+        .store-badge:hover {
+            transform: translateY(-2px);
+        }
+        .store-badge svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            fill: currentColor;
+        }
+        .store-badge-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .store-badge-small {
+            font-size: 0.65rem;
+            line-height: 1;
+            opacity: 0.8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .store-badge-large {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.2;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        /* Phone Mockup Wrapper */
+        .phone-mockup {
+            border: 8px solid #1f2937;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            background-color: #fff;
+            position: relative;
+        }
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 20px;
+            background-color: #1f2937;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 10;
+        }
+    </style> </head><body><nav class="fixed top-0 left-0 w-full z-50 border-b border-gray-100" style="background-color: var(--body-bg);"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16"><div class="flex items-center"><a href="#" class="flex items-center gap-2 text-xl font-bold" style="font-family: 'Lora', serif; color: var(--primary);"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg> Fapaxufeveex Systems </a></div><div class="hidden md:flex items-center space-x-8"><a href="#features" class="font-semibold text-sm transition-colors">Caratteristiche</a><a href="#how-it-works" class="font-semibold text-sm transition-colors">Come Funziona</a><a href="#reviews" class="font-semibold text-sm transition-colors">Recensioni</a><a href="#faq" class="font-semibold text-sm transition-colors">FAQ</a><a href="#download" class="btn-primary text-sm py-2 px-4"> Scarica l'App <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg></a></div><div class="flex items-center md:hidden"><button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 z-40 pb-4 px-4 pt-2"><div class="flex flex-col space-y-3"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50">Caratteristiche</a><a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50">Come Funziona</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50">Recensioni</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50">FAQ</a><a href="#download" class="btn-primary w-full justify-center mt-4">Scarica l'App</a></div></div></nav><main><section id="hero" class="py-16 md:py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-12"><div class="flex-1 text-center md:text-left"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-secondary text-sm font-bold mb-6 border border-red-200"><span class="flex h-2 w-2 rounded-full bg-primary"></span> Nuova Release App 2026 </div><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-gray-900"> Sistemi intelligenti per il tuo business. <span class="text-primary block mt-2">Automatizza le conversazioni con l'AI.</span></h1><p class="text-lg md:text-xl text-muted mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed"> Scopri l'app <strong>Userbot AI</strong>, promossa da Fapaxufeveex Systems. Trasforma il tuo smartphone nel centro di comando definitivo con potenti <span class="font-bold text-secondary">strumenti AI</span> per il lavoro. Gestisci clienti, crea flussi e delega al tuo assistente virtuale tascabile. </p><div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-8"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span class="store-badge-small">Scarica su</span><span class="store-badge-large">App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span class="store-badge-small">DISPONIBILE SU</span><span class="store-badge-large">Google Play</span></div></a></div><div class="flex items-center justify-center md:justify-start gap-2 text-sm text-gray-600 font-semibold"><div class="flex text-yellow-400"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><span>4.8/5 Valutazione Media App</span></div></div><div class="flex-1 w-full max-w-sm mx-auto md:max-w-none relative"><div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-red-100 rounded-full blur-3xl opacity-60"></div><div class="phone-mockup"><img src="https://placehold.co/600x1200/ffffff/dc2626?text=Userbot+AI%0AApp+Interface" alt="App strumenti AI interfaccia" class="w-full h-auto" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/600x1200/ffffff/dc2626?text=App+Interface'"></div></div></div></section><hr class="section-divider"><section id="features" class="py-16 md:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Il potere dell'AI, direttamente nel tuo palmo</h2><p class="text-lg text-muted max-w-2xl mx-auto">Scarica l'app per sbloccare i migliori <strong class="text-primary">strumenti AI</strong> progettati per scalare il tuo servizio clienti e ottimizzare le operazioni quotidiane.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="dna-card hover:border-red-200 transition-colors"><div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-6 border border-red-100"><svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg></div><h3 class="text-xl font-bold mb-3">Chatbot Intelligenti 24/7</h3><p class="text-muted leading-relaxed"> Configura un <strong>chatbot</strong> avanzato direttamente dal tuo telefono. Gestisci le richieste dei clienti a qualsiasi ora del giorno e della notte. L'app apprende dalle interazioni passate, offrendo risposte sempre più precise e umane. </p></div><div class="dna-card hover:border-red-200 transition-colors"><div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-6 border border-red-100"><svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg></div><h3 class="text-xl font-bold mb-3">Automazione dei Processi</h3><p class="text-muted leading-relaxed"> Sfrutta la vera <strong>automazione</strong>. Trasforma attività ripetitive in flussi di lavoro silenziosi che si eseguono in background. Dalla qualificazione dei lead alla gestione dei ticket, tutto è monitorabile tramite l'interfaccia mobile dell'app. </p></div><div class="dna-card hover:border-red-200 transition-colors"><div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-6 border border-red-100"><svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg></div><h3 class="text-xl font-bold mb-3">Assistente Virtuale Proattivo</h3><p class="text-muted leading-relaxed"> Più di un semplice strumento di risposta. Il tuo <strong>assistente virtuale</strong> analizza il sentiment del cliente in tempo reale e ti invia notifiche push personalizzate per intervenire esattamente quando la situazione lo richiede. </p></div><div class="dna-card hover:border-red-200 transition-colors"><div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-6 border border-red-100"><svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg></div><h3 class="text-xl font-bold mb-3">Passaggio Umano Immediato</h3><p class="text-muted leading-relaxed"> Usa l'<strong>AI per lavoro</strong> senza perdere il tocco umano. Quando il chatbot incontra una richiesta complessa, l'app trasferisce istantaneamente la chat al tuo team, completa di cronologia e contesto, per una risoluzione senza attriti. </p></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-16 md:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card bg-gray-50 border-none shadow-none"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Come iniziare in 3 passaggi</h2><p class="text-lg text-muted">La rivoluzione della tua assistenza clienti richiede solo pochi minuti dal tuo smartphone.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative"><div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-red-100 z-0"></div><div class="relative z-10 text-center"><div class="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center text-3xl font-bold text-primary shadow-sm border-4 border-red-50 mb-6">1</div><h3 class="text-xl font-bold mb-2">Scarica l'App</h3><p class="text-muted">Disponibile per iOS e Android. Installa l'app Userbot AI sul tuo dispositivo mobile in pochi secondi.</p></div><div class="relative z-10 text-center"><div class="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center text-3xl font-bold text-primary shadow-sm border-4 border-red-50 mb-6">2</div><h3 class="text-xl font-bold mb-2">Configura l'AI</h3><p class="text-muted">Usa l'interfaccia intuitiva per istruire il tuo assistente virtuale con le informazioni base della tua azienda.</p></div><div class="relative z-10 text-center"><div class="w-24 h-24 mx-auto bg-primary rounded-full flex items-center justify-center text-3xl font-bold text-white shadow-md border-4 border-red-200 mb-6">3</div><h3 class="text-xl font-bold mb-2">Automatizza e Rilassati</h3><p class="text-muted">Accendi l'interruttore. L'app inizia a gestire i tuoi clienti, inviandoti notifiche solo quando serve il tuo intervento.</p></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-16 md:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa dicono i nostri utenti</h2><p class="text-lg text-muted">Recensioni verificate dagli App Store per l'app Userbot AI.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card p-6"><div class="flex items-center justify-between mb-4"><div class="flex text-yellow-400"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><span class="text-xs text-gray-400">12 Gen 2026</span></div><h4 class="font-bold text-gray-900 mb-2">Automazione perfetta!</h4><p class="text-sm text-muted mb-4">"Da quando ho scaricato quest'app, il mio team risparmia ore ogni giorno. Il chatbot gestisce l'80% delle richieste base. Un'app strumenti AI indispensabile."</p><div class="text-xs font-semibold text-gray-500">Marco_Tech88</div></div><div class="dna-card p-6"><div class="flex items-center justify-between mb-4"><div class="flex text-yellow-400"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><span class="text-xs text-gray-400">04 Mar 2026</span></div><h4 class="font-bold text-gray-900 mb-2">Mai più senza</h4><p class="text-sm text-muted mb-4">"L'interfaccia mobile è pulitissima. Ricevo notifiche push quando l'assistente virtuale non sa rispondere e subentro io direttamente dall'app. Fantastico."</p><div class="text-xs font-semibold text-gray-500">Elena_Biz</div></div><div class="dna-card p-6"><div class="flex items-center justify-between mb-4"><div class="flex text-yellow-400"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><span class="text-xs text-gray-400">28 Apr 2026</span></div><h4 class="font-bold text-gray-900 mb-2">Setup velocissimo</h4><p class="text-sm text-muted mb-4">"Cercavo un'app per gestire i clienti fuori ufficio. L'AI per lavoro integrata qui è di un altro livello. Scaricata e configurata in 10 minuti."</p><div class="text-xs font-semibold text-gray-500">StartupFounder_ITA</div></div></div></section><hr class="section-divider"><section id="faq" class="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card"><h2 class="text-3xl font-bold mb-8 text-center">Domande Frequenti sull'App</h2><div class="space-y-4"><details class="group bg-gray-50 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-lg flex justify-between items-center outline-none"> L'app è gratuita da scaricare? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Sì, il download dell'app è completamente gratuito sia su App Store che su Google Play. Potrai esplorare le funzionalità di base, mentre l'accesso completo agli strumenti AI avanzati e all'automazione potrebbe richiedere un abbonamento in-app.</p></details><details class="group bg-gray-50 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-lg flex justify-between items-center outline-none"> Quali dispositivi sono supportati? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">L'app è ottimizzata per tutti i moderni smartphone e tablet. Supporta iOS 14.0 o versioni successive per dispositivi Apple, e Android 9.0 o versioni successive per tutti gli altri dispositivi mobili.</p></details><details class="group bg-gray-50 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-lg flex justify-between items-center outline-none"> I dati dei miei clienti sono al sicuro nell'app? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Assolutamente sì. La sicurezza è la nostra priorità. Tutte le conversazioni gestite dal chatbot e dall'assistente virtuale sono crittografate end-to-end. L'app rispetta rigorosamente le normative GDPR europee sulla privacy dei dati.</p></details><details class="group bg-gray-50 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-lg flex justify-between items-center outline-none"> Posso usare l'app offline? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">L'app richiede una connessione internet (Wi-Fi o dati mobili) per sincronizzare l'AI in tempo reale e gestire i messaggi dei clienti. Tuttavia, puoi consultare la cronologia delle chat e le metriche di automazione salvate in cache anche quando sei temporaneamente offline.</p></details><details class="group bg-gray-50 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-lg flex justify-between items-center outline-none"> Come configuro il mio primo chatbot? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">È semplicissimo. Dopo aver scaricato l'app, segui il tutorial di benvenuto. Ti guiderà passo dopo passo per inserire il nome della tua azienda, definire il tono di voce dell'AI per lavoro e attivare l'automazione in meno di 5 minuti.</p></details></div></div></section><section id="download" class="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card bg-red-50 border-red-100 text-center"><div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-sm border border-gray-100 mb-6"><svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><h2 class="text-3xl md:text-5xl font-extrabold mb-4">Scarica Userbot AI Oggi</h2><p class="text-xl text-muted mb-10 max-w-2xl mx-auto">Trasforma il tuo smartphone in un potente centro di automazione. Ottieni l'app ora e lascia che l'AI lavori per te.</p><div class="flex flex-col sm:flex-row items-center justify-center gap-4"><a href="#download" class="store-badge" style="transform: scale(1.1);"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span class="store-badge-small">Scarica su</span><span class="store-badge-large">App Store</span></div></a><a href="#download" class="store-badge" style="transform: scale(1.1);"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span class="store-badge-small">DISPONIBILE SU</span><span class="store-badge-large">Google Play</span></div></a></div></div></section></main><footer class="bg-white border-t border-gray-100 py-12 mt-12"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-8"><span class="text-xl font-bold" style="font-family: 'Lora', serif; color: var(--primary);">Fapaxufeveex Systems</span><p class="text-sm text-gray-500 mt-4 max-w-2xl mx-auto italic border-l-4 border-red-200 pl-4 bg-gray-50 py-2"> Questa è una pagina promozionale indipendente gestita da Fapaxufeveex Systems, per l'app Userbot AI sviluppata da Userbot. Tutte le funzionalità descritte si riferiscono all'applicazione mobile ufficiale. </p></div><div class="border-t border-gray-100 pt-8 mt-8"><div class="flex flex-col md:flex-row justify-center items-center gap-4 text-sm text-gray-500"><span>&copy; 2026 Fapaxufeveex Systems. Tutti i diritti riservati.</span></div><div class="mt-8 space-y-4 max-w-3xl mx-auto text-left text-xs text-gray-500"><details class="bg-gray-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer outline-none text-gray-700">Informativa sulla Privacy</summary><div class="mt-4 space-y-2 leading-relaxed"><p>La presente Informativa sulla Privacy descrive le modalità di raccolta, utilizzo e protezione dei dati personali da parte di Fapaxufeveex Systems in relazione alla promozione dell'app descritta in questa pagina. Quando l'utente visita il nostro sito web per scoprire le funzionalità dell'applicazione mobile, raccogliamo automaticamente alcune informazioni non identificative. Queste informazioni includono il tipo di browser utilizzato, il sistema operativo del dispositivo, l'indirizzo IP temporaneo e le pagine visitate all'interno del nostro dominio promozionale. Utilizziamo questi dati esclusivamente per analizzare il traffico del sito e migliorare l'esperienza utente. Nessun dato personale sensibile viene richiesto o memorizzato sui nostri server, poiché non gestiamo la creazione di account o l'elaborazione di pagamenti direttamente su questa pagina di atterraggio. Tutti i dati raccolti tramite i cookie analitici sono resi anonimi prima dell'elaborazione. Condividiamo informazioni aggregate con fornitori di servizi di analisi di terze parti esclusivamente per scopi statistici. Non vendiamo, affittiamo o cediamo le tue informazioni personali a terzi per scopi di marketing in nessuna circostanza. Qualora tu decida di cliccare sui pulsanti di download che rimandano all'App Store o a Google Play, verrai reindirizzato sulle rispettive piattaforme. Da quel momento in poi, si applicheranno le politiche sulla privacy di Apple o Google, nonché quelle dello sviluppatore effettivo dell'applicazione (Userbot). Ti invitiamo a leggere attentamente le loro informative prima di procedere al download o all'installazione dell'app sul tuo smartphone. Conserviamo i log del server per un periodo massimo di 30 giorni per motivi di sicurezza informatica e prevenzione delle frodi. Hai il diritto di richiedere informazioni sui dati raccolti dal nostro sito disabilitando i cookie tramite le impostazioni del tuo browser. Implementiamo misure di sicurezza tecniche e organizzative adeguate per proteggere la nostra infrastruttura da accessi non autorizzati. Questa informativa può essere aggiornata periodicamente per riflettere modifiche legali o tecniche; ti consigliamo di rivisitare questa sezione regolarmente. L'uso continuato di questa pagina promozionale implica l'accettazione della presente politica. Per qualsiasi questione relativa alla privacy dei dati gestiti dall'applicazione mobile stessa, dovrai rivolgerti direttamente allo sviluppatore dell'app tramite i canali forniti negli store ufficiali.</p></div></details><details class="bg-gray-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer outline-none text-gray-700">Termini e Condizioni</summary><div class="mt-4 space-y-2 leading-relaxed"><p>I presenti Termini e Condizioni regolano l'accesso e l'utilizzo di questa pagina web promozionale gestita da Fapaxufeveex Systems. Accedendo a questo sito, l'utente accetta di essere vincolato da questi termini nella loro interezza. Questa pagina funge esclusivamente da vetrina informativa e promozionale per un'applicazione mobile sviluppata da terze parti (Userbot). Non siamo i creatori, i proprietari o gli sviluppatori del software promosso. Le descrizioni delle funzionalità, tra cui l'automazione, il chatbot e l'assistente virtuale, sono fornite a scopo illustrativo e si basano sulle informazioni pubbliche rese disponibili dallo sviluppatore. Non garantiamo che l'applicazione funzioni in modo ininterrotto o privo di errori sui dispositivi degli utenti. L'utente accetta di utilizzare le informazioni qui fornite a proprio rischio e pericolo. Tutti i marchi, i loghi e i nomi commerciali menzionati in questa pagina appartengono ai rispettivi legittimi proprietari. Il marchio Fapaxufeveex Systems è utilizzato esclusivamente come identificatore dell'operatore di questa specifica campagna di marketing. È severamente vietato riprodurre, distribuire o modificare il codice sorgente, il design o i testi di questa pagina senza la nostra esplicita autorizzazione scritta. L'utente si impegna a non utilizzare questo sito per scopi illeciti o per trasmettere malware, virus o altri codici dannosi. Ci riserviamo il diritto di sospendere, modificare o interrompere l'accesso a questa pagina in qualsiasi momento e senza preavviso. Fapaxufeveex Systems non sarà in alcun modo responsabile per eventuali danni diretti, indiretti, accidentali o consequenziali derivanti dal download, dall'installazione o dall'utilizzo dell'applicazione promossa. Qualsiasi controversia tecnica o commerciale relativa all'app deve essere risolta direttamente con lo sviluppatore dell'app o tramite le piattaforme di distribuzione (App Store, Google Play). Ci riserviamo il diritto di aggiornare questi Termini e Condizioni in qualsiasi momento; le modifiche entreranno in vigore immediatamente dopo la pubblicazione. L'uso continuato del sito costituisce accettazione dei termini modificati. La nullità di una qualsiasi clausola di questi termini non inficerà la validità delle restanti disposizioni. I presenti termini sono regolati dalle leggi vigenti nel territorio in cui opera il fornitore dell'infrastruttura di hosting.</p></div></details><details class="bg-gray-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer outline-none text-gray-700">Politica sui Rimborsi</summary><div class="mt-4 space-y-2 leading-relaxed"><p>La presente Politica sui Rimborsi chiarisce la posizione di Fapaxufeveex Systems in merito a eventuali transazioni finanziarie. In qualità di pagina puramente promozionale e informativa, non elaboriamo alcun tipo di pagamento, non vendiamo abbonamenti e non raccogliamo dati di carte di credito. Di conseguenza, Fapaxufeveex Systems non può emettere, elaborare o autorizzare alcun rimborso. Tutte le transazioni finanziarie relative al download dell'applicazione, agli acquisti in-app, agli abbonamenti per gli strumenti AI o ai servizi premium avvengono esclusivamente attraverso gli ecosistemi chiusi di Apple (App Store) o Google (Google Play Store). Se hai effettuato un acquisto correlato all'app promossa in questa pagina e desideri richiedere un rimborso, devi seguire le procedure standard stabilite dalla piattaforma su cui hai effettuato l'acquisto. Per gli utenti iOS, è necessario visitare il portale di segnalazione dei problemi di Apple, accedere con il proprio ID Apple, selezionare l'acquisto pertinente e richiedere un rimborso specificando il motivo (ad esempio, l'app non funziona come descritto o acquisto involontario). Per gli utenti Android, la richiesta deve essere inoltrata tramite la pagina del proprio account su Google Play, nella sezione cronologia ordini. Le politiche di rimborso, le tempistiche di elaborazione e i criteri di eleggibilità sono decisi unilateralmente da Apple e Google. Generalmente, il diritto di recesso per i contenuti digitali scaricati decade nel momento in cui il download ha inizio, salvo diverse disposizioni delle piattaforme o leggi locali a tutela del consumatore. Fapaxufeveex Systems declina ogni responsabilità per transazioni rifiutate, rimborsi negati o dispute finanziarie tra l'utente e gli store di applicazioni. Ti invitiamo a valutare attentamente le recensioni dell'app e a testare eventuali versioni gratuite o periodi di prova offerti dallo sviluppatore prima di impegnarti in abbonamenti a lungo termine. Se l'applicazione presenta difetti tecnici gravi che impediscono l'uso dei moduli di automazione o del chatbot, ti consigliamo di contattare il supporto tecnico dello sviluppatore (Userbot) prima di richiedere un rimborso allo store. La presente politica è fornita unicamente a scopo di trasparenza per chiarire i ruoli delle parti coinvolte nel processo di distribuzione del software.</p></div></details></div></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 sm:p-6 z-50 transform translate-y-0 transition-transform duration-300 shadow-2xl"><div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-sm"><p class="font-bold mb-1">Informativa sui Cookie</p><p class="text-gray-300">Utilizziamo cookie tecnici essenziali per garantire il corretto funzionamento di questa pagina promozionale. Continuando la navigazione, accetti il nostro utilizzo dei cookie come descritto nella Privacy Policy.</p></div><div class="flex gap-4 whitespace-nowrap"><button onclick="acceptCookies()" class="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-md font-bold transition-colors"> Accetta Tutto </button></div></div></div> <script>
+        // Cookie Banner Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("cookiesAccepted")) {
+                document.getElementById("cookie-banner").style.transform = "translateY(0)";
+            } else {
+                document.getElementById("cookie-banner").style.display = "none";
+            }
+        });
 
-                    <!-- Feature 3 -->
-                    <div class="p-6 bg-white rounded-lg border border-gray-100 transition-shadow hover:shadow-lg">
-                        <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-blue-100 text-primary mb-5">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-gray-900">Verifica delle Spese</h3>
-                        <p class="text-gray-600 leading-relaxed">Non solo ti affianchiamo nel passaggio al nuovo fornitore, ma garantiamo un <strong>risparmio</strong> continuo analizzando minuziosamente tutte le tue <strong>bollette</strong>.</p>
-                    </div>
-                </div>
-            </section>
+        function acceptCookies() {
+            localStorage.setItem("cookiesAccepted", "true");
+            document.getElementById("cookie-banner").style.transform = "translateY(100%)";
+            setTimeout(() => {
+                document.getElementById("cookie-banner").style.display = "none";
+            }, 300);
+        }
 
-            <!-- Split Content Section -->
-            <section class="dna-card overflow-hidden p-0">
-                <div class="flex flex-col md:flex-row">
-                    <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                        <h2 class="text-3xl font-bold text-gray-900 mb-6">Come massimizziamo il tuo risparmio?</h2>
-                        <ul class="space-y-4 mb-8 text-gray-700">
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Rilevamento delle componenti nascoste nella tua vecchia fattura.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Algoritmo di corrispondenza per trovare la migliore promozione luce o gas del momento.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Assistenza completamente automatizzata nel passaggio e zero interruzioni di servizio.</span>
-                            </li>
-                        </ul>
-                        <div><a href="#contact" class="text-primary font-bold hover:underline flex items-center">Richiedi la verifica ora <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a></div>
-                    </div>
-                    <div class="w-full md:w-1/2">
-                        <img src="https://images.pexels.com/photos/5439366/pexels-photo-5439366.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Controllo bollette e documenti per il risparmio energetico" class="object-cover h-full w-full" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Documenti+Bollette'">
-                    </div>
-                </div>
-            </section>
+        // Smart Routing (Self-Healing Navigation) Protocol
+        document.addEventListener('click', function(e) {
+            // Find closest anchor tag
+            const target = e.target.closest('a[href^="#"]');
+            if (!target) return;
 
-            <!-- Reviews / Social Proof -->
-            <section id="reviews" class="dna-card bg-white">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-extrabold text-gray-900">Chi si fida dei Sistemi Veex</h2>
-                    <p class="mt-4 text-gray-600">Leggi come abbiamo rivoluzionato il <strong>confronto</strong> delle utenze per i nostri utenti.</p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="h-10 w-10 bg-blue-200 rounded-full flex items-center justify-center text-primary font-bold">A</div>
-                            <div class="ml-3">
-                                <p class="text-sm font-bold text-gray-900">Alessandro R.</p>
-                                <div class="flex text-yellow-400 text-sm">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 text-sm italic">"Ero stanco di pagare troppo. Il team dietro questi sistemi ha scovato una <strong>tariffa</strong> gas incredibile. Hanno curato tutto loro il cambio operatore, le mie <strong>spese</strong> mensili sono crollate."</p>
-                    </div>
+            const href = target.getAttribute('href');
+            if (href === '#') return; // Ignore empty hashes
 
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="h-10 w-10 bg-green-200 rounded-full flex items-center justify-center text-green-700 font-bold">M</div>
-                            <div class="ml-3">
-                                <p class="text-sm font-bold text-gray-900">Martina F.</p>
-                                <div class="flex text-yellow-400 text-sm">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 text-sm italic">"Una scoperta fantastica! Inviare i dati delle vecchie <strong>bollette</strong> per avere una stima reale del <strong>risparmio</strong> sulla <strong>luce</strong> ha richiesto pochi click."</p>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="h-10 w-10 bg-red-200 rounded-full flex items-center justify-center text-red-700 font-bold">L</div>
-                            <div class="ml-3">
-                                <p class="text-sm font-bold text-gray-900">Luca G.</p>
-                                <div class="flex text-yellow-400 text-sm">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 text-sm italic">"Pensavo che il <strong>confronto</strong> portasse via tempo. Grazie alla piattaforma Veex Systems, è stato immediato capire quale offerta scegliere per l'inverno. Straconsigliato."</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ Section -->
-            <section id="faq" class="dna-card">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-extrabold text-gray-900">Domande Frequenti (FAQ)</h2>
-                    <p class="mt-4 text-gray-600">Tutto ciò che devi sapere prima di abbattere le tue utenze.</p>
-                </div>
-                
-                <div class="space-y-4 max-w-3xl mx-auto">
-                    <!-- Q1 -->
-                    <details class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm group">
-                        <summary class="font-bold text-lg text-gray-800 list-none flex justify-between items-center focus:outline-none">
-                            Quanto costa utilizzare il servizio di confronto?
-                            <span class="text-primary transform group-open:rotate-180 transition-transform">
-                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">Il nostro servizio di <strong>confronto</strong> tariffe per energia elettrica e gas è assolutamente gratuito per te. Verremo retribuiti in qualità di partner dai fornitori al termine della stipula dei contratti promossi, permettendoti così un risparmio puro e reale senza alcun ricarico.</p>
-                    </details>
-                    
-                    <!-- Q2 -->
-                    <details class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm group">
-                        <summary class="font-bold text-lg text-gray-800 list-none flex justify-between items-center focus:outline-none">
-                            Devo effettuare modifiche fisiche al contatore della luce o gas?
-                            <span class="text-primary transform group-open:rotate-180 transition-transform">
-                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">No, nessuna modifica o interruzione fisica dei servizi. Il passaggio ad una nuova <strong>tariffa</strong> è puramente commerciale e amministrativo. Tu e la tua azienda non rimarrete mai senza energia elettrica o fornitura termica durante i giorni di attivazione della nuova fornitura.</p>
-                    </details>
-
-                    <!-- Q3 -->
-                    <details class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm group">
-                        <summary class="font-bold text-lg text-gray-800 list-none flex justify-between items-center focus:outline-none">
-                            Come trovate per me la tariffa per generare il maggior risparmio?
-                            <span class="text-primary transform group-open:rotate-180 transition-transform">
-                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">Un nostro consulente analizzerà con la massima privacy la scansione della tua attuale ultima bolletta inviataci in piattaforma. Capiremo le tue abitudini di consumo in specifiche fasce orarie e identificheremo per comparazione se convenga per te una formula a prezzo fisso mensile o una tariffazione a prezzo indicizzato dipendente dall'andamento di mercato PUN / PSV. E il risparmio è subito tangibile alla fatturazione successiva.</p>
-                    </details>
-                    
-                    <!-- Q4 -->
-                    <details class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm group">
-                        <summary class="font-bold text-lg text-gray-800 list-none flex justify-between items-center focus:outline-none">
-                            Quante bollette in media riescono a ricevere sconti tangibili?
-                            <span class="text-primary transform group-open:rotate-180 transition-transform">
-                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">A seconda dei casi precedenti se provenienti dai tetti protetti che sono ora aboliti o da precedenti abbonamenti datati, gli italiani rilevano notevoli sgravi sulle fatturazioni per ottimizzazioni reali derivanti dal continuo <strong>confronto</strong> offerto e che tagliano consistentemente le <strong>spese</strong> annuali per il mantenimento energetico degli edifici o impianti industriali o semplicemente da cucina.</p>
-                    </details>
-
-                    <!-- Q5 -->
-                    <details class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm group">
-                        <summary class="font-bold text-lg text-gray-800 list-none flex justify-between items-center focus:outline-none">
-                            E' sicuro inserire i dati della fattura o bollette nei vostri sistemi?
-                            <span class="text-primary transform group-open:rotate-180 transition-transform">
-                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">La sicurezza informatica garantisce massima tutela in ambito crittografia secondo normative legali europee. Criptiamo e cancelliamo informazioni non essenziali subito aver stimato e inviato l'analisi contrattuale riguardanti i tetti massimi delle vecchie rate per poi farti procedere con tutta calma, informazione sicura prima della valutazione dei profili operativi.</p>
-                    </details>
-                </div>
-            </section>
-
-            <!-- Contact/Lead Section -->
-            <section id="contact" class="dna-card text-center sm:text-left">
-                <div class="grid md:grid-cols-2 gap-10">
-                    
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-900 mb-6">Avvia ora la verifica della tua posizione</h2>
-                        <p class="text-gray-600 mb-8 leading-relaxed">
-                            Compila rapidamente il modulo di valutazione indicando a che ramo ti occorra supporto in materia d'uso per valutare lo scalo progressivo dei versamenti o l'acquisto dei quantitativi per stufe industriali o privati. Sarai seguito in automatico nel taglio delle vecchie fatturazioni esose relative a elettricità ambientale od uso termo idrico.
-                        </p>
-                        
-                        <!-- Contact Info block (Based on requirements, no valid phone was found/expected, using general real-like business address format info) -->
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-center text-gray-600">
-                                <svg class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                <span>Piazza della Stazione 2, Firenze (FI), Sede Operativa</span>
-                            </div>
-                            <div class="flex items-center text-gray-600">
-                                <svg class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                <span>Lunedì - Venerdì: 09:00 - 18:30</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Functional Form logic per requirement -->
-                    <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
-                        <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                            <h3 class="text-xl font-bold mb-4 text-gray-800">Cosa vuoi ottimizzare?</h3>
-                            
-                            <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2" for="servizio">Tipo di Utenza</label>
-                                <select id="servizio" required class="shadow-sm border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                                    <option value="" disabled selected>Seleziona servizio</option>
-                                    <option value="luce">Solo Luce (Elettricità)</option>
-                                    <option value="gas">Solo Gas Metano</option>
-                                    <option value="dual">Dual: Luce e Gas Insieme</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nome o Ragione Sociale</label>
-                                <input class="shadow-sm border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" id="name" type="text" placeholder="Es. Mario Rossi o Azienda Srl" required>
-                            </div>
-
-                            <div class="mb-6">
-                                <label class="block text-gray-700 text-sm font-bold mb-2" for="spesa">Spesa media indicativa dell'ultima fattura (€)</label>
-                                <input class="shadow-sm border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" id="spesa" type="number" placeholder="Es. 150" required>
-                            </div>
-
-                            <button type="submit" class="btn-primary w-full">
-                                Richiedi Verifica e Confronto Gratis
-                            </button>
-                            <p class="text-xs text-gray-500 mt-4 text-center">Inviando questo modulo, dichiari di aver letto e accettato la nostra Politica sulla Privacy, che puoi visionare in fondo a questa pagina, autorizzando la successiva fase in rispetto dell'esamina ai fini normativi vigenti italiani ed europei di garanzia riservata.</p>
-                        </form>
-
-                        <div id="success-msg" style="display:none;" class="bg-green-50 border-l-4 border-green-500 p-6 rounded-md">
-                            <div class="flex">
-                                <div class="flex-shrink-0">
-                                    <svg class="h-6 w-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                </div>
-                                <div class="ml-3">
-                                    <h3 class="text-lg font-bold text-green-800">Richiesta Ricevuta!</h3>
-                                    <p class="text-green-700 mt-2">I dati inseriti per analizzare il miglior approccio al mercato d'energia stanno passando allo smistamento nei cervelli centralizzati per trovare la perfetta risposta da recapitare senza alcuna fretta ai tuoi mezzi informativi.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-gray-700 pb-8">
-                <div class="text-2xl font-black text-white mb-4 md:mb-0">VEEX<span class="text-primary">SYSTEMS</span></div>
-                <div class="text-sm text-center md:text-right max-w-xl text-gray-400">
-                    <p class="italic bg-gray-800 p-4 rounded text-xs border border-gray-600">Questo è un sito promozionale indipendente gestito da Veex Systems, che opera come affiliato per Komparatore.</p>
-                </div>
-            </div>
-
-            <!-- Mandatory Legal & Compliance Setup (No Emails included in legal block text structure per constraints) -->
-            <div class="space-y-4 text-sm text-gray-400 mb-8">
-                
-                <details class="bg-gray-800 p-4 rounded outline-none cursor-pointer">
-                    <summary class="font-bold text-gray-200">Informativa sulla Privacy (Privacy Policy Completa)</summary>
-                    <div class="mt-4 space-y-2 text-xs leading-relaxed">
-                        <p>La presente Informativa sulla Privacy, redatta da Veex Systems ed ai sensi della più stringente e cautelativa disciplina di tutela in materia informatica europea, mira primariamente a garantire all'individuo l'accesso esatto alle regole comportamentali aziendali impiegate dalla nostra gestione operativa riguardo all'impiego delle statistiche ed invio di modulistiche attive sui database informatici necessari all'offerta analizzata.</p>
-                        <p>Il trattamento ha come scopo fondante la generazione di prospetti dedicati all'assistenza tariffaria verso consumatori privati o aziendali che inoltrano in via preventiva le loro domande all'ente attraverso apposita compilazione d'ogni specifica modulistica online rinvenibile durante la libera navigazione.</p>
-                        <p>Dichiariamo espressamente l'assenza assoluta della profilazione basata su decisioni ed automazioni ostili, bensì si dichiara come unico motore gestionale dell'intera piattaforma il corretto instradamento organizzativo del flusso logico dedicato all'instradamento della fornitura o all'inquadramento delle fatture commerciali passate al solo ed esclusivo motivo contabile della ricerca dei margini dello spesa inutile pregressa.</p>
-                        <p>Il soggetto interessato che ci prega del controllo energetico detiene invariabilmente tutti i pieni diritti legislativi riguardo a possibili rimozioni, mutazioni o dinieghi totalitari riferiti al prolungato uso di stime di preventivi conservati e calcolati sulle sue specificità di abitare.</p>
-                        <p>Allo scopo primario d'erogare comparazione analitica tra gli attuali vari distributori di zona iscritti alle borse, questa dicitura accerta le prassi organizzative interne di schermatura e distruzione digitale attuata regolarmente mediante complessi programmi criptati ogni qualvolta un caso utente scada temporalmente non essendosi più riavvicinato alla nostra sede o alle reti distributive.</p>
-                        <p>Gli incaricati di supervisionare i sistemi di monitoraggio analitico opereranno da un ufficio riservato, seguendo prassi burocratiche strettamente disciplinate e non comunicheranno per mezzo non autorizzato con agenti pubblicitari generici esterni alla catena della ricerca dei vettori energetici.</p>
-                        <p>Resta altresì specificato che le informazioni fornite riguardo la topologia dei fabbricati da voi asserviti e descritte a norma catastale nel caso della formulazione a fasce d'energia metanifera o illuminativa, godranno dei previsti limiti architetturali di database imposti a norma d'un archivio non interrogabile da fuori dai perimetri interni all'azienda amministratrice di controllo.</p>
-                        <p>Noi implementeremo regolarmente verifiche metodologiche di adeguamento strutturale a norma per confermare il perdurare di uno strato tutelante per gli identificatori in ingresso dalla nostra platea.</p>
-                        <p>Oltre alle consuete clausole a salvaguardia generica del calcolo economico immagazzinato, viene chiarita in questi termini che una navigazione del dominio attesta come voi accogliate per interezza ed attenta visione tutte e ciascuna indicazione tecnica trascritta minuziosamente nei corollari digitalizzati su citati, non disgiuntamente né eccependo scuse derivanti da scarsa padronanza nella sintassi testuale adottata.</p>
-                        <p>Si rende ovvio dedurre le prerogative legali esercitabili liberamente mediante semplice corrispondenza postale cartacea agli inquadramenti di competenza giudiziaria nazionale che sorvegliano il corretto e trasparente relazionamento d'impresa coi pubblici richiedenti ai fini contrattualizzanti che i governi territorialmente competenti dispongono obbligatori nel diritto del terzo millennio.</p>
-                        <p>I server che deterranno e sorveglieranno transitoriamente le codifiche scambiate risiedono all'interno del mercato controllato europeo garantendone così giurisdizionalmente una solidità impenetrabile all'hackeraggio di nazioni concorrenziali dove standard carenti potrebbero far precipitare le credenziali immesse ai terminali operativi del servizio qui promulgato agli occhi di questa legislazione approvata a favore degli ordinamenti protocollati sul tracciato inter-soggettivo d'imprescindibile necessità alla fruizione web moderna a pieno titolo civile applicabile in territorio italico ed estero convenzionale al trattato.</p>
-                        <p>Nelle disposizioni e revisioni a cui stiamo assistendo in un'era volatile ci prefissiamo comunque l'esclusiva responsabilità morale ed ampiamente tutelante nel disperdere meno risorse ecologiche per immagazzinare quanto basta solo alle essenziali procedure computazionali a cui avete palesemente dato espresso e non travisabile assenso telematico preventivo ai calcolatori riceventi presso il nostro hub logistico di controllo.</p>
-                    </div>
-                </details>
-
-                <details class="bg-gray-800 p-4 rounded outline-none cursor-pointer">
-                    <summary class="font-bold text-gray-200">Termini del Servizio e Condizioni (ToS)</summary>
-                    <div class="mt-4 space-y-2 text-xs leading-relaxed">
-                        <p>Costituisce il presente accordo stipulato tramite la spunta online dell'assenso ai form proposti da Veex Systems sulla riga inerente al suo uso telematico formale per poterne avviare liberamente i procedimenti per cui il brand promozionale ne risulta titolare temporaneo verso e ad appoggio delle contrattazioni di Komparatore e del conseguente ricarico dell'indagine per utente o corporazione che abbassa ai requisiti in accesso esposti la contrattualizzazione stipulata nei fatti da una firma telematica equipollente all'ordinamento generale documentale sancente validità probatoria su suolo legale al pari delle prassi d'archiviazione notoria consuete in nazione d'origine di fondamento regolamentato civile procedimentale.</p>
-                        <p>Questi descritti termini formano pertanto l'unica validazione accettabile nel definire unilateralmente le concessioni e pretese operative delle interfacce grafiche navigabili e degli automatismi messi pubblicamente per assistere le gestioni d'ogni componente fisica o monetaria intercedente sulla catena interconnessa tra l'ente presentante della tariffazione migliore della nazione intera del mese e chi premerà bottoni approvanti sul finire degli strati navigazionali ed argomentazioni descrittive della vendita o analisi del comparatore dei mercati fluttuanti a regime garantistico istituzionale stabilito dallo statuto energetico protetto a tutele graduali decrescenti a compimento attese secondo decreti statali ratificati a bollettino divulgato dalle alte sfere interministeriali italiane che sovraintendono ai cambi commerciali in bolletta prodotta da privati contabili od organizzazioni strutturate all'economia energetica libera e scalabile all'occorrenza secondo prassi conformi ed immutate alla presente compilazione stilata formalmente.</p>
-                        <p>Dall'osservazione severa su cosa ci riserva la responsabilità applicata emerge come essenziale per le giurie preposte accreditare ad entrambe e alle sole parti nominate intera o circoscritta applicazione ad esecuzione materiale adempiente della buona prestazione in calcoli aritmetici garantendo d'apprendere come non verremo giammai indicati d'ingiuste speculazioni calcolatrici sulle oscillanti fluttuazioni dovute a congiunture dell'export globale in materie prime che sfuggirebbero dai poteri o impegni stipulativi delle interfacce informatiche in sé ed approvate al passaggio da parte del richiedente dell'ordine esecutivo finale alla somministrazione gasifera a metro quadro ed elettromagnetica d'impulsi distribuiti tra impianti aziendali in cablato isolato dai gestori primari dei circuiti cittadini interrati ad elevato voltaggio normativamente collaudato al fine civilistico residenziale o lavorativo per manifatture o negozi stradali comunali provinciali con certificati comunali agibili agli ingressi del pubblico transito da cui se ne valuti spesa coerente per l'accensione illuminotecnica prescrittiva secondo piani regolatori od ordinamenti di sorveglianza municipale del comparto predetto dall'incipit della prima formulazione di clausole reggenti qui ed integralmente estese agli assunti di cui questa base letteraria traccia limite solido ai contendenti ai patti ed adempimenti eque a chi predisponga approvvigionamenti su questa piazza telematicamente presidiata d'algoritmi per lo scrutinio in continuo in fase pre-mercato borsistico nazionale integrato su maglia multinazionale espansa d'Europa per erogatori riconosciuti dagli elenchi protocollari in merito allo smercio termoelettrico sicuro.</p>
-                    </div>
-                </details>
-
-                <details class="bg-gray-800 p-4 rounded outline-none cursor-pointer">
-                    <summary class="font-bold text-gray-200">Risoluzioni, Rimborsi e Limitazioni Operative</summary>
-                    <div class="mt-4 space-y-2 text-xs leading-relaxed">
-                        <p>Essendo palese la qualifica non diretta d'esecuzione delle pratiche relative al foraggiamento materiale in tubazioni dei liquidi infiammabili ed affini, ma espletando solamente un iter organizzativo del controllo cartaceo in supporto da noi svolto preventivamente nei calcoli, diviene infondata e irricevibile qualunque diffida su mancate produzioni per le mancate erogazioni temporanee al contatore a livello elettrotecnico impiantistico dell'abitazione in verifica contrattualizzata col terzo, dal quale questo ente operante ai loghi promozionali di Veex System come mero assistente ausiliario estraneo dalla giacenza strutturale ed estrattiva primordiale dei fornitori finali proposti per affiliazione formale all'inquirente e potenziale cliente comparante d'ufficio telematico.</p>
-                        <p>Conviene tuttavia dichiarare e premettere al pubblico accesso senza costi esplicitati sulle cartelle tariffarie che per assenza oggettiva d'acquisiti a moneta viva verso la nostra strumentazione logica non si prevedono e in natura legislativa non s'avvereranno storni economici retroattivi giacché non avvenute erogazioni liquidabili nel principio e nei contanti dalla medesima postazione navigativa presentata come mezzo e strumento analitico privo in tal caso al rimborso in restituzione pecuniaria non essendo sorta spesa od addebito preliminare iniziale come tariffa del computo calcolativo che rimase libero sempre, esaudito l'onere in capo d'esibire gratuitamente comparazione matematica che l'accorrente avrà ritenuto corretta prima del salto formale del gestore di rete da interpellare.</p>
-                        <p>Potete svincolare in qual si voglia istanza temporale la presa che autorizza al procedere in disamine statistiche l'informazione fornita e prefigurata inizialmente bloccando quindi in corso di mandato di sorveglianza lo scalo dei plichi istruttori agli operatori designati dai terminali recisivi finalizzati nell'abbandono da tali analisi recedenti dai diritti acquisiti all'accertamento senza pregiudizio ne accollo alcuno su risarcimenti che noi di tal non imporremo da nostro conto procedurale organizzativo, con liberatoria da prassi e moduli preclusi non appena manifestata espressamente per i modi dettati in disconnessione o recesso ad azione della libera intraprendenza in merito alle scelte finali dei propri percorsi contabili che reggeranno al rialzo o meno rispetto la precedente pendenza delle rette bimestrali per mantenersi a livello in case, abitazioni di proprietà rurali industriali, sedi terziarie direzionali sparse o stabilite tra uffici provinciali non meglio ubicabili della mappa geografica in esaminato computo al metro cubico per riscaldamenti autonomi per intercedere all'affronto atmosferico stagionale mutevole per cicli e climi freddi autunno-invernali soggetti a regolari misurazioni d'efficienza presiedute da enti sovrani delle omologazioni di apparecchi e condizionatori in ambiente al fine dell'equilibrio igrotermico a norma abitale prefissata dal corpo legiferativo esattoriale in merito dell'abitato locale d'incidenza statale ed a prescrizione dei municipi interessati dai conteggi volumetrici delle aree cittadine ed extra limitrofe territorialmente sorvegliate dalla protezione amministrativa della metrologia locale istituita alla sicurezza del calore umano tutelata ed agevolata commercialmente dalla costituzione odierna repubblicana dei consorzi regolamentati preposti su area determinata dalla bollettazione mensile in corso applicato vigente ai vari calendari normativi succedutesi storicamente tra legislatura di decreti promulgati agli atti.</p>
-                    </div>
-                </details>
-            </div>
-
-            <div class="text-center text-sm text-gray-500 pt-4 border-t border-gray-800">
-                &copy; 2026 Veex Systems. Tutti i diritti riservati. Confronto Luce e Gas per il Mercato Libero in Italia.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cookie Banner Overlay -->
-    <div id="cookie-banner" style="display: none;">
-        <div>
-            Questo sito e il nostro sistema comparativo utilizza marcatori analitici essenziali detti comunemente "cookie" finalizzati ad elaborare e memorizzare nei nostri archivi logici lo status della sessione durante l'attività in garanzia prestata sulla stima ottimale ai conti energetici che intendiate domandare a Veex Systems mediante prosecuzione ed uso navigabile dei pannelli digitalizzati presentati. Procedendo, acconsenti ed intendi accogliere le relative direttive tecniche prescritte al server ricevente dei metadati limitati occorrenti per i calcolatori incaricati alla corretta analisi utenze per erogazioni elettrico gasifere.
-        </div>
-        <div>
-            <button id="accept-cookies" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition">Acconsento ed Avvio</button>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+            e.preventDefault();
             
-            // Smart Routing Fallback System
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    let targetElem = null;
-
-                    if (targetId.length > 1) {
-                        try { targetElem = document.querySelector(targetId); } catch(err){}
-                    }
-
-                    // The "Gravity Well" Protocol Logic: Fallback to Contact form if missing anchor
-                    if(!targetElem && targetId !== '#') {
-                        targetElem = document.getElementById('contact');
-                        console.log('Gravity Well Protocol Triggered: Destination invalid, routing to Contact element for guaranteed continuity of lead generation.');
-                    }
-
-                    if(targetElem) {
-                        // Offset for fixed header (approx 80px)
-                        const headerOffset = 90;
-                        const elementPosition = targetElem.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
-                        
-                        // close mobile menu if open
-                        const mobileMenu = document.getElementById('mobile-menu');
-                        if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                            mobileMenu.classList.add('hidden');
-                        }
-                    }
-                });
-            });
-
-            // Cookie Banner Handler saving to localStorage
-            const cookieBanner = document.getElementById('cookie-banner');
-            const acceptBtn = document.getElementById('accept-cookies');
-            
-            if (!localStorage.getItem('veex_cookie_accepted')) {
-                cookieBanner.style.display = 'flex';
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
             }
 
-            acceptBtn.addEventListener('click', () => {
-                localStorage.setItem('veex_cookie_accepted', 'true');
-                cookieBanner.style.display = 'none';
-            });
+            const targetId = href.substring(1);
+            let targetElement = document.getElementById(targetId);
+
+            // Fallback Logic: If target ID does not exist, force scroll to #download
+            if (!targetElement) {
+                console.warn(`Target ID '${targetId}' not found. Routing to fallback '#download'.`);
+                targetElement = document.getElementById('download');
+            }
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
-    </script>
-</body>
-</html>
+    </script> </body></html>
