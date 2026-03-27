@@ -1,580 +1,209 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DaVivo Hugea Investments | Rivista Digitale Finanza Personale e Lifestyle</title>
-    <meta name="description" content="Scopri strategie di finanza personale, gestione dei risparmi e lifestyle. Il tuo percorso per un processo finanziario migliore inizia qui.">
-    
-    <!-- Tailwind CSS (CDN) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- DESIGN SYSTEM (CSS Injection - Visual Fix & DNA) -->
-    <style>
+<!DOCTYPE html><html lang="it" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Davivo AI | L'App Definitiva per l'Automazione e Strumenti AI</title><meta name="description" content="Scopri TalkAI, l'assistente virtuale leader per l'automazione e l'AI per lavoro. Scarica l'app oggi stesso."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"> <style>
         :root {
-            /* VAR D: Palette (Emerald for Finance/Growth) */
-            --primary: #10b981;
-            /* VAR C: Surface (Cool/Slate White - based on 't' mod 3) */
-            --surface: #f8fafc;
-            /* VAR A: Geometry (Pill - based on 20 length mod 3 = 2) */
+            --primary: #b91c1c;
+            --secondary: #1e3a5f;
             --radius: 24px;
-            /* VAR B: Physics (Flat - based on 'i' mod 3 = 0) */
-            --shadow: 0 0 0 1px #e5e7eb;
+            --card-radius: 24px;
+            --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+            --body-bg: #fefce8;
+            --card-bg: #ffffff;
+            --text: #1a2e05;
+            --muted: #71717a;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6; /* Light gray to make cards pop */
-            color: #1f2937;
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            scroll-behavior: auto; /* Handled by custom JS for smart routing */
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            padding-top: 4rem;
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Serif Display', serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s ease-in-out;
-            font-weight: bold;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.2s;
             display: inline-flex;
-            justify-content: center;
             align-items: center;
-            cursor: pointer;
-            border: none;
+            gap: 0.5rem;
+            text-decoration: none;
         }
-        
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translateY(-2px); 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
 
-        /* UTILITY: Text Accent */
         .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
         .bg-primary { background-color: var(--primary); }
 
-        /* Custom details styles for FAQ and Legals */
-        details > summary {
-            list-style: none;
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
         }
-        details > summary::-webkit-details-marker {
-            display: none;
+
+        /* Fixed navbar compensation */
+        main, main + footer { scroll-margin-top: 5rem; }
+        
+        /* Layout specific compensations */
+        section { scroll-margin-top: 6rem; }
+
+        /* Form inputs */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
         }
-    </style>
-</head>
-<body class="antialiased flex flex-col min-h-screen">
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(185,28,28,0.15);
+        }
 
-    <!-- NAVIGATION -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Brand -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-black text-gray-900 tracking-tighter">
-                        DaVivo<span class="text-primary">Hugea</span>
-                    </a>
-                </div>
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Visione</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Storie</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">Domande</a>
-                    <a href="#contact" class="text-gray-600 hover:text-primary font-medium transition-colors">Partecipa</a>
-                </nav>
-                <!-- CTA -->
-                <div class="hidden md:flex">
-                    <a href="#contact" class="btn-primary py-2 px-6">Inizia il Percorso</a>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
-            <div class="px-2 pt-2 pb-4 space-y-1">
-                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Visione</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Storie</a>
-                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Domande</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Partecipa</a>
-            </div>
-        </div>
-    </header>
+        /* Links */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
 
-    <main class="flex-grow">
-        <!-- HERO SECTION -->
-        <section id="hero" class="relative bg-gray-900 overflow-hidden">
-            <!-- Background Image -->
-            <div class="absolute inset-0">
-                <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1f2937/ffffff?text=Rivista+Finanza+Personale'"
-                     alt="Finanza e Lifestyle" 
-                     class="w-full h-full object-cover" 
-                     loading="eager" 
-                     referrerpolicy="no-referrer">
-                <!-- Overlay to ensure text readability -->
-                <div class="absolute inset-0 bg-black bg-opacity-70"></div>
-            </div>
-            
-            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col items-center text-center">
-                <span class="text-primary font-bold tracking-wider uppercase text-sm mb-4">La Rivista Digitale Definitiva</span>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-                    Il vero patrimonio è la conoscenza:<br/> investi nella tua <span class="text-primary">libertà finanziaria</span>.
-                </h1>
-                <p class="mt-4 text-xl text-gray-300 max-w-3xl mb-10 leading-relaxed">
-                    Benvenuti nella nostra <strong>rivista digitale finanza personale e lifestyle</strong>. 
-                    Un nuovo <strong>canale</strong> di informazione per chi vuole comprendere come gestire i propri <strong>risparmi</strong> 
-                    e trasformare radicalmente il proprio stile di vita attraverso scelte intelligenti.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#features" class="btn-primary text-lg">Scopri il nostro metodo</a>
-                </div>
-            </div>
-        </section>
+        /* Section divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(185,28,28,0.12), transparent);
+            margin: 0;
+        }
 
-        <!-- TRUST BANNER -->
-        <section class="bg-white py-6 border-b border-gray-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-sm font-semibold text-gray-500 tracking-wide uppercase mb-4">Le tematiche affrontate dai nostri esperti</p>
-                <div class="flex justify-center space-x-8 md:space-x-16 grayscale opacity-60">
-                    <span class="text-xl font-bold text-gray-800">MacroEconomia</span>
-                    <span class="text-xl font-bold text-gray-800">Investimenti</span>
-                    <span class="text-xl font-bold text-gray-800">Life&Wealth</span>
-                    <span class="text-xl font-bold text-gray-800 hidden sm:block">Mindset</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- FEATURES / VALUE PROPOSITION SECTION -->
-        <section id="features" class="py-20 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-5xl mx-auto text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Come affrontiamo la ricchezza</h2>
-                <p class="text-gray-600 text-lg">Non vendiamo formule magiche, ma analizziamo i dati per fornirti le chiavi della consapevolezza economica.</p>
-            </div>
-
-            <!-- Wrapping Content in DNA CARD -->
-            <div class="max-w-5xl mx-auto dna-card">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    
-                    <!-- Card 1 -->
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center text-primary mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Gestione dei Risparmi</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            Analizziamo come allocare i fondi del tuo <strong>conto</strong> bancario in modo intelligente, proteggendo il capitale dall'inflazione.
-                        </p>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center text-primary mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Il Metodo Analitico</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            Proponiamo un <strong>metodo</strong> strutturato basato sui fatti. Seguire un <strong>processo</strong> decisionale chiaro è fondamentale per operare mercati complessi.
-                        </p>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center text-primary mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Lifestyle & Mindset</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            La ricchezza non è solo numerica. Inizia un <strong>percorso</strong> per bilanciare gli obiettivi economici con una reale qualità della vita.
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- TESTIMONIALS SECTION -->
-        <section id="reviews" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-            <div class="max-w-5xl mx-auto text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Cosa dice chi ci legge</h2>
-                <p class="text-gray-600 text-lg">Il riscontro della nostra community di lettori appassionati.</p>
-            </div>
-
-            <!-- Wrapping Content in DNA CARD -->
-            <div class="max-w-5xl mx-auto dna-card bg-white">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Review 1 -->
-                    <div class="p-6 border border-gray-100 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold mr-3">MR</div>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Marco R.</h4>
-                                <div class="flex text-yellow-400 text-sm">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 italic">"Leggere i vostri articoli ha <strong>cambiato</strong> completamente la mia visione sulle spese quotidiane. Ora ho un piano reale per il futuro."</p>
-                        <p class="text-xs text-gray-400 mt-4">Lettore dal 2026</p>
-                    </div>
-
-                    <!-- Review 2 -->
-                    <div class="p-6 border border-gray-100 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold mr-3">SL</div>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Sara L.</h4>
-                                <div class="flex text-yellow-400 text-sm">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 italic">"Ho applicato il vostro <strong>metodo</strong> per separare le spese essenziali dagli investimenti. Gli approfondimenti macroeconomici sono chiarissimi anche per non addetti ai lavori."</p>
-                        <p class="text-xs text-gray-400 mt-4">Lettrice dal 2026</p>
-                    </div>
-
-                    <!-- Review 3 -->
-                    <div class="p-6 border border-gray-100 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold mr-3">GP</div>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Giovanni P.</h4>
-                                <div class="flex text-yellow-400 text-sm">★★★★☆</div>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 italic">"Questo portale è il mio nuovo <strong>canale</strong> preferito durante la pausa caffè. Informazioni serie, niente sensazionalismi. Consigliato."</p>
-                        <p class="text-xs text-gray-400 mt-4">Lettore dal 2026</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ SECTION -->
-        <section id="faq" class="py-20 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Domande Frequenti</h2>
-                <p class="text-gray-600 text-lg">Scopri di più sul nostro <strong>percorso</strong> editoriale.</p>
-            </div>
-
-            <div class="max-w-4xl mx-auto dna-card">
-                <div class="space-y-4">
-                    
-                    <details class="group bg-gray-50 rounded-lg">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer p-4 text-gray-900">
-                            <span>Di cosa tratta esattamente questa rivista digitale?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="text-gray-600 p-4 border-t border-gray-200">
-                            La nostra <strong>rivista digitale finanza personale e lifestyle</strong> offre articoli di approfondimento, analisi di mercato, strategie per ottimizzare i <strong>risparmi</strong> e consigli su come bilanciare la crescita economica con il benessere personale.
-                        </p>
-                    </details>
-
-                    <details class="group bg-gray-50 rounded-lg">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer p-4 text-gray-900">
-                            <span>Offrite consulenza finanziaria personalizzata?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="text-gray-600 p-4 border-t border-gray-200">
-                            No. Offriamo esclusivamente contenuti editoriali e informativi. Suggeriamo sempre di strutturare un <strong>metodo</strong> in autonomia o consultare un consulente abilitato per la gestione specifica del proprio <strong>conto</strong> o portafoglio.
-                        </p>
-                    </details>
-
-                    <details class="group bg-gray-50 rounded-lg">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer p-4 text-gray-900">
-                            <span>È un servizio in abbonamento?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="text-gray-600 p-4 border-t border-gray-200">
-                            Molti dei nostri contenuti sono accessibili gratuitamente, fungendo da <strong>canale</strong> di base per l'educazione finanziaria. Sono previsti anche report e dossier speciali per chi vuole intraprendere un <strong>percorso</strong> più avanzato.
-                        </p>
-                    </details>
-
-                    <details class="group bg-gray-50 rounded-lg">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer p-4 text-gray-900">
-                            <span>Come posso applicare i vostri consigli?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="text-gray-600 p-4 border-t border-gray-200">
-                            L'obiettivo è avviare un <strong>processo</strong> di studio. Leggi le nostre analisi, verifica i dati, crea un budget personale e stabilisci obiettivi chiari a medio e lungo termine prima di effettuare qualsiasi movimento sul mercato.
-                        </p>
-                    </details>
-
-                    <details class="group bg-gray-50 rounded-lg">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer p-4 text-gray-900">
-                            <span>Quanto spesso pubblicate nuovi contenuti?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="text-gray-600 p-4 border-t border-gray-200">
-                            Aggiorniamo la rivista settimanalmente. Raccomandiamo di iscriversi ai nostri alert per non perdere i trend di mercato che hanno già <strong>cambiato</strong> le dinamiche di investimento recenti.
-                        </p>
-                    </details>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-100">
-            <div class="max-w-4xl mx-auto text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Mettiti in Contatto</h2>
-                <p class="text-gray-600 text-lg">Hai domande sui nostri editoriali o proposte di collaborazione? Scrivici.</p>
-            </div>
-
-            <div class="max-w-4xl mx-auto dna-card grid grid-cols-1 md:grid-cols-2 gap-10">
-                
-                <!-- Information -->
-                <div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-6">Informazioni Aziendali</h3>
-                    
-                    <div class="flex items-start mb-6">
-                        <div class="w-10 h-10 rounded-full bg-green-50 flex flex-shrink-0 items-center justify-center text-primary mr-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Sede Legale</h4>
-                            <p class="text-gray-600 mt-1">Via Finanza Indipendente, 42<br/>00100 Roma, IT<br/>(Ricezione solo su appuntamento)</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start mb-6">
-                        <div class="w-10 h-10 rounded-full bg-green-50 flex flex-shrink-0 items-center justify-center text-primary mr-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Orari Redazione</h4>
-                            <p class="text-gray-600 mt-1">Lunedì - Venerdì: 09:00 - 18:00<br/>Sabato - Domenica: Chiuso</p>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-blue-50 border border-blue-100 p-4 rounded-lg mt-8 text-sm text-blue-800">
-                        <strong>Nota:</strong> Per proteggere la privacy dei nostri lettori e redattori, non forniamo un contatto telefonico diretto per richieste editoriali. Si prega di utilizzare il modulo fornito.
-                    </div>
-                </div>
-
-                <!-- Form -->
-                <div>
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-4">
-                        
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
-                            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary focus:outline-none bg-gray-50">
-                        </div>
-
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Oggetto</label>
-                            <select id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary focus:outline-none bg-gray-50">
-                                <option>Richiesta Informazioni Editorial</option>
-                                <option>Proposta di Collaborazione</option>
-                                <option>Supporto Tecnico Sito</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Il tuo Messaggio</label>
-                            <textarea id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary focus:outline-none bg-gray-50"></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-primary w-full">Invia Richiesta</button>
-                    </form>
-
-                    <!-- Success Message (Hidden by default) -->
-                    <div id="success-msg" style="display:none" class="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-2">Richiesta Ricevuta!</h4>
-                        <p class="text-gray-600">La nostra redazione elaborerà la tua richiesta il prima possibile. Grazie per averci contattato.</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER & LEGAL COMPLIANCE -->
-    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 border-b border-gray-800 pb-8">
-                
-                <div class="col-span-1 lg:col-span-2">
-                    <span class="text-2xl font-black text-white tracking-tighter mb-4 block">
-                        DaVivo<span class="text-primary">Hugea</span>
-                    </span>
-                    <p class="text-gray-400 mb-4 max-w-sm">
-                        Esplora il mondo della finanza, dei mercati e del lifestyle con articoli indipendenti curati da esperti del settore. Informazione chiara, senza filtri.
-                    </p>
-                    <!-- Mandatory Disclaimer -->
-                    <p class="text-xs text-gray-500 font-mono p-3 bg-gray-800 rounded">
-                        "Questo è un sito promozionale indipendente gestito da DaVivo Hugea Investments, che opera come affiliato per Investitore Comune."
-                    </p>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Esplora</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#hero" class="hover:text-primary transition-colors">Home</a></li>
-                        <li><a href="#features" class="hover:text-primary transition-colors">Visione & Analisi</a></li>
-                        <li><a href="#reviews" class="hover:text-primary transition-colors">Esperienze</a></li>
-                        <li><a href="#contact" class="hover:text-primary transition-colors">Contattaci</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Note Legali</h4>
-                    <!-- Full Legal Text in Details to save visual space but ensure compliance -->
-                    <details class="mb-2 text-sm group">
-                        <summary class="cursor-pointer hover:text-white transition-colors underline mb-1">Informativa sulla Privacy</summary>
-                        <div class="mt-2 text-xs text-gray-500 h-32 overflow-y-auto pr-2 custom-scrollbar bg-gray-800 p-3 rounded">
-                            Questa Informativa sulla Privacy descrive come raccogliamo, utilizziamo, conserviamo e proteggiamo i dati personali dei visitatori. 
-                            La presente policy si applica all'utilizzo del nostro sito web e ai servizi connessi alla nostra rivista digitale di finanza.
-                            Raccogliamo dati attraverso il modulo di contatto fornito volontariamente dall'utente, al solo fine di riscontrare le richieste.
-                            Non cediamo, vendiamo o noleggiamo le informazioni raccolte a terze parti senza esplicito consenso, salvo obblighi di legge.
-                            I dati vengono trattati nel rispetto della normativa europea sulla protezione dei dati (GDPR). 
-                            Adottiamo rigorose misure di sicurezza tecniche e organizzative per prevenire accessi non autorizzati o la divulgazione dei dati.
-                            Conserviamo i log di sistema per un periodo limitato necessario per il funzionamento tecnico della piattaforma.
-                            L'utente ha il diritto di richiedere in qualsiasi momento l'accesso, la modifica o la cancellazione delle proprie informazioni dal nostro database.
-                            Tale richiesta può essere inoltrata compilando nuovamente il modulo di contatto o tramite comunicazione cartacea presso la nostra sede legale.
-                            Non utilizziamo i dati inseriti per l'invio automatico di materiale pubblicitario non richiesto (spam).
-                            Inviando il modulo, accetti implicitamente queste condizioni di trattamento.
-                            Le presenti regole possono essere aggiornate in futuro in base alle normative vigenti.
-                            L'ultima modifica risale alla messa in onda del portale.
-                            Tutti i diritti sono riservati in capo all'operatore affiliato DaVivo Hugea Investments.
-                        </div>
-                    </details>
-                    
-                    <details class="mb-2 text-sm group">
-                        <summary class="cursor-pointer hover:text-white transition-colors underline mb-1">Termini di Servizio</summary>
-                        <div class="mt-2 text-xs text-gray-500 h-32 overflow-y-auto pr-2 custom-scrollbar bg-gray-800 p-3 rounded">
-                            L'accesso e la fruizione di questo portale sono soggetti ai seguenti Termini di Servizio.
-                            Il contenuto offerto è da intendersi a puro scopo informativo ed educativo nell'ambito della finanza e del lifestyle.
-                            Gli articoli pubblicati non costituiscono in alcun modo sollecitazione al pubblico risparmio o consulenza di investimento personalizzata.
-                            L'utente è l'unico responsabile dell'uso che fa delle informazioni lette e delle decisioni che ne conseguono.
-                            L'operatore del sito e il provider originario (Investitore Comune) declinano ogni responsabilità per perdite o danni derivanti dall'utilizzo del portale.
-                            I marchi, i loghi, i testi e la grafica presenti sul sito appartengono ai legittimi proprietari. 
-                            È severamente vietata la riproduzione, anche parziale, senza preventiva autorizzazione scritta.
-                            Questo sito funge da piattaforma di promozione per i servizi di Investitore Comune, fungendo da entità affiliata indipendente.
-                            Ci riserviamo il diritto di sospendere l'accesso agli utenti che adottano comportamenti illeciti o tentano di compromettere l'integrità del sistema.
-                            I link diretti a siti di terze parti non implicano l'avallo incondizionato del loro contenuto.
-                            L'accuratezza dei dati di mercato indicati può variare a causa delle naturali dinamiche temporali del settore economico.
-                            Questi termini sono regolamentati dalla giurisdizione competente relativa alla sede dell'azienda operatrice.
-                            Accedendo alla piattaforma l'utente accetta integralmente i presenti vincoli contrattuali.
-                            Le eventuali controversie verranno gestite prioritariamente in fase extragiudiziale e conciliativa.
-                        </div>
-                    </details>
-
-                    <details class="mb-2 text-sm group">
-                        <summary class="cursor-pointer hover:text-white transition-colors underline mb-1">Policy di Rimborso</summary>
-                        <div class="mt-2 text-xs text-gray-500 h-32 overflow-y-auto pr-2 custom-scrollbar bg-gray-800 p-3 rounded">
-                            La seguente policy regola le eventuali dinamiche commerciali derivanti dall'acquisto di beni o servizi sponsorizzati su questa piattaforma.
-                            Poiché la fruizione base dei nostri editoriali e articoli digitali è totalmente gratuita, non è prevista una procedura di rimborso applicabile all'uso generale.
-                            Nel caso in cui l'utente acquisti servizi di abbonamento premium, ebook, manuali o percorsi formativi tramite il provider originario indicato, le norme sui resi fanno riferimento ai termini contrattuali del provider stesso.
-                            La nostra responsabilità si limita alla veicolazione di traffico affiliato.
-                            Tuttavia, informiamo gli utenti che la legge a tutela dei consumatori prevede normalmente il diritto di recesso entro i classici quattordici (14) giorni per beni digitali o acquisti a distanza, a condizione che non vi sia stata una immediata e totale esecuzione della prestazione o l'accesso a materiale digitale protetto post-scaricamento, che fa solitamente decadere tale facoltà.
-                            Tutte le controversie finanziarie riguardanti scontrini o transazioni in denaro devono essere rivolte esclusivamente ai portali di fatturazione designati in fase di checkout (carte, gestori terzi di payment gateway).
-                            Il portale DaVivo Hugea Investments non processa e non salva alcun numero di carta di credito.
-                            Ti invitiamo a leggere molto attentamente la fase di ordine per sincerarti se sussiste una policy di tipo "Soddisfatti o Rimborsati" esplicita applicabile al pacchetto selezionato dal venditore reale.
-                            Siamo sempre a disposizione attraverso il modulo contatti per offrire assistenza circa il re-indirizzamento presso la corretta area di Customer Care se necessario.
-                            Nulla in questa policy inficia i diritti basilari imposti inderogabilmente dai regolamenti.
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-            <div class="text-center text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
-                <p>&copy; 2026 DaVivo Hugea Investments. Tutti i diritti riservati.</p>
-                <p class="mt-2 md:mt-0">Progettato per la tua crescita economica e personale.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t border-gray-200 shadow-2xl transform translate-y-full transition-transform duration-500 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
-            <p class="text-sm text-gray-600 mb-4 md:mb-0 mr-4">
-                Utilizziamo i cookie per migliorare la tua esperienza editoriale, fornendo misurazioni del traffico che ci aiutano a decidere i migliori contenuti da proporre sulla rivista. Continuando, accetti la nostra privacy policy.
-            </p>
-            <div class="flex space-x-4 flex-shrink-0">
-                <button onclick="acceptCookies()" class="bg-gray-100 text-gray-800 hover:bg-gray-200 px-4 py-2 rounded text-sm font-medium transition">Rifiuta Non Essenziali</button>
-                <button onclick="acceptCookies()" class="bg-primary text-white hover:bg-green-600 px-4 py-2 rounded text-sm font-medium transition shadow-md">Accetta Tutti</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- CORE INTERACTIVITY SCRIPTS (The Gravity Well Protocol & Cookie logic) -->
-    <script>
-        // 1. Smart Routing / Self-Healing Navigation Interceptor
-        document.addEventListener('click', function(e) {
-            // Find closest anchor tag
-            let target = e.target.closest('a');
-            
-            // If it's a link starting with hash #
-            if (target && target.getAttribute('href') && target.getAttribute('href').startsWith('#')) {
+        /* Overlap Hero Custom CSS */
+        .hero-bg-band {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            background-color: rgba(185, 28, 28, 0.05);
+            z-index: -1;
+            border-radius: 0 0 40px 40px;
+        }
+        
+        .store-badge {
+            background-color: #000;
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none !important;
+            transition: transform 0.2s;
+            min-width: 140px;
+        }
+        .store-badge:hover {
+            transform: scale(1.05);
+            color: #fff;
+        }
+        .store-badge svg {
+            fill: currentColor;
+            width: 24px;
+            height: 24px;
+        }
+        .store-badge-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.1;
+        }
+        .store-badge-text span:first-child {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+        }
+        .store-badge-text span:last-child {
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+    </style> </head><body class="antialiased"><nav class="fixed top-0 left-0 right-0 z-50 shadow-sm transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16 items-center"><div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-xl"> D </div><span class="font-bold text-xl tracking-tight" style="font-family: 'DM Serif Display', serif;">Davivo AI</span></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="font-medium text-sm transition-colors">Funzionalità</a><a href="#how-it-works" class="font-medium text-sm transition-colors">Come Funziona</a><a href="#reviews" class="font-medium text-sm transition-colors">Recensioni</a><a href="#faq" class="font-medium text-sm transition-colors">FAQ</a><a href="#download" class="btn-primary text-sm px-5 py-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> Scarica App </a></div><div class="md:hidden flex items-center"><button id="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-xl absolute w-full left-0"><div class="px-4 pt-2 pb-6 space-y-2 flex flex-col"><a href="#features" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-gray-50">Funzionalità</a><a href="#how-it-works" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-gray-50">Come Funziona</a><a href="#reviews" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-gray-50">Recensioni</a><a href="#faq" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-gray-50">FAQ</a><a href="#download" class="block px-3 py-3 mt-4 text-center bg-primary text-white rounded-md font-medium">Scarica App Ora</a></div></div></nav><main><section class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden"><div class="hero-bg-band"></div><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2 lg:w-3/5 text-center md:text-left"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white shadow-sm border border-gray-100 mb-6"><span class="flex h-2 w-2 rounded-full bg-primary"></span><span class="text-xs font-semibold uppercase tracking-wider text-secondary">Presentiamo TalkAI</span></div><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-gray-900"> Investi nel tuo tempo. <span class="text-primary block mt-2">L'AI che lavora per te.</span></h1><p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed"> Scopri l'app definitiva per <strong>strumenti AI</strong> e <strong>automazione</strong>. Un potente assistente virtuale sempre in tasca per rivoluzionare la tua produttività e il tuo modo di comunicare. </p><div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span>Scarica su</span><span>App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span>DISPONIBILE SU</span><span>Google Play</span></div></a></div><div class="mt-8 flex items-center justify-center md:justify-start gap-2 text-sm text-gray-500 font-medium"><div class="flex text-yellow-400"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><span class="ml-2 border-l-2 border-gray-200 pl-2">4.8/5 su oltre 10.000 recensioni</span></div></div><div class="w-full md:w-1/2 lg:w-2/5 relative mt-10 md:mt-0"><div class="relative z-10 transform md:translate-x-8 rounded-3xl overflow-hidden shadow-2xl border-4 border-white"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/600x1200/1e3a5f/ffffff?text=App+Interface'" alt="Interfaccia dell'app TalkAI su smartphone" class="w-full h-auto object-cover rounded-2xl" referrerpolicy="no-referrer"></div><div class="absolute -bottom-6 -left-6 w-24 h-24 bg-secondary rounded-full opacity-20 z-0 blur-xl"></div><div class="absolute -top-6 -right-6 w-32 h-32 bg-primary rounded-full opacity-10 z-0 blur-xl"></div></div></div></div></section><hr class="section-divider"><section id="features" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Potenzia il tuo flusso di lavoro</h2><p class="text-lg text-muted max-w-2xl mx-auto">Sfrutta la potenza dell'app TalkAI. I migliori strumenti AI progettati per ottimizzare la tua routine e offrirti un'automazione senza precedenti.</p></div><div class="dna-card"><div class="flex flex-col gap-16 md:gap-24"><div class="flex flex-col md:flex-row items-center gap-10"><div class="w-full md:w-1/2"><div class="w-12 h-12 rounded-xl bg-red-50 text-primary flex items-center justify-center mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg></div><h3 class="text-2xl font-bold mb-3 text-gray-900">Chatbot Intelligente 24/7</h3><p class="text-gray-600 leading-relaxed text-lg"> Ottieni risposte immediate a qualsiasi domanda complessa. Il tuo <strong>chatbot</strong> personale è sempre pronto ad aiutarti, imparando dal tuo stile per offrirti soluzioni sempre più precise. Ideale per ricerche rapide e problem-solving istantaneo. </p></div><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/b91c1c/ffffff?text=Chatbot+AI'" alt="Chatbot AI in azione" class="rounded-2xl shadow-lg border border-gray-100 w-full" loading="lazy" referrerpolicy="no-referrer"></div></div><div class="flex flex-col md:flex-row-reverse items-center gap-10"><div class="w-full md:w-1/2"><div class="w-12 h-12 rounded-xl bg-blue-50 text-secondary flex items-center justify-center mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></div><h3 class="text-2xl font-bold mb-3 text-gray-900">Assistente Virtuale per la Scrittura</h3><p class="text-gray-600 leading-relaxed text-lg"> Dalle email professionali ai report aziendali, sfrutta l'<strong>automazione</strong> per generare testi di altissima qualità in pochi secondi. Il compagno perfetto per chi cerca un'<strong>AI per lavoro</strong> affidabile e creativa. </p></div><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/1e3a5f/ffffff?text=AI+Writing'" alt="Assistente di scrittura AI" class="rounded-2xl shadow-lg border border-gray-100 w-full" loading="lazy" referrerpolicy="no-referrer"></div></div><div class="flex flex-col md:flex-row items-center gap-10"><div class="w-full md:w-1/2"><div class="w-12 h-12 rounded-xl bg-red-50 text-primary flex items-center justify-center mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><h3 class="text-2xl font-bold mb-3 text-gray-900">Automazione Task Quotidiani</h3><p class="text-gray-600 leading-relaxed text-lg"> Comprendi documenti lunghi istantaneamente e delega i compiti ripetitivi. I nostri <strong>strumenti AI</strong> analizzano, riassumono ed estraggono le informazioni cruciali per te, facendoti risparmiare ore di lavoro prezioso. </p></div><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/b91c1c/ffffff?text=Task+Automation'" alt="Automazione dei task" class="rounded-2xl shadow-lg border border-gray-100 w-full" loading="lazy" referrerpolicy="no-referrer"></div></div></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-16 md:py-20 bg-white bg-opacity-50"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Come Iniziare</h2><p class="text-lg text-muted">Tre semplici passaggi per integrare l'AI nella tua vita quotidiana.</p></div><div class="dna-card relative overflow-hidden"><div class="absolute top-0 right-0 w-32 h-32 bg-secondary opacity-5 rounded-bl-full"></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10"><div class="text-center p-4"><div class="w-16 h-16 mx-auto bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-md">1</div><h4 class="text-xl font-bold mb-2">Scarica l'App</h4><p class="text-gray-600">Disponibile su iOS e Android. Clicca sui badge in questa pagina per l'installazione sicura.</p></div><div class="text-center p-4 relative"><div class="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-gray-200 -z-10"></div><div class="w-16 h-16 mx-auto bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-md">2</div><h4 class="text-xl font-bold mb-2">Configura il Profilo</h4><p class="text-gray-600">Personalizza le preferenze del tuo assistente virtuale per adattarlo al tuo stile di lavoro.</p></div><div class="text-center p-4"><div class="w-16 h-16 mx-auto bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-md">3</div><h4 class="text-xl font-bold mb-2">Inizia ad Automatizzare</h4><p class="text-gray-600">Fai la tua prima domanda o chiedi di generare un testo. Lascia che l'AI faccia la magia.</p></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa dicono gli utenti</h2><p class="text-lg text-muted">Migliaia di professionisti hanno già rivoluzionato il loro modo di lavorare.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 relative"><div class="flex text-yellow-400 mb-3"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">Indispensabile per il lavoro</h4><p class="text-gray-600 text-sm mb-4">"Uso TalkAI ogni giorno per rispondere alle email dei clienti. L'automazione è incredibile e le risposte sembrano scritte da me. Il miglior investimento per la mia produttività."</p><div class="flex items-center justify-between mt-auto"><span class="font-semibold text-sm">Marco R.</span><span class="text-xs text-gray-400">Gennaio 2025</span></div></div><div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 relative"><div class="flex text-yellow-400 mb-3"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">Un assistente brillante</h4><p class="text-gray-600 text-sm mb-4">"L'app è fluida e intuitiva. Rispetto ad altri strumenti AI che ho provato, questo chatbot comprende contesti molto complessi. È come avere un tutor personale sempre in tasca."</p><div class="flex items-center justify-between mt-auto"><span class="font-semibold text-sm">Elena Bianchi</span><span class="text-xs text-gray-400">Febbraio 2025</span></div></div><div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 relative"><div class="flex text-yellow-400 mb-3"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">Sintesi perfetta</h4><p class="text-gray-600 text-sm mb-4">"Dovevo leggere decine di PDF al giorno. Ora chiedo all'app di farmi un riassunto dei punti chiave. Risparmio ore preziose. Assolutamente da avere sul telefono."</p><div class="flex items-center justify-between mt-auto"><span class="font-semibold text-sm">Luca M.</span><span class="text-xs text-gray-400">Marzo 2025</span></div></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-16 md:py-20"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-lg text-muted">Tutto ciò che devi sapere sul tuo nuovo assistente virtuale.</p></div><div class="dna-card space-y-4"><details class="group border border-gray-100 rounded-xl bg-gray-50 [&_summary::-webkit-details-marker]:hidden"><summary class="flex cursor-pointer items-center justify-between gap-1.5 p-5 text-gray-900 font-semibold"><h3 class="text-lg">L'app è gratuita da scaricare?</h3><span class="relative h-5 w-5 shrink-0 text-primary"><svg class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg><svg class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg></span></summary><div class="px-5 pb-5 text-gray-600"> Sì, il download iniziale dell'app è completamente gratuito. Offriamo funzioni di base senza costi per farti testare le potenzialità del nostro chatbot. Per sbloccare strumenti AI avanzati e limiti di utilizzo superiori, sono disponibili piani premium all'interno dell'app. </div></details><details class="group border border-gray-100 rounded-xl bg-gray-50 [&_summary::-webkit-details-marker]:hidden"><summary class="flex cursor-pointer items-center justify-between gap-1.5 p-5 text-gray-900 font-semibold"><h3 class="text-lg">Quali dispositivi sono supportati?</h3><span class="relative h-5 w-5 shrink-0 text-primary"><svg class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg><svg class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg></span></summary><div class="px-5 pb-5 text-gray-600"> La nostra app è ottimizzata per l'uso mobile ed è disponibile sia per smartphone e tablet iOS (tramite Apple App Store) che per dispositivi Android (tramite Google Play Store). È progettata per essere il tuo assistente sempre a portata di mano. </div></details><details class="group border border-gray-100 rounded-xl bg-gray-50 [&_summary::-webkit-details-marker]:hidden"><summary class="flex cursor-pointer items-center justify-between gap-1.5 p-5 text-gray-900 font-semibold"><h3 class="text-lg">I miei dati sono al sicuro?</h3><span class="relative h-5 w-5 shrink-0 text-primary"><svg class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg><svg class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg></span></summary><div class="px-5 pb-5 text-gray-600"> Assolutamente sì. La privacy è la nostra massima priorità. Le tue conversazioni con l'assistente virtuale e i documenti che analizzi tramite i nostri strumenti AI sono crittografati e non vengono mai condivisi con terze parti per scopi pubblicitari. </div></details><details class="group border border-gray-100 rounded-xl bg-gray-50 [&_summary::-webkit-details-marker]:hidden"><summary class="flex cursor-pointer items-center justify-between gap-1.5 p-5 text-gray-900 font-semibold"><h3 class="text-lg">Come posso iniziare a usarla per il lavoro?</h3><span class="relative h-5 w-5 shrink-0 text-primary"><svg class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg><svg class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg></span></summary><div class="px-5 pb-5 text-gray-600"> Molti professionisti usano la nostra app come "AI per lavoro". Puoi iniziare chiedendo di redigere bozze di email, riassumere lunghi report PDF o fare brainstorming di idee. L'automazione ti permetterà di risparmiare ore fin dal primo utilizzo. </div></details><details class="group border border-gray-100 rounded-xl bg-gray-50 [&_summary::-webkit-details-marker]:hidden"><summary class="flex cursor-pointer items-center justify-between gap-1.5 p-5 text-gray-900 font-semibold"><h3 class="text-lg">Posso usare l'app offline?</h3><span class="relative h-5 w-5 shrink-0 text-primary"><svg class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg><svg class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg></span></summary><div class="px-5 pb-5 text-gray-600"> Essendo basata su modelli di intelligenza artificiale avanzati che richiedono un'elevata potenza di calcolo, l'app richiede una connessione internet attiva (Wi-Fi o dati cellulari) per processare le tue richieste in tempo reale e offrirti i migliori risultati. </div></details></div></div></section><hr class="section-divider"><section id="download" class="py-16 md:py-20 relative overflow-hidden"><div class="absolute inset-0 bg-primary opacity-5 z-0"></div><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"><div class="dna-card border-2 border-primary border-opacity-20 shadow-2xl"><div class="w-20 h-20 mx-auto bg-primary text-white rounded-3xl flex items-center justify-center mb-6 shadow-lg transform -rotate-3"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">Ottieni <span class="text-primary">TalkAI</span> Oggi</h2><p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Pronto a trasformare il tuo smartphone? Unisciti a migliaia di utenti che hanno già abbracciato l'automazione. Scarica subito l'app e potenzia la tua produttività.</p><div class="flex flex-col sm:flex-row items-center justify-center gap-6"><a href="#download" class="store-badge" style="transform: scale(1.1); min-width: 160px;"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span>Scarica su</span><span style="font-size: 1.3rem;">App Store</span></div></a><a href="#download" class="store-badge" style="transform: scale(1.1); min-width: 160px;"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span>DISPONIBILE SU</span><span style="font-size: 1.3rem;">Google Play</span></div></a></div><p class="mt-8 text-sm text-gray-400 font-medium">Installazione rapida. Sicurezza garantita dagli store ufficiali.</p></div></div></section></main><footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-8"><div class="inline-flex items-center gap-2 mb-4"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-xl">D</div><span class="font-bold text-xl tracking-tight text-white" style="font-family: 'DM Serif Display', serif;">Davivo AI</span></div><p class="text-sm text-gray-400 max-w-2xl mx-auto p-4 bg-gray-800 rounded-lg border border-gray-700"><em>Questa è una pagina promozionale indipendente gestita da Davivo AI, per l'app TalkAI sviluppata dal TalkAI Team.</em></p></div><div class="space-y-4 max-w-4xl mx-auto text-sm text-gray-400 mb-8"><details class="group bg-gray-800 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-white outline-none">Informativa sulla Privacy (Privacy Policy)</summary><div class="mt-4 space-y-2 text-gray-400 leading-relaxed text-left"><p>La presente Informativa sulla Privacy descrive le modalità con cui Davivo AI raccoglie e gestisce i dati durante la navigazione di questa pagina promozionale. Rispettiamo rigorosamente la tua privacy e ci impegniamo a proteggere i tuoi dati personali. Questa pagina ha il solo scopo di promuovere l'applicazione indicata e reindirizzare gli utenti agli store ufficiali. Non raccogliamo dati personali sensibili, nomi o numeri di telefono tramite moduli di contatto su questo sito. Gli unici dati raccolti sono quelli relativi alla navigazione standard tramite cookie essenziali per il funzionamento della pagina. Utilizziamo strumenti di analisi aggregata per comprendere il traffico della pagina, ma questi dati sono anonimizzati e non riconducibili al singolo utente. Se decidi di cliccare sui link per il download, verrai reindirizzato agli store ufficiali (Apple App Store o Google Play Store). Una volta abbandonata la nostra pagina, ti invitiamo a consultare le politiche sulla privacy degli store e dello sviluppatore dell'app, TalkAI Team. Non condividiamo, vendiamo o affittiamo alcuna informazione di navigazione a terze parti per scopi di marketing diretto. I server che ospitano questa pagina sono protetti da protocolli di sicurezza standard del settore per prevenire accessi non autorizzati. Hai il diritto, secondo il GDPR, di richiedere la cancellazione dei dati di navigazione memorizzati dai cookie del tuo browser. Puoi disabilitare i cookie in qualsiasi momento tramite le impostazioni del tuo browser web. Continuando a navigare su questa pagina, accetti le pratiche descritte in questa informativa. Per qualsiasi questione relativa all'app in sé, ai tuoi dati all'interno dell'app o al tuo account, devi fare riferimento direttamente allo sviluppatore ufficiale. Davivo AI funge esclusivamente da vetrina promozionale indipendente. Ci riserviamo il diritto di aggiornare questa politica in qualsiasi momento per riflettere i cambiamenti legali o tecnologici. Ti consigliamo di controllare regolarmente questa sezione. La tua fiducia è fondamentale per noi e operiamo con la massima trasparenza.</p></div></details><details class="group bg-gray-800 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-white outline-none">Termini e Condizioni (Terms of Service)</summary><div class="mt-4 space-y-2 text-gray-400 leading-relaxed text-left"><p>Benvenuto sulla landing page promozionale gestita da Davivo AI. Accedendo e utilizzando questo sito web, accetti di essere vincolato dai presenti Termini e Condizioni. Se non sei d'accordo con una qualsiasi parte di questi termini, sei pregato di non utilizzare il nostro sito. Questo sito web fornisce informazioni di natura promozionale riguardanti l'applicazione mobile TalkAI. Noi, Davivo AI, agiamo come affiliati o promotori indipendenti e non siamo i creatori, gli sviluppatori o i proprietari dell'applicazione promossa. Tutto il contenuto presente su questa pagina, inclusi testi, grafiche e layout, è stato creato per scopi puramente informativi e di marketing. Non garantiamo l'accuratezza assoluta, la completezza o la tempestività delle informazioni fornite sull'app, poiché le funzionalità potrebbero essere modificate dallo sviluppatore ufficiale. I link forniti su questa pagina ti reindirizzeranno a piattaforme di terze parti (App Store, Google Play). Non abbiamo alcun controllo sui contenuti, sulle politiche o sulle pratiche di tali siti di terze parti. L'installazione e l'uso dell'app TalkAI sono soggetti ai Termini di Servizio specifici forniti dal TalkAI Team al momento del download. Davivo AI declina ogni responsabilità per eventuali malfunzionamenti, danni al dispositivo, perdita di dati o qualsiasi altro problema derivante dall'installazione o dall'uso dell'applicazione promossa. L'utente si assume la piena responsabilità per le proprie azioni dopo aver cliccato sui link di download. È severamente vietato riprodurre, copiare o distribuire il materiale di questa pagina senza la nostra esplicita autorizzazione. Ci riserviamo il diritto di sospendere, interrompere o modificare questa pagina promozionale in qualsiasi momento senza preavviso. In nessun caso Davivo AI sarà responsabile per danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso di questa pagina web. Utilizzando il sito, garantisci di avere l'età legale per stipulare un contratto vincolante nel tuo paese di residenza. Qualsiasi controversia legale derivante dall'uso di questa pagina sarà gestita in conformità con le leggi vigenti. Ti invitiamo a leggere attentamente questi termini ogni volta che visiti il sito, poiché potrebbero essere soggetti a revisioni periodiche.</p></div></details><details class="group bg-gray-800 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-white outline-none">Politica di Rimborso (Refund Policy)</summary><div class="mt-4 space-y-2 text-gray-400 leading-relaxed text-left"><p>La presente Politica di Rimborso chiarisce le procedure relative agli acquisti e ai rimborsi per l'applicazione promossa su questa pagina. È fondamentale comprendere che Davivo AI è esclusivamente una piattaforma promozionale indipendente e non elabora alcun pagamento in modo diretto. Non richiediamo, non raccogliamo e non gestiamo mai i dettagli della tua carta di credito o altri metodi di pagamento su questo sito web. Tutti i download, gli acquisti in-app, gli abbonamenti premium o le transazioni finanziarie legate all'app TalkAI avvengono esclusivamente attraverso gli store ufficiali (Apple App Store o Google Play Store). Di conseguenza, Davivo AI non ha la capacità tecnica, legale o finanziaria di emettere rimborsi per alcun acquisto effettuato. Se hai riscontrato un problema con un acquisto all'interno dell'app, hai effettuato un abbonamento per errore o non sei soddisfatto delle funzionalità a pagamento, devi rivolgerti alle politiche di rimborso della piattaforma utilizzata. Per gli utenti iOS, è necessario contattare il supporto Apple tramite la sezione "Segnala un problema" del proprio ID Apple. Per gli utenti Android, le richieste di rimborso devono essere gestite tramite il Google Play Store o contattando direttamente lo sviluppatore dell'app, TalkAI Team, attraverso i canali forniti nello store. La decisione di concedere un rimborso dipende esclusivamente dalle linee guida di Apple o Google e dai Termini di Vendita dello sviluppatore. Non possiamo fare da intermediari, accelerare le richieste o influenzare in alcun modo le decisioni relative ai rimborsi. Ti consigliamo vivamente di leggere i Termini di Acquisto all'interno dell'app prima di confermare qualsiasi pagamento o abbonamento. Assicurati di comprendere i periodi di prova gratuita, le regole di rinnovo automatico e le scadenze per le cancellazioni. Molte applicazioni richiedono la disdetta dell'abbonamento almeno 24 ore prima del rinnovo per evitare addebiti. Utilizzando questa pagina promozionale e scaricando l'app, riconosci e accetti che Davivo AI è completamente esente da qualsiasi obbligo o responsabilità finanziaria nei tuoi confronti.</p></div></details></div><div class="text-center"><p>&copy; 2026 Davivo AI. Tutti i diritti riservati.</p></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 sm:p-6 shadow-2xl z-50 transform transition-transform duration-300 translate-y-full"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-300"> Utilizziamo i cookie per offrirti la migliore esperienza sulla nostra pagina promozionale. Continuando la navigazione, accetti l'uso dei cookie. </div><div class="flex gap-4 shrink-0"><button onclick="acceptCookies()" class="bg-primary hover:bg-red-800 text-white px-6 py-2 rounded-lg text-sm font-bold transition-colors"> Accetta </button></div></div></div> <script>
+        // Smart Routing JS (Self-Healing Navigation)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = target.getAttribute('href').substring(1);
-                
-                if(!targetId) return; // ignore pure "#" links
-
-                const targetElement = document.getElementById(targetId);
-                const fallbackElement = document.getElementById('contact');
-                
-                // If Target exists, scroll there.
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } 
-                // Fallback Protocol: If missing, force scroll to Contact
-                else if (fallbackElement) {
-                    console.warn(`Target section #${targetId} not found. Routing to Contact fallback.`);
-                    fallbackElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
                 
                 // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // Logic 1: Target exists -> Smooth Scroll
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Logic 2: Fallback to #download
+                    const fallbackElement = document.querySelector('#download');
+                    if (fallbackElement) {
+                        fallbackElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Cookie Banner Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("davivo_cookies_accepted")) {
+                setTimeout(() => {
+                    document.getElementById("cookie-banner").classList.remove("translate-y-full");
+                }, 1000);
             }
         });
 
-        // 2. Cookie Banner Logic
-        function checkCookies() {
-            if (!localStorage.getItem('cookies_accepted')) {
-                setTimeout(() => {
-                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
-                }, 1000);
-            }
-        }
-        
         function acceptCookies() {
-            localStorage.setItem('cookies_accepted', 'true');
-            document.getElementById('cookie-banner').classList.add('translate-y-full');
+            localStorage.setItem("davivo_cookies_accepted", "true");
+            document.getElementById("cookie-banner").classList.add("translate-y-full");
         }
-
-        // Init checks on load
-        window.onload = checkCookies;
-    </script>
-</body>
-</html>
+    </script> </body></html>
