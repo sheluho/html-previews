@@ -1,487 +1,176 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feguqubuex Services - Consigli di Risparmio e Gestione Denaro</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <style>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Feguqubuex Services | Magazine di Lifestyle e Tendenze Italiane</title><meta name="description" content="Scopri le ultime tendenze, il lifestyle, la moda e il design italiano con Feguqubuex Services. La tua guida quotidiana per uno stile di vita esclusivo."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
         :root {
-            /* VAR D: Palette -> Finance/Money Niche -> Emerald */
-            --primary: #10b981; 
-            /* VAR C: Surface -> Last letter 'x' % 3 = 2 -> Cool */
-            --surface: #f8fafc;
-            /* VAR A: Geometry -> Length 26 % 3 = 2 -> Pill */
-            --radius: 24px;
-            /* VAR B: Physics -> First letter 'f' % 3 = 0 -> Flat */
-            --shadow: 0 0 0 1px #e5e7eb;
+            --primary: #4f46e5;
+            --secondary: #ea580c;
+            --radius: 9999px;
+            --card-radius: 24px;
+            --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.05);
+            --body-bg: #f9fafb;
+            --card-bg: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6; /* Always light gray to make white cards pop */
-            color: #1f2937;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            scroll-behavior: smooth;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding-top: 4rem;
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s ease-in-out;
-            font-weight: bold;
-            display: inline-block;
-            text-align: center;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        /* UTILITY: Text Accent */
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-secondary:hover { background-color: rgba(79,70,229,0.05); }
+
         .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
         .bg-primary { background-color: var(--primary); }
 
-        /* LEGAL DETAILS STYLE */
-        details.legal-doc {
-            background: #ffffff;
-            border-radius: var(--radius);
-            padding: 1rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
         }
-        details.legal-doc summary {
+
+        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+        main, main + footer { scroll-margin-top: 5rem; }
+        
+        /* Form inputs — consistent styling regardless of Gemini output */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+        }
+
+        /* Links — readable on any theme */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider — subtle visual rhythm */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(79,70,229,0.12), transparent);
+            margin: 0;
+        }
+
+        /* Details styling for legal & FAQ */
+        details > summary {
             cursor: pointer;
-            font-weight: 600;
-            color: var(--primary);
+            list-style: none;
         }
-    </style>
-</head>
-<body class="antialiased flex flex-col min-h-screen">
-
-    <!-- Navbar -->
-    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center">
-                    <a href="#" class="text-2xl font-black text-gray-900 tracking-tight">
-                        Feguqubuex<span class="text-primary">.Services</span>
-                    </a>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Le Nostre Guide</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Recensioni</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
-                    <a href="#contact" class="btn-primary py-2 px-6">Inizia il Risparmio</a>
-                </div>
-                <div class="flex items-center md:hidden">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Le Nostre Guide</a>
-            <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Recensioni</a>
-            <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">FAQ</a>
-            <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-primary font-bold">Inizia Ora</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section (Full width logic) -->
-    <header class="relative bg-gray-900 py-24 sm:py-32">
-        <img src="https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80" 
-             onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Pianificazione+Finanziaria'" 
-             alt="Gestione Denaro" 
-             referrerpolicy="no-referrer"
-             class="absolute inset-0 object-cover w-full h-full opacity-40">
-        <div class="absolute inset-0 bg-black/50 mix-blend-multiply"></div>
-        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-6">
-                Feguqubuex Services: La miglior educazione al risparmio, la tua vera serenità.
-            </h1>
-            <p class="mt-4 text-xl sm:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto">
-                Basato sulle comprovate metodologie del portale EfficaceMente, ti aiutiamo a riprendere il controllo del tuo stipendio e delle tue risorse. Costruisci il tuo futuro, un passo alla volta.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#features" class="btn-primary">Scopri le Strategie</a>
-                <a href="#contact" class="bg-white text-gray-900 hover:bg-gray-100 border border-transparent rounded-[24px] shadow-sm py-3 px-8 text-lg font-bold transition">Richiedi la Guida Gratuita</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Trust Bar -->
-    <section class="bg-white border-b border-gray-200 py-8">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <p class="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">Principi ispirati da brand di successo</p>
-            <div class="flex flex-wrap justify-center items-center gap-8 text-gray-300 font-bold text-xl grayscale opacity-70">
-                <span>EFFICACEMENTE</span>
-                <span>FINANCE HUB</span>
-                <span>MONEY OPTIMIZER</span>
-                <span>SMART BUDGETING</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content Area -->
-    <main class="flex-grow w-full py-16 px-4 sm:px-6">
-
-        <!-- Features Section -->
-        <section id="features" class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900">Ottimizza la Tua Vita Finanziaria</h2>
-                <p class="mt-4 text-gray-600 text-lg">Il nostro blog e le nostre consulenze offrono strumenti concreti per abbattere le spese fisse e ritrovare la tranquillità mentale ed economica ogni singolo mese.</p>
-            </div>
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style> </head><body><nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-100"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold tracking-tight text-primary flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg> Feguqubuex </a></div><div class="hidden md:flex space-x-8 items-center font-medium"><a href="#features" class="transition">Rubriche</a><a href="#reviews" class="transition">Ispirazioni</a><a href="#faq" class="transition">FAQ</a><a href="#contact" class="btn-primary text-sm px-4 py-2">Iscriviti Ora</a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-primary focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 pb-4 px-4 pt-2"><a href="#features" class="block py-3 text-base font-medium border-b border-gray-50">Rubriche</a><a href="#reviews" class="block py-3 text-base font-medium border-b border-gray-50">Ispirazioni</a><a href="#faq" class="block py-3 text-base font-medium border-b border-gray-50">FAQ</a><a href="#contact" class="block py-3 text-base font-medium text-primary">Iscriviti Ora</a></div></nav><main><section class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><div class="flex-1 text-center md:text-left"><span class="inline-block py-1 px-3 rounded-full bg-indigo-50 text-secondary text-sm font-semibold mb-6 border border-indigo-100"> Il meglio del Lifestyle Italiano </span><h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6"> Feguqubuex Services: I migliori <span class="text-primary relative inline-block">servizi<svg class="absolute w-full h-3 -bottom-1 left-0 text-secondary opacity-50" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="2" fill="none"/></svg></span> per il tuo tempo libero nascono dall'ispirazione. </h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> Esplora le ultime <strong>tendenze</strong> e scopri un mondo dedicato al <strong>lifestyle</strong> d'eccellenza. Dai consigli su <strong>moda e design</strong> alle evoluzioni del nostro <strong>stile di vita</strong>, ti portiamo le <strong>novità e trend</strong> più esclusivi ispirati al magazine Life and People. </p><div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"><a href="#features" class="btn-primary"> Esplora le Rubriche <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a><a href="#contact" class="btn-secondary"> Unisciti alla Community </a></div></div><div class="flex-1 w-full"><div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white"><div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent z-10"></div><img src="https://images.pexels.com/photos/936722/pexels-photo-936722.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Esempio di moda e design italiano" class="w-full h-auto object-cover rounded-2xl transform hover:scale-105 transition duration-700" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/800x600/4f46e5/ffffff?text=Lifestyle+Italiano'"></div></div></div></section><hr class="section-divider"><section class="py-10 max-w-5xl mx-auto px-4 text-center"><p class="text-sm font-semibold text-muted tracking-wider uppercase mb-6">Letto e apprezzato da appassionati di stile e tendenze</p><div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale"><span class="text-xl font-bold font-serif">Milano Design</span><span class="text-xl font-bold font-serif">Roma Cultura</span><span class="text-xl font-bold font-serif">Firenze Arte</span><span class="text-xl font-bold font-serif">Venezia Stile</span></div></section><hr class="section-divider"><section id="features" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">L'Essenza del Nostro Magazine</h2><p class="text-lg text-muted max-w-2xl mx-auto">Immergiti nelle categorie che definiscono il nostro approccio editoriale, curato per offrirti solo il meglio dell'ispirazione quotidiana.</p></div><div class="dna-card max-w-3xl mx-auto"><div class="flex flex-col gap-10"><div class="flex items-start gap-6"><div class="flex-shrink-0 w-14 h-14 rounded-full bg-indigo-50 flex items-center justify-center border border-indigo-100"><svg class="w-7 h-7 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg></div><div><h3 class="text-xl font-semibold mb-2">Moda e Design</h3><p class="text-muted leading-relaxed">Esploriamo le passerelle e gli studi creativi per portarti le visioni più audaci. Dalle icone del design d'interni alle ultime collezioni sartoriali, celebriamo l'estetica e la funzionalità che rendono l'Italia unica nel mondo.</p></div></div><div class="flex items-start gap-6"><div class="flex-shrink-0 w-14 h-14 rounded-full bg-indigo-50 flex items-center justify-center border border-indigo-100"><svg class="w-7 h-7 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg></div><div><h3 class="text-xl font-semibold mb-2">Stile di Vita & Benessere</h3><p class="text-muted leading-relaxed">Il vero lusso è il tempo speso bene. Approfondiamo tematiche legate al wellness, alla cura di sé, alla gastronomia raffinata e ai viaggi esclusivi. Una guida per elevare la qualità della tua quotidianità.</p></div></div><div class="flex items-start gap-6"><div class="flex-shrink-0 w-14 h-14 rounded-full bg-indigo-50 flex items-center justify-center border border-indigo-100"><svg class="w-7 h-7 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><div><h3 class="text-xl font-semibold mb-2">Novità e Trend</h3><p class="text-muted leading-relaxed">Anticipiamo i cambiamenti culturali e sociali. Resta sempre un passo avanti con le nostre analisi sulle tendenze emergenti, gli eventi imperdibili e le innovazioni che stanno plasmando il nostro modo di vivere e interagire.</p></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">La Voce dei Nostri Lettori</h2><p class="text-lg text-muted">Chi ci segue sa di trovare un punto di riferimento per l'eccellenza e il buongusto.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="dna-card mb-0 relative"><div class="text-secondary mb-4"><svg class="w-8 h-8 opacity-50" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg></div><p class="text-muted italic mb-6">"Feguqubuex è diventata la mia lettura mattutina preferita. Le sezioni dedicate a moda e design offrono spunti che non trovo altrove. Hanno un occhio incredibile per le vere tendenze."</p><div class="flex items-center gap-3 mt-auto"><div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">GM</div><div><p class="font-semibold text-sm">Giulia M.</p><p class="text-xs text-muted">Architetto d'Interni</p></div></div></div><div class="dna-card mb-0 relative"><div class="text-secondary mb-4"><svg class="w-8 h-8 opacity-50" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg></div><p class="text-muted italic mb-6">"Un magazine che sa raccontare il lifestyle italiano senza cadere nei soliti cliché. Articoli curati, novità e trend sempre aggiornati. Assolutamente consigliato a chi ama il bello."</p><div class="flex items-center gap-3 mt-auto"><div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">LR</div><div><p class="font-semibold text-sm">Lorenzo R.</p><p class="text-xs text-muted">Imprenditore</p></div></div></div><div class="dna-card mb-0 relative"><div class="text-secondary mb-4"><svg class="w-8 h-8 opacity-50" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg></div><p class="text-muted italic mb-6">"Adoro come trattano il concetto di stile di vita a 360 gradi. Non si parla solo di vestiti, ma di come vivere con eleganza e consapevolezza le proprie giornate."</p><div class="flex items-center gap-3 mt-auto"><div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">SF</div><div><p class="font-semibold text-sm">Sara F.</p><p class="text-xs text-muted">Blogger di Viaggi</p></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-20 md:py-28 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl font-bold mb-4">Domande Frequenti</h2><p class="text-muted">Tutto quello che c'è da sapere sul nostro magazine e i nostri contenuti.</p></div><div class="dna-card"><div class="space-y-4"><details class="group border-b border-gray-100 pb-4" open><summary class="flex justify-between items-center font-semibold text-lg hover:text-primary transition-colors"> Ogni quanto pubblicate nuovi articoli sulle tendenze? <span class="text-secondary group-open:rotate-180 transition-transform duration-200"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Aggiorniamo la nostra piattaforma quotidianamente. Il nostro team editoriale lavora costantemente per scovare le novità più interessanti e fornirti analisi fresche e tempestive sul mondo del lifestyle italiano e internazionale.</p></details><details class="group border-b border-gray-100 pb-4 pt-2"><summary class="flex justify-between items-center font-semibold text-lg hover:text-primary transition-colors"> Trattate solo moda e design o anche altri argomenti? <span class="text-secondary group-open:rotate-180 transition-transform duration-200"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Sebbene moda e design siano pilastri fondamentali del nostro progetto, la nostra visione dello stile di vita è molto più ampia. Copriamo anche arte, cultura, enogastronomia d'eccellenza, viaggi esclusivi e innovazione tecnologica legata al benessere personale.</p></details><details class="group border-b border-gray-100 pb-4 pt-2"><summary class="flex justify-between items-center font-semibold text-lg hover:text-primary transition-colors"> Come posso rimanere aggiornato sulle ultime novità e trend? <span class="text-secondary group-open:rotate-180 transition-transform duration-200"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Il modo migliore è iscriversi alla nostra newsletter gratuita tramite il modulo in fondo a questa pagina. Riceverai una selezione curata dei migliori articoli, approfondimenti esclusivi e anteprime sulle tendenze in arrivo, direttamente nella tua casella di posta.</p></details><details class="group border-b border-gray-100 pb-4 pt-2"><summary class="flex justify-between items-center font-semibold text-lg hover:text-primary transition-colors"> Posso suggerire argomenti o eventi da trattare? <span class="text-secondary group-open:rotate-180 transition-transform duration-200"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Assolutamente sì. Crediamo molto nel valore della nostra community. Utilizza il modulo di contatto per inviarci le tue segnalazioni su brand emergenti, eventi culturali o nuovi trend che ritieni meritino attenzione. La nostra redazione valuta ogni proposta.</p></details><details class="group pt-2"><summary class="flex justify-between items-center font-semibold text-lg hover:text-primary transition-colors"> I vostri contenuti esclusivi sono a pagamento? <span class="text-secondary group-open:rotate-180 transition-transform duration-200"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">La maggior parte dei nostri articoli e delle nostre guide è liberamente accessibile per promuovere la cultura del lifestyle d'ispirazione italiana. Offriamo occasionalmente report speciali o guide approfondite che potrebbero richiedere una registrazione gratuita per il download.</p></details></div></div></section><hr class="section-divider"><section id="contact" class="py-20 md:py-28 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card bg-indigo-50 border-none relative overflow-hidden"><div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-primary opacity-5 blur-3xl pointer-events-none"></div><div class="relative z-10 text-center mb-10"><h2 class="text-3xl font-bold mb-4">Entra nel mondo dell'ispirazione</h2><p class="text-muted max-w-xl mx-auto">Iscriviti per ricevere aggiornamenti settimanali sulle tendenze, la moda, il design e le novità che arricchiscono il tuo stile di vita.</p></div><div class="max-w-xl mx-auto"><form id="lead-form" class="space-y-5" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div class="grid grid-cols-1 md:grid-cols-2 gap-5"><div><label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">Nome</label><input type="text" id="firstName" required placeholder="Il tuo nome"></div><div><label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Cognome</label><input type="text" id="lastName" required placeholder="Il tuo cognome"></div></div><div><label for="email" class="block text-sm font-medium text-gray-700 mb-1">Indirizzo Email</label><input type="email" id="email" required placeholder="tu@esempio.it"></div><div><label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Area di Interesse Principale</label><select id="interest" required><option value="">Seleziona un'opzione...</option><option value="moda">Moda e Design</option><option value="lifestyle">Stile di Vita e Benessere</option><option value="trend">Novità e Nuovi Trend</option></select></div><button type="submit" class="btn-primary w-full justify-center mt-4"> Iscriviti Ora <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button><p class="text-xs text-center text-muted mt-4">Iscrivendoti, accetti la nostra politica sulla privacy. Nessun costo nascosto.</p></form><div id="success-msg" style="display:none" class="text-center py-8 bg-white rounded-2xl shadow-sm border border-green-100"><div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4"><svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold text-gray-900 mb-2">Iscrizione Confermata!</h3><p class="text-muted">Grazie per esserti unito alla nostra community. Riceverai presto le nostre migliori selezioni di lifestyle.</p></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><span class="text-2xl font-extrabold tracking-tight text-primary flex items-center justify-center gap-2 mb-4"><svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg> Feguqubuex Services </span><p class="text-muted max-w-md mx-auto">La tua bussola quotidiana per le tendenze, il design e lo stile di vita italiano d'eccellenza.</p></div><div class="max-w-3xl mx-auto space-y-4 mb-12 text-sm text-gray-500 text-left"><details class="bg-gray-50 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-gray-700 hover:text-primary transition-colors">Informativa sulla Privacy</summary><div class="mt-4 space-y-2 leading-relaxed"><p>La presente Informativa sulla Privacy descrive come Feguqubuex Services raccoglie, utilizza e protegge le informazioni personali degli utenti che visitano il nostro sito web. Rispettiamo rigorosamente la tua privacy e ci impegniamo a salvaguardare i tuoi dati in conformità con le normative vigenti. Quando interagisci con il nostro portale, potremmo raccogliere dati di navigazione standard tramite cookie e tecnologie simili per migliorare l'esperienza utente. Se scegli di iscriverti alla nostra newsletter o di utilizzare i moduli di contatto, raccoglieremo le informazioni da te fornite volontariamente, come nome e preferenze di lettura. Questi dati vengono utilizzati esclusivamente per fornirti i contenuti richiesti e personalizzare la tua esperienza di lettura sulle tendenze e il lifestyle. Non vendiamo, affittiamo o cediamo le tue informazioni personali a terze parti per scopi di marketing senza il tuo esplicito consenso. Implementiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, alterazione, divulgazione o distruzione. I tuoi dati sono conservati su server sicuri con accesso limitato a personale autorizzato. Hai il diritto di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati personali in qualsiasi momento. Puoi anche opporti al trattamento dei tuoi dati per finalità specifiche. Per esercitare questi diritti, puoi utilizzare le opzioni di disiscrizione presenti nelle nostre comunicazioni. Ci riserviamo il diritto di aggiornare questa politica sulla privacy periodicamente per riflettere i cambiamenti nelle nostre pratiche o per requisiti legali. Ti invitiamo a rivedere regolarmente questa pagina per rimanere informato su come proteggiamo le tue informazioni. Continuando a utilizzare il nostro sito, accetti i termini descritti in questa informativa sulla privacy aggiornata. La tua fiducia è fondamentale per noi, e lavoriamo costantemente per mantenere alti standard di trasparenza e sicurezza.</p></div></details><details class="bg-gray-50 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-gray-700 hover:text-primary transition-colors">Termini e Condizioni</summary><div class="mt-4 space-y-2 leading-relaxed"><p>I presenti Termini e Condizioni regolano l'accesso e l'utilizzo del sito web gestito da Feguqubuex Services. Accedendo o utilizzando il nostro sito, accetti di essere vincolato da questi termini nella loro interezza. Se non sei d'accordo con una qualsiasi parte di questi termini, ti preghiamo di non utilizzare il nostro portale. Il contenuto pubblicato su questo sito, inclusi articoli, immagini, grafiche e analisi relative a moda, design e lifestyle, è fornito esclusivamente a scopo informativo e di intrattenimento. Facciamo ogni sforzo per garantire l'accuratezza delle informazioni, ma non forniamo garanzie esplicite o implicite sulla loro completezza o tempestività. Tutto il materiale presente sul sito è protetto da copyright e altre leggi sulla proprietà intellettuale. Non è consentito riprodurre, distribuire, modificare o creare opere derivate dai nostri contenuti senza una preventiva autorizzazione scritta. L'utente si impegna a utilizzare il sito in modo lecito e a non intraprendere azioni che possano compromettere la sicurezza o il corretto funzionamento della piattaforma. Feguqubuex Services non sarà responsabile per eventuali danni diretti, indiretti, accidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito. Il nostro sito può contenere collegamenti a siti web di terze parti, inclusi i nostri partner affiliati come Life and People. Non abbiamo controllo su questi siti esterni e non ci assumiamo alcuna responsabilità per il loro contenuto o le loro pratiche sulla privacy. Ci riserviamo il diritto di modificare o interrompere, temporaneamente o permanentemente, qualsiasi parte del sito con o senza preavviso. Inoltre, possiamo aggiornare questi Termini e Condizioni in qualsiasi momento. L'uso continuato del sito dopo la pubblicazione di eventuali modifiche costituisce l'accettazione dei nuovi termini. Qualsiasi controversia derivante dall'utilizzo di questo sito sarà regolata dalle leggi vigenti nel paese di operatività principale. Ti invitiamo a leggere attentamente questi termini prima di interagire ulteriormente con i nostri contenuti editoriali.</p></div></details><details class="bg-gray-50 rounded-lg p-4 cursor-pointer"><summary class="font-semibold text-gray-700 hover:text-primary transition-colors">Politica di Rimborso / Recesso</summary><div class="mt-4 space-y-2 leading-relaxed"><p>La presente Politica di Rimborso e Recesso descrive le condizioni applicabili ai servizi offerti tramite Feguqubuex Services. Poiché il nostro sito opera principalmente come portale informativo e di aggregazione di contenuti relativi al lifestyle e alle tendenze, la maggior parte dei nostri servizi è offerta in forma gratuita. Pertanto, per le iscrizioni gratuite a newsletter o l'accesso ad articoli pubblici, non è applicabile alcuna politica di rimborso. Tuttavia, qualora dovessimo offrire in futuro guide esclusive, report premium o altri prodotti digitali a pagamento, si applicheranno le seguenti regole. Gli utenti avranno il diritto di richiedere un rimborso entro 14 giorni dall'acquisto di qualsiasi prodotto digitale, a condizione che il contenuto non sia stato scaricato o ampiamente fruito. Se il prodotto digitale risulta difettoso o non conforme alla descrizione fornita sul nostro sito, valuteremo le richieste di rimborso caso per caso, impegnandoci a garantire la massima soddisfazione del cliente. Per richiedere un rimborso, sarà necessario fornire la prova d'acquisto e una motivazione dettagliata. Le richieste verranno elaborate entro un periodo di tempo ragionevole, solitamente non superiore a 10 giorni lavorativi. I rimborsi approvati verranno emessi utilizzando lo stesso metodo di pagamento scelto al momento dell'acquisto originale, salvo diversi accordi. Nel caso di servizi in abbonamento (se applicabili), l'utente può annullare il rinnovo automatico in qualsiasi momento prima del ciclo di fatturazione successivo. Non verranno emessi rimborsi parziali per i periodi di abbonamento già iniziati. È importante notare che Feguqubuex Services agisce come affiliato per il magazine Life and People. Pertanto, se un acquisto viene effettuato direttamente sul sito del partner tramite un nostro link, la politica di rimborso applicabile sarà esclusivamente quella del sito partner. Consigliamo vivamente di leggere attentamente le politiche dei siti di terze parti prima di completare qualsiasi transazione. La nostra priorità è mantenere un rapporto trasparente e corretto con la nostra community di lettori.</p></div></details></div><div class="bg-indigo-50 rounded-xl p-6 text-center text-sm text-gray-600 mb-8 border border-indigo-100"><p><strong>Disclaimer Obbligatorio:</strong> Questo è un sito promozionale indipendente gestito da Feguqubuex Services, che opera come affiliato per Life and People. Tutti i marchi e i contenuti di terze parti appartengono ai rispettivi proprietari. Il nostro obiettivo è promuovere la cultura del lifestyle e delle tendenze italiane fornendo informazioni utili e ispirazioni quotidiane.</p></div><div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"><p class="text-sm text-muted">&copy; 2026 Feguqubuex Services. Tutti i diritti riservati.</p><div class="flex space-x-4"><span class="text-sm text-muted font-medium">Lifestyle & Tendenze</span></div></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-2xl p-4 md:p-6 z-50 transform translate-y-full transition-transform duration-500"><div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-600 flex-1"> Utilizziamo i cookie per migliorare la tua esperienza di navigazione, analizzare il traffico e offrirti contenuti personalizzati sulle ultime tendenze e il lifestyle. Continuando a navigare, accetti il nostro utilizzo dei cookie. </div><div class="flex gap-3 flex-shrink-0"><button onclick="acceptCookies()" class="btn-primary text-sm px-6 py-2">Accetta Tutto</button><button onclick="acceptCookies()" class="btn-secondary text-sm px-6 py-2">Rifiuta</button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100">
-                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4 text-primary">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Pianificazione del Mese</h3>
-                    <p class="text-gray-600">Scopri come distribuire il tuo <strong class="text-gray-900">stipendio</strong> in modo strategico fin dal primo giorno del <strong class="text-gray-900">mese</strong>. Mai più sorprese sgradite quando serve liquidità.</p>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100">
-                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4 text-primary">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Taglio Spese Fisse</h3>
-                    <p class="text-gray-600">Le <strong class="text-gray-900">bollette</strong> e l'<strong class="text-gray-900">affitto</strong> divorano le tue risorse? Ti guidiamo verso le migliori soluzioni contrattuali e abitudini per minimizzare questi costi.</p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100">
-                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4 text-primary">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Padronanza del Conto</h3>
-                    <p class="text-gray-600">Organizzare le uscite e massimizzare il vero <strong class="text-gray-900">risparmio</strong> tenendo costantemente d'occhio le dinamiche del tuo <strong class="text-gray-900">conto</strong> senza stress emotivo.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Informative Content Section -->
-        <section class="max-w-5xl mx-auto dna-card grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <img src="https://images.pexels.com/photos/6863515/pexels-photo-6863515.jpeg?auto=compress&cs=tinysrgb&w=800&q=80" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Gestione+Budget'" 
-                     loading="lazy" 
-                     referrerpolicy="no-referrer"
-                     alt="Persona che pianifica il budget" 
-                     class="rounded-[24px] shadow-md w-full">
-            </div>
-            <div>
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Tracciare le <span class="text-primary">Spese</span> fa la differenza</h2>
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                    Gran parte delle nostre insicurezze finanziarie nasce dall'ignorare l'entità delle piccole fuoriuscite quotidiane. Le strategie promosse da EfficaceMente sottolineano l'importanza della consapevolezza e dell'azione focalizzata.
-                </p>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-start">
-                        <svg class="w-6 h-6 text-primary mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <span class="text-gray-700">Impara a dividere il budget tra necessità, svago e accumulo patrimoniale in totale equilibrio.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-6 h-6 text-primary mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <span class="text-gray-700">Abbandona le abitudini dannose e trasforma la gestione in un processo automatico e gratificante.</span>
-                    </li>
-                </ul>
-                <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
-                    Vuoi un metodo passo dopo passo? Contattaci <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </a>
-            </div>
-        </section>
-
-        <!-- Social Proof / Reviews Section -->
-        <section id="reviews" class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-gray-900">Storie di Cambiamento (Aggiornate 2026)</h2>
-                <p class="mt-4 text-gray-600">Scopri come i nostri lettori hanno ripreso in mano il controllo del proprio patrimonio.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
-                    <div class="text-yellow-400 flex mb-3">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"Grazie agli articoli del blog, ho imparato a rinegoziare i miei contratti per le utenze. Rispetto all'anno scorso, riesco finalmente a mantenere un attivo stabile sul mio deposito alla fine del periodo lavorativo."</p>
-                    <p class="font-bold text-gray-900">- Marco V., Impiegato</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
-                    <div class="text-yellow-400 flex mb-3">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"Non avevo idea di quanto sprecassi ogni giorno. Le indicazioni per tracciare le piccolezze mi hanno aperto gli occhi e ora sento di avere molta più padronanza sulle mie scelte e sul mio salario mensile."</p>
-                    <p class="font-bold text-gray-900">- Elena S., Insegnante</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
-                    <div class="text-yellow-400 flex mb-3">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"L'approccio pragmatico consigliato mi ha aiutato ad affrontare i pesi fissi del canone abitativo senza ansia. Applicare la regola delle percentuali ha letteralmente salvato i miei conti famigliari."</p>
-                    <p class="font-bold text-gray-900">- Giovanni T., Architetto</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section id="faq" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-bold text-gray-900 text-center mb-8">Domande Frequenti sulla Gestione Finanziaria</h2>
-            <div class="space-y-4">
-                <details class="group bg-white border border-gray-200 rounded-lg overflow-hidden cursor-pointer" open>
-                    <summary class="px-6 py-4 font-bold bg-gray-50 text-gray-900 group-open:bg-primary group-open:text-white transition-colors">
-                        Come posso evitare di spendere l'intero importo della mia entrata lavorativa?
-                    </summary>
-                    <div class="px-6 py-4 text-gray-600 bg-white">
-                        La regola fondamentale è il principio "paga prima te stesso". Appena arriva l'entrata principale sul deposito, trasferisci automaticamente una quota prestabilita in uno spazio separato destinato all'accumulo. Questo elimina la tentazione di utilizzare l'intera cifra.
-                    </div>
-                </details>
-                <details class="group bg-white border border-gray-200 rounded-lg overflow-hidden cursor-pointer">
-                    <summary class="px-6 py-4 font-bold bg-gray-50 text-gray-900 group-open:bg-primary group-open:text-white transition-colors">
-                        È possibile limare la pressione delle utenze e dei contratti domestici fissi?
-                    </summary>
-                    <div class="px-6 py-4 text-gray-600 bg-white">
-                        Certamente. Un'azione cardine consiste nella revisione annuale dei fornitori. Contattare gli operatori o confrontare le offerte di libero mercato può liberare fondi essenziali. Inoltre, l'efficienza energetica gioca un ruolo chiave nella prevenzione degli sprechi a lungo termine.
-                    </div>
-                </details>
-                <details class="group bg-white border border-gray-200 rounded-lg overflow-hidden cursor-pointer">
-                    <summary class="px-6 py-4 font-bold bg-gray-50 text-gray-900 group-open:bg-primary group-open:text-white transition-colors">
-                        Quanto tempo richiede applicare le metodologie descritte nel blog?
-                    </summary>
-                    <div class="px-6 py-4 text-gray-600 bg-white">
-                        L'impostazione iniziale richiede dedizione per analizzare le uscite correnti. Tuttavia, una volta impostati gli strumenti corretti (come la suddivisione budgetaria settimanale o mensile), basteranno meno di 30 minuti alla settimana per il semplice monitoraggio.
-                    </div>
-                </details>
-                <details class="group bg-white border border-gray-200 rounded-lg overflow-hidden cursor-pointer">
-                    <summary class="px-6 py-4 font-bold bg-gray-50 text-gray-900 group-open:bg-primary group-open:text-white transition-colors">
-                        Se il mio reddito è limitato, posso lo stesso generare fondi di emergenza?
-                    </summary>
-                    <div class="px-6 py-4 text-gray-600 bg-white">
-                        Assolutamente sì. Anche destinare il 5% o l'1% dell'entrata serve a creare l'abitudine mentale necessaria per accumulare costanza. Ridurre piccolissime emorragie quotidiane (colazioni esterne superflue, abbonamenti non utilizzati) ha un impatto monumentale sul bilancio generale annuo.
-                    </div>
-                </details>
-                <details class="group bg-white border border-gray-200 rounded-lg overflow-hidden cursor-pointer">
-                    <summary class="px-6 py-4 font-bold bg-gray-50 text-gray-900 group-open:bg-primary group-open:text-white transition-colors">
-                        Le indicazioni di Feguqubuex sono simili ai concetti formativi di EfficaceMente?
-                    </summary>
-                    <div class="px-6 py-4 text-gray-600 bg-white">
-                        Feguqubuex si focalizza unicamente e verticalmente sul settore pratico dell'economia individuale. Attingiamo e agiamo come veicolo promozionale anche per princìpi ispirati a portali leader nello sviluppo personale per costruire basi solide e concrete al tuo futuro patrimoniale.
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="max-w-5xl mx-auto dna-card bg-gray-900 text-white relative overflow-hidden">
-            <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-primary opacity-20 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <div class="relative z-10 grid md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-3xl font-bold mb-4">Ricevi le nostre guide strategiche gratuite</h2>
-                    <p class="text-gray-300 mb-8">Ottieni le checklist complete per organizzare le tue risorse economiche e preparare il terreno per una tranquillità duratura. Richiedi la consulenza preliminare tramite il modulo o vieni a trovarci (su appuntamento).</p>
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    <div class="space-y-6">
-                        <div class="flex items-center">
-                            <div class="bg-gray-800 p-3 rounded-full mr-4 text-primary">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-200">Sede Registrata</h4>
-                                <p class="text-gray-400">Via Marsala, 00185 Roma, Italia (Indirizzo Fiscale EfficaceMente SRL - Riferimento)</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-gray-800 p-3 rounded-full mr-4 text-primary">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-200">Orari di Assistenza (Solo moduli Web)</h4>
-                                <p class="text-gray-400">Lunedì - Venerdì: 09:00 - 18:00</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-4 italic">*I recapiti telefonici non sono attualmente attivi per questioni di alta ricezione volumi. Per ogni necessità, il contatto via modulo riceve priorità assoluta.</p>
-                    </div>
-                </div>
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
 
-                <div class="bg-white rounded-2xl p-6 text-gray-900 relative">
-                    <h3 class="text-2xl font-bold mb-4">Inizia Subito</h3>
-                    <form id="lead-form" onsubmit="handleFormSubmit(event)">
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome e Cognome</label>
-                            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition">
-                        </div>
-                        <div class="mb-4">
-                            <label for="goal" class="block text-sm font-medium text-gray-700 mb-1">Il tuo obiettivo principale</label>
-                            <select id="goal" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition bg-white">
-                                <option value="">Scegli un'opzione...</option>
-                                <option value="risparmio">Creare un piano di salvataggio del reddito mensile</option>
-                                <option value="bollette">Diminuire i pesi domestici contrattuali fissi</option>
-                                <option value="gestione">Migliorare la mentalità amministrativa bancaria</option>
-                            </select>
-                        </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Qual è la tua difficoltà maggiore attualmente?</label>
-                            <textarea id="message" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition"></textarea>
-                        </div>
-                        <button type="submit" class="w-full btn-primary text-center">Richiedi Guida Strategica Gratuita</button>
-                    </form>
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
 
-                    <div id="success-msg" style="display:none" class="bg-green-50 border border-green-200 p-6 rounded-lg text-center h-full flex flex-col justify-center items-center">
-                        <svg class="w-16 h-16 text-green-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <h4 class="text-xl font-bold text-gray-900 mb-2">Richiesta Inviata con Successo!</h4>
-                        <p class="text-gray-600">Le nostre guide e direttive sono in elaborazione. Uno dei nostri consulenti prenderà in esame il tuo profilo amministrativo il prima possibile.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800 text-gray-400 pt-16 pb-8 px-4 sm:px-6">
-        <div class="max-w-5xl mx-auto">
-            <div class="mb-10 text-center md:text-left">
-                <span class="text-2xl font-black text-white tracking-tight block mb-4">
-                    Feguqubuex<span class="text-primary">.Services</span>
-                </span>
-                <p class="text-sm max-w-3xl mx-auto md:mx-0">
-                    Siamo impegnati nel divulgare le migliori tecniche di riorganizzazione economica, educando l'individuo a un corretto rapporto con le proprie entrate, per affrontare l'esistenza con minore ansia derivante dai doveri contrattuali domestici o dai cicli bancari.
-                </p>
-                <div class="mt-6 p-4 bg-gray-800 rounded-lg text-gray-300 text-sm border border-gray-700 text-center">
-                    <strong>DISCLAIMER OBBLIGATORIO:</strong> Questo è un sito promozionale indipendente gestito da Feguqubuex Services, che agisce come affiliato e divulgatore in ambito educazionale relativo al marchio EfficaceMente, il quale rimane proprietario intellettuale dei sistemi di sviluppo descritti, sebbene Feguqubuex sia autonomamente responsabile della gestione e compilazione di questa specifica interfaccia informativa per il cliente.
-                </div>
-            </div>
-
-            <!-- Legal Documents Details -->
-            <div class="mb-8 space-y-4">
-                <details class="legal-doc text-gray-800 text-sm">
-                    <summary>Informativa sulla Privacy (Privacy Policy)</summary>
-                    <div class="mt-4 space-y-3 leading-relaxed border-t border-gray-200 pt-4 text-justify">
-                        <p>Benvenuti nell'Informativa sulla Privacy ufficiale per i servizi di educazione monetaria offerti tramite questo portale indipendente. La tutela delle informazioni che decidi di inserire o trasmettere è un nostro fondamentale principio. Ci impegniamo a trattare i dati in conformità con la severa regolamentazione legislativa, prestando attenzione a garantire confidenzialità nelle dinamiche interattive di rete. Tutti i dati conferiti al momento dell'inserimento nel form saranno unicamente utilizzati a scopi consulenziali.</p>
-                        <p>La conservazione è localizzata in archivi protetti che si uniformano agli standard in uso dai moderni applicativi tecnologici, impedendo tentativi di consultazioni fraudolente da attori non coinvolti nell'analisi economica esplicitamente richiesta. Questa tutela copre sia gli accessi analitici non strutturati che l'insieme complesso delle deduzioni che ricaviamo sulle abitudini legate all'utenza domestica del consumatore. Utilizziamo filtri elettronici affinché informazioni potenzialmente critiche non siano visibili. Viene attuato un programma di verifica trimestrale delle policy infrastrutturali a garanzia dell'inviolabilità del perimetro documentale. Oltretutto, nessun dato ceduto all'atto del quesito, per finalità di assistenza all'analisi degli sbilanci, subirà cessioni o passaggi remunerati a parti aziendali terze o cataloghi commerciali pubblicitari aggressivi non strettamente in relazione alle nostre metodologie educative.</p>
-                        <p>Ricordiamo che è piena discrezione di chi richiede informazioni fornire nome reale oppure pseudonimo analitico, in quanto noi esaminiamo semplicemente flussi teorici numerici o casistiche relative all'approccio monetario della persona per generare riscontri e istruzioni programmatiche. Viene riservato ad ogni istante all'utente la possibilità di reclamare con effetto immediato l'oblio documentale inerente ogni interazione pregressa o attuale per interposta attività elettronica o postale ordinaria associata alle registrazioni fisiche ufficiali della nostra curatela fiscale. L'analisi sui mezzi impiegati per visitare queste pagine avverrà rigorosamente anonima al fine esclusivo di monitoraggio quantitativo, mai in merito al singolo visitatore in veste nominale. Navigare o inviare materiale a mezzo della form d'interfaccia equivale all'accettazione estensiva della normativa sinora sviscerata.</p>
-                    </div>
-                </details>
-
-                <details class="legal-doc text-gray-800 text-sm">
-                    <summary>Termini e Condizioni (Terms of Service)</summary>
-                    <div class="mt-4 space-y-3 leading-relaxed border-t border-gray-200 pt-4 text-justify">
-                        <p>L'uso della piattaforma, la consultazione del materiale narrativo inerente al taglio dell'investimento sui debiti fissi domestici, e ogni istruzione suggerita sui controlli bancari costituiscono materiale didattico protetto da diritti ed impegna il consultante al rispetto assoluto dei suddetti presenti accordi contrattuali di navigazione. Scegliendo d'impegnarti in comunicazioni o richiedere file teorici su metodologie analitiche mensili, prendi atto formalmente delle regolamentazioni dettate nel presente ambito normativo estensivo. Non essendo qualificabili né considerati sotto aspetto giurisdizionale consulenti finanziari abilitati agli investimenti borsistici diretti, offriamo spunti informativi orientati al ridimensionamento e al contenimento generale e razionalistico di passività fisse quotidiane e comportamentali in stile anglosassone cosiddetto budgeting casalingo informale. In nessun istante l'operatore promuoverà allocamento passivo garantente profitti futuri misurabili pre-organizzati su alcun mezzo, mercato oppure assetto istituzionale bancario o speculativo reale ma illustrerà modelli di limitazione di onerosità inutili inerenti i capitoli usuali di un operatore in proprio o da subalterno aziendale regolare nel perimetro nazionale dello stipendio tipicamente guadagnato per prestazione professionale di normale impiego. Il rischio attuativo correlato alle revisioni fornituristiche intraprese spontaneamente dalle libere intuizioni di chicchessia apprese su questo circuito di lettura cadranno come unico rischio in via assoluta sull'esecutore, slegando ed esonerando l'autore del suddetto canale da cause scaturenti ipotetici disguidi o decorsi d'intesa ostili fra fruitore o prestatori di utenza vario tipo contattati dallo stesso dopo apprendimento delle suddette guide, libri d'informazione o metodiche esplicitate nei successivi elaborati d'accompagnamento o report testuali di tipo programmatico a diffusione chiusa in PDF resi pubblici a posteriori a chi in effetti ce lo esigesse su contatto proattivo online. Sottraiamo l'utenza e la curatela nostra da qualsivoglia garanzia sul mantenimento esatto medesimo degli url proiettanti e diffondenti le succitate opere o dall'adeguatezza tempestiva se leggi pubbliche o prassi venissero mutate su aspetti ad esempio, per contrattazioni di fitti in via governativa su scali territoriali circoscritti e noi sprovveduti dell'ultimo momento su eventuali cambiamenti territoriali sfuggitici dalle stesure generali e valide tendenzialmente sull'ampio mercato standard contemporaneo d'epoca a stesura avvenuta nel lontano ma continuativo attuale momento temporale indicizzato sul copyright annuo vigente per l'impaginazione stessa della grafica interfacciante visibile in atto qui da terminale locale in essere visivamente per ognuno di noi navigatore telematico odierno per come appresa globalmente nella versione attuale prodotta con il server odierno locale o virtuale qual sia.  Queste pattuizioni sanciscono globalmente gli orientamenti unici in assolutezza ed esentano i pregressi precontratti assorbiti dalle stesure successive integrali presenti su terminali remoti se visionati oggi ad ogni effetto valido senza ulteriore comunicazione preliminare notificata a pioggia d'obbligo preventivo necessario.</p>
-                    </div>
-                </details>
-
-                <details class="legal-doc text-gray-800 text-sm">
-                    <summary>Politiche di Reso (Refund Policy)</summary>
-                    <div class="mt-4 space-y-3 leading-relaxed border-t border-gray-200 pt-4 text-justify">
-                        <p>I principi in materia economica applicata impongono chiari ed oggettivi binari sulla questione di rimborsabilità verso le erogazioni che l'utente può scegliere attivamente di intraprendere dopo la fruizione basilare. Nello specifico panorama inerente guide pratiche virtuali scaricate senza la presenza corporale che certifichi disgiunzioni d'avvenuto possesso logico tangibile del prodotto informazionale puro immateriale intangibile per sua intrinseca costituzionalità immateriale al supporto fisico. Esattamente, quando avviene transizione economica diretta volta all'accesso ad archiviazioni didattiche destinate ad apprendere tattiche per le diminuzioni d'ingombro fatturale al fine del ciclo contabile temporale regolare d'individuo privato o libero, tale evento produce simultaneamente una cessazione immediata del diritto ripensante canonico europeo quattordicinale normalmente istituito ove compatibile in mercanzie concrete ordinarie solide scambiate via corrispondenza per corriere fisico consueto ordinato ai poli manifatturieri standardistici civili consueti generali applicati normalmente ed ovunque globalmente nel continente di legge d'appartenenza giurisdizionale del momento del consumo originario esplicitamente deducibile ad azione compiuta con transazioni su sistemi bancari tracciabili usuali noti e ad oggi in esecuzione telematica veloce ed efficace comunemente assodata mondialmente al giorno presente operativo noto nel complesso circuito web diffuso. Qualora si instaurino patrocini prolungati sotto forma di mentorship in diretta continua programmatica estesa nei bimestri su appuntamenti verbalizzati telematicamente e l'allievo esiga anticipatamente revoca unilaterale dal patto ostruendone decorso fisiologico del percorso tracciato con finalità ripristinatorie educazionali verso il proprio salario stipendiario annuo personale generico d'attualità presunta iniziale all'accordo deduttivo verbale medesimo stipulato volontariamente prima dei corsi stessi concordati mutualmente in chiarezza verbale, vi sarà restituzione in percentuale unicamente sulle tappe formative virtualmente a doversi ancora eseguire dal tutor in avanti nel calendario preorganizzato ad acconti fatturati inizialmente, con defalco delle porzioni d'ore o istanti ed impegni di preparazione retroattivamente addebitabili all'allievo insoddisfatto se richiesto interruzione formale comprovata da manifestazioni irrecusabili con mezzi tradizionali probatori della ritirata ufficiale dello stesso ai sensi degli articoli tutelanti del panorama d'applicazione d'imprese regolarmente e pubblicamente dichiarate per lo scopo prestazionale della didattica teorica non accademica applicata al settore monetaristico ordinario a base domestico gestionale amatoriale divulgativo e motivazionale e spingente il miglioramento cognitivo sui medesimi aspetti monetari dell'ordinaria vita famigliare.</p>
-                    </div>
-                </details>
-            </div>
-
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <p>&copy; 2026 Feguqubuex Services. Tutti i diritti riservati. Sito divulgativo non inquadrato come consulenza d'investimento. Vietata la riproduzione.</p>
-                <div class="mt-4 md:mt-0 space-x-4">
-                    <span>Progettato per incrementare le difese dal costo orario delle rendite fisse moderne passive tramite analisi sistematica cosciente e oculata del bilancio privato d'utilizzo d'urto del reddito regolare in disponibilità all'utente stesso che consulta lo scrivente per mera motivazione al benessere intimo di tasca in un quadro d'ordine razionalizzato e pacato senza falsità o esaltazione ma pragmatismo analitico d'essenziale sopravvivenza attiva reattiva e strategica al mondo economico odierno per come a tutt'oggi lo affrontiamo tutti nell'ordinaria vita per chi di dovere ha l'onere d'informarsi bene da principio in libertà civile per sempre se possibile a vita intera di sé in modo autonomo sereno informato costantemente ai doveri primari dell'amministrazione sensata prudente cautelativa previdente a bilanci quadrati in ogni forma d'età consapevole sana in equilibrio con la salute sociale odierna complessiva d'appartenenza comune alla comunità umana globale mondiale presente.</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 inset-x-0 bg-gray-900 shadow-2xl z-50 transform translate-y-full transition-transform duration-500 border-t border-gray-800">
-        <div class="max-w-5xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
-            <p class="text-sm text-gray-300 mb-4 md:mb-0">
-                Utilizziamo cookies tecnici obbligatori per misurare quante visite ci sono al nostro canale divulgativo che supporta le migliori metodologie di taglio oneri ricorrenti. Non applichiamo retargeting commerciale non richiesto e i cookies durano un periodo breve prestabilito per soli fini analitici statistici minimi non invasivi sul controllo profilato nominale intrusivo e nocivo solitamente.
-            </p>
-            <div class="flex space-x-4 flex-shrink-0">
-                <button onclick="acceptCookies()" class="bg-primary hover:bg-green-600 text-white font-bold py-2 px-6 rounded-[24px] text-sm transition">
-                    Ho Capito
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Logic Engine Injection -->
-    <script>
-        // JS Navigation Smart Routing Logic (Gravity Well Protocol)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                let targetEl = document.querySelector(targetId);
-                
-                // Fallback mechanism: if id not found, scroll to #contact
-                if (!targetEl) {
-                    targetEl = document.querySelector('#contact');
-                }
-                
-                // Mobile Menu closure upon clicking
-                const mobileMenu = document.getElementById('mobile-menu');
-                if(!mobileMenu.classList.contains('hidden')){
-                    mobileMenu.classList.add('hidden');
-                }
-                
-                if (targetEl) {
-                    targetEl.scrollIntoView({ behavior: 'smooth' });
-                }
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Target exists -> Smooth Scroll
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else {
+                        // Fallback -> Force scroll to contact form
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) {
+                            contactSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
             });
-        });
 
-        // Form Lead Submission Simulator without default alerts
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const form = document.getElementById('lead-form');
-            const btn = form.querySelector('button[type="submit"]');
-            const successMsg = document.getElementById('success-msg');
-            
-            btn.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Controllo Richiesta...`;
-            btn.disabled = true;
-            btn.classList.add('opacity-75', 'cursor-not-allowed');
-
-            setTimeout(() => {
-                form.style.display = 'none';
-                successMsg.style.display = 'flex';
-                // Automatically reset after 5 seconds for re-engagement
-                setTimeout(()=>{
-                    form.reset();
-                    btn.innerHTML = 'Richiedi Guida Strategica Gratuita';
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-75', 'cursor-not-allowed');
-                    successMsg.style.display = 'none';
-                    form.style.display = 'block';
-                }, 8000);
-            }, 1500);
-        }
-
-        // Cookie Manager Engine
-        window.onload = () => {
-            const banner = document.getElementById('cookie-banner');
-            if (!localStorage.getItem('cookie-agreed')) {
-                // Ensure minor delay so UI is totally painted before slide up effect
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookieAccepted')) {
                 setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
                     banner.classList.remove('translate-y-full');
                 }, 1000);
             }
-        };
+        });
 
         function acceptCookies() {
-            localStorage.setItem('cookie-agreed', 'true');
+            localStorage.setItem('cookieAccepted', 'true');
             const banner = document.getElementById('cookie-banner');
             banner.classList.add('translate-y-full');
         }
-    </script>
-</body>
-</html>
+    </script> </body></html>
