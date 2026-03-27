@@ -1,516 +1,197 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CifedaEx Advisory - Analisi e Notizie Tecnologiche</title>
-    <meta name="description" content="Il tuo punto di riferimento per l'innovazione. CifedaEx Advisory offre analisi approfondite, notizie di tecnologia e approfondimenti sul mondo digitale.">
-    <!-- Tailwind CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <style>
-        /* DNA DESIGN SYSTEM calculated from input URL */
-        :root {
-            /* VAR D: Palette -> Digital Blue for Tech/Advisory */
-            --primary: #2563EB; 
-            /* VAR C: Surface -> Cool Slate White */
-            --surface: #f8fafc;
-            /* VAR A: Geometry -> Soft (37 % 3 = 1) */
-            --radius: 12px;
-            /* VAR B: Physics -> Hard Neo-Brutalist (104 % 3 = 2) */
-            --shadow: 4px 4px 0px 0px #000;
-        }
+<!DOCTYPE html><html lang="it" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cifedaex Advisory | Rivista Attività Outdoor e Benessere in Italia</title><meta name="description" content="La principale rivista digitale per escursioni in Italia, percorsi natura, trekking e ritiri benessere in terme e spa. Scopri le migliori attività all'aperto."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
+      :root {
+        --primary: #059669;
+        --secondary: #dc2626;
+        --radius: 24px;
+        --card-radius: 24px;
+        --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+        --body-bg: #fefce8;
+        --card-bg: #ffffff;
+        --text: #1a2e05;
+        --muted: #71717a;
+      }
 
-        /* GLOBAL CONTRAST BASE */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Gray base for contrast */
-            color: #1f2937;
-            overflow-x: hidden;
-        }
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'Outfit', sans-serif;
+        padding-top: 4rem; /* Fixed navbar compensation */
+      }
 
-        h1, h2, h3 {
-            color: #111827;
-        }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Outfit', sans-serif;
+      }
 
-        /* BRAND COMPONENT: The DNA Card */
-        .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 2px solid #000; /* Adjusted for Hard Shadow logic */
-            transition: transform 0.3s ease;
-        }
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
 
-        .dna-card:hover {
-            transform: translateY(-2px);
-        }
+      nav {
+        background-color: var(--body-bg);
+      }
 
-        /* BRAND COMPONENT: Primary Button */
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 2px solid #000; /* Neo-brutalism border */
-            padding: 1rem 2rem;
-            transition: all 0.2s;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: inline-block;
-        }
-        .btn-primary:hover { 
-            opacity: 1; 
-            transform: translate(2px, 2px); /* Click effect for hard shadow */
-            box-shadow: 0 0 0 0 #000;
-        }
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'Outfit', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        .btn-secondary {
-            background-color: #fff;
-            color: #000 !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 2px solid #000;
-            padding: 1rem 2rem;
-            transition: all 0.2s;
-            font-weight: 800;
-        }
-        .btn-secondary:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 0 0 0 0 #000;
-        }
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-secondary:hover {
+        background-color: rgba(5,150,105,0.05);
+      }
 
-        /* UTILITY: Text Accent */
-        .text-primary { color: var(--primary); }
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
 
-        /* HERO OVERLAY */
-        .hero-bg {
-            background-image: url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .hero-overlay {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(0, 0, 0, 0.8));
-        }
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+        box-shadow: var(--shadow);
+      }
 
-        /* MOBILE MENU ANIMATION */
-        #mobile-menu {
-            transition: opacity 0.3s ease-in-out;
-        }
+      /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+      main, main + footer { scroll-margin-top: 5rem; }
 
-        /* COOKIE BANNER */
-        #cookie-banner {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            z-index: 50;
-            background: #fff;
-            border: 2px solid #000;
-            box-shadow: var(--shadow);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            display: none;
-        }
-    </style>
-</head>
-<body>
+      /* Form inputs */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(5,150,105,0.15);
+      }
 
-    <!-- NAVIGATION -->
-    <nav class="bg-white border-b-2 border-black sticky top-0 z-40">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="font-extrabold text-2xl tracking-tighter uppercase">CifedaEx<span class="text-primary">Advisory</span></span>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="font-bold text-gray-700 hover:text-primary transition">Analisi</a>
-                    <a href="#reviews" class="font-bold text-gray-700 hover:text-primary transition">Opinioni</a>
-                    <a href="#faq" class="font-bold text-gray-700 hover:text-primary transition">FAQ</a>
-                    <a href="#contact" class="btn-primary py-2 px-4 text-sm">Contattaci</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black p-4 absolute w-full shadow-xl">
-            <a href="#features" class="block py-3 font-bold text-gray-700">Analisi</a>
-            <a href="#reviews" class="block py-3 font-bold text-gray-700">Opinioni</a>
-            <a href="#faq" class="block py-3 font-bold text-gray-700">FAQ</a>
-            <a href="#contact" class="block mt-4 text-center btn-primary">Contattaci</a>
-        </div>
-    </nav>
+      /* Links */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
 
-    <!-- HERO SECTION -->
-    <section class="hero-bg text-white relative">
-        <div class="hero-overlay absolute inset-0"></div>
-        <div class="relative max-w-5xl mx-auto px-4 py-24 sm:py-32 flex flex-col items-center text-center">
-            <span class="bg-white text-black font-bold px-4 py-1 rounded-full mb-6 border-2 border-black shadow-md uppercase text-xs tracking-widest">
-                Digital Media Publisher
-            </span>
-            <h1 class="text-4xl sm:text-6xl font-extrabold mb-6 leading-tight">
-                L'Informazione Tecnologica come <br><span class="text-blue-300">Investimento Strategico</span>.
-            </h1>
-            <p class="text-lg sm:text-xl text-gray-200 mb-10 max-w-2xl font-medium">
-                Ogni notizia è un tassello del sistema digitale. Analizziamo le tendenze tecnologiche globali per offrirti un vantaggio informativo chiaro e tempestivo.
-            </p>
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="#contact" class="btn-primary border-white border-2">
-                    Richiedi Approfondimento
-                </a>
-                <a href="#features" class="btn-secondary">
-                    Scopri le Rubriche
-                </a>
-            </div>
+      /* Section divider */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(5,150,105,0.12), transparent);
+        margin: 0;
+      }
+
+      /* Details/Summary styling for FAQ and Legal */
+      details summary {
+        cursor: pointer;
+        font-weight: 600;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      details summary::-webkit-details-marker { display: none; }
+      details summary::after {
+        content: "+";
+        color: var(--secondary);
+        font-size: 1.5rem;
+        transition: transform 0.2s;
+      }
+      details[open] summary::after {
+        transform: rotate(45deg);
+      }
+      details[open] summary { border-bottom: none; }
+      details > div {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+    </style> </head><body><nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-gray-200 shadow-sm"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold tracking-tight flex items-center gap-2"><svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg> Cifedaex<span class="text-secondary">Advisory</span></a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="font-medium hover:text-primary transition-colors">La Rivista</a><a href="#reviews" class="font-medium hover:text-primary transition-colors">Testimonianze</a><a href="#faq" class="font-medium hover:text-primary transition-colors">FAQ</a><a href="#contact" class="btn-primary text-sm px-6 py-2">Collabora con Noi</a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 py-4 px-4 flex flex-col space-y-4"><a href="#features" class="block font-medium px-2 py-1">La Rivista</a><a href="#reviews" class="block font-medium px-2 py-1">Testimonianze</a><a href="#faq" class="block font-medium px-2 py-1">FAQ</a><a href="#contact" class="btn-primary justify-center w-full mt-2">Collabora con Noi</a></div></nav><main><section class="relative py-24 md:py-36 overflow-hidden"><div class="absolute inset-0 z-0"><img src="https://images.pexels.com/photos/1365428/pexels-photo-1365428.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80" alt="Escursioni Italia Montagna" class="w-full h-full object-cover" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/059669/ffffff?text=Avventure+Outdoor+Italia'"><div class="absolute inset-0 bg-black bg-opacity-60"></div></div><div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><span class="inline-block py-1 px-3 rounded-full bg-secondary bg-opacity-20 text-white font-semibold text-sm mb-6 border border-secondary border-opacity-30 backdrop-filter backdrop-blur-sm"> La Rivista Digitale N.1 per Natura e Benessere </span><h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6"> L'Advisory Definitivo per le Tue <span class="text-primary border-b-4 border-secondary">Escursioni in Italia</span></h1><p class="text-lg md:text-xl text-gray-200 mb-10 font-medium"> Scopri i migliori percorsi natura, strategie avanzate per il trekking e rifugi esclusivi con terme e spa. L'editoriale di riferimento per trasformare le tue attività all'aperto in puro benessere. </p><div class="flex flex-col sm:flex-row justify-center gap-4"><a href="#features" class="btn-primary justify-center text-lg"> Esplora gli Articoli <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></a><a href="#contact" class="btn-secondary bg-white justify-center text-lg hover:bg-gray-50 border-white text-gray-900"> Iscriviti alla Newsletter </a></div></div></section><div class="bg-white border-b border-gray-200 py-8"><div class="max-w-5xl mx-auto px-4 text-center"><p class="text-sm font-bold text-muted uppercase tracking-wider mb-4">Ispiriamo la community outdoor in collaborazione con i dati di</p><div class="flex justify-center items-center gap-8 md:gap-16 opacity-60 grayscale"><span class="text-xl font-extrabold font-serif">KOMOOT</span><span class="text-xl font-bold">NaturaItalia</span><span class="text-xl font-bold italic">TrekMag</span></div></div></div><section id="features" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Le Nostre Rubriche Editoriali</h2><p class="text-muted text-lg max-w-2xl mx-auto">Analisi approfondite, recensioni indipendenti e guide pratiche curate dai massimi esperti di attività all'aperto e recupero psicofisico.</p></div><div class="dna-card max-w-3xl mx-auto"><div class="flex flex-col gap-10"><div class="flex flex-col md:flex-row gap-6 items-start"><div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-secondary border border-primary border-opacity-20"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><h3 class="text-xl font-bold mb-2">Guide Esclusive: Escursioni Italia & Percorsi Natura</h3><p class="text-muted leading-relaxed"> Dalle vette delle Dolomiti ai sentieri costieri del Sud, la nostra redazione seleziona e mappa i migliori <strong>percorsi natura</strong>. Forniamo analisi sul dislivello, punti panoramici nascosti e tempistiche reali per pianificare perfette <strong>escursioni in Italia</strong>, lontani dal turismo di massa. </p></div></div><hr class="section-divider"><div class="flex flex-col md:flex-row gap-6 items-start"><div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-secondary border border-primary border-opacity-20"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg></div><div><h3 class="text-xl font-bold mb-2">Recupero e Relax: Terme e Spa d'Alta Quota</h3><p class="text-muted leading-relaxed"> Il vero benessere si raggiunge equilibrando sforzo e riposo. Esploriamo e recensiamo le strutture più esclusive dotate di <strong>terme e spa</strong> immerse nella natura. Scopri dove rigenerare i muscoli e la mente dopo intense giornate di <strong>attività all'aperto</strong>. </p></div></div><hr class="section-divider"><div class="flex flex-col md:flex-row gap-6 items-start"><div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-secondary border border-primary border-opacity-20"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg></div><div><h3 class="text-xl font-bold mb-2">Preparazione Tecnica per il Trekking</h3><p class="text-muted leading-relaxed"> L'advisory tecnico per non farsi mai cogliere impreparati. Pubblichiamo comparative su calzature, abbigliamento tecnico, nutrizione sportiva e preparazione atletica specifica per affrontare il <strong>trekking</strong> su ogni tipo di terreno e in ogni condizione meteorologica. </p></div></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-24 md:py-36 bg-white bg-opacity-50"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><span class="text-secondary font-bold tracking-wider uppercase text-sm mb-2 block">La Voce dei Lettori</span><h2 class="text-3xl md:text-4xl font-bold">Cosa Dicono i Nostri Abbonati</h2></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="dna-card relative"><div class="absolute -top-4 -left-4 w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-serif text-xl">"</div><div class="flex items-center gap-1 mb-4 text-primary"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted mb-6 italic">"Grazie agli articoli di Cifedaex Advisory, ho scoperto dei percorsi natura in Trentino che non conoscevo minimamente. La rubrica dedicata al recupero muscolare nelle spa locali è semplicemente fantastica!"</p><div class="font-bold">Marco R.</div><div class="text-sm text-gray-500">Appassionato di Alpinismo</div></div><div class="dna-card relative"><div class="absolute -top-4 -left-4 w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-serif text-xl">"</div><div class="flex items-center gap-1 mb-4 text-primary"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted mb-6 italic">"La migliore rivista per chi ama le attività all'aperto. I consigli tecnici sull'attrezzatura per il trekking mi hanno letteralmente salvato durante la mia ultima lunga escursione sull'Appennino."</p><div class="font-bold">Giulia M.</div><div class="text-sm text-gray-500">Guida Escursionistica</div></div><div class="dna-card relative"><div class="absolute -top-4 -left-4 w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-serif text-xl">"</div><div class="flex items-center gap-1 mb-4 text-primary"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-muted mb-6 italic">"Un mix perfetto tra avventura e relax. Le guide sulle terme e spa da visitare dopo le escursioni in Italia sono diventate la mia lettura preferita del weekend. Ispirazione pura."</p><div class="font-bold">Alessandro T.</div><div class="text-sm text-gray-500">Lettore Assiduo</div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-muted text-lg">Tutto ciò che devi sapere sulla nostra linea editoriale e le nostre guide.</p></div><div class="dna-card"><details class="group" open><summary>Con che frequenza pubblicate nuovi articoli sui percorsi natura?</summary><div class="text-muted mt-2"> La nostra redazione pubblica nuovi approfondimenti settimanalmente. Ogni giovedì rilasciamo una guida dettagliata su nuove escursioni in Italia, completa di consigli pratici e mappe descrittive per il weekend. </div></details><details class="group"><summary>Posso suggerire un itinerario di trekking per la vostra rivista?</summary><div class="text-muted mt-2"> Assolutamente sì! Incoraggiamo la nostra community a condividere le proprie scoperte. Puoi inviarci la tua proposta di percorso natura o la recensione di un rifugio tramite il modulo nella sezione contatti. La redazione valuterà la pubblicazione. </div></details><details class="group"><summary>Le strutture terme e spa che recensite sono testate dalla redazione?</summary><div class="text-muted mt-2"> Sì, l'indipendenza e l'affidabilità sono i nostri valori fondamentali. I nostri redattori visitano personalmente, in incognito, le terme e spa recensite per garantire che gli standard di recupero e benessere siano all'altezza delle aspettative dei nostri lettori dopo le attività all'aperto. </div></details><details class="group"><summary>Trattate solo escursioni in alta montagna?</summary><div class="text-muted mt-2"> No, copriamo una vasta gamma di attività all'aperto. Sebbene il trekking alpino sia una componente importante, troverai guide su percorsi natura costieri, passeggiate collinari accessibili a tutti e itinerari in mountain bike. </div></details><details class="group"><summary>L'accesso alla rivista digitale è gratuito?</summary><div class="text-muted mt-2"> La maggior parte dei nostri articoli, recensioni sulle escursioni in Italia e guide base per il trekking sono accessibili gratuitamente per diffondere la cultura dell'outdoor. Offriamo anche sezioni premium con advisory tecnico avanzato e sconti per le terme convenzionate. </div></details></div></div></section><section id="contact" class="py-24 md:py-36 bg-gray-50 border-t border-gray-200"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Unisciti alla Nostra Redazione</h2><p class="text-muted text-lg">Proponi un articolo, segnala un percorso o iscriviti per ricevere i nostri migliori consigli su natura e benessere.</p></div><div class="dna-card shadow-lg border-t-4 border-primary"><form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<svg class=\'animate-spin -ml-1 mr-3 h-5 w-5 text-white inline\' xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\'><circle class=\'opacity-25\' cx=\'12\' cy=\'12\' r=\'10\' stroke=\'currentColor\' stroke-width=\'4\'></circle><path class=\'opacity-75\' fill=\'currentColor\' d=\'M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z\'></path></svg> Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"><div><label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label><input type="text" id="name" name="name" required placeholder="Es. Mario Rossi"></div><div><label for="interest" class="block text-sm font-medium text-gray-700 mb-2">Area di Interesse</label><select id="interest" name="interest" required><option value="">Seleziona un argomento...</option><option value="trekking">Guide Trekking ed Escursioni</option><option value="spa">Recensioni Terme e Spa</option><option value="gear">Consigli Attrezzatura Outdoor</option><option value="collab">Proposta di Collaborazione Editoriale</option></select></div></div><div class="mb-6"><label for="message" class="block text-sm font-medium text-gray-700 mb-2">Il Tuo Messaggio / Proposta</label><textarea id="message" name="message" rows="4" required placeholder="Scrivi qui i dettagli della tua richiesta o l'itinerario che vorresti proporre..."></textarea></div><div class="flex items-start mb-6"><div class="flex items-center h-5"><input id="privacy" name="privacy" type="checkbox" required class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"></div><div class="ml-3 text-sm"><label for="privacy" class="font-medium text-gray-700">Accetto la Privacy Policy</label><p class="text-gray-500">Acconsento al trattamento dei dati per la gestione della richiesta editoriale.</p></div></div><button type="submit" class="btn-primary w-full justify-center text-lg py-4"> Invia Richiesta alla Redazione <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button></form><div id="success-msg" style="display:none" class="text-center py-10"><div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"><svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold mb-2">Messaggio Inviato con Successo!</h3><p class="text-muted">La nostra redazione ha ricevuto la tua richiesta. Valuteremo la tua proposta e ti risponderemo il prima possibile per continuare a promuovere le migliori attività all'aperto in Italia.</p><button onclick="document.getElementById('success-msg').style.display='none'; document.getElementById('lead-form').reset(); document.getElementById('lead-form').style.display='block'; this.querySelector('span').innerText='Invia Richiesta alla Redazione';" class="mt-8 btn-secondary">Invia una nuova segnalazione</button></div></div></div></section></main><footer class="bg-white border-t border-gray-200 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12"><div><a href="#" class="text-2xl font-extrabold tracking-tight flex items-center gap-2 mb-6"><svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg> Cifedaex<span class="text-secondary">Advisory</span></a><p class="text-muted mb-6"> La rivista digitale di riferimento per chi cerca l'eccellenza nelle escursioni in Italia, nei percorsi natura e nel recupero psicofisico attraverso terme e spa. Promuoviamo uno stile di vita sano attraverso le attività all'aperto. </p><p class="text-sm text-gray-500 font-bold p-4 bg-gray-50 rounded-lg border border-gray-100"> Questo è un sito promozionale indipendente gestito da Cifedaex Advisory, che agisce come affiliato per <a href="https://www.komoot.com/" target="_blank" rel="nofollow" class="text-primary hover:underline">Komoot</a>. Le tecnologie di mappatura e routing menzionate negli articoli potrebbero fare riferimento ai servizi forniti dalla piattaforma partner. </p></div><div><h4 class="text-lg font-bold mb-6">Documentazione Legale</h4><div class="space-y-2"><details class="bg-gray-50 rounded-lg px-4 border border-gray-100"><summary class="text-sm">Informativa sulla Privacy</summary><div class="text-xs text-muted pt-2 pb-4 space-y-2"><p>La presente Informativa sulla Privacy descrive le modalità con cui Cifedaex Advisory raccoglie, utilizza, conserva e protegge i dati personali degli utenti che visitano il nostro sito web dedicato alla rivista di attività outdoor e benessere. La tutela della tua privacy è per noi una priorità assoluta e ci impegniamo a rispettare tutte le normative vigenti in materia di protezione dei dati, incluso il Regolamento Generale sulla Protezione dei Dati (GDPR).</p><p>Quando interagisci con il nostro sito, ad esempio compilando il modulo per proporre un itinerario di trekking o una recensione di terme e spa, potremmo raccogliere informazioni personali come il tuo nome e le tue preferenze di navigazione. Questi dati vengono utilizzati esclusivamente per fornirti i servizi richiesti, migliorare l'esperienza utente e, previo tuo consenso, inviarti aggiornamenti editoriali sulle escursioni in Italia. Non vendiamo, scambiamo o affittiamo le tue informazioni personali a terze parti per scopi di marketing senza il tuo esplicito consenso.</p><p>Implementiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, alterazioni, divulgazioni o distruzioni. I dati raccolti tramite i moduli di contatto vengono conservati solo per il tempo strettamente necessario a gestire la tua richiesta o per adempiere a obblighi legali. Il nostro sito può contenere link a siti web di terze parti, come il nostro partner Komoot; tuttavia, non siamo responsabili per le pratiche sulla privacy adottate da tali siti esterni. Ti invitiamo a leggere attentamente le loro informative.</p><p>Hai il diritto di accedere ai tuoi dati personali, richiederne la rettifica, la cancellazione o la limitazione del trattamento. Puoi anche opporti al trattamento dei tuoi dati per motivi legittimi. Per esercitare questi diritti, puoi utilizzare i moduli di contatto presenti sul sito. Ci riserviamo il diritto di aggiornare periodicamente questa Informativa sulla Privacy per riflettere eventuali modifiche alle nostre pratiche o alle normative legali. Ti invitiamo a consultare regolarmente questa pagina per rimanere informato su come proteggiamo le tue informazioni durante la tua esplorazione dei percorsi natura in Italia.</p></div></details><details class="bg-gray-50 rounded-lg px-4 border border-gray-100"><summary class="text-sm">Termini e Condizioni d'Uso</summary><div class="text-xs text-muted pt-2 pb-4 space-y-2"><p>Benvenuto su Cifedaex Advisory. L'accesso e l'utilizzo di questo sito web, che offre contenuti editoriali, guide sulle escursioni in Italia e recensioni su attività all'aperto, sono soggetti ai seguenti Termini e Condizioni. Utilizzando il nostro sito, accetti di essere vincolato da questi termini. Se non sei d'accordo con una qualsiasi parte di queste condizioni, ti preghiamo di interrompere immediatamente l'utilizzo del nostro portale. I contenuti forniti, inclusi testi, grafiche e recensioni su percorsi natura e strutture benessere, sono a solo scopo informativo e di intrattenimento.</p><p>Cifedaex Advisory si impegna a fornire informazioni accurate e aggiornate; tuttavia, non garantiamo la completezza, l'affidabilità o l'accuratezza assoluta dei contenuti pubblicati. Le condizioni dei sentieri di trekking, gli orari delle terme e spa, e la difficoltà delle attività all'aperto possono variare nel tempo a causa di fattori meteorologici, ambientali o gestionali. L'utente si assume la piena responsabilità per qualsiasi azione intrapresa basandosi sulle informazioni trovate su questo sito. Consigliamo sempre di verificare le condizioni locali e di utilizzare un equipaggiamento adeguato prima di intraprendere qualsiasi escursione in Italia.</p><p>Tutti i contenuti presenti su questo sito, ove non diversamente specificato, sono proprietà intellettuale di Cifedaex Advisory e sono protetti dalle leggi sul copyright. È severamente vietata la riproduzione, la distribuzione o la modifica dei nostri articoli e delle nostre guide senza una preventiva autorizzazione scritta. L'utente accetta di utilizzare il sito solo per scopi leciti e in modo da non violare i diritti di terzi o limitare l'uso e il godimento del sito da parte di altri. Ci riserviamo il diritto di sospendere o terminare l'accesso al sito in caso di violazione di questi termini.</p><p>Il nostro sito opera come piattaforma promozionale indipendente e può contenere link di affiliazione verso servizi di terze parti, come piattaforme di routing per il trekking. Non ci assumiamo alcuna responsabilità per i servizi o i prodotti forniti da tali terze parti. Qualsiasi transazione o interazione con fornitori terzi è esclusivamente tra l'utente e il fornitore. Cifedaex Advisory si riserva il diritto di modificare questi Termini e Condizioni in qualsiasi momento senza preavviso. L'uso continuato del sito dopo la pubblicazione delle modifiche costituisce l'accettazione dei nuovi termini. Per qualsiasi controversia legale derivante dall'uso di questo sito, sarà competente il foro stabilito dalle leggi vigenti.</p></div></details><details class="bg-gray-50 rounded-lg px-4 border border-gray-100"><summary class="text-sm">Policy Abbonamenti e Rimborsi</summary><div class="text-xs text-muted pt-2 pb-4 space-y-2"><p>La presente Policy sui Rimborsi regola le condizioni relative agli abbonamenti premium e ai servizi a pagamento eventualmente offerti dalla rivista digitale Cifedaex Advisory. Il nostro obiettivo primario è fornire guide di altissima qualità sulle escursioni in Italia, percorsi natura e consigli per il recupero in terme e spa. Sebbene la maggior parte dei nostri contenuti sia fruibile gratuitamente, alcune sezioni di advisory tecnico per il trekking potrebbero richiedere un abbonamento. Vogliamo che tu sia completamente soddisfatto del valore editoriale che offriamo per le tue attività all'aperto.</p><p>Nel caso in cui tu decida di sottoscrivere un abbonamento premium per accedere a guide esclusive sui percorsi natura o sconti per le strutture benessere partner, hai diritto a un periodo di recesso standard. Nello specifico, offriamo una garanzia di rimborso completo entro 14 giorni dalla data di acquisto iniziale, a condizione che non sia stato scaricato o utilizzato in modo intensivo materiale coperto da copyright (come mappe offline dettagliate). Questa politica è pensata per permetterti di valutare la qualità della nostra rivista senza rischi.</p><p>Per richiedere un rimborso, è necessario inviare una comunicazione formale attraverso i moduli di contatto disponibili sul sito, specificando i dettagli della transazione e il motivo dell'insoddisfazione. Il nostro team amministrativo valuterà la richiesta e, se conforme alle condizioni sopra citate, procederà con lo storno dell'importo utilizzando lo stesso metodo di pagamento impiegato per l'acquisto originale. I tempi di elaborazione bancaria per visualizzare il rimborso sul proprio conto possono variare a seconda dell'istituto di credito dell'utente, generalmente richiedendo dai 5 ai 10 giorni lavorativi.</p><p>È importante notare che i rimborsi non sono applicabili per i rinnovi automatici degli abbonamenti, a meno che la disdetta non sia stata richiesta prima della data di fatturazione. L'utente è responsabile della gestione del proprio abbonamento e può cancellarlo in qualsiasi momento tramite l'area personale. In caso di cancellazione, l'accesso ai contenuti premium rimarrà attivo fino alla fine del periodo di fatturazione corrente. Ci riserviamo il diritto di rifiutare richieste di rimborso che appaiano fraudolente o che violino palesemente i nostri Termini e Condizioni d'Uso. Per qualsiasi dubbio relativo a questa policy, il nostro servizio di assistenza è a disposizione tramite i canali ufficiali del sito.</p></div></details></div></div></div><div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"><p class="text-muted text-sm text-center md:text-left"> &copy; 2026 Cifedaex Advisory. Tutti i diritti riservati. Rivista Indipendente Outdoor Italia. </p></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-2xl p-4 md:p-6 z-50 transform transition-transform duration-300 translate-y-full"><div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-700 flex-1"><strong>Informativa sui Cookie:</strong> Utilizziamo i cookie per analizzare il traffico e migliorare la tua esperienza di lettura delle nostre guide sulle escursioni in Italia e le attività all'aperto. Continuando a navigare, accetti la nostra policy. </div><div class="flex gap-4 flex-shrink-0"><button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-sm">Accetta Tutti</button><button onclick="acceptCookies()" class="btn-secondary py-2 px-4 text-sm bg-white">Solo Essenziali</button></div></div></div> <script>
+        // Smart Routing Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
             
-            <div class="mt-12 flex items-center justify-center space-x-6 text-gray-300 text-sm font-semibold">
-                <span class="flex items-center"><svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Analisi Quotidiana</span>
-                <span class="flex items-center"><svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Focus Digitale</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- TRUST SECTION -->
-    <div class="bg-gray-100 border-b-2 border-gray-200 py-8">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6">Analizziamo le fonti dei giganti del settore</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 font-black text-xl text-gray-400">
-                <span>TECH.CRUNCH</span>
-                <span>WIRED.GLOBAL</span>
-                <span>THE.VERGE</span>
-                <span>BLOOM.TECH</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN FEATURES (DNA CARD) -->
-    <section id="features" class="py-20 px-4">
-        <div class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold mb-4">Il Nostro Sistema Editoriale</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Non riportiamo solo la notizia, decodifichiamo il segnale nel rumore di fondo del mondo tecnologico.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-10">
-                <!-- Feature 1 -->
-                <div class="text-center">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-black shadow-sm">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Cronaca Tech</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Un annuncio importante? Un nuovo sistema operativo? I nostri aggiornamenti coprono ogni angolo del globo digitale con precisione.
-                    </p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="text-center">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-black shadow-sm">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Cyber Security</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Analizziamo le minacce del web moderno. Guide pratiche per proteggere i tuoi dati e comprendere l'evoluzione della privacy.
-                    </p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="text-center">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-black shadow-sm">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Mobile & App</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Il mondo è mobile. Offriamo recensioni oneste sulle ultime applicazioni e gadget che stanno cambiando il modo di comunicare.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTENT SHOWCASE -->
-    <section class="py-10 px-4">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-            <div class="order-2 md:order-1">
-                <div class="dna-card p-0 overflow-hidden relative group">
-                     <!-- Static Placeholder Fallback per reliable visual -->
-                    <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                         alt="Programmatore al lavoro su codice" 
-                         class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-500"
-                         loading="lazy"
-                         referrerpolicy="no-referrer"
-                         onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Tecnologia'">
-                </div>
-            </div>
-            <div class="order-1 md:order-2">
-                <div class="dna-card">
-                    <h3 class="text-2xl font-bold mb-4">L'Analisi Oltre la Notizia</h3>
-                    <p class="text-gray-600 mb-6">
-                        Viviamo in un'era di sovraccarico informativo. <strong>CifedaEx Advisory</strong> filtra per te l'essenziale.
-                        Che si tratti dell'ultimo annuncio sull'Intelligenza Artificiale o di un cambiamento nel sistema dei social media, i nostri esperti forniscono il contesto necessario.
-                    </p>
-                    <ul class="space-y-3">
-                        <li class="flex items-center text-sm font-semibold">
-                            <span class="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
-                            Monitoraggio trend globali
-                        </li>
-                        <li class="flex items-center text-sm font-semibold">
-                            <span class="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
-                            Reportistica settimanale
-                        </li>
-                        <li class="flex items-center text-sm font-semibold">
-                            <span class="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
-                            Editoriali esclusivi
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOCIAL PROOF (DNA CARD) -->
-    <section id="reviews" class="py-20 px-4">
-        <div class="max-w-5xl mx-auto dna-card bg-white">
-            <h2 class="text-3xl font-extrabold text-center mb-12">Dicono del Nostro Portale</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Review 1 -->
-                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
-                    <p class="text-gray-600 italic text-sm mb-4">"Finalmente un sito che spiega la tecnologia in modo chiaro. I loro approfondimenti sulla sicurezza digitale sono stati illuminanti per la mia azienda."</p>
-                    <div class="font-bold text-sm">— Marco Rossi, Imprenditore</div>
-                </div>
-                <!-- Review 2 -->
-                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
-                    <p class="text-gray-600 italic text-sm mb-4">"Seguo CifedaEx Advisory per restare aggiornata sul mondo mobile. Le notizie arrivano puntuali e l'analisi è sempre oggettiva."</p>
-                    <div class="font-bold text-sm">— Elena Bianchi, Developer</div>
-                </div>
-                <!-- Review 3 -->
-                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                    <div class="flex text-yellow-400 mb-3">★★★★☆</div>
-                    <p class="text-gray-600 italic text-sm mb-4">"Ottimo servizio di informazione. Apprezzo particolarmente il taglio professionale dato ad ogni annuncio tech."</p>
-                    <div class="font-bold text-sm">— Luca Verdi, Analista Dati</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ (DNA CARD) -->
-    <section id="faq" class="py-10 px-4">
-        <div class="max-w-3xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-center mb-8">Domande Frequenti</h2>
-            <div class="space-y-4">
-                <details class="group bg-gray-50 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-bold list-none flex justify-between items-center text-lg">
-                        Come selezionate le notizie tecnologiche?
-                        <span class="transition group-open:rotate-180">▼</span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 text-sm leading-relaxed">
-                        Il nostro team editoriale scansiona quotidianamente centinaia di fonti globali. Selezioniamo solo ciò che ha un impatto reale sul sistema digitale e sulla vita professionale dei nostri lettori.
-                    </p>
-                </details>
-                <details class="group bg-gray-50 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-bold list-none flex justify-between items-center text-lg">
-                        Offrite consulenza aziendale?
-                        <span class="transition group-open:rotate-180">▼</span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 text-sm leading-relaxed">
-                        Sì, CifedaEx Advisory nasce proprio per colmare il divario tra la semplice notizia e la strategia applicata. Contattaci per scoprire i nostri pacchetti corporate.
-                    </p>
-                </details>
-                <details class="group bg-gray-50 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-bold list-none flex justify-between items-center text-lg">
-                        Quanto spesso viene aggiornato il sito?
-                        <span class="transition group-open:rotate-180">▼</span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 text-sm leading-relaxed">
-                        Il mondo tech non dorme mai. I nostri aggiornamenti sono in tempo reale per le breaking news e quotidiani per le analisi di approfondimento.
-                    </p>
-                </details>
-                <details class="group bg-gray-50 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-bold list-none flex justify-between items-center text-lg">
-                        Posso proporre un argomento da trattare?
-                        <span class="transition group-open:rotate-180">▼</span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 text-sm leading-relaxed">
-                        Assolutamente. Il feedback della nostra community è vitale. Usa il modulo di contatto per inviarci suggerimenti o segnalazioni.
-                    </p>
-                </details>
-                <details class="group bg-gray-50 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-bold list-none flex justify-between items-center text-lg">
-                        Quali settori tecnologici coprite maggiormente?
-                        <span class="transition group-open:rotate-180">▼</span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 text-sm leading-relaxed">
-                        Ci focalizziamo su cybersecurity, intelligenza artificiale, ecosistemi mobile e infrastrutture cloud.
-                    </p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT (DNA CARD) -->
-    <section id="contact" class="py-20 px-4">
-        <div class="max-w-5xl mx-auto dna-card bg-blue-50">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-3xl font-extrabold mb-6">Parla con la Redazione</h2>
-                    <p class="text-gray-600 mb-8">
-                        Hai bisogno di informazioni specifiche o vuoi collaborare? Compila il modulo. Rispondiamo a tutte le richieste professionali entro 24 ore.
-                    </p>
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-lg font-bold text-gray-900">Sede Operativa</p>
-                                <p class="text-gray-600">Viale Piemonte 61/63, 20093 Cologno Monzese (MI)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
 
-                <div class="bg-white p-8 rounded-lg shadow-sm border-2 border-gray-100">
-                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
-                            <input type="text" required class="w-full px-4 py-2 border-2 border-gray-200 rounded-md focus:border-primary focus:outline-none focus:ring-0">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Oggetto</label>
-                            <select class="w-full px-4 py-2 border-2 border-gray-200 rounded-md focus:border-primary focus:outline-none">
-                                <option>Richiesta Informazioni</option>
-                                <option>Segnalazione Notizia</option>
-                                <option>Collaborazione</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Messaggio</label>
-                            <textarea rows="4" required class="w-full px-4 py-2 border-2 border-gray-200 rounded-md focus:border-primary focus:outline-none focus:ring-0"></textarea>
-                        </div>
-                        <button type="submit" class="w-full btn-primary">
-                            Invia Messaggio
-                        </button>
-                    </form>
+                    const targetId = this.getAttribute('href').substring(1);
+                    if (!targetId) return;
+
+                    const targetElement = document.getElementById(targetId);
                     
-                    <div id="success-msg" style="display:none" class="text-center py-10">
-                        <div class="text-5xl mb-4">✅</div>
-                        <h3 class="text-2xl font-bold mb-2">Messaggio Inviato!</h3>
-                        <p class="text-gray-600">La redazione di CifedaEx Advisory ha ricevuto la tua richiesta. Ti contatteremo a breve.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-300 py-12 border-t-4 border-primary">
-        <div class="max-w-6xl mx-auto px-4 text-center sm:text-left">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div class="col-span-2">
-                    <h4 class="text-white text-xl font-bold mb-4 uppercase">CifedaEx Advisory</h4>
-                    <p class="text-sm text-gray-400 mb-4">
-                        Il tuo punto di riferimento indipendente per le notizie tecnologiche e l'analisi strategica dei media digitali.
-                    </p>
-                    <p class="text-xs text-gray-500">
-                        Questo sito è una piattaforma promozionale indipendente gestita da CifedaEx Advisory, che opera come affiliato per RTL 102.5.
-                    </p>
-                </div>
-                <div>
-                    <h5 class="text-white font-bold mb-4">Navigazione</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#features" class="hover:text-white transition">Analisi</a></li>
-                        <li><a href="#reviews" class="hover:text-white transition">Opinioni</a></li>
-                        <li><a href="#contact" class="hover:text-white transition">Contatti</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="text-white font-bold mb-4">Note Legali</h5>
-                    <div class="space-y-2 text-sm cursor-pointer">
-                        <details>
-                            <summary class="hover:text-white">Privacy Policy</summary>
-                            <div class="p-2 bg-gray-800 text-xs mt-2 rounded">
-                                <p><strong>Informativa sulla Privacy - CifedaEx Advisory</strong><br><br>
-                                La tua privacy è fondamentale per CifedaEx Advisory. Questa informativa descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali quando visiti il nostro sito web. Raccogliamo dati di navigazione standard e informazioni fornite volontariamente tramite il modulo di contatto per migliorare la nostra offerta di notizie tecnologiche. Non vendiamo, scambiamo o trasferiamo a terzi le tue informazioni personali identificabili senza il tuo consenso, eccetto per quanto necessario a fornire i servizi richiesti. Implementiamo diverse misure di sicurezza per mantenere la sicurezza dei tuoi dati. Utilizziamo i cookie per comprendere e salvare le tue preferenze per le visite future. Utilizzando il nostro sito, acconsenti alla nostra politica sulla privacy. Hai il diritto di accedere, rettificare o cancellare i tuoi dati in qualsiasi momento. Per qualsiasi domanda riguardante questa politica, ti preghiamo di contattarci tramite il nostro modulo web. Le modifiche alla nostra politica sulla privacy saranno pubblicate su questa pagina. Questa politica è effettiva dal 2026 e si applica a tutte le informazioni raccolte tramite il sito.</p>
-                            </div>
-                        </details>
-                        <details>
-                            <summary class="hover:text-white">Termini di Servizio</summary>
-                            <div class="p-2 bg-gray-800 text-xs mt-2 rounded">
-                                <p><strong>Termini e Condizioni - CifedaEx Advisory</strong><br><br>
-                                Benvenuto su CifedaEx Advisory. Accedendo a questo sito web, accetti di essere vincolato da questi termini di servizio, da tutte le leggi e i regolamenti applicabili. Se non sei d'accordo con uno qualsiasi di questi termini, ti è vietato utilizzare o accedere a questo sito. I materiali contenuti in questo sito web sono protetti dalle leggi applicabili sul diritto d'autore e sui marchi. È concessa l'autorizzazione a scaricare temporaneamente una copia dei materiali (informazioni o software) sul sito web di CifedaEx Advisory solo per la visualizzazione transitoria personale e non commerciale. Questa è la concessione di una licenza, non un trasferimento di titolo. CifedaEx Advisory non garantisce che i materiali sul suo sito web siano accurati, completi o aggiornati. CifedaEx Advisory può apportare modifiche ai materiali contenuti nel suo sito web in qualsiasi momento senza preavviso. Tuttavia, non ci assumiamo alcun impegno ad aggiornare i materiali. CifedaEx Advisory non sarà responsabile per eventuali danni derivanti dall'uso o dall'impossibilità di utilizzare i materiali sul sito web.</p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center">
-                <p class="text-sm">&copy; 2026 CifedaEx Advisory. Tutti i diritti riservati.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner">
-        <div class="flex flex-col md:flex-row items-center justify-between">
-            <div class="mb-4 md:mb-0 md:mr-6 text-sm text-gray-600">
-                Utilizziamo i cookie per ottimizzare la tua esperienza di lettura delle notizie tecnologiche. Continuando a navigare accetti l'uso dei cookie.
-            </div>
-            <div class="flex space-x-4">
-                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-xs">Accetta</button>
-                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="py-2 px-4 text-xs underline font-bold text-gray-500">Chiudi</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // SMART ROUTING: Self-Healing Navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    // Fallback to contact if ID missing
-                    console.log('Target section missing, rerouting to contact...');
-                    const contactSection = document.getElementById('contact');
-                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
+                    if (targetElement) {
+                        // Target exists -> Smooth Scroll
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else {
+                        // Fallback: Target missing -> Force scroll to contact
+                        console.warn(`Target ID '${targetId}' not found. Redirecting to '#contact'.`);
+                        const fallbackElement = document.getElementById('contact');
+                        if (fallbackElement) {
+                            fallbackElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
             });
+
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookiesAccepted_cifedaex')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
         });
 
-        // COOKIE LOGIC
         function acceptCookies() {
-            localStorage.setItem('cifedaex_consent', 'true');
-            document.getElementById('cookie-banner').style.display = 'none';
+            localStorage.setItem('cookiesAccepted_cifedaex', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
         }
-
-        window.onload = function() {
-            if (!localStorage.getItem('cifedaex_consent')) {
-                document.getElementById('cookie-banner').style.display = 'block';
-            }
-        }
-    </script>
-</body>
-</html>
+    </script> </body></html>
