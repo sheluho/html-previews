@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="it" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Kuquyaqeon Ventures | App Podcast e Approfondimenti</title><meta name="description" content="Scarica l'app leader per podcast italiani, articoli lunghi e audio news. Approfondisci ogni dettaglio con contenuti long-form di alta qualità."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #059669;
+            --secondary: #0d9488;
+            --radius: 16px;
+            --card-radius: 16px;
+            --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+            --body-bg: #fefce8;
+            --card-bg: #ffffff;
+            --text: #1a2e05;
+            --muted: #71717a;
+        }
+
+        body {
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        .dna-card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        nav {
+            background-color: var(--body-bg);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-secondary:hover { background-color: rgba(5,150,105,0.05); }
+
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
+
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Fixed navbar compensation */
+        main, main + footer { scroll-margin-top: 5rem; }
+
+        /* Form inputs */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(5,150,105,0.15);
+        }
+
+        /* Links */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(5,150,105,0.12), transparent);
+            margin: 0;
+        }
+
+        /* App Store Badge Styles */
+        .store-badge {
+            background-color: #000;
+            color: #fff !important;
+            border-radius: 8px;
+            padding: 8px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            height: 48px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .store-badge:hover {
+            transform: scale(1.05);
+        }
+        .store-badge svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        .store-badge-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+        .store-badge-small {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .store-badge-large {
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Overlap Hero specifics */
+        .hero-bg-band {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-color: var(--primary);
+            opacity: 0.05;
+            z-index: 0;
+        }
+        .hero-image-wrapper {
+            margin-right: -2rem;
+            position: relative;
+            z-index: 10;
+        }
+        @media (min-width: 768px) {
+            .hero-image-wrapper {
+                margin-right: -4rem;
+            }
+        }
+    </style> </head><body class="antialiased"><nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-100 bg-opacity-95 backdrop-filter backdrop-blur-sm"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center gap-2"><svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg><span class="font-bold text-xl tracking-tight" style="font-family: 'DM Serif Display', serif;">Kuquyaqeon Ventures</span></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="text-sm font-medium transition-colors">Caratteristiche</a><a href="#how-it-works" class="text-sm font-medium transition-colors">Come Funziona</a><a href="#reviews" class="text-sm font-medium transition-colors">Recensioni</a><a href="#faq" class="text-sm font-medium transition-colors">FAQ</a><a href="#download" class="btn-primary text-sm py-2 px-4"> Ottieni l'App </a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full px-4 pt-2 pb-6 space-y-2 z-50"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium">Caratteristiche</a><a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium">Come Funziona</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium">Recensioni</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium">FAQ</a><a href="#download" class="block w-full text-center btn-primary mt-4">Ottieni l'App</a></div></nav><main><section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden"><div class="hero-bg-band"></div><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2 text-left pt-8 md:pt-0"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-gray-200 text-sm font-medium text-secondary mb-6 shadow-sm"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> Valutata 4.9/5 dagli utenti </div><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6"> Esplora il sapere. Ascolta i migliori <span class="text-primary">podcast italiani</span>. </h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> L'app definitiva per chi ama i contenuti di spessore. Un catalogo curato di <strong>articoli di approfondimento</strong>, interviste esclusive e <strong>audio news</strong> per nutrire la tua mente, ovunque tu sia. </p><div class="flex flex-wrap gap-4 items-center"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span class="store-badge-small">Scarica su</span><span class="store-badge-large">App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span class="store-badge-small">Disponibile su</span><span class="store-badge-large">Google Play</span></div></a></div><div class="mt-8 flex items-center gap-4 text-sm text-muted"><div class="flex -space-x-2"><img class="w-8 h-8 rounded-full border-2 border-white" src="https://placehold.co/100x100/059669/ffffff?text=U" alt="User" loading="lazy"><img class="w-8 h-8 rounded-full border-2 border-white" src="https://placehold.co/100x100/0d9488/ffffff?text=U" alt="User" loading="lazy"><img class="w-8 h-8 rounded-full border-2 border-white" src="https://placehold.co/100x100/1a2e05/ffffff?text=U" alt="User" loading="lazy"></div><p>Oltre <strong>50.000+</strong> ascoltatori attivi</p></div></div><div class="w-full md:w-1/2 hero-image-wrapper"><div class="relative rounded-[2rem] border-[8px] border-white shadow-2xl bg-white overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-500"><img src="https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg?auto=compress&cs=tinysrgb&w=800" alt="App podcast su smartphone" class="w-full h-auto object-cover rounded-xl" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x800/059669/ffffff?text=App+Mockup'"></div></div></div></div></section><hr class="section-divider"><section id="features" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Progettata per menti curiose</h2><p class="text-lg text-muted max-w-2xl mx-auto">Tutto ciò di cui hai bisogno per immergerti nella cultura, nell'informazione e nelle storie che contano, racchiuso in un'unica applicazione elegante.</p></div><div class="flex flex-col gap-16 md:gap-24"><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2"><div class="dna-card p-4 relative"><div class="absolute -top-4 -left-4 w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white shadow-lg"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg></div><img src="https://images.pexels.com/photos/6953866/pexels-photo-6953866.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ascolto podcast italiani" class="w-full rounded-xl" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0d9488/ffffff?text=Player+Audio'"></div></div><div class="w-full md:w-1/2"><h3 class="text-2xl font-bold mb-4">L'eccellenza dei <span class="text-primary">podcast italiani</span></h3><p class="text-lg text-muted mb-6"> Scopri una libreria curata di show originali, documentari audio e serie narrative. Dalla storia alla scienza, dalla letteratura all'attualità: porta le migliori voci italiane sempre con te con una qualità audio cristallina. </p><ul class="space-y-3"><li class="flex items-start gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Playlist editoriali curate da esperti</span></li><li class="flex items-start gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Download automatico per l'ascolto offline</span></li></ul></div></div><div class="flex flex-col md:flex-row-reverse items-center gap-12"><div class="w-full md:w-1/2"><div class="dna-card p-4 relative border-t-4 border-t-secondary"><img src="https://images.pexels.com/photos/5082570/pexels-photo-5082570.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Lettura articoli lunghi su app" class="w-full rounded-xl" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/059669/ffffff?text=Articoli+Lunghi'"></div></div><div class="w-full md:w-1/2"><h3 class="text-2xl font-bold mb-4">Molto più di un player: <span class="text-secondary">articoli lunghi</span></h3><p class="text-lg text-muted mb-6"> L'ascolto non basta? La nostra app integra <strong>approfondimenti</strong> testuali esclusivi. Leggi le trascrizioni, sfoglia le fonti e immergiti in contenuti <strong>long-form</strong> progettati per una lettura senza distrazioni sul tuo smartphone. </p><ul class="space-y-3"><li class="flex items-start gap-3"><svg class="w-6 h-6 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg><span>Modalità lettura immersiva (Dark/Light mode)</span></li><li class="flex items-start gap-3"><svg class="w-6 h-6 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg><span>Salva gli articoli per leggerli più tardi</span></li></ul></div></div><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2"><div class="dna-card p-4"><img src="https://images.pexels.com/photos/5082567/pexels-photo-5082567.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Audio news al mattino" class="w-full rounded-xl" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0d9488/ffffff?text=Audio+News'"></div></div><div class="w-full md:w-1/2"><h3 class="text-2xl font-bold mb-4">Resta sul pezzo con le <span class="text-primary">audio news</span></h3><p class="text-lg text-muted mb-6"> Inizia la giornata con i nostri bollettini informativi. Le notizie più importanti, analizzate e raccontate in formati brevi ma densi di significato, perfetti per il tragitto casa-lavoro. </p><a href="#download" class="btn-secondary mt-2"> Inizia ad ascoltare <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a></div></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card text-center"><h2 class="text-3xl md:text-4xl font-bold mb-12">Tre passi per iniziare</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary text-2xl font-bold mb-6">1</div><h4 class="text-xl font-bold mb-2">Scarica l'App</h4><p class="text-muted">Disponibile gratuitamente su iOS e Android. Installazione rapida in un tocco.</p></div><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary text-2xl font-bold mb-6">2</div><h4 class="text-xl font-bold mb-2">Scegli i temi</h4><p class="text-muted">Seleziona i tuoi interessi per ricevere <strong>approfondimenti</strong> su misura per te.</p></div><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary text-2xl font-bold mb-6">3</div><h4 class="text-xl font-bold mb-2">Premi Play</h4><p class="text-muted">Goditi i migliori <strong>podcast italiani</strong> e leggi i contenuti <strong>long-form</strong> ovunque.</p></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-16 md:py-20 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Amata da chi cerca la qualità</h2><p class="text-lg text-muted">Scopri cosa dicono i nostri utenti sugli store.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card p-6 mb-0"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold mb-2">Una miniera d'oro</h4><p class="text-muted text-sm mb-4">"Finalmente un'app che non propone solo contenuti superficiali. Gli <strong>articoli lunghi</strong> allegati ai podcast sono una genialata per approfondire."</p><div class="text-xs text-gray-400">Marco_Lettore • Gennaio 2026</div></div><div class="dna-card p-6 mb-0"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold mb-2">Le migliori audio news</h4><p class="text-muted text-sm mb-4">"Ascolto le <strong>audio news</strong> ogni mattina in auto. La selezione dei <strong>podcast italiani</strong> è impareggiabile. Mai più senza."</p><div class="text-xs text-gray-400">Giulia_Commuter • Dicembre 2025</div></div><div class="dna-card p-6 mb-0"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold mb-2">Interfaccia pulitissima</h4><p class="text-muted text-sm mb-4">"Niente distrazioni, solo la gioia di ascoltare e leggere format <strong>long-form</strong> di altissima qualità. L'app gira fluida e l'offline funziona perfettamente."</p><div class="text-xs text-gray-400">Ale_Tech • Novembre 2025</div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-16 md:py-20"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card"><h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Domande Frequenti</h2><div class="space-y-4"><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>L'app è gratuita?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Sì, il download dell'app è totalmente gratuito. Offriamo una vasta selezione di <strong>podcast italiani</strong> e <strong>audio news</strong> accessibili senza costi. È disponibile anche un piano Premium per contenuti <strong>long-form</strong> esclusivi senza pubblicità.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>Posso ascoltare i podcast offline?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Assolutamente. Puoi scaricare i tuoi episodi e gli <strong>articoli lunghi</strong> preferiti sul tuo dispositivo per ascoltarli e leggerli quando sei in viaggio o senza connessione internet.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>Che tipo di articoli di approfondimento trovo?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Troverai <strong>approfondimenti</strong> testuali legati agli episodi audio, inchieste giornalistiche, saggi brevi e trascrizioni arricchite. Tutto impaginato per una lettura ottimale su mobile.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>I miei dati sono al sicuro?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">La sicurezza della tua privacy è la nostra priorità. Utilizziamo crittografia avanzata e non vendiamo mai i tuoi dati personali a terzi. Raccogliamo solo informazioni necessarie per migliorare la tua esperienza.</p></details><details class="group pb-2"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>Su quali dispositivi è disponibile?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">L'applicazione è scaricabile su tutti gli smartphone e tablet iOS (tramite App Store) e Android (tramite Google Play Store). I tuoi salvataggi si sincronizzano automaticamente tra i dispositivi.</p></details></div></div></div></section><hr class="section-divider"><section id="download" class="py-16 md:py-24 bg-primary bg-opacity-5"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div class="dna-card bg-white border-2 border-primary border-opacity-20 shadow-xl"><h2 class="text-4xl md:text-5xl font-extrabold mb-6">Inizia il tuo viaggio nell'approfondimento.</h2><p class="text-xl text-muted mb-10 max-w-2xl mx-auto">Scarica l'app <strong class="text-gray-900">Classici Podcast</strong> oggi stesso. Migliaia di ore di ascolto intelligente ti aspettano.</p><div class="flex flex-col sm:flex-row justify-center items-center gap-6"><a href="#" class="store-badge transform hover:scale-105 transition duration-300 shadow-lg"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span class="store-badge-small">Scarica su</span><span class="store-badge-large">App Store</span></div></a><a href="#" class="store-badge transform hover:scale-105 transition duration-300 shadow-lg"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span class="store-badge-small">Disponibile su</span><span class="store-badge-large">Google Play</span></div></a></div><div class="mt-8 text-sm text-gray-400"> Sviluppato con cura da Classici Media. </div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="mb-8 text-center"><span class="font-bold text-2xl tracking-tight text-primary" style="font-family: 'DM Serif Display', serif;">Kuquyaqeon Ventures</span><p class="mt-4 text-sm text-muted max-w-2xl mx-auto italic bg-gray-50 p-4 rounded-lg border border-gray-100"> Questa è una pagina promozionale indipendente gestita da Kuquyaqeon Ventures, per l'app Classici Podcast di Classici Media. </p></div><div class="space-y-4 text-left max-w-3xl mx-auto mb-12"><details class="group bg-gray-50 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer p-4 list-none flex justify-between items-center text-sm"><span>Informativa sulla Privacy</span><span class="transition group-open:rotate-180">▼</span></summary><div class="p-4 pt-0 text-xs text-muted leading-relaxed space-y-2 border-t border-gray-100 mt-2"><p>La presente informativa sulla privacy descrive come raccogliamo e utilizziamo i tuoi dati. Utilizzando la nostra applicazione, accetti le pratiche descritte in questo documento. Raccogliamo informazioni personali solo quando strettamente necessario per fornire il servizio. I dati raccolti includono le preferenze di ascolto e la cronologia degli articoli letti. Non vendiamo né affittiamo le tue informazioni personali a terze parti per scopi di marketing. I tuoi dati sono protetti tramite crittografia standard di settore durante la trasmissione e l'archiviazione. Utilizziamo i cookie per migliorare la tua esperienza utente e analizzare il traffico dell'app. Hai il diritto di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati personali in qualsiasi momento. Conserviamo le tue informazioni solo per il tempo necessario a soddisfare le finalità per cui sono state raccolte. In caso di violazione dei dati, ci impegniamo a informare tempestivamente le autorità competenti e gli utenti coinvolti. La nostra app non è destinata a minori di tredici anni e non raccogliamo consapevolmente dati da essi. Potremmo aggiornare periodicamente questa informativa per riflettere modifiche alle nostre pratiche o alle normative vigenti. Ti invitiamo a consultare regolarmente questa pagina per rimanere informato su come proteggiamo la tua privacy. I servizi di terze parti integrati nell'app potrebbero avere proprie informative sulla privacy indipendenti. L'utilizzo continuato dell'applicazione dopo eventuali modifiche costituisce l'accettazione della nuova informativa sulla privacy. La base giuridica per il trattamento dei dati si fonda sul consenso dell'utente e sulla necessità di eseguire un contratto.</p></div></details><details class="group bg-gray-50 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer p-4 list-none flex justify-between items-center text-sm"><span>Termini di Servizio</span><span class="transition group-open:rotate-180">▼</span></summary><div class="p-4 pt-0 text-xs text-muted leading-relaxed space-y-2 border-t border-gray-100 mt-2"><p>I presenti Termini di Servizio regolano l'utilizzo dell'applicazione e dei servizi ad essa collegati. Accedendo o utilizzando l'app, accetti di essere vincolato da questi termini nella loro interezza. Se non sei d'accordo con qualsiasi parte di questi termini, sei pregato di non utilizzare il nostro servizio. L'utente è responsabile di mantenere la riservatezza delle proprie credenziali di accesso all'account. È severamente vietato utilizzare l'app per scopi illegali, fraudolenti o non autorizzati. Tutti i contenuti presenti nell'app, inclusi podcast, articoli e design, sono protetti da copyright. Non è consentito copiare, distribuire o modificare i contenuti senza la nostra esplicita autorizzazione scritta. Ci riserviamo il diritto di sospendere o chiudere gli account che violano questi termini senza preavviso. Il servizio viene fornito "così com'è", senza garanzie di alcun tipo, esplicite o implicite. Non garantiamo che l'app sarà sempre priva di errori, ininterrotta o completamente sicura. In nessun caso saremo ritenuti responsabili per danni indiretti, incidentali o consequenziali derivanti dall'uso dell'app. L'utente accetta di indennizzare e sollevare la nostra azienda da qualsiasi reclamo derivante dall'uso improprio del servizio. Ci riserviamo il diritto di modificare o interrompere il servizio in qualsiasi momento, con o senza preavviso. Eventuali modifiche a questi termini entreranno in vigore immediatamente dopo la loro pubblicazione. L'uso continuato dell'applicazione costituirà l'accettazione delle modifiche apportate ai termini di servizio. Le presenti condizioni sono regolate dalle leggi vigenti nel paese in cui operiamo, escludendo i conflitti di legge.</p></div></details><details class="group bg-gray-50 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer p-4 list-none flex justify-between items-center text-sm"><span>Politica di Rimborso</span><span class="transition group-open:rotate-180">▼</span></summary><div class="p-4 pt-0 text-xs text-muted leading-relaxed space-y-2 border-t border-gray-100 mt-2"><p>La nostra politica di rimborso è progettata per garantire equità e trasparenza per tutti i nostri utenti. Gli abbonamenti premium all'applicazione sono generalmente considerati definitivi e non rimborsabili. Tuttavia, comprendiamo che possono verificarsi circostanze eccezionali o problemi tecnici imprevisti. Puoi richiedere un rimborso entro quattordici giorni dalla data di acquisto iniziale se non sei soddisfatto. I rimborsi non sono applicabili per i rinnovi automatici degli abbonamenti se non disdetti in tempo. Per elaborare una richiesta, necessitiamo della prova d'acquisto e di una descrizione dettagliata del problema riscontrato. Le richieste di rimborso dovute a malfunzionamenti tecnici saranno valutate dal nostro team di supporto. Se il problema tecnico non può essere risolto entro un periodo ragionevole, procederemo con il rimborso. Non verranno emessi rimborsi per account che sono stati sospesi o chiusi a causa di violazioni dei Termini di Servizio. I rimborsi approvati verranno accreditati sul metodo di pagamento originale utilizzato per l'acquisto. L'elaborazione del rimborso da parte del tuo istituto bancario potrebbe richiedere dai cinque ai dieci giorni lavorativi. Ci riserviamo il diritto di rifiutare richieste di rimborso se sospettiamo frodi o abusi del sistema. Gli acquisti effettuati tramite piattaforme di terze parti (come Apple App Store) sono soggetti alle politiche di rimborso di tali piattaforme. In caso di acquisto tramite App Store, dovrai gestire la richiesta di rimborso direttamente tramite il tuo account Apple. Le cancellazioni dell'abbonamento interromperanno i pagamenti futuri, ma non comporteranno rimborsi retroattivi per i periodi già utilizzati. Monitoriamo attentamente le richieste di rimborso per migliorare continuamente la qualità del nostro servizio e dell'applicazione.</p></div></details></div><div class="text-center text-sm text-gray-400"> &copy; 2026 Kuquyaqeon Ventures. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] p-4 md:p-6 z-50 transform translate-y-full transition-transform duration-300"><div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-600 flex-1"> Utilizziamo i cookie per offrirti la migliore esperienza sul nostro sito web promozionale. Continuando a navigare, accetti il nostro utilizzo dei cookie in conformità con la nostra Informativa sulla Privacy. </div><div class="flex gap-4"><button onclick="acceptCookies()" class="btn-primary whitespace-nowrap text-sm py-2 px-6"> Accetta e Chiudi </button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+
+                    const targetId = this.getAttribute('href');
+                    let targetElement = document.querySelector(targetId);
+                    
+                    // Fallback logic
+                    if (!targetElement && targetId !== '#') {
+                        console.warn(`Target ${targetId} not found, routing to #download`);
+                        targetElement = document.getElementById('download');
+                    }
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+        }
+    </script> </body></html>
