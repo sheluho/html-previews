@@ -1,500 +1,215 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuxoNew Industries | Formazione AI e Prompt Design</title>
-    <meta name="description" content="Impara i segreti dell'Intelligenza Artificiale con il corso di TuxoNew Industries. Iscrizione aperta per principianti e professionisti.">
-    <meta name="robots" content="index, follow">
-    <!-- Tailwind CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <style>
+<!DOCTYPE html><html lang="it" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TuxoNews | Il tuo Aggregatore Notizie e Rassegna Stampa</title><meta name="description" content="Scopri TuxoNews, l'app aggregatore notizie per la tua rassegna stampa quotidiana. Leggi le prime pagine dei giornali italiani e le news di oggi, personalizzate dall'AI di Notizie.ai."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"> <style>
         :root {
-            /* VAR D: Palette -> Indigo for E-learning/Tech */
-            --primary: #4f46e5; 
-            /* VAR C: Surface -> Last letter 'n' (110%3=2) -> Cool Slate White */
-            --surface: #f8fafc;
-            /* VAR A: Geometry -> 'aulab.it' len 8 (8%3=2) -> Pill/Rounded */
-            --radius: 24px;
-            /* VAR B: Physics -> 'a' (97%3=1) -> Material Shadow */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --primary: #0d9488;
+            --secondary: #0891b2;
+            --radius: 9999px;
+            --card-radius: 24px;
+            --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+            --body-bg: #f9fafb;
+            --card-bg: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6; /* Gray background for contrast */
-            color: #1f2937;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             border: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2.5rem;
-            transition: all 0.3s ease;
-            font-weight: 700;
-            display: inline-block;
-            text-align: center;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
-        .btn-primary:hover { 
-            opacity: 0.95; 
-            transform: translateY(-2px); 
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(13, 148, 136, 0.05);
         }
 
-        /* UTILITY: Text Accent */
         .text-primary { color: var(--primary); }
-        .bg-primary-light { background-color: #e0e7ff; }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
 
-        /* HERO OVERLAY */
-        .hero-bg {
-            background-image: url('https://images.pexels.com/photos/17483874/pexels-photo-17483874.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .hero-overlay {
-            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(31,41,55,0.9) 100%);
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
-    </style>
-</head>
-<body class="antialiased">
-
-    <!-- NAVIGATION -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold text-gray-800 tracking-tight">TuxoNew<span class="text-primary">Industries</span></span>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Programma</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Testimonianze</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
-                    <a href="#contact" class="btn-primary text-sm py-2 px-6">Accesso Corso</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Programma</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Testimonianze</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold hover:bg-gray-50 rounded-md">Iscrizione</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <header class="hero-bg h-screen min-h-[600px] flex items-center justify-center pt-20">
-        <div class="hero-overlay absolute inset-0"></div>
-        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
-            <span class="inline-block py-1 px-3 rounded-full bg-primary-light text-primary text-sm font-bold mb-4 tracking-wider uppercase">
-                Piattaforma E-learning del Futuro
-            </span>
-            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                L'Industria del Domani <br>Richiede Competenze Oggi.
-            </h1>
-            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                TuxoNew Industries presenta il percorso definitivo per imparare l'Intelligenza Artificiale. 
-                Dalla teoria alla pratica: trasforma il tuo modo di lavorare e ottieni l'accesso al futuro professionale.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" class="btn-primary transform hover:scale-105">Inizia l'Apprendimento</a>
-                <a href="#features" class="bg-white text-gray-900 px-8 py-4 rounded-[24px] shadow-lg font-bold hover:bg-gray-100 transition transform hover:-translate-y-1">
-                    Scopri il Programma
-                </a>
-            </div>
-            <p class="mt-6 text-sm text-gray-400">
-                Iscrizione aperta a tutti • Adatto ai principianti
-            </p>
-        </div>
-    </header>
-
-    <!-- TRUST SECTION -->
-    <section class="py-12 bg-white border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-6">
-                Le competenze richieste dalle aziende leader
-            </p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale">
-                <span class="text-xl font-bold text-gray-700">TECH_ITALIA</span>
-                <span class="text-xl font-bold text-gray-700">NOVADIGITAL</span>
-                <span class="text-xl font-bold text-gray-700">SOFT_SOLUTIONS</span>
-                <span class="text-xl font-bold text-gray-700">NEXT_LEVEL</span>
-                <span class="text-xl font-bold text-gray-700">INNOVAZIONE_SRL</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURES / SERVICES SECTION -->
-    <section id="features" class="py-20">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Cosa imparerai con il nostro Corso</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Il programma è strutturato per portare i principianti a un livello professionale, 
-                    fornendo accesso a strumenti all'avanguardia per l'industria moderna.
-                </p>
-            </div>
-
-            <!-- Feature 1 -->
-            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
-                <div class="w-full md:w-1/2">
-                    <img 
-                        src="https://images.pexels.com/photos/5474295/pexels-photo-5474295.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                        alt="Imparare Prompt Design" 
-                        class="rounded-[24px] shadow-md w-full h-64 object-cover"
-                        loading="lazy"
-                        referrerpolicy="no-referrer"
-                        onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Prompt+Design'"
-                    >
-                </div>
-                <div class="w-full md:w-1/2">
-                    <div class="text-primary font-bold mb-2">MODULO 01</div>
-                    <h3 class="text-2xl font-bold mb-4">Conversation & Prompt Design</h3>
-                    <p class="text-gray-600 mb-6">
-                        Impara l'arte di comunicare con le macchine. Questo modulo ti insegna come strutturare i prompt 
-                        per ottenere risultati precisi da modelli come ChatGPT. Essenziale per chi vuole lavorare nell'E-learning 
-                        o nell'automazione industriale.
-                    </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-gray-700">
-                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Tecniche di prompting avanzato
-                        </li>
-                        <li class="flex items-center text-gray-700">
-                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Gestione del contesto AI
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Feature 2 -->
-            <div class="dna-card flex flex-col md:flex-row-reverse items-center gap-8">
-                <div class="w-full md:w-1/2">
-                    <img 
-                        src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                        alt="Generative AI Tools" 
-                        class="rounded-[24px] shadow-md w-full h-64 object-cover"
-                        loading="lazy"
-                        referrerpolicy="no-referrer"
-                        onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Generative+AI'"
-                    >
-                </div>
-                <div class="w-full md:w-1/2">
-                    <div class="text-primary font-bold mb-2">MODULO 02</div>
-                    <h3 class="text-2xl font-bold mb-4">AI Generativa per il Business</h3>
-                    <p class="text-gray-600 mb-6">
-                        Non solo teoria. Scopri come utilizzare Midjourney e altri strumenti generativi per creare asset 
-                        visivi e testuali. Ottimizza i processi aziendali e riduci i tempi di produzione grazie 
-                        al supporto dell'Intelligenza Artificiale.
-                    </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-gray-700">
-                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Creazione contenuti automatizzata
-                        </li>
-                        <li class="flex items-center text-gray-700">
-                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Integrazione nei flussi di lavoro
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Feature 3 -->
-            <div class="dna-card flex flex-col md:flex-row items-center gap-8">
-                <div class="w-full md:w-1/2">
-                    <img 
-                        src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                        alt="Carriera e Futuro" 
-                        class="rounded-[24px] shadow-md w-full h-64 object-cover"
-                        loading="lazy"
-                        referrerpolicy="no-referrer"
-                        onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Career+Success'"
-                    >
-                </div>
-                <div class="w-full md:w-1/2">
-                    <div class="text-primary font-bold mb-2">MODULO 03</div>
-                    <h3 class="text-2xl font-bold mb-4">Upskilling e Futuro Professionale</h3>
-                    <p class="text-gray-600 mb-6">
-                        Il mercato del lavoro sta cambiando. Garantisci il tuo accesso alle professioni del domani 
-                        acquisendo competenze certificate. Ideale per chi vuole imparare da zero o riqualificarsi 
-                        velocemente nel settore tech.
-                    </p>
-                    <a href="#contact" class="text-primary font-bold hover:underline">Richiedi il programma completo →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- REVIEWS SECTION -->
-    <section id="reviews" class="py-10">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Cosa dicono i nostri studenti</h2>
-            <div class="dna-card">
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Review 1 -->
-                    <div class="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                        <div class="flex text-yellow-400 mb-3">★★★★★</div>
-                        <p class="text-gray-600 text-sm mb-4">"Ho iniziato come principiante assoluto. Grazie a TuxoNew Industries, ora utilizzo l'AI quotidianamente nel mio lavoro di marketing. Un corso pratico e diretto."</p>
-                        <div class="font-bold text-gray-900 text-sm">- Marco Rossi</div>
-                        <div class="text-xs text-gray-500">Digital Strategist</div>
-                    </div>
-                    <!-- Review 2 -->
-                    <div class="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                        <div class="flex text-yellow-400 mb-3">★★★★★</div>
-                        <p class="text-gray-600 text-sm mb-4">"Cercavo un modo per imparare le basi del Prompt Design senza perdermi in tecnicismi inutili. L'iscrizione è stata la scelta migliore per il mio futuro."</p>
-                        <div class="font-bold text-gray-900 text-sm">- Giulia Bianchi</div>
-                        <div class="text-xs text-gray-500">Content Creator</div>
-                    </div>
-                    <!-- Review 3 -->
-                    <div class="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                        <div class="flex text-yellow-400 mb-3">★★★★★</div>
-                        <p class="text-gray-600 text-sm mb-4">"L'approccio 'industriale' e pratico mi è piaciuto molto. Non è solo teoria, ma applicazione reale per l'azienda. Consigliatissimo."</p>
-                        <div class="font-bold text-gray-900 text-sm">- Alessandro Verdi</div>
-                        <div class="text-xs text-gray-500">Imprenditore</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section id="faq" class="py-10">
-        <div class="max-w-5xl mx-auto px-4 dna-card">
-            <h2 class="text-3xl font-bold text-center mb-8">Domande Frequenti (FAQ)</h2>
-            <div class="space-y-4">
-                <details class="bg-white p-4 rounded-xl border border-gray-200 cursor-pointer">
-                    <summary class="font-bold text-gray-800">Il corso è adatto ai principianti?</summary>
-                    <p class="mt-3 text-gray-600 text-sm">Assolutamente sì. Il percorso è progettato per chi parte da zero. Imparare i concetti base dell'Intelligenza Artificiale non richiede competenze di programmazione pregresse.</p>
-                </details>
-                <details class="bg-white p-4 rounded-xl border border-gray-200 cursor-pointer">
-                    <summary class="font-bold text-gray-800">Quali strumenti imparerò a utilizzare?</summary>
-                    <p class="mt-3 text-gray-600 text-sm">Ti concentrerai sui principali modelli di linguaggio come ChatGPT, strumenti di generazione immagini come Midjourney e piattaforme di automazione per il business.</p>
-                </details>
-                <details class="bg-white p-4 rounded-xl border border-gray-200 cursor-pointer">
-                    <summary class="font-bold text-gray-800">Rilasciate una certificazione?</summary>
-                    <p class="mt-3 text-gray-600 text-sm">Sì, al termine del percorso e dopo aver completato i project work, riceverai un attestato di partecipazione che certifica le competenze acquisite.</p>
-                </details>
-                <details class="bg-white p-4 rounded-xl border border-gray-200 cursor-pointer">
-                    <summary class="font-bold text-gray-800">Come avviene l'accesso alle lezioni?</summary>
-                    <p class="mt-3 text-gray-600 text-sm">Le lezioni sono disponibili sulla nostra piattaforma E-learning. Potrai seguire il corso in modalità on-demand o live, a seconda del pacchetto scelto in fase di iscrizione.</p>
-                </details>
-                <details class="bg-white p-4 rounded-xl border border-gray-200 cursor-pointer">
-                    <summary class="font-bold text-gray-800">Qual è la durata del corso?</summary>
-                    <p class="mt-3 text-gray-600 text-sm">Il corso base dura 8 settimane con un impegno part-time, pensato per chi lavora o studia. Sono inclusi esercizi pratici e sessioni di revisione.</p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-10 mb-20">
-        <div class="max-w-5xl mx-auto px-4 dna-card relative overflow-hidden">
-            <!-- Decorative circle -->
-            <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-light rounded-full opacity-20"></div>
-
-            <div class="grid md:grid-cols-2 gap-12 relative z-10">
-                <div>
-                    <h2 class="text-3xl font-bold mb-4">Inizia il Tuo Futuro Oggi</h2>
-                    <p class="text-gray-600 mb-8">
-                        Compila il modulo per ricevere la brochure dettagliata del corso e parlare con un nostro consulente didattico.
-                        L'iscrizione ai prossimi batch è in chiusura.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="bg-primary-light p-3 rounded-full text-primary mt-1">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-800">Sede Operativa</h4>
-                                <p class="text-gray-600">Bari, Italia</p>
-                                <p class="text-xs text-gray-500">Provider Partner: aulab s.r.l</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-primary-light p-3 rounded-full text-primary mt-1">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-800">Orari Supporto</h4>
-                                <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-[24px] shadow-sm border border-gray-100">
-                    <div id="success-msg" class="hidden text-center py-10">
-                        <div class="inline-block p-4 rounded-full bg-green-100 text-green-500 mb-4">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Richiesta Inviata!</h3>
-                        <p class="text-gray-600">Grazie per il tuo interesse. Un nostro consulente ti contatterà a breve.</p>
-                    </div>
-
-                    <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); btn.disabled=true; btn.innerText='Invio in corso...'; setTimeout(()=>{this.style.display='none'; document.getElementById('success-msg').style.display='block';}, 1500);">
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-bold mb-2 text-sm">Nome Completo</label>
-                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" placeholder="Il tuo nome">
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-bold mb-2 text-sm">Email</label>
-                            <input type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" placeholder="tu@email.com">
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-bold mb-2 text-sm">Interesse Principale</label>
-                            <select class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
-                                <option>Corso Principianti</option>
-                                <option>Upskilling Aziendale</option>
-                                <option>Informazioni Generali</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-6">
-                            <label class="flex items-center">
-                                <input type="checkbox" required class="form-checkbox h-4 w-4 text-indigo-600">
-                                <span class="ml-2 text-xs text-gray-500">Accetto la Privacy Policy e acconsento al trattamento dei dati.</span>
-                            </label>
-                        </div>
-
-                        <button type="submit" class="w-full btn-primary text-center">Richiedi Info Ora</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <div>
-                    <span class="text-2xl font-bold tracking-tight">TuxoNew<span class="text-indigo-400">Industries</span></span>
-                    <p class="mt-4 text-gray-400 text-sm leading-relaxed">
-                        Coltiviamo il talento per le industrie del domani. La nostra missione è rendere l'intelligenza artificiale accessibile a tutti coloro che vogliono imparare e crescere.
-                    </p>
-                </div>
-                <div></div>
-                <div></div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Link Rapidi</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#features" class="hover:text-white transition">Programma</a></li>
-                        <li><a href="#reviews" class="hover:text-white transition">Testimonianze</a></li>
-                        <li><a href="#faq" class="hover:text-white transition">Domande Frequenti</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 pt-8 mt-8 text-center md:text-left">
-                <p class="text-xs text-gray-500 mb-4 italic">
-                    Questo è un sito promozionale indipendente gestito da TuxoNew Industries, che agisce in qualità di affiliato per Aulab. Tutti i marchi registrati appartengono ai legittimi proprietari.
-                </p>
-                <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-                    <p>&copy; 2026 TuxoNew Industries. Tutti i diritti riservati.</p>
-                </div>
-            </div>
-            
-            <!-- LEGAL DETAILS -->
-            <div class="mt-8 border-t border-gray-800 pt-8">
-                <details class="mb-4">
-                    <summary class="text-xs text-gray-500 cursor-pointer hover:text-white">Politica sulla Privacy (Clicca per espandere)</summary>
-                    <div class="mt-4 text-xs text-gray-400 space-y-2 text-justify">
-                        <p>La presente Informativa sulla Privacy descrive come TuxoNew Industries ("noi", "ci" o "nostro") raccoglie, utilizza e condivide le informazioni personali degli utenti ("voi", "vostro") che visitano il nostro sito web. Ci impegniamo a proteggere la vostra privacy e a garantire che i vostri dati personali siano trattati in modo sicuro e conforme alle normative vigenti, incluso il Regolamento Generale sulla Protezione dei Dati (GDPR). Raccogliamo informazioni che ci fornite volontariamente, come nome, indirizzo e numero di telefono, quando compilate i moduli di contatto sul nostro sito. Inoltre, possiamo raccogliere automaticamente alcune informazioni tecniche, come il vostro indirizzo IP e il tipo di browser utilizzato.</p>
-                        <p>Utilizziamo le informazioni raccolte per fornire i servizi richiesti, rispondere alle vostre domande e migliorare la qualità del nostro sito web. I vostri dati non saranno venduti a terzi per scopi di marketing senza il vostro esplicito consenso. Tuttavia, potremmo condividere le vostre informazioni con fornitori di servizi terzi che ci assistono nelle operazioni commerciali, sotto stretti obblighi di riservatezza. Avete il diritto di accedere ai vostri dati personali, chiederne la rettifica o la cancellazione, e opporvi al loro trattamento. Per esercitare questi diritti, vi invitiamo a utilizzare i canali di contatto forniti.</p>
-                        <p>Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i vostri dati da accessi non autorizzati, perdite o alterazioni. Conserviamo i vostri dati solo per il tempo necessario a soddisfare le finalità per cui sono stati raccolti o come richiesto dalla legge. Questo sito utilizza i cookie per migliorare l'esperienza di navigazione. Continuando a utilizzare il sito, acconsentite all'uso dei cookie come descritto nella nostra Cookie Policy. Ci riserviamo il diritto di aggiornare questa informativa in qualsiasi momento; le modifiche saranno pubblicate su questa pagina con la data di aggiornamento.</p>
-                        <p>La sicurezza dei dati è una priorità assoluta per TuxoNew Industries. Monitoriamo costantemente i nostri sistemi per rilevare eventuali vulnerabilità e attacchi. Nonostante i nostri sforzi, nessuna trasmissione di dati su Internet può essere garantita come completamente sicura. Pertanto, ci fornite le vostre informazioni a vostro rischio. In caso di violazione dei dati che possa compromettere i vostri diritti e le vostre libertà, vi informeremo tempestivamente in conformità con le leggi applicabili. Utilizzando i nostri servizi, confermate di aver letto e compreso questa Informativa sulla Privacy.</p>
-                        <p>Se avete domande riguardanti questa politica o le nostre pratiche sulla privacy, non esitate a contattarci tramite il modulo presente sul sito. Non includiamo indirizzi email diretti per motivi di sicurezza e per centralizzare le richieste. La vostra fiducia è importante per noi e lavoriamo duramente per mantenerla. Grazie per aver scelto TuxoNew Industries per le vostre esigenze di formazione e servizi digitali.</p>
-                    </div>
-                </details>
-
-                <details class="mb-4">
-                    <summary class="text-xs text-gray-500 cursor-pointer hover:text-white">Termini e Condizioni (Clicca per espandere)</summary>
-                    <div class="mt-4 text-xs text-gray-400 space-y-2 text-justify">
-                        <p>Benvenuti su TuxoNew Industries. L'accesso e l'uso di questo sito web sono regolati dai seguenti Termini e Condizioni. Accedendo al sito, accettate di essere vincolati da questi termini nella loro interezza. Se non accettate questi termini, vi preghiamo di non utilizzare il nostro sito. I contenuti presenti su questo sito sono forniti solo a scopo informativo generale e non costituiscono consulenza professionale. Ci riserviamo il diritto di modificare o interrompere i servizi offerti in qualsiasi momento senza preavviso.</p>
-                        <p>Tutti i diritti di proprietà intellettuale relativi ai contenuti di questo sito, inclusi testi, grafica, loghi e immagini, sono di proprietà di TuxoNew Industries o dei suoi licenziatari. È vietata la riproduzione, distribuzione o modifica non autorizzata di qualsiasi materiale presente sul sito. L'utente si impegna a utilizzare il sito solo per scopi leciti e in modo da non violare i diritti di terzi o limitare l'uso del sito da parte di altri. Qualsiasi tentativo di danneggiare il sito o accedere a aree riservate è severamente proibito.</p>
-                        <p>TuxoNew Industries non garantisce che il sito sia privo di errori, virus o altri componenti dannosi. Non siamo responsabili per eventuali danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito. I link a siti terzi sono forniti solo per comodità e non implichiamo alcuna approvazione dei loro contenuti. L'accesso a tali siti è a vostro rischio esclusivo.</p>
-                        <p>Ci riserviamo il diritto di sospendere o terminare il vostro accesso al sito in caso di violazione di questi Termini e Condizioni. In caso di controversie derivanti dall'uso di questo sito, tali controversie saranno regolate dalle leggi vigenti nello stato di residenza del proprietario del sito, senza considerare i conflitti di legge. Questi termini costituiscono l'intero accordo tra l'utente e TuxoNew Industries riguardo all'uso del sito.</p>
-                        <p>Per qualsiasi domanda riguardante i Termini e Condizioni, vi invitiamo a contattarci tramite l'apposito modulo. È vostra responsabilità rivedere periodicamente questa pagina per verificare eventuali modifiche. L'uso continuato del sito dopo la pubblicazione delle modifiche costituisce accettazione delle stesse. Grazie per la vostra collaborazione.</p>
-                    </div>
-                </details>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 border-t border-gray-700 p-4 z-50 hidden text-white">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-sm text-gray-300">Utilizziamo i cookie per migliorare la tua esperienza su TuxoNew Industries. Continuando, accetti la nostra privacy policy.</p>
-            <div class="flex gap-4">
-                <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookieConsent','true')" class="px-4 py-2 bg-indigo-600 rounded text-sm font-bold hover:bg-indigo-500">Accetta</button>
-                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 bg-gray-700 rounded text-sm hover:bg-gray-600">Chiudi</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Cookie Logic
-        if (!localStorage.getItem('cookieConsent')) {
-            document.getElementById('cookie-banner').classList.remove('hidden');
+        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+        main, main + footer { scroll-margin-top: 5rem; }
+        
+        /* Form inputs — consistent styling */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(13,148,136,0.15);
         }
 
-        // Smooth Scroll + Contact Routing
+        /* Links — readable on any theme */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider — subtle visual rhythm */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(13,148,136,0.12), transparent);
+            margin: 0;
+        }
+
+        /* Custom App Store Badge Styling */
+        .store-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            color: #fff !important;
+            border-radius: 12px;
+            padding: 8px 16px;
+            height: 48px;
+            min-width: 140px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            border: 1px solid #333;
+        }
+        .store-badge:hover {
+            transform: scale(1.05);
+        }
+        .store-badge svg {
+            height: 24px;
+            margin-right: 8px;
+            fill: currentColor;
+        }
+        .store-badge .badge-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+        .store-badge .badge-small {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+        .store-badge .badge-large {
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Overlap Hero specific styling */
+        .hero-overlap-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(13, 148, 136, 0.05); /* --primary at 5% */
+            z-index: -1;
+        }
+        @media (min-width: 768px) {
+            .hero-overlap-bg {
+                width: 75%;
+                border-bottom-right-radius: 9999px;
+            }
+        }
+    </style> </head><body class="antialiased"><nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-gray-100"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold font-serif text-primary flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg> TuxoNews </a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="font-medium hover:text-primary transition-colors">Funzionalità</a><a href="#how-it-works" class="font-medium hover:text-primary transition-colors">Come Funziona</a><a href="#reviews" class="font-medium hover:text-primary transition-colors">Recensioni</a><a href="#faq" class="font-medium hover:text-primary transition-colors">FAQ</a><a href="#download" class="btn-primary text-sm px-4 py-2">Scarica l'App</a></div><div class="md:hidden flex items-center"><button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-6 space-y-2"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-primary">Funzionalità</a><a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-primary">Come Funziona</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-primary">Recensioni</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-primary">FAQ</a><a href="#download" class="block px-3 py-2 mt-4 text-center btn-primary w-full justify-center">Scarica Ora</a></div></nav><main><section class="relative pt-12 pb-24 md:pt-24 md:pb-36 overflow-hidden"><div class="hero-overlap-bg"></div><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="flex flex-col md:flex-row items-center"><div class="w-full md:w-1/2 md:pr-12 text-left mb-12 md:mb-0"><div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-gray-100 mb-6"><span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span></span><span class="text-sm font-semibold text-gray-600">Alimentato da Notizie.ai</span></div><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6"> Tutte le <span class="text-primary">news oggi</span> in un'unica app. </h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> L'intelligenza artificiale per la tua <strong>rassegna stampa</strong> con TuxoNews. Sfoglia le prime pagine dei principali giornali italiani, personalizza il tuo feed e resta sempre informato senza perdere tempo. </p><div class="flex flex-wrap gap-4"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="badge-text"><span class="badge-small">Scarica su</span><span class="badge-large">App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="badge-text"><span class="badge-small">Disponibile su</span><span class="badge-large">Google Play</span></div></a></div><div class="mt-8 flex items-center gap-4 text-sm text-gray-500 font-medium"><div class="flex text-yellow-400"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><span>Eccellente su App Store</span></div></div><div class="w-full md:w-1/2 relative md:-mr-12 flex justify-center md:justify-end"><img src="https://images.pexels.com/photos/5077051/pexels-photo-5077051.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x1000/0d9488/ffffff?text=App+Aggregatore+Notizie'" alt="Smartphone che mostra l'app aggregatore notizie" class="rounded-[32px] shadow-2xl border-[8px] border-white object-cover max-h-[600px] transform md:rotate-2 hover:rotate-0 transition-transform duration-500" loading="lazy" referrerpolicy="no-referrer"><div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-lg border border-gray-100 hidden md:block animate-bounce" style="animation-duration: 3s;"><div class="flex items-center gap-3"><div class="bg-secondary bg-opacity-10 p-2 rounded-full"><svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><div><p class="text-xs text-gray-500 font-semibold">Aggiornamento</p><p class="text-sm font-bold text-gray-900">In tempo reale</p></div></div></div></div></div></div></section><hr class="section-divider"><section id="features" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-3xl mx-auto mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Il tuo <span class="text-primary">aggregatore notizie</span> intelligente</h2><p class="text-lg text-muted">Dimentica la navigazione frammentata. Abbiamo progettato la migliore esperienza mobile per la tua rassegna stampa, basata sulla potente tecnologia di Notizie.ai.</p></div><div class="dna-card"><div class="flex flex-col gap-16 md:gap-24 py-8"><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/1440810/pexels-photo-1440810.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/600x500/0d9488/ffffff?text=Rassegna+Stampa'" alt="Rassegna stampa su smartphone" class="rounded-2xl shadow-md w-full object-cover" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2 text-left"><div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary bg-opacity-10 text-primary mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Le Prime Pagine a portata di tap</h3><p class="text-muted text-lg leading-relaxed"> Accedi istantaneamente alle <strong>prime pagine</strong> di tutti i principali <strong>giornali italiani</strong>. Non dovrai più saltare da un sito all'altro: l'app raccoglie le edizioni odierne in un'unica interfaccia pulita e priva di distrazioni, ottimizzata per il tuo schermo mobile. </p></div></div><div class="flex flex-col md:flex-row-reverse items-center gap-12"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/600x500/0891b2/ffffff?text=Feed+Personalizzato'" alt="Interfaccia app mobile per notizie" class="rounded-2xl shadow-md w-full object-cover" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2 text-left"><div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary bg-opacity-10 text-secondary mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Feed Personalizzato dall'AI</h3><p class="text-muted text-lg leading-relaxed"> Il cuore del nostro <strong>aggregatore notizie</strong> è il motore di intelligenza artificiale. Impara dai tuoi interessi e ti propone articoli, approfondimenti e le <strong>news di oggi</strong> più rilevanti per te. Meno rumore di fondo, più informazione di qualità. </p></div></div><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/4009402/pexels-photo-4009402.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/600x500/0d9488/ffffff?text=Notifiche+Push'" alt="Utente che legge notifiche sullo smartphone" class="rounded-2xl shadow-md w-full object-cover" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2 text-left"><div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary bg-opacity-10 text-primary mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg></div><h3 class="text-2xl font-bold mb-4">Notifiche Breaking News</h3><p class="text-muted text-lg leading-relaxed"> Rimani sempre sul pezzo. Imposta avvisi personalizzati per argomenti specifici o parole chiave. Quando una notizia cruciale viene battuta dalle agenzie, la riceverai immediatamente con una notifica push sul tuo dispositivo. </p></div></div></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Inizia in <span class="text-secondary">3 semplici passi</span></h2><p class="text-lg text-muted">Configurare la tua rassegna stampa non è mai stato così veloce.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative"><div class="hidden md:block absolute top-1/3 left-[15%] right-[15%] h-0.5 bg-gray-100 -z-10"></div><div class="flex flex-col items-center bg-white z-10 p-4"><div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-6 shadow-lg border-4 border-white">1</div><h3 class="text-xl font-semibold mb-3">Scarica l'App</h3><p class="text-muted">Disponibile gratuitamente su App Store per iOS e Google Play per Android.</p></div><div class="flex flex-col items-center bg-white z-10 p-4"><div class="w-16 h-16 rounded-full bg-secondary text-white flex items-center justify-center text-2xl font-bold mb-6 shadow-lg border-4 border-white">2</div><h3 class="text-xl font-semibold mb-3">Scegli le Fonti</h3><p class="text-muted">Seleziona i tuoi giornali italiani preferiti e le tematiche che ti interessano.</p></div><div class="flex flex-col items-center bg-white z-10 p-4"><div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-6 shadow-lg border-4 border-white">3</div><h3 class="text-xl font-semibold mb-3">Leggi e Condividi</h3><p class="text-muted">Goditi la tua rassegna stampa quotidiana, salva gli articoli o condividili con un tap.</p></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-24 md:py-36 bg-gray-50"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa dicono i nostri lettori</h2><p class="text-lg text-muted">Migliaia di utenti usano TuxoNews come loro aggregatore notizie principale.</p></div><div class="dna-card bg-transparent shadow-none border-none !p-0"><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 hover:shadow-md transition-shadow"><div class="flex text-yellow-400 mb-3"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">La mia rassegna stampa perfetta</h4><p class="text-gray-600 mb-4 text-sm leading-relaxed">"Uso questa app ogni mattina mentre vado a lavoro. Avere tutte le prime pagine dei giornali italiani e le news di oggi in un solo posto mi fa risparmiare un sacco di tempo. L'interfaccia è pulitissima."</p><div class="flex items-center justify-between text-xs text-gray-400 font-medium"><span>Marco_R89</span><span>12 Ottobre 2025</span></div></div><div class="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 hover:shadow-md transition-shadow"><div class="flex text-yellow-400 mb-3"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">L'AI fa la differenza</h4><p class="text-gray-600 mb-4 text-sm leading-relaxed">"Come aggregatore notizie è imbattibile. L'algoritmo capisce davvero cosa mi interessa leggere. Le notifiche push per le breaking news sono puntuali e mai invasive. Consigliatissima."</p><div class="flex items-center justify-between text-xs text-gray-400 font-medium"><span>Elena_Tech</span><span>05 Gennaio 2026</span></div></div><div class="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 hover:shadow-md transition-shadow"><div class="flex text-yellow-400 mb-3"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current text-gray-300" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">Mai più senza</h4><p class="text-gray-600 mb-4 text-sm leading-relaxed">"Ottima per rimanere aggiornati. Mi piace poter salvare gli articoli per leggerli offline quando sono in metropolitana. Sarebbe bello avere ancora più riviste di nicchia, ma per i quotidiani è perfetta."</p><div class="flex items-center justify-between text-xs text-gray-400 font-medium"><span>Giuseppe_V</span><span>28 Febbraio 2026</span></div></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-lg text-muted">Tutto quello che devi sapere sulla tua nuova app per le notizie.</p></div><div class="dna-card"><div class="space-y-4"><details class="group bg-gray-50 rounded-xl"><summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg"><span>L'app TuxoNews è gratuita?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn px-5 pb-5 leading-relaxed">Sì, il download dell'app aggregatore notizie è completamente gratuito. Offriamo le funzionalità base per la rassegna stampa quotidiana senza costi. È disponibile un piano premium opzionale all'interno dell'app per funzionalità avanzate e un'esperienza senza pubblicità.</p></details><details class="group bg-gray-50 rounded-xl"><summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg"><span>Quali dispositivi sono supportati?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn px-5 pb-5 leading-relaxed">L'app è disponibile per tutti gli smartphone recenti. Puoi scaricarla dall'App Store per dispositivi iOS (iPhone e iPad) e dal Google Play Store per tutti i dispositivi Android. L'interfaccia si adatta perfettamente a schermi di qualsiasi dimensione.</p></details><details class="group bg-gray-50 rounded-xl"><summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg"><span>I miei dati e le mie preferenze di lettura sono al sicuro?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn px-5 pb-5 leading-relaxed">Assolutamente sì. La privacy dei nostri utenti è una priorità. I dati sulle tue preferenze vengono utilizzati esclusivamente per personalizzare il tuo feed delle news di oggi e non vengono venduti a terze parti. Rispettiamo rigorosamente le normative GDPR.</p></details><details class="group bg-gray-50 rounded-xl"><summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg"><span>Quali giornali italiani sono inclusi?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn px-5 pb-5 leading-relaxed">Aggreghiamo i contenuti dei principali quotidiani nazionali, riviste specializzate, agenzie di stampa e testate locali. Troverai tutte le principali fonti di informazione per garantirti una visione completa e plurale nella tua rassegna stampa.</p></details><details class="group bg-gray-50 rounded-xl"><summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg"><span>Posso leggere le notizie offline?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn px-5 pb-5 leading-relaxed">Sì! Una delle funzionalità più apprezzate è la modalità offline. Puoi scaricare le prime pagine o salvare articoli specifici mentre sei connesso al Wi-Fi, per poi leggerli tranquillamente in aereo, in treno o ovunque non ci sia copertura di rete.</p></details></div></div></div></section><hr class="section-divider"><section id="download" class="py-24 md:py-36"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div class="dna-card bg-primary text-white border-none shadow-2xl relative overflow-hidden"><div class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2"></div><div class="absolute bottom-0 right-0 w-80 h-80 bg-white opacity-5 rounded-full translate-x-1/3 translate-y-1/3"></div><div class="relative z-10 py-8 md:py-12"><h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-white font-serif">Scarica l'App <span class="text-yellow-300">TuxoNews</span></h2><p class="text-xl md:text-2xl mb-12 text-teal-50 max-w-2xl mx-auto font-medium">L'aggregatore definitivo per la tua rassegna stampa. Porta l'informazione sempre con te.</p><div class="flex flex-col sm:flex-row justify-center items-center gap-6"><a href="#download" class="store-badge bg-black hover:bg-gray-900 border-gray-800 scale-110 sm:scale-100 sm:hover:scale-105 transition-transform"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="badge-text"><span class="badge-small">Scarica su</span><span class="badge-large">App Store</span></div></a><a href="#download" class="store-badge bg-black hover:bg-gray-900 border-gray-800 scale-110 sm:scale-100 sm:hover:scale-105 transition-transform"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="badge-text"><span class="badge-small">Disponibile su</span><span class="badge-large">Google Play</span></div></a></div></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><a href="#" class="text-2xl font-extrabold font-serif text-primary flex items-center justify-center gap-2 mb-4"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg> TuxoNews </a><p class="text-sm text-gray-500 max-w-2xl mx-auto italic border-l-4 border-secondary pl-4 py-2 bg-gray-50 rounded-r-lg"> Questa è una pagina promozionale indipendente gestita da TuxoNews, per l'app Notizie.ai sviluppata dal provider originale. </p></div><div class="space-y-4 mb-12 text-left max-w-4xl mx-auto"><details class="group bg-gray-50 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer p-4 text-sm text-gray-700 hover:text-primary transition-colors">Informativa sulla Privacy</summary><div class="p-4 pt-0 text-xs text-gray-600 space-y-3 h-64 overflow-y-auto"><p>La presente Informativa sulla Privacy descrive come TuxoNews (di seguito "noi", "nostro" o "l'Operatore") raccoglie, utilizza e protegge le informazioni personali degli utenti che visitano questa pagina promozionale. Rispettiamo la tua privacy e ci impegniamo a proteggere i tuoi dati personali in conformità con il Regolamento Generale sulla Protezione dei Dati (GDPR) e le altre normative applicabili. Quando visiti questa pagina, potremmo raccogliere automaticamente alcune informazioni sul tuo dispositivo, incluse informazioni sul tuo browser web, indirizzo IP, fuso orario e alcuni cookie installati sul tuo dispositivo. Inoltre, mentre navighi sulla pagina, raccogliamo informazioni sulle singole sezioni che visualizzi, su quali siti web o termini di ricerca ti hanno indirizzato alla pagina e informazioni su come interagisci con essa. Ci riferiamo a queste informazioni raccolte automaticamente come "Informazioni sul dispositivo". Raccogliamo le Informazioni sul dispositivo utilizzando tecnologie come i cookie, che sono file di dati che vengono inseriti nel tuo dispositivo o computer e spesso includono un identificatore univoco anonimo. Utilizziamo i file di log per tracciare le azioni che si verificano sulla pagina e raccogliere dati tra cui indirizzo IP, tipo di browser, provider di servizi Internet, pagine di riferimento/uscita e data/ora. Non raccogliamo dati personali sensibili attraverso questo sito promozionale. I link per il download reindirizzano l'utente agli store ufficiali (App Store o Google Play), i quali hanno le proprie politiche sulla privacy. L'app promossa, Notizie.ai, ha una propria e separata informativa sulla privacy che l'utente è tenuto a consultare prima dell'installazione e dell'uso. Non condividiamo le tue Informazioni sul dispositivo con terze parti per scopi di marketing. Potremmo condividere le tue informazioni solo se richiesto dalla legge o per rispondere a procedimenti legali validi. Adottiamo misure di sicurezza ragionevoli per proteggere le tue informazioni dalla perdita, dal furto, dall'uso improprio e dall'accesso non autorizzato. Tuttavia, nessun metodo di trasmissione su Internet o metodo di archiviazione elettronica è sicuro al 100%. Pertanto, non possiamo garantire la sicurezza assoluta delle tue informazioni. Conserviamo le Informazioni sul dispositivo per il tempo necessario a soddisfare gli scopi per cui sono state raccolte, a meno che non sia richiesto o consentito dalla legge un periodo di conservazione più lungo. Hai il diritto di accedere alle informazioni personali che conserviamo su di te e di chiedere che le tue informazioni personali vengano corrette, aggiornate o cancellate. Se desideri esercitare questo diritto, ti preghiamo di utilizzare i moduli di contatto standard disponibili sulla piattaforma di hosting. Ci riserviamo il diritto di aggiornare questa informativa sulla privacy di volta in volta per riflettere, ad esempio, modifiche alle nostre pratiche o per altri motivi operativi, legali o normativi. Ti invitiamo a rivedere periodicamente questa pagina per le ultime informazioni sulle nostre pratiche sulla privacy. L'uso continuato di questa pagina dopo eventuali modifiche costituisce l'accettazione dell'informativa sulla privacy aggiornata.</p></div></details><details class="group bg-gray-50 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer p-4 text-sm text-gray-700 hover:text-primary transition-colors">Termini e Condizioni</summary><div class="p-4 pt-0 text-xs text-gray-600 space-y-3 h-64 overflow-y-auto"><p>I presenti Termini e Condizioni regolano l'accesso e l'utilizzo di questa pagina web promozionale gestita da TuxoNews. Accedendo o utilizzando questa pagina, accetti di essere vincolato da questi Termini e Condizioni nella loro interezza. Se non sei d'accordo con qualsiasi parte di questi termini, ti preghiamo di non utilizzare la nostra pagina. Questa pagina funge esclusivamente da vetrina promozionale indipendente per l'applicazione mobile denominata Notizie.ai. Non siamo gli sviluppatori, i proprietari o i gestori diretti dell'applicazione menzionata. Il nostro ruolo è limitato alla promozione e alla fornitura di link di reindirizzamento verso le piattaforme di distribuzione ufficiali, ovvero l'Apple App Store e il Google Play Store. Non ci assumiamo alcuna responsabilità per il funzionamento, i contenuti, la disponibilità o le politiche dell'applicazione Notizie.ai. Qualsiasi problema, reclamo o richiesta di assistenza tecnica relativa all'applicazione deve essere indirizzata direttamente agli sviluppatori ufficiali dell'app. Le informazioni fornite su questa pagina, incluse le descrizioni delle funzionalità, le recensioni e le valutazioni, sono a scopo puramente informativo e promozionale. Sebbene ci sforziamo di mantenere le informazioni accurate e aggiornate, non garantiamo la completezza, l'affidabilità o l'accuratezza di tali contenuti. I loghi, i marchi e le immagini relativi a Notizie.ai, Apple App Store e Google Play Store appartengono ai rispettivi proprietari. L'uso di questi marchi su questa pagina non implica alcuna affiliazione o approvazione ufficiale da parte dei rispettivi proprietari, se non diversamente specificato. Ci riserviamo il diritto di modificare, sospendere o interrompere questa pagina promozionale in qualsiasi momento senza preavviso. Non saremo responsabili nei tuoi confronti o nei confronti di terzi per qualsiasi modifica, sospensione o interruzione del servizio. L'utilizzo dei link forniti per il download dell'app è a tuo rischio esclusivo. Ti consigliamo di leggere attentamente i termini di servizio e le politiche sulla privacy degli store ufficiali e dell'applicazione stessa prima di procedere con il download o l'installazione. Non saremo responsabili per eventuali danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso di questa pagina o dal download dell'applicazione promossa. Accetti di indennizzare e manlevare TuxoNews da qualsiasi reclamo o richiesta derivante dal tuo utilizzo della pagina. Ci riserviamo il diritto di aggiornare questi Termini e Condizioni in qualsiasi momento. Le modifiche avranno effetto immediato al momento della pubblicazione sulla pagina. È tua responsabilità rivedere periodicamente questi termini. L'uso continuato della pagina dopo la pubblicazione delle modifiche costituisce accettazione dei nuovi termini. Questi termini sono regolati dalle leggi vigenti e qualsiasi controversia sarà soggetta alla giurisdizione esclusiva dei tribunali competenti. La nullità di una clausola non invalida le restanti disposizioni di questi Termini e Condizioni.</p></div></details><details class="group bg-gray-50 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer p-4 text-sm text-gray-700 hover:text-primary transition-colors">Politica sui Rimborsi</summary><div class="p-4 pt-0 text-xs text-gray-600 space-y-3 h-64 overflow-y-auto"><p>La presente Politica sui Rimborsi chiarisce la nostra posizione in merito a eventuali transazioni finanziarie. TuxoNews, in qualità di gestore di questa pagina promozionale indipendente, non elabora, non gestisce e non accetta alcun tipo di pagamento diretto da parte degli utenti. La nostra piattaforma è esclusivamente una vetrina informativa e di reindirizzamento per l'applicazione Notizie.ai. Poiché non vendiamo direttamente alcun prodotto o servizio su questa pagina, non emettiamo rimborsi. Il download dell'applicazione promossa avviene attraverso piattaforme di terze parti, specificamente l'Apple App Store per i dispositivi iOS e il Google Play Store per i dispositivi Android. Qualsiasi transazione finanziaria, inclusi eventuali acquisti in-app (In-App Purchases) o abbonamenti premium associati all'app Notizie.ai, viene gestita interamente da Apple o Google, a seconda del dispositivo utilizzato. Pertanto, qualsiasi richiesta di rimborso per acquisti effettuati all'interno dell'applicazione deve essere presentata direttamente al fornitore dello store di riferimento. Se hai effettuato un acquisto tramite l'App Store e desideri richiedere un rimborso, devi accedere al tuo account Apple, navigare nella cronologia degli acquisti e utilizzare la funzione "Segnala un problema" per inviare la tua richiesta ad Apple. Apple gestisce i rimborsi a propria esclusiva discrezione e secondo le proprie politiche. Se hai effettuato un acquisto tramite il Google Play Store, puoi richiedere un rimborso accedendo alla pagina del tuo account Google Play su un browser web, andando alla sezione "Cronologia ordini" e selezionando "Richiedi un rimborso" o "Segnala un problema". Anche Google applica le proprie politiche sui rimborsi, che possono variare in base al tempo trascorso dall'acquisto. Non abbiamo accesso ai tuoi dati di pagamento, alla cronologia degli acquisti o agli account degli app store. Non possiamo intervenire in alcun modo nel processo di rimborso tra te e Apple o Google. Inoltre, non possiamo intercedere presso gli sviluppatori originali di Notizie.ai per questioni finanziarie. Ti invitiamo caldamente a prestare attenzione durante la conferma di qualsiasi acquisto in-app o abbonamento. Assicurati di comprendere i costi ricorrenti se stai attivando un piano in abbonamento. È tua responsabilità gestire le tue iscrizioni e cancellarle tempestivamente tramite le impostazioni del tuo dispositivo se non desideri incorrere in ulteriori addebiti. Per ulteriori dettagli sulle politiche di rimborso, ti preghiamo di consultare i termini e le condizioni ufficiali di Apple Media Services o i Termini di servizio di Google Play. Questa politica ha il solo scopo di chiarire l'assenza di responsabilità finanziaria da parte della nostra pagina promozionale TuxoNews.</p></div></details></div><div class="text-center text-sm text-gray-400 mt-8"> &copy; 2026 TuxoNews. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 transform translate-y-full transition-transform duration-300 z-50"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm text-gray-300 text-center sm:text-left"> Utilizziamo i cookie per garantirti la migliore esperienza sulla nostra pagina promozionale. Continuando a navigare, accetti il nostro utilizzo dei cookie. </p><div class="flex gap-4 flex-shrink-0"><button onclick="acceptCookies()" class="bg-primary hover:bg-teal-500 text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors">Accetta</button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
+                    // Target exists -> Smooth Scroll
                     targetElement.scrollIntoView({ behavior: 'smooth' });
-                    // Close mobile menu if open
-                    document.getElementById('mobile-menu').classList.add('hidden');
                 } else {
-                    // Fallback to Contact
-                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                    // Fallback -> Force Smooth Scroll to #download
+                    const fallbackElement = document.querySelector('#download');
+                    if (fallbackElement) {
+                        fallbackElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
                 }
             });
         });
-    </script>
-</body>
-</html>
+
+        // Cookie Banner Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("cookiesAccepted")) {
+                setTimeout(() => {
+                    document.getElementById("cookie-banner").classList.remove("translate-y-full");
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem("cookiesAccepted", "true");
+            document.getElementById("cookie-banner").classList.add("translate-y-full");
+        }
+    </script> </body></html>
