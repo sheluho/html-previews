@@ -1,442 +1,220 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RahinoMopie Ventures - Soluzioni Mobile Avanzate</title>
-    <meta name="description" content="Servizi professionali di riparazione smartphone, vendita dispositivi ricondizionati e accessori premium.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <style>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Rahinomopiex Ventures | La Tua Finestra sull'Attualità Italiana</title><meta name="description" content="Approfondimenti, inchieste e ultime notizie. Esplora la politica italiana e la cronaca con Rahinomopiex Ventures."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet"> <style>
         :root {
-            /* VAR D: Palette (Tech/Repair = Electric Blue) */
-            --primary: #0066FF;
-            /* VAR C: Surface (Last Letter 't' = 116 % 3 = 2 -> Cool) */
-            --surface: #f8fafc;
-            /* VAR A: Geometry (Length 13 % 3 = 1 -> Soft) */
-            --radius: 12px;
-            /* VAR B: Physics (First Letter 'e' = 101 % 3 = 2 -> Hard/Brutalist) */
-            --shadow: 4px 4px 0px 0px #000;
+            --primary: #dc2626;
+            --secondary: #0891b2;
+            --radius: 0px;
+            --card-radius: 0px;
+            --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+            --body-bg: #fffbeb;
+            --card-bg: #ffffff;
+            --text: #1c1917;
+            --muted: #78716c;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6; /* Always light gray */
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-            overflow-x: hidden;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Nunito Sans', sans-serif;
+            padding-top: 5rem; /* Compensate for fixed navbar */
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
-            border: 2px solid #000; /* Added border to match Brutalist shadow */
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .dna-card:hover {
+            transform: translateY(-2px);
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+            border-bottom: 1px solid rgba(220,38,38,0.1);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
+            padding: 0.875rem 2rem;
+            font-weight: 700;
+            font-family: 'Nunito Sans', sans-serif;
             transition: all 0.2s;
-            font-weight: 800;
-            text-transform: uppercase;
-            border: 2px solid #000;
-            display: inline-block;
-        }
-        
-        .btn-primary:hover { 
-            transform: translate(-2px, -2px); 
-            box-shadow: 6px 6px 0px 0px #000;
-        }
-        
-        .btn-primary:active {
-            transform: translate(2px, 2px);
-            box-shadow: 0px 0px 0px 0px #000;
-        }
-
-        /* UTILITY */
-        .text-primary { color: var(--primary); }
-        
-        /* Navigation Adjustments */
-        .nav-link {
-            position: relative;
-            font-weight: 600;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Cookie Banner */
-        #cookie-banner {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 600px;
-            background: #fff;
-            z-index: 50;
-            display: none;
-            border: 2px solid #000;
-            box-shadow: var(--shadow);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-        }
-
-        /* Legal Details */
-        details {
-            border: 1px solid #ddd;
-            border-radius: var(--radius);
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background: #fff;
-        }
-        summary {
-            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
             cursor: pointer;
-            outline: none;
+            border: none;
         }
-    </style>
-</head>
-<body class="antialiased">
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    <!-- NAVIGATION -->
-    <nav class="bg-white border-b-2 border-black sticky top-0 z-40">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center">
-                    <span class="text-2xl font-black tracking-tighter uppercase">RahinoMopie<span class="text-primary">.Ventures</span></span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="nav-link text-gray-800">Servizi</a>
-                    <a href="#reviews" class="nav-link text-gray-800">Recensioni</a>
-                    <a href="#faq" class="nav-link text-gray-800">FAQ</a>
-                    <a href="#contact" class="btn-primary text-sm px-6 py-2">Richiedi Preventivo</a>
-                </div>
-                <!-- Mobile Button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-black focus:outline-none">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black p-4">
-            <a href="#features" class="block py-2 font-bold hover:text-primary">Servizi</a>
-            <a href="#reviews" class="block py-2 font-bold hover:text-primary">Recensioni</a>
-            <a href="#contact" class="block py-2 font-bold text-primary">Contatti</a>
-        </div>
-    </nav>
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(220,38,38,0.05);
+        }
 
-    <!-- HERO SECTION -->
-    <header class="relative bg-gray-900 text-white pt-24 pb-32 overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="https://images.pexels.com/photos/50614/pexels-photo-50614.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                 alt="Tecnologia Mobile" 
-                 class="w-full h-full object-cover opacity-40"
-                 loading="lazy"
-                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Digital+Tech+Service'">
-        </div>
-        <div class="relative max-w-5xl mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                La Migliore Strategia per la Tua <br><span class="text-primary">Tecnologia Mobile</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto font-light">
-                Non lasciare che un dispositivo rotto rallenti i tuoi affari. Investi nella longevità dei tuoi gadget con i nostri servizi di riparazione e ricondizionamento certificati.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#contact" class="btn-primary text-center">Inizia Ora</a>
-                <a href="#features" class="bg-white text-black font-bold px-8 py-4 rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-y-px hover:shadow-[2px_2px_0px_0px_#000] transition-all flex items-center justify-center">
-                    Scopri di più
-                </a>
-            </div>
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
+        .bg-secondary { background-color: var(--secondary); }
+
+        /* Mobile menu — always opaque */
+        #mobile-menu {
+            background-color: var(--body-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Fixed navbar compensation */
+        main, main + footer, section { scroll-margin-top: 6rem; }
+
+        /* Form inputs */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.875rem 1rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: var(--card-radius);
+            background-color: var(--card-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220,38,38,0.15);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Links */
+        a { color: var(--primary); transition: color 0.2s; }
+        a:hover { color: var(--secondary); }
+        nav a, footer a { color: var(--text); text-decoration: none; font-weight: 600; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(220,38,38,0.15), transparent);
+            margin: 0;
+        }
+
+        /* FAQ Details styling */
+        details {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        details summary {
+            font-weight: 700;
+            cursor: pointer;
+            padding: 1.5rem 0;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        details summary::-webkit-details-marker { display: none; }
+        details summary::after {
+            content: '+';
+            color: var(--secondary);
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        details[open] summary::after {
+            transform: rotate(45deg);
+            color: var(--primary);
+        }
+        details p {
+            padding-bottom: 1.5rem;
+            color: var(--muted);
+        }
+
+        /* Accent decorations */
+        .accent-line {
+            height: 4px;
+            width: 60px;
+            background-color: var(--secondary);
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+    </style> </head><body><nav class="fixed w-full top-0 z-50"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-20"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold tracking-tight" style="font-family: 'Lora', serif;"> Rahinomopiex <span class="text-primary">Ventures</span></a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features">Le Inchieste</a><a href="#about">Chi Siamo</a><a href="#reviews">Lettori</a><a href="#faq">FAQ</a><a href="#contact" class="btn-primary" style="padding: 0.5rem 1.5rem;">Abbonati Ora</a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none"><svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden pb-6 px-4"><a href="#features" class="block py-3 border-b border-gray-100">Le Inchieste</a><a href="#about" class="block py-3 border-b border-gray-100">Chi Siamo</a><a href="#reviews" class="block py-3 border-b border-gray-100">Lettori</a><a href="#faq" class="block py-3 border-b border-gray-100">FAQ</a><a href="#contact" class="block py-3 text-primary font-bold mt-2">Abbonati Ora</a></div></nav><main><section class="py-24 md:py-36 max-w-4xl mx-auto text-center px-4"><h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight text-text"> Il miglior investimento per il tuo intelletto è <span class="text-primary">comprendere il presente.</span></h1><p class="text-lg md:text-xl text-muted mb-12 max-w-2xl mx-auto leading-relaxed"> Rahinomopiex Ventures ti guida attraverso le complesse dinamiche della <strong>politica italiana</strong> e dell'<strong>attualità</strong> globale. Selezioniamo e analizziamo le <strong>notizie Italia</strong> più rilevanti per offrirti una prospettiva chiara, indipendente e senza filtri. </p><div class="flex flex-col sm:flex-row justify-center gap-4"><a href="#features" class="btn-primary"> Esplora i Contenuti <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></a><a href="#contact" class="btn-secondary"> Richiedi Accesso </a></div></section><hr class="section-divider"><section id="features" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-5xl font-bold text-text">I Pilastri dell'Informazione</h2><div class="accent-line mx-auto"></div><p class="text-muted text-lg max-w-2xl mx-auto">Andiamo oltre i titoli sensazionalistici. Forniamo un'analisi profonda e contestualizzata per chi esige di più dalla propria lettura quotidiana.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="dna-card flex flex-col items-center text-center"><div class="p-4 bg-red-50 mb-6" style="border-radius: var(--radius);"><svg class="w-10 h-10 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg></div><h3 class="text-xl font-bold mb-3">Politica Italiana</h3><p class="text-muted">Decodifichiamo le mosse di palazzo, i decreti e le alleanze. Un'analisi lucida sulla <strong>politica italiana</strong> per farti comprendere chi decide le sorti del paese e perché.</p></div><div class="dna-card flex flex-col items-center text-center"><div class="p-4 bg-red-50 mb-6" style="border-radius: var(--radius);"><svg class="w-10 h-10 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg></div><h3 class="text-xl font-bold mb-3">Cronaca e Società</h3><p class="text-muted">Reportage esclusivi sul territorio. La <strong>cronaca</strong> che non si ferma all'evento, ma indaga le cause profonde e gli impatti sociali a lungo termine.</p></div><div class="dna-card flex flex-col items-center text-center"><div class="p-4 bg-red-50 mb-6" style="border-radius: var(--radius);"><svg class="w-10 h-10 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><h3 class="text-xl font-bold mb-3">Ultime Notizie Verificate</h3><p class="text-muted">Un flusso costante ma rigorosamente controllato. Le <strong>ultime notizie</strong> e gli aggiornamenti essenziali, verificati dalla nostra redazione per combattere la disinformazione.</p></div></div></section><hr class="section-divider"><section id="about" class="py-24 md:py-36 bg-white border-y border-gray-100"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/3944463/pexels-photo-3944463.jpeg" alt="Lettura approfondita delle notizie" class="w-full h-auto object-cover grayscale opacity-90" style="border-radius: var(--radius); border: 1px solid rgba(0,0,0,0.1);" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/dc2626/ffffff?text=Giornalismo+Indipendente'"></div><div class="w-full md:w-1/2"><h2 class="text-3xl md:text-4xl font-bold mb-4">La Realtà, Oltre la Superficie</h2><div class="accent-line"></div><p class="text-muted text-lg mb-6"> In un'epoca di sovraccarico informativo, il vero valore non è la quantità delle notizie, ma la loro qualità. Rahinomopiex Ventures nasce come progetto editoriale per chi cerca una <strong>rivista di attualità</strong> capace di sfidare il pensiero unico. </p><p class="text-muted text-lg mb-8"> Selezioniamo le migliori inchieste, traduciamo le prospettive internazionali e offriamo uno sguardo critico sulle <strong>notizie Italia</strong>. Crediamo che un cittadino informato sia il miglior investimento per una società democratica. </p><ul class="space-y-4 mb-8"><li class="flex items-start"><svg class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-text font-semibold">Fonti incrociate e rigorosamente verificate.</span></li><li class="flex items-start"><svg class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-text font-semibold">Nessuna influenza politica o corporativa.</span></li><li class="flex items-start"><svg class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-text font-semibold">Approfondimenti settimanali inviati direttamente a te.</span></li></ul></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-text">La Voce dei Nostri Lettori</h2><div class="accent-line mx-auto"></div></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-gray-200 flex items-center justify-center font-bold text-xl text-gray-500" style="border-radius: var(--radius);">A</div><div class="ml-4"><h4 class="font-bold text-lg">Alessandro V.</h4><p class="text-sm text-secondary">Abbonato dal 2024</p></div></div><p class="text-muted italic">"Finalmente un portale che tratta la <strong>politica italiana</strong> senza tifoserie. Le analisi sono sempre puntuali e mi permettono di capire i reali impatti delle riforme. Una lettura quotidiana irrinunciabile."</p></div><div class="dna-card border-t-4" style="border-top-color: var(--primary);"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-gray-200 flex items-center justify-center font-bold text-xl text-gray-500" style="border-radius: var(--radius);">M</div><div class="ml-4"><h4 class="font-bold text-lg">Martina R.</h4><p class="text-sm text-secondary">Ricercatrice Universitaria</p></div></div><p class="text-muted italic">"Le loro inchieste di <strong>cronaca</strong> sono di un livello superiore. Non si fermano alla notizia del giorno, ma scavano nel contesto. Le <strong>ultime notizie</strong> sono presentate con un rigore che oggi è raro trovare altrove."</p></div><div class="dna-card"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-gray-200 flex items-center justify-center font-bold text-xl text-gray-500" style="border-radius: var(--radius);">L</div><div class="ml-4"><h4 class="font-bold text-lg">Lorenzo C.</h4><p class="text-sm text-secondary">Imprenditore</p></div></div><p class="text-muted italic">"Per il mio lavoro devo essere sempre aggiornato sulle <strong>notizie Italia</strong> e sui trend macroeconomici. Rahinomopiex Ventures filtra il rumore di fondo e mi consegna solo l'<strong>attualità</strong> che conta veramente."</p></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-text">Domande Frequenti</h2><div class="accent-line mx-auto"></div></div><div class="dna-card !p-8"><details open><summary>Come vi differenziate dagli altri quotidiani online?</summary><p>La nostra redazione non rincorre il clickbait. Ci concentriamo su una selezione rigorosa delle <strong>notizie Italia</strong> e internazionali, dedicando tempo all'approfondimento e alla verifica dei fatti, specialmente riguardo la complessa <strong>politica italiana</strong>.</p></details><details><summary>Con quale frequenza pubblicate le ultime notizie?</summary><p>Il nostro feed delle <strong>ultime notizie</strong> è aggiornato costantemente durante l'arco della giornata, ma pubblichiamo solo ciò che riteniamo essenziale e verificato. Gli editoriali e i reportage di <strong>cronaca</strong> più corposi escono con cadenza settimanale.</p></details><details><summary>È possibile accedere ai contenuti gratuitamente?</summary><p>Offriamo una selezione di articoli in chiaro per permetterti di valutare la qualità del nostro giornalismo. Tuttavia, le inchieste esclusive e le analisi approfondite di <strong>attualità</strong> sono riservate ai nostri abbonati, il cui supporto garantisce la nostra totale indipendenza.</p></details><details><summary>Da quali fonti traete le vostre informazioni?</summary><p>Utilizziamo una rete di corrispondenti diretti, agenzie di stampa internazionali certificate e partnership con testate giornalistiche indipendenti di tutto il mondo, rielaborando e traducendo i contenuti per il pubblico italiano.</p></details><details><summary>Come posso proporre un argomento per un'inchiesta?</summary><p>Siamo sempre in ascolto dei nostri lettori. Gli abbonati possono utilizzare il modulo di contatto dedicato per segnalare temi di <strong>cronaca</strong> locale o nazionale che ritengono meritino un approfondimento investigativo.</p></details></div></section><hr class="section-divider"><section id="contact" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col lg:flex-row gap-16"><div class="w-full lg:w-5/12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Unisciti alla Nostra Community</h2><div class="accent-line"></div><p class="text-muted text-lg mb-8"> Richiedi informazioni sui nostri piani di abbonamento o contattaci per richieste commerciali. Compila il modulo e un nostro referente ti ricontatterà tempestivamente. </p><div class="mt-8 space-y-6"><div class="flex items-start"><svg class="w-6 h-6 text-secondary mt-1 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg><div><h4 class="font-bold text-text">Sede Legale ed Editoriale</h4><p class="text-muted">Via di S. Alessio 20<br>00153 Roma, Italia</p><p class="text-xs text-gray-400 mt-1">(Dati societari di riferimento: Internazionale S.p.A.)</p></div></div></div></div><div class="w-full lg:w-7/12"><div class="dna-card !mb-0 relative"><div class="absolute top-0 left-0 w-full h-1 bg-primary"></div><form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Invio in corso... <svg class=\'animate-spin w-5 h-5 ml-2\' viewBox=\'0 0 24 24\' fill=\'none\'><circle class=\'opacity-25\' cx=\'12\' cy=\'12\' r=\'10\' stroke=\'currentColor\' stroke-width=\'4\'></circle><path class=\'opacity-75\' fill=\'currentColor\' d=\'M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z\'></path></svg>'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"><div><label for="nome">Nome</label><input type="text" id="nome" required placeholder="Il tuo nome"></div><div><label for="cognome">Cognome</label><input type="text" id="cognome" required placeholder="Il tuo cognome"></div></div><div class="mb-6"><label for="telefono">Numero di Telefono</label><input type="tel" id="telefono" required placeholder="Es. 333 1234567"><p class="text-xs text-gray-500 mt-1">Utilizzato esclusivamente per ricontattarti in merito alla tua richiesta.</p></div><div class="mb-6"><label for="interesse">Area di Interesse</label><select id="interesse" required><option value="" disabled selected>Seleziona un'opzione</option><option value="abbonamento">Informazioni Abbonamento</option><option value="commerciale">Richiesta Commerciale / Advertising</option><option value="stampa">Ufficio Stampa</option></select></div><div class="mb-8"><label for="messaggio">Messaggio</label><textarea id="messaggio" rows="4" required placeholder="Scrivi qui la tua richiesta..."></textarea></div><button type="submit" class="btn-primary w-full text-lg py-4"> Invia Richiesta <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button><p class="text-xs text-center text-gray-400 mt-4">Cliccando su "Invia Richiesta" accetti i nostri Termini di Servizio e la Privacy Policy.</p></form><div id="success-msg" style="display:none" class="text-center py-12"><div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold mb-2">Richiesta Ricevuta!</h3><p class="text-muted">Grazie per averci contattato. Un nostro responsabile analizzerà la tua richiesta e ti risponderà il prima possibile.</p></div></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><a href="#" class="text-2xl font-extrabold tracking-tight inline-block mb-4" style="font-family: 'Lora', serif;"> Rahinomopiex <span class="text-primary">Ventures</span></a><p class="text-muted max-w-xl mx-auto"> Il tuo punto di accesso privilegiato per comprendere la realtà attraverso il giornalismo di qualità. </p></div><div class="p-6 bg-red-50 border border-red-100 mb-12 text-center text-sm text-gray-700" style="border-radius: var(--radius);"><strong>Disclaimer Legale Obbligatorio:</strong> Questo è un sito promozionale indipendente gestito da Rahinomopiex Ventures, che agisce in qualità di affiliato per Internazionale S.p.A. Non rappresentiamo la testata giornalistica ufficiale, ma promuoviamo i suoi servizi e abbonamenti in ottemperanza agli accordi di affiliazione vigenti. </div><div class="space-y-4 mb-12 text-left max-w-4xl mx-auto"><details class="bg-gray-50 p-4 border border-gray-200" style="border-radius: var(--radius);"><summary class="font-bold text-gray-700 cursor-pointer !p-0 !border-none text-sm">Informativa sulla Privacy (Privacy Policy)</summary><div class="mt-4 text-xs text-gray-600 space-y-2 pb-0"><p>La presente Informativa sulla Privacy descrive le modalità di gestione del sito web di Rahinomopiex Ventures in riferimento al trattamento dei dati personali degli utenti che lo consultano. Si tratta di un'informativa che è resa anche ai sensi della normativa vigente in materia di protezione dei dati personali, incluso il Regolamento (UE) 2016/679 (GDPR), a coloro che interagiscono con i servizi web di questo sito. L'informativa è resa solo per questo sito e non anche per altri siti web eventualmente consultati dall'utente tramite link. A seguito della consultazione di questo sito possono essere trattati dati relativi a persone identificate o identificabili. Il "Titolare" del loro trattamento è Rahinomopiex Ventures. I trattamenti connessi ai servizi web di questo sito hanno luogo presso la predetta sede e sono curati solo da personale tecnico incaricato del trattamento, oppure da eventuali incaricati di occasionali operazioni di manutenzione. Nessun dato derivante dal servizio web viene comunicato o diffuso a terzi non autorizzati. I dati personali forniti dagli utenti che inoltrano richieste di invio di materiale informativo sono utilizzati al solo fine di eseguire il servizio o la prestazione richiesta. I sistemi informatici e le procedure software preposte al funzionamento di questo sito web acquisiscono, nel corso del loro normale esercizio, alcuni dati personali la cui trasmissione è implicita nell'uso dei protocolli di comunicazione di Internet. Si tratta di informazioni che non sono raccolte per essere associate a interessati identificati, ma che per loro stessa natura potrebbero, attraverso elaborazioni ed associazioni con dati detenuti da terzi, permettere di identificare gli utenti. In questa categoria di dati rientrano gli indirizzi IP o i nomi a dominio dei computer utilizzati dagli utenti che si connettono al sito, gli indirizzi in notazione URI delle risorse richieste, l'orario della richiesta, il metodo utilizzato nel sottoporre la richiesta al server, la dimensione del file ottenuto in risposta, il codice numerico indicante lo stato della risposta data dal server e altri parametri relativi al sistema operativo e all'ambiente informatico dell'utente. Questi dati vengono utilizzati al solo fine di ricavare informazioni statistiche anonime sull'uso del sito e per controllarne il corretto funzionamento. L'invio facoltativo, esplicito e volontario di messaggi tramite i moduli di contatto presenti su questo sito comporta la successiva acquisizione dei dati del mittente, necessari per rispondere alle richieste, nonché degli eventuali altri dati personali inseriti nella missiva. A parte quanto specificato per i dati di navigazione, l'utente è libero di fornire i dati personali riportati nei moduli di richiesta. Il loro mancato conferimento può comportare l'impossibilità di ottenere quanto richiesto. I dati personali sono trattati con strumenti automatizzati per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti. Specifiche misure di sicurezza sono osservate per prevenire la perdita dei dati, usi illeciti o non corretti ed accessi non autorizzati. I soggetti cui si riferiscono i dati personali hanno il diritto in qualunque momento di ottenere la conferma dell'esistenza o meno dei medesimi dati e di conoscerne il contenuto e l'origine, verificarne l'esattezza o chiederne l'integrazione o l'aggiornamento, oppure la rettificazione. Ai sensi del medesimo articolo si ha il diritto di chiedere la cancellazione, la trasformazione in forma anonima o il blocco dei dati trattati in violazione di legge, nonché di opporsi in ogni caso, per motivi legittimi, al loro trattamento. Le richieste vanno rivolte al Titolare del trattamento tramite i canali di contatto forniti sul sito, escludendo l'uso della posta elettronica per questioni di sicurezza e tracciabilità previste dalle nostre policy interne.</p></div></details><details class="bg-gray-50 p-4 border border-gray-200" style="border-radius: var(--radius);"><summary class="font-bold text-gray-700 cursor-pointer !p-0 !border-none text-sm">Termini e Condizioni di Utilizzo</summary><div class="mt-4 text-xs text-gray-600 space-y-2 pb-0"><p>I presenti Termini e Condizioni regolano l'accesso e l'utilizzo del sito web di Rahinomopiex Ventures. Accedendo o utilizzando il sito, l'utente accetta di essere vincolato dai presenti Termini. Se non si accettano questi Termini, si prega di non utilizzare il sito. Il contenuto di questo sito web è fornito esclusivamente a scopo informativo e promozionale. Rahinomopiex Ventures agisce come intermediario promozionale e affiliato per servizi editoriali terzi. Non siamo responsabili per la produzione editoriale, la correttezza, la completezza o la tempestività degli articoli e delle notizie fornite dall'editore originale. Tutto il materiale presente sul sito, inclusi testi, grafiche, loghi, icone, immagini, clip audio e software, è di proprietà di Rahinomopiex Ventures o dei suoi fornitori di contenuti, ed è protetto dalle leggi internazionali sul diritto d'autore. È severamente vietata la riproduzione, la modifica, la distribuzione, la trasmissione, la ripubblicazione, l'esposizione o l'esecuzione dei contenuti di questo sito senza previa autorizzazione scritta. L'utente si impegna a utilizzare il sito web solo per scopi leciti e in modo da non violare i diritti di, o limitare o inibire l'uso e il godimento del sito da parte di terzi. Tali restrizioni includono condotte illecite, o che possono causare molestie o disagi a qualsiasi persona, e la trasmissione di contenuti osceni o offensivi o l'interruzione del normale flusso di dialogo all'interno del sito. Rahinomopiex Ventures non garantisce che il sito o i suoi server siano privi di virus o altri componenti dannosi. In nessun caso Rahinomopiex Ventures sarà responsabile per danni diretti, indiretti, incidentali, speciali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito. Il sito può contenere link a siti web di terze parti. Questi link sono forniti esclusivamente per comodità dell'utente. Rahinomopiex Ventures non ha alcun controllo su tali siti e non è responsabile per il loro contenuto o la loro disponibilità. L'inclusione di tali link non implica alcuna approvazione del materiale presente su tali siti web o alcuna associazione con i loro operatori. Ci riserviamo il diritto di modificare i presenti Termini in qualsiasi momento senza preavviso. L'uso continuato del sito dopo la pubblicazione delle modifiche costituirà l'accettazione di tali modifiche. Le informazioni sui prodotti e servizi, inclusi i prezzi e la disponibilità, sono soggette a modifiche senza preavviso. Rahinomopiex Ventures si riserva il diritto di rifiutare il servizio, chiudere gli account, rimuovere o modificare i contenuti o annullare gli ordini a sua esclusiva discrezione. Qualsiasi controversia derivante dall'uso di questo sito web sarà soggetta alle leggi della giurisdizione in cui Rahinomopiex Ventures ha la sua sede legale. L'utente accetta che qualsiasi causa di azione derivante da o correlata all'uso del sito deve essere avviata entro un (1) anno dalla comparsa della causa di azione, altrimenti tale causa di azione è permanentemente prescritta. La mancata applicazione da parte di Rahinomopiex Ventures di qualsiasi diritto o disposizione dei presenti Termini non costituirà una rinuncia a tale diritto o disposizione. Se una qualsiasi disposizione di questi Termini è ritenuta non valida da un tribunale della giurisdizione competente, l'invalidità di tale disposizione non influirà sulla validità delle restanti disposizioni, che rimarranno in pieno vigore ed effetto.</p></div></details><details class="bg-gray-50 p-4 border border-gray-200" style="border-radius: var(--radius);"><summary class="font-bold text-gray-700 cursor-pointer !p-0 !border-none text-sm">Politica di Rimborso e Resi</summary><div class="mt-4 text-xs text-gray-600 space-y-2 pb-0"><p>La presente politica di rimborso definisce i termini e le condizioni applicabili agli acquisti o alle sottoscrizioni effettuate tramite i canali promozionali di Rahinomopiex Ventures. Poiché Rahinomopiex Ventures opera in qualità di affiliato per i servizi editoriali di terze parti, è fondamentale comprendere che le transazioni finali e la gestione diretta degli abbonamenti avvengono sui sistemi dell'editore originale. Tuttavia, per facilitare i nostri utenti, delineiamo le linee guida generali comunemente applicabili. Il diritto di recesso è garantito ai sensi del Codice del Consumo italiano per gli acquisti effettuati a distanza. L'utente ha il diritto di recedere dal contratto, senza indicarne le ragioni, entro 14 giorni dall'attivazione del servizio di abbonamento. Per esercitare il diritto di recesso, l'utente è tenuto a informare direttamente il fornitore del servizio (l'editore) della sua decisione tramite una dichiarazione esplicita. Rahinomopiex Ventures non può elaborare direttamente le richieste di recesso o rimborso, ma si impegna a fornire all'utente tutte le indicazioni necessarie per contattare l'assistenza clienti dell'editore. In caso di recesso entro i termini previsti, saranno rimborsati tutti i pagamenti effettuati a favore dell'editore, senza indebito ritardo e in ogni caso non oltre 14 giorni dal giorno in cui l'editore è informato della decisione di recedere. Detti rimborsi saranno effettuati utilizzando lo stesso mezzo di pagamento usato per la transazione iniziale, salvo che l'utente non abbia espressamente convenuto altrimenti. Si fa presente che il diritto di recesso potrebbe essere escluso o limitato nel caso di fornitura di contenuto digitale mediante un supporto non materiale se l'esecuzione è iniziata con l'accordo espresso del consumatore e con la sua accettazione del fatto che in tal caso avrebbe perso il diritto di recesso. Per le riviste fisiche, qualora l'abbonamento preveda l'invio di copie cartacee, il rimborso potrebbe essere calcolato al netto delle copie già spedite o ricevute dal consumatore. In caso di addebiti errati o doppi addebiti, l'utente deve contattare immediatamente l'assistenza amministrativa dell'editore fornendo prova della transazione. Rahinomopiex Ventures non trattiene né gestisce i dati delle carte di credito o i flussi finanziari relativi agli abbonamenti, pertanto non ha la capacità tecnica né legale di stornare transazioni bancarie. Invitiamo gli utenti a leggere attentamente i Termini di Vendita specifici presentati sul sito dell'editore finale prima di completare qualsiasi acquisto. La nostra responsabilità si limita alla corretta informazione promozionale e al reindirizzamento verso le offerte concordate. Qualsiasi reclamo relativo alla qualità del contenuto editoriale, alla mancata consegna di copie fisiche o a disservizi della piattaforma digitale dell'editore deve essere indirizzato esclusivamente all'editore stesso. Rahinomopiex Ventures declina ogni responsabilità per eventuali danni derivanti da ritardi nei rimborsi causati da procedure bancarie o da ritardi nella gestione delle pratiche da parte dell'editore terzo. L'utente riconosce e accetta queste condizioni nel momento in cui utilizza i nostri link di affiliazione per accedere ai servizi proposti.</p></div></details></div><div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center"><p class="text-sm text-gray-500 mb-4 md:mb-0"> &copy; 2026 Rahinomopiex Ventures. Tutti i diritti riservati. </p><div class="flex space-x-6"><a href="#" class="text-gray-400 hover:text-primary transition-colors"><span class="sr-only">Facebook</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a><a href="#" class="text-gray-400 hover:text-primary transition-colors"><span class="sr-only">Twitter</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a></div></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 z-50 transform transition-transform duration-300 translate-y-full"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-300"> Utilizziamo i cookie per migliorare l'esperienza di navigazione sulle <strong>notizie Italia</strong> e analizzare il traffico. Continuando, accetti la nostra politica sui cookie. </div><div class="flex gap-4 shrink-0"><button onclick="acceptCookies()" class="bg-primary text-white px-6 py-2 text-sm font-bold hover:bg-red-700 transition-colors" style="border-radius: var(--radius);">Accetta Tutti</button><button onclick="acceptCookies()" class="border border-gray-500 text-gray-300 px-4 py-2 text-sm font-bold hover:bg-gray-800 transition-colors" style="border-radius: var(--radius);">Solo Essenziali</button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('a[href^="#"]');
+            if (!target) return;
             
-            <div class="mt-12 flex justify-center items-center gap-6 text-sm text-gray-400 font-mono">
-                <span>⚡ ASSISTENZA RAPIDA</span>
-                <span>💎 RICAMBI ORIGINALI</span>
-                <span>🛡️ GARANZIA INCLUSA</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN CONTAINER FOR CARDS -->
-    <main class="py-16 px-4">
-
-        <!-- FEATURES / SERVICES SECTION -->
-        <div id="features" class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-black mb-4">I Nostri Servizi Essenziali</h2>
-                <p class="text-gray-600">Soluzioni tecniche complete per privati e aziende.</p>
-            </div>
+            const id = target.getAttribute('href');
+            if (id === '#') return;
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="p-6 border-2 border-gray-100 rounded-lg hover:border-black transition-colors">
-                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4 border-2 border-black">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Riparazioni Express</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Sostituzione schermi, batterie e componenti interni in tempi record. I tuoi dispositivi torneranno come nuovi grazie ai nostri tecnici specializzati.
-                    </p>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="p-6 border-2 border-gray-100 rounded-lg hover:border-black transition-colors">
-                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4 border-2 border-black">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Smartphone Ricondizionati</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Investi in tecnologia sostenibile. Offriamo dispositivi di alta fascia rigenerati, testati e garantiti al 100% per assicurare prestazioni ottimali.
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="p-6 border-2 border-gray-100 rounded-lg hover:border-black transition-colors">
-                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4 border-2 border-black">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Accessori & Gadget</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Dai vetri temperati indistruttibili alle cover di design. Tutto ciò che serve per proteggere ed esaltare il valore del tuo equipaggiamento mobile.
-                    </p>
-                </div>
-            </div>
+            e.preventDefault();
+            const element = document.querySelector(id);
             
-            <div class="mt-8">
-                <img src="https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-                     alt="Tecnico al lavoro" 
-                     class="w-full h-64 object-cover rounded-xl border-2 border-black shadow-md"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='https://placehold.co/1200x400?text=Laboratorio+Tecnico'">
-            </div>
-        </div>
-
-        <!-- REVIEWS SECTION -->
-        <div id="reviews" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-black mb-8 text-center">Dicono di Noi</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Review 1 -->
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
-                    <p class="text-gray-600 italic mb-4">"Il mio iPhone era distrutto dopo una caduta. RahinoMopie lo ha riportato in vita in meno di 2 ore. Servizio impeccabile e trasparente."</p>
-                    <p class="font-bold text-sm">- Marco V., Milano</p>
-                </div>
-                <!-- Review 2 -->
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
-                    <p class="text-gray-600 italic mb-4">"Ho acquistato un dispositivo ricondizionato per la mia azienda. Risparmio notevole e prestazioni pari al nuovo. Assolutamente consigliato."</p>
-                    <p class="font-bold text-sm">- Giulia R., Imprenditrice</p>
-                </div>
-                <!-- Review 3 -->
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
-                    <p class="text-gray-600 italic mb-4">"Difficile trovare tanta competenza nel settore gadget. Mi hanno consigliato la cover perfetta per il mio uso lavorativo estremo."</p>
-                    <p class="font-bold text-sm">- Luca D., Geometra</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ SECTION -->
-        <div id="faq" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-black mb-8 text-center">Domande Frequenti (FAQ)</h2>
-            <div class="space-y-4">
-                <details>
-                    <summary>Quanto tempo impiega una riparazione standard?</summary>
-                    <p class="mt-2 text-gray-600 pl-4">La maggior parte delle riparazioni, come la sostituzione di schermi o batterie, viene completata in giornata, spesso entro 1-2 ore dalla consegna del dispositivo.</p>
-                </details>
-                <details>
-                    <summary>I dispositivi ricondizionati hanno una garanzia?</summary>
-                    <p class="mt-2 text-gray-600 pl-4">Assolutamente sì. Tutti i nostri smartphone e tablet ricondizionati sono coperti da una garanzia minima di 12 mesi per assicurare la vostra tranquillità.</p>
-                </details>
-                <details>
-                    <summary>Utilizzate ricambi originali?</summary>
-                    <p class="mt-2 text-gray-600 pl-4">Utilizziamo ricambi originali o di qualità equivalente OEM (Original Equipment Manufacturer) per garantire che le prestazioni del vostro dispositivo non vengano compromesse.</p>
-                </details>
-                <details>
-                    <summary>Effettuate il backup dei dati prima della riparazione?</summary>
-                    <p class="mt-2 text-gray-600 pl-4">Consigliamo sempre ai clienti di effettuare un backup prima di portarci il dispositivo. Sebbene la riparazione hardware raramente intacchi i dati, la sicurezza dei vostri file è la nostra priorità.</p>
-                </details>
-                <details>
-                    <summary>Accettate permute per l'acquisto di un nuovo dispositivo?</summary>
-                    <p class="mt-2 text-gray-600 pl-4">Sì, valutiamo il vostro usato. Se il dispositivo rispetta i nostri standard, possiamo offrirvi uno sconto sull'acquisto di un modello ricondizionato.</p>
-                </details>
-            </div>
-        </div>
-
-        <!-- CONTACT SECTION -->
-        <div id="contact" class="max-w-5xl mx-auto dna-card">
-            <div class="grid md:grid-cols-2 gap-10">
-                <div>
-                    <h2 class="text-3xl font-black mb-4">Parla con un Esperto</h2>
-                    <p class="text-gray-600 mb-6">Compila il modulo per richiedere un preventivo gratuito o per avere informazioni sulla disponibilità di un prodotto.</p>
-                    
-                    <div class="space-y-4 mb-6">
-                        <div class="flex items-start">
-                            <span class="font-bold mr-2 w-24">Sede:</span>
-                            <span class="text-gray-600">Disponibile online & Centri affiliati Italia</span>
-                        </div>
-                        <div class="flex items-start">
-                            <span class="font-bold mr-2 w-24">Orari:</span>
-                            <span class="text-gray-600">Lun - Ven: 09:00 - 19:00<br>Sab: 09:00 - 13:00</span>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-black">
-                        <p class="text-sm">Nota: Per urgenze tecniche, vi preghiamo di recarvi direttamente presso il punto vendita più vicino indicato nella mappa dei partner dopo la conferma del contatto.</p>
-                    </div>
-                </div>
-
-                <!-- CONTACT FORM -->
-                <div>
-                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div>
-                            <label class="block font-bold mb-1 text-sm">Nome Completo</label>
-                            <input type="text" required class="w-full p-3 rounded border border-gray-300 focus:border-black focus:ring-1 focus:ring-black outline-none bg-white">
-                        </div>
-                        <div>
-                            <label class="block font-bold mb-1 text-sm">Dispositivo / Modello</label>
-                            <input type="text" placeholder="Es. iPhone 13, Samsung S21..." required class="w-full p-3 rounded border border-gray-300 focus:border-black focus:ring-1 focus:ring-black outline-none bg-white">
-                        </div>
-                        <div>
-                            <label class="block font-bold mb-1 text-sm">Descrizione Problema</label>
-                            <textarea rows="4" required class="w-full p-3 rounded border border-gray-300 focus:border-black focus:ring-1 focus:ring-black outline-none bg-white"></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary w-full">Invia Richiesta</button>
-                    </form>
-
-                    <!-- Success Message -->
-                    <div id="success-msg" style="display:none" class="bg-green-100 border border-green-400 text-green-700 px-4 py-8 rounded text-center">
-                        <h3 class="font-bold text-xl mb-2">Richiesta Inviata!</h3>
-                        <p>Un nostro tecnico valuterà il tuo caso e ti contatterà a breve con una soluzione su misura.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- FOOTER & LEGAL -->
-    <footer class="bg-gray-900 text-gray-400 py-12 px-4 border-t-8 border-primary">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 mb-12">
-            <div>
-                <h4 class="text-white text-xl font-bold mb-4">RahinoMopie Ventures</h4>
-                <p class="mb-4">Partner strategico per la manutenzione e l'ottimizzazione dei tuoi asset digitali. Investi nella qualità.</p>
-                <p class="text-xs text-gray-500">© 2026 RahinoMopie Ventures. Tutti i diritti riservati.</p>
-            </div>
-            <div class="md:text-right">
-                <p class="text-xs italic mb-2 text-gray-500">
-                    "Questo è un sito promozionale indipendente gestito da RahinoMopie Ventures, che agisce come affiliato per EasyGadget.it."
-                </p>
-                <div class="flex justify-end space-x-4 mt-4">
-                    <!-- Images or Icons here if needed -->
-                </div>
-            </div>
-        </div>
-
-        <div class="max-w-4xl mx-auto space-y-2">
-            <!-- Privacy Policy -->
-            <details class="bg-gray-800 border-none text-sm">
-                <summary class="text-gray-300 hover:text-white">Informativa sulla Privacy (Privacy Policy)</summary>
-                <div class="mt-4 text-justify space-y-2 p-2">
-                    <p>La presente Informativa sulla Privacy descrive come RahinoMopie Ventures ("noi", "ci" o "nostro") raccoglie, utilizza e condivide le informazioni personali dell'utente quando visita il nostro sito web. Ci impegniamo a proteggere la privacy dei nostri utenti e a garantire la sicurezza dei loro dati personali in conformità con le normative vigenti, incluso il GDPR.</p>
-                    <p>Raccogliamo vari tipi di informazioni, incluse le informazioni che ci fornite direttamente (come nome e dettagli di contatto nel modulo) e le informazioni raccolte automaticamente tramite cookie e tecnologie simili (come indirizzo IP, tipo di browser e comportamento di navigazione). Questi dati vengono utilizzati per fornire i nostri servizi, rispondere alle richieste di assistenza, migliorare l'esperienza utente e per scopi di marketing, previa autorizzazione.</p>
-                    <p>Non vendiamo le vostre informazioni personali a terze parti. Potremmo condividere le informazioni con fornitori di servizi terzi che ci aiutano a operare il nostro sito web o a condurre la nostra attività, a condizione che tali parti accettino di mantenere queste informazioni riservate. Implementiamo misure di sicurezza tecniche e organizzative appropriate per proteggere i dati personali da accessi non autorizzati, alterazioni, divulgazioni o distruzioni.</p>
-                    <p>L'utente ha il diritto di accedere, correggere o cancellare i propri dati personali in nostro possesso. Ha inoltre il diritto di limitare o opporsi al trattamento dei propri dati e il diritto alla portabilità dei dati. Per esercitare tali diritti, l'utente può contattarci tramite i canali disponibili sul sito. Conserviamo i dati personali solo per il tempo necessario a soddisfare le finalità per cui sono stati raccolti, salvo diversamente richiesto dalla legge.</p>
-                    <p>Il nostro sito può contenere link a siti esterni non gestiti da noi. Non siamo responsabili per le pratiche sulla privacy di tali siti e incoraggiamo gli utenti a leggere le informative sulla privacy di ogni sito web che visitano. Questa politica può essere aggiornata periodicamente; la versione più recente sarà sempre pubblicata su questa pagina con la data di revisione aggiornata.</p>
-                </div>
-            </details>
-
-            <!-- Terms of Service -->
-            <details class="bg-gray-800 border-none text-sm">
-                <summary class="text-gray-300 hover:text-white">Termini e Condizioni (Terms of Service)</summary>
-                <div class="mt-4 text-justify space-y-2 p-2">
-                    <p>Benvenuti su RahinoMopie Ventures. Accedendo o utilizzando il nostro sito web, l'utente accetta di essere vincolato dai presenti Termini e Condizioni. Se non si accettano tali termini, si prega di non utilizzare il nostro servizio. Ci riserviamo il diritto di modificare o aggiornare questi termini in qualsiasi momento senza preavviso.</p>
-                    <p>Il contenuto del presente sito web è fornito solo a scopo informativo generale e promozionale. Sebbene ci sforziamo di mantenere le informazioni aggiornate e corrette, non rilasciamo alcuna dichiarazione o garanzia di alcun tipo, espressa o implicita, circa la completezza, accuratezza, affidabilità, idoneità o disponibilità rispetto al sito web o alle informazioni, prodotti, servizi o grafica correlata contenuti nel sito.</p>
-                    <p>L'uso di qualsiasi informazione o materiale su questo sito web è interamente a proprio rischio, per il quale non saremo responsabili. È responsabilità dell'utente garantire che qualsiasi prodotto, servizio o informazione disponibile attraverso questo sito web soddisfi le proprie specifiche esigenze. Questo sito contiene materiale che è di nostra proprietà o concesso in licenza a noi. Questo materiale include, ma non è limitato a, il design, il layout, l'aspetto e la grafica.</p>
-                    <p>L'utilizzo non autorizzato di questo sito web può dar luogo a una richiesta di risarcimento danni e/o costituire un reato penale. Di tanto in tanto, questo sito web può includere anche link ad altri siti web. Questi link sono forniti per comodità dell'utente per fornire ulteriori informazioni. Non significano che approviamo il sito web collegato. Non abbiamo alcuna responsabilità per il contenuto dei siti web collegati.</p>
-                    <p>L'utente accetta di non utilizzare il sito per scopi illegali o proibiti. È vietato tentare di ottenere accesso non autorizzato a parti del sito, ai server o a qualsiasi rete connessa al sito. Qualsiasi violazione di questi termini comporterà la cessazione immediata del diritto di utilizzare il nostro servizio e potrebbe comportare azioni legali appropriate.</p>
-                </div>
-            </details>
-
-            <!-- Refund Policy -->
-            <details class="bg-gray-800 border-none text-sm">
-                <summary class="text-gray-300 hover:text-white">Politica di Rimborso e Garanzia</summary>
-                <div class="mt-4 text-justify space-y-2 p-2">
-                    <p>Ci impegniamo a garantire la massima soddisfazione dei nostri clienti per tutti i servizi di riparazione e i prodotti venduti. Se non siete completamente soddisfatti del vostro acquisto o servizio, vi invitiamo a leggere attentamente la nostra politica di rimborso e garanzia.</p>
-                    <p>Per le riparazioni, offriamo una garanzia limitata che copre i difetti nei componenti sostituiti e nella manodopera associata. Se il componente sostituito dovesse malfunzionare o presentare difetti non causati da danni accidentali successivi (come cadute o contatto con liquidi) entro il periodo di garanzia specificato, provvederemo a ripararlo nuovamente senza costi aggiuntivi. Se la riparazione non fosse possibile, verrà emesso un rimborso totale del costo del servizio.</p>
-                    <p>Per l'acquisto di dispositivi ricondizionati, il cliente ha diritto di recesso entro 14 giorni dalla ricezione del prodotto, conformemente alle normative vigenti in materia di commercio elettronico. Il prodotto deve essere restituito nelle stesse condizioni in cui è stato ricevuto, completo di tutti gli accessori e imballaggi. I costi di spedizione per il reso sono a carico del cliente, a meno che il prodotto non sia difettoso all'arrivo.</p>
-                    <p>Le richieste di rimborso vengono elaborate entro 14 giorni lavorativi dalla ricezione e verifica del reso. Il rimborso verrà effettuato utilizzando lo stesso metodo di pagamento utilizzato per la transazione iniziale, salvo diverso accordo. Non sono previsti rimborsi per danni causati dall'utente, manomissioni non autorizzate o usura normale del dispositivo.</p>
-                    <p>In caso di prodotti difettosi, preghiamo i clienti di contattare il nostro servizio assistenza immediatamente. Esamineremo il problema e, se confermato il difetto di conformità, procederemo con la riparazione, sostituzione o rimborso in accordo con il Codice del Consumo. La nostra priorità è risolvere qualsiasi inconveniente nel modo più rapido ed equo possibile.</p>
-                </div>
-            </details>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner">
-        <h3 class="font-bold text-lg mb-2">Informativa sui Cookie</h3>
-        <p class="text-sm text-gray-600 mb-4">Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il nostro traffico. Cliccando su "Accetta", acconsenti all'uso dei cookie.</p>
-        <div class="flex gap-4">
-            <button onclick="acceptCookies()" class="btn-primary flex-1 text-center">Accetta</button>
-            <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 flex-1">Rifiuta</button>
-        </div>
-    </div>
-
-    <!-- JS LOGIC -->
-    <script>
-        // Smooth Scroll & Gravity Well Logic
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    // Fallback Gravity Well
-                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+            
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                // Fallback to contact section
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    console.warn(`Target ${id} not found, redirecting to #contact`);
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-                
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
+            }
         });
 
-        // Cookie Logic
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'true');
-            document.getElementById('cookie-banner').style.display = 'none';
-        }
-
+        // Cookie Banner Logic
         window.onload = function() {
-            if (!localStorage.getItem('cookieConsent')) {
-                document.getElementById('cookie-banner').style.display = 'block';
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
             }
+        };
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
         }
-    </script>
-</body>
-</html>
+    </script> </body></html>
