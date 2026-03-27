@@ -1,447 +1,173 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jaluwutis Ventures - Collezione Uomo Premium</title>
-    <meta name="description" content="Investi nel tuo stile con la migliore selezione di abbigliamento uomo. Scopri le collezioni curate da Jaluwutis Ventures.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- PHASE 2: TECH STACK - DESIGN SYSTEM -->
-    <style>
-        :root {
-            /* VAR D: Palette -> Men's Fashion/Business -> Deep Blue */
-            --primary: #1e3a8a;
-            /* VAR C: Surface -> Last char '/' (47 % 3 = 2) -> Cool Slate White */
-            --surface: #f8fafc;
-            /* VAR A: Geometry -> Length 70 (70 % 3 = 1) -> Soft */
-            --radius: 12px;
-            /* VAR B: Physics -> First char 'h' (104 % 3 = 2) -> Hard (Neo-Brutalist) */
-            --shadow: 4px 4px 0px 0px #000;
-        }
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Italy by Events App | Scopri Eventi Locali e Festival Italia</title><meta name="description" content="L'app definitiva per scoprire eventi locali, sagre, concerti e decidere cosa fare nel weekend in Italia. Promossa da Jaluwutis Ventures."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #7c3aed;
+        --radius: 8px;
+        --card-radius: 8px;
+        --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        --body-bg: #f0fdf4;
+        --card-bg: #ffffff;
+        --text: #14532d;
+        --muted: #4b5563;
+      }
 
-        /* GLOBAL CONTRAST BASE */
-        body {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
-        }
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+      }
 
-        /* BRAND COMPONENT: The DNA Card */
-        .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 2px solid #000; /* Added slightly thicker border for Hard shadow context */
-        }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Inter', sans-serif;
+      }
 
-        /* BRAND COMPONENT: Primary Button */
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s;
-            font-weight: 700;
-            display: inline-block;
-            border: 1px solid #000;
-        }
-        .btn-primary:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px 0px #000;
-        }
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
 
-        /* UTILITY: Text Accent */
-        .text-primary { color: var(--primary); }
+      nav {
+        background-color: var(--body-bg);
+      }
 
-        /* HEADER FIX */
-        header {
-            background-color: rgba(255,255,255,0.95);
-            border-bottom: 2px solid #e5e7eb;
-        }
-        
-        /* FORM INPUTS */
-        input, textarea, select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
-        }
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: var(--shadow);
-        }
-    </style>
-</head>
-<body class="antialiased">
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    <!-- NAVIGATION -->
-    <header class="fixed w-full z-50 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo text derived from Hosting Domain -->
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-black tracking-tighter uppercase text-primary">Jaluwutis<span class="text-black">Ventures</span></span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-900 font-bold hover:text-primary transition">Collezione</a>
-                    <a href="#reviews" class="text-gray-900 font-bold hover:text-primary transition">Recensioni</a>
-                    <a href="#faq" class="text-gray-900 font-bold hover:text-primary transition">Domande Frequenti</a>
-                    <a href="#contact" class="btn-primary py-2 px-4 text-sm">Contattaci</a>
-                </nav>
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-primary focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black absolute w-full">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 rounded-md text-base font-bold text-gray-900 hover:text-primary hover:bg-gray-50">Collezione</a>
-                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-bold text-gray-900 hover:text-primary hover:bg-gray-50">Recensioni</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-bold text-gray-900 hover:text-primary hover:bg-gray-50">Contattaci</a>
-            </div>
-        </div>
-    </header>
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
 
-    <!-- HERO SECTION -->
-    <div class="relative pt-24 pb-16 md:pt-32 md:pb-24 flex items-center min-h-[80vh]" style="background-image: url('https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=1600'); background-size: cover; background-position: center;">
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-gray-900 opacity-70"></div>
-        
-        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
-            <div class="md:w-2/3">
-                <span class="inline-block py-1 px-3 rounded bg-white/20 text-white text-sm font-bold tracking-wider mb-4 border border-white/30 backdrop-blur-sm">ABBIGLIAMENTO UOMO PREMIUM</span>
-                <!-- Logic Bridge Headline -->
-                <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight mb-6 leading-tight">
-                    Il Miglior Investimento <br>È Il Tuo <span class="text-blue-300">Stile Personale</span>.
-                </h1>
-                <p class="mt-4 text-xl text-gray-200 mb-8 font-medium">
-                    Jaluwutis Ventures seleziona le migliori opportunità di moda per l'uomo moderno. 
-                    Scopri capi di design che parlano di successo, eleganza e personalità, direttamente dall'outlet di Seconda Strada.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <a href="#features" class="btn-primary text-center">Esplora la Collezione</a>
-                    <a href="#contact" class="bg-white text-gray-900 font-bold py-4 px-8 rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] transition-all text-center">Richiedi Info</a>
-                </div>
-                
-                <!-- Trust Proof -->
-                <div class="mt-10 pt-6 border-t border-gray-600 flex flex-wrap gap-6 items-center justify-center md:justify-start text-gray-400 font-bold uppercase text-sm">
-                    <span>ARMANI</span>
-                    <span class="w-1 h-1 bg-gray-500 rounded-full"></span>
-                    <span>VERSACE</span>
-                    <span class="w-1 h-1 bg-gray-500 rounded-full"></span>
-                    <span>HUGO BOSS</span>
-                    <span class="w-1 h-1 bg-gray-500 rounded-full"></span>
-                    <span>CALVIN KLEIN</span>
-                </div>
-            </div>
-        </div>
-    </div>
+      /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+      main, main + footer { scroll-margin-top: 5rem; }
+      body { padding-top: 4rem; }
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="py-16 px-4 sm:px-6 lg:px-8">
-        
-        <!-- FEATURES SECTION (Wrapped in dna-card) -->
-        <div id="features" class="max-w-5xl mx-auto dna-card relative">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-black text-gray-900 mb-4">Eccellenza nel Design</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Non vendiamo solo vestiti; proponiamo un aggiornamento del tuo "personal brand". Ecco cosa distingue la nostra selezione.</p>
-            </div>
+      /* Form inputs — consistent styling regardless of Gemini output */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+      }
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="text-center p-4">
-                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 border-2 border-black">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Selezione Business</h3>
-                    <p class="text-gray-600">Completi e giacche dei migliori brand per chi vuole dominare ogni riunione con eleganza.</p>
-                </div>
+      /* Links — readable on any theme */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
 
-                <!-- Feature 2 -->
-                <div class="text-center p-4">
-                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 border-2 border-black">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Prezzi Outlet</h3>
-                    <p class="text-gray-600">Accesso esclusivo a capi firmati con sconti significativi. Il lusso diventa intelligente.</p>
-                </div>
+      /* Section divider — subtle visual rhythm */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(37,99,235,0.12), transparent);
+        margin: 0;
+      }
 
-                <!-- Feature 3 -->
-                <div class="text-center p-4">
-                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 border-2 border-black">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Casual Sofisticato</h3>
-                    <p class="text-gray-600">Dalle t-shirt di alta qualità ai pantaloni chino, per un weekend di stile senza compromessi.</p>
-                </div>
-            </div>
-            
-            <div class="mt-8 text-center">
-                 <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Men's Wardrobe" class="w-full h-64 object-cover rounded-[var(--radius)] border-2 border-black mb-6" loading="lazy">
-            </div>
-        </div>
+      /* Custom Hero Gradient */
+      .hero-gradient {
+        background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
+      }
 
-        <!-- REVIEWS SECTION -->
-        <div id="reviews" class="max-w-5xl mx-auto dna-card mt-12">
-            <h2 class="text-3xl font-black text-gray-900 mb-8 text-center">Cosa dicono i nostri clienti</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Review 1 -->
-                <div class="bg-white p-6 rounded-[var(--radius)] border border-gray-200">
-                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
-                    <p class="text-gray-600 italic mb-4">"Ho rinnovato completamente il mio guardaroba lavorativo. La qualità dei capi Seconda Strada è incredibile e i consigli di Jaluwutis sono stati preziosi."</p>
-                    <p class="font-bold text-primary">- Marco R., Milano</p>
-                </div>
-                <!-- Review 2 -->
-                <div class="bg-white p-6 rounded-[var(--radius)] border border-gray-200">
-                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
-                    <p class="text-gray-600 italic mb-4">"Cercavo un abito per un matrimonio senza spendere una fortuna. Ho trovato un brand di lusso a metà prezzo. Servizio eccellente."</p>
-                    <p class="font-bold text-primary">- Luca B., Torino</p>
-                </div>
-                <!-- Review 3 -->
-                <div class="bg-white p-6 rounded-[var(--radius)] border border-gray-200">
-                    <div class="flex text-yellow-400 mb-2">★★★★☆</div>
-                    <p class="text-gray-600 italic mb-4">"La selezione di abbigliamento casual è vasta e di ottima fattura. Spedizione veloce e capi conformi alla descrizione."</p>
-                    <p class="font-bold text-primary">- Alessandro D., Roma</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ SECTION -->
-        <div id="faq" class="max-w-5xl mx-auto dna-card mt-12">
-            <h2 class="text-3xl font-black text-gray-900 mb-8 text-center">Domande Frequenti</h2>
-            <div class="space-y-4">
-                <details class="group bg-white rounded-[var(--radius)] border border-gray-200">
-                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
-                        <span class="font-bold">I capi sono originali?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 p-4 pt-0">
-                        Assolutamente sì. Tutti i capi proposti provengono dai canali ufficiali di Seconda Strada e sono 100% autentici, includendo etichette originali.
-                    </div>
-                </details>
-
-                <details class="group bg-white rounded-[var(--radius)] border border-gray-200">
-                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
-                        <span class="font-bold">Come scelgo la taglia corretta?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 p-4 pt-0">
-                        Ogni scheda prodotto include una guida alle taglie dettagliata. Se hai dubbi specifici su un brand, puoi contattarci tramite il modulo qui sotto per assistenza personalizzata.
-                    </div>
-                </details>
-
-                <details class="group bg-white rounded-[var(--radius)] border border-gray-200">
-                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
-                        <span class="font-bold">Quali sono i tempi di spedizione?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 p-4 pt-0">
-                        Generalmente, le spedizioni in Italia impiegano 2-4 giorni lavorativi dall'elaborazione dell'ordine.
-                    </div>
-                </details>
-
-                <details class="group bg-white rounded-[var(--radius)] border border-gray-200">
-                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
-                        <span class="font-bold">Posso effettuare un reso?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 p-4 pt-0">
-                        Sì, i resi sono accettati entro 14 giorni dalla ricezione della merce, purché i capi siano integri e con etichetta.
-                    </div>
-                </details>
-            </div>
-        </div>
-
-        <!-- CONTACT SECTION -->
-        <div id="contact" class="max-w-5xl mx-auto dna-card mt-12 bg-white">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-3xl font-black text-gray-900 mb-6">Migliora il tuo Stile</h2>
-                    <p class="text-gray-600 mb-8">Hai domande su un capo specifico o necessiti di una consulenza di stile? Compila il modulo e il nostro team ti risponderà nel più breve tempo possibile.</p>
-                    
-                    <div class="flex items-start space-x-4 mb-4">
-                        <div class="flex-shrink-0 text-primary">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Sede Operativa</h4>
-                            <p class="text-gray-600">Italia</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0 text-primary">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Orari</h4>
-                            <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); const originalText = btn.innerText; btn.innerText = 'Invio in corso...'; btn.disabled = true; setTimeout(()=>{ this.style.display='none'; document.getElementById('success-msg').style.display='block'; window.scrollTo({top: document.getElementById('contact').offsetTop, behavior: 'smooth'}); }, 1500);">
-                        <div>
-                            <label class="block text-gray-700 font-bold mb-2">Nome Completo</label>
-                            <input type="text" required placeholder="Mario Rossi">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-bold mb-2">Tipo di Richiesta</label>
-                            <select class="w-full p-3 border-2 border-gray-200 rounded-[var(--radius)]">
-                                <option>Informazioni Prodotti</option>
-                                <option>Stato dell'ordine</option>
-                                <option>Resi e Rimborsi</option>
-                                <option>Altro</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-bold mb-2">Messaggio</label>
-                            <textarea rows="4" required placeholder="Come possiamo aiutarti oggi?"></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary w-full cursor-pointer">Invia Richiesta</button>
-                    </form>
-                    
-                    <!-- SUCCESS MESSAGE -->
-                    <div id="success-msg" class="hidden text-center py-12">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Messaggio Inviato!</h3>
-                        <p class="text-gray-600">Grazie per aver contattato Jaluwutis Ventures. Un nostro consulente ti risponderà a breve.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white py-12 border-t-4 border-primary">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <span class="text-2xl font-black tracking-tighter uppercase text-white mb-4 block">Jaluwutis<span class="text-blue-400">Ventures</span></span>
-                    <p class="text-gray-400 text-sm">Il tuo partner per lo stile maschile e l'eleganza professionale.</p>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4">Link Rapidi</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#features" class="hover:text-white transition">Collezione</a></li>
-                        <li><a href="#reviews" class="hover:text-white transition">Recensioni</a></li>
-                        <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4">Note Legali</h4>
-                    <p class="text-gray-400 text-sm mb-4">Questo è un sito promozionale indipendente gestito da Jaluwutis Ventures, che agisce come affiliato per Seconda Strada.</p>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-800 pt-8 space-y-4">
-                
-                <!-- LEGAL: PRIVACY POLICY -->
-                <details class="text-xs text-gray-500 cursor-pointer">
-                    <summary class="hover:text-gray-300">Informativa sulla Privacy (Clicca per espandere)</summary>
-                    <div class="mt-4 space-y-2 p-4 bg-gray-800 rounded">
-                        <p><strong>1. Titolare del Trattamento</strong><br>Il titolare del trattamento dei dati è Jaluwutis Ventures. Ci impegniamo a proteggere la tua privacy e i tuoi dati personali in conformità con il GDPR e le leggi italiane vigenti.</p>
-                        <p><strong>2. Dati Raccolti</strong><br>Raccogliamo solo i dati forniti volontariamente tramite il modulo di contatto, inclusi nome e dettagli della richiesta. Non raccogliamo dati sensibili o finanziari direttamente su questo sito promozionale.</p>
-                        <p><strong>3. Finalità del Trattamento</strong><br>I dati sono utilizzati esclusivamente per rispondere alle richieste di informazioni, fornire assistenza sui prodotti promossi e migliorare la nostra offerta di servizi. Non vendiamo i tuoi dati a terzi.</p>
-                        <p><strong>4. Conservazione dei Dati</strong><br>I dati personali sono conservati per il tempo strettamente necessario a gestire la richiesta dell'utente. Successivamente, verranno cancellati in conformità alle nostre procedure interne di cancellazione sicura.</p>
-                        <p><strong>5. Cookie</strong><br>Utilizziamo cookie tecnici per garantire il funzionamento del sito. Non utilizziamo cookie di profilazione senza il tuo consenso esplicito.</p>
-                        <p><strong>6. Diritti dell'Utente</strong><br>Hai il diritto di accedere, rettificare o cancellare i tuoi dati in qualsiasi momento. Per esercitare tali diritti, puoi contattarci tramite il modulo presente nella sezione contatti di questo sito.</p>
-                        <p><strong>7. Sicurezza</strong><br>Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, perdita o distruzione accidentale.</p>
-                        <p><strong>8. Modifiche</strong><br>Ci riserviamo il diritto di modificare questa informativa in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina.</p>
-                        <p>Questa politica è effettiva dal 1 Gennaio 2026.</p>
-                    </div>
-                </details>
-
-                <!-- LEGAL: TERMS OF SERVICE -->
-                <details class="text-xs text-gray-500 cursor-pointer">
-                    <summary class="hover:text-gray-300">Termini e Condizioni (Clicca per espandere)</summary>
-                    <div class="mt-4 space-y-2 p-4 bg-gray-800 rounded">
-                        <p><strong>1. Accettazione dei Termini</strong><br>Accedendo a questo sito web, l'utente accetta di essere vincolato da questi termini e condizioni d'uso, da tutte le leggi e i regolamenti applicabili.</p>
-                        <p><strong>2. Uso del Sito</strong><br>È permesso scaricare temporaneamente una copia dei materiali (informazioni o software) sul sito web di Jaluwutis Ventures solo per la visione transitoria personale e non commerciale.</p>
-                        <p><strong>3. Disclaimer</strong><br>I materiali sul sito web di Jaluwutis Ventures sono forniti "così come sono". Jaluwutis Ventures non fornisce alcuna garanzia, espressa o implicita, e con la presente declina e nega tutte le altre garanzie.</p>
-                        <p><strong>4. Limitazioni</strong><br>In nessun caso Jaluwutis Ventures o i suoi fornitori saranno responsabili per danni (inclusi, senza limitazione, danni per perdita di dati o profitti, o a causa di interruzione dell'attività) derivanti dall'uso o dall'incapacità di utilizzare i materiali.</p>
-                        <p><strong>5. Accuratezza dei Materiali</strong><br>I materiali che appaiono sul sito web potrebbero includere errori tecnici, tipografici o fotografici. Non garantiamo che i materiali siano accurati, completi o aggiornati.</p>
-                        <p><strong>6. Link</strong><br>Jaluwutis Ventures non ha esaminato tutti i siti collegati al suo sito web e non è responsabile per i contenuti di tali siti collegati. L'inclusione di qualsiasi link non implica l'approvazione da parte nostra.</p>
-                        <p><strong>7. Modifiche</strong><br>Jaluwutis Ventures può rivedere questi termini di servizio per il suo sito web in qualsiasi momento senza preavviso. Utilizzando questo sito web, accetti di essere vincolato dalla versione attuale di questi termini di servizio.</p>
-                        <p><strong>8. Legge Applicabile</strong><br>Questi termini e condizioni sono regolati e interpretati in conformità con le leggi italiane e ti sottoponi irrevocabilmente alla giurisdizione esclusiva dei tribunali in tale stato o luogo.</p>
-                    </div>
-                </details>
-
-                <div class="text-center pt-8 text-xs text-gray-600">
-                    &copy; 2026 Jaluwutis Ventures. Tutti i diritti riservati.
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-50 border-t-2 border-primary hidden">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p class="text-sm text-gray-700">Utilizziamo i cookie per migliorare la tua esperienza su Jaluwutis Ventures. Continuando a navigare accetti la nostra politica sulla privacy.</p>
-            <div class="flex gap-4">
-                <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookiesAccepted', 'true');" class="btn-primary py-2 px-4 text-xs whitespace-nowrap">Accetta Tutto</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // SMART ROUTING (Self-Healing Navigation)
+      /* Details/Summary styles for FAQ & Legal */
+      details > summary {
+        list-style: none;
+        cursor: pointer;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+    </style> </head><body><nav class="fixed top-0 left-0 w-full z-50 shadow-sm transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16 items-center"><div class="flex-shrink-0 flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg><a href="#" class="font-bold text-xl tracking-tight text-primary">Jaluwutis Ventures</a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="font-medium">Funzionalità</a><a href="#how-it-works" class="font-medium">Come Funziona</a><a href="#reviews" class="font-medium">Recensioni</a><a href="#faq" class="font-medium">FAQ</a><a href="#download" class="btn-primary text-sm px-4 py-2"> Scarica l'App <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg></a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg absolute w-full left-0"><div class="px-4 pt-2 pb-6 space-y-2"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 hover:text-primary">Funzionalità</a><a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 hover:text-primary">Come Funziona</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 hover:text-primary">Recensioni</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 hover:text-primary">FAQ</a><a href="#download" class="block px-3 py-2 mt-4 text-center btn-primary w-full justify-center">Scarica Ora</a></div></div></nav><main><section class="hero-gradient text-center text-white py-20 md:py-32 px-4 relative overflow-hidden"><div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10"><div class="md:w-1/2 text-left space-y-6"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white bg-opacity-20 text-sm font-semibold mb-2"><span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Disponibile per iOS e Android </div><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight"> Vivi ogni emozione. Trova i migliori eventi in Italia. </h1><p class="text-lg md:text-xl text-blue-100 font-medium"> Jaluwutis Ventures presenta l'app <strong>Italy by Events</strong>. La tua guida tascabile per scoprire tradizioni, musica e sapori autentici. </p><div class="flex flex-col sm:flex-row gap-4 pt-4"><a href="#download" class="inline-block transition transform hover:scale-105"><svg viewBox="0 0 135 40" class="w-36 h-auto" xmlns="http://www.w3.org/2000/svg"><rect width="135" height="40" rx="8" fill="black"/><path d="M29.068 18.007c0-3.328 2.717-4.935 2.842-5.01-1.543-2.257-3.928-2.564-4.78-2.61-2.035-.205-3.974 1.198-5.023 1.198-1.049 0-2.636-1.168-4.32-1.137-2.193.032-4.214 1.275-5.352 3.245-2.3 3.985-.588 9.874 1.644 13.098 1.096 1.581 2.396 3.352 4.102 3.287 1.643-.065 2.274-1.062 4.246-1.062 1.972 0 2.535 1.062 4.278 1.03 1.775-.032 2.893-1.611 3.957-3.19 1.233-1.8 1.74-3.543 1.772-3.633-.04-.016-3.366-1.29-3.366-5.216m-2.842-8.15c.887-1.074 1.48-2.566 1.315-4.06-1.282.052-2.86 .853-3.78 1.927-.74.855-1.446 2.379-1.25 3.842 1.447.112 2.827-.638 3.715-1.71" fill="#fff"/><text x="45" y="15" fill="#fff" font-family="sans-serif" font-size="9">Download on the</text><text x="45" y="28" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">App Store</text></svg></a><a href="#download" class="inline-block transition transform hover:scale-105"><svg viewBox="0 0 135 40" class="w-36 h-auto" xmlns="http://www.w3.org/2000/svg"><rect width="135" height="40" rx="8" fill="black"/><path d="M12.4 10.3c-.3-.3-.5-.8-.5-1.4v22.2c0 .6.2 1.1.5 1.4l.1.1 12.5-12.5v-.2L12.5 10.2l-.1.1z" fill="#3bccff"/><path d="M29 22.8l-4-4v-.2l4-4 .1.1 4.7 2.7c1.3.7 1.3 1.9 0 2.7l-4.7 2.6-.1.1z" fill="#ffc100"/><path d="M25.1 22.6l-12.6 12.6c-.4.4-1.1.5-1.7.1L25 22.7l.1-.1z" fill="#ff3333"/><path d="M25.1 17.4L10.8 4.7c.6-.4 1.3-.3 1.7.1l12.6 12.5-.1.1z" fill="#00e676"/><text x="45" y="15" fill="#fff" font-family="sans-serif" font-size="9">GET IT ON</text><text x="45" y="28" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">Google Play</text></svg></a></div><div class="flex items-center gap-2 mt-4 text-sm text-blue-200"><div class="flex text-yellow-400"> ★★★★★ </div><span>4.8/5 da oltre 5.000 utenti in Italia</span></div></div><div class="md:w-1/2 flex justify-center mt-10 md:mt-0 relative"><div class="absolute inset-0 bg-white opacity-10 rounded-full blur-3xl transform scale-150"></div><img src="https://placehold.co/600x1200/2563eb/ffffff?text=App+Italy+by+Events" alt="App Italy by Events su Smartphone" class="relative z-10 w-64 md:w-80 rounded-[2rem] shadow-2xl border-4 border-white" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/600x1200/2563eb/ffffff?text=App+Mockup'"></div></div></section><section class="py-8 bg-white border-b border-gray-100 shadow-sm"><div class="max-w-5xl mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-16 items-center text-muted font-semibold text-sm uppercase tracking-wider"><div class="flex items-center gap-2"><svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><span>Oltre 100.000 Download</span></div><div class="flex items-center gap-2"><svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span>App della Settimana</span></div><div class="flex items-center gap-2"><svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z" clip-rule="evenodd"></path></svg><span>Guida Ufficiale Italia</span></div></div></section><section id="features" class="py-16 md:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Tutto il fascino dell'Italia, in una sola App</h2><p class="text-lg text-muted max-w-2xl mx-auto">Smetti di cercare su decine di siti diversi. Italy by Events raggruppa le migliori esperienze per farti vivere il territorio come un vero locale.</p></div><div class="flex flex-col gap-16 md:gap-24"><div class="flex flex-col md:flex-row items-center gap-10 dna-card mb-0"><div class="md:w-1/2"><img src="https://placehold.co/800x600/7c3aed/ffffff?text=Mappa+Eventi+Locali" alt="Mappa degli eventi locali" class="rounded-lg shadow-md w-full object-cover h-64 md:h-80" loading="lazy" referrerpolicy="no-referrer"></div><div class="md:w-1/2 space-y-4"><div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-primary mb-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg></div><h3 class="text-2xl font-bold">Esplora gli <span class="text-primary">eventi locali</span> vicino a te</h3><p class="text-muted text-lg">Grazie alla geolocalizzazione intelligente, scopri subito cosa succede intorno a te. Dalle piccole mostre di quartiere ai mercatini artigianali, non perderti mai un'occasione per esplorare il tuo territorio in modo autentico e originale.</p></div></div><div class="flex flex-col md:flex-row-reverse items-center gap-10 dna-card mb-0"><div class="md:w-1/2"><img src="https://placehold.co/800x600/2563eb/ffffff?text=Sagre+e+Festival" alt="Sagre e festival in Italia" class="rounded-lg shadow-md w-full object-cover h-64 md:h-80" loading="lazy" referrerpolicy="no-referrer"></div><div class="md:w-1/2 space-y-4"><div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-secondary mb-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"></path></svg></div><h3 class="text-2xl font-bold">Il meglio dei <span class="text-secondary">festival Italia</span> e delle <span class="text-secondary">sagre</span></h3><p class="text-muted text-lg">L'Italia è il paese delle tradizioni. Accedi al calendario più completo di rievocazioni storiche, feste patronali e gustosissime sagre enogastronomiche. Salva i tuoi preferiti e pianifica i tuoi viaggi all'insegna del gusto e della cultura.</p></div></div><div class="flex flex-col md:flex-row items-center gap-10 dna-card mb-0"><div class="md:w-1/2"><img src="https://placehold.co/800x600/7c3aed/ffffff?text=Concerti+e+Spettacoli" alt="Concerti e spettacoli" class="rounded-lg shadow-md w-full object-cover h-64 md:h-80" loading="lazy" referrerpolicy="no-referrer"></div><div class="md:w-1/2 space-y-4"><div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-primary mb-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg></div><h3 class="text-2xl font-bold">Decidi <span class="text-primary">cosa fare nel weekend</span> tra <span class="text-primary">concerti</span> e mostre</h3><p class="text-muted text-lg">Niente più weekend noiosi. Filtra per data e categoria per trovare subito grandi concerti all'aperto, spettacoli teatrali o mostre d'arte. Crea il tuo itinerario perfetto per un fine settimana indimenticabile, da solo o in compagnia.</p></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-16 md:py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card"><div class="text-center mb-12"><h2 class="text-3xl font-bold mb-4">Inizia in 3 semplici passaggi</h2><p class="text-muted">Il tuo prossimo grande evento è a portata di tap.</p></div><div class="grid md:grid-cols-3 gap-8 text-center"><div class="space-y-4 relative"><div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto z-10 relative shadow-lg">1</div><h3 class="text-xl font-semibold">Scarica l'App</h3><p class="text-muted">Disponibile gratuitamente su App Store e Google Play. L'installazione richiede pochi secondi.</p><div class="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 -z-10"></div></div><div class="space-y-4 relative"><div class="w-16 h-16 bg-secondary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto z-10 relative shadow-lg">2</div><h3 class="text-xl font-semibold">Imposta le Preferenze</h3><p class="text-muted">Seleziona le tue regioni preferite e i tipi di eventi che ami (sagre, concerti, cultura).</p><div class="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 -z-10"></div></div><div class="space-y-4 relative"><div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto z-10 relative shadow-lg">3</div><h3 class="text-xl font-semibold">Vivi l'Esperienza</h3><p class="text-muted">Ricevi notifiche personalizzate e goditi il meglio che l'Italia ha da offrire ogni weekend.</p></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-16 md:py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card bg-gray-50 border-none"><div class="text-center mb-12"><h2 class="text-3xl font-bold mb-4">Cosa dicono i nostri esploratori</h2><p class="text-muted">Migliaia di persone usano la nostra app per decidere cosa fare nel weekend.</p></div><div class="grid md:grid-cols-3 gap-6"><div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100"><div class="flex text-yellow-400 mb-2">★★★★★</div><h4 class="font-bold mb-2">Indispensabile per le gite fuori porta</h4><p class="text-sm text-muted mb-4">"Prima passavo ore a cercare eventi locali su Facebook o Google. Ora apro l'app e so subito quali sagre ci sono nei dintorni. Consigliatissima!"</p><div class="flex justify-between items-center text-xs text-gray-400"><span class="font-semibold text-gray-600">Marco T.</span><span>Ottobre 2025</span></div></div><div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100"><div class="flex text-yellow-400 mb-2">★★★★★</div><h4 class="font-bold mb-2">La migliore per i festival Italia</h4><p class="text-sm text-muted mb-4">"Viaggio spesso per lavoro e questa app mi salva sempre la serata. Ho scoperto rievocazioni storiche stupende che non avrei mai trovato altrimenti."</p><div class="flex justify-between items-center text-xs text-gray-400"><span class="font-semibold text-gray-600">Giulia R.</span><span>Febbraio 2026</span></div></div><div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100"><div class="flex text-yellow-400 mb-2">★★★★☆</div><h4 class="font-bold mb-2">Ottima per i concerti estivi</h4><p class="text-sm text-muted mb-4">"Interfaccia pulita e facile da usare. La sezione dedicata a concerti e musica dal vivo è aggiornatissima. Unica pecca: vorrei poter comprare i biglietti direttamente dall'app."</p><div class="flex justify-between items-center text-xs text-gray-400"><span class="font-semibold text-gray-600">Alessandro V.</span><span>Marzo 2026</span></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-16 md:py-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card"><h2 class="text-3xl font-bold mb-8 text-center border-b pb-6 border-gray-100">Domande Frequenti</h2><div class="space-y-4"><details class="group bg-gray-50 rounded-lg"><summary class="flex justify-between items-center font-medium cursor-pointer p-4 text-lg"> L'app è gratuita da scaricare? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg></span></summary><div class="text-muted p-4 pt-0 border-t border-gray-100 mt-2"> Sì, l'app Italy by Events è completamente gratuita da scaricare sia per dispositivi iOS che Android. Puoi esplorare tutti gli eventi locali e le sagre senza alcun costo di abbonamento. </div></details><details class="group bg-gray-50 rounded-lg"><summary class="flex justify-between items-center font-medium cursor-pointer p-4 text-lg"> Quali dispositivi sono supportati? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg></span></summary><div class="text-muted p-4 pt-0 border-t border-gray-100 mt-2"> L'app è ottimizzata per tutti gli smartphone moderni. Richiede iOS 13.0 o versioni successive per dispositivi Apple, e Android 8.0 o versioni successive per smartphone e tablet Android. </div></details><details class="group bg-gray-50 rounded-lg"><summary class="flex justify-between items-center font-medium cursor-pointer p-4 text-lg"> I miei dati personali sono al sicuro? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg></span></summary><div class="text-muted p-4 pt-0 border-t border-gray-100 mt-2"> Assolutamente sì. La tua privacy è la nostra priorità. Utilizziamo la geolocalizzazione solo quando l'app è in uso per mostrarti gli eventi vicini a te e non vendiamo i tuoi dati a terze parti. </div></details><details class="group bg-gray-50 rounded-lg"><summary class="flex justify-between items-center font-medium cursor-pointer p-4 text-lg"> Come posso iniziare a usare l'app? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg></span></summary><div class="text-muted p-4 pt-0 border-t border-gray-100 mt-2"> Basta scaricare l'app dallo store, aprirla e consentire l'accesso alla posizione. Potrai subito sfogliare la mappa o usare i filtri per cercare concerti, festival o decidere cosa fare nel weekend. Non è obbligatorio creare un account per visualizzare gli eventi. </div></details><details class="group bg-gray-50 rounded-lg"><summary class="flex justify-between items-center font-medium cursor-pointer p-4 text-lg"> Posso usare l'app offline? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg></span></summary><div class="text-muted p-4 pt-0 border-t border-gray-100 mt-2"> Attualmente l'app richiede una connessione internet attiva (Wi-Fi o dati mobili) per scaricare gli aggiornamenti in tempo reale degli eventi. Tuttavia, puoi salvare i tuoi eventi preferiti in cache per visualizzarne i dettagli base anche quando il segnale è debole. </div></details></div></div></section><hr class="section-divider"><section id="download" class="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div class="dna-card bg-primary text-white border-none shadow-xl relative overflow-hidden"><div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full transform translate-x-1/2 -translate-y-1/2"></div><div class="absolute bottom-0 left-0 w-48 h-48 bg-secondary opacity-20 rounded-full transform -translate-x-1/2 translate-y-1/2"></div><div class="relative z-10"><h2 class="text-4xl md:text-5xl font-extrabold mb-4">Pronto a esplorare?</h2><p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Scarica subito <strong>Italy by Events</strong>. La guida definitiva per non chiederti mai più "cosa fare nel weekend".</p><div class="flex flex-col sm:flex-row justify-center items-center gap-6"><a href="#download" class="inline-block transition transform hover:scale-105 hover:-translate-y-1"><svg viewBox="0 0 135 40" class="w-48 h-auto shadow-lg rounded-lg" xmlns="http://www.w3.org/2000/svg"><rect width="135" height="40" rx="8" fill="black"/><path d="M29.068 18.007c0-3.328 2.717-4.935 2.842-5.01-1.543-2.257-3.928-2.564-4.78-2.61-2.035-.205-3.974 1.198-5.023 1.198-1.049 0-2.636-1.168-4.32-1.137-2.193.032-4.214 1.275-5.352 3.245-2.3 3.985-.588 9.874 1.644 13.098 1.096 1.581 2.396 3.352 4.102 3.287 1.643-.065 2.274-1.062 4.246-1.062 1.972 0 2.535 1.062 4.278 1.03 1.775-.032 2.893-1.611 3.957-3.19 1.233-1.8 1.74-3.543 1.772-3.633-.04-.016-3.366-1.29-3.366-5.216m-2.842-8.15c.887-1.074 1.48-2.566 1.315-4.06-1.282.052-2.86 .853-3.78 1.927-.74.855-1.446 2.379-1.25 3.842 1.447.112 2.827-.638 3.715-1.71" fill="#fff"/><text x="45" y="15" fill="#fff" font-family="sans-serif" font-size="9">Download on the</text><text x="45" y="28" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">App Store</text></svg></a><a href="#download" class="inline-block transition transform hover:scale-105 hover:-translate-y-1"><svg viewBox="0 0 135 40" class="w-48 h-auto shadow-lg rounded-lg" xmlns="http://www.w3.org/2000/svg"><rect width="135" height="40" rx="8" fill="black"/><path d="M12.4 10.3c-.3-.3-.5-.8-.5-1.4v22.2c0 .6.2 1.1.5 1.4l.1.1 12.5-12.5v-.2L12.5 10.2l-.1.1z" fill="#3bccff"/><path d="M29 22.8l-4-4v-.2l4-4 .1.1 4.7 2.7c1.3.7 1.3 1.9 0 2.7l-4.7 2.6-.1.1z" fill="#ffc100"/><path d="M25.1 22.6l-12.6 12.6c-.4.4-1.1.5-1.7.1L25 22.7l.1-.1z" fill="#ff3333"/><path d="M25.1 17.4L10.8 4.7c.6-.4 1.3-.3 1.7.1l12.6 12.5-.1.1z" fill="#00e676"/><text x="45" y="15" fill="#fff" font-family="sans-serif" font-size="9">GET IT ON</text><text x="45" y="28" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">Google Play</text></svg></a></div></div></div></section></main><footer class="bg-white pt-12 pb-8 border-t border-gray-200"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-8"><span class="font-bold text-xl text-primary block mb-2">Jaluwutis Ventures</span><p class="text-sm text-gray-500 italic"> "Questa è una pagina promozionale indipendente gestita da Jaluwutis Ventures, per l'app Italy by Events di Italy by Events." </p></div><div class="max-w-3xl mx-auto space-y-2 mb-8 text-sm"><details class="group bg-gray-50 rounded p-2"><summary class="font-semibold cursor-pointer text-gray-700 hover:text-primary">Informativa sulla Privacy</summary><div class="mt-2 text-gray-600 space-y-2 p-2 h-48 overflow-y-auto bg-white border border-gray-100 rounded"><p>La presente Informativa sulla Privacy descrive le modalità con cui Jaluwutis Ventures raccoglie, utilizza e protegge le informazioni personali degli utenti che visitano questa pagina promozionale. Rispettiamo la tua privacy e ci impegniamo a proteggere i tuoi dati personali. Quando visiti il nostro sito, potremmo raccogliere automaticamente alcune informazioni tecniche come il tuo indirizzo IP, il tipo di browser e il sistema operativo utilizzato. Questi dati vengono utilizzati esclusivamente a fini statistici e per migliorare l'esperienza di navigazione. Non raccogliamo dati personali sensibili a meno che non vengano forniti volontariamente tramite moduli di contatto, se presenti. I cookie vengono utilizzati per analizzare il traffico del sito e personalizzare i contenuti. Puoi disabilitare i cookie tramite le impostazioni del tuo browser in qualsiasi momento. Non condividiamo, vendiamo o affittiamo le tue informazioni personali a terze parti per scopi di marketing senza il tuo esplicito consenso. I dati raccolti sono conservati su server sicuri e protetti da misure tecniche e organizzative adeguate per prevenire accessi non autorizzati. Se l'app promossa richiede ulteriori dati, fai riferimento alla privacy policy specifica del fornitore dell'app. Ci riserviamo il diritto di aggiornare questa informativa in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina. Continuando a utilizzare il sito dopo tali modifiche, accetti le nuove condizioni. In conformità con il GDPR, hai il diritto di accedere, rettificare o cancellare i tuoi dati personali in nostro possesso. Per qualsiasi richiesta relativa alla privacy, ti preghiamo di consultare la sezione di supporto dell'app ufficiale. La presente policy si applica solo a questa landing page e non alle applicazioni di terze parti collegate. Ti invitiamo a leggere attentamente le informative sulla privacy di ogni sito o app che visiti. La tua fiducia è fondamentale per noi.</p></div></details><details class="group bg-gray-50 rounded p-2"><summary class="font-semibold cursor-pointer text-gray-700 hover:text-primary">Termini e Condizioni</summary><div class="mt-2 text-gray-600 space-y-2 p-2 h-48 overflow-y-auto bg-white border border-gray-100 rounded"><p>I presenti Termini e Condizioni regolano l'accesso e l'utilizzo di questa landing page promozionale gestita da Jaluwutis Ventures. Accedendo a questo sito, accetti di essere vincolato da questi termini. Questo sito è fornito a scopo puramente informativo e promozionale per l'applicazione menzionata. Non garantiamo l'accuratezza, la completezza o l'attualità delle informazioni fornite, sebbene facciamo ogni sforzo per mantenerle aggiornate. Jaluwutis Ventures non è il proprietario o lo sviluppatore dell'applicazione promossa, ma agisce in qualità di affiliato o promotore indipendente. Pertanto, non ci assumiamo alcuna responsabilità per il funzionamento, i contenuti o eventuali danni derivanti dall'uso dell'applicazione stessa. Tutti i marchi, i loghi e i contenuti relativi all'app appartengono ai rispettivi proprietari. È vietato riprodurre, distribuire o modificare i contenuti di questa pagina senza autorizzazione scritta. L'utente si impegna a utilizzare il sito in modo lecito e a non compiere azioni che possano comprometterne la sicurezza o il funzionamento. Ci riserviamo il diritto di interrompere o sospendere l'accesso al sito in qualsiasi momento, senza preavviso, per manutenzione o per violazione dei presenti termini. I link a siti di terze parti forniti su questa pagina, inclusi i link agli store di applicazioni, sono forniti solo per comodità. Non abbiamo controllo su tali siti e non siamo responsabili per i loro contenuti o le loro pratiche sulla privacy. L'uso dell'applicazione promossa è soggetto ai termini e condizioni specifici del fornitore dell'app. Eventuali controversie derivanti dall'uso di questa landing page saranno regolate dalle leggi vigenti nel territorio in cui opera Jaluwutis Ventures. Ti invitiamo a rivedere periodicamente questi termini, poiché potrebbero subire variazioni. Il continuo utilizzo del sito costituisce accettazione dei termini aggiornati. Se non accetti questi termini, sei pregato di non utilizzare il nostro sito web.</p></div></details><details class="group bg-gray-50 rounded p-2"><summary class="font-semibold cursor-pointer text-gray-700 hover:text-primary">Politica di Rimborso</summary><div class="mt-2 text-gray-600 space-y-2 p-2 h-48 overflow-y-auto bg-white border border-gray-100 rounded"><p>La presente Politica di Rimborso chiarisce la posizione di Jaluwutis Ventures in merito agli acquisti o alle transazioni effettuate in relazione all'applicazione promossa. Poiché Jaluwutis Ventures gestisce esclusivamente questa pagina promozionale indipendente e non elabora alcun pagamento diretto, non siamo in grado di emettere rimborsi. L'applicazione "Italy by Events" è generalmente gratuita da scaricare tramite i rispettivi store digitali (Apple App Store o Google Play Store). Qualora l'applicazione preveda acquisti in-app, abbonamenti premium o servizi a pagamento, tutte le transazioni finanziarie avvengono esclusivamente tramite le piattaforme di Apple o Google. Pertanto, qualsiasi richiesta di rimborso, storno o contestazione di addebito deve essere indirizzata direttamente al servizio clienti di Apple o Google, a seconda del dispositivo utilizzato. Jaluwutis Ventures non ha accesso ai dati di fatturazione degli utenti, alle carte di credito o alla cronologia degli acquisti. Le politiche di rimborso applicabili sono quelle stabilite dai rispettivi app store. Di solito, Apple e Google offrono finestre di tempo limitate entro le quali è possibile richiedere un rimborso per acquisti accidentali o insoddisfacenti. Ti consigliamo di leggere attentamente le condizioni di vendita di tali piattaforme prima di effettuare qualsiasi acquisto. Non siamo responsabili per eventuali perdite finanziarie o insoddisfazioni derivanti dall'uso dei servizi a pagamento dell'app. Se riscontri problemi tecnici con l'applicazione o con acquisti in-app non riconosciuti, contatta il supporto ufficiale dello sviluppatore dell'app tramite i canali indicati all'interno dell'applicazione stessa. Questa politica è volta a garantire la massima trasparenza sui nostri ruoli e responsabilità. Jaluwutis Ventures si impegna a promuovere solo prodotti che riteniamo validi, ma la decisione finale di acquisto e l'utilizzo dei servizi premium spettano esclusivamente all'utente. Grazie per la comprensione.</p></div></details></div><div class="text-center text-gray-400 text-sm"> &copy; 2026 Jaluwutis Ventures. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 shadow-2xl z-50 transform translate-y-full transition-transform duration-500"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4"><p class="text-sm text-gray-300"> Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito e per analizzare il traffico. Continuando a navigare, accetti l'uso dei cookie. </p><div class="flex gap-2 shrink-0"><button onclick="acceptCookies()" class="bg-primary text-white px-4 py-2 rounded font-medium text-sm hover:bg-blue-600 transition">Accetta Tutti</button><button onclick="acceptCookies()" class="bg-gray-700 text-white px-4 py-2 rounded font-medium text-sm hover:bg-gray-600 transition">Solo Essenziali</button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    // Fallback to contact if section missing
-                    const contactSection = document.getElementById('contact');
-                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
                 
                 // Close mobile menu if open
                 const mobileMenu = document.getElementById('mobile-menu');
-                if (!mobileMenu.classList.contains('hidden')) {
+                if(!mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
+                }
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Smooth scroll to existing element
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback: Force Smooth Scroll to #download
+                    const fallbackElement = document.getElementById('download');
+                    if (fallbackElement) {
+                        fallbackElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
 
-        // COOKIE LOGIC
-        if (!localStorage.getItem('cookiesAccepted')) {
-            document.getElementById('cookie-banner').style.display = 'block';
+        // Cookie Banner Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
         }
-    </script>
-</body>
-</html>
+    </script> </body></html>
