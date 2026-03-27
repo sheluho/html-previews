@@ -1,440 +1,195 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luvipidopum Advisory | Confronto Conti Deposito</title>
-    <meta name="description" content="Servizio professionale per il confronto conti deposito e tassi interesse. Massimizza il rendimento dei tuoi risparmi con la migliore banca.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <style>
-        /* DESIGN DNA INJECTION
-           Target: https://www.confrontaconti.it/ (Length: 32 -> A=2)
-           First char: h (ASCII 104 -> B=2)
-           Last char: / (ASCII 47 -> C=2)
-        */
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Luvipidopum App | Podcast e Articoli di Approfondimento</title><meta name="description" content="Scarica l'app Podtail tramite Luvipidopum. Scopri i migliori podcast italiani, audio news e articoli lunghi per i tuoi approfondimenti quotidiani."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
         :root {
-            --primary: #059669; /* Deep Financial Emerald for trust */
-            --surface: #f8fafc; /* Cool (2) */
-            --radius: 24px;     /* Pill (2) */
-            --shadow: 4px 4px 0px 0px #000; /* Hard (2) */
+            --primary: #2563eb;
+            --secondary: #0891b2;
+            --radius: 0px;
+            --card-radius: 0px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08);
+            --body-bg: #f0f9ff;
+            --card-bg: #ffffff;
+            --text: #0c4a6e;
+            --muted: #64748b;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
-            border: 2px solid #000; /* Enhanced border for neo-brutalism to match hard shadow */
+            border: 1px solid rgba(0,0,0,0.05);
+            border-top: 3px solid var(--secondary); /* Decorative accent */
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2.5rem;
-            transition: all 0.2s ease-in-out;
-            font-weight: 800;
-            border: 2px solid #000; /* Strong border */
-            display: inline-block;
-            text-align: center;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
-        
-        .btn-primary:hover { 
-            opacity: 0.95; 
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px 0px #000;
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
 
-        .btn-primary:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px 0px #000;
-        }
-
-        /* UTILITY: Text Accent */
-        .text-primary { color: var(--primary); font-weight: bold; }
-        .border-primary { border-color: var(--primary); }
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
         .bg-primary { background-color: var(--primary); }
 
-        /* Custom Header & Footer aesthetics for consistency */
-        header, footer { border-bottom: 2px solid #e5e7eb; background: #fff; }
-        footer { border-top: 2px solid #e5e7eb; border-bottom: none; margin-top: 4rem; }
-    </style>
-</head>
-<body class="antialiased">
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
+        }
 
-    <!-- Smart Routing & Failsafe JS -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.addEventListener('click', function(e) {
-                const link = e.target.closest('a[href^="#"]');
-                if (link) {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                        const contactFallback = document.getElementById('contact');
-                        if (contactFallback) {
-                            console.warn(`Target #${targetId} missing. Redirecting to #contact gravity well.`);
-                            contactFallback.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    }
-                    
-                    // Close mobile menu if open upon click
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
+        /* Fixed navbar compensation */
+        main, main + footer { scroll-margin-top: 5rem; }
+
+        /* Form inputs */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+        }
+
+        /* Links */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(37,99,235,0.12), transparent);
+            margin: 0;
+        }
+
+        /* App Store Badge Styles */
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #000;
+            color: #fff !important;
+            border-radius: 8px; /* Standard badge rounding */
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            height: 48px;
+            border: 1px solid #333;
+        }
+        .store-badge:hover {
+            opacity: 0.8;
+        }
+        .store-badge svg {
+            height: 24px;
+            width: 24px;
+            margin-right: 0.75rem;
+            fill: currentColor;
+        }
+        .store-badge .badge-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+        .store-badge .badge-small {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        .store-badge .badge-large {
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+    </style> </head><body><nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200" style="background-color: var(--card-bg);"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16"><div class="flex items-center"><a href="#" class="text-2xl font-extrabold text-primary flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg> Luvipidopum </a></div><div class="hidden md:flex items-center space-x-8"><a href="#features" class="font-medium hover:text-primary transition-colors">Caratteristiche</a><a href="#how-it-works" class="font-medium hover:text-primary transition-colors">Come Funziona</a><a href="#reviews" class="font-medium hover:text-primary transition-colors">Recensioni</a><a href="#download" class="btn-primary text-sm px-4 py-2">Scarica l'App</a></div><div class="flex items-center md:hidden"><button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full z-40"><div class="px-4 pt-2 pb-6 space-y-2"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-primary">Caratteristiche</a><a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-primary">Come Funziona</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-primary">Recensioni</a><a href="#download" class="block px-3 py-2 text-center btn-primary w-full mt-4">Scarica l'App</a></div></div></nav><main><section class="py-24 md:py-36 px-4 sm:px-6 lg:px-8 relative overflow-hidden"><div class="max-w-3xl mx-auto text-center relative z-10"><span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-secondary font-semibold text-sm mb-6 uppercase tracking-wider">L'app definitiva per la mente</span><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6"> Ascolta. Leggi. Approfondisci. Il tuo mondo in un'unica app. </h1><p class="text-lg md:text-xl text-muted mb-10 max-w-2xl mx-auto"> Scopri la piattaforma Podtail tramite Luvipidopum. La destinazione premium per i migliori <strong class="text-text">podcast italiani</strong>, <strong class="text-text">audio news</strong> in tempo reale e <strong class="text-text">articoli lunghi</strong> pensati per chi non si accontenta della superficie. </p><div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="badge-text"><span class="badge-small">Scarica su</span><span class="badge-large">App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="badge-text"><span class="badge-small">DISPONIBILE SU</span><span class="badge-large">Google Play</span></div></a></div><div class="flex items-center justify-center gap-2 text-sm text-muted"><div class="flex text-yellow-400"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><span>4.8/5 su oltre 50.000 recensioni</span></div></div></section><hr class="section-divider"><section id="features" class="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Progettata per menti curiose</h2><p class="text-lg text-muted max-w-2xl mx-auto">Tutto ciò di cui hai bisogno per informarti, imparare e lasciarti ispirare, racchiuso in un'interfaccia elegante e senza distrazioni.</p></div><div class="flex flex-col gap-12 md:gap-24"><div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/6953871/pexels-photo-6953871.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Podcast Italiani" class="rounded-none shadow-lg border border-gray-100 w-full object-cover h-64 md:h-96" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/2563eb/ffffff?text=Podcast+Italiani'"></div><div class="w-full md:w-1/2"><div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-6 border border-blue-100"><svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Il meglio dei Podcast Italiani</h3><p class="text-muted text-lg leading-relaxed"> Accedi al più vasto catalogo di <strong class="text-text">podcast italiani</strong>. Che tu sia appassionato di storia, true crime, economia o crescita personale, il nostro algoritmo basato su Podtail ti suggerirà sempre la voce giusta. Esplora le classifiche aggiornate quotidianamente e non perderti mai un episodio dei tuoi creatori preferiti. </p></div></div><div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/5052851/pexels-photo-5052851.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Articoli Lunghi" class="rounded-none shadow-lg border border-gray-100 w-full object-cover h-64 md:h-96" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/0891b2/ffffff?text=Articoli+Lunghi'"></div><div class="w-full md:w-1/2"><div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-6 border border-blue-100"><svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg></div><h3 class="text-2xl font-bold mb-4">Non solo audio: Articoli Lunghi</h3><p class="text-muted text-lg leading-relaxed"> Quando la voce non basta, immergiti nella lettura. L'app integra una sezione esclusiva dedicata agli <strong class="text-text">articoli lunghi</strong> e al giornalismo <strong class="text-text">long-form</strong>. Goditi un'esperienza di lettura pulita, con formattazione perfetta per schermi mobile, tipografia curata e zero distrazioni pubblicitarie. </p></div></div><div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Audio News" class="rounded-none shadow-lg border border-gray-100 w-full object-cover h-64 md:h-96" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/2563eb/ffffff?text=Audio+News'"></div><div class="w-full md:w-1/2"><div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-6 border border-blue-100"><svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg></div><h3 class="text-2xl font-bold mb-4">Resta informato con le Audio News</h3><p class="text-muted text-lg leading-relaxed"> Il mondo corre veloce. Rimani sempre aggiornato con le nostre <strong class="text-text">audio news</strong> curate. Brevi pillole informative o analisi dettagliate dei fatti del giorno, perfette da ascoltare durante il tragitto casa-lavoro, in palestra o mentre prepari la cena. L'informazione di qualità, senza sforzo. </p></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto"><div class="dna-card"><div class="text-center mb-12"><h2 class="text-3xl font-bold mb-4">Inizia in tre semplici passi</h2><p class="text-muted">Meno di un minuto per trasformare il tuo smartphone in una libreria di conoscenza.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="text-center p-6"><div class="w-16 h-16 mx-auto bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-md">1</div><h3 class="text-xl font-semibold mb-3">Scarica l'App</h3><p class="text-muted">Disponibile gratuitamente su iOS e Android. Clicca sui badge in questa pagina per il download sicuro.</p></div><div class="text-center p-6 relative"><div class="hidden md:block absolute top-14 left-0 w-full h-0.5 bg-gray-100 -z-10"></div><div class="w-16 h-16 mx-auto bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-md">2</div><h3 class="text-xl font-semibold mb-3">Scegli i tuoi interessi</h3><p class="text-muted">Seleziona i tuoi argomenti preferiti per personalizzare il feed di approfondimenti e podcast.</p></div><div class="text-center p-6"><div class="w-16 h-16 mx-auto bg-secondary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-md">3</div><h3 class="text-xl font-semibold mb-3">Immergiti</h3><p class="text-muted">Premi play o inizia a leggere. Salva i contenuti offline per goderne ovunque tu sia.</p></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa dicono i nostri utenti</h2><p class="text-lg text-muted">La community di chi ama andare oltre i titoli.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card p-8"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">Unica per gli approfondimenti</h4><p class="text-muted mb-4 text-sm leading-relaxed">"Cercavo un'app che mettesse insieme i miei podcast italiani preferiti e articoli lunghi da leggere nel weekend. L'interfaccia è pulita e le audio news mattutine sono diventate una dipendenza."</p><div class="text-xs text-gray-400 font-medium">Marco Rossi — Febbraio 2025</div></div><div class="dna-card p-8"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">Addio distrazioni</h4><p class="text-muted mb-4 text-sm leading-relaxed">"Leggere long-form sul telefono era sempre un incubo a causa della pubblicità. Questa app ha risolto il problema. E in più ha un catalogo infinito di podcast. Perfetta."</p><div class="text-xs text-gray-400 font-medium">Elena B. — Marzo 2025</div></div><div class="dna-card p-8"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">Il database Podtail è imbattibile</h4><p class="text-muted mb-4 text-sm leading-relaxed">"Uso l'app principalmente per scoprire nuovi show. Il motore di ricerca è velocissimo e i suggerimenti sono sempre pertinenti. Molto consigliata a chi divora contenuti audio."</p><div class="text-xs text-gray-400 font-medium">Davide S. — Gennaio 2026</div></div></div></section><hr class="section-divider"><section class="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto"><div class="dna-card"><h2 class="text-3xl font-bold mb-8 text-center">Domande Frequenti</h2><div class="space-y-4"><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>L'app è gratuita?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Sì, il download dell'app e l'accesso al catalogo base dei podcast italiani e delle audio news è completamente gratuito. Potrebbero essere presenti funzionalità premium opzionali gestite tramite gli store.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>Quali dispositivi sono supportati?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">L'app è disponibile per tutti i principali smartphone e tablet. Puoi scaricarla su dispositivi iOS (iPhone e iPad) tramite l'App Store e su dispositivi Android tramite Google Play Store.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>Posso ascoltare o leggere offline?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Assolutamente sì. Puoi scaricare gli episodi dei tuoi podcast preferiti e salvare gli articoli lunghi per goderne anche quando non hai una connessione internet attiva, ad esempio in aereo o in metropolitana.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>I miei dati sono al sicuro?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">La sicurezza della tua privacy è una priorità. Raccogliamo solo i dati strettamente necessari per far funzionare l'app e suggerirti contenuti rilevanti. Non vendiamo i tuoi dati personali a terzi.</p></details><details class="group pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>Come trovo nuovi contenuti?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Utilizziamo il potente database di Podtail integrato per offrirti un motore di ricerca avanzato. Inoltre, la sezione "Scopri" ti propone quotidianamente nuove audio news e articoli di approfondimento basati sui tuoi ascolti precedenti.</p></details></div></div></section><section id="download" class="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto"><div class="dna-card bg-primary text-white text-center p-12 md:p-20 border-none shadow-2xl relative overflow-hidden"><div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div><div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-secondary opacity-50 rounded-full blur-2xl"></div><div class="relative z-10"><h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-white">Pronto per iniziare?</h2><p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto"> Scarica l'app oggi stesso. Unisciti a migliaia di utenti che hanno già trasformato il loro smartphone in una fonte infinita di approfondimenti e podcast di qualità. </p><div class="flex flex-col sm:flex-row items-center justify-center gap-6"><a href="#download" class="store-badge" style="border-color: rgba(255,255,255,0.2);"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="badge-text"><span class="badge-small">Scarica su</span><span class="badge-large">App Store</span></div></a><a href="#download" class="store-badge" style="border-color: rgba(255,255,255,0.2);"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="badge-text"><span class="badge-small">DISPONIBILE SU</span><span class="badge-large">Google Play</span></div></a></div></div></div></section></main><footer class="bg-white border-t border-gray-200 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><a href="#" class="text-2xl font-extrabold text-primary flex items-center justify-center gap-2 mb-6"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg> Luvipidopum </a><p class="text-muted text-sm max-w-2xl mx-auto"> Questa è una pagina promozionale indipendente gestita da Luvipidopum, per l'app Podtail sviluppata da Podtail. Tutti i marchi registrati appartengono ai rispettivi proprietari. </p></div><div class="space-y-4 text-sm text-gray-500 max-w-3xl mx-auto mb-12"><details class="bg-gray-50 p-4 rounded-none border border-gray-100"><summary class="font-semibold cursor-pointer text-gray-700">Informativa sulla Privacy</summary><div class="mt-4 space-y-2 leading-relaxed"><p>La presente Informativa sulla Privacy descrive come Luvipidopum (di seguito "noi", "nostro" o "l'Azienda") raccoglie, utilizza e protegge i tuoi dati personali quando visiti la nostra pagina promozionale e utilizzi i nostri servizi. Rispettiamo la tua privacy e ci impegniamo a proteggere le informazioni personali che potresti condividere con noi. Questa pagina ha lo scopo esclusivo di promuovere l'applicazione mobile menzionata. Non raccogliamo dati personali sensibili attraverso questo sito web promozionale. Se decidi di scaricare l'applicazione tramite i link forniti, sarai reindirizzato agli store ufficiali (Apple App Store o Google Play Store). Ti invitiamo a leggere attentamente le informative sulla privacy fornite dagli sviluppatori dell'applicazione e dalle piattaforme di distribuzione. Durante la navigazione su questa pagina, potremmo raccogliere automaticamente informazioni tecniche non identificative, come il tipo di browser, il sistema operativo e l'indirizzo IP, al solo scopo di analizzare il traffico e migliorare l'esperienza utente. Utilizziamo cookie tecnici essenziali per garantire il corretto funzionamento del sito. Non utilizziamo cookie di profilazione per inviarti pubblicità mirata senza il tuo esplicito consenso. I dati tecnici raccolti vengono conservati per un periodo limitato e non vengono condivisi con terze parti per scopi commerciali. Qualora tu decida di contattarci tramite gli strumenti forniti nell'applicazione (una volta scaricata), i tuoi dati saranno gestiti secondo le policy dello sviluppatore dell'app. Hai il diritto di richiedere informazioni sui dati eventualmente raccolti da questa pagina e di chiederne la cancellazione, in conformità con le normative vigenti. Ci riserviamo il diritto di aggiornare questa policy in qualsiasi momento; le modifiche saranno pubblicate su questa pagina. Continuando a utilizzare il sito, accetti le condizioni qui descritte. Per qualsiasi dubbio relativo alla privacy dei dati raccolti direttamente dall'applicazione, ti preghiamo di fare riferimento ai canali di supporto ufficiali dello sviluppatore dell'app. Ti ricordiamo che la sicurezza delle tue informazioni è fondamentale e adottiamo misure standard del settore per proteggere la nostra infrastruttura web.</p></div></details><details class="bg-gray-50 p-4 rounded-none border border-gray-100"><summary class="font-semibold cursor-pointer text-gray-700">Termini di Servizio</summary><div class="mt-4 space-y-2 leading-relaxed"><p>I presenti Termini di Servizio regolano l'utilizzo di questa pagina web promozionale gestita da Luvipidopum. Accedendo e navigando su questo sito, accetti integralmente e senza riserve le seguenti condizioni. Questo sito web ha il solo scopo di presentare e promuovere un'applicazione mobile sviluppata da terze parti. Non siamo i creatori, gli sviluppatori o i proprietari dell'applicazione promossa. Di conseguenza, non ci assumiamo alcuna responsabilità in merito al funzionamento, ai contenuti, agli aggiornamenti o a eventuali malfunzionamenti dell'applicazione stessa. I loghi, i marchi e i nomi commerciali menzionati in questa pagina appartengono ai rispettivi legittimi proprietari e sono utilizzati esclusivamente a scopo descrittivo e promozionale. È severamente vietato riprodurre, copiare o distribuire i contenuti testuali o grafici di questa pagina senza la nostra previa autorizzazione scritta. L'utente si impegna a utilizzare il sito web in modo lecito e a non impiegare sistemi automatizzati (come bot o scraper) per estrarre dati. Non garantiamo che il sito web sia sempre accessibile o privo di errori tecnici. Ci riserviamo il diritto di modificare, sospendere o interrompere la visibilità di questa pagina in qualsiasi momento e senza preavviso. Scaricando l'applicazione tramite i link forniti, l'utente sarà soggetto ai Termini di Servizio e agli Accordi di Licenza (EULA) imposti dallo sviluppatore dell'app e dagli store digitali (App Store e Google Play). Qualsiasi controversia legata all'uso dell'applicazione dovrà essere risolta direttamente con lo sviluppatore. Decliniamo ogni responsabilità per eventuali danni diretti, indiretti, accidentali o consequenziali derivanti dall'accesso a questo sito o dall'uso dell'applicazione promossa. I presenti termini sono regolati dalle leggi vigenti e qualsiasi controversia relativa all'uso di questa pagina web sarà di competenza esclusiva del foro competente. Ti invitiamo a rivedere periodicamente questa sezione, poiché potremmo aggiornare i termini senza preavviso. L'uso continuato del sito costituisce accettazione dei termini modificati.</p></div></details><details class="bg-gray-50 p-4 rounded-none border border-gray-100"><summary class="font-semibold cursor-pointer text-gray-700">Politica sui Rimborsi</summary><div class="mt-4 space-y-2 leading-relaxed"><p>La presente Politica sui Rimborsi chiarisce la nostra posizione in merito agli acquisti legati all'applicazione promossa. Luvipidopum gestisce esclusivamente questa pagina web a scopo promozionale e informativo. Non elaboriamo pagamenti, non vendiamo abbonamenti e non raccogliamo denaro direttamente dagli utenti in nessuna forma. L'applicazione mobile promossa in questa pagina è generalmente disponibile per il download gratuito tramite gli store ufficiali (Apple App Store o Google Play Store). Tuttavia, l'applicazione potrebbe offrire acquisti in-app, abbonamenti premium o funzionalità a pagamento gestite interamente dallo sviluppatore e dalle piattaforme di distribuzione. Poiché tutte le transazioni finanziarie avvengono al di fuori del nostro controllo e direttamente attraverso l'infrastruttura di Apple o Google, non siamo in grado di emettere rimborsi, annullare abbonamenti o gestire controversie di fatturazione. Se hai effettuato un acquisto all'interno dell'applicazione e desideri richiedere un rimborso, devi seguire le procedure ufficiali stabilite dallo store da cui hai scaricato l'app. Per gli utenti iOS, è necessario accedere al portale "Segnala un problema" di Apple e selezionare l'opzione per richiedere un rimborso. Per gli utenti Android, è necessario accedere alla cronologia degli acquisti sul Google Play Store e seguire la procedura guidata per il rimborso. L'approvazione delle richieste di rimborso è soggetta alle politiche rigorose di Apple e Google e non dipende in alcun modo da noi o dallo sviluppatore dell'app. Ti consigliamo vivamente di leggere attentamente le condizioni di abbonamento prima di confermare qualsiasi acquisto in-app. Se hai attivato un abbonamento ricorrente e desideri interromperlo, devi cancellarlo tramite le impostazioni del tuo account Apple ID o Google Play, altrimenti il rinnovo automatico continuerà ad addebitarti i costi previsti. Non inviarci richieste di rimborso o cancellazione, poiché non abbiamo gli strumenti tecnici né l'autorità legale per intervenire sulle tue transazioni.</p></div></details></div><div class="text-center text-sm text-gray-500"> &copy; 2026 Luvipidopum. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 transform translate-y-full transition-transform duration-300"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm">Utilizziamo cookie tecnici per garantire il corretto funzionamento della pagina. Continuando la navigazione, accetti il nostro utilizzo dei cookie.</p><button onclick="acceptCookies()" class="bg-primary text-white px-6 py-2 rounded text-sm font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">Ho capito</button></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[href^="#"]');
+            if (link) {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetEl = document.getElementById(targetId);
+                
+                if (targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to download section
+                    const downloadEl = document.getElementById('download');
+                    if (downloadEl) {
+                        downloadEl.scrollIntoView({ behavior: 'smooth' });
                     }
                 }
-            });
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
         });
-    </script>
 
-    <!-- Navigation -->
-    <header class="sticky top-0 z-50 py-4 px-6 shadow-sm border-b-2 border-black" style="background-color: var(--surface);">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-black tracking-tight flex items-center gap-2">
-                <span class="bg-primary text-white p-2 rounded-lg" style="border-radius: var(--radius)">LA</span>
-                Luvipidopum <span class="text-primary">Advisory</span>
-            </a>
-            
-            <nav class="hidden md:flex gap-8 font-semibold">
-                <a href="#servizi" class="hover:text-primary transition-colors">I Nostri Servizi</a>
-                <a href="#recensioni" class="hover:text-primary transition-colors">Dicono di noi</a>
-                <a href="#faq" class="hover:text-primary transition-colors">FAQ</a>
-            </nav>
+        // Cookie Banner Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookies_accepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
 
-            <a href="#contact" class="hidden md:inline-block btn-primary text-sm py-2 px-6">Trova il tuo Tasso</a>
-
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-gray-800 p-2">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b-2 border-black p-4 flex flex-col gap-4 shadow-xl z-50 font-bold text-lg text-center">
-            <a href="#servizi" class="block p-2 text-gray-800">I Nostri Servizi</a>
-            <a href="#recensioni" class="block p-2 text-gray-800">Dicono di noi</a>
-            <a href="#faq" class="block p-2 text-gray-800">FAQ</a>
-            <a href="#contact" class="btn-primary block mt-4">Confronta Ora</a>
-        </div>
-    </header>
-
-    <!-- Hero Section (Exception: Full Width / Absolute Overlay) -->
-    <section class="relative bg-black py-20 lg:py-32 overflow-hidden text-white flex items-center min-h-[70vh]">
-        <!-- Fallback to placehold.co if external image fails, representing money/graph -->
-        <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80" 
-             onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/0f172a/ffffff?text=Investimenti+e+Risparmi';" 
-             alt="Calcolo interessi bancari e risparmi" 
-             referrerpolicy="no-referrer" 
-             loading="lazy" 
-             class="absolute inset-0 w-full h-full object-cover object-center opacity-40 mix-blend-overlay" />
-        
-        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center md:text-left">
-            <span class="inline-block py-1 px-3 bg-white text-black font-bold text-sm mb-4 border-2 border-black" style="border-radius: var(--radius); box-shadow: 2px 2px 0px 0px #000;">✓ Servizio di confronto aggiornato al 2026</span>
-            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight drop-shadow-lg">
-                L'Advisory che massimizza i tuoi <span class="text-green-400">risparmi</span>: trova il conto con il miglior <span class="text-green-400">rendimento</span>.
-            </h1>
-            <p class="text-lg md:text-2xl text-gray-200 mb-10 max-w-3xl drop-shadow-md">
-                Un servizio esclusivo e trasparente per individuare il miglior tasso di interesse sul mercato. Qualunque sia il tuo capitale iniziale, ti guidiamo verso la soluzione bancaria più solida.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
-                <a href="#contact" class="btn-primary text-lg">Inizia Analisi Gratuita</a>
-                <a href="#servizi" class="btn-primary bg-white text-gray-900 border-gray-900 !important" style="background-color: white; color: #111 !important;">Scopri i Dettagli</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Indicator -->
-    <div class="bg-gray-800 py-6 border-y-4 border-black">
-        <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70 grayscale">
-            <span class="text-white font-black text-xl tracking-wider">BANCA SYSTEM</span>
-            <span class="text-white font-black text-xl tracking-wider">FINANCE UNION</span>
-            <span class="text-white font-black text-xl tracking-wider">CREDIT TRUST</span>
-            <span class="text-white font-black text-xl tracking-wider">GLOBAL DEPOSIT</span>
-        </div>
-    </div>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="py-16 px-4 md:px-8 max-w-7xl mx-auto space-y-12">
-
-        <!-- Services Section (DNA Card) -->
-        <section id="servizi" class="max-w-5xl mx-auto dna-card mt-10">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-black mb-4">Perché il nostro servizio di confronto è diverso</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Proteggi l'erosione inflattiva dei tuoi risparmi depositando con saggezza. Noi analizziamo i dati al posto tuo.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-6 border-2 border-black rounded-xl bg-white transition hover:-translate-y-1" style="box-shadow: 3px 3px 0px 0px #000;">
-                    <div class="w-12 h-12 bg-green-100 border-2 border-black rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Tasso e Rendimento Ottimali</h3>
-                    <p class="text-gray-700 leading-relaxed">Analizziamo i profili di ogni banca partner per scoprire il tasso netto e lordo reale. Non fermarti alla pubblicità, conosci il vero rendimento.</p>
-                </div>
-
-                <div class="p-6 border-2 border-black rounded-xl bg-white transition hover:-translate-y-1" style="box-shadow: 3px 3px 0px 0px #000;">
-                    <div class="w-12 h-12 bg-blue-100 border-2 border-black rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Conto Deposito Protetto</h3>
-                    <p class="text-gray-700 leading-relaxed">Proponiamo un servizio di confronto focalizzato esclusivamente su istituti che aderiscono al Fondo Interbancario, proteggendo integralmente ogni conto aperto.</p>
-                </div>
-
-                <div class="p-6 border-2 border-black rounded-xl bg-white transition hover:-translate-y-1" style="box-shadow: 3px 3px 0px 0px #000;">
-                    <div class="w-12 h-12 bg-purple-100 border-2 border-black rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Vincolati o Liberi</h3>
-                    <p class="text-gray-700 leading-relaxed">Qualunque sia la tua esigenza di liquidità, calcoliamo le proiezioni sia su un deposito fisso, sia su un conto senza alcun vincolo operativo.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Image Banner -->
-        <div class="max-w-5xl mx-auto rounded-xl overflow-hidden border-2 border-black shadow-xl h-64 relative">
-             <img src="https://images.pexels.com/photos/164527/pexels-photo-164527.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80" 
-             onerror="this.onerror=null; this.src='https://placehold.co/1200x400/1e293b/ffffff?text=Crescita+Patrimonio';" 
-             alt="Crescita deposito risparmi" 
-             referrerpolicy="no-referrer" 
-             loading="lazy" 
-             class="w-full h-full object-cover" />
-             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center p-8">
-                 <div class="text-white max-w-lg">
-                     <h3 class="text-2xl font-black mb-2">Un deposito, cento vantaggi.</h3>
-                     <p>Non lasciare i tuoi risparmi immobili sul conto corrente base. Mettili a rendita sicura.</p>
-                 </div>
-             </div>
-        </div>
-
-        <!-- Social Proof (DNA Card) -->
-        <section id="recensioni" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-black mb-10 text-center border-b-2 border-black pb-4 inline-block mx-auto">L'esperienza dei nostri risparmiatori</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-gray-50 p-6 border-2 border-black relative" style="border-radius: var(--radius)">
-                    <div class="absolute -top-4 -left-4 text-4xl bg-primary text-white w-10 h-10 flex justify-center items-center rounded-full border-2 border-black">"</div>
-                    <p class="text-gray-700 italic mb-4 mt-2 font-medium">"Usare Luvipidopum Advisory mi ha cambiato la prospettiva. Credevo che la mia banca offrisse condizioni vantaggiose, finché non ho provato il loro servizio di confronto. Ho scoperto un conto deposito con un tasso netto del 4.2% a 12 mesi. Gestione semplicissima e assistenza top."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="font-bold">Marco D.</div>
-                        <div class="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full border border-gray-400">Verificato • Febbraio 2026</div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="bg-gray-50 p-6 border-2 border-black relative" style="border-radius: var(--radius)">
-                    <div class="absolute -top-4 -left-4 text-4xl bg-primary text-white w-10 h-10 flex justify-center items-center rounded-full border-2 border-black">"</div>
-                    <p class="text-gray-700 italic mb-4 mt-2 font-medium">"Non mi intendo molto di mercati finanziari, ma cercavo un luogo sicuro per mettere a rendimento la mia liquidazione. Questo comparatore è formidabile: in tre passi mi ha evidenziato le migliori tre opzioni sul mercato, mostrando i costi reali in totale trasparenza."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="font-bold">Silvia G.</div>
-                        <div class="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full border border-gray-400">Verificato • Gennaio 2026</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ (DNA Card) -->
-        <section id="faq" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-black mb-8">Domande Frequenti sul Risparmio</h2>
-            
-            <div class="space-y-4">
-                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer shadow-sm hover:bg-gray-50" open>
-                    <summary class="font-bold text-lg p-5 flex justify-between items-center select-none">
-                        Cos'è esattamente un conto deposito?
-                        <span class="text-primary text-2xl group-open:rotate-45 transition-transform duration-200">+</span>
-                    </summary>
-                    <div class="p-5 pt-0 text-gray-700 border-t-2 border-gray-100">
-                        Si tratta di un vero e proprio salvadanaio bancario che ti garantisce un rendimento costante e definito nel tempo. Diversamente da un classico conto corrente, il cui scopo è la movimentazione quotidiana del denaro, l'obiettivo qui è premiare la permanenza della tua liquidità.
-                    </div>
-                </details>
-
-                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer shadow-sm hover:bg-gray-50">
-                    <summary class="font-bold text-lg p-5 flex justify-between items-center select-none">
-                        Come è calcolato il tasso di interesse?
-                        <span class="text-primary text-2xl group-open:rotate-45 transition-transform duration-200">+</span>
-                    </summary>
-                    <div class="p-5 pt-0 text-gray-700 border-t-2 border-gray-100">
-                        La banca stabilisce una percentuale su base annua. Questo tasso può essere lordo (prima delle imposte di legge, attualmente al 26%) e si applica in base al capitale versato e ai giorni di effettiva giacenza dei fondi. Il nostro servizio ti mostra sempre anche il valore al netto.
-                    </div>
-                </details>
-
-                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer shadow-sm hover:bg-gray-50">
-                    <summary class="font-bold text-lg p-5 flex justify-between items-center select-none">
-                        I miei risparmi sono esposti a rischio?
-                        <span class="text-primary text-2xl group-open:rotate-45 transition-transform duration-200">+</span>
-                    </summary>
-                    <div class="p-5 pt-0 text-gray-700 border-t-2 border-gray-100">
-                        Tutte le offerte monitorate dal nostro servizio appartengono ad istituti che rientrano nella normativa europea del FITD (Fondo Interbancario di Tutela dei Depositi), il quale assicura una copertura nominale totale in caso di eventi straordinari, fino a centomila euro per correntista e per istituto.
-                    </div>
-                </details>
-
-                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer shadow-sm hover:bg-gray-50">
-                    <summary class="font-bold text-lg p-5 flex justify-between items-center select-none">
-                        Linea vincolata o deposito libero: cosa cambia?
-                        <span class="text-primary text-2xl group-open:rotate-45 transition-transform duration-200">+</span>
-                    </summary>
-                    <div class="p-5 pt-0 text-gray-700 border-t-2 border-gray-100">
-                        Scegliendo l'opzione vincolata, accetti di bloccare la disponibilità della cifra per un lasso temporale predeterminato (ad es. 12, 24 o 60 mesi), ricevendo in cambio un tasso premio ben più succoso. Con quello libero, mantieni disponibilità dei liquidi ma le percentuali saranno inevitabilmente inferiori.
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- Contact/Lead Gen Form (DNA Card) -->
-        <section id="contact" class="max-w-5xl mx-auto dna-card bg-gray-900 text-white" style="background-color: #111827; border: 4px solid var(--primary); box-shadow: 8px 8px 0px 0px #000;">
-            <div class="grid md:grid-cols-2 gap-10 items-center">
-                <div>
-                    <h2 class="text-3xl md:text-5xl font-black mb-4 leading-tight">Metti i soldi a lavorare.</h2>
-                    <p class="text-lg text-gray-400 mb-8 font-medium">Richiedi la nostra scheda comparativa in pochi secondi. Lascia i tuoi dettagli sul profilo che vuoi analizzare e visualizzerai le opportunità bancarie odierne sul tuo schermo.</p>
-                    
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white border-2 border-black">✓</span>
-                            <span class="font-bold">Confronto Gratuito Immediato</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white border-2 border-black">✓</span>
-                            <span class="font-bold">Analisi Banche Certificate</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white border-2 border-black">✓</span>
-                            <span class="font-bold">Esclusione dei costi nascosti</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white p-6 md:p-8 rounded-xl border-2 border-black text-gray-900" style="border-radius: var(--radius)">
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Analisi in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-5">
-                        
-                        <div>
-                            <label class="block text-sm font-black mb-1">Nome per Analisi *</label>
-                            <input type="text" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition" placeholder="Es. Mario Rossi">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-black mb-1">Capitale di Deposito Stimato (€) *</label>
-                            <select required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-white">
-                                <option value="" disabled selected>Seleziona una fascia...</option>
-                                <option value="1">Fino a 10.000 €</option>
-                                <option value="2">Tra 10.000 € e 50.000 €</option>
-                                <option value="3">Tra 50.000 € e 100.000 €</option>
-                                <option value="4">Oltre 100.000 €</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-black mb-1">Durata d'interesse desiderata *</label>
-                            <select required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-white">
-                                <option value="" disabled selected>Senza vincoli o durata predefinita...</option>
-                                <option value="1">Svincolabile sempre</option>
-                                <option value="2">Vincolo breve (6 mesi)</option>
-                                <option value="3">Vincolo medio (12 - 24 mesi)</option>
-                                <option value="4">Lungo periodo (36+ mesi)</option>
-                            </select>
-                        </div>
-
-                        <div class="pt-2">
-                            <button type="submit" class="btn-primary w-full text-lg shadow-none" style="box-shadow: 2px 2px 0px 0px #000;">Trova l'Offerta Adatta a Te</button>
-                        </div>
-                        <p class="text-xs text-gray-500 text-center mt-3">Compilando la simulazione accetti che ti vengano mostrati istituti a scopo informativo.</p>
-                    </form>
-                    
-                    <div id="success-msg" style="display:none;" class="py-12 text-center">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-black">
-                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-black mb-2 text-green-700">Analisi Completata!</h3>
-                        <p class="text-gray-700 font-medium">Stiamo generando la lista delle banche con le migliori condizioni base impostate. L'offerta sarà visibile nella dashboard automatica a breve.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer Area & Legal Protocol -->
-    <footer class="bg-white pt-16 pb-8 border-t-4 border-black">
-        <div class="max-w-6xl mx-auto px-6 text-center md:text-left">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-6 border-b-2 border-gray-100 pb-10">
-                <div class="max-w-md">
-                    <span class="text-2xl font-black block mb-2">Luvipidopum <span class="text-primary">Advisory</span></span>
-                    <p class="text-gray-500 text-sm">La bussola di riferimento in Italia per individuare conti e rendite performanti nel mare delle offerte bancarie.</p>
-                </div>
-                
-                <div class="text-sm font-bold bg-yellow-50 p-4 border-2 border-yellow-300 rounded-lg max-w-xl text-left border-l-4">
-                    <strong>ATTENZIONE NORMATIVA (Disclaimer):</strong>
-                    Questo è un sito promozionale indipendente e gestito in maniera autonoma da Luvipidopum Advisory. Operiamo esclusivamente in qualità di intermediario pubblicitario e affiliato digitale in relazione ai servizi di comparazione forniti a marchio ConfrontaConti.
-                </div>
-            </div>
-
-            <!-- Full Legal Requirements via details -->
-            <div class="mb-10 text-left border-2 border-gray-200 rounded-lg p-2 bg-gray-50 max-w-4xl mx-auto" style="border-radius: var(--radius)">
-                <h4 class="text-center font-bold text-gray-500 mb-2 uppercase text-sm tracking-wider">Informativa Legale</h4>
-                
-                <details class="mb-1 border-b border-gray-200">
-                    <summary class="cursor-pointer text-sm font-bold text-gray-700 hover:text-black py-2 px-4 focus:outline-none">Politica sulla Privacy (Privacy Policy)</summary>
-                    <div class="text-xs text-gray-600 p-4 pt-1 h-48 overflow-y-auto leading-relaxed text-justify space-y-2">
-                        <p>La protezione dei dati inerenti alle vostre analisi e le vostre simulazioni bancarie è il fondamento della nostra etica aziendale all'interno di Luvipidopum Advisory. Raccogliamo esclusivamente informazioni atte alla fornitura del servizio comparativo in pagina. Qualsiasi dettaglio di natura quantitativa (ad esempio la stima di un deposito) ha validità esclusivamente in sessione utente e scompare. Non conserviamo archivi di profili personali sui nostri apparati una volta conclusa l'erogazione dei tassi in chiaro, fatta eccezione per il traffico essenziale al funzionamento tecnico. Noi di Luvipidopum Advisory agiamo da ponte fiduciario per permettervi l'accesso rapido. Nel momento in cui il sistema genererà proposte di operatori finanziari e deciderete di esplorarle, farete affidamento diretto sulle informative redatte a monte da tali istituti medesimi o dall'originatore ConfrontaConti. Rispetto alla normazione generale per il contrasto ai fenomeni del tracciamento massivo (GDPR ed e-Privacy Dir.), vi dichiariamo l'impiego stringente di risorse basilari informatiche unicamente rivolte alla resa in interfaccia del processo descritto, minimizzando di per sé le implicazioni intrusive.</p>
-                        <p>Ogni singola visita prodotta sulla nostra infrastruttura non comporta registrazione o apertura fascicoli personali legati all'anagrafica civile, assicurando una procedura di valutazione anonimizzata ai fini preventivi, esente per tanto dalle incombenze derivanti da immagazzinamento strutturato prolungato delle posizioni utenti, escluso per motivazioni legalmente ascritte per atti normativi inerenti e obblighi sovrani di forze autorizzate di magistratura, nei cui ristretti casi forniremo solo la provenienza generica con la debita documentazione prodotta dai form standard. Nel continuo di un esercizio consapevole e del diritto naturale a gestire o rimuovere ogni impronta eventualmente stoccata in forme collaterali temporanee, chi usufruisce e transita sui form, o su eventuali banner informativi interattivi ha diritto di fare immediata negazione. Applicheremo nel tal caso logiche rigorose ed efficaci per limitazione d'uso a mera fornitura. Questa politica va integrata a prescindere coi termini del servizio specifico d'offerta bancaria e delle comparative originali non in nostra stretta ed autonoma proprietà sistemica finale.</p>
-                    </div>
-                </details>
-
-                <details class="mb-1 border-b border-gray-200">
-                    <summary class="cursor-pointer text-sm font-bold text-gray-700 hover:text-black py-2 px-4 focus:outline-none">Termini e Condizioni di Utilizzo</summary>
-                    <div class="text-xs text-gray-600 p-4 pt-1 h-48 overflow-y-auto leading-relaxed text-justify space-y-2">
-                        <p>Navigando e compilando con le vostre istanze questo simulatore a cura di Luvipidopum Advisory, manifestate espresso e chiaro patto sull'interezza del nostro manifesto e sulle linee guida qui stilate a protezione delle reciproche spettanze legali sull'accesso web interattivo. Luvipidopum agisce alla stregua di veicolo puramente vetrina ai fini del raffronto conoscitivo sui comparti relativi ai settori del deposito patrimoniale ordinato per logiche convenzionali sul web. Non rappresentiamo né emettiamo fatturazione alcuna per aperture effettive, né vantiamo o chiediamo versamenti pre o postumi l'indagine qui facilitata dalle nostre matrici. Qualsiasi stipula su rendite passive per quote d'interesse presentate non potrà che materializzarsi tra i depositanti da un versante e le specifiche piazze finanziarie abilitate e recensite dal servizio partner d'appartenenza ultima, con oneri nulli o propri a quegli organismi ma sempre scollegati dalla vetrina stessa. Assicurateci pertanto che i fini di utilizzo di questo simulacro form siano volti essenzialmente a valutazioni primarie d'investimento personale senza carattere di inganno.</p>
-                        <p>Ribadiamo ed evinciamo fermamente e chiaramente un punto nodale di esclusione della nostra giurisdizione: l'aggiornamento e la certezza irrevocabile di determinati rendimenti tabellari lordi o sgravati visti online rientrano nelle piene potestà degli istituti responsabili ed originali comparatori (ConfrontaConti e le banche sottese). Possibili lievi incongruenze, cambi dettati dai mercati all'ingrosso come variazioni del prelievo bce che intercorrono tra simulazione vetrina ed erogazione bancaria definiva contrattualizzata o prospettica, sollevano in solido la Luvipidopum Advisory per difetti derivanti dal tempestivo mutamento strutturale a norma non causato da condotta tecnica ma dal contesto mutevole ed esogeno di un panorama di capitale altamente debole in tempistiche strette e mutevole costantemente, con validità spesso relegate ad intervalli specifici della cronologia degli anni. Agite con intelligenza.</p>
-                    </div>
-                </details>
-
-                <details>
-                    <summary class="cursor-pointer text-sm font-bold text-gray-700 hover:text-black py-2 px-4 focus:outline-none">Informativa sui Rimborsi & Erogazione del Servizio</summary>
-                    <div class="text-xs text-gray-600 p-4 pt-1 h-48 overflow-y-auto leading-relaxed text-justify space-y-2">
-                        <p>Dal punto nodale relativo all'assenza essenziale o integrale di parcella sulle simulazioni dei percorsi generati qui dalla Luvipidopum Advisory, vien d'istinto stabilire che fattispecie classiche riferibili alla mercatura inerenti storno economico per merci fisiche in spedizione tracciabile oppure storni derivati e rimborsi effettivi perdano senso e significato normativo a tutela utente su questo frangente specifico limitato alla vetrina digitale erogante flussi puramente numerici. Non versando capitali intermedi prima di effettuare confronti e non aprendo istruttorie o deleghe bancarie di fido a noi rivolte, decade istantanea e coerente ogni qualsivoglia clausola inerente i ripensamenti in ordine di cassa d'addebito. La cancellazione dal processo si declina quindi con la più netta ed estemporanea chiusura autonoma del collegamento e defezione a clic sul terminale web da chi esplora.</p>
-                        <p>Nel momento cui un simulante dovesse accertarsi poi in sede separata - col proprio fiduciario terminale od operatore da portale a cui giunse come conseguenza remota da questo scalo referenziale - di un difetto nella costituzione e volesse retrocedere dall'apertura patrimoniale vera, entreranno interamente a dominare il gioco quelle leggi imposte dalla stesura siglata ad arte dall'istituzione bancaria prescelta originaria d'atterraggio. Il consumatore troverà appositi iter ed atti d'arbitro sanciti secondo ordinamenti correnti sui prestiti od sui salvadanai vincolanti su quei testi contrattuali, dei quali non fungeremo affatto per cause già citate in funzione da moderatore. Nel chiudere codeste enunciazioni confermiamo la massima dedizione alla limpidità: lo scioglimento d'interesse e retromarcia sono libertà garantita al risparmio privato dal contesto d'Unione, semplicemente Luvipidopum qui presente non incassa su alcun fronte e di riverbero nulla vi stornerà a nessun conto da noi mosso se non scartare eventuali calcoli o simulazioni provvisorie senza vincolo giuridico o trattenuta temporanea pecuniaria che fosse.</p>
-                    </div>
-                </details>
-            </div>
-
-            <p class="text-gray-400 text-xs font-semibold text-center mt-6">
-                © 2026 Luvipidopum Advisory. Tutti i diritti sui contenuti comparativi vetrina riservati. Piattaforma tecnica per calcoli previsionali risparmio bancario in ambito euro IT.
-            </p>
-        </div>
-    </footer>
-
-    <!-- Simple Persistent Cookie Banner Fixed -->
-    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t-2 border-black p-4 z-50 transform translate-y-0 transition-transform duration-300" style="box-shadow: 0px -4px 0px 0px rgba(0,0,0,1);">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-sm font-semibold text-gray-700 w-full md:w-3/4">
-                <strong>Informativa:</strong> Utilizziamo strumenti essenziali atti a tracciare parametri logici e tecnici (no profilazione invadente) necessari ad elaborare dinamicamente le stime e le proiezioni comparative per l'allocazione profittevole che avete sollecitato dalla home del sito di Luvipidopum. Proseguendo l'indagine consentite l'ausilio di tale impalcatura minima.
-            </p>
-            <button onclick="document.getElementById('cookie-banner').style.display='none'; localStorage.setItem('cookie_confronto', 'accettato');" class="btn-primary py-2 px-6 whitespace-nowrap text-sm shadow-none">Comprendo ed Accetto</button>
-        </div>
-    </div>
-    
-    <script>
-        // Check for localstorage consent
-        if(localStorage.getItem('cookie_confronto') === 'accettato'){
-            document.getElementById('cookie-banner').style.display = 'none';
+        function acceptCookies() {
+            localStorage.setItem('cookies_accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
         }
-    </script>
-
-</body>
-</html>
+    </script> </body></html>
