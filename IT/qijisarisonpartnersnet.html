@@ -1,474 +1,222 @@
-<!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qijisarison Partners | Servizio Confronto Stipendi e Analisi Mercato</title>
-    <meta name="description" content="Il tuo partner per confrontare il tuo stipendio, analizzare il mercato del lavoro per il tuo settore e posizione, e ottenere i dati per chiedere un aumento.">
-    
-    <!-- Tailwind CSS (CDN) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- Design System (CSS Injection - Platinum Contrast) -->
-    <style>
-      :root {
-        /* VAR D: Palette (Deep Niche: Emerald Green for finance/growth) */
-        --primary: #059669; 
-        /* VAR C: Surface (Cool - Last Letter Code 'k' -> 107 % 3 = 2) */
-        --surface: #f8fafc; 
-        /* VAR A: Geometry (Soft - Domain Length 28 % 3 = 1) */
-        --radius: 12px; 
-        /* VAR B: Physics (Hard - First Letter Code 'q' -> 113 % 3 = 2) */
-        --shadow: 4px 4px 0px 0px #000; 
-      }
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Qijisarison Partners | L'App per Scoprire e Prenotare Ristoranti</title><meta name="description" content="L'app definitiva per scoprire ristoranti, leggere recensioni e prenotare il tuo tavolo ideale in pochi secondi."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Fraunces:wght@700;800&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #059669;
+            --secondary: #dc2626;
+            --radius: 0px;
+            --card-radius: 0px;
+            --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.05);
+            --body-bg: #f9fafb;
+            --card-bg: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+        }
 
-      /* GLOBAL CONTRAST BASE */
-      body {
-        background-color: #f3f4f6;
-        color: #1f2937;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      }
+        body {
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Work Sans', sans-serif;
+            padding-top: 4rem;
+        }
 
-      /* BRAND COMPONENT: The DNA Card */
-      .dna-card {
-        background-color: var(--surface);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 2.5rem;
-        margin-bottom: 2rem;
-        border: 1px solid rgba(0,0,0,0.05);
-      }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fraunces', serif;
+        }
 
-      /* BRAND COMPONENT: Primary Button */
-      .btn-primary {
-         background-color: var(--primary);
-         color: #ffffff !important;
-         border-radius: var(--radius);
-         box-shadow: var(--shadow);
-         padding: 1rem 2rem;
-         transition: all 0.2s;
-         font-weight: bold;
-         display: inline-block;
-         text-align: center;
-         cursor: pointer;
-         border: 1px solid #000;
-      }
-      .btn-primary:hover { 
-         opacity: 0.9; 
-         transform: translate(2px, 2px); 
-         box-shadow: 2px 2px 0px 0px #000; 
-      }
+        .dna-card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+        }
 
-      /* UTILITY: Text Accent */
-      .text-primary { color: var(--primary); }
+        /* Decorative accent for cards */
+        .dna-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        .dna-card:hover::before {
+            transform: scaleX(1);
+        }
 
-      /* Details Accordion Styling */
-      details > summary {
-          list-style: none;
-          cursor: pointer;
-      }
-      details > summary::-webkit-details-marker {
-          display: none;
-      }
-    </style>
-</head>
-<body class="antialiased">
+        nav {
+            background-color: var(--body-bg);
+        }
 
-    <!-- Header / Navigation -->
-    <header class="bg-white border-b-2 border-black sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-extrabold tracking-tight text-gray-900">
-                        Qijisarison <span class="text-primary">Partners</span>
-                    </a>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-700 hover:text-primary font-medium">I Nostri Servizi</a>
-                    <a href="#reviews" class="text-gray-700 hover:text-primary font-medium">Recensioni</a>
-                    <a href="#faq" class="text-gray-700 hover:text-primary font-medium">Domande Frequenti</a>
-                    <a href="#contact" class="btn-primary" style="padding: 0.5rem 1rem;">Ottieni Analisi</a>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-gray-700 focus:outline-none p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">I Nostri Servizi</a>
-                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Recensioni</a>
-                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Domande Frequenti</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-primary font-bold">Ottieni Analisi</a>
-            </div>
-        </div>
-    </header>
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Work Sans', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    <!-- Hero Section -->
-    <div class="relative bg-gray-900 overflow-hidden">
-        <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Analisi stipendi e mercato del lavoro" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Analisi+Professionale'">
-            <div class="absolute inset-0 bg-black bg-opacity-70" aria-hidden="true"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
-                Il tuo Partner strategico per conoscere il vero valore del tuo <span class="text-green-400">stipendio</span>.
-            </h1>
-            <p class="mt-4 max-w-3xl text-xl text-gray-300">
-                Non lasciare che le dinamiche aziendali ti nascondano la verità. Analizziamo i dati del tuo settore e della tua posizione per farti scoprire se stai guadagnando quanto vali davvero rispetto a un tuo collega.
-            </p>
-            <div class="mt-10 max-w-sm sm:max-w-none sm:flex">
-                <a href="#contact" class="btn-primary w-full sm:w-auto text-lg text-center">Inizia l'Analisi Gratuita</a>
-            </div>
-        </div>
-    </div>
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(5,150,105,0.05);
+        }
 
-    <!-- Trust Logos (Simulation) -->
-    <div class="bg-white border-y border-gray-200 py-6 mb-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold uppercase text-gray-500 tracking-wide mb-4">Utilizziamo dati elaborati da professionisti HR per professionisti di alto livello</p>
-            <div class="flex justify-center space-x-8 md:space-x-16 text-gray-400 font-bold text-xl md:text-2xl opacity-75 grayscale">
-                <span>DataTechCorp</span>
-                <span>MilanoHR Analytics</span>
-                <span>JobInsights Pro</span>
-            </div>
-        </div>
-    </div>
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
 
-    <!-- Main Content Area -->
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
 
-        <!-- Services Section -->
-        <section id="features" class="dna-card">
-            <div class="text-center mb-10">
-                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Dati Reali, Scelte Migliori</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">I Nostri Servizi di Analisi del Lavoro</p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-                    Attraverso la nostra piattaforma specializzata in servizio confronto stipendi, ti offriamo chiarezza assoluta.
-                </p>
-            </div>
+        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+        main, main + footer { scroll-margin-top: 5rem; }
+        
+        /* Form inputs — consistent styling */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(5,150,105,0.15);
+        }
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <div class="w-12 h-12 bg-green-100 rounded-md flex items-center justify-center mb-4 border border-black" style="box-shadow: 2px 2px 0px 0px #000;">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Confronto Diretto</h3>
-                    <p class="text-gray-600">Scopri subito la verità: il tuo <strong class="text-black">stipendio</strong> è in linea con quello di un <strong class="text-black">collega</strong> che ha le tue stesse responsabilità e anni di esperienza?</p>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <div class="w-12 h-12 bg-green-100 rounded-md flex items-center justify-center mb-4 border border-black" style="box-shadow: 2px 2px 0px 0px #000;">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Osservatorio di Mercato</h3>
-                    <p class="text-gray-600">Offriamo un'analisi approfondita per farti comprendere i trend del <strong class="text-black">mercato</strong> specifico del tuo <strong class="text-black">settore</strong> produttivo in tempo reale.</p>
-                </div>
+        /* Links — readable on any theme */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
 
-                <!-- Card 3 -->
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <div class="w-12 h-12 bg-green-100 rounded-md flex items-center justify-center mb-4 border border-black" style="box-shadow: 2px 2px 0px 0px #000;">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Preparazione Negoziale</h3>
-                    <p class="text-gray-600">Hai l'ambizione di crescere? Ti diamo gli strumenti e i report numerici per valorizzare la tua <strong class="text-black">posizione</strong> quando chiedi un meritato <strong class="text-black">aumento</strong>.</p>
-                </div>
-            </div>
-        </section>
+        /* Section divider — subtle visual rhythm */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(5,150,105,0.12), transparent);
+            margin: 0;
+        }
 
-        <!-- Image Banner -->
-        <section class="dna-card p-0 overflow-hidden relative" style="height: 300px;">
-             <img src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Dati finanziari mercato lavoro" class="w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1200x400?text=Statistiche+e+Dati'">
-             <div class="absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center text-center px-4">
-                 <h2 class="text-3xl font-bold text-white mb-4">L'85% dei professionisti non conosce il vero valore della propria esperienza.</h2>
-                 <p class="text-xl text-green-100">La conoscenza del mercato è il primo passo verso una retribuzione più equa.</p>
-             </div>
-        </section>
-
-        <!-- Reviews Section -->
-        <section id="reviews" class="dna-card">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center border-b pb-4">Storie di Successo (Aggiornato 2026)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-gray-50 p-6 rounded border border-gray-200 shadow-sm relative">
-                    <div class="text-primary font-bold text-4xl absolute top-4 left-4 opacity-20">"</div>
-                    <p class="text-gray-700 italic relative z-10 mb-4 pt-4">Grazie all'analisi di settore fornita da Qijisarison Partners, ho scoperto che il mio stipendio era inferiore del 20% rispetto a quello di un mio collega neoassunto. Con questi dati ho rinegoziato il mio contratto e ottenuto la mia posizione attuale e il mio tanto atteso aumento.</p>
-                    <div class="font-semibold text-gray-900">- Marco T., IT Manager (Gennaio 2026)</div>
-                </div>
-                <div class="bg-gray-50 p-6 rounded border border-gray-200 shadow-sm relative">
-                    <div class="text-primary font-bold text-4xl absolute top-4 left-4 opacity-20">"</div>
-                    <p class="text-gray-700 italic relative z-10 mb-4 pt-4">Cercavo un servizio di confronto stipendi accurato perché dovevo valutare un'offerta di lavoro in un mercato completamente nuovo per me. Il report dettagliato mi ha aiutato a spuntare un ingresso eccezionale nel mio nuovo settore di riferimento.</p>
-                    <div class="font-semibold text-gray-900">- Laura B., Direttore Marketing (Marzo 2026)</div>
-                </div>
-                <div class="bg-gray-50 p-6 rounded border border-gray-200 shadow-sm relative md:col-span-2 max-w-2xl mx-auto">
-                    <div class="text-primary font-bold text-4xl absolute top-4 left-4 opacity-20">"</div>
-                    <p class="text-gray-700 italic relative z-10 mb-4 pt-4">Era da anni che gestivo una mole di lavoro doppia rispetto al team. Grazie agli insight sul valore della mia posizione, sono andato alle risorse umane non solo a chiedere soldi, ma portando evidenze di mercato. Hanno accettato immediatamente il riadeguamento.</p>
-                    <div class="font-semibold text-gray-900">- Francesco D., Ingegnere Logistico (Aprile 2026)</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section id="faq" class="dna-card">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti (FAQ)</h2>
-            <div class="space-y-4">
-                <details class="group bg-white border border-gray-300 rounded p-4 shadow-sm" open>
-                    <summary class="flex justify-between items-center font-medium text-lg text-gray-900 cursor-pointer">
-                        Come posso sapere se guadagno meno di un collega?
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <p class="text-gray-600 mt-3 border-t pt-3">
-                        Il nostro servizio elabora le medie nazionali basate su ruoli e responsabilità affini. Inserendo il tuo job title in forma anonima, generiamo un report per paragonare il tuo profilo e dirti se la retribuzione attuale è in linea con i tuoi pari in azienda.
-                    </p>
-                </details>
-                
-                <details class="group bg-white border border-gray-300 rounded p-4 shadow-sm">
-                    <summary class="flex justify-between items-center font-medium text-lg text-gray-900 cursor-pointer">
-                        Su quali dati calcolate le statistiche di settore?
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <p class="text-gray-600 mt-3 border-t pt-3">
-                        Raccogliamo regolarmente i dati provenienti dal nostro partner ufficiale, monitorando i trend retributivi, l'inflazione e le dinamiche assunzionali che variano specificamente in base al settore produttivo esaminato (ad esempio IT, Edilizia, Commercio).
-                    </p>
-                </details>
-
-                <details class="group bg-white border border-gray-300 rounded p-4 shadow-sm">
-                    <summary class="flex justify-between items-center font-medium text-lg text-gray-900 cursor-pointer">
-                        Come si chiede efficacemente un aumento?
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <p class="text-gray-600 mt-3 border-t pt-3">
-                        Richiedere un incremento salariale non deve essere emotivo, ma razionale e basato su prove. Ti forniremo una cartellina completa con le tendenze di mercato e la corretta quotazione economica relativa alla tua posizione professionale da presentare ad un colloquio HR.
-                    </p>
-                </details>
-
-                <details class="group bg-white border border-gray-300 rounded p-4 shadow-sm">
-                    <summary class="flex justify-between items-center font-medium text-lg text-gray-900 cursor-pointer">
-                        I miei dati sul mio stipendio attuale sono privati?
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <p class="text-gray-600 mt-3 border-t pt-3">
-                        Assolutamente sì. Operiamo seguendo rigide normative per le indagini di mercato; ogni singolo valore o cifra retributiva caricata in piattaforma è crittografato e reso del tutto anonimo a scopi unicamente analitici collettivi.
-                    </p>
-                </details>
-
-                <details class="group bg-white border border-gray-300 rounded p-4 shadow-sm">
-                    <summary class="flex justify-between items-center font-medium text-lg text-gray-900 cursor-pointer">
-                        Aggiornate spesso le informazioni del database?
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <p class="text-gray-600 mt-3 border-t pt-3">
-                        Certamente. Il panorama macroeconomico e lavorativo è fluido, di conseguenza la nostra attività di servizio confronto stipendi si riflette in revisioni costanti ogni semestre del corrente anno solare (2026).
-                    </p>
-                </details>
-            </div>
-        </section>
-
-        <!-- Contact Form Section -->
-        <section id="contact" class="dna-card">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Ricevi un'analisi personalizzata per la tua posizione</h2>
-                    <p class="text-gray-600 text-lg mb-6">
-                        Compila il modulo inserendo il tuo settore di riferimento, i tuoi anni di esperienza e scopri oggi stesso come muoverti nel mercato per valorizzare la tua professione senza scendere a compromessi irrealistici.
-                    </p>
-                    <ul class="space-y-4 mb-8 text-gray-600">
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Report su base provinciale o nazionale.
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Parametri precisi per età anagrafica ed expertise.
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Strategie verificate da consulenti ed esperti di busta paga.
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white p-8 border border-gray-300 rounded shadow-inner">
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div class="space-y-4">
-                            <div>
-                                <label for="name" class="block text-sm font-bold text-gray-700">Nome o Pseudonimo</label>
-                                <input type="text" id="name" name="name" required class="mt-1 block w-full border border-gray-300 rounded p-3 focus:ring-primary focus:border-primary">
-                            </div>
-                            <div>
-                                <label for="job" class="block text-sm font-bold text-gray-700">Attuale Posizione o Ruolo</label>
-                                <input type="text" id="job" name="job" required class="mt-1 block w-full border border-gray-300 rounded p-3 focus:ring-primary focus:border-primary" placeholder="es. Responsabile Acquisti">
-                            </div>
-                            <div>
-                                <label for="sector" class="block text-sm font-bold text-gray-700">Settore di competenza</label>
-                                <select id="sector" name="sector" class="mt-1 block w-full border border-gray-300 rounded p-3 bg-white focus:ring-primary focus:border-primary">
-                                    <option>ICT e Telecomunicazioni</option>
-                                    <option>Bancario e Finanza</option>
-                                    <option>Industria / Metalmeccanica</option>
-                                    <option>Commercio / GDO</option>
-                                    <option>Edilizia e Costruzioni</option>
-                                    <option>Altro / Consulenza</option>
-                                </select>
-                            </div>
-                            <div class="pt-4">
-                                <button type="submit" class="w-full btn-primary text-lg">Invia Richiesta di Analisi</button>
-                            </div>
-                            <p class="text-xs text-gray-400 text-center mt-4">Inviando la richiesta dichiari di aver letto i nostri Termini Generali sul trattamento dei dati d'indagine riportati di seguito nel portale.</p>
-                        </div>
-                    </form>
-                    <div id="success-msg" style="display:none" class="bg-green-50 border-2 border-green-500 rounded p-6 text-center">
-                        <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <h3 class="text-2xl font-bold text-green-800 mb-2">Richiesta Ricevuta!</h3>
-                        <p class="text-green-700">Il nostro sistema analizzerà la tua profilazione. Verrai ricontattato in base alle tempistiche stimate dalla nostra centrale operativa.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer with Legal Compliance -->
-    <footer class="bg-gray-900 border-t border-black text-white pt-16 pb-8">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="mb-10 text-center">
-                <h4 class="text-2xl font-bold tracking-tight mb-2">Qijisarison Partners</h4>
-                <p class="text-gray-400 italic font-bold">Disclaimer Ufficiale</p>
-                <p class="text-gray-400 max-w-2xl mx-auto mt-2 text-sm border p-4 border-gray-700 bg-gray-800 rounded">
-                    Questo è un sito promozionale indipendente gestito da Qijisarison Partners, che agisce come affiliato per stipendiogiusto.it. Non garantiamo la completa e assoluta risoluzione di controversie lavorative mediante i nostri elaborati, che rappresentano materiale prettamente statistico e informativo.
-                </p>
-            </div>
-
-            <!-- Legal Documents Details Container -->
-            <div class="border-t border-gray-700 pt-8 mt-8 text-sm text-gray-400">
-                <h5 class="font-bold text-gray-300 uppercase tracking-wide mb-6 text-center">Documentazione Legale in Chiaro</h5>
-                <div class="space-y-4 max-w-4xl mx-auto">
+        /* Overlap Hero Custom Band */
+        .hero-band {
+            background-color: rgba(5,150,105,0.05);
+        }
+        
+        /* App Store Badges */
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #000;
+            color: #fff !important;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            transition: transform 0.2s;
+            height: 48px;
+        }
+        .store-badge:hover {
+            transform: translateY(-2px);
+            color: #fff !important;
+        }
+        .store-badge svg {
+            height: 24px;
+            width: auto;
+            margin-right: 8px;
+            fill: currentColor;
+        }
+        .store-badge-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+        .store-badge-text span:first-child {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+        }
+        .store-badge-text span:last-child {
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: sans-serif;
+        }
+    </style> </head><body><nav class="fixed top-0 left-0 w-full z-50 border-b border-gray-100 shadow-sm transition-all duration-300 h-16 flex items-center"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full"><div class="flex justify-between items-center h-full"><div class="flex items-center gap-2"><svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z"></path></svg><a href="#" class="text-xl font-bold font-serif tracking-tight">Qijisarison Partners</a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="text-sm font-medium transition-colors">Caratteristiche</a><a href="#how-it-works" class="text-sm font-medium transition-colors">Come Funziona</a><a href="#reviews" class="text-sm font-medium transition-colors">Recensioni</a><a href="#faq" class="text-sm font-medium transition-colors">FAQ</a><a href="#download" class="btn-primary text-sm px-4 py-2"> Scarica l'App <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg></a></div><div class="md:hidden flex items-center"><button id="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div></div></div></nav><div id="mobile-menu" class="hidden fixed top-16 left-0 w-full z-40 px-4 pt-2 pb-6 flex flex-col space-y-4"><a href="#features" class="block text-base font-medium py-2 border-b border-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Caratteristiche</a><a href="#how-it-works" class="block text-base font-medium py-2 border-b border-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Come Funziona</a><a href="#reviews" class="block text-base font-medium py-2 border-b border-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Recensioni</a><a href="#faq" class="block text-base font-medium py-2 border-b border-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">FAQ</a><a href="#download" class="btn-primary w-full justify-center mt-4" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Scarica Ora</a></div><main><section class="relative pt-12 pb-24 md:pt-24 md:pb-32 hero-band"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="flex flex-col md:flex-row items-center"><div class="w-full md:w-1/2 pr-0 md:pr-12 text-left z-20"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-white border border-gray-200 mb-6 shadow-sm"><span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span></span><span class="text-xs font-bold tracking-wide text-gray-800 uppercase">App N.1 per Food Lovers</span></div><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-gray-900"> Trova il tavolo perfetto. Esplora le eccellenze culinarie. </h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> L'app definitiva per <strong>scoprire ristoranti</strong> unici e <strong>prenotare ristorante</strong> in pochi secondi. Unisciti a migliaia di buongustai e trasforma ogni pasto in un'esperienza memorabile. </p><div class="flex flex-col sm:flex-row gap-4 mb-8"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span>Scarica su</span><span>App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span>Disponibile su</span><span>Google Play</span></div></a></div><div class="flex items-center gap-2 text-sm text-gray-600 font-medium"><div class="flex text-yellow-400"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><span>4.9/5 da oltre 10.000 recensioni</span></div></div><div class="w-full md:w-1/2 mt-16 md:mt-0 relative z-30"><div class="relative bg-white p-2 shadow-2xl md:-mb-40 border border-gray-100 transform md:translate-y-12"><img src="https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x1000/059669/ffffff?text=App+Scoprire+Ristoranti'" alt="Persona che usa l'app per prenotare ristorante" class="w-full h-auto object-cover" loading="lazy" referrerpolicy="no-referrer"><div class="absolute -bottom-6 -left-6 w-24 h-24 bg-secondary z-[-1]"></div></div></div></div></div></section><hr class="section-divider mt-20 md:mt-32"><section id="features" class="py-20 md:py-28"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-secondary text-sm font-bold tracking-widest uppercase mb-2">Tutto in un'unica app</h2><h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">L'arte di scegliere bene</h3><p class="text-lg text-muted max-w-2xl mx-auto">Abbiamo progettato un sistema intuitivo per aiutarti a trovare sempre il posto perfetto, che sia per una cena romantica o un pranzo di lavoro.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card text-center flex flex-col items-center"><div class="w-14 h-14 bg-green-50 rounded-none flex items-center justify-center mb-6 text-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></div><h4 class="text-xl font-bold mb-3">Scoprire Ristoranti</h4><p class="text-muted text-base">Usa la nostra mappa interattiva e i filtri avanzati per <strong>scoprire ristoranti</strong> nascosti e gemme culinarie nella tua città che ancora non conosci.</p></div><div class="dna-card text-center flex flex-col items-center"><div class="w-14 h-14 bg-green-50 rounded-none flex items-center justify-center mb-6 text-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><h4 class="text-xl font-bold mb-3">Prenotare Ristorante</h4><p class="text-muted text-base">Niente più attese al telefono. Puoi <strong>prenotare ristorante</strong> con un solo tocco, ricevendo conferme istantanee direttamente sul tuo smartphone.</p></div><div class="dna-card text-center flex flex-col items-center"><div class="w-14 h-14 bg-green-50 rounded-none flex items-center justify-center mb-6 text-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg></div><h4 class="text-xl font-bold mb-3">Recensioni Verificate</h4><p class="text-muted text-base">Affidati a <strong>recensioni ristoranti</strong> scritte solo da chi ha realmente cenato. Scegli i <strong>migliori ristoranti</strong> con totale sicurezza.</p></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-20 md:py-28 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/059669/ffffff?text=Dove+Mangiare'" alt="Tavolo di un ristorante elegante" class="w-full h-auto object-cover border border-gray-100 shadow-lg" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2"><h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Non sai dove mangiare? Ci pensiamo noi in 3 step.</h2><p class="text-lg text-muted mb-8">L'esperienza gastronomica perfetta inizia prima ancora di sedersi a tavola. Ecco come funziona l'app di Qijisarison Partners.</p><div class="space-y-6"><div class="flex"><div class="flex-shrink-0 mr-4"><div class="w-10 h-10 bg-primary text-white font-bold flex items-center justify-center font-serif text-xl border-2 border-primary">1</div></div><div><h4 class="text-xl font-bold mb-1">Cerca e Lasciati Ispirare</h4><p class="text-muted">Digita "<strong>dove mangiare</strong>" e sfoglia le categorie, dalle pizzerie veraci ai locali stellati.</p></div></div><div class="flex"><div class="flex-shrink-0 mr-4"><div class="w-10 h-10 bg-transparent text-primary font-bold flex items-center justify-center font-serif text-xl border-2 border-primary">2</div></div><div><h4 class="text-xl font-bold mb-1">Verifica la Disponibilità</h4><p class="text-muted">Controlla gli orari in tempo reale e seleziona il tavolo che preferisci senza chiamare il locale.</p></div></div><div class="flex"><div class="flex-shrink-0 mr-4"><div class="w-10 h-10 bg-transparent text-primary font-bold flex items-center justify-center font-serif text-xl border-2 border-primary">3</div></div><div><h4 class="text-xl font-bold mb-1">Prenota e Gusta</h4><p class="text-muted">Conferma con un tap. Ricevi promemoria, invita i tuoi amici e preparati a un'ottima cena.</p></div></div></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-20 md:py-28"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Cosa dicono i veri buongustai</h2><p class="text-lg text-muted max-w-2xl mx-auto">Migliaia di utenti usano la nostra app ogni giorno per trovare il loro prossimo pasto indimenticabile.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card flex flex-col"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg></div><p class="text-gray-700 italic flex-grow mb-6">"Non ho mai trovato un'app così comoda per <strong>prenotare ristorante</strong>. L'interfaccia è pulita e le disponibilità sono sempre aggiornate al secondo."</p><div><p class="font-bold text-gray-900">Marco T.</p><p class="text-sm text-muted">Gennaio 2025</p></div></div><div class="dna-card flex flex-col"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg></div><p class="text-gray-700 italic flex-grow mb-6">"Le <strong>recensioni ristoranti</strong> sono davvero affidabili. Grazie a questa piattaforma sono riuscita a <strong>scoprire ristoranti</strong> stupendi che non avrei mai notato."</p><div><p class="font-bold text-gray-900">Giulia F.</p><p class="text-sm text-muted">Dicembre 2024</p></div></div><div class="dna-card flex flex-col"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg><svg class="w-5 h-5 text-gray-300 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg></div><p class="text-gray-700 italic flex-grow mb-6">"Finalmente una lista curata dei <strong>migliori ristoranti</strong>. Se non so <strong>dove mangiare</strong> in viaggio, apro l'app ed è fatta."</p><div><p class="font-bold text-gray-900">Alessandro R.</p><p class="text-sm text-muted">Febbraio 2025</p></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-20 md:py-28 bg-white"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Domande Frequenti</h2><p class="text-lg text-muted">Tutto quello che c'è da sapere sulla nostra app.</p></div><div class="space-y-4"><details class="dna-card !p-6 cursor-pointer group"><summary class="text-lg font-bold text-gray-900 list-none flex justify-between items-center focus:outline-none"> L'app è gratuita? <span class="text-primary group-open:rotate-180 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="mt-4 text-muted text-base leading-relaxed">Assolutamente sì. Scaricare l'app, esplorare le opzioni e <strong>prenotare ristorante</strong> è totalmente gratuito per tutti gli utenti. Nessun costo nascosto.</p></details><details class="dna-card !p-6 cursor-pointer group"><summary class="text-lg font-bold text-gray-900 list-none flex justify-between items-center focus:outline-none"> Quali dispositivi sono supportati? <span class="text-primary group-open:rotate-180 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="mt-4 text-muted text-base leading-relaxed">La nostra app è ottimizzata per la maggior parte degli smartphone moderni. È disponibile sia su Apple App Store per dispositivi iOS, sia su Google Play Store per dispositivi Android.</p></details><details class="dna-card !p-6 cursor-pointer group"><summary class="text-lg font-bold text-gray-900 list-none flex justify-between items-center focus:outline-none"> Come vengono verificate le recensioni ristoranti? <span class="text-primary group-open:rotate-180 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="mt-4 text-muted text-base leading-relaxed">Per garantire la massima trasparenza sui <strong>migliori ristoranti</strong>, permettiamo di lasciare una recensione solo agli utenti che hanno effettivamente prenotato e onorato la loro prenotazione tramite l'app.</p></details><details class="dna-card !p-6 cursor-pointer group"><summary class="text-lg font-bold text-gray-900 list-none flex justify-between items-center focus:outline-none"> I miei dati sono al sicuro? <span class="text-primary group-open:rotate-180 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="mt-4 text-muted text-base leading-relaxed">Sì, la privacy è la nostra priorità. Utilizziamo crittografia di livello bancario per proteggere le tue informazioni personali e non vendiamo mai i tuoi dati a terze parti senza il tuo consenso.</p></details><details class="dna-card !p-6 cursor-pointer group"><summary class="text-lg font-bold text-gray-900 list-none flex justify-between items-center focus:outline-none"> Posso cancellare una prenotazione? <span class="text-primary group-open:rotate-180 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><p class="mt-4 text-muted text-base leading-relaxed">Certamente. Puoi gestire, modificare o cancellare le tue prenotazioni direttamente dalla sezione "I miei tavoli" nell'app, possibilmente rispettando le tempistiche di preavviso indicate dal ristorante.</p></details></div></div></section><hr class="section-divider"><section id="download" class="py-20 md:py-28"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div class="dna-card !bg-primary !border-none !text-white !p-12 md:!p-20 relative overflow-hidden"><div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full"></div><div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-secondary opacity-20 rounded-none"></div><div class="relative z-10"><h2 class="text-3xl md:text-5xl font-extrabold mb-6 text-white">Pronto a sederti a tavola?</h2><p class="text-xl mb-10 text-green-50 max-w-2xl mx-auto">Scarica subito l'app Plateform tramite Qijisarison Partners e inizia a <strong>scoprire ristoranti</strong> straordinari oggi stesso.</p><div class="flex flex-col sm:flex-row justify-center gap-4"><a href="#download" class="store-badge border border-gray-700"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span>Scarica su</span><span>App Store</span></div></a><a href="#download" class="store-badge border border-gray-700"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span>Disponibile su</span><span>Google Play</span></div></a></div></div></div></div></section></main><footer class="bg-gray-900 text-gray-300 py-16 border-t border-gray-800"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><span class="text-2xl font-bold font-serif text-white tracking-tight">Qijisarison Partners</span><p class="mt-4 text-sm text-gray-500 max-w-xl mx-auto"> Questa è una pagina promozionale indipendente gestita da Qijisarison Partners, per l'app Plateform sviluppata da Plateform App. Non siamo direttamente affiliati con gli sviluppatori dell'app. </p></div><div class="space-y-4 max-w-3xl mx-auto text-left mb-12"><details class="bg-gray-800 rounded-none border border-gray-700 p-4 cursor-pointer group"><summary class="font-bold text-white list-none flex justify-between items-center focus:outline-none"> Informativa sulla Privacy <span class="text-primary group-open:rotate-180 transition-transform"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><div class="mt-4 text-sm text-gray-400 space-y-3"><p>La presente Informativa sulla Privacy descrive come Qijisarison Partners raccoglie, utilizza e protegge i tuoi dati personali quando visiti la nostra pagina promozionale. Ci impegniamo a garantire la massima trasparenza in conformità con le normative vigenti, incluso il Regolamento Generale sulla Protezione dei Dati (GDPR). Quando navighi sul nostro sito, potremmo raccogliere automaticamente alcune informazioni standard, come il tuo indirizzo IP, il tipo di browser, le pagine visitate e il tempo trascorso sulla piattaforma. Questi dati vengono utilizzati esclusivamente per fini analitici e per migliorare l'esperienza utente sulla nostra pagina. Non raccogliamo dati sensibili o informazioni finanziarie, in quanto non elaboriamo pagamenti né registrazioni dirette. I cookie vengono utilizzati per personalizzare i contenuti e analizzare il traffico del sito. Puoi gestire le tue preferenze sui cookie in qualsiasi momento tramite le impostazioni del tuo browser. Condividiamo i dati statistici aggregati e resi anonimi con fornitori di servizi di terze parti che ci assistono nell'ottimizzazione delle campagne marketing, ma non vendiamo né affittiamo le tue informazioni personali ad aziende esterne per scopi commerciali. Conserviamo i dati raccolti solo per il tempo strettamente necessario a soddisfare le finalità per cui sono stati raccolti. Implementiamo misure di sicurezza tecniche e organizzative adeguate per prevenire l'accesso non autorizzato, la perdita o la distruzione accidentale dei tuoi dati. Hai il diritto di richiedere l'accesso, la rettifica, la cancellazione o la limitazione del trattamento dei tuoi dati personali in nostro possesso. Se hai fornito il consenso al trattamento dei dati tramite i cookie, hai il diritto di revocarlo in qualsiasi momento senza pregiudicare la liceità del trattamento basata sul consenso prestato prima della revoca. Qualora ritenessi che il trattamento dei tuoi dati violi le normative sulla privacy, hai il diritto di proporre reclamo all'autorità di controllo competente. La presente informativa potrebbe essere aggiornata periodicamente per riflettere eventuali modifiche alle nostre pratiche; ti invitiamo pertanto a consultare questa sezione regolarmente. L'uso continuato della pagina dopo tali modifiche costituirà l'accettazione della nuova informativa. Per l'app Plateform stessa, ti invitiamo a consultare l'informativa sulla privacy dello sviluppatore ufficiale direttamente all'interno dell'applicazione o nei rispettivi app store.</p></div></details><details class="bg-gray-800 rounded-none border border-gray-700 p-4 cursor-pointer group"><summary class="font-bold text-white list-none flex justify-between items-center focus:outline-none"> Termini e Condizioni <span class="text-primary group-open:rotate-180 transition-transform"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><div class="mt-4 text-sm text-gray-400 space-y-3"><p>Benvenuto sulla pagina promozionale di Qijisarison Partners. Accedendo e utilizzando questo sito web, accetti di essere vincolato dai seguenti Termini e Condizioni di utilizzo. Se non sei d'accordo con una qualsiasi parte di questi termini, sei pregato di non utilizzare il nostro sito. Questa pagina ha il solo scopo di promuovere l'app "Plateform", sviluppata e gestita da entità terze. Noi operiamo esclusivamente come affiliati o promotori indipendenti e non abbiamo alcun controllo sulle funzionalità, sugli aggiornamenti, sulla disponibilità o sui contenuti dell'app stessa. Tutte le descrizioni, le immagini e i loghi relativi all'app sono di proprietà dei rispettivi titolari e vengono utilizzati qui a solo scopo illustrativo e promozionale. Non garantiamo che le informazioni fornite su questa pagina siano sempre esatte, complete o aggiornate, poiché l'app potrebbe subire modifiche da parte degli sviluppatori in qualsiasi momento. L'utilizzo dell'app scaricata tramite i link forniti è soggetto ai termini di servizio e agli accordi di licenza previsti dallo sviluppatore originale. Qijisarison Partners declina ogni responsabilità per eventuali danni diretti, indiretti, accidentali o consequenziali derivanti dal download, dall'installazione o dall'utilizzo dell'applicazione promossa. Il nostro sito potrebbe contenere link verso siti di terze parti, inclusi gli store digitali; non siamo responsabili per i contenuti o le pratiche sulla privacy di tali siti esterni. Ci riserviamo il diritto di modificare, sospendere o interrompere, temporaneamente o permanentemente, il funzionamento di questa pagina promozionale in qualsiasi momento e senza preavviso. È severamente vietato utilizzare il nostro sito per scopi illegali, fraudolenti o per trasmettere malware, virus o qualsiasi altro codice dannoso. L'utente si impegna a manlevare e tenere indenne Qijisarison Partners da qualsiasi rivendicazione, perdita, responsabilità o spesa derivante dalla violazione di questi termini. Qualsiasi controversia relativa all'utilizzo di questa pagina promozionale sarà regolata dalle leggi vigenti del paese in cui risiede l'operatore del sito. Ti invitiamo a leggere attentamente i termini di utilizzo dell'app ufficiale una volta scaricata, poiché essi governeranno il tuo rapporto diretto con lo sviluppatore.</p></div></details><details class="bg-gray-800 rounded-none border border-gray-700 p-4 cursor-pointer group"><summary class="font-bold text-white list-none flex justify-between items-center focus:outline-none"> Politica sui Rimborsi <span class="text-primary group-open:rotate-180 transition-transform"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span></summary><div class="mt-4 text-sm text-gray-400 space-y-3"><p>In qualità di gestori della pagina promozionale Qijisarison Partners, desideriamo chiarire in modo trasparente la nostra politica relativa ad acquisti, abbonamenti e rimborsi. Il nostro sito web non elabora transazioni finanziarie, non vende prodotti diretti e non richiede l'inserimento di dati di carte di credito o altri metodi di pagamento. Il nostro ruolo è strettamente limitato alla promozione informativa dell'applicazione mobile. Poiché non riceviamo alcun pagamento diretto dagli utenti per il download o l'utilizzo dell'app, non siamo in grado di emettere alcun tipo di rimborso. Qualsiasi transazione monetaria, inclusi eventuali acquisti in-app, abbonamenti premium o costi associati alle prenotazioni dei ristoranti, avviene esclusivamente all'interno dell'infrastruttura dell'app stessa o attraverso i sistemi di pagamento gestiti da Apple App Store o Google Play Store. Pertanto, tutte le richieste di rimborso, storno o contestazione degli addebiti devono essere indirizzate direttamente al servizio di assistenza clienti dello sviluppatore dell'app o alla piattaforma dello store digitale pertinente. Le politiche di rimborso saranno governate in via esclusiva dai termini e condizioni di Apple Inc. o Google LLC, a seconda del dispositivo utilizzato. Generalmente, gli store digitali offrono procedure specifiche per richiedere rimborsi entro un determinato lasso di tempo dall'acquisto, ma ti invitiamo a consultare le loro linee guida ufficiali per informazioni dettagliate e aggiornate. Qijisarison Partners non può intervenire, mediare o facilitare in alcun modo le controversie finanziarie tra l'utente e i creatori dell'app o gli store. Raccomandiamo agli utenti di verificare attentamente i costi associati prima di confermare qualsiasi acquisto all'interno dell'applicazione. Se riscontri problemi tecnici con l'app che ritieni giustifichino un rimborso, ti suggeriamo di raccogliere prove come screenshot o ricevute digitali per supportare la tua richiesta presso gli enti preposti. La nostra priorità è garantirti un'esperienza informativa chiara, motivo per cui ribadiamo che la nostra entità è sollevata da ogni responsabilità pecuniaria nei tuoi confronti.</p></div></details></div><div class="text-center text-sm text-gray-600"><p>&copy; 2026 Qijisarison Partners. Tutti i diritti riservati.</p></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 border-t border-gray-800 text-white p-4 sm:p-6 z-50 transform translate-y-full transition-transform duration-300"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-300"> Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito e per analizzare il traffico. Continuando a navigare, accetti la nostra politica sui cookie. </div><div class="flex gap-4 shrink-0"><button id="accept-cookies" class="btn-primary !py-2 !px-6 text-sm">Accetta Tutti</button></div></div></div> <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smart Routing (Self-Healing Navigation)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
                     
-                    <!-- Privacy Policy -->
-                    <details class="bg-gray-800 rounded p-4 group cursor-pointer">
-                        <summary class="font-bold text-gray-300 flex justify-between items-center">
-                            Informativa sulla Privacy (D.Lgs 196/03 & GDPR)
-                            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </summary>
-                        <div class="mt-4 text-xs space-y-2 text-gray-400 border-t border-gray-700 pt-4 text-justify">
-                            <p>Qijisarison Partners attribuisce fondamentale importanza alla riservatezza degli utenti dei propri portali promozionali ed affini. Quando inserite volontariamente i dati attraverso il form generato, dichiarate che tale inserzione avviene con finalità di ricontatto promozionale o invio di comparazione retributiva richiesta. Raccogliamo esclusivamente informazioni minimali collegate strettamente ai flussi necessari all'erogazione dei moduli descrittivi.</p>
-                            <p>Questo servizio sfrutta tecnologie quali tracciamenti standard, log diretti sui vari server che ospitano gli indirizzi ip durante le interazioni o query, e analisi sulle navigazioni. Tali interazioni restano totalmente all'interno della società in analisi salvo per il trasferimento all'azienda fornitrice dei report esatti qualora la richiesta venga validata e portata al suo effettivo fine contrattuale con la piattaforma primaria in calce a tale clausola. In tale logica, nessun nominativo verrà venduto a venditori o spammer fraudolenti e disgiunti.</p>
-                            <p>Sottolineiamo come un utente abbia il costante pieno diritto dell'oblio sul dato processato sui vari data container proprietari e associati. Potrà richiedere via raccomandata fisica in sedi centralizzate al titolare dei processi medesimi ogni forma ed estrapolazione che concerne le pratiche attuali, oltre che alla sospensione futura che innalzerà i permessi dell'operazione di pulizia. Tale documento rimarrà pubblico, verificabile con il tempo, valido internazionalmente qualora sussistano direttive equiparabili della comunità o di federazioni preesistenti, limitato ad eventuali e normali interazioni dovute alla navigazione in questa precisa ora temporale locale e limitato alla visualizzazione.</p>
-                            <p>Garantiamo che nessun algoritmo prenderà decisioni completamente autonome sul giudizio e qualità di credito personale al di fuori delle puramente ed esclusive direttive matematiche sull'analisi stipendiale fornita e limitatamente prelevabile a fronte delle indicazioni standard sulle tabelle delle camere di commercio. Le operazioni intermedie di salvaguardia sono previste a norma. Vogliamo chiarire in estrema onestà tali politiche interne al portale senza sotterfugi scritti. I parametri rimarranno in vigore su questa entità singolare web gestita e approvata dai responsabili di design.</p>
-                        </div>
-                    </details>
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Smooth scroll to target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else {
+                        // Fallback: Force Smooth Scroll to #download
+                        const fallbackElement = document.getElementById('download');
+                        if (fallbackElement) {
+                            fallbackElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
 
-                    <!-- Termini e Condizioni -->
-                    <details class="bg-gray-800 rounded p-4 group cursor-pointer">
-                        <summary class="font-bold text-gray-300 flex justify-between items-center">
-                            Termini e Condizioni Generali
-                            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </summary>
-                        <div class="mt-4 text-xs space-y-2 text-gray-400 border-t border-gray-700 pt-4 text-justify">
-                            <p>Gli esponenti scritti qui presenti certificano ogni condizione contrattuale all'accesso della nostra architettura telematica volta ad ottenere o gestire e ricercare raffronti sulle misurazioni occupazionali retribuite con denaro corrente di vario circuito italiano e globalizzato se il contratto lo prevede nei capitoli dedicati ai distaccati da nazioni frontaliere europee in regola e accertate e tassate.</p>
-                            <p>Navigando il contenitore intero, si accettano i rischi esatti in ordine agli sviluppi che sono basati esclusivamente sull'invio corretto in sede. La malfunzione delle parti a seguito di connessioni labili esclude e rimuove dalla responsabilità legale le organizzazioni direzionali. Qualora un consulto elabori una percezione che indica chiaramente un sotto-pagamento in merito ad ogni settore qui registrato sul menù ed il cliente lo applichi e non lo sfrutti per il traguardo che vuole generare le cause dirette restano su tale espositore originario e lo sciogliamo dalle varie garanzie e non perdoniamo i nostri direttivi dalle promesse ma avvisiamo del mero carattere divulgatorio.</p>
-                            <p>Emerge l'aspetto dei diritti di pubblicazione d'autore che si riservano intatti ed invariabili contro forme e frodi ad opera terzi che asportino codici, file ed impaginazione di questo ecosistema tecnologico che rimane blindato ad investimenti eseguiti. Chi utilizza abusivamente subisce indagini legali nei giusti ambiti civilisti stabiliti ed organizzati dai vari dipartimenti e procedure da eseguire sui referenti direzionali delle comunicazioni e controlli anti raggiri aziendali.</p>
-                            <p>Modifichiamo spesso questo enorme blocco redazionale se intervengono ulteriori avvisi amministrativi obbligatori governativi, noi quindi comunichiamo all'interfaccia singola di esaminare spesso con il ricaricamento le presenti stringhe esplicative di validazione ed uso effettivo in tale rete digitale in oggetto e scopo espletati. Eseguire in forma differente tale procedura porta alla terminologia invalida.</p>
-                            <p>È imposto in totale correttezza al visitatore anonimo del traffico la certezza o certificazione sulla precisione dei messaggi inseriti al nostro elaboratore form prima premuto il pulsante. Se riscontriamo anomalie numeriche lo bloccheremo permanentemente in modo perentorio. L'elaboratore incrociato fa fronte solo sulle basi empiriche inviate su quel cruscotto principale e in via transazionale del server virtuale medesimo.</p>
-                        </div>
-                    </details>
-
-                    <!-- Informativa sui Rimborsi -->
-                    <details class="bg-gray-800 rounded p-4 group cursor-pointer">
-                        <summary class="font-bold text-gray-300 flex justify-between items-center">
-                            Politica sui Rimborsi e Resi delle Indagini
-                            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </summary>
-                        <div class="mt-4 text-xs space-y-2 text-gray-400 border-t border-gray-700 pt-4 text-justify">
-                            <p>La piattaforma eroga servizi digitalizzati prettamente statistico relazionali immateriali pertanto operano specifiche normative legislative inerenti le rinunce ed il recesso applicato alla categoria specifica ed esclude prodotti solidi spediti in un pacco tramite intermediari di recapito posta convenzionali in scatole per il commercio. Di per sé i prospetti e servizi del settore del mercato HR operano esposti di tempo impiegato e competenze pagate che esula spesso i classici restituti standard se fornito parere favorevole conclusivo.</p>
-                            <p>Essendo di prima interazione consultabile e preventiva il form non esegue di norma riscossioni al buio sulle varie sezioni proposte per valutazioni e misurazioni generiche in un portale puramente intermediario promozionale. Pertanto nessuna politica di bonifico storno può intercorrere verso soggetti senza fatture, quietanze originali e validabili sui rapporti transazionali, di acquisti tangibili su un pos telematico assente e non posizionato sui pulsanti predefiniti indicati qui nel menù.</p>
-                            <p>Tuttavia i fornitori finali dei contenuti se da noi derivati al collegamento di destinazione posseggono le proprie indipendenti forme e garanzie dove possono ammettere per ragioni amministrative la decadenza entro 14 giorni. Laddove questo è pertinente ci teniamo a scindere la validazione, operiamo senza alcuna promessa indiretta di manleve o ripercussioni. Noi sveliamo solamente l'occasione. Se sussiste il torto vi raccomandiamo ed intimiamo di usare l'ente giusto del partner principale predefinito.</p>
-                            <p>Integrità assoluta si mantiene se un blocco, a titolo puramente esemplare di bug critici software, comporti eventuali anomalie a pagamenti generati in altri ambiti o se erroneamente il cittadino emette pagamenti tramite vettori estranei convinto o truffato di versare all'istituto attuale di analisi salariale di questa intestazione formale o aziendale. Ribadiamo e scagioniamo Qijisarison Partners. Tutto rimane scritto in modo nitido nel fondo del blocco grafico.</p>
-                            <p>Qualsivoglia pretesa, che il contratto indicherà ed estrometterà prima dell'azione che crea valore se richiesta dai consulenti che prenderanno l'incartamento o analista del salario stipendi stipulato all'origine non verranno tenute con peso rilevante da Qijisarison Partners perché solo i redattori materiali ne disporranno, valuteranno eventuali scomputi a margine finale sul conto del compratore se mai eseguito al momento e ne invieranno in accordo le motivazioni precise. Rileggete se occorre di fronte ai legali tali posizioni o abbandonate il programma di consulto immediatamente con disconnessione della pagina html attiva sui protocolli. Fine delle regole per resi.</p>
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-            <div class="mt-8 text-center text-sm text-gray-500 border-t border-gray-800 pt-8">
-                &copy; 2026 Qijisarison Partners. Tutti i diritti riservati.<br>
-                Sito in operatività per scopi esclusivi del network e mercato occupazionale.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Fixed Bottom Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t border-black p-4 z-50 transform translate-y-full transition-transform duration-500 flex flex-col sm:flex-row items-center justify-between" style="box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);">
-        <div class="text-sm text-gray-700 mb-4 sm:mb-0 max-w-4xl font-medium">
-            Usiamo i cookie funzionali per offrirti un servizio d'avanguardia nell'elaborazione dei dati del lavoro locale. Non adoperiamo sistemi di vendite oscuri. Navigando accetti ed eviti disagi nei click.
-        </div>
-        <div class="flex space-x-4">
-            <button onclick="acceptCookies()" class="btn-primary text-sm px-6 py-2">
-                Accetto
-            </button>
-            <button onclick="acceptCookies()" class="text-sm px-4 py-2 text-gray-500 underline hover:text-gray-900">
-                Solo Tecnici
-            </button>
-        </div>
-    </div>
-
-    <!-- Smart Routing Logic and Utility Scripts -->
-    <script>
-        // Self-Healing Navigation Protocol (Gravity Well)
-        document.addEventListener('click', function(e) {
-            let anchor = e.target.closest('a[href^="#"]');
-            if (anchor) {
-                e.preventDefault();
-                let targetId = anchor.getAttribute('href').substring(1);
-                let targetElement = document.getElementById(targetId);
-                
-                // Close mobile menu if open on click
-                let mobileMenu = document.getElementById('mobile-menu');
-                if(!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    console.warn('ID missing, invoking Fallback to #contact');
-                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        });
-
-        // Cookie Banner Management
-        document.addEventListener("DOMContentLoaded", function() {
-            if(!localStorage.getItem('qijisarison_cookie_consented_2026')) {
-                setTimeout(function() {
-                    let banner = document.getElementById('cookie-banner');
-                    banner.classList.remove('translate-y-full');
+            // Cookie Banner Logic
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            
+            if (!localStorage.getItem('cookiesAccepted')) {
+                // Show banner after short delay
+                setTimeout(() => {
+                    cookieBanner.classList.remove('translate-y-full');
                 }, 1000);
             }
-        });
 
-        function acceptCookies() {
-            localStorage.setItem('qijisarison_cookie_consented_2026', 'true');
-            let banner = document.getElementById('cookie-banner');
-            banner.classList.add('translate-y-full');
-            setTimeout(function(){ banner.style.display = 'none'; }, 500);
-        }
-    </script>
-</body>
-</html>
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieBanner.classList.add('translate-y-full');
+            });
+        });
+    </script> </body></html>
