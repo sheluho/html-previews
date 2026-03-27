@@ -1,481 +1,164 @@
-<!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vasedaperia Group - App Ricerca Lavoro e Opportunità Professionali</title>
-    <meta name="description" content="L'app definitiva per la ricerca del lavoro. Invia la tua candidatura, negozia il tuo stipendio e costruisci una carriera di successo con Vasedaperia Group.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <style>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Vasedaperia Group | Il Portale per l'Intelligenza Artificiale e l'Innovazione</title><meta name="description" content="Scopri le ultime novità sull'intelligenza artificiale, le nuove tecnologie e l'innovazione in Italia. Affronta il futuro digitale con Vasedaperia Group."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet"> <style>
       :root {
-        /* VAR D: Palette -> Deep Blue / Trusting Niche Color */
-        --primary: #0284c7; 
-        /* VAR C: Surface -> Last letter 's' % 3 = 1 (Warm) */
-        --surface: #fffdf5; 
-        /* VAR A: Geometry -> length 'vasedaperiagroup.sbs' (20) % 3 = 2 (Pill) */
-        --radius: 24px; 
-        /* VAR B: Physics -> 'v' ASCII (118) % 3 = 1 (Material) */
-        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --primary: #dc2626;
+        --secondary: #4f46e5;
+        --radius: 16px;
+        --card-radius: 16px;
+        --shadow: 0 1px 3px rgba(0,0,0,0.08);
+        --body-bg: #faf5ff; /* Soft Lavender hint */
+        --card-bg: #ffffff;
+        --text: #1e1b4b;
+        --muted: #6b7280;
       }
-    
-      /* GLOBAL CONTRAST BASE */
+
       body {
-        background-color: #f3f4f6; /* Always light gray to make white cards pop */
-        color: #1f2937;
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'DM Sans', sans-serif;
+        padding-top: 4rem; /* Fixed navbar compensation */
       }
-    
-      /* BRAND COMPONENT: The DNA Card */
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'DM Serif Display', serif;
+      }
+
       .dna-card {
-        background-color: var(--surface);
-        border-radius: var(--radius);
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
         box-shadow: var(--shadow);
         padding: 2.5rem;
         margin-bottom: 2rem;
         border: 1px solid rgba(0,0,0,0.05);
       }
-    
-      /* BRAND COMPONENT: Primary Button */
+
+      nav {
+        background-color: var(--body-bg);
+      }
+
       .btn-primary {
-         background-color: var(--primary);
-         color: #ffffff !important;
-         border-radius: var(--radius);
-         box-shadow: var(--shadow);
-         padding: 1rem 2rem;
-         transition: all 0.2s;
-         font-weight: bold;
-         display: inline-flex;
-         align-items: center;
-         justify-content: center;
-         text-align: center;
-         cursor: pointer;
-         border: none;
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'DM Sans', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
       }
       .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-    
-      /* UTILITY: Text Accent */
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+
       .text-primary { color: var(--primary); }
-    </style>
-</head>
-<body class="antialiased relative min-h-screen flex flex-col">
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
 
-    <!-- Navbar -->
-    <nav class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-black text-primary tracking-tight">Vasedaperia<span class="text-gray-800">Group</span></a>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Servizi</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Recensioni</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">Domande Comuni</a>
-                    <a href="#contact" class="btn-primary py-2 px-6">Accedi all'App</a>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="flex md:hidden items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary p-2">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="px-2 pt-2 pb-4 space-y-1 shadow-inner">
-                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Servizi</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Recensioni</a>
-                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">FAQ</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary bg-blue-50 hover:bg-blue-100 rounded-md">Scarica App</a>
-            </div>
-        </div>
-    </nav>
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
 
-    <!-- Hero Section (Exception: Full Width) -->
-    <header class="relative bg-gray-900 py-32 overflow-hidden flex items-center">
-        <!-- Abstract BG overlay image -->
-        <img class="absolute inset-0 w-full h-full object-cover object-center opacity-30" src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg" alt="Persone al lavoro" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1a1a1a/444444?text=Professional+Networking'">
-        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
-        
-        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <!-- Bridging Slogan -->
-            <span class="inline-block py-1 px-3 mb-6 bg-white/10 border border-white/20 rounded-full text-sm font-semibold tracking-wider text-blue-200">OPPORTUNITÀ IN VETRINA</span>
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-                Vasedaperia Group: L'hub centrale per il <span class="text-primary text-blue-400">lavoro</span> e le aziende.
-            </h1>
-            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Una singola piattaforma digitale avanzata che unisce talenti, stabilità finanziaria e opportunità concrete. Sblocca la prossima mossa della tua carriera con dati in tempo reale.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contact" class="btn-primary text-lg">Inizia la tua Ricerca</a>
-                <a href="#features" class="px-6 py-4 bg-gray-800/80 hover:bg-gray-700 text-white font-medium transition-colors border border-gray-600 shadow-sm" style="border-radius: var(--radius)">Scopri gli Strumenti</a>
-            </div>
-        </div>
-    </header>
+      /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+      main, main + footer { scroll-margin-top: 5rem; }
 
-    <!-- Trusted By Section -->
-    <section class="py-8 bg-white border-b border-gray-200 shadow-sm z-10">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-sm font-semibold text-gray-500 tracking-wide uppercase mb-4">Integrato con i flussi dati nazionali</p>
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale text-xl font-bold">
-                <span class="text-gray-800">GovLink Network</span>
-                <span class="text-gray-800">JobMatch Italia</span>
-                <span class="text-gray-800">Enterprise Solutions</span>
-                <span class="text-gray-800">SynapData Corp</span>
-            </div>
-        </div>
-    </section>
+      /* Form inputs — consistent styling regardless of Gemini output */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(220,38,38,0.15);
+      }
 
-    <!-- Main Content Area with Card Logic -->
-    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-8">
+      /* Links — readable on any theme */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
 
-        <!-- FEATURES SECTION (Wrapped in DNA Card) -->
-        <div id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-            <div class="text-center mb-12">
-                <h2 class="text-primary font-bold tracking-wider uppercase text-sm mb-2">Piattaforma Multiuso</h2>
-                <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900">Le Tue Competenze, Valorizzate</h3>
-                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Tutti gli strumenti essenziali per monitorare il tuo settore, inviare la tua candidatura e connetterti in modo trasparente.</p>
-            </div>
+      /* Section divider — subtle visual rhythm */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(220,38,38,0.12), transparent);
+        margin: 0;
+      }
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-blue-50 text-primary mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">La Posizione Ideale</h4>
-                    <p class="text-gray-600">Esplora migliaia di ruoli vacanti con filtri dinamici per localizzazione e mansione. La <strong class="text-gray-800 font-semibold">posizione</strong> giusta è solo a un clic di distanza con le nostre notifiche push.</p>
-                </div>
+      /* Overlap Hero specifics */
+      .hero-overlap-band {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--primary);
+        opacity: 0.05;
+        z-index: 0;
+      }
+    </style> </head><body class="antialiased"><nav class="fixed w-full z-50 top-0 transition-all duration-300 border-b border-gray-200 shadow-sm"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16 items-center"><div class="flex-shrink-0 flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span class="font-bold text-xl tracking-tight text-primary font-serif">Vasedaperia Group</span></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="text-sm font-medium transition-colors">Notizie & Trend</a><a href="#reviews" class="text-sm font-medium transition-colors">Opinioni</a><a href="#faq" class="text-sm font-medium transition-colors">FAQ</a><a href="#contact" class="btn-primary text-sm px-4 py-2"> Iscriviti Ora <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg pb-4 px-4 pt-2"><a href="#features" class="block py-2 text-base font-medium text-gray-800 hover:text-primary">Notizie & Trend</a><a href="#reviews" class="block py-2 text-base font-medium text-gray-800 hover:text-primary">Opinioni</a><a href="#faq" class="block py-2 text-base font-medium text-gray-800 hover:text-primary">FAQ</a><a href="#contact" class="block mt-4 text-center btn-primary w-full justify-center">Iscriviti Ora</a></div></nav><main><section class="relative py-24 md:py-36 overflow-hidden"><div class="hero-overlap-band"></div><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="flex flex-col md:flex-row items-center"><div class="w-full md:w-1/2 pr-0 md:pr-8 text-left mb-12 md:mb-0"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-gray-200 text-sm font-medium text-secondary mb-6 shadow-sm"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span> Il portale leader per l'informazione tech </div><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-gray-900"> Guida il tuo business nel <span class="text-primary relative inline-block">futuro digitale<svg class="absolute w-full h-3 -bottom-1 left-0 text-secondary opacity-30" fill="currentColor" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5 L 100 10 L 0 10 Z"></path></svg></span>. </h1><p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed"> L'<strong>intelligenza artificiale</strong> non è più fantascienza, è il tuo vantaggio competitivo. Vasedaperia Group seleziona le notizie più cruciali e le strategie di <strong>innovazione</strong> per farti prosperare nell'era delle macchine intelligenti. </p><div class="flex flex-col sm:flex-row gap-4"><a href="#features" class="btn-primary justify-center"> Esplora i Contenuti <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a><a href="#contact" class="btn-secondary justify-center"> Ricevi Aggiornamenti </a></div><div class="mt-8 flex items-center gap-4 text-sm text-gray-500 font-medium"><div class="flex -space-x-2"><img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100" alt="User" referrerpolicy="no-referrer" loading="lazy"><img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100" alt="User" referrerpolicy="no-referrer" loading="lazy"><img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=100" alt="User" referrerpolicy="no-referrer" loading="lazy"></div><p>Oltre 10.000 professionisti iscritti in Italia.</p></div></div><div class="w-full md:w-1/2 relative z-20 md:-mr-12 lg:-mr-20"><div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white"><img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tecnologia e Intelligenza Artificiale" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x600/dc2626/ffffff?text=Innovazione+Digitale'" referrerpolicy="no-referrer" loading="lazy"><div class="absolute bottom-6 left-6 bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-4 animate-bounce" style="animation-duration: 3s;"><div class="bg-indigo-100 p-2 rounded-lg text-secondary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></div><div><p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Trend del Giorno</p><p class="text-sm font-bold text-gray-900">L'impatto dell'AI sul mercato</p></div></div></div></div></div></div></section><section class="py-12 bg-white border-y border-gray-100"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><p class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Le nostre analisi supportano le decisioni di aziende innovative</p><div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500"><span class="text-xl font-serif font-bold text-gray-600">TechVision Italia</span><span class="text-xl font-serif font-bold text-gray-600">InnovateCorp</span><span class="text-xl font-serif font-bold text-gray-600">DataMind</span><span class="text-xl font-serif font-bold text-gray-600">FutureHub</span></div></div></section><hr class="section-divider"><section id="features" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">L'ecosistema dell'<span class="text-primary">innovazione</span> a portata di click</h2><p class="text-lg text-gray-600 max-w-2xl mx-auto">Comprendere le <strong>nuove tecnologie</strong> è essenziale. Vasedaperia Group ti fornisce gli strumenti e le notizie per navigare la rivoluzione dell'AI con sicurezza.</p></div><div class="dna-card relative overflow-hidden"><div class="absolute top-0 right-0 -mt-16 -mr-16 w-32 h-32 bg-secondary opacity-5 rounded-full blur-2xl"></div><div class="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10"><div class="flex flex-col"><div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-primary mb-6 border border-red-100"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg></div><h3 class="text-xl font-bold mb-3">Notizie Quotidiane sull'Intelligenza Artificiale</h3><p class="text-gray-600 leading-relaxed mb-4"> Rimaniamo costantemente aggiornati sui rilasci dei nuovi modelli, sugli investimenti globali e sulle scoperte che ridefiniscono i limiti del possibile. Selezioniamo solo le notizie che hanno un reale impatto sul mercato. </p><ul class="space-y-2 mt-auto"><li class="flex items-center text-sm text-gray-700"><svg class="w-4 h-4 text-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Aggiornamenti tempestivi </li><li class="flex items-center text-sm text-gray-700"><svg class="w-4 h-4 text-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Analisi approfondite </li></ul></div><div class="flex flex-col"><div class="w-14 h-14 rounded-xl bg-indigo-50 flex items-center justify-center text-secondary mb-6 border border-indigo-100"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg></div><h3 class="text-xl font-bold mb-3">Guide Pratiche alle Nuove Tecnologie</h3><p class="text-gray-600 leading-relaxed mb-4"> Non ci limitiamo a dare la notizia. Spieghiamo come utilizzare concretamente strumenti come ChatGPT, generatori di immagini e automazioni per ottimizzare il tuo flusso di lavoro quotidiano. </p><ul class="space-y-2 mt-auto"><li class="flex items-center text-sm text-gray-700"><svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Tutorial passo-passo </li><li class="flex items-center text-sm text-gray-700"><svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Prompt engineering </li></ul></div><div class="flex flex-col"><div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-primary mb-6 border border-red-100"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path></svg></div><h3 class="text-xl font-bold mb-3">Focus su AI Italia e Normative</h3><p class="text-gray-600 leading-relaxed mb-4"> Seguiamo da vicino lo sviluppo dell'ecosistema <strong>AI Italia</strong>. Dalle startup locali alle decisioni del Garante della Privacy, ti forniamo il contesto normativo e di mercato per operare in sicurezza nel nostro Paese. </p><ul class="space-y-2 mt-auto"><li class="flex items-center text-sm text-gray-700"><svg class="w-4 h-4 text-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Aggiornamenti legali (AI Act) </li><li class="flex items-center text-sm text-gray-700"><svg class="w-4 h-4 text-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Case study italiani </li></ul></div><div class="flex flex-col"><div class="w-14 h-14 rounded-xl bg-indigo-50 flex items-center justify-center text-secondary mb-6 border border-indigo-100"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><h3 class="text-xl font-bold mb-3">Strategie di Business per il Futuro Digitale</h3><p class="text-gray-600 leading-relaxed mb-4"> L'adozione dell'AI non è solo una questione tecnica, ma strategica. Esploriamo come l'intelligenza artificiale sta ridisegnando il marketing, le risorse umane, la finanza e il servizio clienti. </p><ul class="space-y-2 mt-auto"><li class="flex items-center text-sm text-gray-700"><svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Ottimizzazione dei processi </li><li class="flex items-center text-sm text-gray-700"><svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Vantaggio competitivo </li></ul></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-24 md:py-36 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">La voce di chi guida l'<span class="text-secondary">innovazione</span></h2><p class="text-lg text-gray-600">Scopri come i nostri lettori stanno trasformando le informazioni in azioni concrete.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="dna-card hover:-translate-y-1 transition-transform duration-300"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-gray-600 mb-6 italic">"Le notizie e gli approfondimenti forniti da Vasedaperia Group sull'intelligenza artificiale sono diventati la mia lettura mattutina obbligatoria. Mi hanno permesso di implementare nuove soluzioni nella mia agenzia con un anno di anticipo sulla concorrenza."</p><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold font-serif">M</div><div><p class="font-bold text-gray-900 text-sm">Marco R.</p><p class="text-xs text-gray-500">Digital Marketing Director, Milano - 2026</p></div></div></div><div class="dna-card hover:-translate-y-1 transition-transform duration-300 relative"><div class="absolute top-0 right-0 w-1 h-full bg-secondary rounded-r-xl opacity-20"></div><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-gray-600 mb-6 italic">"Il panorama di AI Italia è frammentato, ma questo portale riesce a fare sintesi. Ottime le guide sui tool generativi, spiegate in modo chiaro anche per chi non è uno sviluppatore puro."</p><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center font-bold font-serif">E</div><div><p class="font-bold text-gray-900 text-sm">Elena S.</p><p class="text-xs text-gray-500">Imprenditrice, Roma - 2026</p></div></div></div><div class="dna-card hover:-translate-y-1 transition-transform duration-300"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-gray-600 mb-6 italic">"Trovare informazioni di qualità sulle nuove tecnologie in italiano non è facile. Questo sito colma un vuoto importante, offrendo non solo traduzioni, ma vere e proprie analisi di mercato."</p><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center font-bold font-serif">L</div><div><p class="font-bold text-gray-900 text-sm">Luca C.</p><p class="text-xs text-gray-500">Software Engineer, Torino - 2026</p></div></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-gray-600">Tutto ciò che devi sapere sull'intelligenza artificiale e il nostro portale.</p></div><div class="dna-card p-8 md:p-12"><div class="space-y-6"><details class="group border-b border-gray-100 pb-6 cursor-pointer"><summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none"><span>Perché dovrei informarmi quotidianamente sull'intelligenza artificiale?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-gray-600 mt-4 leading-relaxed"> L'intelligenza artificiale sta evolvendo a un ritmo senza precedenti. Ciò che era impossibile sei mesi fa, oggi è lo standard. Rimanere aggiornati significa non perdere opportunità di business, ottimizzare i processi e comprendere le nuove tecnologie che plasmeranno il futuro digitale del tuo settore. </p></details><details class="group border-b border-gray-100 pb-6 cursor-pointer"><summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none"><span>A chi si rivolge Vasedaperia Group?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-gray-600 mt-4 leading-relaxed"> Il nostro portale è pensato per imprenditori, professionisti del marketing, sviluppatori, manager e chiunque in Italia desideri comprendere e applicare l'innovazione tecnologica. Traduciamo concetti complessi in strategie azionabili. </p></details><details class="group border-b border-gray-100 pb-6 cursor-pointer"><summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none"><span>Coprite anche le notizie specifiche del panorama AI Italia?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-gray-600 mt-4 leading-relaxed"> Assolutamente sì. Dedichiamo ampio spazio all'ecosistema "AI Italia", analizzando le startup nostrane, i finanziamenti, le iniziative governative e soprattutto le implicazioni legali e normative, come l'adeguamento all'AI Act europeo per le aziende italiane. </p></details><details class="group border-b border-gray-100 pb-6 cursor-pointer"><summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none"><span>I contenuti sono gratuiti o in abbonamento?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-gray-600 mt-4 leading-relaxed"> Gran parte delle nostre notizie quotidiane e delle guide sulle nuove tecnologie sono accessibili gratuitamente per diffondere la cultura dell'innovazione. Offriamo inoltre report approfonditi e analisi di settore specifiche su richiesta per le aziende. </p></details><details class="group cursor-pointer"><summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none"><span>Come posso ricevere gli aggiornamenti direttamente?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-gray-600 mt-4 leading-relaxed"> Il modo migliore per non perdere le notizie fondamentali per il tuo futuro digitale è iscriversi alla nostra newsletter attraverso il modulo di contatto in fondo alla pagina. Riceverai una selezione curata delle novità più rilevanti sull'intelligenza artificiale. </p></details></div></div></div></section><section id="contact" class="py-24 md:py-36 bg-gray-900 text-white relative overflow-hidden"><div class="absolute -top-40 -right-40 w-96 h-96 bg-primary opacity-20 rounded-full blur-3xl"></div><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="dna-card bg-white/10 backdrop-blur-md border-gray-700 !text-white !shadow-2xl"><div class="text-center mb-10"><h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Pronto per il <span class="text-primary">Futuro Digitale</span>?</h2><p class="text-gray-300">Iscriviti per ricevere aggiornamenti, guide esclusive e approfondimenti sull'intelligenza artificiale direttamente da Vasedaperia Group.</p></div><form id="lead-form" class="space-y-6 max-w-lg mx-auto" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Elaborazione in corso... <svg class=\'animate-spin w-5 h-5 inline-block ml-2\' viewBox=\'0 0 24 24\'><circle class=\'opacity-25\' cx=\'12\' cy=\'12\' r=\'10\' stroke=\'currentColor\' stroke-width=\'4\' fill=\'none\'></circle><path class=\'opacity-75\' fill=\'currentColor\' d=\'M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z\'></path></svg>'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div><label for="name" class="block text-sm font-medium text-gray-200 mb-1">Nome Completo</label><input type="text" id="name" required class="!bg-white/5 !border-gray-600 !text-white placeholder-gray-400 focus:!border-primary focus:!ring-primary" placeholder="Mario Rossi"></div><div><label for="email_contact" class="block text-sm font-medium text-gray-200 mb-1">Indirizzo Email</label><input type="email" id="email_contact" required class="!bg-white/5 !border-gray-600 !text-white placeholder-gray-400 focus:!border-primary focus:!ring-primary" placeholder="mario.rossi@azienda.it"></div><div><label for="interest" class="block text-sm font-medium text-gray-200 mb-1">Area di Interesse</label><select id="interest" required class="!bg-white/5 !border-gray-600 !text-white focus:!border-primary focus:!ring-primary"><option value="" class="text-gray-900">Seleziona un argomento...</option><option value="news" class="text-gray-900">Notizie Generali AI</option><option value="business" class="text-gray-900">Strategie per il Business</option><option value="tech" class="text-gray-900">Guide e Tutorial Tecnici</option></select></div><button type="submit" class="btn-primary w-full justify-center py-3 text-lg mt-4 border-none shadow-lg shadow-red-500/30"> Iscriviti Ora <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button><p class="text-xs text-gray-400 text-center mt-4">Iscrivendoti, accetti la nostra Informativa sulla Privacy. Puoi annullare l'iscrizione in qualsiasi momento.</p></form><div id="success-msg" style="display:none" class="text-center py-12"><div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold text-white mb-2">Iscrizione Confermata!</h3><p class="text-gray-300">Benvenuto nella community di Vasedaperia Group. Riceverai presto i nostri aggiornamenti sull'innovazione tecnologica.</p></div></div></div></section></main><footer class="bg-gray-50 border-t border-gray-200 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row justify-between items-center mb-12"><div class="flex items-center gap-2 mb-6 md:mb-0"><svg class="w-8 h-8 text-secondary grayscale" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span class="font-bold text-xl tracking-tight text-gray-800 font-serif">Vasedaperia Group</span></div><div class="flex space-x-6 text-sm font-medium"><a href="#features" class="text-gray-500 hover:text-primary transition-colors">Notizie</a><a href="#reviews" class="text-gray-500 hover:text-primary transition-colors">Opinioni</a><a href="#faq" class="text-gray-500 hover:text-primary transition-colors">FAQ</a></div></div><div class="p-4 bg-gray-100 rounded-lg border border-gray-200 text-xs text-gray-500 text-center mb-12"><p><strong>Disclaimer Obbligatorio:</strong> Questo è un sito promozionale indipendente gestito da Vasedaperia Group, che agisce come affiliato per AI News IT.</p></div><div class="space-y-4 mb-12"><details class="group bg-white rounded-lg border border-gray-200 p-4"><summary class="font-bold text-sm text-gray-700 cursor-pointer list-none flex justify-between items-center"> Informativa sulla Privacy <span class="transition group-open:rotate-180"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M6 9l6 6 6-6"></path></svg></span></summary><div class="mt-4 text-xs text-gray-500 space-y-2 leading-relaxed"><p>La presente Informativa sulla Privacy descrive come Vasedaperia Group raccoglie, utilizza e protegge i dati personali degli utenti che visitano il nostro sito web e interagiscono con i nostri servizi di informazione sull'intelligenza artificiale e l'innovazione. Raccogliamo i dati personali esclusivamente quando vengono forniti volontariamente tramite i moduli di contatto, come nome e preferenze di contenuto, al fine di personalizzare l'esperienza utente. I dati raccolti vengono utilizzati per inviare newsletter, aggiornamenti e comunicazioni promozionali inerenti alle nuove tecnologie. Non vendiamo, affittiamo o cediamo i dati personali a terze parti per scopi di marketing senza il consenso esplicito dell'utente. Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i dati personali da accessi non autorizzati, divulgazione, alterazione o distruzione. I dati personali sono conservati solo per il tempo necessario a conseguire le finalità per cui sono stati raccolti o per ottemperare a obblighi legali. Il sito utilizza cookie tecnici per garantire il corretto funzionamento delle pagine e cookie analitici di terze parti per comprendere come gli utenti interagiscono con il contenuto. Gli utenti hanno il diritto di richiedere l'accesso ai propri dati, la rettifica, la cancellazione o la limitazione del trattamento in qualsiasi momento. Per esercitare tali diritti, è possibile utilizzare il modulo di contatto presente sul sito. Vasedaperia Group si impegna a rispondere alle richieste nel più breve tempo possibile e in conformità con la normativa vigente in materia di protezione dei dati (GDPR). Ci riserviamo il diritto di aggiornare periodicamente questa informativa per riflettere cambiamenti nelle nostre pratiche o per requisiti normativi. Gli utenti saranno informati di eventuali modifiche sostanziali tramite un avviso sul sito. La navigazione continua sul sito dopo tali modifiche costituisce accettazione della nuova informativa. I dati possono essere condivisi con fornitori di servizi di hosting e piattaforme di invio newsletter che agiscono come responsabili del trattamento per nostro conto. In caso di violazione dei dati (data breach) che comporti un rischio elevato per i diritti degli utenti, Vasedaperia Group notificherà tempestivamente l'autorità di controllo competente. Per qualsiasi dubbio relativo alla gestione della privacy, invitiamo gli utenti a contattarci tramite i canali ufficiali indicati nella sezione contatti del portale.</p></div></details><details class="group bg-white rounded-lg border border-gray-200 p-4"><summary class="font-bold text-sm text-gray-700 cursor-pointer list-none flex justify-between items-center"> Termini di Servizio <span class="transition group-open:rotate-180"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M6 9l6 6 6-6"></path></svg></span></summary><div class="mt-4 text-xs text-gray-500 space-y-2 leading-relaxed"><p>L'accesso e l'utilizzo del sito web di Vasedaperia Group sono soggetti ai presenti Termini di Servizio, che ogni utente accetta implicitamente navigando sulle nostre pagine. Il sito fornisce notizie, analisi e guide informative sul tema dell'intelligenza artificiale, dell'innovazione e delle nuove tecnologie. I contenuti presenti sul portale sono da intendersi a scopo puramente informativo e formativo, e non costituiscono in alcun modo consulenza professionale, legale o finanziaria. Vasedaperia Group si impegna a garantire l'accuratezza e l'aggiornamento delle informazioni pubblicate, tuttavia non si assume alcuna responsabilità per eventuali errori, omissioni o per decisioni prese sulla base dei contenuti forniti. Tutti i testi, la grafica, i loghi e i materiali presenti sul sito sono proprietà intellettuale di Vasedaperia Group o dei rispettivi autori e fornitori, protetti dalle leggi sul diritto d'autore. È severamente vietata la riproduzione, la distribuzione, la modifica o lo sfruttamento commerciale dei contenuti senza un'autorizzazione scritta preventiva. Gli utenti si impegnano a utilizzare il sito in modo lecito, rispettoso e conforme a tutte le normative vigenti, astenendosi da qualsiasi comportamento che possa danneggiare, sovraccaricare o compromettere la funzionalità del portale. Il sito può contenere collegamenti (link) a siti web di terze parti, forniti esclusivamente per comodità dell'utente. Vasedaperia Group non esercita alcun controllo su tali siti esterni e non è responsabile per i loro contenuti, le loro politiche di privacy o le loro pratiche. Ci riserviamo il diritto di sospendere, interrompere o modificare l'accesso al sito o a parte dei suoi servizi in qualsiasi momento, senza preavviso e a nostra esclusiva discrezione. In nessun caso Vasedaperia Group, i suoi dipendenti o collaboratori saranno ritenuti responsabili per danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito. I presenti Termini di Servizio sono regolati e interpretati in conformità con le leggi italiane. Qualsiasi controversia derivante o relativa all'uso del sito sarà di competenza esclusiva del foro territorialmente competente. Vasedaperia Group si riserva il diritto di aggiornare questi termini periodicamente, e l'uso continuato del sito da parte dell'utente costituirà accettazione delle eventuali modifiche apportate. Invitiamo gli utenti a consultare regolarmente questa pagina per rimanere informati sulle condizioni di utilizzo in vigore.</p></div></details><details class="group bg-white rounded-lg border border-gray-200 p-4"><summary class="font-bold text-sm text-gray-700 cursor-pointer list-none flex justify-between items-center"> Politica di Rimborso <span class="transition group-open:rotate-180"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M6 9l6 6 6-6"></path></svg></span></summary><div class="mt-4 text-xs text-gray-500 space-y-2 leading-relaxed"><p>La presente Politica di Rimborso regola le condizioni applicabili nel caso in cui Vasedaperia Group offra servizi premium, report a pagamento, consulenze o contenuti digitali esclusivi relativi al settore dell'intelligenza artificiale e dell'innovazione. A causa della natura intrinseca dei prodotti digitali, come report scaricabili, guide in formato PDF o l'accesso immediato ad aree riservate, la normativa a tutela del consumatore prevede delle eccezioni al diritto di recesso. Pertanto, una volta che il contenuto digitale è stato scaricato, visualizzato o vi è stato effettuato l'accesso, il diritto al rimborso decade automaticamente, in quanto il prodotto si considera interamente fruito. Tuttavia, Vasedaperia Group si impegna a garantire la massima soddisfazione dei propri clienti. Qualora un utente riscontri problemi tecnici oggettivi e documentabili che impediscano la fruizione del materiale acquistato, come file corrotti o mancato accesso all'area riservata per cause a noi imputabili, valuteremo la possibilità di emettere un rimborso o fornire un accesso alternativo. Le richieste di rimborso per motivazioni tecniche devono essere inviate tramite il modulo di contatto entro e non oltre 14 giorni dalla data di acquisto, fornendo una descrizione dettagliata del problema riscontrato e la prova di acquisto. Non verranno accettate richieste di rimborso basate su aspettative soggettive non soddisfatte, incomprensioni sui contenuti chiaramente descritti nella pagina di vendita o semplice ripensamento post-accesso. Per eventuali servizi di consulenza o abbonamenti a lungo termine, la disdetta eviterà addebiti futuri, ma non darà diritto al rimborso pro-quota per il periodo già pagato e parzialmente fruito. Ogni richiesta verrà analizzata individualmente dal nostro team di supporto, che si impegna a rispondere entro 7 giorni lavorativi dalla ricezione. In caso di approvazione, il rimborso verrà elaborato utilizzando lo stesso metodo di pagamento impiegato per la transazione iniziale, e i tempi di accredito dipenderanno dal circuito bancario dell'utente. Vasedaperia Group si riserva il diritto di rifiutare richieste di rimborso qualora si sospetti un abuso di questa politica o un comportamento fraudolento. Ci riserviamo inoltre il diritto di modificare i termini di questa politica in qualsiasi momento, applicando le nuove regole agli acquisti effettuati successivamente alla pubblicazione delle modifiche. La trasparenza e l'equità verso i nostri clienti rimangono il principio guida di ogni nostra decisione commerciale.</p></div></details></div><div class="text-center text-sm text-gray-400"><p>&copy; 2026 Vasedaperia Group. Tutti i diritti riservati. Promuoviamo l'innovazione e l'intelligenza artificiale in Italia.</p></div></div></footer><div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 border-t border-gray-800 text-white p-4 md:p-6 z-50 transform translate-y-0 transition-transform duration-500 shadow-2xl"><div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-300"><p>Utilizziamo i cookie per migliorare la tua esperienza e analizzare le tendenze sull'intelligenza artificiale. Continuando a navigare sul sito Vasedaperia Group, accetti l'uso dei cookie come descritto nella nostra <a href="#" onclick="document.querySelector('details:first-of-type').open = true; window.scrollTo(0, document.body.scrollHeight);" class="text-primary underline hover:text-white transition-colors">Informativa sulla Privacy</a>.</p></div><div class="flex gap-4 shrink-0 w-full md:w-auto"><button onclick="acceptCookies()" class="btn-primary w-full md:w-auto justify-center text-sm py-2 px-6">Accetta Tutto</button><button onclick="acceptCookies()" class="bg-transparent border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 rounded-2xl px-6 py-2 text-sm font-semibold transition-colors w-full md:w-auto">Solo Essenziali</button></div></div></div> <script>
+        // Smart Routing Script (Self-Healing Navigation)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
 
-                <!-- Feature 2 -->
-                <div class="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-blue-50 text-primary mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">Analisi dello Stipendio</h4>
-                    <p class="text-gray-600">Accedi a dati di mercato trasparenti e benchmark anonimi. Non scendere a compromessi: valuta accuratamente l'offerta di <strong class="text-gray-800 font-semibold">stipendio</strong> prima di firmare il contratto.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-blue-50 text-primary mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">Connetti col Tuo Team</h4>
-                    <p class="text-gray-600">Aumenta le tue probabilità tramite il networking digitale. Interagisci in modo protetto; magari troverai il tuo prossimo mentor o futuro <strong class="text-gray-800 font-semibold">collega</strong> tramite l'app.</p>
-                </div>
-            </div>
-            
-            <div class="mt-10 pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between">
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-1">Processi trasparenti. Dati istituzionali.</h4>
-                    <p class="text-gray-500 text-sm">Offriamo canali ufficiali per semplificare l'accesso burocratico per lavoratori e aziende.</p>
-                </div>
-                <div class="mt-4 md:mt-0">
-                    <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
-                        Crea un Account ORA
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- REVIEWS SECTION -->
-        <div id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Storie di Carriera e Successo</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Testimonial 1 -->
-                <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 relative">
-                    <span class="text-4xl text-gray-300 absolute top-4 right-6 font-serif">"</span>
-                    <p class="text-gray-600 italic mb-4 relative z-10">"Grazie a questa piattaforma ho trovato un ruolo molto in fretta. La gestione di ogni singola <strong class="font-semibold text-gray-800">candidatura</strong> è chiara e l'interfaccia molto user-friendly. Ha superato le mie aspettative per il 2026."</p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/100x100/e2e8f0/475569?text=MR" alt="User avatar" class="w-10 h-10 rounded-full mr-3 border border-gray-200" loading="lazy">
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">Marco R.</p>
-                            <p class="text-xs text-gray-500">Sviluppatore Software</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 relative">
-                    <span class="text-4xl text-gray-300 absolute top-4 right-6 font-serif">"</span>
-                    <p class="text-gray-600 italic mb-4 relative z-10">"Ho potuto valutare il trend di mercato per le competenze tecniche e chiedere un corretto adeguamento al management. L'app di Vasedaperia ha dato la svolta giusta alla mia <strong class="font-semibold text-gray-800">carriera</strong>."</p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/100x100/e2e8f0/475569?text=GF" alt="User avatar" class="w-10 h-10 rounded-full mr-3 border border-gray-200" loading="lazy">
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">Giulia F.</p>
-                            <p class="text-xs text-gray-500">Responsabile Marketing</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 relative">
-                    <span class="text-4xl text-gray-300 absolute top-4 right-6 font-serif">"</span>
-                    <p class="text-gray-600 italic mb-4 relative z-10">"Utilizzare un hub centralizzato e connesso mi permette di evitare le truffe sulle piattaforme meno note. Interagire e trovare il profilo o il prossimo <strong class="font-semibold text-gray-800">lavoro</strong> diventa facile ed immediato."</p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/100x100/e2e8f0/475569?text=LB" alt="User avatar" class="w-10 h-10 rounded-full mr-3 border border-gray-200" loading="lazy">
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">Luca B.</p>
-                            <p class="text-xs text-gray-500">Logistics Coordinator</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ SECTION -->
-        <div id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Domande Comuni sull'App</h2>
-            
-            <div class="space-y-4">
-                <details class="group border border-gray-200 bg-white rounded-lg cursor-pointer">
-                    <summary class="font-semibold text-gray-900 p-4 list-none flex justify-between items-center group-hover:bg-gray-50 transition-colors">
-                        Come posso registrarmi all'app Vasedaperia?
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="px-4 pb-4 pt-2 text-gray-600">
-                        La registrazione avviene richiedendo l'accesso anticipato compilando il form sottostante. Una volta autorizzati, riceverete un link esclusivo per il download. L'applicazione incrocia dati istituzionali ufficiali per garantire l'autenticità dei profili.
-                    </div>
-                </details>
-
-                <details class="group border border-gray-200 bg-white rounded-lg cursor-pointer">
-                    <summary class="font-semibold text-gray-900 p-4 list-none flex justify-between items-center group-hover:bg-gray-50 transition-colors">
-                        È possibile nascondere il mio profilo all'azienda attuale?
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="px-4 pb-4 pt-2 text-gray-600">
-                        Certamente. Vasedaperia Group pone al centro la privacy del candidato. Potete configurare l'opzione "Modalità Silenziosa" in modo che nessun attuale o ex <strong class="font-semibold text-gray-800">collega</strong> o supervisore registrato sotto il vostro dominio aziendale possa visualizzarvi.
-                    </div>
-                </details>
-
-                <details class="group border border-gray-200 bg-white rounded-lg cursor-pointer">
-                    <summary class="font-semibold text-gray-900 p-4 list-none flex justify-between items-center group-hover:bg-gray-50 transition-colors">
-                        I dati sullo stipendio medio sono aggiornati?
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="px-4 pb-4 pt-2 text-gray-600">
-                        Sì, il database incrocia indicatori contrattuali trimestrali in base al livello nazionale. La stima dello <strong class="font-semibold text-gray-800">stipendio</strong> è sempre in linea col settore professionale prescelto e l'esperienza indicata nel curriculum.
-                    </div>
-                </details>
-
-                <details class="group border border-gray-200 bg-white rounded-lg cursor-pointer">
-                    <summary class="font-semibold text-gray-900 p-4 list-none flex justify-between items-center group-hover:bg-gray-50 transition-colors">
-                        Posso seguire le mie candidature dal cellulare?
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="px-4 pb-4 pt-2 text-gray-600">
-                        Assolutamente. Una volta all'interno dell'app potrete consultare lo storico. Se un'azienda analizza la vostra <strong class="font-semibold text-gray-800">candidatura</strong>, riceverete immediatamente una notifica integrata senza ritardi.
-                    </div>
-                </details>
-
-                <details class="group border border-gray-200 bg-white rounded-lg cursor-pointer">
-                    <summary class="font-semibold text-gray-900 p-4 list-none flex justify-between items-center group-hover:bg-gray-50 transition-colors">
-                        Le aziende che pubblicano offerte sono verificate?
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="px-4 pb-4 pt-2 text-gray-600">
-                        Tutte le offerte professionali che riguardano le aperture di <strong class="font-semibold text-gray-800">lavoro</strong> passano rigorosi check in collaborazione con archivi ufficiali prima dell'attivazione al pubblico per evitare spam o proposte fraudolente.
-                    </div>
-                </details>
-            </div>
-        </div>
-
-        <!-- CONTACT & CTA SECTION -->
-        <div id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-            <div class="flex flex-col lg:flex-row gap-12">
-                <!-- Info Left -->
-                <div class="flex-1">
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Unisciti alla Rete Vasedaperia</h2>
-                    <p class="text-lg text-gray-600 mb-8">Non lasciare che le opportunità scorrano via. Richiedi subito il tuo invito per l'app ed espandi istantaneamente i tuoi orizzonti e la tua visibilità sul mercato del lavoro.</p>
-                    
-                    <div class="space-y-4 text-gray-700">
-                        <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                            <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                            <div>
-                                <span class="block font-semibold">Sede Logistica Principale</span>
-                                <span class="block text-sm">Via Vittorio Veneto 56, Roma (Centro Coordinamento Nazionale)</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                            <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <div>
-                                <span class="block font-semibold">Supporto Utenti Attivo</span>
-                                <span class="block text-sm">Dal Lunedì al Venerdì, dalle 09:00 alle 18:00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Form Right -->
-                <div class="flex-1 bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-                    <h3 class="text-xl font-bold text-gray-900 mb-6">Modulo Accesso Anticipato App</h3>
-                    
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome e Cognome</label>
-                            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition" placeholder="Es. Mario Rossi">
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Cellulare (per SMS con link)</label>
-                            <input type="tel" id="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition" placeholder="Il tuo numero">
-                        </div>
-                        <div>
-                            <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Ruolo / Posizione d'Interesse</label>
-                            <input type="text" id="interest" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition" placeholder="Qualifica ricercata">
-                        </div>
-                        <button type="submit" class="w-full btn-primary mt-6 text-lg">Invia la tua Candidatura Accesso</button>
-                        <p class="text-xs text-gray-400 mt-2 text-center">Nessun invio email commerciale sgradito. I dati restano tutelati.</p>
-                    </form>
-
-                    <div id="success-msg" style="display:none" class="bg-green-50 border border-green-200 text-green-700 px-6 py-8 rounded-lg text-center">
-                        <svg class="w-16 h-16 mx-auto mb-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <h4 class="text-xl font-bold mb-2">Richiesta Ricevuta Correttamente!</h4>
-                        <p class="text-sm">Il tuo profilo preliminare per accedere alla app del <strong class="font-medium">lavoro</strong> è in fase di elaborazione. Sarai contattato dai nostri algoritmi ai recapiti indicati non appena si libereranno posti sui server. Mantieni alta l'attenzione e controlla regolarmente il tuo network di carriera.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Footer Area -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8 border-t-4" style="border-top-color: var(--primary)">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8">
-                <span class="text-2xl font-black text-white tracking-tight">Vasedaperia<span class="text-gray-400">Group</span></span>
-                <p class="mt-4 text-gray-400 text-sm max-w-2xl mx-auto">
-                    Trasformiamo il panorama occupazionale italiano attraverso l'adozione e l'integrazione fluida di un sistema di networking in tempo reale, ottimizzando incroci di mercato per posizioni ad alta densità.
-                </p>
-            </div>
-            
-            <!-- MANDATORY DISCLAIMER -->
-            <div class="bg-gray-800 p-4 rounded-lg mb-8 text-center border border-gray-700">
-                <p class="text-sm text-gray-300">
-                    <em>Questo è un sito promozionale indipendente gestito da Vasedaperia Group, che opera come affiliato per Ministero del Lavoro e delle Politiche Sociali. L'intento della piattaforma è di erogazione divulgativa integrando i dataset pubblici preposti in una nuova cornice digitale funzionale per l'esplorazione del mondo del lavoro moderno.</em>
-                </p>
-            </div>
-
-            <!-- LEGAL BLOCKS -->
-            <div class="space-y-4 max-w-4xl mx-auto mt-10">
-                <!-- Privacy Policy -->
-                <details class="bg-gray-800 rounded p-4 text-xs text-gray-400 cursor-pointer border border-gray-700">
-                    <summary class="font-bold text-gray-200 outline-none">Privacy Policy Integrale</summary>
-                    <div class="mt-4 space-y-2 leading-relaxed">
-                        <p>Ai sensi delle normative correnti in materia di salvaguardia del dato digitale degli iscritti sulla rete e nell'unione comunitaria internazionale, comunichiamo che la titolarità ed il controllo logico-tecnico delle preziose informazioni relative a qualsivoglia candidato spettano formalmente a Vasedaperia Group in tutte le diramazioni organizzative. Riconosciamo ed onoriamo totalmente la responsabilità affidata ad ogni form o registrazione sulla piattaforma applicativa.</p>
-                        <p>Ogni frammento d'informazione viene codificato per tramite di cifrature standardizzate prima del transito per essere inserito saldamente entro appositi depositi informatici dotati di accessibilità circoscritta rigorosamente e inaccessibile all'esterno per nessuna causale tranne in rari accertamenti su ordinanza burocratica esplicita. Conserviamo gelosamente la privacy inerente lo status della potenziale posizione, al nome anagrafico per tutelare appieno gli introiti stipendiari o contrattazioni pregresse e al ruolo ricoperto con lo specifico collega per mantenere intatto il principio di indipendenza personale dei visitatori virtuali del sito.</p>
-                        <p>Il visitatore del portale non detiene l'obbligo di inserire il nominativo per le interfacce anonime esplorative, tuttavia tale scelta vincola e sospende alcune dinamiche evolute d'applicazione per interfacciarsi in remoto. Nel caso ci fosse una revoca dell'uso continuato dell'infrastruttura, il richiedente ha facoltà irrevocabile e primaria in qualunque istante temporale per pretendere l'epurazione sommaria ed inesorabile della cronologia. Questo avverrà a fronte di apposito modulo anonimo digitale inviabile a livello istituzionale nei parametri logici del gestionale interno. La politica descritta nei righi attuali sarà applicata indistintamente a tutte le sottoscrizioni collegate da ogni fuso orario in modo coerente, severo, inflessibile per garantire un ecosistema incontaminato a Vasedaperia Group.</p>
-                    </div>
-                </details>
-
-                <!-- Termini e Condizioni -->
-                <details class="bg-gray-800 rounded p-4 text-xs text-gray-400 cursor-pointer border border-gray-700">
-                    <summary class="font-bold text-gray-200 outline-none">Termini di Servizio del Sistema Software</summary>
-                    <div class="mt-4 space-y-2 leading-relaxed">
-                        <p>Confermando l'approdo su quest'area internet oppure adoperandone concretamente i collegamenti interni per scaricare versioni test od ufficiali del programma, tutti riconoscono irrevocabilmente ed indiscutibilmente le direttive sottoscritte e sancite nei parametri qui sotto elencati dal direttivo tecnologico e strutturale.</p>
-                        <p>Ogni materiale visivo o lessicale generato internamente dalle procedure grafiche resta indubbiamente, completamente, e giuridicamente in perimetro esclusivo del dominio promozionale, eccettuate unicamente tutte le fonti preesistenti ed etichette appartenenti al provider sorgente ed erogatore citato nel pie' di pagina espositivo, tutelando tutti tramite clausola in copyright e normative associate vigenti e globali applicabili senza se o scappatoie alcune nei fori internazionali. Gli utenti s'impegnano nel rispettare una condotta impeccabile, evitando azioni o propositi tesi allo smantellamento o la manomissione in server e protocolli per arrecare lesioni informatiche al patrimonio organizzativo della Vasedaperia o della navigabilità a terzi che aspirano alla progressione della propria posizione, carriera o dello status da occupato per un'offerta salariale, alterando fittiziamente ed illecitamente graduatorie o elenchi. Eventuale scoperta o accertamento informatico su una cattiva intenzione porterà all'estromissione coatta del colpevole per perpetuo con provvedimenti successivi per ripristino ed indennizzo secondo l'ampiezza rilevata dal danno d'immagine. Tutte queste prassi regolarizzate per iscritto sono valide da questa prima stipulazione ma potranno venire aggiornate secondo modificazioni statali sul codice, lasciando invariato il pregio delle condizioni generali imposte dall'iscrizione fino al preavviso o lettura dei successivi bandi in piattaforma al termine dello stesso anno per trasparenza verso l'utenza tutta per una lunga tempistica da determinare secondo accordi prestabiliti e ratificati.</p>
-                    </div>
-                </details>
-
-                <!-- Rimborsi / Politica Utenti -->
-                <details class="bg-gray-800 rounded p-4 text-xs text-gray-400 cursor-pointer border border-gray-700">
-                    <summary class="font-bold text-gray-200 outline-none">Politica di Rimborso e Chiusura Account</summary>
-                    <div class="mt-4 space-y-2 leading-relaxed">
-                        <p>Qualora vi fossero dei servizi erogabili opzionalmente attraverso l'avvento integrato di microtransazioni su determinate dinamiche facoltative in fase applicativa avanzata su sistemi virtualizzati inerenti moduli VIP e consultazioni extra per candidati o aziende a titolo esemplificativo, garantiamo con la ferrea convinzione un modulo per reintegrazioni economiche ben strutturato e facilmente visionabile dall'impostazione profilata. L'applicazione per annullamenti d'abbonamenti interni richiede procedure inviate inderogabilmente nelle trenta intere sessioni temporali lavorative misurate giornalmente dall'adesione. Ogni addebito sostenuto andrà visionato specificamente dalla branca amministrativa prima di eseguire storni diretti, che dovranno viaggiare al ritroso attraverso la sola banca medesima od altrimenti canale virtuale d'innesco utilizzato alle prime fasi operative durante transazione madre, non è concesso uso dei percorsi differenti dai precedenti originati in partenza sul medesimo form per minimizzare casistiche anti riciclo secondo accordi standard su transizioni valutarie.</p>
-                        <p>A meno di motivazioni pregevoli provviste documentalmente riguardo inattuabilità da avarie informatiche o imprecisione sul saldo derivanti da manchevolezze sul sistema del server o assenza persistente del tool dedicato durante periodo premium fatturato, il saldo viene integralmente rimborsato ed i privilegi opzionali vengono depotenziati o bloccati entro tempistiche istantanee in automatico, mantenendo l'esperienza standard da iscritto standard. Per domandare il riaccredito basta redigere richiesta ed allegare i codici forniti nel gateway ad avvenuto acquisto direttamente all'amministratore per valutazione finale sulle disposizioni da autorizzare conformemente per chiusura dei patti in corso tra utente premium uscente, Vasedaperia ed appositi istituti convenzionati e riconosciuti universalmente da ogni singola rete e circuito nazionale europeo applicando commissioni ed oneri dove espressamente legiferato sui beni ed intermediazioni su piattaforme digitali in regime per l'attuale o futura decade corrente ed integrata attivamente come previsto dalla costituzione commerciale su rete globale.</p>
-                    </div>
-                </details>
-            </div>
-
-            <div class="border-t border-gray-800 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-500 text-sm">© 2026 Vasedaperia Group. Tutti i diritti riservati.</p>
-                <div class="mt-4 md:mt-0 space-x-4">
-                    <span class="text-xs text-gray-600 bg-gray-800 px-3 py-1 rounded-full border border-gray-700">SSL Sicuro 256-bit</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-[0_-10px_40px_-10px_rgba(0,0,0,0.1)] p-4 sm:p-6 z-50 transform translate-y-full transition-transform duration-500 ease-in-out">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-sm text-gray-600 flex-1 text-center sm:text-left">
-                Utilizziamo cookies tecnici per l'ottimizzazione del sito ed assicurare che tu riceva suggerimenti per un <strong>lavoro</strong> che si adatta precisamente al tuo storico e abilità nel valutare <strong>posizione</strong>, settore di tuo pregio ed affinità con potenziale network, garantendoti performance uniche sull'infrastruttura di erogazione e consulto dei portali affiliati governativi in regime protetto e limitato unicamente a questi intenti logici descritti con massima solerzia da sempre da Vasedaperia Group ad onorare trasparenza e rispetto totale dell'esperienza di navigazione personale dei dipendenti ed aziende qui ospiti con la miglior protezione dati applicabile internamente al server virtuale predisposto sulle direttive europee previste dal garante alla protezione dell'anonimato durante sessione e scambio.
-            </div>
-            <div class="flex flex-shrink-0 gap-3">
-                <button onclick="acceptCookies()" class="btn-primary text-sm px-6 py-2 shadow-sm" style="border-radius: var(--radius)">Accetta Tutto</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts (Gravity Well routing, Mobile menu, Cookies) -->
-    <script>
-        // Gravity Well Protocol (Self-Healing Smart Routing)
-        document.addEventListener('DOMContentLoaded', () => {
-            const anchors = document.querySelectorAll('a[href^="#"]');
-            
-            anchors.forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href').substring(1);
-                    if(!targetId) return;
-
-                    let targetElement = document.getElementById(targetId);
-                    
-                    // Fallback Force Scroll if element not found
-                    if (!targetElement) {
-                        targetElement = document.getElementById('contact');
-                        console.warn('ID mancante trovato:', targetId, '- routing redirezionato verso il fallback di sicurezza (#contact).');
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback to Contact if ID doesn't exist
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
                     }
-
-                    if (targetElement) {
-                        // Smooth Scroll
-                        const topPosition = targetElement.getBoundingClientRect().top + window.scrollY - 80; // Offset navbar
-                        window.scrollTo({
-                            top: topPosition,
-                            behavior: 'smooth'
-                        });
-
-                        // Se la modale mobile è aperta, la chiudiamo
-                        const mobileMenu = document.getElementById('mobile-menu');
-                        if (!mobileMenu.classList.contains('hidden')) {
-                            mobileMenu.classList.add('hidden');
-                        }
-                    }
-                });
+                }
             });
+        });
 
-            // Cookie banner check
-            if (!localStorage.getItem('vasedaperia-cookies')) {
-                setTimeout(() => {
-                    const banner = document.getElementById('cookie-banner');
-                    banner.classList.remove('translate-y-full');
-                }, 1000);
-            } else {
+        // Cookie Banner Logic
+        function acceptCookies() {
+            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
+            localStorage.setItem('vasedaperia_cookies_accepted', 'true');
+        }
+
+        // Check on load
+        window.addEventListener('load', function() {
+            if(localStorage.getItem('vasedaperia_cookies_accepted') === 'true') {
                 document.getElementById('cookie-banner').style.display = 'none';
             }
         });
-
-        // Cookie function
-        function acceptCookies() {
-            localStorage.setItem('vasedaperia-cookies', 'true');
-            const banner = document.getElementById('cookie-banner');
-            banner.classList.add('translate-y-full');
-            setTimeout(() => { banner.style.display = 'none'; }, 500);
-        }
-    </script>
-</body>
-</html>
+    </script> </body></html>
