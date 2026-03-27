@@ -1,473 +1,173 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Piattaforma E-learning avanzata per creare e gestire corsi con l'intelligenza artificiale. Soluzioni per principianti ed esperti.">
-    <title>VuxeQog Solutions | Piattaforma E-learning del Futuro</title>
-    <!-- Tailwind CSS CDN -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Vuxeqo Joon | Rivista Attività Outdoor e Benessere in Italia</title><meta name="description" content="Scopri le migliori escursioni in Italia, percorsi natura, e oasi di benessere con terme e spa. La tua guida definitiva per le attività all'aperto."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet"> <style>
+      :root {
+        --primary: #ea580c;
+        --secondary: #7c3aed;
+        --radius: 16px;
+        --card-radius: 16px;
+        --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+        --body-bg: #f0f9ff;
+        --card-bg: #ffffff;
+        --text: #0c4a6e;
+        --muted: #64748b;
+      }
     
-    <!-- DESIGN SYSTEM DNA INJECTION -->
-    <style>
-        :root {
-            /* VAR D: Palette (E-learning/SaaS -> Indigo) */
-            --primary: #4f46e5;
-            /* VAR C: Surface (Last Letter 'm' = 109 % 3 = 1 -> Warm) */
-            --surface: #fffdf5;
-            /* VAR A: Geometry (Length 27 % 3 = 0 -> Sharp) */
-            --radius: 0px;
-            /* VAR B: Physics (First Letter 'v' = 118 % 3 = 1 -> Material) */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'DM Sans', sans-serif;
+        padding-top: 4rem; /* Fixed navbar compensation */
+      }
+    
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'DM Serif Display', serif;
+      }
+    
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
+    
+      nav {
+        background-color: var(--body-bg);
+      }
+    
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'DM Sans', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-secondary:hover { background-color: rgba(234,88,12,0.05); }
+    
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
+    
+      /* Mobile menu — always opaque */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+    
+      /* Fixed navbar compensation */
+      main, main + footer { scroll-margin-top: 5rem; }
+    
+      /* Form inputs */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(234,88,12,0.15);
+      }
+    
+      /* Links */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
+    
+      /* Section divider */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(234,88,12,0.12), transparent);
+        margin: 0;
+      }
 
-        /* GLOBAL CONTRAST BASE */
-        body {
-            background-color: #f3f4f6; /* Light gray base for contrast */
-            color: #1f2937;
-            font-family: 'Inter', system-ui, sans-serif;
-        }
-
-        /* BRAND COMPONENT: The DNA Card */
-        .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        /* BRAND COMPONENT: Primary Button */
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s;
-            font-weight: 700;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translateY(-1px); 
-        }
-
-        /* UTILITY: Text Accent */
-        .text-primary { color: var(--primary); }
-
-        /* Custom Scroll Behavior */
-        html { scroll-behavior: smooth; }
-        
-        /* Mobile Menu Transition */
-        #mobile-menu { transition: all 0.3s ease-in-out; }
-    </style>
-</head>
-<body class="antialiased">
-
-    <!-- NAVIGATION -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center">
-                    <span class="text-2xl font-bold text-gray-900 tracking-tight">VuxeQog Solutions</span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium">Servizi</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium">Recensioni</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium">FAQ</a>
-                    <a href="#contact" class="btn-primary">Richiedi Accesso</a>
-                </div>
-                <div class="flex md:hidden items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Servizi</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Recensioni</a>
-                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">FAQ</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold">Richiedi Accesso</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <header class="relative bg-gray-900">
-        <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" 
-                 src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                 alt="Students learning on computer"
-                 referrerpolicy="no-referrer"
-                 loading="lazy"
-                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=E-learning+Future'">
-            <div class="absolute inset-0 bg-black opacity-60"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6">
-                Le Soluzioni E-learning sono l'Investimento<br>
-                Migliore per il Tuo <span class="text-indigo-400">Futuro</span>
-            </h1>
-            <p class="mt-6 text-xl text-gray-200 max-w-3xl mx-auto">
-                La piattaforma ideale per creare, gestire e vendere ogni tipo di <strong>corso</strong> online. Dall'idea all'<strong>iscrizione</strong>, semplifichiamo il processo di apprendimento digitale grazie all'AI.
-            </p>
-            <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                <a href="#contact" class="btn-primary text-lg px-8 py-3">Inizia a Imparare Ora</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- TRUST SECTION -->
-    <div class="bg-white py-8 border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-sm font-semibold text-gray-500 tracking-wide uppercase mb-4">Tecnologie utilizzate dalle migliori aziende</p>
-            <div class="flex justify-center space-x-8 md:space-x-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
-                <span class="text-xl font-bold text-gray-600">Syllog AI</span>
-                <span class="text-xl font-bold text-gray-600">EduTech Pro</span>
-                <span class="text-xl font-bold text-gray-600">LearnFast</span>
-                <span class="text-xl font-bold text-gray-600">FutureSkills</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- SERVICES / FEATURES SECTION -->
-    <section id="features" class="py-16">
-        <div class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-12">
-                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">La Piattaforma</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Tutto ciò che serve per creare il tuo Corso
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-                    Trasforma la tua conoscenza in un business scalabile con i nostri strumenti intelligenti progettati anche per i <strong>principianti</strong>.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="relative p-6 border border-gray-100 bg-white"> <!-- Inner card styling overrides DNA surface for variation if needed, keeping DNA parent -->
-                    <div class="absolute top-0 -mt-6 left-1/2 transform -translate-x-1/2 bg-white p-3 rounded-full border border-gray-100 shadow-sm">
-                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                        </svg>
-                    </div>
-                    <h3 class="mt-8 text-lg font-medium text-gray-900 text-center">Creazione Corsi con AI</h3>
-                    <p class="mt-4 text-base text-gray-500 text-center">
-                        Genera outline, quiz e contenuti didattici in pochi secondi. L'AI supporta ogni fase della creazione del tuo corso.
-                    </p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="relative p-6 border border-gray-100 bg-white">
-                    <div class="absolute top-0 -mt-6 left-1/2 transform -translate-x-1/2 bg-white p-3 rounded-full border border-gray-100 shadow-sm">
-                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                    </div>
-                    <h3 class="mt-8 text-lg font-medium text-gray-900 text-center">Imparare Senza Limiti</h3>
-                    <p class="mt-4 text-base text-gray-500 text-center">
-                        Offri un'esperienza di studio personalizzata. Gli studenti possono <strong>imparare</strong> al proprio ritmo, da qualsiasi dispositivo.
-                    </p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="relative p-6 border border-gray-100 bg-white">
-                    <div class="absolute top-0 -mt-6 left-1/2 transform -translate-x-1/2 bg-white p-3 rounded-full border border-gray-100 shadow-sm">
-                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                        </svg>
-                    </div>
-                    <h3 class="mt-8 text-lg font-medium text-gray-900 text-center">Accesso & Gestione</h3>
-                    <p class="mt-4 text-base text-gray-500 text-center">
-                        Gestisci le iscrizioni, monitora i progressi e fornisci certificati automatizzati. Tutto in un unico pannello di controllo.
-                    </p>
-                </div>
-            </div>
+      /* Custom Accents */
+      .accent-dot::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: var(--secondary);
+        border-radius: 50%;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+    </style> </head><body class="antialiased"><nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200/50 backdrop-blur-md"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold text-primary" style="font-family: 'DM Serif Display', serif;"> Vuxeqo<span class="text-secondary">Joon</span></a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="text-sm font-medium transition-colors">La Rivista</a><a href="#reviews" class="text-sm font-medium transition-colors">Testimonianze</a><a href="#faq" class="text-sm font-medium transition-colors">FAQ</a><a href="#contact" class="btn-primary text-sm px-4 py-2">Abbonati Ora</a></div><div class="md:hidden flex items-center"><button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-1"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-orange-50">La Rivista</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-orange-50">Testimonianze</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-orange-50">FAQ</a><a href="#contact" class="block px-3 py-2 mt-4 text-center btn-primary w-full justify-center">Abbonati Ora</a></div></nav><main><section class="py-20 md:py-32 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div class="inline-block mb-4 px-3 py-1 rounded-full border border-purple-200 bg-purple-50 text-secondary text-sm font-semibold uppercase tracking-wider"><span class="accent-dot"></span>Il Portale Outdoor #1 </div><h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-gray-900"> La Soluzione Definitiva per Vivere l'Outdoor e il Benessere in Italia. </h1><p class="text-lg md:text-xl text-muted mb-10 max-w-2xl mx-auto leading-relaxed"> Vuxeqo Joon è la tua bussola per scoprire l'Italia autentica. Dalle <strong class="text-primary font-medium">escursioni Italia</strong> più selvagge ai ritiri rigeneranti tra <strong class="text-primary font-medium">terme e spa</strong>, trasformiamo il tuo tempo libero in avventure indimenticabili. </p><div class="flex flex-col sm:flex-row justify-center items-center gap-4"><a href="#features" class="btn-primary w-full sm:w-auto justify-center"> Esplora i Contenuti <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a><p class="text-sm text-muted mt-2 sm:mt-0 sm:ml-4">Oltre 50.000 lettori mensili.</p></div></section><hr class="section-divider"><section id="features" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa Troverai nella Nostra Rivista</h2><p class="text-lg text-muted max-w-2xl mx-auto">Guide curate da esperti per vivere la natura a 360 gradi, combinando fatica e relax.</p></div><div class="dna-card max-w-3xl mx-auto"><div class="flex flex-col gap-10"><div class="flex items-start"><div class="flex-shrink-0 mt-1"><div class="flex items-center justify-center h-12 w-12 rounded-xl bg-orange-100 text-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div></div><div class="ml-6"><h3 class="text-xl font-bold mb-2">Itinerari e Percorsi Natura</h3><p class="text-muted leading-relaxed"> Dettagliate guide per il <strong>trekking</strong> adatte a tutti i livelli. Dalle vette alpine ai sentieri costieri, recensiamo le migliori <strong>escursioni Italia</strong> fornendo mappe, altimetrie e consigli pratici per non perderti il meglio del nostro territorio. </p></div></div><div class="flex items-start"><div class="flex-shrink-0 mt-1"><div class="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100 text-secondary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg></div></div><div class="ml-6"><h3 class="text-xl font-bold mb-2">Terme e Spa Naturali</h3><p class="text-muted leading-relaxed"> Il riposo del guerriero. Scopri come abbinare l'intensa <strong>attività all'aperto</strong> al relax assoluto. Esploriamo le migliori strutture termali immerse nella natura, ideali per recuperare le energie dopo una lunga camminata. </p></div></div><div class="flex items-start"><div class="flex-shrink-0 mt-1"><div class="flex items-center justify-center h-12 w-12 rounded-xl bg-orange-100 text-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg></div></div><div class="ml-6"><h3 class="text-xl font-bold mb-2">Attrezzatura e Consigli</h3><p class="text-muted leading-relaxed"> Affronta ogni <strong>percorso natura</strong> con la giusta preparazione. I nostri esperti testano e recensiscono zaini, scarponi, abbigliamento tecnico e accessori fondamentali per vivere l'outdoor in totale sicurezza e comfort. </p></div></div></div></div></section><hr class="section-divider"><section class="py-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="relative rounded-2xl overflow-hidden shadow-xl" style="height: 400px;"><img src="https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Escursioni Italia Montagna" class="absolute inset-0 w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1200x400/ea580c/ffffff?text=Paesaggi+Italiani'"><div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end"><div class="p-8 md:p-12"><h3 class="text-3xl font-bold text-white mb-2">Respira l'Aria Pura</h3><p class="text-gray-200 text-lg max-w-xl">La natura non è un posto da visitare. È casa nostra.</p></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><span class="text-secondary font-bold tracking-wider uppercase text-sm mb-2 block">Dicono di noi</span><h2 class="text-3xl md:text-4xl font-bold">La Voce della Community</h2></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="dna-card p-8 flex flex-col h-full"><div class="flex text-primary mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="text-muted italic flex-grow mb-6">"Grazie a Vuxeqo Joon ho scoperto dei <strong>percorsi natura</strong> incredibili in Toscana che non conoscevo affatto. Articoli scritti divinamente e ricchi di dettagli utili."</p><div class="font-bold text-gray-900 border-t border-gray-100 pt-4">- Marco T., Appassionato di Trekking</div></div><div class="dna-card p-8 flex flex-col h-full"><div class="flex text-primary mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="text-muted italic flex-grow mb-6">"La rubrica dedicata a <strong>terme e spa</strong> dopo la fatica è la mia preferita. Ottimi consigli per organizzare weekend rigeneranti per corpo e mente."</p><div class="font-bold text-gray-900 border-t border-gray-100 pt-4">- Elena R., Lettrice fedele</div></div><div class="dna-card p-8 flex flex-col h-full"><div class="flex text-primary mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="text-muted italic flex-grow mb-6">"La migliore fonte assoluta per pianificare le mie <strong>escursioni Italia</strong>. Informazioni precise, recensioni oneste sull'attrezzatura e foto che fanno sognare."</p><div class="font-bold text-gray-900 border-t border-gray-100 pt-4">- Giovanni L., Guida Escursionistica</div></div></div></section><hr class="section-divider"><section id="faq" class="py-20 md:py-28 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold">Domande Frequenti</h2></div><div class="dna-card space-y-4"><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg py-2"><span>I percorsi natura descritti sono adatti anche ai principianti?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Assolutamente sì. Ogni itinerario pubblicato sulla nostra rivista è chiaramente categorizzato per livello di difficoltà. Troverai ampie sezioni dedicate a passeggiate semplici per famiglie, così come percorsi per escursionisti esperti.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg py-2"><span>Con quale frequenza pubblicate nuove guide sulle escursioni Italia?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Aggiorniamo i nostri contenuti settimanalmente. I nostri redattori sono costantemente sul campo per testare nuovi sentieri e aggiornare le informazioni sui percorsi già recensiti per garantire la massima sicurezza.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg py-2"><span>Offrite anche recensioni su strutture alberghiere e terme e spa?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Sì, la nostra filosofia è che il benessere sia parte integrante dell'esperienza outdoor. Dedichiamo ampio spazio alle recensioni di rifugi, agriturismi e centri termali vicini ai principali snodi di trekking in Italia.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg py-2"><span>Come posso partecipare attivamente alla community Vuxeqo Joon?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Iscrivendoti alla nostra newsletter gratuita potrai commentare gli articoli, suggerire nuovi itinerari e partecipare a sondaggi esclusivi per decidere le prossime tematiche della rivista.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg py-2"><span>La rivista è disponibile in formato cartaceo?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Attualmente Vuxeqo Joon è una piattaforma editoriale 100% digitale, ottimizzata per essere consultata comodamente dal tuo smartphone anche durante le tue attività all'aperto.</p></details></div></section><hr class="section-divider"><section id="contact" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card bg-white border-t-4 border-t-primary"><div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"><div><h2 class="text-3xl font-bold mb-4">Inizia la Tua Avventura</h2><p class="text-muted mb-8 leading-relaxed"> Iscriviti alla nostra newsletter per ricevere ogni mese gratuitamente i migliori itinerari di <strong>trekking</strong>, consigli per <strong>attività all'aperto</strong> e sconti esclusivi per l'accesso a <strong>terme e spa</strong> selezionate. </p><div class="space-y-4"><div class="flex items-center text-gray-700"><svg class="w-6 h-6 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><span>Redazione: Via delle Dolomiti 45, 00100 Roma (RM), Italia</span></div><div class="flex items-center text-gray-700"><svg class="w-6 h-6 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span>Aggiornamenti Editoriali: Lunedì - Venerdì</span></div></div></div><div class="bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-100"><form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Iscrizione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div class="space-y-4"><div><label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label><input type="text" id="name" required placeholder="Es. Mario Rossi"></div><div><label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Interesse Principale</label><select id="interest" required><option value="">Seleziona un'opzione...</option><option value="trekking">Trekking e Percorsi Natura</option><option value="spa">Terme, Spa e Benessere</option><option value="entrambi">Entrambi</option></select></div><button type="submit" class="btn-primary w-full justify-center mt-4"> Iscriviti Gratuitamente <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button><p class="text-xs text-muted text-center mt-4">Iscrivendoti accetti la nostra Privacy Policy. Nessuno spam, solo pura natura.</p></div></form><div id="success-msg" style="display:none" class="text-center py-8"><div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-4"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold text-gray-900 mb-2">Iscrizione Completata!</h3><p class="text-muted">Benvenuto nella community di Vuxeqo Joon. Preparati per le tue prossime avventure.</p></div></div></div></div></section></main><footer class="bg-white border-t border-gray-200 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><a href="#" class="text-2xl font-extrabold text-primary mb-4 inline-block" style="font-family: 'DM Serif Display', serif;"> Vuxeqo<span class="text-secondary">Joon</span></a><p class="text-muted max-w-2xl mx-auto">La rivista digitale dedicata a chi ama esplorare l'Italia a passo lento, tra alte vette e profondo benessere.</p></div><div class="bg-gray-50 rounded-lg p-6 mb-12 text-sm text-gray-600 text-center border border-gray-100"><strong>Avviso Legale:</strong> Questo è un sito promozionale indipendente gestito da Vuxeqo Joon, che agisce come affiliato per Trekking.it. </div><div class="space-y-4 max-w-3xl mx-auto text-sm text-gray-500 mb-12"><details class="bg-gray-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer text-gray-700">Informativa sulla Privacy (Privacy Policy)</summary><div class="mt-4 space-y-2"><p>Il trattamento dei dati personali degli utenti che visitano e si iscrivono alla piattaforma Vuxeqo Joon avviene nel pieno rispetto delle normative vigenti in materia di privacy. I dati raccolti attraverso i moduli di contatto o di iscrizione alla newsletter vengono utilizzati esclusivamente per fornire i servizi richiesti. Non cediamo, vendiamo o affittiamo le informazioni personali a terze parti per scopi di marketing senza un consenso esplicito. I sistemi informatici preposti al funzionamento di questo sito acquisiscono, nel corso del loro normale esercizio, alcuni dati la cui trasmissione è implicita nell'uso dei protocolli di comunicazione di Internet. Questi dati vengono utilizzati al solo fine di ricavare informazioni statistiche anonime sull'uso del sito e per controllarne il corretto funzionamento. L'utente ha il diritto di accedere ai propri dati, chiederne la rettifica, l'aggiornamento o la cancellazione in qualsiasi momento. La sicurezza dei dati è garantita dall'adozione di misure tecniche e organizzative adeguate per prevenire la perdita, l'uso illecito o l'accesso non autorizzato. I dati personali sono conservati per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti. L'iscrizione alla nostra newsletter è facoltativa e può essere revocata in ogni momento tramite l'apposito link presente in fondo a ogni comunicazione. Per esercitare i propri diritti relativi alla privacy, l'utente può utilizzare il modulo di contatto presente sul sito. Eventuali modifiche a questa informativa verranno pubblicate su questa pagina. Continuando a utilizzare il sito dopo tali modifiche, l'utente accetta la nuova policy. Vuxeqo Joon si impegna a mantenere la massima trasparenza riguardo la gestione delle informazioni personali. La tutela della privacy dei nostri lettori è per noi una priorità assoluta. Per ulteriori dettagli tecnici sui cookie, si rimanda all'apposita sezione del sito.</p></div></details><details class="bg-gray-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer text-gray-700">Termini e Condizioni di Utilizzo</summary><div class="mt-4 space-y-2"><p>L'utilizzo di questo sito web e dei contenuti editoriali offerti da Vuxeqo Joon è soggetto all'accettazione dei presenti Termini e Condizioni. Accedendo al sito, l'utente dichiara di aver letto, compreso e accettato integralmente quanto qui riportato. Tutti i contenuti testuali, le immagini, i loghi e la grafica presenti sul sito sono protetti da copyright e non possono essere riprodotti, distribuiti o modificati senza previa autorizzazione scritta. Le informazioni relative a percorsi natura, itinerari di trekking e strutture termali sono fornite a scopo puramente informativo e divulgativo. Vuxeqo Joon compie ogni sforzo ragionevole per garantire l'accuratezza delle informazioni pubblicate, ma non si assume alcuna responsabilità per eventuali inesattezze, omissioni o cambiamenti delle condizioni dei sentieri. L'escursionismo e le attività all'aperto comportano rischi intrinseci; è responsabilità esclusiva dell'utente valutare le proprie capacità fisiche, l'equipaggiamento e le condizioni meteorologiche prima di intraprendere qualsiasi percorso. La redazione non è responsabile per infortuni, danni o perdite derivanti dall'utilizzo delle informazioni presenti sul sito. I collegamenti a siti esterni sono forniti per comodità dell'utente; Vuxeqo Joon non ha alcun controllo su tali siti e non ne avalla necessariamente i contenuti. Ci riserviamo il diritto di modificare o sospendere, temporaneamente o permanentemente, il sito o parte di esso senza preavviso. L'utente si impegna a utilizzare il sito in modo lecito, astenendosi da comportamenti che possano danneggiare il funzionamento della piattaforma o violare i diritti di terzi. In caso di violazione di questi termini, ci riserviamo il diritto di limitare o bloccare l'accesso al sito. Le presenti condizioni sono regolate dalla legge vigente. Qualsiasi controversia derivante dall'uso del sito sarà di competenza esclusiva del foro territorialmente competente. Continuando la navigazione, l'utente accetta implicitamente tali condizioni e solleva Vuxeqo Joon da qualsiasi responsabilità diretta o indiretta.</p></div></details><details class="bg-gray-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer text-gray-700">Politica di Rimborso e Servizi</summary><div class="mt-4 space-y-2"><p>Essendo Vuxeqo Joon un portale informativo ed editoriale a fruizione prevalentemente gratuita, la presente politica si applica specificamente a eventuali abbonamenti premium digitali o acquisti di guide in formato scaricabile offerti direttamente dalla nostra piattaforma. Per i prodotti digitali scaricabili, a causa della natura intrinseca del bene, non è previsto il diritto di recesso o rimborso una volta che il download è stato avviato o completato. Se un file digitale dovesse risultare corrotto o illeggibile per cause imputabili ai nostri server, forniremo tempestivamente una copia sostitutiva funzionante previa segnalazione tramite i nostri canali di contatto. Per quanto riguarda gli abbonamenti premium periodici alla rivista digitale, l'utente ha diritto di disdire il rinnovo automatico in qualsiasi momento prima della scadenza del periodo in corso. La disdetta impedirà futuri addebiti, ma non darà diritto a rimborsi parziali per i giorni non usufruiti nel periodo già pagato. In casi eccezionali di addebiti errati o doppi dovuti a malfunzionamenti tecnici del nostro sistema di fatturazione, provvederemo al rimborso integrale dell'importo erroneamente prelevato entro 14 giorni lavorativi dalla verifica dell'anomalia. Tutte le richieste di assistenza relative ad acquisti o abbonamenti devono essere inoltrate utilizzando esclusivamente il modulo di contatto ufficiale presente sul sito, specificando chiaramente il numero di riferimento dell'ordine. Non possiamo gestire richieste di rimborso per servizi o prodotti acquistati tramite siti di terze parti o partner affiliati, inclusi i pacchetti vacanza o gli ingressi alle terme menzionate nei nostri articoli; in tali casi, l'utente dovrà rivolgersi direttamente al fornitore finale del servizio. Ci riserviamo il diritto di modificare questa politica in qualsiasi momento. Le variazioni saranno effettive dal momento della pubblicazione sul sito e si applicheranno agli acquisti successivi a tale data. La soddisfazione dei nostri lettori è fondamentale, pertanto valutiamo ogni segnalazione con la massima cura e attenzione.</p></div></details></div><div class="text-center text-sm text-gray-400"> &copy; 2026 Vuxeqo Joon. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 transform transition-transform duration-300 translate-y-full"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm text-gray-300">Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito e offrirti contenuti personalizzati sulle migliori escursioni in Italia. Continuando a navigare, accetti la nostra policy.</p><div class="flex gap-4 shrink-0"><button onclick="acceptCookies()" class="bg-primary hover:bg-orange-500 text-white px-6 py-2 rounded-lg text-sm font-semibold transition-colors">Accetto</button></div></div></div> <script>
+        // Smart Routing JS (The "Gravity Well" Protocol)
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
             
-            <div class="mt-12 text-center">
-                <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                     alt="Programmazione corso online" 
-                     class="w-full h-64 object-cover object-center shadow-lg"
-                     style="border-radius: var(--radius)"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='https://placehold.co/800x400?text=AI+Learning'">
-            </div>
-        </div>
-    </section>
-
-    <!-- REVIEWS SECTION -->
-    <section id="reviews" class="py-12">
-        <div class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">Cosa dicono i nostri istruttori</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 border border-gray-100">
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 flex">★★★★★</div>
-                    </div>
-                    <p class="text-gray-600 mb-4">"Ho creato il mio primo <strong>corso</strong> in meno di 24 ore. L'interfaccia è intuitiva anche per chi come me non è un esperto tecnico."</p>
-                    <p class="font-bold text-gray-900">- Marco R.</p>
-                </div>
-                <div class="bg-gray-50 p-6 border border-gray-100">
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 flex">★★★★★</div>
-                    </div>
-                    <p class="text-gray-600 mb-4">"Il sistema di gestione dell'<strong>iscrizione</strong> è impeccabile. Ho aumentato il numero di studenti del 200% grazie agli strumenti AI."</p>
-                    <p class="font-bold text-gray-900">- Laura B.</p>
-                </div>
-                <div class="bg-gray-50 p-6 border border-gray-100">
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 flex">★★★★★</div>
-                    </div>
-                    <p class="text-gray-600 mb-4">"Ideale per <strong>principianti</strong> ed esperti. La soluzione migliore per scalare il proprio business formativo."</p>
-                    <p class="font-bold text-gray-900">- Giovanni S.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section id="faq" class="py-12">
-        <div class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-8">Domande Frequenti (FAQ)</h2>
-            <div class="space-y-4">
-                <details class="group bg-white border border-gray-200 p-4 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium text-gray-900 list-none">
-                        <span>La piattaforma è adatta ai principianti?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 group-open:animate-fadeIn">
-                        Assolutamente sì. Abbiamo progettato l'interfaccia per essere utilizzata facilmente anche da veri <strong>principianti</strong> senza conoscenze di programmazione.
-                    </p>
-                </details>
-
-                <details class="group bg-white border border-gray-200 p-4 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium text-gray-900 list-none">
-                        <span>Come funziona l'iscrizione ai corsi?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 group-open:animate-fadeIn">
-                        Una volta creato il <strong>corso</strong>, potrai gestire ogni <strong>iscrizione</strong> dal tuo pannello di controllo. Il processo è automatizzato per garantirti il massimo rendimento.
-                    </p>
-                </details>
-
-                <details class="group bg-white border border-gray-200 p-4 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium text-gray-900 list-none">
-                        <span>Posso usare l'AI per generare contenuti?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 group-open:animate-fadeIn">
-                        Sì, integriamo strumenti AI avanzati per aiutarti a creare strutture di corsi, quiz e materiali di supporto per velocizzare il lavoro.
-                    </p>
-                </details>
-
-                <details class="group bg-white border border-gray-200 p-4 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium text-gray-900 list-none">
-                        <span>Quanto costa l'accesso alla piattaforma?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 group-open:animate-fadeIn">
-                        Offriamo diversi piani per adattarci alle tue esigenze. Compila il modulo di contatto per ricevere un'offerta personalizzata e garantirti il <strong>futuro</strong> del tuo business.
-                    </p>
-                </details>
-
-                <details class="group bg-white border border-gray-200 p-4 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium text-gray-900 list-none">
-                        <span>Cosa serve per imparare a usare il software?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 group-open:animate-fadeIn">
-                        Solo un computer e una connessione internet. Al resto pensiamo noi con i nostri tutorial integrati che ti permetteranno di <strong>imparare</strong> in pochi minuti.
-                    </p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-12">
-        <div class="max-w-5xl mx-auto dna-card">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Costruiamo il Futuro Insieme</h2>
-                    <p class="text-gray-600 mb-8">
-                        Sei pronto a lanciare il tuo <strong>corso</strong>? Hai bisogno di informazioni sull'<strong>accesso</strong> o sui piani disponibili? Compila il modulo e un nostro esperto ti contatterà a breve.
-                    </p>
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    <div class="space-y-4">
-                        <!-- Note: Address inferred as digital business, general HQ simulation allowed if donor had address, but none found, so general contact only -->
-                        <div class="flex items-start">
-                             <div class="flex-shrink-0">
-                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                             </div>
-                             <div class="ml-3 text-gray-600">
-                                 <p>Orari di Assistenza:</p>
-                                 <p class="font-medium">Lun - Ven: 09:00 - 18:00</p>
-                             </div>
-                        </div>
-                    </div>
-                </div>
+                    const targetId = this.getAttribute('href').substring(1);
+                    if (!targetId) return;
 
-                <div class="bg-white p-6 shadow-sm border border-gray-100">
-                    <form id="lead-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button'); const originalText = btn.innerText; btn.innerText='Invio in corso...'; btn.disabled=true; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block';}, 1500);">
-                        <div class="space-y-4">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo</label>
-                                <input type="text" id="name" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">Indirizzo Email</label>
-                                <input type="email" id="email" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            </div>
-                            <div>
-                                <label for="interest" class="block text-sm font-medium text-gray-700">Sono interessato a:</label>
-                                <select id="interest" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                    <option>Creare un nuovo Corso</option>
-                                    <option>Gestione Piattaforma</option>
-                                    <option>Soluzioni per Principianti</option>
-                                    <option>Altro</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="w-full btn-primary mt-4">Richiedi Informazioni</button>
-                        </div>
-                    </form>
+                    let targetElement = document.getElementById(targetId);
                     
-                    <!-- Success Message -->
-                    <div id="success-msg" class="hidden text-center py-10">
-                        <svg class="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <h3 class="text-xl font-bold text-gray-900">Messaggio Inviato!</h3>
-                        <p class="text-gray-600 mt-2">Grazie per averci contattato. Un nostro consulente ti risponderà al più presto.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    // Fallback to #contact if target doesn't exist
+                    if (!targetElement) {
+                        console.warn(`Target #${targetId} not found. Redirecting to #contact.`);
+                        targetElement = document.getElementById('contact');
+                    }
 
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
-            <div>
-                <span class="text-2xl font-bold tracking-tight">VuxeQog Solutions</span>
-                <p class="mt-4 text-gray-400">
-                    Il partner ideale per il tuo e-learning. Trasforma la conoscenza in valore.
-                </p>
-                <p class="mt-4 text-xs text-gray-500">
-                    Questo è un sito promozionale indipendente gestito da VuxeQog Solutions, che agisce come affiliato per Syllog AI.
-                </p>
-            </div>
-            
-            <div>
-                <h3 class="text-lg font-semibold mb-4">Navigazione</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="#features" class="hover:text-white">Servizi</a></li>
-                    <li><a href="#reviews" class="hover:text-white">Recensioni</a></li>
-                    <li><a href="#faq" class="hover:text-white">FAQ</a></li>
-                    <li><a href="#contact" class="hover:text-white">Contatti</a></li>
-                </ul>
-            </div>
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
 
-            <div>
-                <h3 class="text-lg font-semibold mb-4">Note Legali</h3>
-                <div class="space-y-2">
-                    <details class="cursor-pointer">
-                        <summary class="text-gray-400 hover:text-white list-none">Privacy Policy</summary>
-                        <div class="mt-2 text-xs text-gray-400 p-2 border border-gray-700 bg-gray-800">
-                            La tua privacy è fondamentale per noi. VuxeQog Solutions si impegna a proteggere e rispettare la tua privacy in conformità con le normative vigenti. Questa politica descrive le modalità di trattamento dei dati personali degli utenti che consultano questo sito web. I dati raccolti tramite i moduli di contatto saranno utilizzati esclusivamente per rispondere alle richieste inviate dall'utente. Non condivideremo mai i tuoi dati con terze parti non autorizzate senza il tuo consenso esplicito. Implementiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, perdite o alterazioni. Gli utenti hanno il diritto di richiedere l'accesso, la rettifica o la cancellazione dei propri dati in qualsiasi momento. Conserviamo i dati solo per il tempo strettamente necessario a fornire i servizi richiesti o come previsto dalla legge. Utilizzando il nostro sito, acconsenti al trattamento dei tuoi dati secondo le modalità descritte in questa informativa. Questa politica può essere soggetta a modifiche, pertanto invitiamo gli utenti a consultarla periodicamente. Per qualsiasi domanda riguardante la privacy, ti preghiamo di utilizzare i canali di contatto appropriati. Non utilizziamo processi decisionali automatizzati o profilazione. I dati sono conservati su server sicuri all'interno dell'Unione Europea.
-                        </div>
-                    </details>
-                    
-                    <details class="cursor-pointer">
-                        <summary class="text-gray-400 hover:text-white list-none">Termini e Condizioni</summary>
-                        <div class="mt-2 text-xs text-gray-400 p-2 border border-gray-700 bg-gray-800">
-                            L'accesso e l'utilizzo di questo sito web sono soggetti ai seguenti termini e condizioni. Accedendo a questo sito, l'utente accetta di essere vincolato da tali termini. I contenuti presenti su questo sito sono forniti esclusivamente a scopo informativo e promozionale. VuxeQog Solutions non si assume alcuna responsabilità per eventuali errori o omissioni nei contenuti. È vietato riprodurre, duplicare, copiare o rivendere qualsiasi parte del servizio o del sito web senza l'autorizzazione scritta esplicita. Ci riserviamo il diritto di modificare o interrompere il servizio in qualsiasi momento senza preavviso. L'utente si impegna a non utilizzare il sito per scopi illeciti o proibiti da questi termini. Non siamo responsabili per danni diretti o indiretti derivanti dall'uso o dall'impossibilità di utilizzare il sito. Eventuali link a siti terzi sono forniti solo per comodità dell'utente e non implicano approvazione. La legge applicabile a questi termini è quella dello Stato in cui opera VuxeQog Solutions. Eventuali controversie saranno devolute alla competenza esclusiva del tribunale competente. L'utilizzo continuativo del sito dopo eventuali modifiche ai termini costituisce accettazione delle stesse.
-                        </div>
-                    </details>
-
-                    <details class="cursor-pointer">
-                        <summary class="text-gray-400 hover:text-white list-none">Politica di Rimborso</summary>
-                        <div class="mt-2 text-xs text-gray-400 p-2 border border-gray-700 bg-gray-800">
-                            VuxeQog Solutions si impegna a garantire la massima soddisfazione dei propri clienti. Poiché agiamo principalmente come promotori di servizi di terze parti o fornitori di consulenza preliminare, la politica di rimborso può variare a seconda del servizio specifico acquistato presso il fornitore finale. Per i servizi erogati direttamente da noi, offriamo una garanzia di rimborso se il servizio non è conforme alla descrizione fornita. Le richieste di rimborso devono essere presentate entro un periodo specifico dalla data di acquisto, solitamente 14 o 30 giorni. Ogni richiesta verrà valutata individualmente dal nostro team di supporto. Non sono previsti rimborsi per servizi già completamente usufruiti o per ripensamenti dopo il periodo di garanzia. In caso di abbonamenti ricorrenti, è possibile cancellare l'iscrizione in qualsiasi momento per evitare addebiti futuri, ma i periodi già pagati potrebbero non essere rimborsabili. Per prodotti digitali scaricabili, il rimborso potrebbe non essere applicabile una volta effettuato il download. Invitiamo gli utenti a leggere attentamente le condizioni specifiche al momento dell'acquisto.
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </div>
-        <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-            &copy; 2026 VuxeQog Solutions. Tutti i diritti riservati.
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg z-50 flex flex-col sm:flex-row items-center justify-between" style="display: none;">
-        <p class="text-sm text-gray-600 mb-2 sm:mb-0 sm:mr-4">
-            Utilizziamo i cookie per migliorare la tua esperienza di navigazione. Continuando a utilizzare il sito, accetti il nostro utilizzo dei cookie.
-        </p>
-        <div class="flex space-x-4">
-            <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm">Accetta</button>
-            <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-500 hover:text-gray-700 text-sm">Chiudi</button>
-        </div>
-    </div>
-
-    <!-- JS INTERACTIVITY -->
-    <script>
-        // Smooth Scrolling Logic
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                } else {
-                    // Fallback to Contact
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                        contactSection.scrollIntoView({
-                            behavior: 'smooth'
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
                         });
                     }
-                }
-                
-                // Close Mobile Menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
+                });
             });
+
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
         });
 
-        // Cookie Banner Logic
         function acceptCookies() {
             localStorage.setItem('cookiesAccepted', 'true');
-            document.getElementById('cookie-banner').style.display = 'none';
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
         }
-
-        window.onload = function() {
-            if (!localStorage.getItem('cookiesAccepted')) {
-                document.getElementById('cookie-banner').style.display = 'flex';
-            }
-        };
-    </script>
-</body>
-</html>
+    </script> </body></html>
