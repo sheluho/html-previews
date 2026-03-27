@@ -1,547 +1,164 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QopeBuy Collective | Analisi Software e Recensioni Automatizzate</title>
-    <meta name="description" content="Migliora l'efficienza della tua azienda con la nostra piattaforma di analisi software. Scopri gli strumenti migliori per risultati automatizzati.">
-    
-    <!-- Tailwind CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Qopebuyiex Collective | Portale di Giornalismo Investigativo Italiano</title><meta name="description" content="Qopebuyiex Collective è il portale di giornalismo investigativo italiano dedicato a inchieste, reportage e indagini esclusive. Sveliamo la verità."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet"> <style>
+      :root {
+        --primary: #ea580c;
+        --secondary: #dc2626;
+        --radius: 16px;
+        --card-radius: 16px;
+        --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        --body-bg: #1e1e2e;
+        --card-bg: #2a2a3d;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+      }
 
-    <!-- DESIGN DNA & SYSTEM -->
-    <style>
-        :root {
-            /* VAR D: Palette (Software/Tech Niche) -> Indigo */
-            --primary: #4f46e5;
-            
-            /* VAR C: Surface (Code 115 % 3 = 1) -> Warm Cream */
-            --surface: #fffdf5;
-            
-            /* VAR A: Geometry (Length 49 % 3 = 1) -> Soft Radius */
-            --radius: 12px;
-            
-            /* VAR B: Physics (Code 115 % 3 = 1) -> Material Shadow */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'Nunito Sans', sans-serif;
+        padding-top: 4rem; /* Fixed navbar compensation */
+      }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Global contrast base */
-            color: #1f2937;
-            overflow-x: hidden;
-        }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Lora', serif;
+      }
 
-        /* COMPONENT: The DNA Card */
-        .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255,255,255,0.08);
+      }
 
-        /* COMPONENT: Primary Button */
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s;
-            font-weight: 700;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
+      nav {
+        background-color: var(--body-bg);
+      }
 
-        /* COMPONENT: Secondary Button */
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            border-radius: var(--radius);
-            padding: 0.8rem 1.8rem;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        .btn-secondary:hover {
-            background-color: var(--primary);
-            color: white;
-        }
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'Nunito Sans', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        /* UTILITY */
-        .text-primary { color: var(--primary); }
-        .bg-primary { background-color: var(--primary); }
-        
-        /* DETAILS ACCORDION STYLE */
-        details summary {
-            cursor: pointer;
-            padding: 1rem;
-            background-color: rgba(0,0,0,0.02);
-            border-radius: var(--radius);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            list-style: none;
-            transition: background 0.2s;
-        }
-        details summary:hover { background-color: rgba(0,0,0,0.05); }
-        details summary::-webkit-details-marker { display: none; }
-        details[open] summary { margin-bottom: 1rem; color: var(--primary); }
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
 
-        /* LEGAL MODAL SIMULATION */
-        .legal-details {
-            font-size: 0.85rem;
-            color: #6b7280;
-            line-height: 1.6;
-            margin-top: 0.5rem;
-        }
-    </style>
-</head>
-<body class="antialiased">
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
 
-    <!-- NAVIGATION -->
-    <nav class="bg-white shadow-sm fixed w-full z-50 top-0 left-0">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="font-bold text-2xl text-gray-800 tracking-tight">QopeBuy <span class="text-primary">Collective</span></span>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition">Servizi</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition">Testimonianze</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
-                    <a href="#contact" class="btn-primary">Richiedi Analisi</a>
-                </div>
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-500 hover:text-gray-900 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50">Servizi</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50">Testimonianze</a>
-                <a href="#contact" class="block w-full text-center px-3 py-2 mt-4 text-base font-bold bg-gray-100 text-primary rounded-lg">Richiedi Analisi</a>
-            </div>
-        </div>
-    </nav>
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
 
-    <!-- HERO SECTION -->
-    <header class="relative bg-white pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" 
-                 src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                 referrerpolicy="no-referrer"
-                 alt="Analisi Strategica e Meeting Aziendale"
-                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Software+Review+Analysis'">
-            <div class="absolute inset-0 bg-black bg-opacity-60 mix-blend-multiply"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6 drop-shadow-lg">
-                <span class="block">La Scelta Intelligente per il Tuo</span>
-                <span class="block text-indigo-300">Ecosistema Software</span>
-            </h1>
-            <p class="mt-4 max-w-md mx-auto text-lg text-gray-200 sm:text-xl md:mt-5 md:max-w-3xl mb-10">
-                Trasforma il modo in cui gestisci le tue piattaforme. Offriamo recensioni dettagliate, analisi delle prestazioni e soluzioni per l'efficienza automatizzata.
-            </p>
-            <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-                <div class="rounded-md shadow">
-                    <a href="#contact" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-                        Inizia Ora
-                    </a>
-                </div>
-                <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                    <a href="#features" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
-                        Scopri di Più
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Trust Signals -->
-            <div class="mt-12 text-center">
-                <p class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Scelto dai leader del settore</p>
-                <div class="flex justify-center gap-6 mt-4 grayscale opacity-70">
-                    <span class="text-xl font-bold text-white">TECH-CORP</span>
-                    <span class="text-xl font-bold text-white">DIGITAL WAVES</span>
-                    <span class="text-xl font-bold text-white">AUTOMATA</span>
-                    <span class="text-xl font-bold text-white">NEXUS AI</span>
-                </div>
-            </div>
-        </div>
-    </header>
+      /* Fixed navbar compensation */
+      main, main + footer { scroll-margin-top: 5rem; }
 
-    <!-- FEATURES SECTION -->
-    <section id="features" class="py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">La Nostra Missione</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Eccellenza nella Valutazione Software
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-                    Non ci limitiamo a consigliare; analizziamo a fondo ogni software per garantire che la tua piattaforma ottenga i risultati migliori.
-                </p>
-            </div>
+      /* Form inputs */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(234,88,12,0.15);
+      }
 
-            <div class="max-w-5xl mx-auto dna-card">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div class="text-center">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-100 text-primary mx-auto mb-4">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Analisi Comparativa Software</h3>
-                        <p class="text-gray-600">
-                            Esaminiamo ogni soluzione sul mercato per identificare il miglior software di recensioni. Il nostro processo elimina le congetture e si concentra sui dati reali.
-                        </p>
-                    </div>
+      /* Links */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
 
-                    <!-- Feature 2 -->
-                    <div class="text-center">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-100 text-primary mx-auto mb-4">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Efficienza Automatizzata</h3>
-                        <p class="text-gray-600">
-                            Un sistema automatizzato è la chiave per la crescita. Valutiamo l'impatto dei plugin sull'efficienza operativa e sul risparmio di tempo per il tuo team.
-                        </p>
-                    </div>
+      /* Section divider */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(234,88,12,0.2), transparent);
+        margin: 0;
+      }
 
-                    <!-- Feature 3 -->
-                    <div class="text-center">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-100 text-primary mx-auto mb-4">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Strategie per Risultati Reali</h3>
-                        <p class="text-gray-600">
-                            Oltre la tecnologia, offriamo una visione strategica su come integrare questi strumenti per massimizzare la fiducia dei clienti e ottenere risultati tangibili.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Additional Detail Content -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 items-center">
-                <div class="dna-card p-0 overflow-hidden h-full flex items-center justify-center">
-                     <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                          class="w-full h-full object-cover rounded-lg"
-                          referrerpolicy="no-referrer" 
-                          alt="Analisi dei dati software"
-                          loading="lazy"
-                          onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Data+Analytics'">
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Perché è Fondamentale un Sistema Automatizzato?</h3>
-                    <p class="text-gray-600 mb-6">
-                        Nel mercato digitale odierno, la reputazione è tutto. Affidarsi a processi manuali per gestire la presenza online è un rischio per l'efficienza aziendale.
-                        <br><br>
-                        <strong>QopeBuy Collective</strong> identifica per te le piattaforme che offrono:
-                    </p>
-                    <ul class="space-y-3 mb-6">
-                        <li class="flex items-start">
-                            <span class="flex-shrink-0 h-5 w-5 text-primary">✓</span>
-                            <span class="ml-2 text-gray-600">Integrazione fluida con il tuo ecosistema.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="flex-shrink-0 h-5 w-5 text-primary">✓</span>
-                            <span class="ml-2 text-gray-600">Reportistica avanzata e analisi predittiva.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="flex-shrink-0 h-5 w-5 text-primary">✓</span>
-                            <span class="ml-2 text-gray-600">Filtraggio spam e gestione centralizzata.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- REVIEWS SECTION -->
-    <section id="reviews" class="py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-12">Cosa dicono di noi</h2>
-            <div class="max-w-5xl mx-auto dna-card">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Review 1 -->
-                    <div class="bg-white p-6 rounded shadow-sm border border-gray-100">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400 flex">
-                                ★★★★★
-                            </div>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"Grazie alla loro analisi approfondita, abbiamo scelto un software automatizzato che ha dimezzato i tempi di gestione del customer care. Risultati eccezionali."</p>
-                        <p class="font-bold text-gray-900">- Marco Rossi, CEO DigitalS</p>
-                    </div>
-                    <!-- Review 2 -->
-                    <div class="bg-white p-6 rounded shadow-sm border border-gray-100">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400 flex">
-                                ★★★★★
-                            </div>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"Un team professionale. Hanno capito subito che la nostra priorità era l'efficienza. La piattaforma consigliata è perfetta per le nostre esigenze."</p>
-                        <p class="font-bold text-gray-900">- Laura Bianchi, Marketing Manager</p>
-                    </div>
-                    <!-- Review 3 -->
-                    <div class="bg-white p-6 rounded shadow-sm border border-gray-100">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400 flex">
-                                ★★★★★
-                            </div>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"L'analisi tecnica fornita da QopeBuy Collective è stata illuminante. Finalmente abbiamo chiarezza sugli strumenti che usiamo."</p>
-                        <p class="font-bold text-gray-900">- Giuseppe Verdi, Tech Lead</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section id="faq" class="py-16">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">Domande Frequenti</h2>
-            <div class="dna-card">
-                <div class="space-y-4">
-                    <details>
-                        <summary>Come selezionate i software per le vostre analisi?</summary>
-                        <div class="px-4 pb-4 text-gray-600">
-                            Utilizziamo un processo rigoroso che valuta l'usabilità, il set di funzionalità, il supporto clienti e il rapporto qualità-prezzo. Solo le soluzioni che garantiscono vera efficienza entrano nelle nostre raccomandazioni.
-                        </div>
-                    </details>
-                    <details>
-                        <summary>Il vostro servizio di consulenza è automatizzato?</summary>
-                        <div class="px-4 pb-4 text-gray-600">
-                            Mentre consigliamo strumenti automatizzati, la nostra consulenza è altamente personalizzata. I nostri esperti analizzano manualmente le tue esigenze specifiche per trovare la piattaforma ideale.
-                        </div>
-                    </details>
-                    <details>
-                        <summary>Quali vantaggi porta una piattaforma di gestione recensioni?</summary>
-                        <div class="px-4 pb-4 text-gray-600">
-                            Automatizzare la raccolta e la visualizzazione delle recensioni aumenta la fiducia dei clienti, migliora il posizionamento SEO e riduce il carico di lavoro manuale, garantendo risultati misurabili nel tempo.
-                        </div>
-                    </details>
-                    <details>
-                        <summary>Vi occupate anche di hosting?</summary>
-                        <div class="px-4 pb-4 text-gray-600">
-                            No, il nostro focus è l'analisi software e la strategia digitale. Tuttavia, collaboriamo con partner di eccellenza (come SupportHost) per le infrastrutture tecniche.
-                        </div>
-                    </details>
-                    <details>
-                        <summary>Quanto tempo richiede un'analisi completa?</summary>
-                        <div class="px-4 pb-4 text-gray-600">
-                            Generalmente forniamo un report preliminare entro 48 ore dalla richiesta iniziale, a seconda della complessità del tuo stack tecnologico attuale.
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-16 relative">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="dna-card bg-white overflow-hidden flex flex-col md:flex-row">
-                <!-- Info Side -->
-                <div class="w-full md:w-1/2 p-8 bg-gray-50 border-r border-gray-100">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Contattaci per un'Analisi</h2>
-                    <p class="text-gray-600 mb-8">
-                        Sei pronto a portare la tua azienda al livello successivo? Compila il modulo per ricevere una consulenza gratuita sui migliori strumenti software per il tuo business.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                            </div>
-                            <div class="ml-3 text-gray-700">
-                                <p>Sede Operativa Digitale</p>
-                                <p class="text-sm text-gray-500">Milano, Italia (Supporto Remoto)</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                            <div class="ml-3 text-gray-700">
-                                <p>Orari di Servizio</p>
-                                <p class="text-sm text-gray-500">Lun - Ven: 09:00 - 18:00</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Form Side -->
-                <div class="w-full md:w-1/2 p-8">
-                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo</label>
-                            <input type="text" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-50 p-3 border">
-                        </div>
-                        <div>
-                            <label for="company" class="block text-sm font-medium text-gray-700">Azienda</label>
-                            <input type="text" id="company" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-50 p-3 border">
-                        </div>
-                        <div>
-                            <label for="inquiry" class="block text-sm font-medium text-gray-700">Di quale software hai bisogno?</label>
-                            <select id="inquiry" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-50 p-3 border">
-                                <option>Analisi Plugin WordPress</option>
-                                <option>Automazione Recensioni</option>
-                                <option>Consulenza Strategica</option>
-                                <option>Altro</option>
-                            </select>
-                        </div>
-                        <div>
-                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150">
-                                Invia Richiesta
-                            </button>
-                        </div>
-                        <p class="text-xs text-gray-400 mt-2">I tuoi dati sono trattati in conformità con la nostra Privacy Policy.</p>
-                    </form>
-                    
-                    <!-- Success Message -->
-                    <div id="success-msg" class="text-center py-10" style="display:none;">
-                        <svg class="mx-auto h-12 w-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <h3 class="mt-2 text-lg font-medium text-gray-900">Messaggio Inviato!</h3>
-                        <p class="mt-1 text-sm text-gray-500">Un nostro analista ti contatterà a breve.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-white border-t border-gray-200">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-gray-400 text-sm mb-4">
-                © 2026 QopeBuy Collective. Tutti i diritti riservati.
-            </p>
-            <div class="text-center text-xs text-gray-400 max-w-2xl mx-auto mb-8">
-                <em>Questo è un sito promozionale indipendente gestito da QopeBuy Collective, che agisce in qualità di affiliato per SupportHost. Tutti i marchi registrati appartengono ai rispettivi proprietari.</em>
-            </div>
-
-            <!-- Legal Documents -->
-            <div class="border-t border-gray-100 pt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Privacy Policy -->
-                <details>
-                    <summary class="text-sm text-gray-500 hover:text-gray-900">Privacy Policy</summary>
-                    <div class="legal-details">
-                        <p>In QopeBuy Collective, la tua privacy è fondamentale. La presente Informativa sulla privacy descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali quando visiti il nostro sito o utilizzi i nostri servizi di analisi software. Raccogliamo dati di navigazione standard e informazioni fornite volontariamente tramite i moduli di contatto, esclusivamente per migliorare la tua esperienza utente e rispondere alle richieste di servizio.</p>
-                        <br>
-                        <p>Non vendiamo, scambiamo o trasferiamo a terzi le tue informazioni personali identificabili, ad eccezione di terze parti fidate che ci assistono nella gestione del sito web, a condizione che tali parti si impegnino a mantenere riservate tali informazioni. Implementiamo diverse misure di sicurezza per mantenere la sicurezza dei tuoi dati personali.</p>
-                        <br>
-                        <p>Utilizziamo i cookie per comprendere e salvare le tue preferenze per le visite future. Puoi scegliere di disattivare i cookie attraverso le opzioni del tuo browser. I dati raccolti vengono conservati solo per il tempo necessario a fornire il servizio richiesto o come richiesto dalla legge.</p>
-                        <br>
-                        <p>Ai sensi del GDPR, hai il diritto di accedere, rettificare o cancellare i tuoi dati personali. Per esercitare questi diritti, ti invitiamo a contattarci tramite il modulo presente sul sito. Le modifiche a questa politica saranno pubblicate su questa pagina con data di aggiornamento. La continuazione dell'uso del nostro servizio implica l'accettazione di queste politiche.</p>
-                    </div>
-                </details>
-
-                <!-- Terms of Service -->
-                <details>
-                    <summary class="text-sm text-gray-500 hover:text-gray-900">Termini di Servizio</summary>
-                    <div class="legal-details">
-                        <p>L'accesso e l'uso di QopeBuy Collective sono soggetti ai seguenti Termini di Servizio. Accedendo a questo sito, accetti di essere vincolato da questi termini, da tutte le leggi e i regolamenti applicabili e accetti di essere responsabile della conformità con le leggi locali applicabili. Se non sei d'accordo con uno qualsiasi di questi termini, ti è proibito utilizzare o accedere a questo sito.</p>
-                        <br>
-                        <p>I materiali contenuti in questo sito web sono protetti dalle leggi applicabili sul copyright e sui marchi. È concesso il permesso di scaricare temporaneamente una copia dei materiali (informazioni o software) sul sito web di QopeBuy Collective solo per la visualizzazione transitoria personale e non commerciale. Questa è la concessione di una licenza, non un trasferimento di titolo.</p>
-                        <br>
-                        <p>Non è consentito modificare o copiare i materiali; utilizzare i materiali per qualsiasi scopo commerciale o per qualsiasi esposizione pubblica (commerciale o non commerciale); tentare di decompilare o decodificare qualsiasi software contenuto nel sito; rimuovere qualsiasi copyright o altre notazioni proprietarie dai materiali. QopeBuy Collective non garantisce che i materiali sul suo sito web siano accurati, completi o attuali.</p>
-                        <br>
-                        <p>QopeBuy Collective non ha esaminato tutti i siti collegati al suo sito Internet e non è responsabile per i contenuti di tali siti collegati. L'inclusione di qualsiasi link non implica l'approvazione da parte di QopeBuy Collective del sito. L'uso di tali siti web collegati è a rischio e pericolo dell'utente.</p>
-                    </div>
-                </details>
-
-                <!-- Refund Policy -->
-                <details>
-                    <summary class="text-sm text-gray-500 hover:text-gray-900">Politica di Rimborso</summary>
-                    <div class="legal-details">
-                        <p>QopeBuy Collective si impegna a fornire analisi software di alta qualità. Tuttavia, data la natura immateriale dei nostri servizi di consulenza e reportistica digitale, la nostra politica di rimborso è rigorosa. Per i servizi di consulenza una tantum, i rimborsi sono valutati caso per caso e sono generalmente concessi solo se il servizio non è stato avviato.</p>
-                        <br>
-                        <p>Se hai acquistato un accesso a un report premium o una consulenza che non soddisfa le descrizioni fornite, ti preghiamo di contattarci entro 7 giorni dall'acquisto tramite il modulo di contatto per discutere una risoluzione. Non offriamo rimborsi per "cambio di idea" o per l'incompatibilità tecnica di software di terze parti che consigliamo ma non sviluppiamo direttamente.</p>
-                        <br>
-                        <p>Nel caso di prodotti di terzi acquistati tramite link di affiliazione presenti sul nostro sito, la politica di rimborso applicabile sarà quella del fornitore originale (es. SupportHost). QopeBuy Collective non ha l'autorità per emettere rimborsi per transazioni avvenute su piattaforme esterne. Ti invitiamo a leggere attentamente i termini del fornitore finale prima di completare qualsiasi acquisto.</p>
-                    </div>
-                </details>
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 shadow-lg z-50 flex flex-col sm:flex-row justify-between items-center transform translate-y-full transition-transform duration-300">
-        <div class="text-sm mb-4 sm:mb-0 sm:mr-4">
-            Utilizziamo i cookie per migliorare la tua esperienza su QopeBuy Collective. Continuando a navigare accetti la nostra <a href="#" class="underline text-indigo-300">Privacy Policy</a>.
-        </div>
-        <div class="flex space-x-4">
-            <button onclick="acceptCookies()" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded text-sm font-bold transition">Accetta</button>
-            <button onclick="document.getElementById('cookie-banner').style.transform='translateY(100%)'" class="text-gray-400 hover:text-white text-sm transition">Chiudi</button>
-        </div>
-    </div>
-
-    <!-- SCRIPTS -->
-    <script>
-        // Smooth Scroll Logic with Fallback
+      /* Custom Utilities */
+      .accent-border-left {
+        border-left: 4px solid var(--secondary);
+      }
+      
+      details > summary {
+        list-style: none;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+    </style> </head><body><nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold text-white tracking-tight" style="font-family: 'Lora', serif;"> Qopebuyiex <span class="text-primary">Collective</span></a></div><div class="hidden md:flex items-center space-x-8"><a href="#features" class="font-semibold transition-colors">Le Inchieste</a><a href="#about" class="font-semibold transition-colors">Il Metodo</a><a href="#reviews" class="font-semibold transition-colors">Impatto</a><a href="#faq" class="font-semibold transition-colors">FAQ</a><a href="#contact" class="btn-primary text-sm px-4 py-2"> Invia una Segnalazione <svg class="w-4 h-4 inline-block align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-xl pb-4 px-4 pt-2"><a href="#features" class="block py-3 border-b border-gray-700 font-semibold">Le Inchieste</a><a href="#about" class="block py-3 border-b border-gray-700 font-semibold">Il Metodo</a><a href="#reviews" class="block py-3 border-b border-gray-700 font-semibold">Impatto</a><a href="#faq" class="block py-3 border-b border-gray-700 font-semibold">FAQ</a><a href="#contact" class="block mt-4 text-center btn-primary w-full justify-center">Invia Segnalazione</a></div></nav><main><section class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><div class="w-full md:w-1/2 flex flex-col items-start text-left"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-800 border border-gray-700 text-sm font-semibold text-gray-300 mb-6"><span class="w-2 h-2 rounded-full bg-secondary"></span> Indipendenti e Senza Censure </div><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white"> La Verità non si nasconde: Il Tuo Portale di <span class="text-primary">Giornalismo Investigativo</span>. </h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> Qopebuyiex Collective porta alla luce i fatti che il potere vuole insabbiare. Attraverso indagini rigorose e reportage sul campo, diamo voce a chi non ne ha, svelando scandali e corruzione. </p><div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"><a href="#features" class="btn-primary justify-center"> Scopri le Inchieste <svg class="w-5 h-5 inline-block align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></a><a href="#contact" class="btn-secondary justify-center"> Sostieni il Progetto </a></div></div><div class="w-full md:w-1/2 relative"><div class="absolute inset-0 bg-gradient-to-tr from-primary to-transparent opacity-20 rounded-2xl transform translate-x-4 translate-y-4"></div><img src="https://images.pexels.com/photos/3944688/pexels-photo-3944688.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ea580c/ffffff?text=Giornalismo+Investigativo'" alt="Documenti e indagini giornalistiche" class="relative z-10 w-full h-auto object-cover rounded-2xl shadow-2xl border border-gray-800" loading="lazy" referrerpolicy="no-referrer"></div></div></section><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12"><p class="text-center text-sm font-semibold text-muted uppercase tracking-wider mb-6">Il nostro lavoro è stato ripreso da</p><div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale"><span class="text-xl font-bold font-serif">L'Eco Nazionale</span><span class="text-xl font-bold font-serif">Gazzetta Libera</span><span class="text-xl font-bold font-serif">La Voce Quotidiana</span><span class="text-xl font-bold font-serif">Rete Indipendente</span></div></div><hr class="section-divider"><section id="features" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">La Nostra Missione Editoriale</h2><p class="text-muted text-lg max-w-2xl mx-auto">Un portale di giornalismo investigativo italiano costruito sulla trasparenza, sul rigore dei dati e sul coraggio dei reporter sul campo.</p></div><div class="flex flex-col gap-12"><div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 dna-card accent-border-left"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=600" onerror="this.onerror=null; this.src='https://placehold.co/600x400/2a2a3d/e2e8f0?text=Inchieste+Approfondite'" alt="Analisi di documenti per inchieste" class="w-full h-auto rounded-lg shadow-md" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2"><div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-secondary mb-6"><svg class="w-6 h-6 inline-block align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Inchieste e Dossier Esclusivi</h3><p class="text-muted mb-4 leading-relaxed"> Il cuore del nostro portale sono le <strong>inchieste</strong> a lungo termine. Dedichiamo mesi alla raccolta di prove, incrociando fonti e documenti riservati per esporre la verità senza filtri. </p><ul class="space-y-2 text-gray-300"><li><svg class="w-5 h-5 inline-block align-middle text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Tracciamento di flussi finanziari illeciti</li><li><svg class="w-5 h-5 inline-block align-middle text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Denuncia di reati ambientali e speculazioni</li><li><svg class="w-5 h-5 inline-block align-middle text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Esposizione di conflitti di interesse politici</li></ul></div></div><div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 dna-card" style="border-right: 4px solid var(--secondary); border-left: 1px solid rgba(255,255,255,0.08);"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=600" onerror="this.onerror=null; this.src='https://placehold.co/600x400/2a2a3d/e2e8f0?text=Reportage+sul+Campo'" alt="Reporter sul campo con macchina fotografica" class="w-full h-auto rounded-lg shadow-md" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2"><div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-secondary mb-6"><svg class="w-6 h-6 inline-block align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Reportage sul Campo</h3><p class="text-muted mb-4 leading-relaxed"> Il vero <strong>giornalismo investigativo</strong> non si fa solo dietro una scrivania. I nostri reporter viaggiano in tutta Italia e in Europa per documentare con immagini e testimonianze dirette le realtà più scomode. </p><p class="text-gray-300"> Dalle periferie abbandonate ai luoghi del disastro ecologico, garantiamo una copertura visiva e narrativa che restituisce dignità alle vittime e inchioda i responsabili alle loro azioni. </p></div></div><div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 dna-card accent-border-left"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=600" onerror="this.onerror=null; this.src='https://placehold.co/600x400/2a2a3d/e2e8f0?text=Analisi+Dati'" alt="Schermo di computer con dati e codice" class="w-full h-auto rounded-lg shadow-md" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2"><div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-secondary mb-6"><svg class="w-6 h-6 inline-block align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Indagini Basate sui Dati (Data Journalism)</h3><p class="text-muted mb-4 leading-relaxed"> Dietro i grandi <strong>scandali</strong> ci sono quasi sempre anomalie nei numeri. Il nostro team di analisti e hacker etici setaccia database pubblici, appalti e bilanci aziendali. </p><p class="text-gray-300"> Trasformiamo migliaia di fogli di calcolo e documenti complessi in storie chiare, interattive e inconfutabili. Le nostre <strong>indagini</strong> basate sui dati non lasciano spazio a smentite. </p></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">L'Impatto delle Nostre Indagini</h2><p class="text-muted text-lg">Cosa dicono lettori, colleghi e attivisti del nostro lavoro indipendente.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="dna-card p-8 flex flex-col h-full relative"><svg class="w-8 h-8 text-secondary absolute top-6 right-6 opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg><p class="text-gray-300 flex-grow mb-6 relative z-10 italic"> "L'inchiesta sui fondi pubblici deviati è stata un capolavoro di giornalismo investigativo. Hanno mostrato documenti che nessun altro quotidiano aveva il coraggio di pubblicare." </p><div><p class="font-bold text-white">Marco T.</p><p class="text-sm text-primary">Attivista per la Trasparenza, 2026</p></div></div><div class="dna-card p-8 flex flex-col h-full relative"><svg class="w-8 h-8 text-secondary absolute top-6 right-6 opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg><p class="text-gray-300 flex-grow mb-6 relative z-10 italic"> "Seguo i loro reportage da anni. La qualità delle fonti e la cura maniacale nel fact-checking rendono Qopebuyiex Collective un baluardo dell'informazione libera in Italia." </p><div><p class="font-bold text-white">Elena R.</p><p class="text-sm text-primary">Lettrice e Sostenitrice, 2026</p></div></div><div class="dna-card p-8 flex flex-col h-full relative"><svg class="w-8 h-8 text-secondary absolute top-6 right-6 opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg><p class="text-gray-300 flex-grow mb-6 relative z-10 italic"> "Grazie alle loro indagini sul disastro ambientale nella nostra provincia, finalmente le autorità sono state costrette ad aprire un fascicolo d'inchiesta ufficiale." </p><div><p class="font-bold text-white">Comitato Cittadino</p><p class="text-sm text-primary">Associazione Locale, 2026</p></div></div></div></section><hr class="section-divider"><section id="faq" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-muted">Scopri di più sul nostro metodo di lavoro e su come finanziamo le inchieste.</p></div><div class="dna-card max-w-3xl mx-auto"><div class="space-y-4"><details class="group border-b border-gray-700 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg hover:text-primary transition-colors"> Come scegliete i temi delle vostre inchieste? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-4 leading-relaxed"> Le nostre inchieste nascono da segnalazioni verificate, dall'analisi di anomalie nei dati pubblici o dall'iniziativa dei nostri reporter. Ci concentriamo su scandali che hanno un reale impatto pubblico, dove vi è un chiaro tentativo di occultamento da parte di entità di potere. Il giornalismo investigativo richiede di seguire i fili più complessi. </p></details><details class="group border-b border-gray-700 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg hover:text-primary transition-colors"> Posso inviare documenti o segnalazioni in modo anonimo? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-4 leading-relaxed"> Assolutamente sì. La protezione delle fonti è la regola numero uno del nostro portale di giornalismo investigativo italiano. Accettiamo segnalazioni anonime e utilizziamo protocolli di sicurezza avanzati per garantire che l'identità di chi ci contatta per denunciare corruzione o illeciti rimanga strettamente confidenziale. </p></details><details class="group border-b border-gray-700 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg hover:text-primary transition-colors"> Come vi finanziate per mantenere la vostra indipendenza? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-4 leading-relaxed"> Non accettiamo pubblicità da multinazionali, partiti politici o enti statali. Le nostre indagini e i reportage sono finanziati esclusivamente attraverso il supporto dei lettori, abbonamenti al portale, e fondi da fondazioni filantropiche indipendenti che non hanno voce in capitolo sulla nostra linea editoriale. </p></details><details class="group border-b border-gray-700 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg hover:text-primary transition-colors"> Quanto tempo richiede la pubblicazione di un reportage? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-4 leading-relaxed"> Il vero giornalismo investigativo non ha scadenze dettate dai click. Un'inchiesta complessa può richiedere da alcune settimane a diversi mesi di lavoro. Dobbiamo raccogliere prove inconfutabili, incrociare i dati e concedere il diritto di replica ai soggetti coinvolti prima di pubblicare qualsiasi dossier. </p></details><details class="group pt-2"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg hover:text-primary transition-colors"> Collaborate con altri media internazionali? <span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-4 leading-relaxed"> Sì, le indagini moderne sui grandi scandali finanziari o ambientali spesso superano i confini nazionali. Lavoriamo in rete con consorzi europei e internazionali di giornalisti per condividere database, competenze e garantire che le nostre inchieste abbiano una risonanza globale. </p></details></div></div></section><hr class="section-divider"><section id="contact" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card flex flex-col md:flex-row gap-12"><div class="w-full md:w-5/12"><h2 class="text-3xl font-bold mb-6">Mettiti in Contatto</h2><p class="text-muted mb-8 leading-relaxed"> Hai una storia da raccontare? Sei a conoscenza di fatti che l'opinione pubblica dovrebbe conoscere? Il nostro team di giornalismo investigativo è pronto ad ascoltarti. Utilizza il modulo sicuro per inviarci un messaggio preliminare. </p><div class="space-y-6"><div class="flex items-start gap-4"><div class="mt-1 bg-gray-800 p-2 rounded-full text-primary"><svg class="w-5 h-5 inline-block align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></div><div><h4 class="font-bold text-white">Sede Operativa</h4><p class="text-muted">Redazione Digitale Distribuita<br>Nessuna sede fisica aperta al pubblico per motivi di sicurezza.</p></div></div><div class="flex items-start gap-4"><div class="mt-1 bg-gray-800 p-2 rounded-full text-primary"><svg class="w-5 h-5 inline-block align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><h4 class="font-bold text-white">Disponibilità</h4><p class="text-muted">Il team valuta le segnalazioni 24/7.<br>Tempi di risposta variabili in base al livello di sicurezza richiesto.</p></div></div></div></div><div class="w-full md:w-7/12"><form id="lead-form" class="space-y-6" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div class="grid grid-cols-1 sm:grid-cols-2 gap-6"><div><label for="name" class="block text-sm font-semibold text-gray-300 mb-2">Nome (o Pseudonimo)</label><input type="text" id="name" required placeholder="Inserisci il tuo nome"></div><div><label for="topic" class="block text-sm font-semibold text-gray-300 mb-2">Argomento della Segnalazione</label><select id="topic" required><option value="" disabled selected>Seleziona un'opzione...</option><option value="corruzione">Corruzione / Appalti</option><option value="ambiente">Reati Ambientali</option><option value="finanza">Scandali Finanziari</option><option value="diritti">Violazione Diritti Umani</option><option value="altro">Altro</option></select></div></div><div><label for="contact-method" class="block text-sm font-semibold text-gray-300 mb-2">Come possiamo ricontattarti in sicurezza?</label><input type="text" id="contact-method" required placeholder="Es. Account Signal, ID Telegram, ecc. (Niente email in chiaro)"></div><div><label for="message" class="block text-sm font-semibold text-gray-300 mb-2">Breve descrizione dei fatti</label><textarea id="message" rows="4" required placeholder="Descrivi brevemente la situazione. Non inserire dati sensibili in questo primo contatto."></textarea></div><button type="submit" class="btn-primary w-full justify-center text-lg py-3"> Invia Segnalazione Sicura <svg class="w-5 h-5 inline-block align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg></button></form><div id="success-msg" style="display:none" class="bg-gray-800 border border-green-500 rounded-lg p-8 text-center"><svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="text-2xl font-bold text-white mb-2">Messaggio Ricevuto</h3><p class="text-gray-300">La tua segnalazione è stata criptata e inviata al nostro team editoriale. Analizzeremo i dettagli forniti e ti contatteremo attraverso il canale sicuro indicato se riterremo necessario approfondire le indagini.</p></div></div></div></section></main><footer class="bg-gray-900 border-t border-gray-800 pt-16 pb-8"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"><div class="lg:col-span-2"><span class="text-2xl font-extrabold text-white tracking-tight" style="font-family: 'Lora', serif;"> Qopebuyiex <span class="text-primary">Collective</span></span><p class="mt-4 text-muted max-w-sm leading-relaxed"> Il portale di giornalismo investigativo italiano. Sveliamo scandali, conduciamo inchieste rigorose e produciamo reportage indipendenti per difendere il diritto alla verità. </p></div><div><h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Navigazione</h4><ul class="space-y-2"><li><a href="#features" class="transition-colors">Le Inchieste</a></li><li><a href="#reviews" class="transition-colors">Impatto e Recensioni</a></li><li><a href="#faq" class="transition-colors">Domande Frequenti</a></li><li><a href="#contact" class="transition-colors">Invia Segnalazione</a></li></ul></div><div><h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Legale & Sicurezza</h4><ul class="space-y-2"><li><a href="#" onclick="document.getElementById('legal-privacy').open = true; document.getElementById('legal-privacy').scrollIntoView(); return false;">Informativa Privacy</a></li><li><a href="#" onclick="document.getElementById('legal-terms').open = true; document.getElementById('legal-terms').scrollIntoView(); return false;">Termini di Servizio</a></li><li><a href="#" onclick="document.getElementById('legal-refunds').open = true; document.getElementById('legal-refunds').scrollIntoView(); return false;">Politica Rimborsi/Donazioni</a></li></ul></div></div><div class="bg-gray-800 p-4 rounded-lg mb-8 text-center border border-gray-700"><p class="text-sm text-gray-400"><strong class="text-white">Avviso di Trasparenza:</strong> Questo è un sito promozionale indipendente gestito da Qopebuyiex Collective, che agisce come affiliato per WeReport. </p></div><div class="border-t border-gray-800 pt-8 text-center text-sm text-muted"><p>&copy; 2026 Qopebuyiex Collective. Tutti i diritti riservati.</p></div><div class="mt-12 space-y-4 text-left"><details id="legal-privacy" class="bg-gray-800 rounded-lg p-4 border border-gray-700"><summary class="font-bold cursor-pointer text-white">Informativa sulla Privacy Completa</summary><div class="mt-4 text-sm text-gray-400 space-y-3"><p>La presente Informativa sulla Privacy descrive le modalità di gestione del portale Qopebuyiex Collective in riferimento al trattamento dei dati personali degli utenti che lo consultano e che interagiscono con i nostri servizi di giornalismo investigativo. Riconosciamo l'estrema importanza della riservatezza, specialmente nel contesto delle inchieste e delle segnalazioni sensibili. I dati personali forniti volontariamente dagli utenti attraverso i moduli di contatto presenti sul sito vengono trattati con la massima cura e per le sole finalità connesse alla gestione delle comunicazioni e delle indagini giornalistiche. Nessun dato raccolto viene venduto, ceduto o affittato a terze parti per scopi commerciali o di marketing. Il trattamento dei dati avviene mediante l'utilizzo di strumenti informatici e telematici, con logiche strettamente correlate alle finalità stesse e, comunque, in modo da garantire la sicurezza e la riservatezza dei dati stessi secondo le normative vigenti in materia di protezione dei dati personali, incluso il GDPR (Regolamento UE 2016/679). Raccogliamo solo le informazioni strettamente necessarie, come nomi o pseudonimi forniti volontariamente e i metodi di contatto sicuri scelti dall'utente. I sistemi informatici e le procedure software preposte al funzionamento di questo sito web acquisiscono, nel corso del loro normale esercizio, alcuni dati personali la cui trasmissione è implicita nell'uso dei protocolli di comunicazione di Internet (come indirizzi IP o nomi a dominio dei computer). Questi dati vengono utilizzati al solo fine di ricavare informazioni statistiche anonime sull'uso del sito e per controllarne il corretto funzionamento. L'utente ha il diritto, in qualunque momento, di ottenere la conferma dell'esistenza o meno dei medesimi dati e di conoscerne il contenuto e l'origine, verificarne l'esattezza o chiederne l'integrazione, l'aggiornamento, la rettifica o la cancellazione. Per esercitare tali diritti, l'utente può utilizzare il modulo di contatto generico presente sul sito. I dati relativi alle segnalazioni di inchieste vengono conservati in archivi criptati offline per il tempo strettamente necessario allo svolgimento delle indagini giornalistiche e, successivamente, distrutti in modo sicuro se non più rilevanti ai fini della documentazione storica. Ci riserviamo il diritto di apportare modifiche alla presente informativa sulla privacy in qualunque momento, dandone informazione agli utenti su questa pagina. Si prega dunque di consultare regolarmente questa sezione, prendendo come riferimento la data di ultima modifica indicata in fondo. L'utilizzo continuato del portale dopo la pubblicazione delle modifiche costituirà l'accettazione delle stesse.</p></div></details><details id="legal-terms" class="bg-gray-800 rounded-lg p-4 border border-gray-700"><summary class="font-bold cursor-pointer text-white">Termini e Condizioni di Utilizzo</summary><div class="mt-4 text-sm text-gray-400 space-y-3"><p>I presenti Termini e Condizioni disciplinano l'accesso e l'utilizzo del portale Qopebuyiex Collective e di tutti i contenuti, i reportage, le inchieste e i servizi correlati in esso pubblicati. Accedendo al sito, l'utente accetta di essere vincolato dai presenti termini nella loro interezza. Se non si accettano questi termini, si è pregati di non utilizzare il nostro sito web. Tutti i contenuti pubblicati sul portale, inclusi testi, articoli, indagini, fotografie, grafici, analisi di dati e layout, sono di proprietà esclusiva di Qopebuyiex Collective o dei rispettivi autori e sono protetti dalle leggi sul diritto d'autore e sulla proprietà intellettuale. È severamente vietata la riproduzione, la distribuzione, la modifica o l'utilizzo commerciale dei nostri contenuti senza un'autorizzazione scritta preventiva da parte della nostra redazione. Tuttavia, incoraggiamo la condivisione dei link diretti ai nostri articoli per diffondere i risultati del nostro giornalismo investigativo, purché venga sempre citata chiaramente la fonte. L'utente si impegna a utilizzare il sito esclusivamente per scopi leciti e in modo da non ledere i diritti di terzi o limitare l'uso e il godimento del sito da parte di altri. È vietato tentare di ottenere accesso non autorizzato ai nostri sistemi informatici, ai database delle inchieste o alle aree riservate del sito. Qopebuyiex Collective si impegna a fornire informazioni accurate e verificate attraverso rigorosi processi di fact-checking; tuttavia, non possiamo garantire in modo assoluto l'assenza di errori o imprecisioni, e non ci assumiamo alcuna responsabilità per eventuali danni diretti o indiretti derivanti dall'utilizzo delle informazioni presenti sul sito. Le opinioni espresse negli articoli di commento appartengono ai rispettivi autori e non riflettono necessariamente la posizione ufficiale del collettivo. Ci riserviamo il diritto di modificare, sospendere o interrompere, in tutto o in parte, i servizi offerti sul sito in qualsiasi momento e senza preavviso. Inoltre, ci riserviamo il diritto di aggiornare o modificare i presenti Termini e Condizioni in qualsiasi momento; le modifiche diventeranno effettive immediatamente dopo la loro pubblicazione sul sito. Eventuali controversie legali relative all'utilizzo del sito o all'interpretazione dei presenti termini saranno regolate in conformità con la legislazione vigente e sottoposte alla giurisdizione esclusiva dei tribunali competenti. L'utilizzo di sistemi automatici di scraping o data mining sui nostri articoli è vietato senza esplicito consenso. Per qualsiasi richiesta di utilizzo del materiale, si prega di utilizzare il modulo di contatto.</p></div></details><details id="legal-refunds" class="bg-gray-800 rounded-lg p-4 border border-gray-700"><summary class="font-bold cursor-pointer text-white">Politica su Rimborsi, Abbonamenti e Donazioni</summary><div class="mt-4 text-sm text-gray-400 space-y-3"><p>La presente politica regola le transazioni finanziarie effettuate sul portale Qopebuyiex Collective, con particolare riferimento alle donazioni volontarie, al supporto per specifiche inchieste e agli eventuali abbonamenti per l'accesso a dossier esclusivi di giornalismo investigativo. In quanto entità dedicata all'informazione indipendente, le risorse raccolte vengono immediatamente allocate per finanziare le spese vive dei reportage, i viaggi dei reporter, le analisi legali e la sicurezza informatica. Per tale motivo, tutte le donazioni singole effettuate a sostegno del nostro lavoro sono da considerarsi finali e non rimborsabili, a meno che non si verifichino comprovati errori tecnici o duplicazioni accidentali della transazione durante la fase di pagamento. Nel caso in cui si riscontri un addebito anomalo o doppio, l'utente è tenuto a segnalarlo tempestivamente utilizzando il modulo di contatto presente nella sezione "Mettiti in Contatto", fornendo i dettagli dell'operazione per consentire al nostro team amministrativo di effettuare le dovute verifiche. Per quanto riguarda gli abbonamenti periodici o il supporto ricorrente, l'utente ha la piena facoltà di cancellare il rinnovo automatico in qualsiasi momento attraverso le impostazioni del proprio profilo o richiedendolo tramite il modulo di contatto. La cancellazione del rinnovo impedirà addebiti futuri, ma non darà diritto al rimborso parziale per il periodo di fatturazione già iniziato. Nel caso di acquisto di singoli dossier o reportage premium scaricabili in formato digitale, il diritto di recesso si perde nel momento in cui ha inizio il download o l'accesso al contenuto, data la natura intangibile del bene digitale. Se un utente incontra difficoltà tecniche nell'accedere al materiale acquistato, il nostro team si impegna a fornire assistenza per risolvere il problema o a fornire una copia alternativa del documento. Le richieste di rimborso per motivazioni legate al disaccordo con la linea editoriale o con i risultati di una specifica indagine non saranno prese in considerazione, poiché garantiamo l'indipendenza e l'autonomia delle nostre inchieste da qualsiasi influenza, inclusa quella dei sostenitori. Qualsiasi controversia relativa ai pagamenti dovrà essere comunicata entro trenta giorni dalla data della transazione contestata. Qopebuyiex Collective si riserva il diritto di modificare questa politica in qualsiasi momento, aggiornando la presente pagina. Le modifiche non avranno effetto retroattivo sulle transazioni già completate. Ringraziamo profondamente tutti coloro che scelgono di finanziare la verità attraverso il nostro portale.</p></div></details></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-primary p-4 z-50 transform translate-y-full transition-transform duration-500 shadow-2xl"><div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-300"> Utilizziamo cookie tecnici essenziali per garantire la sicurezza del portale e proteggere le comunicazioni delle nostre inchieste. Non utilizziamo cookie di profilazione commerciale. </div><div class="flex gap-4 shrink-0"><button onclick="acceptCookies()" class="btn-primary text-sm py-2 px-4">Accetta Essenziali</button></div></div></div> <script>
+        // Intercept all hash links for smooth scrolling and self-healing routing
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
                 
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    // Fallback to Contact if ID missing
+                    // Fallback to #contact if section is missing
                     const contactSection = document.getElementById('contact');
-                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
-                
-                // Close Mobile Menu if open
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
+                    if (contactSection) {
+                        console.warn(`Section #${targetId} not found. Redirecting to #contact.`);
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
             });
         });
 
         // Cookie Banner Logic
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'true');
-            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
-        }
-
-        window.onload = function() {
-            if (!localStorage.getItem('cookieConsent')) {
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('cookies_accepted')) {
                 setTimeout(() => {
-                    document.getElementById('cookie-banner').style.transform = 'translateY(0)';
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
                 }, 1000);
             }
-        };
-    </script>
-</body>
-</html>
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookies_accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script> </body></html>
