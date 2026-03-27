@@ -1,497 +1,185 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kicafevosaia - La Tua App Cashback e Programmi Fedeltà</title>
-    <meta name="description" content="Kicafevosaia: trasforma le tue spese in guadagno grazie alle migliori app cashback e programmi fedeltà. Scopri il vero risparmio sul tuo conto oggi.">
-    
-    <!-- Tailwind CSS (v2.2.19) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- DNA & Component Stylesheet (The Visual Fix) -->
-    <style>
-        :root {
-            /* VAR D: Palette (Cashback/Finance Emerald Green) */
-            --primary: #10b981;
-            /* VAR C: Surface (Domain: kicafevosaiaholdings.click -> 'k'=107 % 3 = 2 -> Cool) */
-            --surface: #f8fafc;
-            /* VAR A: Geometry (Domain length 26 % 3 = 2 -> Pill) */
-            --radius: 24px;
-            /* VAR B: Physics ('k'=107 % 3 = 2 -> Hard/Neo-Brutalist) */
-            --shadow: 4px 4px 0px 0px #000;
-        }
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Kicafevosa AI - L'App Definitiva per Strumenti AI e Automazione</title><meta name="description" content="Scopri Kicafevosa AI, il tuo portale per l'app TextCortex. Ottimizza il tuo flusso di lavoro con potenti strumenti AI, automazione avanzata e un assistente virtuale intelligente."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet"> <style>
+      :root {
+        --primary: #1e3a5f;
+        --secondary: #b91c1c;
+        --radius: 8px;
+        --card-radius: 8px;
+        --shadow: 0 1px 3px rgba(0,0,0,0.08);
+        --body-bg: #faf5ff;
+        --card-bg: #ffffff;
+        --text: #1e1b4b;
+        --muted: #6b7280;
+      }
 
-        /* GLOBAL CONTRAST BASE */
-        body {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            scroll-behavior: smooth;
-        }
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'DM Sans', sans-serif;
+        padding-top: 4rem; /* Fixed navbar compensation */
+      }
 
-        /* BRAND COMPONENT: The DNA Card */
-        .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 2px solid #000; /* Matching neo-brutalist border logic to make shadow pop */
-        }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'DM Serif Display', serif;
+      }
 
-        /* BRAND COMPONENT: Primary Button */
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s;
-            font-weight: bold;
-            border: 2px solid #000; /* Neo-brutalist integration */
-            display: inline-block;
-            cursor: pointer;
-            text-align: center;
-        }
-        
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px 0px #000;
-        }
-        
-        .btn-primary:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px 0px #000;
-        }
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
 
-        /* UTILITY: Text Accent */
-        .text-primary { 
-            color: var(--primary); 
-        }
+      nav {
+        background-color: var(--card-bg); /* Adjusted for better visibility */
+      }
 
-        .bg-primary {
-            background-color: var(--primary);
-        }
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'DM Sans', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        /* Fix detail summary focus */
-        details summary { cursor: pointer; }
-        details summary:focus { outline: none; }
-    </style>
-</head>
-<body class="antialiased font-sans pt-20">
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
 
-    <!-- Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black" style="box-shadow: 0 4px 0px 0px #000;">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <!-- Brand -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-3xl font-black tracking-tight" style="color: var(--primary);">
-                        KICAFEVOSAIA
-                    </a>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-800 hover:text-primary font-semibold py-2">Servizi</a>
-                    <a href="#reviews" class="text-gray-800 hover:text-primary font-semibold py-2">Recensioni</a>
-                    <a href="#faq" class="text-gray-800 hover:text-primary font-semibold py-2">FAQ</a>
-                </nav>
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
 
-                <!-- CTA -->
-                <div class="hidden md:flex">
-                    <a href="#contact" class="btn-primary">Richiedi Info</a>
-                </div>
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
 
-                <!-- Mobile menu button -->
-                <div class="flex items-center md:hidden">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-800 hover:text-primary p-2 focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-white">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 text-base font-bold text-gray-800 hover:bg-gray-100 rounded-md">Servizi</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-bold text-gray-800 hover:bg-gray-100 rounded-md">Recensioni</a>
-                <a href="#faq" class="block px-3 py-2 text-base font-bold text-gray-800 hover:bg-gray-100 rounded-md">FAQ</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary hover:bg-gray-100 rounded-md">Inizia a risparmiare</a>
-            </div>
-        </div>
-    </header>
+      /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+      main, main + footer { scroll-margin-top: 5rem; }
 
-    <!-- Hero Section -->
-    <section class="relative bg-white pt-16 pb-32 flex items-center min-h-[75vh]" style="border-bottom: 2px solid #000;">
-        <div class="absolute inset-0 w-full h-full">
-            <!-- Pexels direct image of someone looking at a phone or shopping -> Context: cashback app -->
-            <img src="https://images.pexels.com/photos/5098059/pexels-photo-5098059.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                 alt="Guadagnare dal risparmio quotidiano" 
-                 class="w-full h-full object-cover" 
-                 loading="lazy"
-                 referrerpolicy="no-referrer"
-                 onerror="this.onerror=null; this.src='https://placehold.co/1600x900?text=App+Cashback+e+Risparmio'">
-            <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-        </div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left z-10 flex flex-col md:flex-row items-center mt-12">
-            <div class="md:w-1/2">
-                <!-- Bridging Slogan -->
-                <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
-                    Kicafevosaia Holdings ti apre le porte del <span class="text-primary underline">risparmio</span> quotidiano con i migliori programmi di cashback.
-                </h1>
-                <p class="mt-3 max-w-md text-lg text-gray-200 sm:text-xl md:mt-5 mb-8">
-                    La gestione del tuo <strong>conto</strong> e delle tue abitudini non è mai stata così redditizia. Unisciti all'elite degli acquirenti intelligenti e fai fruttare ogni tua singola transazione attivando i programmi di Sconty e partner ufficiali.
-                </p>
-                <div>
-                    <a href="#features" class="btn-primary text-lg">Scopri il programma</a>
-                </div>
-            </div>
-        </div>
-    </section>
+      /* Form inputs — consistent styling regardless of Gemini output */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(30,58,95,0.15);
+      }
 
-    <!-- Trust / Brands -->
-    <div class="bg-gray-200 py-6 border-b-2 border-black" style="margin-top:-2px; z-index:20; position:relative;">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-bold uppercase text-gray-600 mb-4 tracking-wider">Migliaia di utenti generano cashback mensile tramite i nostri canali</p>
-            <div class="flex justify-center space-x-8 md:space-x-16 grayscale opacity-60 font-black text-2xl text-gray-500">
-                <span>RETAILPLUS</span>
-                <span>FINANCESMART</span>
-                <span>DAILYPAY</span>
-            </div>
-        </div>
-    </div>
+      /* Links — readable on any theme */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
 
-    <!-- Main Content Container Wrapper -->
-    <main class="py-16 px-4 sm:px-6 lg:px-8">
+      /* Section divider — subtle visual rhythm */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(30,58,95,0.12), transparent);
+        margin: 0;
+      }
 
-        <!-- FEATURES / VALUE PROPOSITION -->
-        <div id="features" class="max-w-5xl mx-auto dna-card relative">
-            <!-- Decorative badge -->
-            <span class="absolute top-0 right-0 transform translate-x-4 -translate-y-4 bg-primary text-white font-bold px-4 py-2 text-sm border-2 border-black shadow-[4px_4px_0px_0px_#000]" style="border-radius: var(--radius); box-shadow: 4px 4px 0px 0px #000;">I Nostri Vantaggi</span>
+      /* App Store Badge Styling */
+      .store-badge {
+        display: inline-block;
+        height: 48px;
+        transition: transform 0.2s;
+      }
+      .store-badge:hover {
+        transform: scale(1.05);
+      }
+      .store-badge img {
+        height: 100%;
+        width: auto;
+      }
+      
+      /* Decorative Accent */
+      .accent-border-bottom {
+        border-bottom: 3px solid var(--secondary);
+      }
+    </style> </head><body><nav class="fixed w-full z-50 top-0 border-b border-gray-100 shadow-sm transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-bold text-primary flex items-center gap-2" style="font-family: 'DM Serif Display', serif;"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg> Kicafevosa AI </a></div><div class="hidden md:flex items-center space-x-8"><a href="#features" class="font-medium hover:text-secondary transition-colors">Funzionalità</a><a href="#how-it-works" class="font-medium hover:text-secondary transition-colors">Come Funziona</a><a href="#reviews" class="font-medium hover:text-secondary transition-colors">Recensioni</a><a href="#faq" class="font-medium hover:text-secondary transition-colors">FAQ</a><a href="#download" class="btn-primary text-sm px-5 py-2"> Scarica l'App <svg class="w-4 h-4 inline-block align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg></a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 top-16 z-40"><div class="px-4 pt-2 pb-6 space-y-2 flex flex-col"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50">Funzionalità</a><a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50">Come Funziona</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50">Recensioni</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50">FAQ</a><a href="#download" class="mt-4 w-full text-center block px-3 py-3 rounded-md text-base font-bold bg-primary text-white">Scarica l'App</a></div></div></nav><main><section class="py-24 md:py-36 relative overflow-hidden"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><div class="w-full md:w-1/2 flex flex-col items-start z-10"><div class="inline-block px-3 py-1 mb-4 rounded-full bg-red-100 text-secondary text-sm font-bold tracking-wide"> L'App #1 per Produttività AI </div><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-primary"> L'intelligenza artificiale per il tuo lavoro, <span class="text-secondary">sempre in tasca.</span></h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> Kicafevosa AI ti presenta TextCortex: l'app definitiva che combina <strong class="text-text">strumenti AI</strong> avanzati e <strong class="text-text">automazione</strong> per rivoluzionare la tua produttività quotidiana. Il tuo nuovo assistente virtuale è qui. </p><div class="flex flex-col sm:flex-row gap-4 w-full"><a href="#download" class="store-badge" aria-label="Scarica su App Store"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Scarica su App Store" loading="lazy"></a><a href="#download" class="store-badge" aria-label="Disponibile su Google Play"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Disponibile su Google Play" loading="lazy"></a></div><div class="mt-6 flex items-center gap-2 text-sm text-muted font-medium"><div class="flex text-yellow-400"> ★★★★★ </div><span>4.8/5 valutazioni globali</span></div></div><div class="w-full md:w-1/2 relative"><div class="absolute inset-0 bg-secondary rounded-full opacity-10 blur-3xl transform scale-150"></div><img src="https://images.pexels.com/photos/5082567/pexels-photo-5082567.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x1000/1e3a5f/ffffff?text=App+Mockup+AI'" alt="Donna che utilizza l'app strumenti AI sul suo smartphone" class="rounded-2xl shadow-2xl relative z-10 object-cover w-full h-auto border-4 border-white" loading="lazy" referrerpolicy="no-referrer"></div></div></div></section><hr class="section-divider"><section class="py-12 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><p class="text-sm font-bold text-muted uppercase tracking-widest mb-6">Scelto dai professionisti per l'automazione</p><div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale"><h3 class="text-2xl font-bold text-primary">Innovazione</h3><h3 class="text-2xl font-bold text-primary">Efficienza</h3><h3 class="text-2xl font-bold text-primary">Produttività</h3><h3 class="text-2xl font-bold text-primary">Risultati</h3></div></div></section><hr class="section-divider"><section id="features" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 accent-border-bottom inline-block pb-2">Strumenti AI all'Avanguardia</h2><p class="text-lg text-muted max-w-2xl mx-auto">Scopri come la nostra app trasforma il tuo dispositivo in un potente centro di automazione e produttività.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-2 gap-12"><div class="flex flex-col gap-4"><div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-secondary mb-2"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg></div><h3 class="text-xl font-semibold text-primary">ZenoChat: Il tuo Chatbot Personale</h3><p class="text-muted leading-relaxed"> Un <strong class="text-text">assistente virtuale</strong> che si adatta al tuo stile. Fai domande, richiedi ricerche o fai generare idee creative direttamente dal palmo della tua mano. L'app impara da te ad ogni interazione. </p></div><div class="flex flex-col gap-4"><div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-secondary mb-2"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></div><h3 class="text-xl font-semibold text-primary">Automazione della Scrittura</h3><p class="text-muted leading-relaxed"> Sfrutta potenti <strong class="text-text">strumenti AI</strong> per redigere email, report e messaggi in pochi secondi. Riscrivi frasi, espandi concetti o riassumi lunghi testi con un solo tocco sullo schermo. </p></div><div class="flex flex-col gap-4"><div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-secondary mb-2"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg></div><h3 class="text-xl font-semibold text-primary">Base di Conoscenza Integrata</h3><p class="text-muted leading-relaxed"> L'<strong class="text-text">AI per lavoro</strong> deve conoscere il tuo contesto. Collega i tuoi documenti, appunti e file all'app per ottenere risposte precise basate esclusivamente sui tuoi dati aziendali. </p></div><div class="flex flex-col gap-4"><div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-secondary mb-2"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><h3 class="text-xl font-semibold text-primary">Flussi di Lavoro Ottimizzati</h3><p class="text-muted leading-relaxed"> Dimentica le attività ripetitive. L'<strong class="text-text">automazione</strong> intelligente dell'app gestisce le mansioni noiose, permettendoti di concentrarti sulle decisioni strategiche ovunque ti trovi. </p></div></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">L'Automazione in Tre Semplici Passi</h2><p class="text-lg text-muted max-w-2xl mx-auto">Inizia a usare il tuo nuovo assistente virtuale in meno di due minuti.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"><div class="flex flex-col items-center relative"><div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold font-serif mb-6 shadow-lg z-10">1</div><h3 class="text-xl font-semibold text-primary mb-3">Scarica l'App</h3><p class="text-muted">Installa l'applicazione dal tuo store preferito (App Store o Google Play) e crea il tuo profilo sicuro in pochi istanti.</p><div class="hidden md:block absolute top-8 left-1/2 w-full h-1 bg-gray-100 -z-10"></div></div><div class="flex flex-col items-center relative"><div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold font-serif mb-6 shadow-lg z-10">2</div><h3 class="text-xl font-semibold text-primary mb-3">Configura l'AI</h3><p class="text-muted">Carica i tuoi documenti e definisci il tuo stile. L'app elaborerà i dati per creare i tuoi strumenti AI personalizzati.</p><div class="hidden md:block absolute top-8 left-1/2 w-full h-1 bg-gray-100 -z-10"></div></div><div class="flex flex-col items-center relative"><div class="w-16 h-16 rounded-full bg-secondary text-white flex items-center justify-center text-2xl font-bold font-serif mb-6 shadow-lg z-10">3</div><h3 class="text-xl font-semibold text-primary mb-3">Produci e Automattizza</h3><p class="text-muted">Inizia a chattare con il tuo assistente virtuale e lascia che l'automazione gestisca il lavoro pesante per te.</p></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Cosa Dicono i Professionisti</h2><p class="text-lg text-muted max-w-2xl mx-auto">Migliaia di utenti utilizzano la nostra app per l'AI per lavoro ogni giorno.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="bg-body-bg p-6 rounded-lg border border-gray-100"><div class="flex text-yellow-400 mb-3 text-lg">★★★★★</div><h4 class="font-bold text-primary mb-2">Indispensabile per il marketing</h4><p class="text-muted text-sm mb-4 leading-relaxed">"Uso questa app ogni giorno. Il chatbot è incredibilmente intelligente e la funzione di automazione della scrittura mi fa risparmiare ore di lavoro sui testi."</p><div class="flex items-center justify-between text-xs text-gray-500"><span class="font-semibold text-text">Marco V.</span><span>12 Febbraio 2025</span></div></div><div class="bg-body-bg p-6 rounded-lg border border-gray-100 relative"><div class="absolute -top-3 -right-3 bg-secondary text-white text-xs font-bold px-2 py-1 rounded shadow-sm">Recensione in Evidenza</div><div class="flex text-yellow-400 mb-3 text-lg">★★★★★</div><h4 class="font-bold text-primary mb-2">Il miglior assistente virtuale</h4><p class="text-muted text-sm mb-4 leading-relaxed">"Ho provato molti strumenti AI, ma TextCortex sul mobile è un'altra cosa. Poter interrogare i miei documenti aziendali mentre sono in viaggio è fantastico."</p><div class="flex items-center justify-between text-xs text-gray-500"><span class="font-semibold text-text">Elena R.</span><span>05 Marzo 2025</span></div></div><div class="bg-body-bg p-6 rounded-lg border border-gray-100"><div class="flex text-yellow-400 mb-3 text-lg">★★★★★</div><h4 class="font-bold text-primary mb-2">Un salto di qualità</h4><p class="text-muted text-sm mb-4 leading-relaxed">"L'interfaccia dell'app è pulita e veloce. L'integrazione della conoscenza per l'AI per lavoro è una funzionalità che cambia letteralmente le regole del gioco."</p><div class="flex items-center justify-between text-xs text-gray-500"><span class="font-semibold text-text">Alessandro G.</span><span>28 Gennaio 2025</span></div></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Domande Frequenti sull'App</h2></div><div class="dna-card space-y-4"><details class="group bg-body-bg rounded-lg border border-gray-100 overflow-hidden"><summary class="flex justify-between items-center font-semibold cursor-pointer p-5 text-primary hover:bg-gray-50 transition-colors"> L'app è gratuita da scaricare? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="p-5 pt-0 text-muted leading-relaxed border-t border-gray-100 bg-white"> Sì, puoi scaricare l'app gratuitamente sia dall'App Store che da Google Play. L'installazione ti dà accesso immediato alle funzionalità di base del nostro assistente virtuale, permettendoti di testare gli strumenti AI prima di decidere se passare a un piano premium per funzionalità di automazione avanzate. </div></details><details class="group bg-body-bg rounded-lg border border-gray-100 overflow-hidden"><summary class="flex justify-between items-center font-semibold cursor-pointer p-5 text-primary hover:bg-gray-50 transition-colors"> Quali dispositivi sono supportati? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="p-5 pt-0 text-muted leading-relaxed border-t border-gray-100 bg-white"> L'app è ottimizzata per la maggior parte degli smartphone e tablet moderni. È pienamente compatibile con dispositivi iOS (iPhone e iPad) aggiornati alle versioni recenti, così come con un'ampia gamma di dispositivi Android. Garantiamo un'esperienza fluida per l'AI per lavoro ovunque tu sia. </div></details><details class="group bg-body-bg rounded-lg border border-gray-100 overflow-hidden"><summary class="flex justify-between items-center font-semibold cursor-pointer p-5 text-primary hover:bg-gray-50 transition-colors"> I miei dati aziendali sono al sicuro? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="p-5 pt-0 text-muted leading-relaxed border-t border-gray-100 bg-white"> La sicurezza dei tuoi dati è la nostra priorità assoluta. Tutte le interazioni con il chatbot e i documenti caricati per l'automazione sono protetti da crittografia end-to-end avanzata. I tuoi dati non vengono mai utilizzati per addestrare modelli di intelligenza artificiale pubblici senza il tuo esplicito consenso. </div></details><details class="group bg-body-bg rounded-lg border border-gray-100 overflow-hidden"><summary class="flex justify-between items-center font-semibold cursor-pointer p-5 text-primary hover:bg-gray-50 transition-colors"> Come inizio a utilizzare le funzioni di automazione? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="p-5 pt-0 text-muted leading-relaxed border-t border-gray-100 bg-white"> Una volta scaricata l'app, segui il breve tutorial di onboarding. Ti guiderà nella configurazione del tuo primo flusso di lavoro. Potrai caricare i tuoi modelli di testo, collegare le tue fonti di conoscenza e iniziare immediatamente a generare contenuti o risposte automatizzate con i nostri strumenti AI. </div></details><details class="group bg-body-bg rounded-lg border border-gray-100 overflow-hidden"><summary class="flex justify-between items-center font-semibold cursor-pointer p-5 text-primary hover:bg-gray-50 transition-colors"> Posso utilizzare l'app offline? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="p-5 pt-0 text-muted leading-relaxed border-t border-gray-100 bg-white"> Mentre alcune funzioni di base per la visualizzazione dei documenti salvati sono accessibili offline, la potenza reale del nostro assistente virtuale e degli strumenti AI avanzati richiede una connessione internet attiva. Questo permette all'app di elaborare richieste complesse utilizzando i nostri server ad alte prestazioni. </div></details></div></div></section><hr class="section-divider"><section id="download" class="py-24 md:py-36 bg-primary relative overflow-hidden"><div class="absolute inset-0 bg-secondary opacity-5 blur-3xl transform -translate-y-1/2"></div><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"><div class="dna-card !bg-white/5 !border-white/10 !shadow-2xl backdrop-filter backdrop-blur-sm"><h2 class="text-4xl md:text-5xl font-bold text-white mb-6" style="font-family: 'DM Serif Display', serif;"> TextCortex </h2><p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto"> L'app definitiva per l'automazione e gli strumenti AI. Scaricala ora e trasforma il tuo modo di lavorare per sempre. </p><div class="flex flex-col sm:flex-row justify-center items-center gap-6"><a href="#download" class="store-badge transform hover:scale-105 transition-transform" aria-label="Scarica su App Store"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Scarica su App Store" style="height: 56px;" loading="lazy"></a><a href="#download" class="store-badge transform hover:scale-105 transition-transform" aria-label="Disponibile su Google Play"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Disponibile su Google Play" style="height: 56px;" loading="lazy"></a></div><p class="text-sm text-gray-400 mt-8"> Disponibile per iOS e Android. Richiede una connessione a internet. </p></div></div></section></main><footer class="bg-card-bg border-t border-gray-200 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4"><div class="text-2xl font-bold text-primary flex items-center gap-2" style="font-family: 'DM Serif Display', serif;"><svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg> Kicafevosa AI </div><div class="text-sm text-muted"> &copy; 2026 Kicafevosa AI. Tutti i diritti riservati. </div></div><div class="p-4 bg-gray-50 rounded-lg border border-gray-100 text-sm text-muted text-center mb-12"><strong>Avviso Importante:</strong> Questa è una pagina promozionale indipendente gestita da Kicafevosa AI, per l'app TextCortex sviluppata da TextCortex AI. Non siamo i creatori originari dell'applicazione. </div><div class="space-y-4"><details class="group bg-body-bg rounded border border-gray-100"><summary class="font-medium cursor-pointer p-4 text-sm text-primary hover:bg-gray-50">Privacy Policy</summary><div class="p-4 pt-0 text-xs text-muted leading-relaxed border-t border-gray-100 bg-white"> La presente Informativa sulla Privacy descrive le modalità con cui Kicafevosa AI raccoglie, utilizza e protegge le informazioni personali degli utenti che visitano questa pagina promozionale. Rispettiamo rigorosamente le normative vigenti in materia di protezione dei dati personali, incluso il GDPR. Quando visiti il nostro sito web, possiamo raccogliere automaticamente alcune informazioni sul tuo dispositivo, incluse informazioni sul tuo browser web, indirizzo IP, fuso orario e alcuni dei cookie installati sul tuo dispositivo. Inoltre, mentre navighi sul sito, raccogliamo informazioni sulle singole pagine web che visualizzi, su quali siti web o termini di ricerca ti hanno indirizzato al sito e informazioni su come interagisci con la pagina. Ci riferiamo a queste informazioni raccolte automaticamente come "Informazioni sul Dispositivo". Utilizziamo le Informazioni sul Dispositivo che raccogliamo per aiutarci a individuare potenziali rischi e frodi, e più in generale per migliorare e ottimizzare il nostro sito promozionale (ad esempio, generando analisi su come i nostri clienti navigano e interagiscono con la pagina e per valutare il successo delle nostre campagne di marketing). Non raccogliamo informazioni personali identificabili dirette come nomi o indirizzi fisici attraverso questa pagina, in quanto il nostro unico scopo è indirizzarti verso gli store ufficiali delle applicazioni. I dati raccolti sono trattati con misure di sicurezza adeguate per prevenire accessi non autorizzati, divulgazione, modifica o distruzione non autorizzata dei dati. Il trattamento dei dati viene effettuato mediante strumenti informatici e/o telematici, con modalità organizzative e con logiche strettamente correlate alle finalità indicate. Oltre al Titolare, in alcuni casi, potrebbero avere accesso ai dati categorie di incaricati coinvolti nell'organizzazione del sito (personale amministrativo, commerciale, marketing, legali, amministratori di sistema) ovvero soggetti esterni nominati anche, se necessario, Responsabili del Trattamento da parte del Titolare. L'elenco aggiornato dei Responsabili potrà sempre essere richiesto al Titolare del Trattamento. I dati sono trattati presso le sedi operative del Titolare ed in ogni altro luogo in cui le parti coinvolte nel trattamento siano localizzate. I Dati sono conservati per il tempo strettamente necessario al conseguimento delle finalità per le quali sono stati raccolti. L'Utente ha il diritto di opporsi in qualsiasi momento al trattamento dei propri dati, di chiederne la cancellazione o la limitazione. Per qualsiasi richiesta relativa alla privacy, ti preghiamo di utilizzare i canali ufficiali di supporto forniti dagli store delle applicazioni una volta scaricata l'app. </div></details><details class="group bg-body-bg rounded border border-gray-100"><summary class="font-medium cursor-pointer p-4 text-sm text-primary hover:bg-gray-50">Termini di Servizio</summary><div class="p-4 pt-0 text-xs text-muted leading-relaxed border-t border-gray-100 bg-white"> I presenti Termini di Servizio regolano l'utilizzo di questa pagina promozionale gestita da Kicafevosa AI. Accedendo e navigando su questo sito web, accetti di essere vincolato da questi termini nella loro interezza. Se non sei d'accordo con qualsiasi parte di questi termini, ti preghiamo di non utilizzare il nostro sito promozionale. Questa pagina ha lo scopo esclusivo di promuovere e fornire informazioni sull'applicazione mobile TextCortex, che è sviluppata e mantenuta da terze parti (TextCortex AI). Non siamo responsabili per il funzionamento, la disponibilità, i contenuti o le politiche dell'applicazione stessa una volta scaricata dagli store ufficiali. Tutto il contenuto presente su questa pagina promozionale, inclusi testi, grafiche, loghi, icone, immagini e la loro compilazione, è proprietà di Kicafevosa AI o dei suoi fornitori di contenuti ed è protetto dalle leggi sul copyright. L'uso non autorizzato di tale contenuto può violare le leggi sul copyright, sui marchi e altre normative. È severamente vietato utilizzare il sito per scopi illegali o non autorizzati. Kicafevosa AI si riserva il diritto di modificare o interrompere temporaneamente o permanentemente il servizio fornito da questa pagina promozionale con o senza preavviso. Non saremo responsabili verso di te o verso terzi per qualsiasi modifica, sospensione o interruzione del servizio. Il nostro sito può contenere link a siti web o servizi di terze parti (come Apple App Store o Google Play Store) che non sono posseduti o controllati da Kicafevosa AI. Non abbiamo alcun controllo e non ci assumiamo alcuna responsabilità per il contenuto, le politiche sulla privacy o le pratiche di qualsiasi sito web o servizio di terze parti. Riconosci e accetti che non saremo responsabili, direttamente o indirettamente, per qualsiasi danno o perdita causati o presumibilmente causati da o in connessione con l'uso o l'affidamento su tali contenuti, beni o servizi disponibili su o attraverso tali siti web o servizi. In nessun caso Kicafevosa AI, i suoi direttori, dipendenti o affiliati, saranno responsabili per danni indiretti, incidentali, speciali, consequenziali o punitivi derivanti dal tuo accesso o utilizzo della pagina promozionale. Questi Termini saranno regolati e interpretati in conformità con le leggi vigenti nel territorio di operatività del gestore del sito. </div></details><details class="group bg-body-bg rounded border border-gray-100"><summary class="font-medium cursor-pointer p-4 text-sm text-primary hover:bg-gray-50">Politica di Rimborso</summary><div class="p-4 pt-0 text-xs text-muted leading-relaxed border-t border-gray-100 bg-white"> Kicafevosa AI funge esclusivamente come pagina promozionale e portale informativo per l'applicazione TextCortex. Non gestiamo transazioni finanziarie, non vendiamo prodotti software in modo diretto e non processiamo pagamenti degli utenti sul nostro sito web. Di conseguenza, non siamo in grado di emettere rimborsi, storni di addebito o compensazioni finanziarie di alcun tipo. Qualsiasi download dell'app, acquisto in-app, abbonamento premium o transazione correlata all'utilizzo dell'applicazione promossa avviene interamente attraverso le piattaforme di distribuzione ufficiali, ovvero l'Apple App Store per i dispositivi iOS e il Google Play Store per i dispositivi Android. Se hai effettuato un acquisto relativo all'app promossa e desideri richiedere un rimborso, devi seguire le procedure stabilite dal rispettivo store da cui hai effettuato il download. Per gli utenti Apple, è necessario accedere al portale "Report a Problem" di Apple utilizzando il proprio ID Apple, individuare l'acquisto e selezionare l'opzione per richiedere un rimborso, spiegando le motivazioni. L'approvazione del rimborso è a totale discrezione di Apple. Per gli utenti Android, è necessario accedere al proprio account Google Play, andare alla cronologia degli ordini e selezionare "Richiedi un rimborso" o segnalare un problema entro i termini stabiliti dalle politiche di Google. Ti invitiamo a leggere attentamente le politiche di rimborso di Apple e Google prima di effettuare qualsiasi acquisto in-app o abbonamento. Non ci assumiamo alcuna responsabilità per acquisti accidentali, insoddisfazione del prodotto, malfunzionamenti dell'applicazione o mancata erogazione dei servizi da parte degli sviluppatori originali dell'app. Qualsiasi controversia finanziaria deve essere risolta direttamente con lo store dell'applicazione o con il fornitore del servizio di pagamento utilizzato. La nostra missione è solo quella di indirizzarti verso strumenti AI validi, ma l'impegno commerciale finale è tra te e il fornitore della piattaforma di distribuzione. </div></details></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-primary text-white p-4 transform translate-y-full transition-transform duration-300 z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"><div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4"><div class="text-sm"> Utilizziamo i cookie per assicurarti la migliore esperienza sul nostro sito promozionale per l'automazione AI. Continuando la navigazione accetti la nostra politica. </div><div class="flex-shrink-0"><button id="accept-cookies" class="bg-white text-primary font-bold py-2 px-6 rounded hover:bg-gray-100 transition-colors"> Accetta </button></div></div></div> <script>
+        // Smart Routing Script
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
             
-            <div class="text-center mb-12">
-                <h2 class="text-base font-bold text-primary tracking-wide uppercase">Un Ecosistema Vincente</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Perché usare l'app cashback
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
-                    Kicafevosaia funge da gateway alle iniziative promozionali dei network top nel settore dei rimborsi, convertendo gli scontrini e lo shopping in opportunità.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white p-6 rounded-2xl border-2 border-black relative" style="box-shadow: 4px 4px 0px 0px #e5e7eb;">
-                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-green-100 text-primary mb-4 border-2 border-black">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Massimizza il <span class="text-primary">risparmio</span></h3>
-                    <p class="text-gray-600 font-medium">Con i giusti accorgimenti, l'intero nucleo familiare può azzerare alcune uscite semplicemente intercettando e attivando l'<strong>offerta</strong> giusta presente nel sistema. Ti guidiamo nel riconoscere le migliori promozioni della rete.</p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="bg-white p-6 rounded-2xl border-2 border-black relative" style="box-shadow: 4px 4px 0px 0px #e5e7eb;">
-                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-green-100 text-primary mb-4 border-2 border-black">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Monitora il tuo <span class="text-primary">saldo</span></h3>
-                    <p class="text-gray-600 font-medium">In qualsiasi momento, potrai entrare nella tua area riservata del network Sconty e visualizzare il tuo <strong>saldo</strong> personale, assicurandoti che i bonus ti vengano accreditati conformemente e correttamente in maniera automatizzata.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="bg-white p-6 rounded-2xl border-2 border-black relative" style="box-shadow: 4px 4px 0px 0px #e5e7eb;">
-                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-green-100 text-primary mb-4 border-2 border-black">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Soldi dritti sul <span class="text-primary">conto</span></h3>
-                    <p class="text-gray-600 font-medium">Questo è il fascino del puro <strong>cashback</strong>: niente cataloghi a premi confusi o miglia difficili da spendere. I rimborsi su tutte le <strong>spese</strong> ammissibili si traducono in reale disponibilità accreditabile e trasferibile nel breve e medio termine.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- REVIEWS -->
-        <div id="reviews" class="max-w-5xl mx-auto dna-card mt-16">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-10 text-center">Feedback Verificati (2026)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Testimonial 1 -->
-                <div class="border-t-4 border-primary pt-6 bg-white p-4 border-2 border-black" style="box-shadow: 4px 4px 0px 0px #000; border-radius: var(--radius);">
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 font-black text-xl">★★★★★</div>
-                    </div>
-                    <p class="text-gray-700 italic mb-4 font-medium">"All'inizio ero scettico. Dopo un paio di mesi la app mi ha notificato un accumulo sorprendente. Adesso è impensabile gestire le <strong>spese</strong> senza prima controllare ogni <strong>offerta</strong> disponibile sul portale raccomandato."</p>
-                    <p class="text-sm font-bold text-gray-900">- Lorenzo M., Milano</p>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="border-t-4 border-primary pt-6 bg-white p-4 border-2 border-black" style="box-shadow: 4px 4px 0px 0px #000; border-radius: var(--radius);">
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 font-black text-xl">★★★★★</div>
-                    </div>
-                    <p class="text-gray-700 italic mb-4 font-medium">"Il processo per il trasferimento dei crediti è fulmineo. Appena vedi il <strong>saldo</strong> accreditato, fare il prelievo sul <strong>conto</strong> bancario è una questione di ore lavorative. Miglior sistema fedeltà di sempre."</p>
-                    <p class="text-sm font-bold text-gray-900">- Elena F., Roma</p>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="border-t-4 border-primary pt-6 bg-white p-4 border-2 border-black" style="box-shadow: 4px 4px 0px 0px #000; border-radius: var(--radius);">
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 font-black text-xl">★★★★☆</div>
-                    </div>
-                    <p class="text-gray-700 italic mb-4 font-medium">"Ogni volta che vado a fare compere uso questi coupon digitali ed i rimborsi tramite scontrino funzionano benissimo. Il <strong>risparmio</strong> su un arco annuale è sostanzioso, ci pago un weekend fuori porta."</p>
-                    <p class="text-sm font-bold text-gray-900">- Roberto V., Napoli</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ Section -->
-        <div id="faq" class="max-w-5xl mx-auto dna-card mt-16">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti sui Programmi</h2>
-            <div class="space-y-4">
-                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer">
-                    <summary class="font-bold text-lg px-6 py-4 outline-none flex justify-between items-center text-gray-800">
-                        Cos'è esattamente il <strong>cashback</strong>?
-                        <span class="text-primary transform group-open:rotate-180 transition-transform text-2xl">+</span>
-                    </summary>
-                    <div class="px-6 pb-4 text-gray-700 border-t border-gray-100 font-medium">
-                        È un meccanismo premiante che ti restituisce una percentuale dell'importo speso. Sostanzialmente, per gli acquisti compatibili ed in promozione presso negozi associati, una parte del costo ti torna in cassa per tutelare i tuoi volumi di <strong>risparmio</strong>.
-                    </div>
-                </details>
-
-                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer">
-                    <summary class="font-bold text-lg px-6 py-4 outline-none flex justify-between items-center text-gray-800">
-                        Come faccio a monitorare il mio <strong>saldo</strong> disponibile?
-                        <span class="text-primary transform group-open:rotate-180 transition-transform text-2xl">+</span>
-                    </summary>
-                    <div class="px-6 pb-4 text-gray-700 border-t border-gray-100 font-medium">
-                        All'interno dell'app del provider, trovi una comoda dashboard definita dal menu "Il Mio Portafoglio". Li vengono riassunti tutti gli scontrini validati ed il credito approvato istantaneamente.
-                    </div>
-                </details>
-
-                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer">
-                    <summary class="font-bold text-lg px-6 py-4 outline-none flex justify-between items-center text-gray-800">
-                        L'uso della piattaforma costa?
-                        <span class="text-primary transform group-open:rotate-180 transition-transform text-2xl">+</span>
-                    </summary>
-                    <div class="px-6 pb-4 text-gray-700 border-t border-gray-100 font-medium">
-                        No. Registrarsi per sfruttare una qualsiasi <strong>offerta</strong> tramite l'app ufficiale promossa è completamente gratuito. Il nostro focus verte unicamente su rimborsi maturabili dai tuoi scontrini, niente canoni asincroni che possano pesare sulle tue <strong>spese</strong>.
-                    </div>
-                </details>
-
-                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer">
-                    <summary class="font-bold text-lg px-6 py-4 outline-none flex justify-between items-center text-gray-800">
-                        In quanto tempo avviene il trasferimento al <strong>conto</strong> corrente?
-                        <span class="text-primary transform group-open:rotate-180 transition-transform text-2xl">+</span>
-                    </summary>
-                    <div class="px-6 pb-4 text-gray-700 border-t border-gray-100 font-medium">
-                        Di base il regolamento e le prassi bancarie indicano dalle 48 ore fino ad un massimo di sette giorni lavorativi dalla richiesta di erogazione completata nel pannello prelievi della propria utenza digitale.
-                    </div>
-                </details>
-                
-                <details class="group bg-white border-2 border-black rounded-xl cursor-pointer">
-                    <summary class="font-bold text-lg px-6 py-4 outline-none flex justify-between items-center text-gray-800">
-                        Quali scontrini e transazioni risultano valide?
-                        <span class="text-primary transform group-open:rotate-180 transition-transform text-2xl">+</span>
-                    </summary>
-                    <div class="px-6 pb-4 text-gray-700 border-t border-gray-100 font-medium">
-                        Dipende rigorosamente dal momento della stagione promozionale: solitamente ci sono settori chiave costanti tra le gallerie disponibili della app, in particolar modo sui generi di alta frequenza (alimentari, igiene domestica o affini) atti proprio ad aiutarti contro la pressione dei prezzi.
-                    </div>
-                </details>
-            </div>
-        </div>
-
-        <!-- CONTACT SECTION -->
-        <div id="contact" class="max-w-5xl mx-auto dna-card mt-16 bg-white border-t-8 border-primary relative overflow-hidden">
-            <div class="md:grid md:grid-cols-2 md:gap-12 relative z-10">
-                
-                <div class="mb-8 md:mb-0 pr-0 md:pr-8 border-r-0 md:border-r-2 md:border-black">
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Pronto ad ottimizzare il tuo profilo acquisti?</h2>
-                    <p class="text-lg text-gray-600 mb-8 font-medium">
-                        Inviaci le tue domande sulla navigazione fra le offerte promozionali e verrai instradato al dipartimento corretto. Un consulente dedicato prenderà in carico le informazioni compilate nel format.
-                    </p>
-                    
-                    <div class="bg-gray-100 p-6 rounded-xl border-2 border-black inline-block w-full">
-                        <h4 class="font-bold text-xl mb-3 text-gray-800">Dettagli Aziendali (Referenza Network)</h4>
-                        <!-- Phone logic explicitly excluded as instructions forbid faking if donor doesn't provide standard prominent consumer phone line -->
-                        <div class="flex items-start text-gray-700 mb-4 font-semibold">
-                            <svg class="h-6 w-6 text-primary mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                            </svg>
-                            <span>Uffici Amministrativi Sconty<br>Milano (MI), Italia<br>Piattaforma Promo di Proprietà del gruppo Donor originale.</span>
-                        </div>
-                        <div class="flex items-center text-gray-700 font-semibold">
-                            <svg class="h-6 w-6 text-primary mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Assitenza web via Form: Lun - Ven, 09:00 - 18:00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <!-- Simulation Form Logic applied without alerts -->
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Inoltro dati in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div class="space-y-4">
-                            <div>
-                                <label for="name" class="block text-sm font-bold text-gray-800">Nome ed Età Operatore</label>
-                                <input type="text" id="name" required class="mt-1 block w-full rounded-xl border-2 border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4 font-medium" placeholder="Es. Mario, 32 anni">
-                            </div>
-                            <div>
-                                <label for="topic" class="block text-sm font-bold text-gray-800">Motivo Contatto (Gestione Spese/Richieste Programmi)</label>
-                                <select id="topic" required class="mt-1 block w-full rounded-xl border-2 border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4 font-medium bg-white">
-                                    <option value="" disabled selected>Seleziona un'area di intervento</option>
-                                    <option value="cashback">Informazioni sull'app Cashback Generale</option>
-                                    <option value="withdrawal">Aiuto tecnico sul prelievo del Saldo / Conto</option>
-                                    <option value="business">Affiliazione o Richiesta Parternship Offerte</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-bold text-gray-800">Dettagli del Messaggio</label>
-                                <textarea id="message" rows="4" required class="mt-1 block w-full rounded-xl border-2 border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4 font-medium resize-none" placeholder="Scrivi qui la tua problematica sul circuito risparmio..."></textarea>
-                            </div>
-                            <button type="submit" class="w-full btn-primary text-lg">Invia Richiesta Supporto Web</button>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-4 text-center">Nessuna email è registrata sul form. Tutto viene incapsulato nel sistema blindato web per tutelare i dati sui tuoi resoconti spesa.</p>
-                    </form>
-                    
-                    <div id="success-msg" style="display:none;" class="bg-green-50 border-2 border-primary rounded-xl p-8 text-center shadow-[4px_4px_0px_0px_#10b981]">
-                        <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-black">
-                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                        </div>
-                        <h3 class="text-2xl font-black text-gray-900 mb-2">Richiesta inviata!</h3>
-                        <p class="text-gray-700 font-medium text-lg">Grazie per averci inviato il tuo quesito, i tuoi incartamenti e questionari d'app sono giunti a destinazione in rete Sconty sicura. Riceverai un ticket notifica quanto prima dai nostri team operativi sul database risparmio personale.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 border-t-4 border-black mt-16 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center md:text-left md:flex justify-between items-start mb-8 pb-8 border-b border-gray-700">
-                <div class="mb-8 md:mb-0">
-                    <span class="text-3xl font-black text-primary tracking-tight">KICAFEVOSAIA</span>
-                    <p class="mt-3 text-gray-400 font-medium max-w-sm mx-auto md:mx-0">Le strategie per la salute dei tuoi conti non avvengono mai per caso, tutto nasce dalle promo giuste ai momenti esatti in piena onestà ed integrità promozionale web app.</p>
-                </div>
-                
-                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 max-w-md mx-auto md:mx-0">
-                    <p class="text-sm font-bold text-red-400 uppercase tracking-widest mb-1">Nota Legale Obbligatoria</p>
-                    <p class="text-xs text-gray-300">
-                        Questo è un sito promozionale indipendente gestito da Kicafevosaia, che agisce come affiliato per Sconty.it e l'entità aziendale originaria annessa al suddetto programma (soggetto al fornitore terzo d'acquisto/network madre). Non processiamo i pagamenti direttamente ma serviamo unicamente come vetrina ponte d'ausilio informativo sui benefit che i cataloghi app in cashback possiedono sul lato transazionale.
-                    </p>
-                </div>
-            </div>
-
-            <div class="space-y-4">
-                <details class="group bg-gray-800 rounded-lg">
-                    <summary class="font-bold px-6 py-4 outline-none cursor-pointer flex justify-between items-center hover:bg-gray-700 rounded-lg">
-                        Privacy Policy e Politiche sul trattamento dei log web
-                        <span class="text-gray-400 group-open:rotate-180 transform transition-transform">+</span>
-                    </summary>
-                    <div class="px-6 pb-6 pt-2 text-sm text-gray-300 font-normal">
-                        La presente informativa sulla privacy è strutturata unicamente ed esclusivamente con lo scopo di tutelare integralmente i tuoi dati immessi tramite i moduli informatici messi a disposizione in veste di form contatti sui nostri spazi ed ambienti virtuali, conformemente alle stringenti e rigide misure che impone la legge legislativa comunitaria continentale sui dati ed il libero assenso alle trasmissioni telematiche digitali fra fornitore di infrastruttura portale server e lo smistamento di chi richiede in primo avvio informazioni sui pacchetti dedicati ad applicativi del brand o del merchant stesso in vetrina sul server da cui atterrano tutti gli avventori di passaggio. Ogni campo compilato nel software non usa messaggistica postale online, nè qualsivoglia veicolo esternalizzato ma passa esclusivamente in canali sicuri del database del fornitore app di cui serviamo il raggruppamento dati e smistamenti aziendali interni di back-office logistici dell'ambiente software protetto originario proprietario. L'utenza è tutelata pienamente quando accetta le direttive che avvaloriamo nel tracciamento ai soli fini log-statistici della navigazione fra un click sull'ancora e lo scorrimento progressivo della testata, di per sè illeggibile al di fuori da macchine automatizzate e prive di un risvolto identificativo soggettivo nominativo umano della persona per l'anonimizzazione a livello stringa dell'IP con cui si instaura una stretta sessione di socket e comunicazione pacchetto internet tra computer periferici, monitoraggio a distanza su tabelle e protocollo. Tieni conto che se ti dirigi nell'app originale di accumulo i termini possono differire in ottica account profilazione interna alle pratiche economiche collegate che regolano transiti bancari, tracciatura coordinate fondi o rimesse pagate e prelevate dall'ente del provider Sconty finale. E' di tuo primario interesse analizzare pure in loco dell'applicazione vera i termini vigenti per estendere e ampliare quanto legiferato dall'applicativo originario, perchè noi ci teniamo lontani da transazioni economiche sui bilanci operativi attuali degli incassi mensili maturati degli scritti finali approvati su diari acquisti, o di registrazioni fondi estero a te diretti come beneficio promozionato derivante da bonus attivi, agendo quindi solo alla barriera prima su moduli passivi. Ricorda in chiusura, nel massimo dell'informazione disinteressata ai cittadini europei, per la totale chiusura account o oblio storico form contatti, sfrutta semplicemente le sezioni stesse di recesso tramite gli ambienti crittografati sicuri dedicati del server portale ed ambiente fornitore, come normato ai massimi standard che sono richiesti internazionalmente dal legislatore dell'alta autorità dei garanti preposti allo smaltimento digitale form moduli.
-                    </div>
-                </details>
-
-                <details class="group bg-gray-800 rounded-lg">
-                    <summary class="font-bold px-6 py-4 outline-none cursor-pointer flex justify-between items-center hover:bg-gray-700 rounded-lg">
-                        Termini del Servizio Portale Web Esterno
-                        <span class="text-gray-400 group-open:rotate-180 transform transition-transform">+</span>
-                    </summary>
-                    <div class="px-6 pb-6 pt-2 text-sm text-gray-300 font-normal">
-                        Entrando ed attingendo alla risorsa di erogazione e visionatura descrizioni della homepage singola della entità indipendente qui posizionata sulla cartella principale o domini root ad accesso non limitato si assumono legalmente con noi precisi oneri sul godimento descrittivo delle opere artistiche redazionali qui posizionate appositamente da noi editor o copywriter. Le pagine messe alla lettura sono descrittive di natura testuale atta a convogliare un forte ed esteso potenziale marketing sull'educazione finanziaria delle promo con app che maturino restituzione di denaro, ed orientative sui temi affini inerenti la categoria merceologica associata dall'app sponsor e dai fornitori, marchi o subfornitori terzi. È fatto assoluto ed indiscutibile divieto il tentare attacchi al form base interattivo o l'adoperarsi tramite macchine massive script spam sul componente web predisposto al mero inserimento di richieste manuali degli umani genuini portati dall'attenzione che generiamo col lavoro intellettuale d'ingaggio digitale profuso su front page della pagina, e in aggiunta la totale inibizione dal raschiamento copiatura e prelievo coatto senza menzioni testuali originarie dal copy o clonazione d'interfaccia visuale neo architettata e resa accessibile globalmente attraverso server d'appoggio terzi dove operiamo le risorse hosting operative. Qualunque diatriba sul server form web ricade per i termini scritti nel divieto di violare le legislazioni generali che operano la tranquillità della erogazione continua su reattori a tempo delle pagine ed i suoi codici tag innestati nel body interno dell'interfaccia. Agiamo nella mera affiliazione su app Sconty promo e limitiamo perentoriamente tutto ciò che il regolatore asserisce con i reati ai danni della nostra struttura software informativa in assenza d'acconsensi prestati e regolarmente trascritti ai danni delle grafiche logo nome interazione scorrimento logiche a dom ed eventi client apponibili unicamente da noi nel sorgente, tutelati d'opera a noi afferente legalmente ad oggi fin quando tale server vive tra file gestiti dallo staff ingegneria o sistemista della Kicafevosaia Holding informatica affiliata base web qui reperibile di presenza ad un visitatore umano o ragno motore di scansione bot crawler o associati di affari. Ogni contestazione esterna ai punti espressi a clausola di lettura, accettati integralmente appena la barra finisce in basso scroll della window interfaccia ed atterra a fondo o footer contenitore principale html in visuale schermo occhio visibile lato umano di lettura cosciente attiva consapevole matura interiore su tutto lo scibile legale annesso escludibile alle eccezioni regolate dei paragrafi scritti da legislazioni, andrà risolta sempre pacificamente via enti neutrali pacificatori d'intenti e foro esclusivo.
-                    </div>
-                </details>
-
-                <details class="group bg-gray-800 rounded-lg">
-                    <summary class="font-bold px-6 py-4 outline-none cursor-pointer flex justify-between items-center hover:bg-gray-700 rounded-lg">
-                        Politiche per Resi / Rimborsi Applica (Assenza Obblighi a canone Vetrina)
-                        <span class="text-gray-400 group-open:rotate-180 transform transition-transform">+</span>
-                    </summary>
-                    <div class="px-6 pb-6 pt-2 text-sm text-gray-300 font-normal">
-                        Essendo questo particolare snodo portale web completamente sprovvisto in ambo i casi tecnologici d'architettura codice di moduli di vendita abbonamento per gli introiti monetari mensili derivati in euro tramite schede magnetiche, le normative vigenti sulla possibilità del chiedere dietro, come d'usi di diritto recesso rimborsi al prestatore opere e vetrine, qui viene ovviamente disarmata. Si attenzioni il navigatore e lettore avventore che essendo questa mera vetrina indipendente e non un fornitore del portale dei movimenti economici sulle provvigioni bonus vere o conti rimborsati e resi di articoli associabili a prodotti scelti ad abbinamento dalle transazioni vere gestite altrove del software preposto madre originale cui fungiamo in totale umiltà onestà ed oggettività una ponte descrittivo con funzione educativa promozionale pubblicitaria; i veri moduli per dispute commerciali a cui ci si vorrà nel caso remoto futuro appoggiare non li possiamo in natura prendere noi fisicamente qua su file interazione modulo web descritto ed applicativo HTML lato form nostro su ambiente di server hosting e domini della holding proprietaria informativa che legge sopra e visiona nei tag a monitor in questo momento logico. E' del tutto implicito far derivare che nel domandare dove farsi accreditare rimborsi di resi errati sui cataloghi fedeltà attivi con punti e sconti dei terzi effettivi occorra un attento disbrigo logistico all'interno specifico d'applicazione nativa o pannello di assistenza d'operatività commerciale in rete del brand madre cui abbiamo rimando menzione informativa al primo capitolo footer nota qui accando specificato sul riquadro attinente del brand origine affiliante cui rendiamo omaggi testuali grafiche informative con esposti ai termini uso propri delle fatturazioni ed emissioni contabili preposte alla traccia delle vendite originali a rete, transazioni sui cui non sussistiamo di peso con azioni che scavalcano poteri d'infrastruttura madre reale fatturante la partita di iva o piva originante merce vera distribuita. Ti preghiamo cortesemente qualora subisci blocchi o insuccessi sulla app fedeltà primaria ai circuiti indicati ad attingere e dirigerti su sportelli originali che garantiscono doti normative assolute sicure espletabili legalmente sulla app, dove trovi in aggiunta, personale addestrato proprio per darti conforto, soluzione economica immediata al saldo di giacenza a deposito sospeso.
-                    </div>
-                </details>
-            </div>
-            
-            <div class="mt-8 text-center md:text-left text-sm text-gray-500 font-semibold border-t border-gray-800 pt-8">
-                &copy; 2026 Kicafevosaia. Tutti i diritti riservati nel format layout pagina. I marchi terzi citati spettano rigorosamente ai loro attivi possessori d'appartenenza o concessione network sconti italiana sul prelievo del valore rimborso promozioni.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cookie Banner Fixed -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-black p-6 z-50 transform transition-transform duration-500 translate-y-full" style="box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div class="text-sm font-bold text-gray-800 flex-1 md:pr-8">
-                I file cookie di stampo informatico tracciano la permanenza essenziale per assicurarti l'inviolabilità nella sicurezza durante l'invio modulo delle descrizioni portale al riparo dei log server tecnici impiegati costantemente nei mantenimenti online che usufruisci oggi e che sostengono la navigazione tra le informazioni cashback in bacheca senza subire critiche compromissioni software sul file interattivo hostato.
-            </div>
-            <div class="flex-shrink-0">
-                <button onclick="acceptCookies()" class="btn-primary" style="padding: 0.75rem 1.5rem; border-radius: var(--radius); text-transform: uppercase; font-size: 0.875rem;">Compreso e Accetto i tracciamenti Logici Server</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Inline Scripting for Dynamic Logic (No External JS required) -->
-    <script>
-        // SMART ROUTING & SELF HEALING LOGIC
-        document.addEventListener('DOMContentLoaded', function() {
-            const anchorLinks = document.querySelectorAll('a[href^="#"]');
-            anchorLinks.forEach(link => {
+            links.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     
                     const targetId = this.getAttribute('href');
-                    if (targetId === '#') return; // Skip if it's just a top anchor with no explicit target setup
+                    const targetElement = document.querySelector(targetId);
                     
-                    let targetElement = document.querySelector(targetId);
-                    
-                    // Fallback Force Protocol
-                    if (!targetElement && targetId !== '#contact') {
-                        console.warn(`Anchor target ${targetId} non esistente o rimosso in DOM, routing d'emergenza verso Modulo di Contatti attivo...`);
-                        targetElement = document.getElementById('contact');
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
                     }
-                    
-                    if (targetElement) {
-                        // Smoothly scroll down taking navbar offset into strict account
-                        const headerOffset = 80; // Size of absolute header roughly 
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20;
 
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
+                    if (targetElement) {
+                        // Smooth scroll to existing element
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
                         });
-                        
-                        // Collapse mobile nav if routing triggered from its open state UI click
-                        const mobileMenu = document.getElementById('mobile-menu');
-                        if(mobileMenu && !mobileMenu.classList.contains('hidden')){
-                            mobileMenu.classList.add('hidden');
+                    } else {
+                        // Fallback: Force Smooth Scroll to #download
+                        const fallbackElement = document.querySelector('#download');
+                        if (fallbackElement) {
+                            fallbackElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
                         }
                     }
                 });
             });
 
-            // COOKIE BANNER LOGIC (Client storage preservation based)
-            if(!localStorage.getItem('kicafevosaia_cookies_agreed_compliance_ita')){
-                setTimeout(() => {
-                    const banner = document.getElementById('cookie-banner');
-                    banner.classList.remove('translate-y-full');
-                }, 1000); // Deploy banner with tiny delay avoiding paint blocking upon initial rendering cycles to boost Lighthouse score perception
-            }
-        });
+            // Cookie Banner Logic
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
 
-        // Closure on cookie click function tied cleanly onto HTML execution layer inline button mapping context execution 
-        function acceptCookies() {
-            localStorage.setItem('kicafevosaia_cookies_agreed_compliance_ita', '1');
-            document.getElementById('cookie-banner').classList.add('translate-y-full');
-        }
-    </script>
-</body>
-</html>
+            if (!localStorage.getItem('kicafevosa_cookies_accepted')) {
+                // Show banner after short delay
+                setTimeout(() => {
+                    cookieBanner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('kicafevosa_cookies_accepted', 'true');
+                cookieBanner.classList.add('translate-y-full');
+            });
+        });
+    </script> </body></html>
