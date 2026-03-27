@@ -1,494 +1,153 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huroweor Group | Piattaforme E-Learning Avanzate</title>
-    <meta name="description" content="Rivoluziona la formazione aziendale e accademica con la piattaforma e-learning supportata da Huroweor Group. Inizia subito.">
-    
-    <!-- Tailwind CSS (CDN) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- DNA Styles Inject -->
-    <style>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Huroweor Group | Itinerari di Viaggio e Borghi Italiani</title><meta name="description" content="Scopri i borghi italiani più affascinanti con Huroweor Group. Creiamo il tuo itinerario di viaggio perfetto per un weekend fuori porta indimenticabile."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Fraunces:wght@700;800&display=swap" rel="stylesheet"> <style>
       :root {
-        /* VAR D (Palette) - Tech/Knowledge Indigo */
-        --primary: #4f46e5; 
-        /* VAR C (Surface) - Warm (Last char 's' -> %3 = 1 -> Cream White) */
-        --surface: #fffdf5; 
-        /* VAR A (Geometry) - Pill (Len 20 -> %3 = 2 -> 24px) */
-        --radius: 24px; 
-        /* VAR B (Physics) - Hard / Neo-Brutalist (First char 'h' 104 -> %3 = 2 -> 4px 4px #000) */
-        --shadow: 4px 4px 0px 0px #000; 
+        --primary: #ea580c;
+        --secondary: #7c3aed;
+        --radius: 8px;
+        --card-radius: 8px;
+        --shadow: 0 1px 3px rgba(0,0,0,0.08);
+        --body-bg: #f0f9ff;
+        --card-bg: #ffffff;
+        --text: #0c4a6e;
+        --muted: #64748b;
       }
 
-      /* GLOBAL CONTRAST BASE */
       body {
-        background-color: #f3f4f6;
-        color: #1f2937;
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'Work Sans', sans-serif;
+        padding-top: 4rem; /* Fixed navbar compensation */
       }
 
-      /* BRAND COMPONENT: The DNA Card */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Fraunces', serif;
+      }
+
       .dna-card {
-        background-color: var(--surface);
-        border-radius: var(--radius);
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
         box-shadow: var(--shadow);
         padding: 2.5rem;
         margin-bottom: 2rem;
-        border: 2px solid #000; /* Neo-brutalist requires a strong border */
+        border: 1px solid rgba(0,0,0,0.05);
       }
 
-      /* BRAND COMPONENT: Primary Button */
+      nav {
+        background-color: var(--body-bg);
+      }
+
       .btn-primary {
-         background-color: var(--primary);
-         color: #ffffff !important;
-         border-radius: var(--radius);
-         box-shadow: var(--shadow);
-         border: 2px solid #000;
-         padding: 1rem 2.5rem;
-         transition: all 0.2s ease-in-out;
-         font-weight: bold;
-         display: inline-flex;
-         align-items: center;
-         justify-content: center;
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'Work Sans', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
       }
-      
-      .btn-primary:hover { 
-        transform: translate(2px, 2px); 
-        box-shadow: 2px 2px 0px 0px #000; 
-      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-      /* BRAND COMPONENT: Secondary Button */
       .btn-secondary {
-         background-color: #fff;
-         color: #000 !important;
-         border-radius: var(--radius);
-         box-shadow: var(--shadow);
-         border: 2px solid #000;
-         padding: 1rem 2.5rem;
-         transition: all 0.2s ease-in-out;
-         font-weight: bold;
-         display: inline-flex;
-      }
-      
-      .btn-secondary:hover { 
-        transform: translate(2px, 2px); 
-        box-shadow: 2px 2px 0px 0px #000; 
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
       }
 
-      /* UTILITY: Text Accent */
-      .text-primary { color: var(--primary); font-weight: bold;}
-      
-      /* Detail tags for FAQ and Legal */
-      details > summary { list-style: none; cursor: pointer; outline: none; }
-      details > summary::-webkit-details-marker { display: none; }
-    </style>
-</head>
-<body class="antialiased flex flex-col min-h-screen">
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
 
-    <!-- NAVIGATION -->
-    <header class="bg-white border-b-2 border-black sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-black tracking-tighter uppercase" style="color: var(--primary);">
-                        Huroweor Group
-                    </span>
-                </div>
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-800 hover:text-black font-semibold uppercase text-sm tracking-wide">Piattaforma</a>
-                    <a href="#reviews" class="text-gray-800 hover:text-black font-semibold uppercase text-sm tracking-wide">Recensioni</a>
-                    <a href="#faq" class="text-gray-800 hover:text-black font-semibold uppercase text-sm tracking-wide">FAQ</a>
-                </nav>
-                <div class="hidden md:flex items-center">
-                    <a href="#contact" class="btn-primary">Richiedi Demo</a>
-                </div>
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-800 hover:text-black p-2 outline-none">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 rounded-md text-base font-bold text-gray-800 hover:text-primary">Piattaforma</a>
-                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-bold text-gray-800 hover:text-primary">Recensioni</a>
-                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-bold text-gray-800 hover:text-primary">FAQ</a>
-                <a href="#contact" class="block px-3 py-2 text-center btn-primary w-full mt-4">Richiedi Demo</a>
-            </div>
-        </div>
-    </header>
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
 
-    <!-- HERO SECTION (Full width, overlay pattern) -->
-    <section class="relative bg-gray-900 py-32 flex items-center justify-center">
-        <!-- Background Image Fallback & Overlay -->
-        <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80" 
-             onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1a1a1a/ffffff?text=E-Learning+Platform'" 
-             alt="Persone che lavorano con piattaforma elearning" 
-             class="absolute inset-0 w-full h-full object-cover z-0" 
-             referrerpolicy="no-referrer">
-        <div class="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
-        
-        <div class="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <div class="inline-block bg-white text-black text-sm font-bold uppercase tracking-wider py-1 px-3 mb-6 border-2 border-black" style="box-shadow: 2px 2px 0 0 #000; border-radius: var(--radius);">
-                Gestione della Formazione Avanzata
-            </div>
-            <!-- Bridging Slogan -->
-            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                Guidiamo il <span class="text-blue-400">Futuro</span> dell'Apprendimento con Huroweor Group
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto font-medium">
-                Rivoluziona il modo di <strong class="text-white">imparare</strong> del tuo team o dei tuoi studenti. Sistemi e-learning intuitivi per automatizzare e scalare ogni singolo percorso di formazione.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="#contact" class="btn-primary text-lg">Inizia Gratuitamente</a>
-                <a href="#features" class="btn-secondary text-lg">Esplora le Funzionalità</a>
-            </div>
-        </div>
-    </section>
+      /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+      main, main + footer { scroll-margin-top: 5rem; }
 
-    <!-- TRUST STRIP -->
-    <section class="bg-gray-100 py-10 border-b-2 border-black border-opacity-10">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-sm font-bold uppercase text-gray-500 mb-6 tracking-widest">Aziende e Istituzioni che si affidano alla nostra tecnologia</p>
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale font-black text-xl md:text-3xl">
-                <span>TECHNO_SYS</span>
-                <span>GLOBAL EDU</span>
-                <span>INNOVA_CORP</span>
-                <span>APEX LEARNING</span>
-                <span>VISION HR</span>
-            </div>
-        </div>
-    </section>
+      /* Form inputs — consistent styling regardless of Gemini output */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(234,88,12,0.15);
+      }
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="flex-grow pt-16 pb-24 px-4 sm:px-6 lg:px-8">
-        
-        <!-- SERVICES / FEATURES SECTION -->
-        <section id="features" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-black mb-4">La Piattaforma LMS Ideale per il Tuo Business</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Offriamo strumenti completi per gestire l'intero ciclo di vita della formazione aziendale. Crea, distribuisci e analizza senza complicazioni.</p>
-            </div>
+      /* Links — readable on any theme */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
+
+      /* Section divider — subtle visual rhythm */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(234,88,12,0.12), transparent);
+        margin: 0;
+      }
+    </style> </head><body><nav class="fixed top-0 left-0 right-0 z-50 shadow-sm transition-all duration-300"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16"><div class="flex items-center"><a href="#" class="flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span class="font-bold text-xl text-primary font-serif tracking-tight">Huroweor Group</span></a></div><div class="hidden md:flex items-center space-x-8"><a href="#features" class="font-medium hover:text-primary transition-colors">I Nostri Servizi</a><a href="#reviews" class="font-medium hover:text-primary transition-colors">Testimonianze</a><a href="#faq" class="font-medium hover:text-primary transition-colors">FAQ</a><a href="#contact" class="btn-primary"> Inizia Ora <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a></div><div class="flex items-center md:hidden"><button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg pb-4 px-4"><div class="flex flex-col space-y-4 pt-4"><a href="#features" class="block font-medium">I Nostri Servizi</a><a href="#reviews" class="block font-medium">Testimonianze</a><a href="#faq" class="block font-medium">FAQ</a><a href="#contact" class="btn-primary w-full justify-center">Inizia Ora</a></div></div></nav><main><section class="relative py-24 md:py-32 flex items-center justify-center min-h-[75vh]"><div class="absolute inset-0 z-0"><img src="https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg" alt="Borghi Italiani" class="w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/0c4a6e/ffffff?text=Borghi+Italiani'"><div class="absolute inset-0 bg-sky-950 bg-opacity-80"></div></div><div class="relative z-10 text-center max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="inline-block mb-4 px-4 py-1 rounded-full bg-secondary bg-opacity-20 border border-secondary border-opacity-30"><span class="text-sm font-semibold text-purple-200 uppercase tracking-wider">Esperienze Autentiche</span></div><h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight"> L'Arte della Scoperta: Affida il tuo prossimo <span class="text-primary">itinerario di viaggio</span> all'esperienza di Huroweor Group. </h1><p class="text-lg md:text-xl text-sky-100 mb-10 font-medium"> Sveliamo l'anima nascosta della penisola. Dai borghi italiani dimenticati al weekend fuori porta perfetto, progettiamo il tuo percorso turistico su misura per farti vivere l'Italia come mai prima d'ora. </p><div class="flex flex-col sm:flex-row justify-center gap-4"><a href="#contact" class="btn-primary justify-center text-lg shadow-lg"> Pianifica il tuo Viaggio <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a><a href="#features" class="btn-secondary justify-center text-lg bg-white bg-opacity-10 border-white text-white hover:bg-opacity-20"> Esplora i Servizi </a></div></div></section><div class="bg-white py-6 border-b border-gray-100"><div class="max-w-5xl mx-auto px-4 text-center"><p class="text-sm text-muted font-semibold uppercase tracking-widest mb-2">Ispirato e consigliato dalle guide di</p><p class="text-xl font-serif text-gray-400 font-bold">E-Borghi Magazine</p></div></div><section id="features" class="py-20 md:py-28"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Crea Memorie Indelebili</h2><p class="text-lg text-muted max-w-2xl mx-auto">Non offriamo semplici vacanze, ma vere e proprie esplorazioni. Scopri come trasformiamo una semplice idea in un percorso turistico memorabile.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-2 gap-12"><div class="flex flex-col"><img src="https://images.pexels.com/photos/2087391/pexels-photo-2087391.jpeg" alt="Itinerario di viaggio" class="w-full h-48 object-cover rounded-lg mb-6 shadow-sm" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/600x400/ea580c/ffffff?text=Itinerario'"><div class="flex items-center gap-3 mb-3"><div class="bg-blue-50 p-2 rounded-lg text-secondary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg></div><h3 class="text-xl font-semibold">Il Tuo Itinerario di Viaggio</h3></div><p class="text-muted leading-relaxed"> Abbandona le guide standardizzate. Studiamo le tue passioni per creare un <strong>itinerario di viaggio</strong> su misura che rifletta esattamente i tuoi ritmi e i tuoi desideri, ottimizzando ogni spostamento. </p></div><div class="flex flex-col"><img src="https://images.pexels.com/photos/164212/pexels-photo-164212.jpeg" alt="Borghi Italiani" class="w-full h-48 object-cover rounded-lg mb-6 shadow-sm" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/600x400/ea580c/ffffff?text=Borghi'"><div class="flex items-center gap-3 mb-3"><div class="bg-blue-50 p-2 rounded-lg text-secondary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg></div><h3 class="text-xl font-semibold">Magia dei Borghi Italiani</h3></div><p class="text-muted leading-relaxed"> Ti portiamo lontano dal turismo di massa. La nostra specialità è farti scoprire i <strong>borghi italiani</strong> più autentici, dove il tempo sembra essersi fermato e la tradizione è ancora viva. </p></div><div class="flex flex-col"><img src="https://images.pexels.com/photos/1757516/pexels-photo-1757516.jpeg" alt="Weekend fuori porta" class="w-full h-48 object-cover rounded-lg mb-6 shadow-sm" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/600x400/ea580c/ffffff?text=Weekend'"><div class="flex items-center gap-3 mb-3"><div class="bg-blue-50 p-2 rounded-lg text-secondary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><h3 class="text-xl font-semibold">Weekend Fuori Porta Perfetto</h3></div><p class="text-muted leading-relaxed"> Hai solo due giorni? Nessun problema. Organizziamo il tuo <strong>weekend fuori porta</strong> curando logistica, pernottamenti ed esperienze uniche, permettendoti di staccare la spina senza stress organizzativo. </p></div><div class="flex flex-col"><img src="https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg" alt="Cosa vedere" class="w-full h-48 object-cover rounded-lg mb-6 shadow-sm" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/600x400/ea580c/ffffff?text=Cosa+Vedere'"><div class="flex items-center gap-3 mb-3"><div class="bg-blue-50 p-2 rounded-lg text-secondary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></div><h3 class="text-xl font-semibold">Guida Esclusiva: Cosa Vedere</h3></div><p class="text-muted leading-relaxed"> Dimentica le lunghe ricerche su internet. Ti forniamo una selezione accurata su <strong>cosa vedere</strong>, dove mangiare i piatti tipici locali e quali artigiani visitare, trasformando il viaggio in cultura. </p></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-20 md:py-28"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Chi Viaggia con Noi</h2><p class="text-lg text-muted">Le esperienze di chi ha affidato il proprio tempo prezioso a Huroweor Group.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="p-6 bg-blue-50 rounded-lg border border-blue-100 relative"><svg class="w-8 h-8 text-primary opacity-20 absolute top-4 right-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg><p class="text-muted italic mb-6 relative z-10">"Volevamo un weekend fuori porta diverso dal solito. Huroweor Group ci ha fatto scoprire un borgo umbro meraviglioso, organizzando degustazioni e visite guidate impeccabili."</p><div class="flex items-center gap-3"><div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold font-serif">M</div><div><p class="font-semibold text-sm">Marco & Elena</p><p class="text-xs text-muted">Viaggiatori, 2026</p></div></div></div><div class="p-6 bg-blue-50 rounded-lg border border-blue-100 relative"><svg class="w-8 h-8 text-primary opacity-20 absolute top-4 right-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg><p class="text-muted italic mb-6 relative z-10">"Il percorso turistico che hanno disegnato per la nostra famiglia in Toscana è stato perfetto. Hanno saputo bilanciare cultura, relax e divertimento per i bambini in modo magistrale."</p><div class="flex items-center gap-3"><div class="w-10 h-10 bg-secondary text-white rounded-full flex items-center justify-center font-bold font-serif">S</div><div><p class="font-semibold text-sm">Famiglia Rinaldi</p><p class="text-xs text-muted">Clienti Premium, 2026</p></div></div></div><div class="p-6 bg-blue-50 rounded-lg border border-blue-100 relative"><svg class="w-8 h-8 text-primary opacity-20 absolute top-4 right-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg><p class="text-muted italic mb-6 relative z-10">"Non sapevo mai cosa vedere quando visitavo una nuova regione. L'itinerario di viaggio di Huroweor mi ha fornito una mappa dettagliata di gioielli nascosti. Soldi ben spesi!"</p><div class="flex items-center gap-3"><div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold font-serif">L</div><div><p class="font-semibold text-sm">Lorenzo T.</p><p class="text-xs text-muted">Fotografo, 2026</p></div></div></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-20 md:py-28"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-lg text-muted">Tutto ciò che devi sapere prima di partire alla scoperta dell'Italia.</p></div><div class="dna-card max-w-3xl mx-auto"><div class="space-y-4"><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-semibold cursor-pointer list-none text-lg"> Come funziona la creazione dell'itinerario di viaggio? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Iniziamo con un breve questionario per comprendere i tuoi interessi, il budget e il tempo a disposizione. Successivamente, i nostri esperti elaborano un piano dettagliato giorno per giorno, includendo tappe, trasporti suggeriti e prenotazioni consigliate.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-semibold cursor-pointer list-none text-lg"> Quali borghi italiani consigliate maggiormente? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">L'Italia vanta centinaia di meraviglie. Selezioniamo la destinazione in base alla stagione e alle tue preferenze (mare, collina, montagna, enogastronomia). Collaboriamo a stretto contatto con le realtà locali per garantirti l'accesso ai segreti meglio custoditi di ogni regione.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-semibold cursor-pointer list-none text-lg"> Organizzate anche il weekend fuori porta per famiglie? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Assolutamente sì. Progettiamo fughe di fine settimana tenendo conto delle esigenze dei più piccoli. Includiamo percorsi facili, strutture family-friendly e attività interattive che renderanno il viaggio piacevole per tutte le età.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-semibold cursor-pointer list-none text-lg"> Come decido cosa vedere se ho poco tempo? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Questo è il nostro punto di forza. Ottimizziamo il tuo tempo filtrando le attrazioni imperdibili da quelle secondarie. Riceverai una guida chiara su cosa vedere, calcolando i tempi di spostamento reali per evitare stress e corse inutili.</p></details><details class="group"><summary class="flex justify-between items-center font-semibold cursor-pointer list-none text-lg"> Il percorso turistico include anche le prenotazioni di hotel e ristoranti? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Il nostro servizio base fornisce una guida dettagliata con link e contatti diretti per farti prenotare in autonomia e risparmiare sulle commissioni. Tuttavia, offriamo un pacchetto premium dove gestiamo noi ogni singola prenotazione per tuo conto.</p></details></div></div></div></section><hr class="section-divider"><section id="contact" class="py-20 md:py-28"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-2 gap-12"><div><h2 class="text-3xl font-bold mb-4">Inizia la Tua Avventura</h2><p class="text-muted mb-8">Compila il modulo per richiedere una consulenza gratuita. Raccontaci che tipo di borghi italiani vorresti esplorare o come immagini il tuo weekend ideale.</p><div class="space-y-6"><div class="flex items-start gap-4"><div class="bg-orange-50 p-3 rounded-lg text-primary mt-1"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg></div><div><h4 class="font-bold text-lg">Sede Operativa</h4><p class="text-muted">Via Roma 123, Milano, Italia<br>(Sede amministrativa affiliata)</p></div></div><div class="flex items-start gap-4"><div class="bg-orange-50 p-3 rounded-lg text-primary mt-1"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><h4 class="font-bold text-lg">Orari di Lavoro</h4><p class="text-muted">Lunedì - Venerdì: 09:00 - 18:00<br>Sabato: Su appuntamento</p></div></div></div></div><div><form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div><label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome e Cognome</label><input type="text" id="name" required placeholder="Es. Mario Rossi"></div><div><label for="destination" class="block text-sm font-medium text-gray-700 mb-1">Destinazione Desiderata (Opzionale)</label><input type="text" id="destination" placeholder="Es. Toscana, Umbria, ecc."></div><div><label for="message" class="block text-sm font-medium text-gray-700 mb-1">Raccontaci la tua idea di viaggio</label><textarea id="message" rows="4" required placeholder="Quanti giorni? In coppia o in famiglia? Cosa ti piacerebbe vedere?"></textarea></div><button type="submit" class="btn-primary w-full justify-center"> Richiedi Itinerario <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button><p class="text-xs text-muted text-center mt-2">I tuoi dati sono al sicuro. Non inviamo spam.</p></form><div id="success-msg" style="display:none" class="bg-green-50 border border-green-200 rounded-lg p-6 text-center"><div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-xl font-bold text-green-800 mb-2">Richiesta Inviata!</h3><p class="text-green-700">Grazie per averci contattato. Un nostro esperto analizzerà la tua richiesta e ti risponderà al più presto per iniziare a progettare il tuo viaggio.</p></div></div></div></div></div></section></main><footer class="bg-white border-t border-gray-200 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><span class="font-bold text-2xl text-primary font-serif tracking-tight block mb-4">Huroweor Group</span><p class="text-muted max-w-2xl mx-auto"> Trasformiamo il desiderio di viaggiare in esperienze concrete e indimenticabili attraverso i borghi più belli d'Italia. </p></div><div class="bg-blue-50 p-4 rounded-lg text-sm text-center text-muted mb-8 border border-blue-100"><strong>Avvertenza:</strong> Questo è un sito promozionale indipendente gestito da Huroweor Group, che agisce come affiliato per E-Borghi. </div><div class="space-y-4 mb-12 text-sm text-muted"><details class="bg-gray-50 p-4 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer">Informativa sulla Privacy</summary><div class="mt-4 space-y-2"><p>La presente Informativa sulla Privacy descrive come Huroweor Group raccoglie, utilizza e protegge i dati personali degli utenti che visitano il nostro sito web. La tutela della tua privacy è per noi una priorità assoluta e ci impegniamo a trattare le tue informazioni con la massima cura. Quando compili il modulo di contatto per richiedere la pianificazione di un itinerario di viaggio, raccogliamo dati essenziali come il tuo nome, le tue preferenze di destinazione e i dettagli del messaggio. Questi dati vengono utilizzati esclusivamente per fornirti il servizio richiesto e per elaborare proposte turistiche personalizzate. Non vendiamo, affittiamo o cediamo in alcun modo le tue informazioni personali a terze parti per scopi di marketing. I dati vengono conservati su server sicuri e protetti da misure tecniche e organizzative adeguate a prevenire accessi non autorizzati. Hai il diritto in qualsiasi momento di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati personali in nostro possesso. Raccogliamo inoltre dati di navigazione in forma anonima per migliorare l'esperienza utente sul nostro sito, analizzando le pagine più visitate e il comportamento generale. L'utilizzo di questo sito implica l'accettazione della presente politica sulla privacy. Ci riserviamo il diritto di aggiornare questo documento in conformità con le nuove normative vigenti. Ti invitiamo a consultare periodicamente questa sezione per rimanere informato su eventuali cambiamenti. Per qualsiasi richiesta relativa al trattamento dei dati, puoi utilizzare il modulo di contatto presente sul sito. Il titolare del trattamento è Huroweor Group. Garantiamo che ogni operazione di trattamento avviene nel pieno rispetto del Regolamento Generale sulla Protezione dei Dati (GDPR). La tua fiducia è fondamentale per noi, e lavoriamo costantemente per mantenerla attraverso la trasparenza e la sicurezza.</p></div></details><details class="bg-gray-50 p-4 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer">Termini e Condizioni</summary><div class="mt-4 space-y-2"><p>I presenti Termini e Condizioni regolano l'utilizzo del sito web di Huroweor Group e i servizi di consulenza turistica offerti. Accedendo al nostro sito e richiedendo un itinerario di viaggio, l'utente accetta integralmente e senza riserve le presenti disposizioni. Huroweor Group opera come agenzia di consulenza e pianificazione, fornendo suggerimenti su cosa vedere, dove alloggiare e come strutturare un weekend fuori porta o un percorso più lungo. Non siamo un tour operator diretto, pertanto i contratti per i servizi finali (hotel, trasporti, guide locali) vengono stipulati direttamente tra l'utente e i fornitori terzi. Ci impegniamo a fornire informazioni accurate e aggiornate sui borghi italiani, ma non possiamo garantire l'assenza di variazioni improvvise da parte delle strutture locali (es. cambi di orari dei musei o chiusure impreviste). L'utente è responsabile di verificare la validità dei propri documenti di viaggio e di rispettare le normative locali delle destinazioni visitate. I preventivi forniti per l'organizzazione del percorso turistico hanno una validità limitata nel tempo, indicata nel documento stesso. Huroweor Group declina ogni responsabilità per danni, smarrimenti o infortuni che potrebbero verificarsi durante il viaggio. Il contenuto di questo sito, inclusi testi, grafiche e loghi, è protetto da copyright e non può essere riprodotto senza autorizzazione scritta. Ci riserviamo il diritto di rifiutare la prestazione dei nostri servizi qualora la richiesta dell'utente risulti inattuabile o contraria alla nostra etica aziendale. Eventuali controversie derivanti dall'utilizzo dei nostri servizi saranno soggette alla giurisdizione del foro competente della nostra sede operativa. L'utente si impegna a fornire informazioni veritiere durante la compilazione dei moduli di richiesta. La violazione di questi termini può comportare l'interruzione immediata del servizio. Invitiamo gli utenti a leggere attentamente questi termini prima di confermare qualsiasi prenotazione di consulenza.</p></div></details><details class="bg-gray-50 p-4 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer">Politica di Rimborso</summary><div class="mt-4 space-y-2"><p>La presente Politica di Rimborso definisce le condizioni applicabili ai servizi di consulenza e pianificazione di itinerari offerti da Huroweor Group. Poiché il nostro lavoro consiste nella creazione di percorsi personalizzati basati sul tempo e sull'esperienza dei nostri esperti, le tariffe di consulenza iniziale non sono generalmente rimborsabili una volta che il lavoro di ricerca e stesura dell'itinerario è iniziato. Tuttavia, comprendiamo che gli imprevisti possono accadere. Se decidi di annullare la tua richiesta entro 24 ore dal pagamento dell'anticipo e prima che il documento finale sia stato consegnato, emetteremo un rimborso completo. Qualora l'itinerario di viaggio sia già stato consegnato, non sarà possibile alcun rimborso per il servizio di pianificazione. Per quanto riguarda i rimborsi relativi a prenotazioni di hotel, trasporti o attività locali suggerite nel nostro percorso turistico, si applicheranno le politiche di cancellazione specifiche dei singoli fornitori terzi. Huroweor Group non può intervenire o forzare rimborsi da parte di strutture indipendenti. Ti consigliamo vivamente di stipulare un'assicurazione di viaggio personale per coprire eventuali cancellazioni dovute a cause di forza maggiore, malattie o imprevisti dell'ultimo minuto. Se ritieni che il servizio di consulenza fornito non sia in linea con quanto pattuito in fase iniziale, ti invitiamo a contattarci immediatamente tramite il modulo sul sito. Valuteremo la situazione caso per caso e, qualora riscontrassimo un'effettiva mancanza da parte nostra, potremo offrire una revisione gratuita dell'itinerario o, in casi eccezionali, un rimborso parziale. Le richieste di revisione devono essere inviate entro 7 giorni dalla ricezione del piano di viaggio. Dopo tale termine, il servizio si considererà accettato e concluso. I rimborsi approvati verranno elaborati utilizzando lo stesso metodo di pagamento impiegato per la transazione originale, entro 14 giorni lavorativi. Questa politica è stata creata per garantire equità sia per i nostri clienti che per il tempo dedicato dai nostri consulenti di viaggio.</p></div></details></div><div class="text-center text-sm text-gray-400"> &copy; 2026 Huroweor Group. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-sky-900 text-white p-4 shadow-2xl z-50 transform transition-transform duration-300 translate-y-full"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm">Utilizziamo i cookie per migliorare la tua esperienza di navigazione sul nostro sito e per analizzare il traffico. Continuando a navigare, accetti il nostro utilizzo dei cookie.</p><div class="flex gap-2 shrink-0"><button onclick="acceptCookies()" class="bg-primary hover:bg-orange-500 text-white px-6 py-2 rounded-md text-sm font-semibold transition-colors">Accetta Tutti</button><button onclick="acceptCookies()" class="bg-transparent border border-white hover:bg-white hover:text-sky-900 text-white px-4 py-2 rounded-md text-sm font-semibold transition-colors">Solo Essenziali</button></div></div></div> <script>
+        // Smart Routing Script
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[href^="#"]');
+            if (!link) return;
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white border-2 border-black p-6 rounded-2xl relative">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4 border border-black" style="box-shadow: 2px 2px 0 0 #000;">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-black mb-2">Sviluppo Rapido del <span class="text-primary">Corso</span></h3>
-                    <p class="text-gray-600">Converti presentazioni esistenti, aggiungi video, quiz e moduli interattivi in pochi minuti. Progetta un corso completo che mantenga alto l'ingaggio dei partecipanti.</p>
-                </div>
-                <!-- Feature 2 -->
-                <div class="bg-white border-2 border-black p-6 rounded-2xl relative">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4 border border-black" style="box-shadow: 2px 2px 0 0 #000;">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-black mb-2"><span class="text-primary">Accesso</span> Universale</h3>
-                    <p class="text-gray-600">Offri flessibilità massima con l'app mobile inclusa. I tuoi dipendenti o allievi avranno un accesso immediato ai materiali didattici, sia offline che online, da smartphone o tablet.</p>
-                </div>
-                <!-- Feature 3 -->
-                <div class="bg-white border-2 border-black p-6 rounded-2xl relative">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4 border border-black" style="box-shadow: 2px 2px 0 0 #000;">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-black mb-2">Automazione e Report</h3>
-                    <p class="text-gray-600">Dimentica i fogli di calcolo. Monitora presenze, progressi e risultati dei test in tempo reale con dashboard personalizzabili pensate per i dipartimenti HR e management.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- REVIEWS SECTION -->
-        <section id="reviews" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl md:text-4xl font-black mb-4">Cosa dicono i nostri Formatori</h2>
-                <p class="text-gray-600">Storie di successo dall'adozione del sistema LMS Huroweor.</p>
-            </div>
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            let targetElement = document.getElementById(targetId);
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Testimonial 1 -->
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-inner">
-                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"Mai stato così semplice trasformare i manuali HR noiosi in percorsi di formazione interattivi. Il sistema garantisce un accesso semplice a chiunque, riducendo le richieste al supporto IT."</p>
-                    <div class="font-bold text-sm uppercase">Elena Bianchi</div>
-                    <div class="text-xs text-gray-500">Direttrice Risorse Umane (2025)</div>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-inner">
-                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"La procedura di iscrizione degli utenti è istantanea. Usavamo software molto più costosi che erano in realtà dei contenitori vuoti. Questa è l'unica piattaforma LMS pronta all'uso."</p>
-                    <div class="font-bold text-sm uppercase">Matteo Righi</div>
-                    <div class="text-xs text-gray-500">Corporate Trainer (2025)</div>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-inner md:col-span-2 lg:col-span-1">
-                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"Ho potuto caricare il mio primo corso video il primo giorno di prova. Assolutamente adatta sia ai veterani che a chi approccia il mondo e-learning oggi per il proprio business."</p>
-                    <div class="font-bold text-sm uppercase">Valeria Sorrentino</div>
-                    <div class="text-xs text-gray-500">Business Consultant (2026)</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ SECTION -->
-        <section id="faq" class="max-w-5xl mx-auto dna-card scroll-mt-24">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl md:text-4xl font-black mb-4">Domande Frequenti sull'E-Learning</h2>
-            </div>
-            <div class="space-y-4 max-w-3xl mx-auto">
-                
-                <details class="group bg-white border-2 border-black rounded-xl" style="box-shadow: 2px 2px 0 0 #000;">
-                    <summary class="flex justify-between items-center font-bold text-lg cursor-pointer py-4 px-6 hover:text-primary transition-colors">
-                        <span>La piattaforma è difficile da usare per i <span class="text-primary underline">principianti</span>?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                        </span>
-                    </summary>
-                    <div class="px-6 pb-4 text-gray-600">
-                        Assolutamente no. Il sistema è stato progettato esplicitamente per abbattere la curva di apprendimento. Anche chi non ha esperienza informatica pregressa può configurare e gestire i corsi formativi in meno di una giornata.
-                    </div>
-                </details>
-
-                <details class="group bg-white border-2 border-black rounded-xl" style="box-shadow: 2px 2px 0 0 #000;">
-                    <summary class="flex justify-between items-center font-bold text-lg cursor-pointer py-4 px-6 hover:text-primary transition-colors">
-                        <span>Come funziona l'iscrizione per un gruppo aziendale?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                        </span>
-                    </summary>
-                    <div class="px-6 pb-4 text-gray-600">
-                        Puoi importare in blocco l'intera lista dei dipendenti tramite CSV, integrarci con le tue directory aziendali, o impostare un sistema di auto-registrazione (single sign-on) sicuro che renderà il tutto invisibile agli utenti finali.
-                    </div>
-                </details>
-
-                <details class="group bg-white border-2 border-black rounded-xl" style="box-shadow: 2px 2px 0 0 #000;">
-                    <summary class="flex justify-between items-center font-bold text-lg cursor-pointer py-4 px-6 hover:text-primary transition-colors">
-                        <span>Posso esportare in Excel le metriche e i progressi di ogni singolo corso?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                        </span>
-                    </summary>
-                    <div class="px-6 pb-4 text-gray-600">
-                        Certamente. Ogni completamento di corso o valutazione genera report ricchi di metriche che puoi esportare per soddisfare la conformità normativa, HR e gli standard per la sicurezza aziendale.
-                    </div>
-                </details>
-
-                <details class="group bg-white border-2 border-black rounded-xl" style="box-shadow: 2px 2px 0 0 #000;">
-                    <summary class="flex justify-between items-center font-bold text-lg cursor-pointer py-4 px-6 hover:text-primary transition-colors">
-                        <span>La soluzione offerta funziona anche offline o senza Wi-Fi?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                        </span>
-                    </summary>
-                    <div class="px-6 pb-4 text-gray-600">
-                        Sì, utilizzando l'applicazione mobile dedicata gli studenti possono salvare i materiali di apprendimento direttamente in locale e fruirne durante gli spostamenti o le pause senza alcun accesso a internet. Alla prima riconnessione, i risultati verranno sincronizzati automaticamente.
-                    </div>
-                </details>
-
-                <details class="group bg-white border-2 border-black rounded-xl" style="box-shadow: 2px 2px 0 0 #000;">
-                    <summary class="flex justify-between items-center font-bold text-lg cursor-pointer py-4 px-6 hover:text-primary transition-colors">
-                        <span>Devo disporre di un server di hosting di mia proprietà?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
-                        </span>
-                    </summary>
-                    <div class="px-6 pb-4 text-gray-600">
-                        Il sistema funziona al 100% nel Cloud in modalità SaaS (Software as a Service). Tutte le configurazioni di hosting, salvataggio dei file, sicurezza e gli aggiornamenti continui dell'infrastruttura sono inclusi nei servizi che curiamo senza oneri extra.
-                    </div>
-                </details>
-
-            </div>
-        </section>
-
-        <!-- CONTACT & DEMO REQUEST -->
-        <section id="contact" class="max-w-5xl mx-auto dna-card scroll-mt-24 bg-gray-900 text-white relative overflow-hidden border-2 border-black" style="box-shadow: var(--shadow); border-radius: var(--radius);">
-            <div class="absolute inset-0 bg-black opacity-10"></div>
+            // Fallback to contact if ID not found
+            if (!targetElement && targetId !== '') {
+                targetElement = document.getElementById('contact');
+            }
             
-            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="flex flex-col justify-center">
-                    <span class="inline-block px-3 py-1 mb-4 text-xs font-bold uppercase tracking-widest text-primary bg-white rounded-full w-max border-2 border-black" style="box-shadow: 1px 1px 0 0 #000;">
-                        Inizia Subito
-                    </span>
-                    <h2 class="text-3xl md:text-5xl font-black mb-6 leading-tight">Rivoluziona ora le competenze del tuo Team</h2>
-                    <p class="text-gray-300 text-lg mb-8">
-                        Scopri il portale LMS leader a livello globale senza impegni economici. Inserisci le tue informazioni e fissa subito una demo per attivare una sessione di orientamento gratuita sul tuo potenziale ecosistema formativo.
-                    </p>
-                    
-                    <!-- We deliberately exclude the phone details according to Rules due to zero visibility in base text -->
-                    <div class="flex items-center text-gray-300 mt-4 border-l-4 border-primary pl-4 bg-gray-800 bg-opacity-50 py-3 rounded">
-                        <svg class="w-6 h-6 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <span>Servizio clienti specializzato online per aziende ed enterprise. Copertura B2B internazionale con sede logistica indipendente.</span>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl text-black border-2 border-black relative" style="box-shadow: 4px 4px 0 0 #000; border-radius: var(--radius);">
-                    
-                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        
-                        <div>
-                            <label for="name" class="block text-sm font-bold text-gray-700 mb-1">Nome Completo o Azienda *</label>
-                            <input type="text" id="name" required class="w-full px-4 py-3 border-2 border-black rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="Es. Rossi S.r.l. / Mario Rossi">
-                        </div>
-                        <div>
-                            <label for="employees" class="block text-sm font-bold text-gray-700 mb-1">Numero Studenti / Utenti stimati</label>
-                            <select id="employees" class="w-full px-4 py-3 border-2 border-black rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary">
-                                <option>Meno di 50 Utenti</option>
-                                <option>50 - 250 Utenti</option>
-                                <option>250 - 1000 Utenti</option>
-                                <option>Piattaforma Enterprise (>1000)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-bold text-gray-700 mb-1">Note sull'Integrazione</label>
-                            <textarea id="message" rows="3" class="w-full px-4 py-3 border-2 border-black rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="Cosa desideri ottenere dal tuo ecosistema di e-learning?"></textarea>
-                        </div>
-                        <button type="submit" class="w-full btn-primary justify-center text-lg mt-4 uppercase tracking-wider py-4">Completa l'iscrizione Demo</button>
-                        <p class="text-xs text-gray-500 text-center mt-3">Rispettiamo integralmente il regolamento del Garante Privacy sul trattamento dati.</p>
-                    </form>
-
-                    <div id="success-msg" style="display:none" class="text-center py-10">
-                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6 border-2 border-green-500">
-                            <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-black mb-2 text-green-700">Richiesta Ricevuta!</h3>
-                        <p class="text-gray-600 font-medium">Uno specialista dell'automazione accademica analizzerà i tuoi dati per un piano d'implementazione adeguato.</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-300 py-12 border-t-4 border-black mt-auto">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
             
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8 pb-8 border-b border-gray-700">
-                <div class="mb-6 md:mb-0 text-center md:text-left">
-                    <span class="text-2xl font-black tracking-tighter uppercase text-white">Huroweor Group</span>
-                    <p class="mt-2 text-sm text-gray-500">Accelerazione Globale per Piattaforme Software d'Apprendimento. Copyright &copy; 2026 Huroweor Group. Tutti i diritti riservati.</p>
-                </div>
-            </div>
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
 
-            <!-- MANDATORY AFFILIATE DISCLAIMER -->
-            <div class="bg-black border border-gray-700 p-4 rounded text-xs text-gray-400 mb-8 text-center italic">
-                Questo è un sito promozionale indipendente gestito da Huroweor Group, che agisce in qualità di partner strategico e affiliato per il fornitore ufficiale delle infrastrutture e-learning software LMS. Le tecnologie rappresentate fanno capo ai rispettivi operatori o vendor, dei quali illustriamo e diffondiamo commercialmente il potenziale applicativo. Tutte le interazioni avvengono secondo la compliance internazionale d'acquisizione servizi commerciali per professionisti B2B.
-            </div>
-
-            <!-- FULL TEXT LEGAL ACCORDIONS -->
-            <div class="space-y-4">
-                
-                <details class="group bg-gray-800 border border-gray-700 rounded-lg p-2">
-                    <summary class="font-bold text-sm cursor-pointer p-2 hover:text-white transition-colors outline-none flex justify-between">
-                        Politica sulla Riservatezza (Privacy Policy)
-                        <span>+</span>
-                    </summary>
-                    <div class="p-4 text-xs text-gray-400 space-y-2 mt-2 bg-gray-900 rounded">
-                        <p>Il presente documento definisce nel dettaglio, e in armonia con le vigenti leggi sulla conservazione del dato, il nostro impianto per la raccolta analitica e strutturata che viene generata durante la consultazione dei flussi su questa proprietà digitale. Huroweor Group stabilisce in modo univoco le dinamiche, gli impieghi collaterali, la messa in sicurezza logistica e crittografata dei vettori identificativi afferenti al singolo navigatore visitatore o all’entità aziendale iscritta a sistema.</p>
-                        <p>Noi, l'operatore proprietario dello spazio espositivo del portale, preleviamo dati d’uso mediante protocolli asincroni volti unicamente all'elaborazione aggregata senza fine esplicito che ricolleghi in via passiva all’indentità fisica di utente generico senza previo consenso prestato coscientemente da costui all'interno della maschera format web (nello specifico durante interazione attiva o prenotazione evento).</p>
-                        <p>Gli elementi archiviati e strutturati su storage digitale vengono riposti, difesi da penetrazione ed intromissione arbitraria di parti extra da un framework d’asset allocation, isolando tecnicamente e amministrativamente l'ecosistema che sorveglia l'ambiente ospite dei vettori aziendali prelevati.</p>
-                        <p>La distribuzione d’asset a fini diagnostici da soggetti correlati si avvale del nostro rigoroso accordo fiduciario B2B o mandato strategico su base continuativa d'interfaccia verso l’infrastruttura LMS sorgente da noi illustrata ed iscritta alla filiera d’acquisizione prospect e referenze in appalto operativo a terzi.</p>
-                        <p>È sacrosanta facoltà legittima domandare aggiornamenti e chiarimenti scritti inerenti ad alterazioni sensibili, blocco temporaneo dei trasferimenti anagrafici d’uso verso il nucleo cloud ove conserviamo log generici e di traffico IP, qualora le normative locali esigessero in qualsiasi istante procedure di ripensamento unilaterale che comportino in fine l’eliminazione irreversibile nel totale del profilo di connessione utente in deposito elettronico per periodi non vincolanti amministrativamente e burocraticamente per finalità fiscali inderogabili a noi vincolati secondo legislazione e diritto societario estero al momento o successivi d'erogazione contrattuale fittizia per beni immateriali software e assimilati.</p>
-                    </div>
-                </details>
-
-                <details class="group bg-gray-800 border border-gray-700 rounded-lg p-2">
-                    <summary class="font-bold text-sm cursor-pointer p-2 hover:text-white transition-colors outline-none flex justify-between">
-                        Termini e Condizioni di Erogazione Piattaforme Software
-                        <span>+</span>
-                    </summary>
-                    <div class="p-4 text-xs text-gray-400 space-y-2 mt-2 bg-gray-900 rounded">
-                        <p>Accedendo alla piattaforma o ai formulari descrittivi qui allocati conferite incondizionatamente esplicito accordo e comprensione piana ed estesa d’ogni disposizione normativa civile inclusa su scala formale ed informale a mezzo contratti in questo sito internet di divulgazione e promo vendite B2B gestite dalla ditta Huroweor Group incaricata ed aventi diritto legale amministrativo locale a provvigione affiliativa secondo logiche operative esterne indipendenti dalla stessa originaria e costruttrice proprietaria sorgente dei flussi codificati su cui eroghiamo informazione mirata tecnica.</p>
-                        <p>La condotta utente sul portale deve allinearsi integralmente a criteri non nocivi tesi al sereno consulto logico d’argomento informativo aziendale nel settore dei moduli elearning professionali dedicati esclusivamente al settore aziendale e corporate come precisato in apertura a chi transita mediante canali referral acquisizione utenza professionale ed enterprise. Nessun intento malevolo o iniezioni nocive al database o bot saranno tollerate a ridosso o carico degli estremi sorgente infrastruttura che risiede altrove di nostra titolarità.</p>
-                        <p>Non siamo artefici unici proprietari né creatori originali architetturali originari dello strato di sorgente cloud distribuito a cui puntiamo attraverso percorsi a premio d'intermediazione aziendale per lo smistamento di utenze in target su segmenti didattica online as a service come pattuito da mandato diretto esterno in logica non esclusiva né di esclusiva operatività esclusiva con altre entità con fini eguali.</p>
-                        <p>Eventuali sospensioni dell'accessibilità visiva ed utilitaria per manutenere archivi digitalizzati form aggreganti referenze contatti e diagnostici o errori di digitazione su sezioni informative prettamente destinate ai sistemi software in oggetto non producono esecuzioni moratorie ritorsive legali a scapito né ad aggressione contenziosa nei riguardi nostra compagine operatrice essendo un mero scudo espositivo per intermediare le lead commerciali generate autonomamente dall’attenta valutazione delle pagine visitate dal committente o utenza business potenziale acquirente per infrastrutture descritte su altri portali ufficiali in chiusura ciclo referenze per sottoscrizione contratto fornitura effettiva di piani e pacchetti servizio cloud a fini elearning e formazione remota continua ed estesa per ambiti commerciali o accademici extra scolastici normati dalla normativa vigente territoriale applicabile nei confini giuridicamente ammessi dall'autorità e garante legislazione d’ufficio vigente attualmente in territorio competenza esecuzione atti su web digitale esteso.</p>
-                    </div>
-                </details>
-
-                <details class="group bg-gray-800 border border-gray-700 rounded-lg p-2">
-                    <summary class="font-bold text-sm cursor-pointer p-2 hover:text-white transition-colors outline-none flex justify-between">
-                        Risoluzioni per Crediti e Resi
-                        <span>+</span>
-                    </summary>
-                    <div class="p-4 text-xs text-gray-400 space-y-2 mt-2 bg-gray-900 rounded">
-                        <p>Specificando chiaramente la veste formale del servizio nostro di procacciatore in lead generation indipendente interattiva nel ciclo aziendale intermedio formativo remoto del soggetto e vendor ultimo esposto a mandato o in organigramma erogatore finale fattura acquisti di locazione d’affitto infrastrutture in ambienti SaaS ed integrazioni applicative per scopi educazione informatica elearning online.</p>
-                        <p>Ogni genere operazionale e procedura amministrativa legata al contabile esplicito, ai movimenti fondi per indennità storno somme, annullo piani o risoluzioni e stime indennizzi derivante malfunzionamento, interruzioni as as service, cessato accordo uso da cliente business o rescissioni d’acquisto entro periodi consentiti o licenze annualità software in rinnovo per il predetto tool web dovrà esser sempre gestito mediante canale prioritario ufficiale del prestatore e creatore tecnologico reale infrastruttura origine percorsi software elearning erogata dopo l'incontro per demo formativa pre accorpamento.</p>
-                        <p>Questa medesima identità non erogherà o stanzierà denari d'uscita compensativa poiché tale entità è da reputarsi un'affissione referenziata di passaggio. I mandati rimborso legati a prove contrattualistica in abbonamento restano oneri del soggetto stipulatore definitivo cui vi rimandiamo nei moduli ed eventi contatti fissando incontri a tema B2B corporate formativo a titolo d’approccio puramente informativo strategico iniziale aziendale d’aiuto iniziale non fiscalmente rilevante nei fini e negli estremi bilancio amministrativo.</p>
-                        <p>Onde dirimere dubbi prima che sorga attrito s'invitano gli interessati prima della conferma acquisto finale esterno piattaforma ad investigare nei pannelli appositi in seno e nell’alveo esclusivo d’interazione ed accordo sui termini esplicitamente riportati alle clausole “reso licenze enterprise aziendali multi utente” consultabili dopo iscrizione e test preliminare dimostrativo e pilot prima d'accreditamento definitivo pagamento tramite circuiti previsti ed agevolati e non governati in sede originaria dal network Huroweor né collegabili allo stato di locazione hardware ospitante domini siffatti e ad ogni allegato presente per puro corollario dimostrativo di facciata a fine divulgativo intermedio informatico e comunicazionale in estesa interpretazione applicativa legge applicabile ed internazionalmente accettata ove applicabile.</p>
-                    </div>
-                </details>
-            </div>
-
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 border-t border-gray-700 p-4 md:p-6 z-50 text-white transform transition-transform translate-y-full" style="transition: transform 0.5s ease-out;">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="text-sm text-gray-300">
-                Impieghiamo un quantitativo essenziale ed indispensabile di log per migliorare la presentazione infrastrutturale su interfaccia grafica utente conformemente all'aggiornamento vigente nel quadro normativo generale a respiro continentale che norma identità dati tracciamento telematico per sicurezza informatica. Proseguendo l’apertura consenti in parte il rilascio minimo.
-            </div>
-            <div class="flex-shrink-0 flex gap-2 w-full md:w-auto">
-                <button onclick="acceptCookies()" class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-6 rounded whitespace-nowrap border-2 border-black flex-1" style="box-shadow: 2px 2px 0 0 #000; border-radius: var(--radius);">Accetta</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- INLINE ROUTING & LOGIC JS (The "Gravity Well" Protocol) -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            
-            // Cookie Banner Logic
-            if (!localStorage.getItem('cookieAccepted_huroweor')) {
+        // Cookie Banner Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookieConsent')) {
                 setTimeout(() => {
                     const banner = document.getElementById('cookie-banner');
                     banner.classList.remove('translate-y-full');
-                    banner.classList.add('translate-y-0');
                 }, 1000);
             }
-
-            // Self-Healing Anchor Navigation
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    // Close mobile menu if open
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-
-                    const rawTargetId = this.getAttribute('href').substring(1);
-                    const targetEl = document.getElementById(rawTargetId);
-                    
-                    // Logic Bridge Routing - Fallback to contact form if broken anchor
-                    if (targetEl) {
-                        targetEl.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                        console.warn(`Anchor #${rawTargetId} missing. Redirecting to gravity well (#contact)`);
-                        const fallback = document.getElementById('contact');
-                        if (fallback) fallback.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
         });
 
         function acceptCookies() {
-            localStorage.setItem('cookieAccepted_huroweor', 'true');
+            localStorage.setItem('cookieConsent', 'true');
             const banner = document.getElementById('cookie-banner');
-            banner.classList.remove('translate-y-0');
             banner.classList.add('translate-y-full');
         }
-    </script>
-</body>
-</html>
+    </script> </body></html>
