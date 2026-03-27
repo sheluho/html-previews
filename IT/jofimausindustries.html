@@ -1,415 +1,162 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jofimaus Industries - Il Blog Definitivo per Risparmio e Gestione Denaro</title>
-    <meta name="description" content="Strategie pratiche per far crescere il tuo stipendio, abbattere le bollette e dominare le tue spese ogni singolo mese.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <style>
+<!DOCTYPE html><html lang="it" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Jofimaus Industries | Guide e Itinerari in Italia</title><meta name="description" content="Scopri l'Italia autentica con i nostri itinerari di viaggio su misura. Dai borghi italiani ai weekend fuori porta, ti guidiamo su cosa vedere."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"> <style>
         :root {
-            /* 
-             * VAR A (Length 25 % 3 = 1) -> Soft
-             * VAR B ('h' % 3 = 2) -> Hard (Neo-Brutalist)
-             * VAR C ('t' % 3 = 2) -> Cool Slate
-             * VAR D -> Emerald Finance 
-             */
-            --primary: #059669;
-            --surface: #f8fafc;
-            --radius: 12px;
-            --shadow: 4px 4px 0px 0px #000;
+            --primary: #4f46e5;
+            --secondary: #0891b2;
+            --radius: 8px;
+            --card-radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --body-bg: #faf5ff;
+            --card-bg: #ffffff;
+            --text: #1e1b4b;
+            --muted: #6b7280;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
-            border: 2px solid #000; /* Adjusted for Neo-brutalist theme */
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s ease-in-out;
-            font-weight: bold;
-            display: inline-block;
-            border: 2px solid #000; /* Consistency with Neo-Brutalist */
-            text-align: center;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
-        
-        .btn-primary:hover {
-            opacity: 0.95;
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px 0px #000;
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
 
         .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
 
-        /* Accordion Customization */
-        details > summary {
-            list-style: none;
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
         }
-        details > summary::-webkit-details-marker {
-            display: none;
+
+        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+        main, main + footer { scroll-margin-top: 5rem; }
+
+        /* Form inputs — consistent styling regardless of Gemini output */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
         }
-    </style>
-</head>
-<body class="antialiased font-sans">
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+        }
 
-    <!-- NAVIGATION -->
-    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center">
-                    <a href="#" class="text-2xl font-extrabold text-gray-900 tracking-tighter">
-                        JOFIMAUS<span class="text-primary">.INDUSTRIES</span>
-                    </a>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-700 hover:text-primary font-semibold transition">Il Metodo</a>
-                    <a href="#reviews" class="text-gray-700 hover:text-primary font-semibold transition">Recensioni</a>
-                    <a href="#faq" class="text-gray-700 hover:text-primary font-semibold transition">FAQ</a>
-                    <a href="#contact" class="btn-primary">Inizia a Risparmiare</a>
-                </div>
-                <div class="flex items-center md:hidden">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 p-2 font-bold text-xl border-2 border-black rounded" style="box-shadow: 2px 2px 0px #000">
-                        Menu
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-black border-t-2 absolute w-full z-40">
-            <div class="px-2 pt-2 pb-4 space-y-1">
-                <a href="#features" class="block px-3 py-2 text-base font-semibold text-gray-700 hover:bg-gray-100 border-b border-gray-100">Il Metodo</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-semibold text-gray-700 hover:bg-gray-100 border-b border-gray-100">Recensioni</a>
-                <a href="#faq" class="block px-3 py-2 text-base font-semibold text-gray-700 hover:bg-gray-100 border-b border-gray-100">FAQ</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary mt-2">Inizia a Risparmiare</a>
-            </div>
-        </div>
-    </nav>
+        /* Links — readable on any theme */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
 
-    <!-- HERO SECTION -->
-    <header class="relative bg-gray-900 py-32 border-b-2 border-black overflow-hidden">
-        <!-- Background Image with Overlay for Contrast -->
-        <img src="https://images.pexels.com/photos/4386404/pexels-photo-4386404.jpeg" 
-             alt="Gestione finanza e budget" 
-             referrerpolicy="no-referrer" 
-             loading="eager" 
-             onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1a202c/ffffff?text=Gestione+Finanziaria'"
-             class="absolute inset-0 w-full h-full object-cover z-0">
-        <div class="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
+        /* Section divider — subtle visual rhythm */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(79,70,229,0.12), transparent);
+            margin: 0;
+        }
 
-        <div class="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-                Le 'Industries' del tuo benessere finanziario: <br> <span class="text-primary bg-white px-2 mt-2 inline-block shadow-sm">gestisci lo stipendio come un professionista.</span>
-            </h1>
-            <p class="mt-4 text-xl text-gray-200 max-w-3xl mx-auto mb-10 font-medium">
-                Smettila di arrivare a fine <strong class="text-white">mese</strong> con l'ansia. Il nostro blog e le nostre guide pratiche ti svelano come ottimizzare le tue <strong class="text-white">spese</strong>, dominare l'<strong class="text-white">affitto</strong> e iniziare un piano di <strong class="text-white">risparmio</strong> concreto, indipendentemente da quanto guadagni.
-            </p>
-            <div class="flex justify-center">
-                <a href="#contact" class="btn-primary text-lg px-8 py-4">Accedi alle Guide Gratuite</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- TRUST SECTION -->
-    <section class="bg-gray-100 py-10 border-b border-gray-200">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-sm font-bold text-gray-500 tracking-wider uppercase mb-6">Strategie lette e applicate da migliaia di lettori per ottimizzare ogni</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale font-bold text-xl md:text-2xl">
-                <span>Gestione Bilancio Mese</span>
-                <span>Ottimizzazione Conto Corrente</span>
-                <span>Taglio Bollette Smart</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="py-16 px-4 sm:px-6 lg:px-8">
-        
-        <!-- FEATURES / SERVICES SECTION -->
-        <div id="features" class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Il Metodo Pratico per la tua Indipendenza</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Non serve essere un mago della finanza. Le nostre analisi ti mostrano esattamente come gestire il tuo denaro passo dopo passo.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="border-2 border-black p-6 rounded-lg bg-white relative">
-                    <div class="w-12 h-12 bg-primary text-white rounded flex items-center justify-center text-2xl font-bold border-2 border-black mb-4" style="box-shadow: 2px 2px 0px #000">1</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Salvataggio dello Stipendio</h3>
-                    <p class="text-gray-600">Scopri i trucchi per allocare il tuo <span class="font-bold text-primary">stipendio</span> appena arriva. Metodi automatici per mettere da parte soldi prima di essere tentato a spenderli inutilmente.</p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="border-2 border-black p-6 rounded-lg bg-white relative">
-                    <div class="w-12 h-12 bg-primary text-white rounded flex items-center justify-center text-2xl font-bold border-2 border-black mb-4" style="box-shadow: 2px 2px 0px #000">2</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Guerra alle Spese Fisse</h3>
-                    <p class="text-gray-600">Dall'<span class="font-bold text-primary">affitto</span> alle <span class="font-bold text-primary">bollette</span>, analizzeremo insieme i contratti per tagliare dove fa meno male. Non rassegnarti a pagare di più quando le alternative esistono.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="border-2 border-black p-6 rounded-lg bg-white relative">
-                    <div class="w-12 h-12 bg-primary text-white rounded flex items-center justify-center text-2xl font-bold border-2 border-black mb-4" style="box-shadow: 2px 2px 0px #000">3</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Scelta del Conto Corrente</h3>
-                    <p class="text-gray-600">Basta pagare commissioni bancarie occulte. Le nostre recensioni ti guideranno nella scelta del <span class="font-bold text-primary">conto</span> migliore a zero spese, essenziale per una vera politica di <span class="font-bold text-primary">risparmio</span>.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- REVIEWS SECTION -->
-        <div id="reviews" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-10 text-center border-b-4 border-primary pb-4 inline-block mx-auto">Cosa dicono i nostri lettori</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Testimonial 1 -->
-                <div class="bg-white p-6 border-2 border-black rounded-lg">
-                    <p class="text-gray-700 italic mb-4">"Seguendo il loro approccio cinico ma onesto alle <strong class="text-black">spese</strong> quotidiane, ho smesso di buttare soldi. Finalmente arrivo a fine <strong class="text-black">mese</strong> sereno."</p>
-                    <div class="font-bold text-gray-900">— Marco R. <span class="text-sm font-normal text-gray-500 block">Lettore Assiduo, 2026</span></div>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="bg-white p-6 border-2 border-black rounded-lg">
-                    <p class="text-gray-700 italic mb-4">"Avevo due conti vecchi che mi salassavano di commissioni. Ho letto la loro guida sul <strong class="text-black">conto</strong> perfetto e ora risparmio centinaia di euro all'anno."</p>
-                    <div class="font-bold text-gray-900">— Giulia F. <span class="text-sm font-normal text-gray-500 block">Iscritta Newsletter, 2026</span></div>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="bg-white p-6 border-2 border-black rounded-lg">
-                    <p class="text-gray-700 italic mb-4">"Da quando ho applicato il metodo di gestione per le <strong class="text-black">bollette</strong> e la pianificazione dell'<strong class="text-black">affitto</strong>, il mio livello di stress è crollato."</p>
-                    <div class="font-bold text-gray-900">— Alessio C. <span class="text-sm font-normal text-gray-500 block">Freelance, 2026</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ SECTION -->
-        <div id="faq" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti (FAQ)</h2>
-            <div class="space-y-4">
+        /* Decorative accents */
+        .accent-border-left {
+            border-left: 4px solid var(--secondary);
+        }
+        .accent-underline {
+            text-decoration-color: var(--secondary);
+            text-decoration-thickness: 3px;
+            text-underline-offset: 4px;
+        }
+    </style> </head><body class="antialiased selection:bg-indigo-200 selection:text-indigo-900"><nav class="fixed w-full z-50 top-0 border-b border-gray-100 shadow-sm transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold font-serif tracking-tight text-primary"> Jofimaus<span class="text-secondary">Industries</span></a></div><div class="hidden md:flex space-x-8 items-center"><a href="#servizi" class="text-sm font-semibold transition-colors">Servizi</a><a href="#recensioni" class="text-sm font-semibold transition-colors">Recensioni</a><a href="#faq" class="text-sm font-semibold transition-colors">FAQ</a><a href="#contact" class="btn-primary text-sm px-5 py-2"> Inizia il Viaggio <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg pb-4 px-4"><a href="#servizi" class="block py-3 text-base font-medium border-b border-gray-100">Servizi</a><a href="#recensioni" class="block py-3 text-base font-medium border-b border-gray-100">Recensioni</a><a href="#faq" class="block py-3 text-base font-medium border-b border-gray-100">FAQ</a><a href="#contact" class="block mt-4 text-center btn-primary w-full justify-center">Inizia il Viaggio</a></div></nav><main><section class="py-16 md:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><div class="w-full md:w-1/2 flex flex-col justify-center space-y-6"><div class="inline-block px-3 py-1 rounded-full bg-indigo-100 text-primary text-xs font-bold tracking-wider uppercase w-max mb-2"> Viaggi su Misura in Italia </div><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900"> Costruiamo le tue Emozioni: L'Industria del perfetto <span class="text-primary underline accent-underline">itinerario di viaggio</span>. </h1><p class="text-lg md:text-xl text-muted leading-relaxed"> Dimentica le guide turistiche noiose. Progettiamo esperienze uniche, svelandoti i segreti dei più affascinanti borghi italiani e organizzando il tuo prossimo indimenticabile weekend fuori porta. </p><div class="flex flex-col sm:flex-row gap-4 pt-4"><a href="#contact" class="btn-primary justify-center"> Richiedi Consulenza <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a><a href="#servizi" class="btn-secondary justify-center">Scopri i Servizi</a></div></div><div class="w-full md:w-1/2"><div class="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div><img src="https://images.pexels.com/photos/1763969/pexels-photo-1763969.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Panorama italiano, borghi e costa" class="w-full h-auto object-cover aspect-[4/3]" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/4f46e5/ffffff?text=Paesaggio+Italiano'"></div></div></div></section><section class="py-8 bg-white border-y border-gray-100"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><p class="text-sm font-semibold text-muted uppercase tracking-widest mb-6">I nostri itinerari si ispirano a</p><div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale"><span class="text-xl font-bold font-serif">Viaggi&Scoperte</span><span class="text-xl font-bold font-serif">Italia Nascosta</span><span class="text-xl font-bold font-serif">Weekend Magazine</span><span class="text-xl font-bold font-serif">Borghi Antichi</span></div></div></section><hr class="section-divider"><section id="servizi" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-3xl mx-auto mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-6">L'Arte del Viaggio, Organizzata per Te</h2><p class="text-lg text-muted">Non sai mai cosa vedere? Ci pensiamo noi. Strutturiamo ogni dettaglio affinché tu debba solo preoccuparti di goderti il panorama e creare ricordi indelebili.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="dna-card hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden group"><div class="absolute top-0 left-0 w-full h-1 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div><div class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-6 text-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg></div><h3 class="text-xl font-bold mb-4">Itinerario di Viaggio Personalizzato</h3><p class="text-muted leading-relaxed mb-4"> Analizziamo le tue preferenze, il tuo ritmo e i tuoi desideri per costruire un piano dettagliato giorno per giorno. Ottimizziamo i tempi di spostamento e selezioniamo le tappe imperdibili. </p></div><div class="dna-card hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden group"><div class="absolute top-0 left-0 w-full h-1 bg-secondary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div><div class="w-12 h-12 bg-cyan-50 rounded-lg flex items-center justify-center mb-6 text-secondary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg></div><h3 class="text-xl font-bold mb-4">Alla Scoperta dei Borghi Italiani</h3><p class="text-muted leading-relaxed mb-4"> Ti portiamo lontano dalle rotte turistiche affollate. Esplora vicoli medievali, assapora tradizioni secolari e immergiti nell'autenticità dei piccoli centri storici che rendono unica l'Italia. </p></div><div class="dna-card hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden group"><div class="absolute top-0 left-0 w-full h-1 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div><div class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-6 text-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><h3 class="text-xl font-bold mb-4">Il Perfetto Weekend Fuori Porta</h3><p class="text-muted leading-relaxed mb-4"> Hai solo due giorni? Massimizziamo il tuo tempo libero. Ti suggeriamo destinazioni facilmente raggiungibili, combinando relax, cultura ed enogastronomia per una fuga rigenerante. </p></div></div></section><hr class="section-divider"><section class="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="relative rounded-2xl overflow-hidden h-64 md:h-96 shadow-lg"><img src="https://images.pexels.com/photos/2087391/pexels-photo-2087391.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Borgo in Toscana" class="w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/0891b2/ffffff?text=Esplora+l+Italia'"><div class="absolute inset-0 bg-indigo-900/40 flex items-center justify-center"><h2 class="text-white text-3xl md:text-5xl font-bold text-center px-4 drop-shadow-md">La bellezza è ovunque. Noi ti mostriamo dove guardare.</h2></div></div></section><hr class="section-divider"><section id="recensioni" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"><div class="max-w-2xl accent-border-left pl-6"><h2 class="text-3xl md:text-4xl font-bold mb-4">Esperienze Indimenticabili</h2><p class="text-lg text-muted">Scopri cosa dicono i viaggiatori che si sono affidati alla nostra guida per scoprire il vero volto dell'Italia.</p></div></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card bg-white"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="text-gray-700 italic mb-6">"Non sapevamo da dove iniziare per il nostro tour in Toscana. Ci hanno fornito un percorso turistico impeccabile, facendoci scoprire cantine nascoste e trattorie genuine. Un servizio eccezionale."</p><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-primary font-bold">M</div><div><p class="font-bold text-sm">Marco & Silvia</p><p class="text-xs text-muted">Viaggio in Toscana, 2026</p></div></div></div><div class="dna-card bg-white"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="text-gray-700 italic mb-6">"Volevamo un weekend fuori porta rilassante per staccare dal lavoro. Hanno organizzato tutto, dal B&B di charme ai suggerimenti su cosa vedere nei dintorni. Zero stress, 100% relax."</p><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center text-secondary font-bold">E</div><div><p class="font-bold text-sm">Elena T.</p><p class="text-xs text-muted">Fuga in Umbria, 2026</p></div></div></div><div class="dna-card bg-white"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="text-gray-700 italic mb-6">"La loro conoscenza dei borghi italiani è enciclopedica. Ci hanno guidato in un itinerario di viaggio in Puglia che ci ha fatto innamorare della regione. Consigliatissimi per chi cerca autenticità."</p><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-primary font-bold">L</div><div><p class="font-bold text-sm">Luca & Famiglia</p><p class="text-xs text-muted">Tour della Puglia, 2026</p></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-lg text-muted">Tutto ciò che devi sapere su come organizziamo il tuo percorso turistico.</p></div><div class="dna-card space-y-4"><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900 hover:text-primary transition-colors"> Come create un itinerario di viaggio su misura? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Iniziamo con un questionario dettagliato per comprendere i tuoi gusti, il tuo budget e il tipo di esperienza che cerchi. Sulla base di queste informazioni, il nostro team studia le migliori opzioni, selezionando cosa vedere e organizzando la logistica in modo fluido.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900 hover:text-primary transition-colors"> Organizzate anche brevi weekend fuori porta? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Assolutamente sì. I weekend fuori porta sono la nostra specialità per chi ha poco tempo ma desidera staccare la spina. Ottimizziamo le tempistiche per farti godere al massimo ogni singolo momento, senza stress.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900 hover:text-primary transition-colors"> Siete specializzati solo nei grandi centri o anche nei borghi italiani? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">La nostra vera passione è farvi scoprire i borghi italiani meno noti. Amiamo l'Italia autentica, quella fatta di piccole realtà, artigianato locale e tradizioni culinarie nascoste che le guide tradizionali spesso ignorano.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900 hover:text-primary transition-colors"> Quanto tempo prima devo contattarvi per un percorso turistico? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Consigliamo di contattarci almeno 3-4 settimane prima per i weekend e 2-3 mesi prima per itinerari più lunghi (soprattutto in alta stagione). Questo ci permette di garantirti le migliori opzioni disponibili per alloggi ed esperienze.</p></details><details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900 hover:text-primary transition-colors"> Prenotate voi alberghi e voli? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Noi forniamo un servizio di consulenza e pianificazione pura. Ti forniremo i link diretti e tutte le istruzioni dettagliate affinché tu possa effettuare le prenotazioni in totale autonomia e sicurezza, mantenendo il pieno controllo sulle tue spese.</p></details></div></section><hr class="section-divider"><section id="contact" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card overflow-hidden relative"><div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-indigo-50 rounded-full opacity-50"></div><div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-48 h-48 bg-cyan-50 rounded-full opacity-50"></div><div class="relative z-10 flex flex-col md:flex-row gap-12"><div class="w-full md:w-1/2"><h2 class="text-3xl md:text-4xl font-bold mb-6">Inizia a Progettare il Tuo Viaggio</h2><p class="text-muted mb-8 leading-relaxed">Raccontaci la tua idea. Che sia un lungo viaggio itinerante o un breve weekend per staccare la spina, il nostro team è pronto ad ascoltarti e a trasformare i tuoi desideri in un percorso turistico reale e impeccabile.</p><div class="space-y-4"><div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-primary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><p class="font-bold">Orari di Consulenza</p><p class="text-sm text-muted">Lunedì - Venerdì, 09:00 - 18:00</p></div></div><div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-primary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg></div><div><p class="font-bold">Servizio Online</p><p class="text-sm text-muted">Operiamo in tutta Italia</p></div></div></div></div><div class="w-full md:w-1/2 bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8"><form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div><label class="block text-sm font-semibold mb-1 text-gray-700">Nome e Cognome *</label><input type="text" required placeholder="Mario Rossi" class="w-full"></div><div><label class="block text-sm font-semibold mb-1 text-gray-700">Tipo di Viaggio *</label><select required class="w-full"><option value="" disabled selected>Seleziona un'opzione</option><option value="weekend">Weekend Fuori Porta</option><option value="itinerario_lungo">Itinerario Lungo (1+ settimane)</option><option value="borghi">Tour dei Borghi</option></select></div><div><label class="block text-sm font-semibold mb-1 text-gray-700">Raccontaci la tua idea</label><textarea rows="3" placeholder="Dove vorresti andare e cosa ti piacerebbe vedere?" class="w-full resize-none"></textarea></div><button type="submit" class="btn-primary w-full justify-center mt-2"> Richiedi Informazioni <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button><p class="text-xs text-center text-muted mt-4">I tuoi dati sono al sicuro. Non inviamo spam.</p></form><div id="success-msg" style="display:none" class="text-center py-8"><div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold mb-2">Richiesta Inviata!</h3><p class="text-muted">Il nostro team analizzerà la tua richiesta e ti contatterà a breve per iniziare a progettare il tuo viaggio.</p></div></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"><div><a href="#" class="text-2xl font-extrabold font-serif tracking-tight text-primary mb-4 inline-block"> Jofimaus<span class="text-secondary">Industries</span></a><p class="text-sm text-muted max-w-sm mt-2">La tua bussola per scoprire l'Italia. Progettiamo itinerari di viaggio, esplorazioni di borghi storici e perfetti weekend fuori porta.</p></div><div class="flex flex-col md:items-end justify-center"><p class="text-xs text-muted max-w-sm text-left md:text-right border-l-4 md:border-l-0 md:border-r-4 border-secondary pl-4 md:pl-0 md:pr-4 py-2 bg-gray-50 md:bg-transparent"><strong>Disclaimer:</strong> Questo è un sito promozionale indipendente gestito da Jofimaus Industries, che opera come affiliato per Il Vagamondo. </p></div></div><div class="border-t border-gray-100 pt-8 space-y-4 mb-8"><details class="group text-sm text-muted"><summary class="cursor-pointer font-semibold hover:text-primary transition-colors">Politica sulla Privacy</summary><div class="mt-4 p-4 bg-gray-50 rounded-lg space-y-2 text-xs leading-relaxed"><p>La presente Politica sulla Privacy descrive come Jofimaus Industries raccoglie, utilizza e protegge i dati personali degli utenti. La tutela della tua privacy è per noi una priorità assoluta durante la navigazione sul nostro sito web dedicato agli itinerari di viaggio. Raccogliamo i dati forniti volontariamente tramite il modulo di contatto al fine di elaborare le richieste di consulenza per i percorsi turistici. Tali dati possono includere nome, cognome, preferenze di viaggio e altre informazioni necessarie alla pianificazione del tuo weekend fuori porta. I dati vengono trattati con strumenti informatici idonei a garantirne la sicurezza e la riservatezza. Non vendiamo, affittiamo o cediamo i tuoi dati personali a terzi per scopi di marketing senza il tuo esplicito consenso. I dati potrebbero essere condivisi esclusivamente con i partner strettamente necessari per l'erogazione del servizio richiesto. Utilizziamo i cookie per migliorare l'esperienza di navigazione e analizzare il traffico sul sito. Puoi gestire le preferenze sui cookie attraverso le impostazioni del tuo browser. Conserviamo i dati personali solo per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti. L'utente ha il diritto di accedere ai propri dati, richiederne la rettifica o la cancellazione in qualsiasi momento. Per esercitare tali diritti, è possibile utilizzare il modulo di contatto presente sul sito. Implementiamo misure di sicurezza tecniche e organizzative per prevenire la perdita, l'uso illecito o l'alterazione dei dati. La presente politica può essere aggiornata periodicamente; ti invitiamo a consultarla regolarmente. L'utilizzo continuato del sito implica l'accettazione della politica sulla privacy aggiornata. Per qualsiasi dubbio in merito al trattamento dei dati, ti invitiamo a non utilizzare i nostri servizi finché non avrai chiarito ogni aspetto. La trasparenza è fondamentale nel nostro rapporto con i viaggiatori che si affidano a noi per scoprire cosa vedere in Italia.</p></div></details><details class="group text-sm text-muted"><summary class="cursor-pointer font-semibold hover:text-primary transition-colors">Termini di Servizio</summary><div class="mt-4 p-4 bg-gray-50 rounded-lg space-y-2 text-xs leading-relaxed"><p>I presenti Termini di Servizio regolano l'utilizzo del sito web Jofimaus Industries e dei servizi di consulenza per la creazione di itinerari di viaggio. Accedendo al sito, l'utente accetta integralmente i presenti termini e condizioni. Il nostro servizio consiste nella fornitura di consulenza personalizzata per la pianificazione di viaggi, inclusi weekend fuori porta e visite ai borghi italiani. Non operiamo come agenzia di viaggi tradizionale: non effettuiamo prenotazioni dirette di voli, treni, hotel o altre strutture ricettive. Forniamo esclusivamente consigli, piani di viaggio dettagliati e link per permettere all'utente di prenotare in autonomia. Non siamo responsabili per eventuali disservizi, cancellazioni o problemi riscontrati con i fornitori di servizi terzi (compagnie aeree, hotel, ecc.). Le proposte di itinerario sono basate sulle informazioni fornite dall'utente e sulla disponibilità presunta al momento della stesura. L'utente è tenuto a verificare autonomamente i requisiti di viaggio, i documenti necessari e le condizioni sanitarie delle destinazioni scelte. I contenuti del sito, inclusi testi, grafiche e loghi, sono di proprietà di Jofimaus Industries e sono protetti dalle leggi sul diritto d'autore. È vietata la riproduzione o l'utilizzo non autorizzato dei nostri contenuti. Ci riserviamo il diritto di modificare i presenti termini in qualsiasi momento, aggiornando questa pagina. L'utente si impegna a fornire informazioni veritiere e accurate durante la richiesta di consulenza. Qualsiasi uso fraudolento o illecito del sito comporterà l'immediata interruzione del servizio. Jofimaus Industries non garantisce che il sito sia privo di errori o interruzioni, pur impegnandosi a mantenere elevati standard di qualità. In nessun caso saremo ritenuti responsabili per danni diretti o indiretti derivanti dall'uso del nostro servizio di pianificazione. L'accettazione di questi termini è requisito indispensabile per usufruire delle nostre guide e dei nostri consigli su cosa vedere.</p></div></details><details class="group text-sm text-muted"><summary class="cursor-pointer font-semibold hover:text-primary transition-colors">Politica di Rimborso</summary><div class="mt-4 p-4 bg-gray-50 rounded-lg space-y-2 text-xs leading-relaxed"><p>La presente Politica di Rimborso definisce le condizioni applicabili ai servizi di consulenza per gli itinerari di viaggio offerti da Jofimaus Industries. Poiché il nostro servizio consiste nella creazione intellettuale di un piano su misura (come un percorso turistico personalizzato per un weekend fuori porta), la politica di rimborso è rigorosamente strutturata. Se la richiesta di annullamento avviene prima che il nostro team abbia iniziato la stesura dell'itinerario, è previsto un rimborso totale. Una volta che la stesura del piano di viaggio è iniziata, non sarà possibile emettere rimborsi completi, poiché il lavoro intellettuale è già in corso. Se l'itinerario finale è stato consegnato, non è previsto alcun rimborso, in quanto il servizio è considerato interamente erogato. Tuttavia, offriamo una garanzia di revisione: qualora l'itinerario non rispecchiasse le indicazioni fornite nel questionario iniziale, ci impegniamo a effettuare una revisione gratuita. La richiesta di revisione deve essere presentata entro 7 giorni dalla consegna del piano. Non siamo responsabili e non offriamo rimborsi per problemi derivanti dalle prenotazioni effettuate autonomamente dall'utente sulla base dei nostri consigli (es. hotel non di gradimento, voli cancellati, musei chiusi inaspettatamente). Se l'utente decide di non intraprendere più il viaggio dopo la consegna dell'itinerario, ciò non costituisce motivo valido per un rimborso. In casi eccezionali o di forza maggiore, Jofimaus Industries si riserva il diritto di valutare richieste di rimborso parziale a propria esclusiva discrezione. Le richieste di rimborso o revisione devono essere inoltrate tramite il modulo di contatto del sito. L'elaborazione di un eventuale rimborso approvato richiederà dai 5 ai 10 giorni lavorativi. Acquistando il nostro servizio di consulenza su cosa vedere e come viaggiare, accetti esplicitamente queste condizioni commerciali.</p></div></details></div><div class="text-center text-sm text-muted pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center"><p>&copy; 2026 Jofimaus Industries. Tutti i diritti riservati.</p><p class="mt-2 md:mt-0">Design & Sviluppo focalizzato sull'Esperienza.</p></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-50 transform translate-y-full transition-transform duration-500"><div class="max-w-5xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm text-gray-600 text-center sm:text-left"> Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito e personalizzare i tuoi prossimi itinerari di viaggio. Continuando a navigare, accetti la nostra politica. </p><div class="flex gap-3 flex-shrink-0"><button onclick="acceptCookies()" class="btn-primary text-sm px-4 py-2">Accetta Tutto</button><button onclick="acceptCookies()" class="text-sm font-semibold text-gray-500 hover:text-gray-800 transition-colors">Solo Necessari</button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
                 
-                <details class="bg-white border-2 border-black rounded-lg group cursor-pointer" open>
-                    <summary class="font-bold text-lg p-5 flex justify-between items-center bg-gray-50">
-                        Quanto dovrei mettere in risparmio ogni mese dal mio stipendio?
-                        <span class="text-primary font-bold text-2xl group-open:rotate-45 transition-transform">+</span>
-                    </summary>
-                    <div class="p-5 border-t-2 border-black text-gray-700 leading-relaxed bg-white">
-                        Non c'è una cifra magica universale, ma raccomandiamo la regola d'oro: tenta di destinare almeno il 10-20% del tuo <span class="font-bold text-primary">stipendio</span> subito al <span class="font-bold text-primary">risparmio</span> prima di toccarlo per altro. Il restante deve coprire i costi essenziali come <span class="font-bold text-primary">affitto</span> e <span class="font-bold text-primary">bollette</span>.
-                    </div>
-                </details>
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
 
-                <details class="bg-white border-2 border-black rounded-lg group cursor-pointer">
-                    <summary class="font-bold text-lg p-5 flex justify-between items-center bg-gray-50">
-                        Come scelgo un nuovo conto senza sorprese?
-                        <span class="text-primary font-bold text-2xl group-open:rotate-45 transition-transform">+</span>
-                    </summary>
-                    <div class="p-5 border-t-2 border-black text-gray-700 leading-relaxed bg-white">
-                        La prima regola è controllare i costi di gestione annui e le commissioni su prelievi e bonifici. Sul nostro blog consigliamo spesso un <span class="font-bold text-primary">conto</span> corrente online a canone zero, essenziale per non disperdere la ricchezza accumulata con le nostre tecniche di ottimizzazione delle <span class="font-bold text-primary">spese</span>.
-                    </div>
-                </details>
-
-                <details class="bg-white border-2 border-black rounded-lg group cursor-pointer">
-                    <summary class="font-bold text-lg p-5 flex justify-between items-center bg-gray-50">
-                        Non guadagno molto, ha senso iniziare a tracciare le spese?
-                        <span class="text-primary font-bold text-2xl group-open:rotate-45 transition-transform">+</span>
-                    </summary>
-                    <div class="p-5 border-t-2 border-black text-gray-700 leading-relaxed bg-white">
-                        Assolutamente sì. Anzi, è ancora più importante! Tracciare ogni singolo euro in uscita ti permette di identificare quelle <span class="font-bold text-primary">spese</span> minuscole che a fine <span class="font-bold text-primary">mese</span> creano enormi buchi neri. Anche con cifre modeste si può costruire una mentalità sana verso il denaro.
-                    </div>
-                </details>
-
-                <details class="bg-white border-2 border-black rounded-lg group cursor-pointer">
-                    <summary class="font-bold text-lg p-5 flex justify-between items-center bg-gray-50">
-                        Offrite consulenze finanziarie personali?
-                        <span class="text-primary font-bold text-2xl group-open:rotate-45 transition-transform">+</span>
-                    </summary>
-                    <div class="p-5 border-t-2 border-black text-gray-700 leading-relaxed bg-white">
-                        Jofimaus Industries si propone come blog informativo. Condividiamo casi studio, recensioni e guide per spingere le persone a gestire in modo indipendente i propri soldi. Non forniamo consulenza finanziaria su misura e personalizzata da istituti abilitati.
-                    </div>
-                </details>
-                
-                <details class="bg-white border-2 border-black rounded-lg group cursor-pointer">
-                    <summary class="font-bold text-lg p-5 flex justify-between items-center bg-gray-50">
-                        È sicuro pagare le bollette tramite addebito diretto sul conto?
-                        <span class="text-primary font-bold text-2xl group-open:rotate-45 transition-transform">+</span>
-                    </summary>
-                    <div class="p-5 border-t-2 border-black text-gray-700 leading-relaxed bg-white">
-                        Generalmente sì, e spesso ti permette di evitare penali per pagamenti in ritardo e costi aggiuntivi dei bollettini fisici. Automatizzare l'uscita delle <span class="font-bold text-primary">bollette</span> essenziali dal <span class="font-bold text-primary">conto</span> toglie un problema mentale e organizza meglio la gestione per il resto del <span class="font-bold text-primary">mese</span>.
-                    </div>
-                </details>
-
-            </div>
-        </div>
-
-        <!-- CONTACT & NEWSLETTER SECTION -->
-        <div id="contact" class="max-w-5xl mx-auto dna-card bg-white text-gray-900 border-4 border-primary">
-            <div class="flex flex-col md:flex-row gap-12">
-                
-                <div class="w-full md:w-5/12">
-                    <h2 class="text-4xl font-extrabold mb-6 tracking-tight">Svegliati! Inizia la tua educazione al denaro.</h2>
-                    <p class="mb-6 text-gray-600 font-medium text-lg">
-                        Ricevi la nostra check-list per blindare il tuo <strong>stipendio</strong> e le analisi mensili esclusive su come tagliare le <strong>spese</strong> folli. 
-                    </p>
-                    <div class="bg-gray-100 p-6 border-l-4 border-black mb-6">
-                        <p class="font-bold text-black mb-1">Pubblicazione Articoli:</p>
-                        <p class="text-gray-700">Settimanale: Nuove strategie di finanza cinica e risparmio concreto disponibili online.</p>
-                    </div>
-                    <!-- Note: Intentionally left out map & fake phone based on Protocol Constraints -->
-                </div>
-                
-                <div class="w-full md:w-7/12 bg-gray-50 p-8 border-2 border-black rounded-lg" style="box-shadow: 6px 6px 0px 0px rgba(5, 150, 105, 0.2)">
-                    <h3 class="text-2xl font-bold mb-6 text-gray-900">Iscriviti al Percorso "Budget Dominato"</h3>
-                    
-                    <form id="lead-form" class="space-y-5" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1" for="name">Il tuo Nome (o Soprannome cinico)</label>
-                            <input type="text" id="name" required class="w-full px-4 py-3 border-2 border-gray-300 rounded focus:border-black focus:ring-0 transition font-sans bg-white text-black" placeholder="Mario Rossi">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1" for="interest">Scegli la tua priorità</label>
-                            <select id="interest" required class="w-full px-4 py-3 border-2 border-gray-300 rounded focus:border-black focus:ring-0 bg-white text-black">
-                                <option value="">- Seleziona un'opzione -</option>
-                                <option value="stipendio">Voglio imparare a dividere il mio stipendio</option>
-                                <option value="bollette">Voglio consigli per tagliare affitto/bollette</option>
-                                <option value="conto">Voglio cambiare conto corrente</option>
-                            </select>
-                        </div>
-                        <div class="pt-4">
-                            <button type="submit" class="btn-primary w-full text-lg shadow-none">Voglio i Consigli Gratuiti</button>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-4 text-center">Inviando confermi la presa visione dell'informativa sui dati riportata a fondo pagina. Nessuno spam, solo dritte per non finire povero a fine <strong class="text-gray-600">mese</strong>.</p>
-                    </form>
-
-                    <!-- Success Message Failsafe -->
-                    <div id="success-msg" style="display:none" class="bg-green-50 border-2 border-primary text-green-900 p-8 rounded text-center">
-                        <svg class="w-16 h-16 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <h4 class="text-2xl font-extrabold mb-2">Ricezione Avvenuta!</h4>
-                        <p class="text-lg">Tieni d'occhio i nostri prossimi articoli sulle tecniche avanzate di riduzione delle spese e ottimizzazione del risparmio quotidiano.</p>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-    </main>
-
-    <!-- FOOTER & LEGAL STACK -->
-    <footer class="bg-gray-900 border-t-4 border-primary text-gray-300 py-16">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-10 mb-10">
-                <div>
-                    <span class="text-2xl font-extrabold text-white tracking-tighter mb-4 block">
-                        JOFIMAUS<span class="text-primary">.INDUSTRIES</span>
-                    </span>
-                    <p class="text-gray-400 mb-6 max-w-sm">La guida brutale e sincera per mettere in riga le tue finanze. Risparmia forte, spendi il giusto, goditi la vita.</p>
-                </div>
-                <div>
-                    <p class="font-bold text-white mb-4 uppercase tracking-wider text-sm border-b border-gray-700 inline-block pb-1">Info Legal</p>
-                    
-                    <details class="mb-4 group">
-                        <summary class="cursor-pointer text-gray-400 hover:text-primary transition font-semibold">Termini e Condizioni <span class="text-xs opacity-50 ml-1">▼</span></summary>
-                        <div class="mt-4 bg-gray-800 p-4 border-l-2 border-primary text-sm text-gray-300 h-64 overflow-y-auto">
-                            <strong>1. Premessa e Accettazione dei Termini:</strong> Benvenuto sui siti di informazione promossi da Jofimaus Industries. Accedendo o utilizzando le informazioni fornite, accetti i seguenti Termini in ogni loro parte. L'utilizzo di questo sito per trarre consigli sulle dinamiche di stipendio e gestione spese indica che hai letto, compreso e accettato senza riserve queste norme. Se non intendi conformarti, interrompi la navigazione. La piattaforma è pensata esclusivamente a fini educativi sul risparmio base. Nessun contenuto sostituisce indicazioni fornite dal tuo ente finanziario. Tutti i termini sono da intendersi effettivi dal primo accesso, regolando l'interazione per ogni fine mese vissuto applicando le nostre dritte su bollette e contratti.<br><br>
-                            <strong>2. Limitazione di Responsabilità del Materiale Condiviso:</strong> Tutti gli articoli, i paragrafi su conti, i consigli per abbassare la quota d'affitto, rappresentano opinioni, riflessioni di parte o recensioni generali e MAI consigli per compravendita di titoli diretti. Non garantiamo la perfezione formale. Non accettiamo la responsabilità per disservizi dei conti recensiti. L'utente opera in completa libertà valutando la propensione del suo nucleo in materia di spese quotidiane. Ognuno rimane attore principale per ogni azione intrapresa di mese in mese. <br><br>
-                            <strong>3. Proprietà dei Contenuti Prodotti:</strong> Le descrizioni delle tecniche relative a rateazioni, riduzioni contrattuali, rinegoziazioni d'affitto pubblicate, inclusi impaginazione e marchi derivati, rimangono intellettualmente vincolati a Jofimaus Industries o agli originari enti affiliati come indicato nel disclaimer specifico. L'accesso a questo sistema informativo non garantisce licenza per duplicazione, copiatura sistematica dei testi con il tracciamento dei costi, né riutilizzo a scopo di lucro senza espresso accordo scritto preesistente a parte dei nostri incaricati in via confidenziale e diretta sulle piattaforme social di pertinenza. Esonero totale da conseguenze legate a manipolazioni illegittime compiute. Modifiche riservate senza preavviso sulle direttive testé redatte nei capitoli indicati. Le versioni sono insostituibili da indicazioni non avallate internamente per salvaguardia intellettuale e conformità agli obiettivi sul budget casalingo generale.
-                        </div>
-                    </details>
-                    
-                    <details class="group">
-                        <summary class="cursor-pointer text-gray-400 hover:text-primary transition font-semibold">Informativa Privacy <span class="text-xs opacity-50 ml-1">▼</span></summary>
-                        <div class="mt-4 bg-gray-800 p-4 border-l-2 border-primary text-sm text-gray-300 h-64 overflow-y-auto">
-                            <strong>Sezione I - Elaborazione e Identità Dati:</strong> Ci prefiggiamo come faro normativo per la protezione in virtù delle dinamiche di tracciatura necessarie al funzionamento tecnico e statistico dei moduli di invio integrati nei server di appoggio. Visitando i paragrafi atti al risparmio e interagendo, alcune meta-informazioni (come dispositivo o orari) sono gestite nei limiti dell'offerta del servizio di interfaccia per l'aggiornamento. Noi non profiliamo finanziariamente e non vendiamo le liste su bollette o su stipendio a realtà disconnesse esterne. Solo tramite interazioni per moduli formativi il visitatore condivide referenze che appoggiate nei nostri tabulati interni di contatto permettono l'emissione e programmazione per notifiche inerenti strategie da noi redatte. In virtù della conservazione cerchiamo appoggio sicuro ed estraneo ai canali d'esportazione abusiva o d'archiviazione obsoleta in architettura del database.<br><br>
-                            <strong>Sezione II - Finalità Rilevanza Cookie:</strong> Si rileva la presenza essenziale legata ai permessi salvati sui dispositivi fisici di lettura (chiamati marker o cookie). Il portale adopera meccaniche in-browser (locale) di immagazzinamento atti a memorizzare preferenze form, bandiere sulla presa visione e personalizzazione per un uso continuativo senza interruzioni di connessione nei continui riaccessi a fine mese per rilettura capitoli delle guide risparmio e check lista dei traguardi sui conti e canoni da tagliare. L'intento della memorizzazione, blanda e cancellabile lato browser ad opera utente in pochissimi semplici tap o clik, garantisce fluida navigazione a riparo e ripropone con solerte comodità posizionamento utile durante sessione continua. Tali cookie minimizzati permarranno, esauriranno vita in correlazione allo scarico di cache preimpostato in opzione lato fruitore sulla propria base macchina operativa per i consuntivi del browser utilizzato, escluso intercettazione da appalti promozionali su terzi a nostra insaputa estranea e non governabile per cui chiediamo massima consapevole tutela personale tramite pulizie di cronologia periodica.<br><br>
-                            <strong>Sezione III - Tutela Diritti di Opt-Out Integrali:</strong> Sottolineiamo apertamente un rispetto inflessibile in merito le prassi di rimozione. Pur non appoggiandoci come noto su procedure form via scambio di mail pubbliche a canali generalisti che sono esposti e vetusti (vedere policy operativa del blocco moduli per noiosi sistemi vecchi), l'utente vanta accesso garantito di controllo tramite blocco dei sistemi terzi nei tracciatori da remoto o via procedure browser a ripulitura. La salvaguardia impone trasparenza sulle basi legali degli affidamenti sui dati d'iscrizione lista interna chiusi dentro piattaforma CMS, richiedibili per alterazione o visione o stralcio integrale della base. Manteniamo a bilancio una stima d'archiviazione a tre anni e procediamo a revisione manuale semestrale in garanzia e a totale pulizia su schede silenti o richieste su diritti avvalsi dall'entità registrata interessata e procedibile sempre per mezzo avviso ai responsabili interni dell'applicativo informatico centrale sul trattamento a sede principale come istituito per prassi su standard operativi base su rete.
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p class="mb-4">© 2026 Jofimaus Industries. Tutti i diritti riservati in conformità alla struttura strategica per la divisione spese in un nucleo familiare.</p>
-                <div class="bg-gray-800 p-4 rounded text-gray-400 font-bold border-l-4 border-yellow-500 max-w-4xl mx-auto italic">
-                    <span class="text-yellow-500 text-lg mr-2 uppercase block sm:inline">⚠️ Disclaimer Obbligatorio:</span>
-                    "Questo è un sito promozionale indipendente gestito da Jofimaus Industries, che agisce come affiliato per Finanza Cafona." Tutte le opinioni riflettono l'impronta editoriale di chiusura spese adottando tali risorse presentate senza farne consulenza ad hominem accreditata presso albi finanziari chiusi o dedicati all'offerta d'investimento mirato di piazza pubblica o privata, gestendone l'impatto sulla spesa quotidiana casalinga standard dei mesi affrontati o a venire per ottimizzarne l'ammontare.
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- FIXED COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-primary p-4 z-50 transform translate-y-full transition-transform duration-500 shadow-2xl" style="box-shadow: 0 -10px 20px rgba(0,0,0,0.1)">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-gray-700 text-sm font-medium">
-                Questo blog utilizza cookie tecnici base per far sì che tu non debba reinserire dati ad ogni sessione dedicata alla lettura su affitti o gestione stipendio, memorizzando consensi limitati localmente a favore d'un uso di piattaforma. Navigando accetti i parametri.
-            </div>
-            <button onclick="acceptCookies()" class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-6 rounded transition shrink-0 shadow-lg">Capito e Accetto</button>
-        </div>
-    </div>
-
-    <!-- SCRIPT INJECTION ENGINE -->
-    <script>
-        // JS Fallback Navigation & Self-Healing Anchors
-        document.addEventListener('DOMContentLoaded', () => {
-            const anchors = document.querySelectorAll('a[href^="#"]');
-            
-            anchors.forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    // Solo per anchor link veri (esclusi id che aprono menu)
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    e.preventDefault();
-                    
-                    // Chiudi il menu mobile se aperto su click di un link
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if(mobileMenu && !mobileMenu.classList.contains('hidden')){
-                        mobileMenu.classList.add('hidden');
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback to contact section
+                    const contactSection = document.getElementById('contact');
+                    if(contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                        console.log(`Target #${targetId} not found, redirecting to #contact`);
                     }
-
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        // Protocol: Esiste? Scrolla.
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                        // Protocol: NON esiste (Failsafe fallback) -> vai a contact
-                        console.warn(`Anchor ${targetId} missing. Invoking fallback to #contact`);
-                        const contactEl = document.getElementById('contact');
-                        if(contactEl) contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                });
+                }
             });
+        });
 
-            // Cookie logic Check on Load
-            if (!localStorage.getItem('cookiesAccepted')) {
+        // Cookie Banner Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("cookies_accepted")) {
                 setTimeout(() => {
-                    const banner = document.getElementById('cookie-banner');
-                    banner.classList.remove('translate-y-full');
+                    document.getElementById("cookie-banner").classList.remove("translate-y-full");
                 }, 1000);
             }
         });
 
-        // Function Cookie Accettazione
         function acceptCookies() {
-            localStorage.setItem('cookiesAccepted', 'true');
-            const banner = document.getElementById('cookie-banner');
-            banner.classList.add('translate-y-full');
+            localStorage.setItem("cookies_accepted", "true");
+            document.getElementById("cookie-banner").classList.add("translate-y-full");
         }
-    </script>
-</body>
-</html>
+    </script> </body></html>
