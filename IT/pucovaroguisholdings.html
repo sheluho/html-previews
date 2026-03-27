@@ -1,473 +1,173 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sviluppo Carriera & Coaching | Pucova Holdings</title>
-    <meta name="description" content="Affidati a Pucova Holdings per il tuo percorso di sviluppo professionale e career coaching strutturato. Trasformiamo il cambiamento in crescita.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Pucova Roguis Holdings | Portale Notizie Intelligenza Artificiale e Innovazione</title><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Fraunces:wght@700;800&display=swap" rel="stylesheet"> <style>
         :root {
-            /* VAR D: Palette (Professional Trust Blue) */
-            --primary: #1e3a8a; 
-            /* VAR C: Surface ('k' = 107 % 3 = 2 -> Slate White) */
-            --surface: #f8fafc; 
-            /* VAR A: Geometry (Length 26 % 3 = 2 -> Pill) */
-            --radius: 24px; 
-            /* VAR B: Physics ('p' = 112 % 3 = 1 -> Material) */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --primary: #059669;
+            --secondary: #7c3aed;
+            --radius: 8px;
+            --card-radius: 8px;
+            --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+            --body-bg: #1e1e2e;
+            --card-bg: #2a2a3d;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Global Contrast Base */
-            color: #1f2937;
-            scroll-behavior: smooth;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Work Sans', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fraunces', serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2.5rem;
-            transition: all 0.2s ease-in-out;
-            font-weight: 700;
-            display: inline-block;
-            text-align: center;
-            border: none;
-            cursor: pointer;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Work Sans', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
 
-        /* UTILITY: Text Accent */
         .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
         .bg-primary { background-color: var(--primary); }
 
-        .hero-overlay {
-            background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6));
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(255,255,255,0.08);
         }
 
+        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+        main, main + footer { scroll-margin-top: 5rem; }
+        
+
+        /* Form inputs — consistent styling */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(5,150,105,0.15);
+        }
+
+        /* Links — readable on any theme */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider — subtle visual rhythm */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(5,150,105,0.2), transparent);
+            margin: 0;
+        }
+
+        /* Bold Gradient Hero specific */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, #024530 100%);
+        }
+
+        /* FAQ Details styling */
         details > summary {
             list-style: none;
+            cursor: pointer;
         }
         details > summary::-webkit-details-marker {
             display: none;
         }
-    </style>
-</head>
-<body class="antialiased font-sans">
-
-    <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 z-50 flex flex-col md:flex-row justify-between items-center" style="display: none;">
-        <p class="text-sm mb-4 md:mb-0">Utilizziamo i cookie per migliorare il tuo percorso di navigazione sul nostro sito. Continuando ad utilizzare il sito, accetti la nostra politica sui cookie.</p>
-        <button onclick="acceptCookies()" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-gray-200 transition">Accetta</button>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="fixed w-full z-40 top-0 bg-white/95 backdrop-blur shadow-sm border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-extrabold text-primary tracking-tight">PUCOVA HOLDINGS</span>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#servizi" class="text-gray-700 hover:text-primary font-medium transition">I Nostri Servizi</a>
-                    <a href="#recensioni" class="text-gray-700 hover:text-primary font-medium transition">Risultati</a>
-                    <a href="#faq" class="text-gray-700 hover:text-primary font-medium transition">FAQ</a>
-                    <a href="#contatto" class="btn-primary" style="padding: 0.75rem 1.5rem;">Inizia il Percorso</a>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 pb-4 shadow-lg absolute w-full">
-            <div class="px-4 pt-2 pb-3 space-y-1">
-                <a href="#servizi" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">I Nostri Servizi</a>
-                <a href="#recensioni" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Risultati</a>
-                <a href="#faq" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">FAQ</a>
-                <a href="#contatto" class="block px-3 py-3 rounded-md text-base font-medium text-primary bg-blue-50">Inizia il Percorso</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-screen">
-        <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg'); background-position: center; background-repeat: no-repeat;">
-            <div class="absolute w-full h-full hero-overlay"></div>
-        </div>
-        
-        <div class="container relative mx-auto px-4 z-10 text-left md:text-center mt-12">
-            <div class="max-w-4xl mx-auto">
-                <h1 class="text-white font-extrabold text-5xl md:text-7xl leading-tight mb-6">
-                    Il miglior investimento è la tua <span class="text-blue-400">Carriera</span>.
-                </h1>
-                <p class="mt-4 text-xl md:text-2xl text-gray-200 leading-relaxed mb-10 max-w-3xl mx-auto font-light">
-                    Attraverso la competenza in gestione aziendale e l'affiliazione con leader del settore, <strong>Pucova Holdings</strong> ti guida in un processo di trasformazione. Gestiamo il tuo <strong>cambiamento</strong> per garantire una solida <strong>crescita</strong> professionale.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#contatto" class="btn-primary text-lg px-8 py-4 shadow-xl">Richiedi una Consulenza</a>
-                    <a href="#servizi" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-4 rounded-full font-bold transition shadow-lg text-center backdrop-blur-sm" style="border-radius: var(--radius)">Scopri i Programmi</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Trust Bar -->
-    <div class="bg-white py-6 border-b border-gray-100 shadow-sm relative z-20 -mt-2">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Partner Strategici & Metodologie d'Eccellenza</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-60 grayscale">
-                <span class="text-2xl font-bold text-gray-600">INTOO Partnership</span>
-                <span class="text-xl font-bold text-gray-600">CareerTransitionPro</span>
-                <span class="text-xl font-bold text-gray-600">Gi Group Framework</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content Area with Gray Contrast Background -->
-    <main class="py-20">
-        
-        <!-- Services Section -->
-        <section id="servizi" class="px-4">
-            <div class="max-w-5xl mx-auto dna-card relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-primary opacity-5 rounded-bl-full"></div>
-                
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Il tuo <span class="text-primary">Percorso</span> di Sviluppo</h2>
-                <p class="text-lg text-gray-600 mb-10 max-w-2xl">Offriamo servizi di coaching ed employability progettati per valorizzare il tuo potenziale e definire chiari obiettivi lavorativi in un mercato complesso.</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Service 1 -->
-                    <div class="p-6 bg-white border border-gray-100 shadow-sm rounded-xl hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Outplacement Strategico</h3>
-                        <p class="text-gray-600 leading-relaxed text-sm">Trasformiamo l'uscita da un'azienda in una rapida e proficua opportunità. Un <strong>processo</strong> metodico per ricollocarti sul mercato alle migliori condizioni possibili.</p>
-                    </div>
-
-                    <!-- Service 2 -->
-                    <div class="p-6 bg-white border border-gray-100 shadow-sm rounded-xl hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Coaching & Employability</h3>
-                        <p class="text-gray-600 leading-relaxed text-sm">Sessioni one-to-one per potenziare le tue skill. Che tu voglia promuovere un tuo <strong>collega</strong> o crescere tu stesso, i nostri coach sbloccano il potenziale latente.</p>
-                    </div>
-
-                    <!-- Service 3 -->
-                    <div class="p-6 bg-white border border-gray-100 shadow-sm rounded-xl hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Gestione del Cambiamento</h3>
-                        <p class="text-gray-600 leading-relaxed text-sm">Le fusioni o le ristrutturazioni aziendali richiedono equilibrio. Ti aiutiamo a governare il <strong>cambiamento</strong> tutelando la continuità della tua <strong>carriera</strong>.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Image Break / Proof -->
-        <section class="max-w-5xl mx-auto px-4 mb-8">
-            <div class="rounded-3xl overflow-hidden shadow-2xl relative h-80">
-                <img src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg" alt="Team coaching e sviluppo" class="w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1200x600?text=Sviluppo+Professionale'">
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent flex items-end p-8">
-                    <p class="text-white text-xl md:text-2xl font-semibold max-w-2xl leading-relaxed">"Il successo non si misura in posizioni raggiunte, ma dalla consapevolezza maturata in ogni passo del proprio <strong>percorso</strong>."</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Social Proof / Reviews -->
-        <section id="recensioni" class="px-4">
-            <div class="max-w-5xl mx-auto dna-card">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Testimonianze</h2>
-                <p class="text-gray-500 mb-10">Storie di chi ha già investito sulla propria evoluzione professionale.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                        <div class="flex text-yellow-400 mb-3">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <!-- repeat star 4 more times -->
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-gray-700 mb-4 font-light text-sm italic">"Durante un forte periodo di ristrutturazione aziendale, il team mi ha aiutato a capire quale fosse il vero valore aggiunto che potevo portare. Ora sono Executive Manager in un nuovo settore."</p>
-                        <p class="font-bold text-gray-900 text-sm">Marco R. - Direttore Commerciale</p>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                        <div class="flex text-yellow-400 mb-3">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-gray-700 mb-4 font-light text-sm italic">"Volevo promuovere un mio <strong>collega</strong> fidato, ma mancavano le soft skill direzionali. Con il loro <strong>processo</strong> di executive coaching abbiamo evitato tensioni e accelerato la <strong>crescita</strong> aziendale."</p>
-                        <p class="font-bold text-gray-900 text-sm">Elena F. - HR Director</p>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 hidden md:block">
-                        <div class="flex text-yellow-400 mb-3">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-gray-700 mb-4 font-light text-sm italic">"Una leadership moderna necessita di un <strong>percorso</strong> costante. Con le metodologie strutturate abbiamo ridefinito le metriche del mio impatto all'interno della holding, accelerando i tempi del <strong>cambiamento</strong>."</p>
-                        <p class="font-bold text-gray-900 text-sm">Alessandro C. - Head of Operations</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section id="faq" class="px-4">
-            <div class="max-w-5xl mx-auto dna-card">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti (FAQ)</h2>
-                
-                <div class="space-y-4">
-                    <details class="bg-white border border-gray-200 rounded-xl p-4 cursor-pointer group hover:bg-gray-50 transition">
-                        <summary class="font-bold text-gray-800 flex justify-between items-center outline-none">
-                            Cos'è un percorso di Outplacement?
-                            <span class="text-primary group-open:rotate-180 transition-transform duration-300">▼</span>
-                        </summary>
-                        <p class="text-gray-600 mt-4 text-sm leading-relaxed border-t pt-4">È un <strong>processo</strong> metodico di ricollocazione professionale offerto dall'azienda uscente e supportato dai nostri coach esperti. L'obiettivo è minimizzare i tempi di inattività e assicurare che la transizione generi una vera e propria opportunità di <strong>crescita</strong>.</p>
-                    </details>
-
-                    <details class="bg-white border border-gray-200 rounded-xl p-4 cursor-pointer group hover:bg-gray-50 transition">
-                        <summary class="font-bold text-gray-800 flex justify-between items-center outline-none">
-                            Come supportate la gestione del cambiamento in azienda?
-                            <span class="text-primary group-open:rotate-180 transition-transform duration-300">▼</span>
-                        </summary>
-                        <p class="text-gray-600 mt-4 text-sm leading-relaxed border-t pt-4">Lavoriamo a stretto contatto con HR e management. Affrontiamo il <strong>cambiamento</strong> sia dal punto di vista emotivo che prettamente strutturale, accompagnando l'individuo o il <strong>collega</strong> verso una piena adozione dei nuovi modelli aziendali e organizzativi.</p>
-                    </details>
-
-                    <details class="bg-white border border-gray-200 rounded-xl p-4 cursor-pointer group hover:bg-gray-50 transition">
-                        <summary class="font-bold text-gray-800 flex justify-between items-center outline-none">
-                            Quanto dura un processo di Career Coaching?
-                            <span class="text-primary group-open:rotate-180 transition-transform duration-300">▼</span>
-                        </summary>
-                        <p class="text-gray-600 mt-4 text-sm leading-relaxed border-t pt-4">Ogni <strong>percorso</strong> è cucito su misura. Tipicamente, i moduli di executive coaching spaziano dai 3 ai 6 mesi, consentendo di interiorizzare le competenze di leadership e delineare chiaramente le prossime mosse per l'avanzamento della <strong>carriera</strong>.</p>
-                    </details>
+    </style> </head><body><nav class="fixed top-0 left-0 w-full z-50 border-b border-gray-800 shadow-sm"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold font-serif text-white flex items-center gap-2"><svg class="w-8 h-8 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg> Pucova Roguis </a></div><div class="hidden md:flex space-x-8 items-center"><a href="#notizie" class="text-sm font-medium transition-colors">Notizie AI</a><a href="#innovazione" class="text-sm font-medium transition-colors">Innovazione</a><a href="#recensioni" class="text-sm font-medium transition-colors">Community</a><a href="#contact" class="btn-primary text-sm py-2 px-4"> Iscriviti Ora <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg pb-4 px-4 pt-2"><a href="#notizie" class="block py-2 text-base font-medium">Notizie AI</a><a href="#innovazione" class="block py-2 text-base font-medium">Innovazione</a><a href="#recensioni" class="block py-2 text-base font-medium">Community</a><a href="#contact" class="block mt-4 text-center bg-primary text-white py-2 rounded font-semibold">Iscriviti Ora</a></div></nav><main><section class="hero-gradient text-center text-white py-24 md:py-36 px-4"><div class="max-w-4xl mx-auto"><span class="inline-block py-1 px-3 rounded-full bg-black bg-opacity-30 text-sm font-semibold tracking-wider mb-6 border border-white border-opacity-20"><span class="text-secondary mr-2">✦</span> IL PORTALE LEADER IN ITALIA </span><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6"> Pucova Roguis Holdings: Investi nella Conoscenza del <span class="text-secondary">Futuro Digitale</span>. </h1><p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed"> Scopri le ultime notizie, le analisi di mercato e le strategie sull'<strong>intelligenza artificiale</strong> e l'<strong>innovazione</strong>. Unisciti ai professionisti che guidano l'AI Italia. </p><div class="flex flex-col sm:flex-row justify-center gap-4"><a href="#notizie" class="btn-primary justify-center text-lg"> Esplora i Contenuti <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></a></div></div></section><div class="bg-[var(--card-bg)] py-8 border-b border-gray-800"><div class="max-w-5xl mx-auto px-4 text-center"><p class="text-sm text-muted font-semibold uppercase tracking-widest mb-6">Le nostre analisi sono lette dai leader di</p><div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale"><span class="text-xl font-serif font-bold">TechNova IT</span><span class="text-xl font-serif font-bold">DataCorp Milano</span><span class="text-xl font-serif font-bold">FutureSystems</span><span class="text-xl font-serif font-bold">InnovaItalia</span></div></div></div><section id="notizie" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">La tua bussola per le <span class="text-primary">Nuove Tecnologie</span></h2><p class="text-muted text-lg max-w-2xl mx-auto">Il nostro portale notizie intelligenza artificiale e innovazione ti fornisce gli strumenti per comprendere e applicare i cambiamenti epocali del nostro tempo.</p></div><div class="flex flex-col gap-20"><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2 relative"><div class="absolute -inset-2 bg-secondary opacity-20 rounded-lg blur-lg"></div><img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/059669/ffffff?text=Intelligenza+Artificiale'" alt="Intelligenza artificiale notizie" class="relative rounded-lg shadow-2xl w-full object-cover h-64 md:h-auto border border-gray-700" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2"><div class="inline-flex items-center justify-center p-3 bg-primary bg-opacity-10 rounded-lg mb-4 text-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg></div><h3 id="innovazione" class="text-2xl font-bold mb-4">Ultime Notizie e Trend Globali</h3><p class="text-muted mb-6 text-lg"> Resta sempre un passo avanti. Pubblichiamo quotidianamente articoli, approfondimenti e breaking news sull'<strong>intelligenza artificiale</strong>. Dagli sviluppi dei modelli linguistici alle scoperte nel machine learning, portiamo il mondo dell'AI direttamente sul tuo schermo. </p><ul class="space-y-3 mb-6 text-gray-300"><li class="flex items-start gap-3"><svg class="w-5 h-5 text-secondary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> Aggiornamenti in tempo reale dai principali laboratori di ricerca. </li><li class="flex items-start gap-3"><svg class="w-5 h-5 text-secondary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> Analisi imparziali sull'impatto etico e sociale. </li></ul></div></div><div class="flex flex-col md:flex-row-reverse items-center gap-12"><div class="w-full md:w-1/2 relative"><div class="absolute -inset-2 bg-primary opacity-20 rounded-lg blur-lg"></div><img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/7c3aed/ffffff?text=Innovazione+Aziendale'" alt="Innovazione aziendale e AI" class="relative rounded-lg shadow-2xl w-full object-cover h-64 md:h-auto border border-gray-700" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2"><div class="inline-flex items-center justify-center p-3 bg-secondary bg-opacity-10 rounded-lg mb-4 text-secondary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><h3 class="text-2xl font-bold mb-4">L'Ecosistema AI Italia</h3><p class="text-muted mb-6 text-lg"> L'<strong>innovazione</strong> non accade solo nella Silicon Valley. Monitoriamo costantemente le startup, le università e le aziende che stanno costruendo l'<strong>AI Italia</strong>. Scopri i casi di successo locali e le opportunità di investimento nel nostro paese. </p><a href="#contact" class="text-primary font-semibold hover:text-white transition-colors flex items-center gap-2"> Leggi i casi studio italiani <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a></div></div><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2 relative"><div class="absolute -inset-2 bg-secondary opacity-20 rounded-lg blur-lg"></div><img src="https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x600/059669/ffffff?text=Futuro+Digitale'" alt="Futuro digitale programmazione" class="relative rounded-lg shadow-2xl w-full object-cover h-64 md:h-auto border border-gray-700" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2"><div class="inline-flex items-center justify-center p-3 bg-primary bg-opacity-10 rounded-lg mb-4 text-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m14-6h2m-2 6h2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Guide per il Futuro Digitale</h3><p class="text-muted mb-6 text-lg"> Non ci limitiamo alle notizie. Offriamo guide pratiche e tutorial per integrare le <strong>nuove tecnologie</strong> nel tuo flusso di lavoro. Che tu sia un manager, un programmatore o un creativo, impara a utilizzare i nuovi strumenti AI per decuplicare la tua produttività. </p></div></div></div></div></section><hr class="section-divider"><section id="recensioni" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">La voce della nostra Community</h2><p class="text-muted text-lg">Cosa dicono i professionisti che leggono Pucova Roguis Holdings.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="bg-[var(--body-bg)] p-6 rounded-lg border border-gray-800"><div class="flex text-secondary mb-4"> ★★★★★ </div><p class="text-gray-300 italic mb-6">"La risorsa numero uno per capire dove sta andando l'intelligenza artificiale. Gli articoli sono scritti con una competenza rara nel panorama dell'AI Italia. Indispensabile per il mio lavoro."</p><div><p class="font-bold text-white">Marco T.</p><p class="text-sm text-muted">CTO, TechSolutions Milano</p></div></div><div class="bg-[var(--body-bg)] p-6 rounded-lg border border-gray-800"><div class="flex text-secondary mb-4"> ★★★★★ </div><p class="text-gray-300 italic mb-6">"Apprezzo particolarmente le guide pratiche sulle nuove tecnologie. Grazie al portale sono riuscita ad implementare l'automazione AI nel nostro reparto marketing in poche settimane."</p><div><p class="font-bold text-white">Elena R.</p><p class="text-sm text-muted">Marketing Director</p></div></div><div class="bg-[var(--body-bg)] p-6 rounded-lg border border-gray-800"><div class="flex text-secondary mb-4"> ★★★★★ </div><p class="text-gray-300 italic mb-6">"Investire tempo nella lettura di Pucova Roguis è il miglior investimento per il proprio futuro digitale. Copertura eccellente sia sui trend globali che sull'innovazione locale."</p><div><p class="font-bold text-white">Alessandro F.</p><p class="text-sm text-muted">Data Scientist</p></div></div></div></div></div></section><hr class="section-divider"><section class="py-24 md:py-36"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-muted text-lg">Tutto ciò che devi sapere sul nostro portale di innovazione.</p></div><div class="dna-card space-y-4"><details class="group border-b border-gray-700 pb-4"><summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-white hover:text-primary transition-colors"> Con che frequenza aggiornate le notizie sull'intelligenza artificiale? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Il nostro team redazionale aggiorna il portale quotidianamente. Pubblichiamo diverse volte al giorno per garantirti copertura tempestiva sulle breaking news e sulle nuove tecnologie emergenti a livello globale e in Italia.</p></details><details class="group border-b border-gray-700 pb-4"><summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-white hover:text-primary transition-colors"> I contenuti del portale sono gratuiti? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Sì, la maggior parte delle notizie e degli articoli di base sono accessibili gratuitamente. Offriamo anche una newsletter premium per approfondimenti esclusivi e report di mercato dettagliati per chi desidera investire seriamente nel futuro digitale.</p></details><details class="group border-b border-gray-700 pb-4"><summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-white hover:text-primary transition-colors"> Trattate solo il mercato AI Italia o anche internazionale? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Il nostro focus è duplice. Copriamo ampiamente le innovazioni della Silicon Valley, dell'Europa e dell'Asia, ma dedichiamo una sezione speciale all'ecosistema italiano, dando voce alle startup e alle università che guidano l'innovazione nel nostro paese.</p></details><details class="group border-b border-gray-700 pb-4"><summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-white hover:text-primary transition-colors"> Posso proporre un articolo o una notizia? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Assolutamente sì. Crediamo nella forza della community. Se hai sviluppato un progetto interessante nel campo dell'intelligenza artificiale o hai un caso studio sull'applicazione di nuove tecnologie, puoi inviarcelo tramite il modulo contatti per una potenziale pubblicazione.</p></details><details class="group"><summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-white hover:text-primary transition-colors"> Come posso applicare queste tecnologie alla mia azienda? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Nella nostra sezione "Guide" troverai tutorial passo-passo scritti appositamente per professionisti non tecnici. Spieghiamo come utilizzare gli strumenti AI per ottimizzare il marketing, il servizio clienti e l'analisi dei dati, rendendo il futuro digitale accessibile a tutte le PMI.</p></details></div></div></section><hr class="section-divider"><section id="contact" class="py-24 md:py-36"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card text-center"><span class="inline-block p-3 bg-secondary bg-opacity-10 rounded-full mb-4"><svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg></span><h2 class="text-3xl font-bold mb-4">Iscriviti agli Aggiornamenti</h2><p class="text-muted mb-8 max-w-xl mx-auto">Non perderti le notizie più importanti sull'intelligenza artificiale. Ricevi la nostra sintesi settimanale direttamente da Pucova Roguis Holdings.</p><form id="lead-form" class="max-w-md mx-auto text-left space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Iscrizione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div><label class="block text-sm font-medium text-gray-300 mb-1">Nome Completo</label><input type="text" required placeholder="Mario Rossi" class="w-full"></div><div><label class="block text-sm font-medium text-gray-300 mb-1">Qualifica / Azienda</label><input type="text" required placeholder="Manager presso Tech IT" class="w-full"></div><button type="submit" class="btn-primary w-full justify-center mt-4"> Voglio Rimanere Aggiornato <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></button><p class="text-xs text-gray-500 text-center mt-4">Iscrivendoti accetti la nostra politica sulla privacy. Nessun costo nascosto.</p></form><div id="success-msg" style="display:none" class="bg-primary bg-opacity-20 border border-primary text-white p-6 rounded-lg max-w-md mx-auto"><svg class="w-12 h-12 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="text-xl font-bold mb-2">Iscrizione Completata!</h3><p class="text-sm">Grazie per esserti unito alla nostra community. Riceverai presto i nostri aggiornamenti esclusivi sull'innovazione digitale.</p></div></div></div></section></main><footer class="bg-[var(--card-bg)] border-t border-gray-800 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-8"><a href="#" class="text-2xl font-extrabold font-serif text-white flex items-center justify-center gap-2 mb-4"><svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg> Pucova Roguis </a><p class="text-muted text-sm max-w-2xl mx-auto"> Questo è un sito promozionale indipendente gestito da Pucova Roguis Holdings, che agisce come affiliato per Rivista AI. Il nostro obiettivo è diffondere la conoscenza sulle nuove tecnologie e il futuro digitale in Italia. </p></div><div class="space-y-4 max-w-3xl mx-auto mb-12 text-left"><details class="bg-[var(--body-bg)] rounded p-4 border border-gray-800"><summary class="font-semibold cursor-pointer text-gray-300 hover:text-white">Informativa sulla Privacy (Privacy Policy)</summary><div class="mt-4 text-xs text-muted space-y-2 h-48 overflow-y-auto pr-2"><p>La presente Informativa sulla Privacy descrive come Pucova Roguis Holdings raccoglie, utilizza e protegge le informazioni personali degli utenti che visitano il nostro portale dedicato alle notizie sull'intelligenza artificiale e all'innovazione. La tutela della tua privacy è per noi una priorità assoluta e ci impegniamo a rispettare tutte le normative vigenti in materia di protezione dei dati, incluso il Regolamento Generale sulla Protezione dei Dati (GDPR). Quando navighi sul nostro sito o compili i moduli di iscrizione, potremmo raccogliere dati quali il tuo nome, l'azienda di appartenenza e informazioni tecniche relative al tuo dispositivo e alla tua navigazione. Questi dati vengono utilizzati esclusivamente per fornirti gli aggiornamenti richiesti, migliorare la tua esperienza utente sul portale e analizzare le tendenze di utilizzo delle nostre risorse sulle nuove tecnologie. Non venderemo, affitteremo o cederemo mai le tue informazioni personali a terze parti per scopi di marketing senza il tuo esplicito consenso. Implementiamo rigorose misure di sicurezza tecniche e organizzative per prevenire l'accesso non autorizzato, la divulgazione, la modifica o la distruzione non autorizzata dei tuoi dati. I tuoi dati personali sono conservati su server sicuri e l'accesso ad essi è limitato al solo personale autorizzato che necessita di tali informazioni per svolgere le proprie mansioni. Utilizziamo i cookie e tecnologie di tracciamento simili per analizzare il traffico sul nostro sito e personalizzare i contenuti relativi al futuro digitale. Hai il diritto, in qualsiasi momento, di richiedere l'accesso ai tuoi dati personali, la loro rettifica, la cancellazione o la limitazione del trattamento. Puoi inoltre opporti al trattamento dei tuoi dati e richiedere la portabilità degli stessi. Se desideri esercitare questi diritti o se hai domande sulla nostra gestione della privacy, ti invitiamo a contattarci tramite gli appositi moduli presenti sul sito. Ci riserviamo il diritto di aggiornare la presente informativa periodicamente per riflettere cambiamenti nelle nostre pratiche o per adeguarci a nuove normative. Ti invitiamo pertanto a consultare regolarmente questa pagina per rimanere informato su come proteggiamo le tue informazioni. Continuando a utilizzare il nostro portale AI Italia dopo eventuali modifiche, accetti la nuova versione dell'Informativa sulla Privacy. La tua fiducia è fondamentale per noi e lavoriamo costantemente per garantirla nel rispetto della massima trasparenza.</p></div></details><details class="bg-[var(--body-bg)] rounded p-4 border border-gray-800"><summary class="font-semibold cursor-pointer text-gray-300 hover:text-white">Termini e Condizioni (Terms of Service)</summary><div class="mt-4 text-xs text-muted space-y-2 h-48 overflow-y-auto pr-2"><p>I presenti Termini e Condizioni regolano l'utilizzo del sito web e dei servizi offerti da Pucova Roguis Holdings. Accedendo al nostro portale di notizie sull'intelligenza artificiale e l'innovazione, accetti di essere vincolato da questi termini nella loro interezza. Se non sei d'accordo con una qualsiasi parte di questi termini, ti preghiamo di interrompere immediatamente l'utilizzo del nostro sito. I contenuti forniti sul nostro portale, inclusi articoli, guide, analisi sulle nuove tecnologie e aggiornamenti sul futuro digitale, sono redatti a scopo puramente informativo ed educativo. Pur impegnandoci a mantenere le informazioni accurate e aggiornate, non garantiamo la completezza, l'affidabilità o l'accuratezza assoluta di tali contenuti. Pucova Roguis Holdings agisce come entità promozionale indipendente per Rivista AI e non si assume alcuna responsabilità per eventuali decisioni aziendali o investimenti effettuati basandosi sulle informazioni lette sul nostro sito. L'utente si assume la piena responsabilità per l'utilizzo delle informazioni fornite. Tutti i contenuti, i marchi, i loghi e i materiali presenti sul sito sono proprietà intellettuale di Pucova Roguis Holdings o dei rispettivi legittimi proprietari e sono protetti dalle leggi sul copyright. È severamente vietata la riproduzione, la distribuzione, la modifica o l'utilizzo non autorizzato di qualsiasi materiale senza il nostro preventivo consenso scritto. L'utente si impegna a utilizzare il sito in modo lecito e a non mettere in atto azioni che possano danneggiare, disabilitare o sovraccaricare i nostri server o interferire con l'utilizzo del portale da parte di altri utenti. Ci riserviamo il diritto di sospendere o interrompere l'accesso al sito a qualsiasi utente che violi i presenti Termini e Condizioni o che tenga comportamenti ritenuti inappropriati o dannosi. Il sito può contenere link a siti web di terze parti; non abbiamo alcun controllo sui contenuti o sulle pratiche di privacy di tali siti e non ci assumiamo alcuna responsabilità per essi. Pucova Roguis Holdings si riserva il diritto di modificare questi Termini e Condizioni in qualsiasi momento e senza preavviso. È responsabilità dell'utente rivedere periodicamente questa pagina per verificare eventuali aggiornamenti. L'uso continuato del sito dopo la pubblicazione delle modifiche costituisce l'accettazione dei nuovi termini. Per qualsiasi controversia derivante dall'utilizzo del sito, sarà applicabile la legge della giurisdizione competente relativa alla sede operativa di Pucova Roguis Holdings. Ti invitiamo a leggere attentamente questi termini prima di esplorare i nostri contenuti sull'ecosistema AI Italia.</p></div></details><details class="bg-[var(--body-bg)] rounded p-4 border border-gray-800"><summary class="font-semibold cursor-pointer text-gray-300 hover:text-white">Politica di Rimborso e Resi (Refund Policy)</summary><div class="mt-4 text-xs text-muted space-y-2 h-48 overflow-y-auto pr-2"><p>La presente Politica di Rimborso stabilisce le linee guida relative ai servizi e ai prodotti digitali offerti da Pucova Roguis Holdings. Poiché il nostro portale si concentra principalmente sulla fornitura di notizie sull'intelligenza artificiale, approfondimenti sull'innovazione e contenuti digitali informativi, la natura dei nostri servizi è immateriale. Pertanto, nella maggior parte dei casi, una volta che un contenuto digitale premium, un report speciale sulle nuove tecnologie o un abbonamento a newsletter esclusive è stato acquistato e reso accessibile o scaricato, non è previsto alcun rimborso. Riconosciamo tuttavia che possono verificarsi circostanze eccezionali. Valuteremo le richieste di rimborso caso per caso, esclusivamente in situazioni specifiche quali: addebiti multipli accidentali per lo stesso servizio, mancata ricezione del prodotto digitale a causa di comprovati problemi tecnici dei nostri server che non possono essere risolti dal nostro team di supporto entro un periodo di tempo ragionevole, o qualora il contenuto premium risulti essere materialmente e oggettivamente diverso da quanto pubblicizzato nella pagina di vendita. Per richiedere un rimborso, l'utente deve contattarci tramite il modulo di contatto ufficiale presente sul sito entro e non oltre 14 giorni dalla data della transazione. La richiesta deve includere i dettagli della transazione, la motivazione dettagliata della richiesta di rimborso e qualsiasi prova a supporto del problema tecnico riscontrato. Il nostro team valuterà la richiesta e comunicherà la decisione entro 7 giorni lavorativi. Se il rimborso viene approvato, l'importo sarà riaccreditato utilizzando il metodo di pagamento originale utilizzato per l'acquisto; i tempi di elaborazione bancaria possono variare e non dipendono da Pucova Roguis Holdings. Nel caso di abbonamenti ricorrenti per l'accesso a report avanzati sul futuro digitale o sull'AI Italia, l'utente può annullare l'iscrizione in qualsiasi momento; l'annullamento impedirà i futuri addebiti, ma non darà diritto a rimborsi proporzionali per il periodo di fatturazione già iniziato e parzialmente usufruito. Ci riserviamo il diritto di rifiutare le richieste di rimborso se riteniamo che vi sia un abuso della nostra politica, ad esempio richieste ripetute dallo stesso utente o dopo che il contenuto è stato palesemente consumato nella sua interezza. Acquistando i nostri servizi digitali, confermi di aver letto, compreso e accettato questa Politica di Rimborso nella sua totalità. Il nostro obiettivo è garantire la massima soddisfazione fornendo contenuti di altissima qualità, ma la natura digitale dei beni richiede regole chiare per tutelare il lavoro dei nostri analisti.</p></div></details></div><div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500"><p>&copy; 2026 Pucova Roguis Holdings. Tutti i diritti riservati.</p><div class="mt-4 md:mt-0 space-x-4"><span>Portale per l'innovazione e le nuove tecnologie.</span></div></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-[var(--card-bg)] border-t border-gray-700 p-4 shadow-2xl z-50 transform transition-transform duration-500 translate-y-full"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm text-gray-300"> Utilizziamo i cookie per migliorare la tua esperienza sul nostro portale dedicato all'intelligenza artificiale e all'innovazione. Continuando a navigare, accetti la nostra politica sui cookie. </p><div class="flex gap-4 shrink-0"><button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-sm">Accetta Tutti</button></div></div></div> <script>
+        // Smooth Scrolling and Fallback Routing
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
                     
-                    <details class="bg-white border border-gray-200 rounded-xl p-4 cursor-pointer group hover:bg-gray-50 transition">
-                        <summary class="font-bold text-gray-800 flex justify-between items-center outline-none">
-                            Il servizio è rivolto solo a grandi aziende?
-                            <span class="text-primary group-open:rotate-180 transition-transform duration-300">▼</span>
-                        </summary>
-                        <p class="text-gray-600 mt-4 text-sm leading-relaxed border-t pt-4">Assolutamente no. Il nostro target include corporazioni, PMI in fase di forte scalabilità e professionisti singoli (C-level e manager) che decidono in autonomia di investire nella propria <strong>crescita</strong> e ottimizzare il proprio employability sul mercato globale.</p>
-                    </details>
+                    // Ignore empty hashes or just '#'
+                    if (targetId === '#') return;
                     
-                    <details class="bg-white border border-gray-200 rounded-xl p-4 cursor-pointer group hover:bg-gray-50 transition">
-                        <summary class="font-bold text-gray-800 flex justify-between items-center outline-none">
-                            I consulenti possiedono certificazioni settoriali?
-                            <span class="text-primary group-open:rotate-180 transition-transform duration-300">▼</span>
-                        </summary>
-                        <p class="text-gray-600 mt-4 text-sm leading-relaxed border-t pt-4">Sì. Pucova Holdings collabora con una rete di coach rigorosamente selezionati. Attraverso i protocolli operativi ereditati dalla partnership strutturale (es. l'impalcatura INTOO), assicuriamo standard metodologici ai massimi livelli per valorizzare il tuo <strong>percorso</strong> formativo.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contatto" class="px-4">
-            <div class="max-w-5xl mx-auto dna-card bg-white border-t-4 border-primary">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    const targetElement = document.querySelector(targetId);
                     
-                    <div>
-                        <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Inizia la Tua Evoluzione</h2>
-                        <p class="text-gray-600 mb-8 leading-relaxed">
-                            Prendi il controllo della tua <strong>carriera</strong>. Il mercato premia l'azione tempestiva. Richiedi subito un primo assessment strategico.
-                        </p>
-                        
-                        <div class="space-y-4 text-gray-700">
-                            <div class="flex items-start">
-                                <svg class="w-6 h-6 text-primary mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                                <div>
-                                    <strong class="block text-gray-900">Pucova Holdings per Intoo Italia</strong>
-                                    <span>Milano, Area Corporate ed Esecutiva</span><br>
-                                    <span class="text-sm text-gray-500">Piazza IV Novembre, 20124 Milano MI, Italia (Sede Operativa Referenziale)</span>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <svg class="w-6 h-6 text-primary mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <div>
-                                    <strong class="block text-gray-900">Orari di Supporto HR</strong>
-                                    <span>Lun - Ven: 09:00 - 18:00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-100 shadow-inner">
-                        <form id="lead-form" class="space-y-5" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Elaborazione in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                            <div>
-                                <label for="nome" class="block text-sm font-semibold text-gray-700 mb-1">Nome e Cognome *</label>
-                                <input type="text" id="nome" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-white" placeholder="Mario Rossi">
-                            </div>
-                            <div>
-                                <label for="azienda" class="block text-sm font-semibold text-gray-700 mb-1">Ruolo / Azienda Attuale</label>
-                                <input type="text" id="azienda" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-white" placeholder="Es. Executive Manager presso Corp SRL">
-                            </div>
-                            <div>
-                                <label for="esigenza" class="block text-sm font-semibold text-gray-700 mb-1">In che modo possiamo supportarti? *</label>
-                                <select id="esigenza" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-white">
-                                    <option value="">Seleziona il processo di interesse...</option>
-                                    <option value="outplacement">Programmi di Outplacement</option>
-                                    <option value="coaching">Career Coaching / Sviluppo Competenze</option>
-                                    <option value="change">Gestione Organizzativa del Cambiamento</option>
-                                </select>
-                            </div>
-                            <div class="pt-2">
-                                <button type="submit" class="w-full btn-primary shadow-lg text-lg">Invia Richiesta</button>
-                            </div>
-                            <p class="text-xs text-gray-400 text-center mt-3">Premendo invio acconsenti al trattamento dati conformemente alla Privacy Policy in calce.</p>
-                        </form>
-
-                        <div id="success-msg" class="hidden text-center py-10">
-                            <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Ricevuta!</h3>
-                            <p class="text-gray-600">I nostri consulenti per l'avanzamento della <strong>carriera</strong> analizzeranno il tuo profilo e si metteranno in contatto telefonicamente al più presto per avviare il tuo <strong>percorso</strong>.</p>
-                        </div>
-                    </div>
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
                     
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer & Legal Section -->
-    <footer class="bg-gray-900 py-16 text-gray-400">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-gray-800 pb-8">
-                <div class="mb-6 md:mb-0">
-                    <span class="text-2xl font-extrabold text-white tracking-tight block mb-2">PUCOVA HOLDINGS</span>
-                    <p class="text-sm">Acceleratori di <strong>carriera</strong> e partner strutturali HR.</p>
-                </div>
-                <div class="text-sm text-center md:text-right max-w-lg bg-gray-800 p-4 rounded-lg border border-gray-700 shadow-inner">
-                    <strong class="text-yellow-500 uppercase tracking-widest text-xs block mb-1">Informativa di Affiliazione & Responsabilità</strong>
-                    <span class="text-gray-300 italic">"Questo è un sito promozionale indipendente gestito da Pucova Holdings, che opera in qualità di affiliato per INTOO (Gi Group Holding Italia)."</span>
-                </div>
-            </div>
-
-            <!-- Legal Documents Full Text Mode (Anti-Laziness) -->
-            <div class="space-y-4 mb-8">
-                <!-- Privacy Policy -->
-                <details class="bg-gray-800 rounded p-4 text-xs cursor-pointer group">
-                    <summary class="font-bold text-gray-200 outline-none flex justify-between items-center uppercase tracking-wide">
-                        Privacy Policy
-                        <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
-                    </summary>
-                    <div class="mt-4 text-gray-400 leading-relaxed text-justify space-y-2 pt-4 border-t border-gray-700">
-                        <p>La presente informativa sulla privacy descrive accuratamente le modalità di gestione e acquisizione dei dati personali dei visitatori su questo sito affiliato gestito in toto da Pucova Holdings. I dati raccolti attraverso i moduli interattivi presenti all'interno della piattaforma verranno gestiti esclusivamente ai fini di prestazione e consulenza per la progressione lavorativa. Quando compili il nostro formulario digitale per analizzare la tua evoluzione settoriale, tu acconsenti implicitamente al trasferimento dei dati immessi sui nostri database privati e ultra sicuri. Non è ammessa la raccolta autonoma di alcuna coordinata elettronica di posta a fini promozionali o di terze entrate senza il previo accordo scritto. Ai sensi e per gli effetti del Regolamento Europeo 679/2016 noto come GDPR, gli interessati mantengono il controllo totale sul proprio corredo di dati digitali fornito. Potrete richiedere, qualora lo necessitiate tramite moduli di rettifica espliciti presenti sulla holding centrale, l'eliminazione profonda o la manipolazione di queste informazioni. Il trattamento delle cifre inserite o dei profili utente caricati durerà un lasso temporale circoscritto unicamente allo sviluppo e completamento della prestazione formativa e dell'assessment in carico. Le vostre informazioni lavorative confidenziali potranno interfacciarsi con il provider madre INTOO - Gi Group qualora i parametri di collocazione organizzativa coincidano con l'obiettivo del vostro mutamento contrattuale richiesto nel mandato esplorativo aziendale. Nessuna tipologia di log o impronta derivante dal passaggio in piattaforma sarà rivenduta in nessun frangente temporale a strutture operanti nello spam. Le piattaforme host impiegano algoritmi avanzati e protocolli Secure Socket Layer al fine di schermare tentativi di manipolazione delle variabili passanti dalle richieste inviate dai server frontali ai recettori informatici back-end. Per l'ottemperamento legislativo applicato ai servizi digitali di gestione risorse, Pucova Holdings e il proprio team compliance restano unici referenti dei cluster documentali approvati al momento della ricezione delle form lead. Riserviamo alla giunta dirigenziale ogni esclusiva in base alla promulgazione di varianti aggiornate su questo regolamento privacy man mano che si rendano opportune od oggettivamente indispensabili al fronte normativo vigente locale ed internazionale con l'aggiunta di preavvisi via nota in homepage. Ogni alterazione sostanziale avverrà garantendo retroattiva validità all’esegesi conservatrice ed al non utilizzo invasivo delle referenze umane acquisite fin dal giorno antecedente alla variante testuale resa manifesta a dominio globale.</p>
-                    </div>
-                </details>
-
-                <!-- Termini e Condizioni -->
-                <details class="bg-gray-800 rounded p-4 text-xs cursor-pointer group">
-                    <summary class="font-bold text-gray-200 outline-none flex justify-between items-center uppercase tracking-wide">
-                        Termini e Condizioni d'Uso
-                        <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
-                    </summary>
-                    <div class="mt-4 text-gray-400 leading-relaxed text-justify space-y-2 pt-4 border-t border-gray-700">
-                        <p>I presenti termini e condizioni generali disciplinano interamente l'accesso formale, l'usabilità globale e lo scaricamento intellettuale associato ai portal page governati dall'istituto commerciale Pucova Holdings, escludendo accordi laterali non scritti o consuetudini virtuali terze non palesate nella presente clausola integrale d’adesione telematica all’infrastruttura d'impiego per consulenze ad hoc aziendali rivolte ai settori executive corporativi. Accedendo sistematicamente ed esplorando ripetutamente questo ecosistema affiliato per acquisizione contratti nel comparto talent management e reinserimento di impiego dipendente voi avallate esplicitamente un atto vincolante aderendo a tutte quante le norme elencate che reggono in base alle imposizioni legali dei tribunali dell’emisfero dove ha stabilimento legale l'entità host provider senza l'obbligo di avallo esplicito tramite sottoscrizione materiale del soggetto consumatore remoto. Tutto il materiale descrittivo concettuale ed intellettivo inclusa estetica d’impaginazione visiva testi elaborati slogan direzionali come le metafore della progressione direzionale ed ogni traccia del portale esito rimangono dominio e pertinenza strettissima dei tenutari originali precludendovi pertanto diritti alieni atti alla copiatura di natura passiva, ricreazione e lucro su base duplicante. Il portale è adoperabile nei modi prestabiliti dal tracciamento funzionale garantito dal codice sorgete ma risulta fermamente interdetto ogni ingaggio che metta alla prova limiti banda attacco denial server tentata introduzione con iniettore malware o azioni malevole strutturali similari ad alta ingegneria. L’inclinazione dell’erogazione dei nostri supporti consultivi sebbene accurata non offre avallo formale né stipula promessa di successo certo matematico e preposto dell’incolumità finanziaria che i nostri esperti offrono restando relegata unicamente all'assunzione degli impegni obbligazionari di prassi mezzi erogabili limitando qualsiasi forma perniciosa che intenda traslare la carenza preesistente dell'incapacità dell’applicante verso penali ascritte ad arte sui diretti responsabili o referenti aziendali delle mansioni prestate su suolo estero per procura aziendale di fatto del soggetto terzo partner di matrice holding istituzionale del settore giuslavoristico continentale ed extra UE.</p>
-                    </div>
-                </details>
-
-                <!-- Refund Policy -->
-                <details class="bg-gray-800 rounded p-4 text-xs cursor-pointer group">
-                    <summary class="font-bold text-gray-200 outline-none flex justify-between items-center uppercase tracking-wide">
-                        Politica sui Rimborsi (Refund Policy)
-                        <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
-                    </summary>
-                    <div class="mt-4 text-gray-400 leading-relaxed text-justify space-y-2 pt-4 border-t border-gray-700">
-                        <p>La nostra ferma determinazione politica connessa al recesso monetario postumo ed inerente allo scalo e lo storno del conferimento monetario anticipato per prestazioni consulenziali formative sui reinserimenti d’area organico lavorante e del suo management esecutivo mira esplicitamente ad instaurare metodologiche lineari altamente fruibili per dirimere controversie ed equivocità in materie transnazionali finanziarie. Avvisiamo gli utenti esaminati o committenti intermedi del fatto inderogabile che il peculiare statuto riguardante la natura inestimabile intellettiva ed impalpabile che i coaching one-to-one possiedono vieta per natura una reversibilità retrospettiva del momento d’acquisto al paritetico degli usuali beni commerciali tangibili o fruibili e distruggibili della filiera e-commerce comune e retail generalista non facente vece nel ramo di prestito d’impiego ed indennità professionali o format manageriale d’apice corporativo contemporaneo nei giorni lavorativi susseguenti all’effettivo avvio in remoto d'operazioni prestazionali pattuite ad accettazione offerta contrattualmente congiunta. Prima di dar inizio ad ogni stesura o delineare l’inventario formativo del professionista la società non percepirà oneri d’anticipo da ritenersi alienabili ma opererà solo incassi sulle rette inerenti allo stabilire un tetto forfetario d'accertamento che non ammette procedure storno laddove quest'ultima risorsa allocata sia impiegata nello screen diagnostico dei coach per quantizzare oneri susseguenti o stabilirne validità base per cui lo stanziamento viene bruciato proceduralmente ex lege al suo assorbimento d’analisi dei test psitici per impiegabilità lavorativa. Resta aperto e contemplato però il cono normativo che permette le procedure formali reclamo a distanza d’attivazione servizi via ticket telematico al referente designato nel periodo non eccedente l'allaccio o stipulazione avvio che generalmente ammonta temporalmente in frazioni antecedenti alla somministrazione dell’asset medesimo secondo lo standard consumer protection se pattuito per l'uso ad ente privato puro anziché transazioni interbancarie a scopo B2B aziendale istituzionale fra conglomerati holding aventi regimi autonomi sganciati e fuori scala sul piano giurisprudenziale massimalistico di classe standard che invalida la dicitura sul rimborso integrale qualora subentrino contratti siglati digitalmente tra amministrazioni legali dei partiti in gioco che non fanno riferimento per regolamento costitutivo agli acquisti del dettaglio generico da privato fruitore casuale passante a terminale web come questo stesso ove redatta per onere legale informatore palese al mondo telematico diffuso.</p>
-                    </div>
-                </details>
-            </div>
-
-            <div class="flex flex-col md:flex-row justify-between items-center mt-4 text-xs">
-                <p>&copy; 2026 Pucova Holdings. Tutti i diritti riservati.</p>
-                <div class="mt-2 md:mt-0 space-x-4">
-                    <span>Architettura per lo sviluppo dell'employability.</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Smart Routing Scripts & Interactions -->
-    <script>
-        // Internal Navigation Script (Self-Healing / Fallback logic)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                // Chiude mobile menu se aperto su click link
-                const mobileMenu = document.getElementById('mobile-menu');
-                if(!mobileMenu.classList.contains('hidden')){
-                    mobileMenu.classList.add('hidden');
-                }
-
-                const targetId = this.getAttribute('href');
-                let targetElement = document.querySelector(targetId);
-                
-                // Fallback Logic: if target doesn't exist, go to contact
-                if (!targetElement) {
-                    targetElement = document.querySelector('#contatto');
-                    console.warn(`Anchor ${targetId} not found. Fallback to #contatto applied.`);
-                }
-                
-                if (targetElement) {
-                    // Smooth Scroll using native behavior
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                    if (targetElement) {
+                        // Target exists, scroll to it
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        // Target missing, fallback to contact
+                        const fallback = document.querySelector('#contact');
+                        if (fallback) {
+                            console.warn(`Target ${targetId} not found. Redirecting to #contact`);
+                            fallback.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
             });
-        });
 
-        // Cookie Banner Logic
-        window.addEventListener('DOMContentLoaded', (event) => {
-            if (!localStorage.getItem('cookieAccepted')) {
-                document.getElementById('cookie-banner').style.display = 'flex';
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
             }
         });
 
         function acceptCookies() {
-            localStorage.setItem('cookieAccepted', 'true');
-            document.getElementById('cookie-banner').style.display = 'none';
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
         }
-    </script>
-</body>
-</html>
+    </script> </body></html>
