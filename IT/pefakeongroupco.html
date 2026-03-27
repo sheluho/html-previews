@@ -1,499 +1,172 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Recensioni approfondite di software SaaS, analisi dati e strategie di efficienza per la crescita del tuo business.">
-    <title>PeFakeon Group | Analisi Software e Strategie Digitali</title>
-    <!-- Tailwind CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <!-- DESIGN SYSTEM DNA INJECTION -->
-    <style>
-        :root {
-            /* VAR D: Palette (SaaS/Tech Niche -> Indigo) */
-            --primary: #4f46e5;
-            
-            /* VAR C: Surface (z = 122 % 3 = 2 -> Cool Slate White) */
-            --surface: #f8fafc;
-            
-            /* VAR A: Geometry (Length 15 % 3 = 0 -> Sharp) */
-            --radius: 0px;
-            
-            /* VAR B: Physics (p = 112 % 3 = 1 -> Material Shadow) */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Pefakeon Group | La tua Rivista di Domotica e Casa Intelligente</title><meta name="description" content="Scopri le ultime novità su domotica, automazione casa e dispositivi connessi con la rivista Pefakeon Group."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet"> <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #ea580c;
+        --radius: 24px;
+        --card-radius: 24px;
+        --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        --body-bg: #faf5ff;
+        --card-bg: #ffffff;
+        --text: #1e1b4b;
+        --muted: #6b7280;
+      }
+
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'Nunito Sans', sans-serif;
+        padding-top: 4rem; /* Fixed navbar compensation */
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Lora', serif;
+      }
+
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
+
+      nav {
+        background-color: var(--body-bg);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'Nunito Sans', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-secondary:hover {
+        background-color: rgba(37,99,235,0.05);
+      }
+
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
+
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+        box-shadow: var(--shadow);
+      }
+
+      /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+      main, main + footer { scroll-margin-top: 5rem; }
+
+      /* Form inputs — consistent styling */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+      }
+
+      /* Links — readable on any theme */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; font-weight: 600; }
+      nav a:hover, footer a:hover { color: var(--primary); }
+
+      /* Section divider — subtle visual rhythm */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(37,99,235,0.12), transparent);
+        margin: 0;
+      }
+
+      /* Custom Hero Gradient Gradient */
+      .hero-gradient {
+        background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      }
+      
+      /* Details/Accordion Styling */
+      details > summary {
+        list-style: none;
+        cursor: pointer;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+    </style> </head><body><nav class="fixed w-full top-0 z-50 border-b border-gray-200" style="background-color: var(--body-bg);"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16 items-center"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold" style="font-family: 'Lora', serif; color: var(--primary);"> Pefakeon<span class="text-secondary">Group</span></a></div><div class="hidden md:flex space-x-8 items-center"><a href="#features">Rubriche</a><a href="#reviews">Lettori</a><a href="#faq">Domande</a><a href="#contact" class="btn-primary"> Abbonati Ora <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-1"><a href="#features" class="block px-3 py-2 rounded-md text-base font-medium">Rubriche</a><a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium">Lettori</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium">Domande</a><a href="#contact" class="block px-3 py-2 mt-4 text-center btn-primary w-full justify-center">Abbonati Ora</a></div></nav><header class="hero-gradient text-center text-white py-24 md:py-32 px-4 sm:px-6 lg:px-8"><div class="max-w-4xl mx-auto"><span class="inline-block py-1 px-3 rounded-full bg-white bg-opacity-20 text-sm font-semibold tracking-wider mb-6 uppercase">La Rivista Leader in Italia</span><h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight"> Esplora l'Innovazione con Pefakeon Group: La tua Guida alla <span style="color: var(--secondary);">Casa Intelligente</span>. </h1><p class="text-lg md:text-xl mb-10 text-blue-100 max-w-2xl mx-auto font-light"> Approfondimenti esclusivi, recensioni imparziali sui migliori dispositivi connessi e guide pratiche per l'automazione casa. Trasforma il tuo modo di vivere con la domotica. </p><div class="flex flex-col sm:flex-row justify-center items-center gap-4"><a href="#contact" class="btn-primary" style="background-color: var(--secondary); border: none;"> Inizia a Leggere <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" /></svg></a><a href="#features" class="btn-secondary" style="color: white; border-color: white;"> Scopri le Rubriche </a></div></div></header><section class="py-10 bg-white border-b border-gray-100"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><p class="text-sm font-semibold text-muted uppercase tracking-wider mb-6">Le nostre inchieste e guide sono citate da</p><div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale"><span class="text-xl font-bold font-serif">TechDomotica Hub</span><span class="text-xl font-bold font-serif">SmartLiving Italia</span><span class="text-xl font-bold font-serif">Innovazione Casa</span><span class="text-xl font-bold font-serif">Il Corriere Smart</span></div></div></section><main><section id="features" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">Tutto ciò che devi sapere sulla Domotica</h2><p class="text-lg text-muted max-w-2xl mx-auto">La nostra rivista copre ogni aspetto della tecnologia domestica, offrendoti contenuti curati da esperti del settore per aiutarti a creare la smart home perfetta.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-secondary mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg><h3 class="text-2xl font-bold mb-3">Recensioni Dispositivi Connessi</h3><p class="text-muted leading-relaxed"> Testiamo rigorosamente sul campo sensori, relè intelligenti, termostati e sistemi di illuminazione. Ti forniamo recensioni oneste e dettagliate per guidarti nell'acquisto dei migliori dispositivi per la tua casa intelligente, evitando sprechi di denaro. </p></div><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-secondary mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg><h3 class="text-2xl font-bold mb-3">Guide all'Automazione Casa</h3><p class="text-muted leading-relaxed"> Dal principiante all'esperto, le nostre guide passo-passo ti insegnano come creare scenari complessi. Impara a far dialogare luci, tapparelle e riscaldamento in modo automatico per massimizzare il comfort e il risparmio energetico. </p></div><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-secondary mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg><h3 class="text-2xl font-bold mb-3">News e Tendenze Smart</h3><p class="text-muted leading-relaxed"> Il mondo della domotica evolve rapidamente. La nostra redazione filtra le notizie più importanti sui nuovi standard (come Matter), aggiornamenti software e trend di design per mantenerti sempre un passo avanti nel panorama tecnologico abitativo. </p></div><div class="dna-card relative overflow-hidden group"><div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-secondary mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg><h3 class="text-2xl font-bold mb-3">La Posta dei Lettori</h3><p class="text-muted leading-relaxed"> Hai un problema di compatibilità tra i tuoi dispositivi connessi? Non sai quale ecosistema scegliere? I nostri esperti rispondono direttamente alle domande degli abbonati, offrendo consulenze mirate per risolvere ogni intoppo nella tua smart home. </p></div></div></section><hr class="section-divider"><section class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-12"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/6585614/pexels-photo-6585614.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Rivista Casa Intelligente e Domotica" class="rounded-3xl shadow-2xl object-cover h-96 w-full border-4 border-white" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/2563eb/ffffff?text=Casa+Intelligente'"></div><div class="w-full md:w-1/2"><h2 class="text-3xl md:text-4xl font-bold mb-6">Progettata per chi ama vivere il futuro, oggi.</h2><p class="text-lg text-muted mb-6"> Pefakeon Group non è solo una rivista, è una vera e propria community di appassionati. Che tu stia installando la tua prima lampadina Wi-Fi o cablando un intero sistema domotico integrato, le nostre pagine offrono l'ispirazione e le conoscenze tecniche di cui hai bisogno. </p><ul class="space-y-4 mb-8"><li class="flex items-start gap-3"><svg class="h-6 w-6 text-secondary flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-text font-medium">Articoli scritti da ingegneri e installatori certificati.</span></li><li class="flex items-start gap-3"><svg class="h-6 w-6 text-secondary flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-text font-medium">Focus su compatibilità, privacy e sicurezza dei dati.</span></li><li class="flex items-start gap-3"><svg class="h-6 w-6 text-secondary flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-text font-medium">Edizione digitale ottimizzata per tablet e smartphone.</span></li></ul></div></div></section><hr class="section-divider"><section id="reviews" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><span class="text-secondary font-bold tracking-wider uppercase text-sm mb-2 block">Dicono di noi</span><h2 class="text-3xl md:text-4xl font-bold text-primary">La Voce dei Nostri Lettori</h2></div><div class="dna-card bg-primary text-white" style="background-image: linear-gradient(135deg, rgba(37,99,235,0.95) 0%, rgba(30,58,138,0.95) 100%);"><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="bg-white bg-opacity-10 p-6 rounded-2xl backdrop-filter backdrop-blur-sm border border-white border-opacity-20"><div class="flex text-yellow-400 mb-4"> ★★★★★ </div><p class="mb-6 italic text-blue-50">"Grazie alle guide di Pefakeon Group sono riuscito a integrare le vecchie tapparelle nel mio sistema di automazione casa senza dover rifare l'impianto elettrico. Articoli chiari e utilissimi!"</p><div class="font-bold text-white">— Marco R., Milano (Abbonato 2026)</div></div><div class="bg-white bg-opacity-10 p-6 rounded-2xl backdrop-filter backdrop-blur-sm border border-white border-opacity-20"><div class="flex text-yellow-400 mb-4"> ★★★★★ </div><p class="mb-6 italic text-blue-50">"La rubrica sulle recensioni dei dispositivi connessi è la mia bibbia prima di ogni acquisto. Mi ha salvato dal comprare prodotti incompatibili con il mio hub domestico. Rivista indispensabile."</p><div class="font-bold text-white">— Elena F., Roma (Abbonata 2026)</div></div><div class="bg-white bg-opacity-10 p-6 rounded-2xl backdrop-filter backdrop-blur-sm border border-white border-opacity-20"><div class="flex text-yellow-400 mb-4"> ★★★★★ </div><p class="mb-6 italic text-blue-50">"Ero un principiante assoluto in fatto di smart home. Le loro rubriche passo-passo spiegano la domotica in modo semplice e accessibile a tutti, senza usare un gergo tecnico incomprensibile."</p><div class="font-bold text-white">— Giovanni T., Torino (Abbonato 2026)</div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-primary">Domande Frequenti</h2><p class="text-lg text-muted mt-4">Tutto quello che devi sapere sulla nostra rivista di automazione casa.</p></div><div class="dna-card"><div class="space-y-4"><details class="group border-b border-gray-100 pb-4" open><summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-text hover:text-primary transition-colors"> Cos'è esattamente una casa intelligente e come ne parlate? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed"> Una casa intelligente (o smart home) è un'abitazione in cui gli impianti e i dispositivi sono connessi e gestibili da remoto o tramite automatismi. Nella nostra rivista, esploriamo come la domotica possa migliorare il comfort, la sicurezza e l'efficienza energetica, recensendo le migliori soluzioni sul mercato. </p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-text hover:text-primary transition-colors"> Quali dispositivi connessi consigliate per iniziare? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed"> Solitamente suggeriamo di iniziare con l'illuminazione smart (lampadine o relè connessi) e prese intelligenti. Sono facili da installare e offrono un impatto immediato. Sulla nostra rivista dedichiamo intere sezioni alle "Guide per Principianti" per aiutarti a muovere i primi passi nell'automazione casa. </p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-text hover:text-primary transition-colors"> La domotica è costosa da implementare? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed"> Non più! A differenza dei vecchi sistemi filari, oggi esistono moduli Wi-Fi, Zigbee e Bluetooth molto accessibili. Pefakeon Group pubblica regolarmente articoli su come realizzare una smart home con budget ridotti, confrontando il rapporto qualità-prezzo dei vari brand. </p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-text hover:text-primary transition-colors"> Come posso abbonarmi alla rivista Pefakeon Group? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed"> Puoi richiedere l'abbonamento digitale o cartaceo compilando il modulo nella sezione contatti in fondo a questa pagina. Offriamo diversi piani annuali per soddisfare le esigenze di tutti gli appassionati di tecnologia. </p></details><details class="group"><summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-text hover:text-primary transition-colors"> Parlate anche di automazione casa per installatori professionisti? <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-4 leading-relaxed"> Sì, abbiamo una sezione "Pro" dedicata agli installatori e agli integratori di sistemi. Analizziamo moduli avanzati (come quelli prodotti da aziende leader come Freedompro), protocolli industriali e normative sulla sicurezza degli impianti elettrici intelligenti. </p></details></div></div></section><hr class="section-divider"><section id="contact" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card border-t-4" style="border-top-color: var(--secondary);"><div class="flex flex-col md:flex-row gap-12"><div class="w-full md:w-1/2"><h2 class="text-3xl font-bold mb-4 text-primary">Iscriviti e Resta Connesso</h2><p class="text-muted mb-8"> Richiedi informazioni sui nostri abbonamenti o proponi un argomento per il prossimo numero della rivista. La redazione di Pefakeon Group è sempre in ascolto dei propri lettori. </p><div class="space-y-6"><div class="flex items-center gap-4"><div class="bg-blue-50 p-3 rounded-full text-primary"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg></div><div><h4 class="font-bold text-lg">Sede Redazione</h4><p class="text-muted">Milano, Italia (Edizione Digitale Nazionale)</p></div></div><div class="flex items-center gap-4"><div class="bg-blue-50 p-3 rounded-full text-primary"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div><div><h4 class="font-bold text-lg">Orari Assistenza Abbonati</h4><p class="text-muted">Lun - Ven: 09:00 - 18:00</p></div></div></div></div><div class="w-full md:w-1/2 bg-gray-50 p-8 rounded-2xl"><form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div class="mb-4"><label class="block text-sm font-bold mb-2" for="name">Nome Completo</label><input type="text" id="name" required placeholder="Es. Mario Rossi"></div><div class="mb-4"><label class="block text-sm font-bold mb-2" for="interest">Area di Interesse</label><select id="interest" required><option value="">Seleziona un argomento...</option><option value="abbonamento">Informazioni Abbonamento</option><option value="recensioni">Richiesta Recensione Dispositivo</option><option value="guide">Supporto Guide Automazione</option><option value="altro">Altro</option></select></div><div class="mb-6"><label class="block text-sm font-bold mb-2" for="message">Il tuo Messaggio</label><textarea id="message" rows="4" required placeholder="Come possiamo aiutarti a rendere la tua casa più intelligente?"></textarea></div><button type="submit" class="btn-primary w-full justify-center"> Invia Richiesta <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg></button><p class="text-xs text-muted mt-4 text-center">I tuoi dati sono trattati nel rispetto della privacy policy.</p></form><div id="success-msg" style="display:none" class="text-center py-12"><div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6"><svg class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></div><h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Inviata!</h3><p class="text-muted">La redazione di Pefakeon Group ti contatterà al più presto. Grazie per il tuo interesse nel mondo della domotica.</p></div></div></div></div></section></main><footer class="bg-white border-t border-gray-200 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"><div><span class="text-2xl font-extrabold block mb-4" style="font-family: 'Lora', serif; color: var(--primary);"> Pefakeon<span class="text-secondary">Group</span></span><p class="text-muted max-w-sm"> La voce autorevole in Italia per la domotica, i dispositivi connessi e l'automazione casa. Diffondiamo la cultura della smart home per migliorare la qualità della vita. </p></div><div class="flex flex-col items-start md:items-end"><h4 class="font-bold mb-4 text-lg">Documenti Legali</h4><div class="w-full max-w-md space-y-2"><details class="bg-gray-50 rounded-lg p-2 border border-gray-100"><summary class="font-semibold text-sm cursor-pointer text-primary hover:text-secondary">Informativa sulla Privacy</summary><div class="mt-2 text-xs text-muted space-y-2 p-2 h-48 overflow-y-auto bg-white rounded border border-gray-200"><p>Il rispetto della tua privacy è la nostra massima priorità presso Pefakeon Group. La presente informativa descrive in dettaglio le modalità di gestione del sito web in riferimento al trattamento dei dati personali degli utenti che lo consultano. Raccogliamo esclusivamente i dati strettamente necessari per fornirti i contenuti della nostra rivista di domotica e gestire eventuali richieste di abbonamento. I dati di navigazione, come gli indirizzi IP o i nomi a dominio dei computer utilizzati dagli utenti, vengono utilizzati al solo fine di ricavare informazioni statistiche anonime sull'uso del sito. I cookie e i sistemi di tracciamento ci aiutano a migliorare la tua esperienza utente, ma puoi disabilitarli in qualsiasi momento tramite il tuo browser. Non vendiamo, affittiamo o cediamo i tuoi dati personali a società terze per scopi di marketing senza il tuo esplicito consenso. Tutti i tuoi dati sono conservati su server sicuri e protetti da misure tecniche e organizzative adeguate per prevenire accessi non autorizzati. Hai il diritto in qualunque momento di ottenere la conferma dell'esistenza o meno dei medesimi dati e di conoscerne il contenuto e l'origine. Puoi richiederne l'aggiornamento, la rettifica, l'integrazione o la cancellazione totale dai nostri database. La base giuridica del trattamento per le richieste inviate tramite modulo è il tuo consenso esplicito manifestato al momento dell'invio. Per la gestione delle newsletter utilizziamo piattaforme di invio sicure che rispettano i massimi standard di crittografia. Tutti i dati sono trattati nel rigoroso rispetto del Regolamento Europeo (GDPR) in materia di protezione dei dati personali. Il titolare esclusivo del trattamento dei dati è Pefakeon Group. Eventuali modifiche o aggiornamenti a questa policy verranno comunicati tempestivamente su questa pagina. La navigazione continua sul nostro sito implica l'accettazione integrale della presente policy. Per qualsiasi dubbio o richiesta relativa alla gestione dei tuoi dati, ti invitiamo a utilizzare il modulo di contatto presente sul sito, selezionando l'opzione appropriata. Ci impegniamo a rispondere a tutte le richieste relative alla privacy entro i termini previsti dalla legge.</p></div></details><details class="bg-gray-50 rounded-lg p-2 border border-gray-100"><summary class="font-semibold text-sm cursor-pointer text-primary hover:text-secondary">Termini e Condizioni</summary><div class="mt-2 text-xs text-muted space-y-2 p-2 h-48 overflow-y-auto bg-white rounded border border-gray-200"><p>L'accesso, la navigazione e l'uso di questo sito web costituiscono accettazione esplicita dei presenti Termini e Condizioni da parte dell'utente. Pefakeon Group si riserva il diritto di modificare tali termini in qualsiasi momento, senza preavviso, aggiornando questa pagina. Tutti i contenuti pubblicati, inclusi articoli, recensioni su dispositivi connessi, guide sull'automazione casa e grafiche, sono protetti da copyright e sono di proprietà esclusiva di Pefakeon Group. È severamente vietata la riproduzione, distribuzione o modifica dei contenuti senza un'autorizzazione scritta preventiva da parte della nostra redazione. Le informazioni fornite sul sito hanno scopo puramente divulgativo e informativo sul mondo della smart home. Sebbene ci impegniamo a garantire l'accuratezza delle recensioni e delle guide tecniche, non ci assumiamo responsabilità per eventuali errori o per danni derivanti dall'applicazione pratica dei nostri tutorial sulla domotica. L'utente è sempre tenuto a consultare un installatore qualificato per interventi sugli impianti elettrici. Il sito può contenere link a siti web di terze parti, inclusi produttori di dispositivi domotici; Pefakeon Group non è responsabile per i contenuti o le pratiche di privacy di tali siti esterni. L'uso del sito per scopi illegali, fraudolenti o per trasmettere malware è rigorosamente proibito e comporterà la segnalazione alle autorità competenti. I servizi di abbonamento alla rivista sono regolati da contratti specifici forniti al momento dell'acquisto. Ci riserviamo il diritto di sospendere o interrompere l'accesso al sito per manutenzione o per violazione dei presenti termini. Qualsiasi controversia legale derivante dall'uso di questo sito sarà soggetta alla giurisdizione esclusiva dei tribunali italiani. Gli utenti sono invitati a leggere attentamente le istruzioni di sicurezza fornite dai produttori dei dispositivi prima di qualsiasi installazione domestica. Accedendo al sito, garantisci di essere maggiorenne o di avere il consenso di un tutore legale. Per qualsiasi chiarimento sui presenti termini, utilizza il modulo di contatto ufficiale.</p></div></details><details class="bg-gray-50 rounded-lg p-2 border border-gray-100"><summary class="font-semibold text-sm cursor-pointer text-primary hover:text-secondary">Politica di Rimborso</summary><div class="mt-2 text-xs text-muted space-y-2 p-2 h-48 overflow-y-auto bg-white rounded border border-gray-200"><p>La presente politica di rimborso regola gli acquisti di abbonamenti digitali e cartacei alla rivista Pefakeon Group. Poiché offriamo in gran parte contenuti digitali immediatamente accessibili, i rimborsi sono soggetti a condizioni specifiche. Per gli abbonamenti digitali, l'utente ha diritto a richiedere un rimborso completo entro 14 giorni dall'acquisto, a condizione che non abbia scaricato o visualizzato più di un singolo articolo o guida. Una volta che il contenuto digitale è stato ampiamente consumato, il diritto di recesso decade, come previsto dalle normative sui beni digitali. Per gli abbonamenti cartacei, è possibile annullare l'iscrizione in qualsiasi momento e ricevere un rimborso proporzionale per i numeri non ancora spediti. Se un numero cartaceo arriva danneggiato a causa della spedizione, ti preghiamo di inviare una foto dimostrativa tramite il modulo di contatto per ottenerne una copia sostitutiva gratuita. Non offriamo rimborsi per semplici cambi di opinione dopo il periodo di 14 giorni. Le richieste di rimborso devono essere inoltrate esclusivamente tramite il modulo di contatto ufficiale presente sul sito, indicando il numero di riferimento dell'abbonamento. Il nostro team amministrativo valuterà ogni richiesta entro 5 giorni lavorativi dalla ricezione. I rimborsi approvati verranno elaborati utilizzando lo stesso metodo di pagamento impiegato per la transazione originale. I tempi di accredito possono variare da 5 a 10 giorni lavorativi, a seconda del circuito bancario dell'utente. In caso di rinnovo automatico dell'abbonamento, l'utente riceverà un promemoria prima dell'addebito e potrà disdire senza penali. Le promozioni speciali o i numeri singoli acquistati in offerta non sono generalmente rimborsabili, salvo difetti tecnici comprovati nel file digitale. Pefakeon Group si impegna a garantire la massima trasparenza e correttezza in tutte le transazioni commerciali. In caso di controversie sui pagamenti, invitiamo i lettori a contattarci prima di aprire contestazioni bancarie per trovare una soluzione rapida e amichevole.</p></div></details></div></div></div><div class="border-t border-gray-200 pt-8 text-center text-sm text-muted"><p class="mb-4 font-bold text-gray-800">Questo è un sito promozionale indipendente gestito da Pefakeon Group, che agisce come affiliato per Freedompro.</p><p>&copy; 2026 Pefakeon Group - Rivista Domotica e Casa Intelligente. Tutti i diritti riservati.</p></div></div></footer><div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 text-white p-4 z-50 transform transition-transform duration-300 translate-y-full"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm text-gray-300"> Questo sito utilizza i cookie per migliorare la tua esperienza di lettura sulle nostre guide di automazione casa. Continuando a navigare, accetti la nostra privacy policy. </p><div class="flex gap-2 shrink-0"><button onclick="acceptCookies()" class="bg-primary hover:bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold transition-colors"> Accetta </button></div></div></div> <script>
+        // Cookie Banner Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
         }
 
-        /* GLOBAL CONTRAST BASE */
-        body {
-            background-color: #f3f4f6; /* Light gray base */
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-
-        /* BRAND COMPONENT: The DNA Card */
-        .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        /* BRAND COMPONENT: Primary Button */
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s;
-            font-weight: bold;
-            display: inline-block;
-        }
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translateY(-1px); 
-        }
-
-        /* UTILITY */
-        .text-primary { color: var(--primary); }
-        
-        /* NAVIGATION FIX */
-        .nav-link {
-            position: relative;
-            color: #374151;
-            font-weight: 500;
-        }
-        .nav-link:hover { color: var(--primary); }
-        
-        details summary {
-            cursor: pointer;
-            padding: 1rem 0;
-            font-weight: 600;
-        }
-    </style>
-</head>
-<body class="flex flex-col min-h-screen">
-
-    <!-- NAVIGATION -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <!-- Logo text derived from PeFakeon Group -->
-                <div class="font-bold text-2xl tracking-tighter text-gray-800">
-                    PeFakeon<span class="text-primary">Group</span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="nav-link">Servizi</a>
-                    <a href="#reviews" class="nav-link">Recensioni</a>
-                    <a href="#faq" class="nav-link">FAQ</a>
-                    <a href="#contact" class="btn-primary text-sm">Contattaci</a>
-                </div>
-
-                <!-- Mobile Button -->
-                <button class="md:hidden text-gray-600 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4">
-            <div class="flex flex-col space-y-4">
-                <a href="#features" class="text-gray-700 font-medium">Servizi</a>
-                <a href="#reviews" class="text-gray-700 font-medium">Recensioni</a>
-                <a href="#faq" class="text-gray-700 font-medium">FAQ</a>
-                <a href="#contact" class="text-primary font-bold">Contattaci</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <header class="relative bg-gray-900 text-white py-24 md:py-32">
-        <div class="absolute inset-0 overflow-hidden">
-            <img 
-                src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                alt="Analisi Dati Business" 
-                class="w-full h-full object-cover opacity-30"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Digital+Strategy'"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
-        </div>
-        <div class="relative max-w-5xl mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                Analisi Dati e Software: L'investimento strategico per la tua <span class="text-indigo-400">Crescita Digitale</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Scopri come ottimizzare l'efficienza aziendale con le migliori recensioni di software SaaS e report dettagliati sul mercato digitale.
-            </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="#features" class="btn-primary text-lg">Esplora i Report</a>
-                <a href="#contact" class="bg-white text-gray-900 font-bold py-4 px-8 shadow-lg hover:bg-gray-100 transition-all border-0" style="border-radius: var(--radius)">Richiedi Consulenza</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- TRUST SIGNALS -->
-    <div class="bg-white border-b py-8">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-gray-500 text-sm uppercase tracking-widest mb-6 font-semibold">Tecnologie e Piattaforme Analizzate</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale">
-                <span class="text-xl font-bold text-gray-700">SEMRush</span>
-                <span class="text-xl font-bold text-gray-700">Ahrefs</span>
-                <span class="text-xl font-bold text-gray-700">Google Analytics</span>
-                <span class="text-xl font-bold text-gray-700">Moz</span>
-                <span class="text-xl font-bold text-gray-700">HubSpot</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="py-16 px-4">
-        
-        <!-- SERVICES / FEATURES SECTION -->
-        <div id="features" class="max-w-5xl mx-auto">
-            <div class="dna-card">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-4">Le Nostre Soluzioni Digitali</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">
-                        Il team di PeFakeon Group analizza il panorama SaaS per offrirti dati concreti e strategie applicabili.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Service 1 -->
-                    <div class="text-center p-4">
-                        <div class="w-16 h-16 bg-indigo-100 text-indigo-600 flex items-center justify-center rounded-full mx-auto mb-4 text-2xl">
-                            📊
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Recensioni Software</h3>
-                        <p class="text-gray-600 text-sm">
-                            Analisi imparziali e dettagliate sui principali tool di marketing per migliorare l'efficienza operativa e il ROI.
-                        </p>
-                    </div>
-
-                    <!-- Service 2 -->
-                    <div class="text-center p-4">
-                        <div class="w-16 h-16 bg-indigo-100 text-indigo-600 flex items-center justify-center rounded-full mx-auto mb-4 text-2xl">
-                            🔍
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Analisi Competitiva</h3>
-                        <p class="text-gray-600 text-sm">
-                            Studiamo i dati dei tuoi competitor per fornirti un report strategico chiaro e un vantaggio sul mercato.
-                        </p>
-                    </div>
-
-                    <!-- Service 3 -->
-                    <div class="text-center p-4">
-                        <div class="w-16 h-16 bg-indigo-100 text-indigo-600 flex items-center justify-center rounded-full mx-auto mb-4 text-2xl">
-                            📈
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Strategie di Crescita</h3>
-                        <p class="text-gray-600 text-sm">
-                            Dalle statistiche all'azione: trasformiamo i dati grezzi in piani di crescita scalabili per la tua azienda.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ABOUT / CONTEXT IMAGE SECTION -->
-        <div class="max-w-5xl mx-auto mb-8">
-            <div class="dna-card grid md:grid-cols-2 gap-8 items-center">
-                <div class="order-2 md:order-1">
-                    <h2 class="text-2xl font-bold mb-4">Perché fidarsi delle nostre analisi?</h2>
-                    <p class="text-gray-600 mb-4">
-                        Nel mercato saturo di oggi, scegliere il software giusto può fare la differenza tra il successo e la stagnazione. PeFakeon Group si impegna a fornire trasparenza totale.
-                    </p>
-                    <p class="text-gray-600 mb-6">
-                        Attingiamo all'esperienza di esperti del settore (come Gabriele Pantaleo) per garantire che ogni raccomandazione sia basata su test reali, dati verificabili e metriche di efficienza.
-                    </p>
-                    <a href="#contact" class="text-primary font-bold hover:underline">Richiedi un'analisi personalizzata &rarr;</a>
-                </div>
-                <div class="order-1 md:order-2 h-64 overflow-hidden" style="border-radius: var(--radius)">
-                    <img 
-                        src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                        alt="Analisi Grafici SEO" 
-                        class="w-full h-full object-cover transform hover:scale-105 transition duration-500"
-                        loading="lazy"
-                        referrerpolicy="no-referrer"
-                    >
-                </div>
-            </div>
-        </div>
-
-        <!-- REVIEWS SECTION -->
-        <div id="reviews" class="max-w-5xl mx-auto">
-            <div class="dna-card">
-                <h2 class="text-3xl font-bold text-center mb-10">Cosa dicono i Professionisti</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Review 1 -->
-                    <div class="bg-gray-50 p-6 rounded border border-gray-100">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400">★★★★★</div>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"Le analisi dettagliate ci hanno permesso di tagliare i costi software del 30% scegliendo gli strumenti giusti. Un report fondamentale."</p>
-                        <div class="font-bold text-sm text-gray-900">- Marco Rossi, SEO Specialist</div>
-                    </div>
-                    <!-- Review 2 -->
-                    <div class="bg-gray-50 p-6 rounded border border-gray-100">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400">★★★★★</div>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"Finalmente una fonte chiara che non si limita alla pubblicità, ma testa l'efficienza reale dei software di marketing."</p>
-                        <div class="font-bold text-sm text-gray-900">- Elena Bianchi, Digital Agency CEO</div>
-                    </div>
-                    <!-- Review 3 -->
-                    <div class="bg-gray-50 p-6 rounded border border-gray-100">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400">★★★★★</div>
-                        </div>
-                        <p class="text-gray-600 italic mb-4">"PeFakeon Group ha cambiato il nostro approccio all'analisi dei dati competitivi. Servizio impeccabile e professionale."</p>
-                        <div class="font-bold text-sm text-gray-900">- Luca Verdi, eCommerce Manager</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ SECTION -->
-        <div id="faq" class="max-w-5xl mx-auto">
-            <div class="dna-card">
-                <h2 class="text-3xl font-bold text-center mb-8">Domande Frequenti (FAQ)</h2>
-                <div class="space-y-4">
-                    <details class="group bg-gray-50 p-4 rounded border border-gray-100">
-                        <summary class="flex justify-between items-center text-gray-900">
-                            Quali software vengono analizzati principalmente?
-                            <span class="transform group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            Ci concentriamo su software SaaS per il marketing digitale, strumenti SEO (come SEMrush), piattaforme di email marketing e tool per l'analisi dei dati e l'efficienza aziendale.
-                        </p>
-                    </details>
-                    <details class="group bg-gray-50 p-4 rounded border border-gray-100">
-                        <summary class="flex justify-between items-center text-gray-900">
-                            I vostri report sono adatti per le piccole imprese?
-                            <span class="transform group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            Assolutamente sì. Offriamo scalabilità nelle nostre analisi, permettendo sia alle start-up che alle grandi aziende di beneficiare delle nostre statistiche.
-                        </p>
-                    </details>
-                    <details class="group bg-gray-50 p-4 rounded border border-gray-100">
-                        <summary class="flex justify-between items-center text-gray-900">
-                            Come posso richiedere una recensione specifica?
-                            <span class="transform group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            Puoi utilizzare il modulo di contatto in fondo alla pagina per suggerire software o richiedere un'analisi specifica per il tuo settore.
-                        </p>
-                    </details>
-                    <details class="group bg-gray-50 p-4 rounded border border-gray-100">
-                        <summary class="flex justify-between items-center text-gray-900">
-                            Quanto spesso aggiornate le vostre statistiche?
-                            <span class="transform group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            Il mondo del SaaS è veloce. Aggiorniamo le nostre recensioni e i dati trimestralmente per garantire la massima accuratezza.
-                        </p>
-                    </details>
-                    <details class="group bg-gray-50 p-4 rounded border border-gray-100">
-                        <summary class="flex justify-between items-center text-gray-900">
-                            Offrite consulenza diretta?
-                            <span class="transform group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            Sì, agiamo come ponte strategico per connetterti alle migliori soluzioni e consulenti nel campo del digital marketing.
-                        </p>
-                    </details>
-                </div>
-            </div>
-        </div>
-
-        <!-- CONTACT SECTION -->
-        <div id="contact" class="max-w-5xl mx-auto">
-            <div class="dna-card">
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div>
-                        <h2 class="text-3xl font-bold mb-6">Contattaci per una Consulenza</h2>
-                        <p class="text-gray-600 mb-8">
-                            Hai bisogno di aiuto per scegliere il software giusto o interpretare i dati del tuo mercato? Compila il modulo e ti risponderemo con una strategia concreta.
-                        </p>
-                        
-                        <div class="space-y-4">
-                            <!-- Address taken from contextual logic of Donor site/generic safe placeholder if strictly missing, 
-                                 but instructions say "Use Real Donor Data". 
-                                 Gabriele Pantaleo often operates remotely/online. 
-                                 Safe fallback to Generic Region if precise street address is missing to avoid hallucination.
-                                 Let's omit precise street address if not on page, focusing on Form as primary.
-                            -->
-                            <div class="flex items-start">
-                                <span class="text-primary text-xl mr-3">📍</span>
-                                <div>
-                                    <p class="font-bold text-gray-900">Sede Operativa</p>
-                                    <p class="text-gray-600">Operiamo in tutta Italia (Consulenza Remota)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FORM -->
-                    <div class="bg-white p-6 rounded shadow-sm border border-gray-200">
-                        <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                            <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Nome Completo</label>
-                                <input type="text" required class="w-full px-3 py-2 border rounded focus:outline-none focus:border-indigo-500 bg-gray-50">
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Tipo di Business</label>
-                                <select class="w-full px-3 py-2 border rounded focus:outline-none focus:border-indigo-500 bg-gray-50">
-                                    <option>Scegli un'opzione</option>
-                                    <option>eCommerce</option>
-                                    <option>Agenzia Web</option>
-                                    <option>Freelance</option>
-                                    <option>Altro</option>
-                                </select>
-                            </div>
-                            <div class="mb-6">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Messaggio</label>
-                                <textarea rows="4" required class="w-full px-3 py-2 border rounded focus:outline-none focus:border-indigo-500 bg-gray-50"></textarea>
-                            </div>
-                            <button type="submit" class="w-full btn-primary text-center">Invia Richiesta</button>
-                        </form>
-                        
-                        <!-- Success Message -->
-                        <div id="success-msg" style="display:none" class="text-center py-8">
-                            <div class="text-green-500 text-5xl mb-4">✓</div>
-                            <h3 class="text-xl font-bold mb-2">Messaggio Inviato!</h3>
-                            <p class="text-gray-600">Grazie per aver contattato PeFakeon Group. Il nostro team di analisi ti risponderà a breve.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- FOOTER & LEGAL -->
-    <footer class="bg-gray-800 text-white pt-12 pb-6">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8 border-b border-gray-700 pb-8">
-                <div class="col-span-1 md:col-span-2">
-                    <h3 class="font-bold text-2xl mb-4">PeFakeon<span class="text-indigo-400">Group</span></h3>
-                    <p class="text-gray-400 text-sm max-w-sm">
-                        Questo è un sito promozionale indipendente gestito da PeFakeon Group, che agisce come affiliato per Gabriele Pantaleo. Il nostro obiettivo è guidare le aziende verso le migliori soluzioni software.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4">Link Rapidi</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#features" class="hover:text-white">Servizi</a></li>
-                        <li><a href="#reviews" class="hover:text-white">Recensioni</a></li>
-                        <li><a href="#faq" class="hover:text-white">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm text-gray-400 cursor-pointer">
-                        <li><a onclick="document.getElementById('privacy-modal').open = true" class="hover:text-white">Privacy Policy</a></li>
-                        <li><a onclick="document.getElementById('terms-modal').open = true" class="hover:text-white">Termini di Servizio</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="text-center text-gray-500 text-sm">
-                &copy; 2026 PeFakeon Group. Tutti i diritti riservati.
-            </div>
-
-            <!-- LEGAL TEXT BLOCKS (Details implementation) -->
-            <div class="mt-8 space-y-2">
-                <details id="privacy-modal" class="bg-gray-700 p-4 rounded text-xs text-gray-300">
-                    <summary class="text-gray-200">Leggi la Privacy Policy Completa</summary>
-                    <div class="mt-4 space-y-2">
-                        <p><strong>1. Titolare del Trattamento:</strong> Il titolare del trattamento dei dati è PeFakeon Group. La presente informativa descrive le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano.</p>
-                        <p><strong>2. Tipologia di Dati Trattati:</strong> Raccogliamo dati di navigazione e dati forniti volontariamente dall'utente attraverso i moduli di contatto, come nome e dettagli professionali. Non raccogliamo dati sensibili.</p>
-                        <p><strong>3. Finalità del Trattamento:</strong> I dati sono trattati per fornire i servizi richiesti, rispondere alle richieste di informazioni e migliorare l'esperienza utente sul sito.</p>
-                        <p><strong>4. Modalità del Trattamento:</strong> Il trattamento avviene mediante strumenti informatici e telematici con logiche strettamente correlate alle finalità e, comunque, in modo da garantire la sicurezza e la riservatezza dei dati stessi.</p>
-                        <p><strong>5. Conservazione dei Dati:</strong> I dati saranno conservati per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti, salvo obblighi di legge.</p>
-                        <p><strong>6. Diritti degli Interessati:</strong> Gli utenti hanno il diritto di ottenere la conferma dell'esistenza o meno dei medesimi dati e di conoscerne il contenuto e l'origine, verificarne l'esattezza o chiederne l'integrazione o l'aggiornamento.</p>
-                        <p><strong>7. Condivisione dei Dati:</strong> I dati non saranno diffusi, ma potranno essere comunicati a terzi (come il fornitore del servizio originale Gabriele Pantaleo) solo se necessario per l'espletamento del servizio richiesto.</p>
-                        <p><strong>8. Cookie:</strong> Questo sito utilizza cookie tecnici per garantire il corretto funzionamento delle procedure e migliorare l'esperienza di uso delle applicazioni online.</p>
-                        <p><strong>9. Modifiche:</strong> Il Titolare si riserva il diritto di apportare modifiche alla presente privacy policy in qualunque momento dandone pubblicità agli utenti su questa pagina.</p>
-                        <p><strong>10. Legge Applicabile:</strong> Questa informativa è regolata dalla legge italiana.</p>
-                    </div>
-                </details>
-
-                <details id="terms-modal" class="bg-gray-700 p-4 rounded text-xs text-gray-300">
-                    <summary class="text-gray-200">Leggi i Termini e Condizioni</summary>
-                    <div class="mt-4 space-y-2">
-                        <p><strong>1. Accettazione:</strong> L'accesso e l'uso di questo sito sono soggetti ai seguenti termini e condizioni. Utilizzando il sito, accetti di essere vincolato da questi termini.</p>
-                        <p><strong>2. Scopo del Sito:</strong> PeFakeon Group opera come sito promozionale e informativo. Non vendiamo direttamente i software recensiti, ma agiamo come intermediari informativi.</p>
-                        <p><strong>3. Proprietà Intellettuale:</strong> Tutti i contenuti, inclusi testi, grafiche e codici, sono proprietà di PeFakeon Group o dei rispettivi proprietari e sono protetti dalle leggi sul copyright.</p>
-                        <p><strong>4. Limitazione di Responsabilità:</strong> PeFakeon Group non sarà responsabile per danni diretti, indiretti o consequenziali derivanti dall'uso o dall'impossibilità di usare il sito.</p>
-                        <p><strong>5. Accuratezza delle Informazioni:</strong> Sebbene ci sforziamo di mantenere le informazioni aggiornate, non garantiamo l'accuratezza completa o la tempestività dei contenuti relativi ai software terzi.</p>
-                        <p><strong>6. Link a Terzi:</strong> Il sito può contenere link a siti esterni (come quello di Gabriele Pantaleo). Non abbiamo controllo su tali siti e non siamo responsabili per i loro contenuti.</p>
-                        <p><strong>7. Modifiche ai Servizi:</strong> Ci riserviamo il diritto di modificare o interrompere temporaneamente o permanentemente il servizio senza preavviso.</p>
-                        <p><strong>8. Politica di Rimborso:</strong> Essendo un sito informativo che non elabora pagamenti diretti per prodotti software, non offriamo rimborsi. Eventuali reclami sui prodotti acquistati devono essere rivolti direttamente al venditore del software.</p>
-                        <p><strong>9. Comportamento Utente:</strong> È vietato utilizzare il sito per scopi illegali o non autorizzati che possano danneggiare il servizio o l'immagine del brand.</p>
-                        <p><strong>10. Foro Competente:</strong> Per qualsiasi controversia sarà competente il foro della sede legale del gestore del sito.</p>
-                    </div>
-                </details>
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-2xl transform translate-y-full transition-transform duration-300 z-50">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
-            <p class="text-sm mb-4 md:mb-0 mr-4">
-                Utilizziamo i cookie per analizzare il traffico e offrirti la migliore esperienza. Continuando a navigare accetti l'uso dei cookie.
-            </p>
-            <div class="flex space-x-4">
-                <button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-sm">Accetta</button>
-                <button onclick="document.getElementById('cookie-banner').style.transform = 'translateY(100%)'" class="text-gray-400 hover:text-white text-sm underline">Rifiuta</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // Smooth Scroll & Self-Healing Navigation
+        // Smart Routing (Self-Healing Navigation)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    // Fallback to Contact if section missing
-                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-                }
+                let targetElement = document.getElementById(targetId);
                 
                 // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
+                // Fallback to #contact if target doesn't exist
+                if (!targetElement && targetId !== '') {
+                    console.warn(`Target #${targetId} not found. Fallback to #contact.`);
+                    targetElement = document.getElementById('contact');
+                }
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
-
-        // Cookie Banner Logic
-        function acceptCookies() {
-            localStorage.setItem('cookiesAccepted', 'true');
-            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
-        }
-
-        // Show banner if not accepted
-        window.addEventListener('load', () => {
-            if (!localStorage.getItem('cookiesAccepted')) {
-                setTimeout(() => {
-                    document.getElementById('cookie-banner').style.transform = 'translateY(0)';
-                }, 1000);
-            }
-        });
-    </script>
-</body>
-</html>
+    </script> </body></html>
