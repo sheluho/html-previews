@@ -1,533 +1,170 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RosiBuzocais Net - Il tuo portale di riferimento per notizie e approfondimenti sulla tecnologia digitale e i sistemi informatici.">
-    <title>RosiBuzocais Net | Editore Media Digitale</title>
-    <!-- Tailwind CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <!-- DNA Design System -->
-    <style>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Rosibu Zocais | L'App per Scoprire e Prenotare Ristoranti</title><meta name="description" content="Scopri i migliori ristoranti, leggi le recensioni e prenota il tuo tavolo in pochi secondi con l'app definitiva per gli amanti del buon cibo."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet"> <style>
         :root {
-            /* VAR D: Palette (Tech/News -> Electric Blue) */
-            --primary: #2563EB; 
-            /* VAR C: Surface (Last letter 'k' (107) % 3 = 2 -> Cool) */
-            --surface: #f8fafc;
-            /* VAR A: Geometry (Length 27 % 3 = 0 -> Sharp) */
-            --radius: 0px;
-            /* VAR B: Physics (First letter 'r' (114) % 3 = 0 -> Flat) */
-            --shadow: 0 0 0 1px #e5e7eb;
+            --primary: #dc2626;
+            --secondary: #4f46e5;
+            --radius: 9999px;
+            --card-radius: 24px;
+            --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.05);
+            --body-bg: #f9fafb;
+            --card-bg: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6; /* Light gray base */
-            color: #1f2937;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Nunito Sans', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Nunito Sans', sans-serif;
             transition: all 0.2s;
-            font-weight: bold;
-            display: inline-block;
-            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translateY(-1px); 
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
 
         .text-primary { color: var(--primary); }
-        
-        /* Mobile Menu */
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
+
+        /* Mobile menu — always opaque, never transparent */
         #mobile-menu {
-            transition: all 0.3s ease-in-out;
-        }
-        
-        /* Legal Details */
-        details summary {
-            cursor: pointer;
-            padding: 1rem;
-            background-color: #edf2f7;
-            margin-bottom: 0.5rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-        }
-        details[open] summary {
-            background-color: #e2e8f0;
-        }
-        .legal-text {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            padding: 1rem;
-            background: #fff;
-            border: 1px solid #e2e8f0;
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* Cookie Banner */
-        #cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: #1f2937;
-            color: white;
-            padding: 1rem;
-            z-index: 50;
-            display: none;
-            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+        main, main + footer { scroll-margin-top: 5rem; }
+
+        /* Form inputs — consistent styling */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
         }
-    </style>
-</head>
-<body>
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220,38,38,0.15);
+        }
 
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold text-gray-900 tracking-tight">
-                        RosiBuzocais<span class="text-primary">Net</span>
-                    </span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Servizi</a>
-                    <a href="#reviews" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Opinioni</a>
-                    <a href="#faq" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">FAQ</a>
-                    <a href="#contact" class="btn-primary py-2 px-4 text-sm">Contatti</a>
-                </div>
-                <div class="md:hidden">
-                    <button type="button" class="text-gray-700 hover:text-primary focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                        <i class="fas fa-bars fa-lg"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block text-gray-700 hover:text-primary px-3 py-2 text-base font-medium">Servizi</a>
-                <a href="#reviews" class="block text-gray-700 hover:text-primary px-3 py-2 text-base font-medium">Opinioni</a>
-                <a href="#contact" class="block text-gray-700 hover:text-primary px-3 py-2 text-base font-medium">Contatti</a>
-            </div>
-        </div>
-    </header>
+        /* Links — readable on any theme */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
 
-    <!-- Hero Section -->
-    <div class="relative bg-gray-900 overflow-hidden">
-        <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg" alt="Tecnologia e notizie digitali" loading="lazy" referrerpolicy="no-referrer">
-            <div class="absolute inset-0 bg-black opacity-60"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6">
-                RosiBuzocais Net: Il Punto di Riferimento per la <span class="text-primary">Notizia</span> Tecnologica
-            </h1>
-            <p class="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
-                L'aggiornamento costante è l'investimento più importante nel mondo del business moderno. Offriamo analisi critiche, guide strategiche e ogni <strong>annuncio</strong> cruciale per professionisti del <strong>digitale</strong>.
-            </p>
-            <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                <a href="#contact" class="btn-primary text-lg px-8 py-3">
-                    Richiedi Consulenza Editoriale
-                </a>
-            </div>
-        </div>
-    </div>
+        /* Section divider — subtle visual rhythm */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(220,38,38,0.12), transparent);
+            margin: 0;
+        }
 
-    <!-- Trust Bar -->
-    <div class="bg-white py-8 border-b border-gray-200">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <p class="text-sm font-semibold text-gray-500 tracking-wide uppercase mb-4">LEADER DI SETTORE DI CUI PARLIAMO</p>
-            <div class="flex flex-wrap justify-center gap-8 items-center opacity-70">
-                <span class="text-xl font-bold text-gray-400">TechDaily</span>
-                <span class="text-xl font-bold text-gray-400">NetSystems</span>
-                <span class="text-xl font-bold text-gray-400">GlobalHost</span>
-                <span class="text-xl font-bold text-gray-400">DataFlow</span>
-                <span class="text-xl font-bold text-gray-400">CloudSecure</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Features Section -->
-    <section id="features" class="py-16">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="dna-card">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-extrabold text-gray-900">Il Nostro Ecosistema Informativo</h2>
-                    <p class="mt-4 text-lg text-gray-600">Esplora il <strong>mondo</strong> dell'IT attraverso i nostri servizi editoriali curati per l'eccellenza.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div class="p-6 bg-white border border-gray-100 shadow-sm">
-                        <div class="w-12 h-12 bg-blue-100 text-primary flex items-center justify-center mb-4">
-                            <i class="fas fa-newspaper fa-lg"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Notizia in Tempo Reale</h3>
-                        <p class="text-gray-600">Copertura h24 di ogni <strong>notizia</strong> rilevante nel settore hardware e software. Non perdere mai un aggiornamento critico per il tuo business.</p>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div class="p-6 bg-white border border-gray-100 shadow-sm">
-                        <div class="w-12 h-12 bg-blue-100 text-primary flex items-center justify-center mb-4">
-                            <i class="fas fa-search fa-lg"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Analisi di Sistema</h3>
-                        <p class="text-gray-600">Approfondimenti tecnici su infrastrutture cloud, sicurezza e performance. Analizziamo ogni <strong>sistema</strong> per offrirti recensioni imparziali.</p>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div class="p-6 bg-white border border-gray-100 shadow-sm">
-                        <div class="w-12 h-12 bg-blue-100 text-primary flex items-center justify-center mb-4">
-                            <i class="fas fa-bullhorn fa-lg"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Annuncio Digitale</h3>
-                        <p class="text-gray-600">Pubblichiamo ogni <strong>annuncio</strong> strategico, dalle acquisizioni aziendali ai nuovi rilasci software, garantendo una visione chiara del mercato.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Proof Section -->
-    <section id="reviews" class="py-12">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="dna-card bg-white">
-                <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Cosa Dicono i Lettori</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"RosiBuzocais Net è diventato la mia prima fonte al mattino. La qualità delle analisi sulla tecnologia <strong>digitale</strong> è impareggiabile nel panorama italiano."</p>
-                        <p class="font-bold text-gray-900">- Marco Rossi, IT Manager</p>
-                    </div>
-                    <div class="bg-gray-50 p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"Cercavo un portale serio che non parlasse solo di gadget, ma di infrastruttura e business. Finalmente ho trovato chi spiega il <strong>sistema</strong> in modo chiaro."</p>
-                        <p class="font-bold text-gray-900">- Laura Bianchi, DevOps Engineer</p>
-                    </div>
-                    <div class="bg-gray-50 p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"Ogni <strong>annuncio</strong> importante arriva qui prima che altrove. Per chi lavora nel web hosting e cloud è una risorsa indispensabile."</p>
-                        <p class="font-bold text-gray-900">- Giovanni Esposito, CTO</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-12">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="dna-card">
-                <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti</h2>
-                <div class="space-y-4">
-                    <details class="group">
-                        <summary class="list-none flex justify-between items-center font-medium cursor-pointer text-lg text-gray-800 bg-gray-50 p-4">
-                            Quali argomenti di tecnologia trattate principalmente?
-                            <span class="transition group-open:rotate-180 ml-2">
-                                <i class="fas fa-chevron-down text-primary"></i>
-                            </span>
-                        </summary>
-                        <div class="text-gray-600 mt-3 p-4 bg-white border-l-4 border-blue-500">
-                            Ci concentriamo su infrastrutture cloud, web hosting, sicurezza informatica e trend del <strong>mondo</strong> dello sviluppo software. Il nostro obiettivo è informare i professionisti.
-                        </div>
-                    </details>
-
-                    <details class="group">
-                        <summary class="list-none flex justify-between items-center font-medium cursor-pointer text-lg text-gray-800 bg-gray-50 p-4">
-                            Accettate guest post o collaborazioni editoriali?
-                            <span class="transition group-open:rotate-180 ml-2">
-                                <i class="fas fa-chevron-down text-primary"></i>
-                            </span>
-                        </summary>
-                        <div class="text-gray-600 mt-3 p-4 bg-white border-l-4 border-blue-500">
-                            Sì, valutiamo costantemente nuovi contributi. Se hai un <strong>annuncio</strong> o una ricerca tecnica rilevante, contattaci tramite il modulo dedicato.
-                        </div>
-                    </details>
-
-                    <details class="group">
-                        <summary class="list-none flex justify-between items-center font-medium cursor-pointer text-lg text-gray-800 bg-gray-50 p-4">
-                            Come rimanere aggiornati su ogni nuova notizia?
-                            <span class="transition group-open:rotate-180 ml-2">
-                                <i class="fas fa-chevron-down text-primary"></i>
-                            </span>
-                        </summary>
-                        <div class="text-gray-600 mt-3 p-4 bg-white border-l-4 border-blue-500">
-                            Aggiorniamo il portale quotidianamente. Puoi visitare la sezione "Notizie" per leggere l'ultima <strong>notizia</strong> appena pubblicata.
-                        </div>
-                    </details>
-
-                    <details class="group">
-                        <summary class="list-none flex justify-between items-center font-medium cursor-pointer text-lg text-gray-800 bg-gray-50 p-4">
-                            Offrite servizi di consulenza tecnica diretta?
-                            <span class="transition group-open:rotate-180 ml-2">
-                                <i class="fas fa-chevron-down text-primary"></i>
-                            </span>
-                        </summary>
-                        <div class="text-gray-600 mt-3 p-4 bg-white border-l-4 border-blue-500">
-                            Operiamo principalmente come editori media. Tuttavia, tramite la nostra rete, possiamo indirizzarti verso il miglior <strong>sistema</strong> di assistenza per le tue esigenze specifiche.
-                        </div>
-                    </details>
-
-                     <details class="group">
-                        <summary class="list-none flex justify-between items-center font-medium cursor-pointer text-lg text-gray-800 bg-gray-50 p-4">
-                            Il contenuto è adatto anche ai non addetti ai lavori?
-                            <span class="transition group-open:rotate-180 ml-2">
-                                <i class="fas fa-chevron-down text-primary"></i>
-                            </span>
-                        </summary>
-                        <div class="text-gray-600 mt-3 p-4 bg-white border-l-4 border-blue-500">
-                            Cerchiamo di rendere accessibile il <strong>digitale</strong> a tutti, ma manteniamo un livello tecnico adeguato per fornire valore reale ai professionisti del settore.
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="dna-card grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Contattaci</h2>
-                    <p class="text-gray-600 mb-8">
-                        Hai un <strong>annuncio</strong> da condividere o cerchi una partnership? Il nostro team editoriale è a tua disposizione per discutere di ogni aspetto del mondo <strong>digitale</strong>.
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <i class="fas fa-map-marker-alt text-primary fa-lg mt-1"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900">Sede Redazione</h3>
-                                <p class="text-gray-600">Via Dell’Edilizia 19<br>36100 Vicenza, Italia</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <i class="fas fa-phone text-primary fa-lg mt-1"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900">Telefono</h3>
-                                <p class="text-gray-600">
-                                    <a href="tel:0444321155" class="hover:text-primary transition">0444 321155</a>
-                                </p>
-                                <p class="text-sm text-gray-500 mt-1">Lun - Ven, 09:00 - 18:00</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-none">
-                    <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<i class=\'fas fa-spinner fa-spin\'></i> Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo</label>
-                            <input type="text" id="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary">
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700">Telefono</label>
-                            <input type="tel" id="phone" required class="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary">
-                        </div>
-                        <div>
-                            <label for="topic" class="block text-sm font-medium text-gray-700">Argomento</label>
-                            <select id="topic" class="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary">
-                                <option>Segnalazione Notizia</option>
-                                <option>Partnership Commerciale</option>
-                                <option>Supporto Tecnico</option>
-                                <option>Altro</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700">Messaggio</label>
-                            <textarea id="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-primary focus:border-primary"></textarea>
-                        </div>
-                        <button type="submit" class="w-full btn-primary">
-                            Invia Richiesta
-                        </button>
-                        <p class="text-xs text-gray-500 mt-2">
-                            Inviando questo modulo, accetti la nostra politica sulla privacy.
-                        </p>
-                    </form>
-                    
-                    <!-- Success Message -->
-                    <div id="success-msg" class="hidden text-center py-10">
-                        <i class="fas fa-check-circle text-green-500 text-5xl mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900">Grazie!</h3>
-                        <p class="text-gray-600 mt-2">Abbiamo ricevuto la tua richiesta. Un membro del nostro team editoriale ti contatterà al più presto.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer & Legal -->
-    <footer class="bg-white border-t border-gray-200 pt-12 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div class="col-span-1 md:col-span-2">
-                    <span class="text-2xl font-bold text-gray-900">RosiBuzocais<span class="text-primary">Net</span></span>
-                    <p class="mt-4 text-sm text-gray-500 max-w-xs">
-                        La tua fonte affidabile per notizie, analisi e tendenze nel panorama della tecnologia e dell'informatica.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Navigazione</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="#features" class="text-base text-gray-500 hover:text-gray-900">Servizi</a></li>
-                        <li><a href="#reviews" class="text-base text-gray-500 hover:text-gray-900">Recensioni</a></li>
-                        <li><a href="#contact" class="text-base text-gray-500 hover:text-gray-900">Contatti</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-200 pt-8 mt-8">
-                 <div class="mb-6 text-sm text-gray-500 italic text-center">
-                    "Questo è un sito promozionale indipendente gestito da RosiBuzocais Net, che agisce come affiliato per Shellrent."
-                </div>
-                
-                <!-- LEGAL DROPDOWNS -->
-                <div class="max-w-4xl mx-auto space-y-2 mb-8">
-                    <details>
-                        <summary>Politica sulla Privacy</summary>
-                        <div class="legal-text">
-                            <h4 class="font-bold mb-2">1. Introduzione</h4>
-                            <p class="mb-2">La protezione dei tuoi dati personali è fondamentale per RosiBuzocais Net. Questa informativa descrive come raccogliamo, utilizziamo e proteggiamo le tue informazioni quando visiti il nostro sito web dedicato all'editoria digitale. Rispettiamo rigorosamente il Regolamento Generale sulla Protezione dei Dati (GDPR) e le leggi italiane vigenti in materia di privacy. Utilizzando i nostri servizi, acconsenti alle pratiche descritte in questo documento.</p>
-                            <h4 class="font-bold mb-2">2. Raccolta Dati</h4>
-                            <p class="mb-2">Raccogliamo dati personali che ci fornisci volontariamente attraverso i moduli di contatto, come nome, numero di telefono e preferenze di comunicazione. Inoltre, raccogliamo dati tecnici automatici, inclusi indirizzo IP, tipo di browser e pagine visitate, per migliorare l'esperienza utente e la sicurezza del sistema. Questi dati sono essenziali per fornirti le notizie e gli aggiornamenti tecnologici richiesti.</p>
-                            <h4 class="font-bold mb-2">3. Utilizzo dei Dati</h4>
-                            <p class="mb-2">I dati raccolti vengono utilizzati per gestire le tue richieste, migliorare i nostri contenuti editoriali e prevenire frodi. Non vendiamo né affittiamo i tuoi dati a terze parti per scopi di marketing senza il tuo esplicito consenso. I dati possono essere condivisi con fornitori di servizi tecnici che operano sotto stretti accordi di riservatezza per mantenere operativo il sito.</p>
-                            <h4 class="font-bold mb-2">4. Sicurezza</h4>
-                            <p class="mb-2">Implementiamo misure di sicurezza fisiche, elettroniche e procedurali per proteggere i tuoi dati personali da accessi non autorizzati, alterazioni o distruzioni. Tuttavia, nessun metodo di trasmissione su Internet è sicuro al 100%, quindi non possiamo garantire la sicurezza assoluta, pur impegnandoci al massimo livello ragionevole.</p>
-                            <h4 class="font-bold mb-2">5. Diritti dell'Utente</h4>
-                            <p>Hai il diritto di accedere, correggere, cancellare o limitare l'uso dei tuoi dati personali in qualsiasi momento. Per esercitare questi diritti, ti preghiamo di contattarci utilizzando le informazioni fornite nella sezione contatti del sito. Risponderemo alle tue richieste entro i termini legali previsti.</p>
-                        </div>
-                    </details>
-
-                    <details>
-                        <summary>Termini e Condizioni</summary>
-                        <div class="legal-text">
-                            <h4 class="font-bold mb-2">1. Accettazione dei Termini</h4>
-                            <p class="mb-2">Accedendo a questo sito web, l'utente accetta di essere vincolato dai presenti Termini e Condizioni d'uso, da tutte le leggi e i regolamenti applicabili. Se non si accettano questi termini, è vietato utilizzare o accedere a questo sito. I materiali contenuti in questo sito web sono protetti dalle leggi applicabili sul diritto d'autore e sui marchi.</p>
-                            <h4 class="font-bold mb-2">2. Licenza d'Uso</h4>
-                            <p class="mb-2">È concesso il permesso di scaricare temporaneamente una copia dei materiali (informazioni o software) sul sito web di RosiBuzocais Net solo per la visualizzazione transitoria personale e non commerciale. Questa è la concessione di una licenza, non un trasferimento di titolo, e sotto questa licenza non è possibile: modificare o copiare i materiali; utilizzare i materiali per qualsiasi scopo commerciale; tentare di decompilare o decodificare qualsiasi software contenuto nel sito.</p>
-                            <h4 class="font-bold mb-2">3. Limitazione di Responsabilità</h4>
-                            <p class="mb-2">I materiali sul sito web di RosiBuzocais Net sono forniti "così come sono". RosiBuzocais Net non fornisce alcuna garanzia, espressa o implicita, e con la presente declina e nega tutte le altre garanzie, comprese, senza limitazioni, garanzie implicite o condizioni di commerciabilità, idoneità per uno scopo particolare o non violazione della proprietà intellettuale. Inoltre, non garantiamo l'accuratezza o l'affidabilità dell'uso dei materiali sul nostro sito web.</p>
-                            <h4 class="font-bold mb-2">4. Link a Terze Parti</h4>
-                            <p class="mb-2">Il nostro servizio può contenere link a siti web o servizi di terze parti che non sono posseduti o controllati da RosiBuzocais Net. Non abbiamo alcun controllo su, e non ci assumiamo alcuna responsabilità per, il contenuto, le politiche sulla privacy o le pratiche di qualsiasi sito web o servizio di terze parti. L'utente riconosce e accetta che RosiBuzocais Net non sarà responsabile, direttamente o indirettamente, per eventuali danni o perdite causate dall'uso di tali contenuti.</p>
-                            <h4 class="font-bold mb-2">5. Modifiche</h4>
-                            <p>RosiBuzocais Net può rivedere questi termini di servizio per il suo sito web in qualsiasi momento senza preavviso. Utilizzando questo sito web, l'utente accetta di essere vincolato dalla versione allora corrente di questi termini di servizio. È responsabilità dell'utente controllare periodicamente questa pagina per eventuali modifiche.</p>
-                        </div>
-                    </details>
-
-                    <details>
-                        <summary>Politica sui Rimborsi</summary>
-                        <div class="legal-text">
-                            <h4 class="font-bold mb-2">1. Principi Generali</h4>
-                            <p class="mb-2">RosiBuzocais Net opera principalmente come piattaforma di informazione gratuita. Tuttavia, per eventuali servizi premium o consulenze a pagamento che potrebbero essere offerti, si applicano le seguenti politiche di rimborso, in conformità con la normativa vigente sulla tutela dei consumatori e sul commercio elettronico.</p>
-                            <h4 class="font-bold mb-2">2. Diritto di Recesso</h4>
-                            <p class="mb-2">Hai il diritto di recedere da un contratto di servizio entro 14 giorni dalla sua sottoscrizione senza dover fornire alcuna motivazione. Il periodo di recesso scade dopo 14 giorni dal giorno della conclusione del contratto. Per esercitare il diritto di recesso, è necessario informarci della decisione tramite una dichiarazione esplicita inviata via posta o tramite i nostri canali di contatto ufficiali.</p>
-                            <h4 class="font-bold mb-2">3. Eccezioni al Rimborso</h4>
-                            <p class="mb-2">Il diritto di recesso non si applica alla fornitura di contenuto digitale mediante un supporto non materiale se l'esecuzione è iniziata con l'accordo espresso del consumatore e con l'accettazione del fatto che in tal caso avrebbe perso il diritto di recesso. Allo stesso modo, servizi di consulenza già erogati o parzialmente erogati su richiesta specifica dell'utente non sono rimborsabili per la parte già eseguita.</p>
-                            <h4 class="font-bold mb-2">4. Procedura di Rimborso</h4>
-                            <p class="mb-2">Se il rimborso è approvato, elaboreremo il rimborso utilizzando lo stesso metodo di pagamento utilizzato per la transazione iniziale, a meno che tu non abbia espressamente convenuto altrimenti. In ogni caso, non dovrai sostenere alcun costo quale conseguenza di tale rimborso. I tempi di elaborazione possono variare a seconda dell'istituto bancario o del fornitore della carta di credito.</p>
-                            <h4 class="font-bold mb-2">5. Contatti per Rimborsi</h4>
-                            <p>Per qualsiasi domanda relativa alla nostra politica sui rimborsi o per avviare una richiesta, ti invitiamo a utilizzare il modulo di contatto presente sul nostro sito. Il nostro team amministrativo esaminerà la tua richiesta e fornirà assistenza nel più breve tempo possibile.</p>
-                        </div>
-                    </details>
-                </div>
-                
-                <p class="text-center text-gray-400 text-sm">
-                    &copy; 2026 RosiBuzocais Net. Tutti i diritti riservati.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cookie Banner -->
-    <div id="cookie-banner">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <p class="text-sm mb-4 md:mb-0">
-                Utilizziamo i cookie per migliorare la tua esperienza sul nostro portale di tecnologia. Continuando a navigare, accetti la nostra politica sui cookie.
-            </p>
-            <div class="flex space-x-4">
-                <button id="accept-cookies" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-bold shadow-md" style="border-radius: var(--radius)">
-                    Accetta
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script>
-        // Smooth Scrolling Intercept
-        document.addEventListener('click', function(e) {
-            if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
-                const targetId = e.target.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    // Fallback to Contact
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            }
-        });
-
-        // Cookie Banner Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const banner = document.getElementById('cookie-banner');
-            const acceptBtn = document.getElementById('accept-cookies');
+        /* App Store Badge Styling */
+        .store-badge {
+            display: inline-block;
+            height: 48px;
+            transition: transform 0.2s;
+        }
+        .store-badge:hover {
+            transform: scale(1.05);
+        }
+    </style> </head><body class="antialiased"><nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-100 shadow-sm transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16 items-center"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold tracking-tight flex items-center gap-2"><svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z"></path></svg><span class="text-gray-900">Rosibu Zocais</span></a></div><div class="hidden md:flex items-center space-x-8"><a href="#features" class="font-semibold transition-colors">Funzionalità</a><a href="#how-it-works" class="font-semibold transition-colors">Come Funziona</a><a href="#reviews" class="font-semibold transition-colors">Recensioni</a><a href="#faq" class="font-semibold transition-colors">FAQ</a><a href="#download" class="btn-primary text-sm px-6 py-2"> Scarica l'App </a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg absolute w-full left-0"><div class="px-4 pt-2 pb-6 space-y-2 flex flex-col"><a href="#features" class="block px-3 py-3 rounded-md text-base font-semibold text-gray-800 hover:bg-gray-50">Funzionalità</a><a href="#how-it-works" class="block px-3 py-3 rounded-md text-base font-semibold text-gray-800 hover:bg-gray-50">Come Funziona</a><a href="#reviews" class="block px-3 py-3 rounded-md text-base font-semibold text-gray-800 hover:bg-gray-50">Recensioni</a><a href="#faq" class="block px-3 py-3 rounded-md text-base font-semibold text-gray-800 hover:bg-gray-50">FAQ</a><a href="#download" class="mt-4 w-full text-center btn-primary justify-center">Scarica l'App</a></div></div></nav><main><section class="py-16 md:py-20 relative overflow-hidden"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="flex flex-col md:flex-row items-center gap-12 md:gap-16"><div class="w-full md:w-1/2 text-center md:text-left"><div class="inline-block px-4 py-1.5 rounded-full bg-red-100 text-primary font-bold text-sm mb-6 border border-red-200"> 🌟 L'App #1 per il Food Discovery </div><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-gray-900"> Trova e prenota i <span class="text-primary relative inline-block">migliori ristoranti<svg class="absolute w-full h-3 -bottom-1 left-0 text-secondary opacity-30" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="none"/></svg></span> in pochi secondi. </h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> L'app definitiva per <strong>scoprire ristoranti</strong> unici, leggere opinioni autentiche e assicurarti il tavolo perfetto per ogni occasione. Zero attese, solo ottimo cibo con Rosibu Zocais. </p><div class="flex flex-wrap justify-center md:justify-start gap-4"><a href="#download" class="store-badge"><svg viewBox="0 0 135 40" class="h-full w-auto"><rect width="135" height="40" rx="6" fill="#000"/><path d="M29.9 14.6c-.1-2.5 2-3.8 2.1-3.8-1.2-1.7-3-1.9-3.7-1.9-1.6-.1-3.1 1-3.9 1-1 0-2.2-1-3.5-1-1.8 0-3.5 1-4.4 2.6-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 1.9 2.7 3.4 2.7 1.4 0 2-.8 3.6-.8 1.6 0 2.1.8 3.6.8 1.5 0 2.4-1.3 3.3-2.6.9-1.3 1.3-2.6 1.3-2.7-.1-.1-2.4-.9-2.5-3.6zM26.4 7.6c.8-1 1.3-2.3 1.1-3.6-1.1.1-2.5.7-3.3 1.7-.7.8-1.3 2.1-1.1 3.4 1.2.1 2.5-.5 3.3-1.5z" fill="#fff"/><text x="45" y="16" fill="#fff" font-family="sans-serif" font-size="9">Download on the</text><text x="45" y="30" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">App Store</text></svg></a><a href="#download" class="store-badge"><svg viewBox="0 0 135 40" class="h-full w-auto"><rect width="135" height="40" rx="6" fill="#000"/><path d="M12.4 8.7L25.3 16l-3.3 3.5L12.4 8.7zm0 22.6l9.6-10.8 3.3 3.5-12.9 7.3zM10 9.8v20.4c0 .8.9 1.2 1.5.7l14.8-10.9-14.8-10.9c-.6-.5-1.5-.1-1.5.7z" fill="#fff"/><text x="35" y="16" fill="#fff" font-family="sans-serif" font-size="9">GET IT ON</text><text x="35" y="30" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">Google Play</text></svg></a></div><div class="mt-8 flex items-center justify-center md:justify-start gap-3 text-sm text-gray-500 font-semibold"><div class="flex text-yellow-400"> ★★★★★ </div><span>4.9/5 da oltre 20.000 utenti</span></div></div><div class="w-full md:w-1/2"><div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform hover:-translate-y-2 transition-transform duration-500"><img src="https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Persona che usa l'app per prenotare ristorante" class="w-full h-auto object-cover" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x1200/dc2626/ffffff?text=App+Rosibu+Zocais'"><div class="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-lg flex items-center gap-3 border border-gray-100"><div class="bg-green-100 p-2 rounded-full text-green-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><div><p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Tavolo Confermato</p><p class="text-sm font-bold text-gray-900">Per 2 persone alle 20:30</p></div></div></div></div></div></div></section><hr class="section-divider"><section id="features" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Tutto ciò che ti serve per decidere <span class="text-secondary">dove mangiare</span>.</h2><p class="text-lg text-muted max-w-2xl mx-auto">Abbiamo progettato l'app Avatable per rendere la tua esperienza culinaria fluida, dalla ricerca alla prima forchettata.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card group hover:border-primary transition-colors"><div class="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors"><svg class="w-7 h-7 text-primary group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg></div><h3 class="text-xl font-bold mb-3">Ricerca Intelligente</h3><p class="text-muted leading-relaxed"> Usa i nostri filtri avanzati per <strong>scoprire ristoranti</strong> nascosti nella tua città. Che tu cerchi sushi, vegano o la vera pizza napoletana, trovi tutto in un tap. </p></div><div class="dna-card group hover:border-primary transition-colors"><div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary transition-colors"><svg class="w-7 h-7 text-secondary group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><h3 class="text-xl font-bold mb-3">Prenotazione Immediata</h3><p class="text-muted leading-relaxed"> Dimentica le lunghe attese al telefono. Puoi <strong>prenotare ristorante</strong> direttamente dall'app controllando la disponibilità in tempo reale e assicurandoti il posto. </p></div><div class="dna-card group hover:border-primary transition-colors"><div class="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors"><svg class="w-7 h-7 text-primary group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg></div><h3 class="text-xl font-bold mb-3">Recensioni Autentiche</h3><p class="text-muted leading-relaxed"> Niente brutte sorprese. Accedi a migliaia di <strong>recensioni ristoranti</strong> verificate lasciate da veri clienti per scegliere sempre l'opzione migliore per la tua serata. </p></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card border-t-4 border-t-secondary relative overflow-hidden"><div class="absolute -right-20 -top-20 w-64 h-64 bg-indigo-50 rounded-full opacity-50 pointer-events-none"></div><div class="text-center mb-10 relative z-10"><h2 class="text-3xl md:text-4xl font-bold mb-4">Il tuo tavolo in 3 semplici passi</h2><p class="text-lg text-muted">La comodità di avere i <strong>migliori ristoranti</strong> sempre a portata di mano.</p></div><div class="flex flex-col md:flex-row items-start justify-between gap-8 relative z-10"><div class="flex-1 text-center"><div class="w-16 h-16 mx-auto bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg border-4 border-red-100">1</div><h4 class="text-lg font-bold mb-2">Scarica l'App</h4><p class="text-muted text-sm">Disponibile gratuitamente su iOS e Android. Installa e crea il tuo profilo in pochi secondi.</p></div><div class="hidden md:block flex-1 mt-8"><div class="h-0.5 w-full bg-gray-200 relative"><div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-gray-300 rounded-full"></div></div></div><div class="flex-1 text-center"><div class="w-16 h-16 mx-auto bg-secondary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg border-4 border-indigo-100">2</div><h4 class="text-lg font-bold mb-2">Esplora e Scegli</h4><p class="text-muted text-sm">Naviga sulla mappa, usa i filtri e leggi le opinioni per trovare il locale perfetto per te.</p></div><div class="hidden md:block flex-1 mt-8"><div class="h-0.5 w-full bg-gray-200 relative"><div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-gray-300 rounded-full"></div></div></div><div class="flex-1 text-center"><div class="w-16 h-16 mx-auto bg-gray-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg border-4 border-gray-200">3</div><h4 class="text-lg font-bold mb-2">Prenota e Goditi</h4><p class="text-muted text-sm">Seleziona orario e numero di persone. Ricevi la conferma istantanea e preparati a gustare.</p></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa dicono i nostri Foodies</h2><p class="text-lg text-muted">Migliaia di utenti usano l'app ogni giorno per decidere <strong>dove mangiare</strong>.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card bg-gray-50 border-none relative"><div class="text-yellow-400 text-xl mb-3">★★★★★</div><h4 class="font-bold text-lg mb-2 text-gray-900">Rivoluzionaria!</h4><p class="text-muted text-sm mb-4 italic">"Non perdo più ore a chiamare locali che sono già pieni. Con questa app posso <strong>prenotare ristorante</strong> in due tap netti. La funzione mappa è comodissima per quando sono in viaggio."</p><div class="flex items-center gap-3 mt-auto"><div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold">M</div><div><p class="text-sm font-bold text-gray-900">Marco T.</p><p class="text-xs text-gray-500">12 Gennaio 2025</p></div></div></div><div class="dna-card bg-gray-50 border-none relative"><div class="text-yellow-400 text-xl mb-3">★★★★★</div><h4 class="font-bold text-lg mb-2 text-gray-900">Le recensioni salvano la cena</h4><p class="text-muted text-sm mb-4 italic">"Adoro poter leggere le <strong>recensioni ristoranti</strong> prima di prenotare. Ho scoperto dei posticini incredibili nella mia città che non avrei mai notato passandoci davanti."</p><div class="flex items-center gap-3 mt-auto"><div class="w-10 h-10 bg-secondary text-white rounded-full flex items-center justify-center font-bold">E</div><div><p class="text-sm font-bold text-gray-900">Elena R.</p><p class="text-xs text-gray-500">28 Febbraio 2025</p></div></div></div><div class="dna-card bg-gray-50 border-none relative"><div class="text-yellow-400 text-xl mb-3">★★★★★</div><h4 class="font-bold text-lg mb-2 text-gray-900">Semplice e intuitiva</h4><p class="text-muted text-sm mb-4 italic">"Interfaccia pulita e facilissima da usare. È diventata la mia app di riferimento assoluta quando devo organizzare una cena con gli amici nei <strong>migliori ristoranti</strong> del centro."</p><div class="flex items-center gap-3 mt-auto"><div class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold">L</div><div><p class="text-sm font-bold text-gray-900">Luca M.</p><p class="text-xs text-gray-500">05 Marzo 2025</p></div></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-16 md:py-20"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card"><div class="text-center mb-10"><h2 class="text-3xl font-bold mb-2">Domande Frequenti</h2><p class="text-muted">Tutto quello che devi sapere sulla nostra app.</p></div><div class="space-y-4"><details class="group bg-gray-50 rounded-xl border border-gray-100 open:bg-white open:ring-2 open:ring-primary/20 transition-all duration-200"><summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 text-gray-900"> L'app è gratuita da scaricare? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg></span></summary><div class="text-muted p-5 pt-0 leading-relaxed"> Assolutamente sì. Il download dell'app e la registrazione sono completamente gratuiti. Non ci sono costi nascosti per <strong>scoprire ristoranti</strong> o effettuare prenotazioni tramite la nostra piattaforma. </div></details><details class="group bg-gray-50 rounded-xl border border-gray-100 open:bg-white open:ring-2 open:ring-primary/20 transition-all duration-200"><summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 text-gray-900"> Su quali dispositivi è disponibile? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg></span></summary><div class="text-muted p-5 pt-0 leading-relaxed"> L'app è disponibile per tutti i dispositivi mobili iOS (iPhone e iPad) tramite l'Apple App Store e per tutti i dispositivi Android tramite il Google Play Store. </div></details><details class="group bg-gray-50 rounded-xl border border-gray-100 open:bg-white open:ring-2 open:ring-primary/20 transition-all duration-200"><summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 text-gray-900"> Come gestite i miei dati personali? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg></span></summary><div class="text-muted p-5 pt-0 leading-relaxed"> La sicurezza dei tuoi dati è la nostra priorità. Utilizziamo crittografia avanzata per proteggere le tue informazioni e condividiamo con i ristoranti solo i dati strettamente necessari (nome e numero di telefono) per confermare la tua prenotazione. </div></details><details class="group bg-gray-50 rounded-xl border border-gray-100 open:bg-white open:ring-2 open:ring-primary/20 transition-all duration-200"><summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 text-gray-900"> Posso cancellare una prenotazione? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg></span></summary><div class="text-muted p-5 pt-0 leading-relaxed"> Certamente. Puoi gestire, modificare o cancellare le tue prenotazioni direttamente dalla sezione "I miei tavoli" nell'app, con pochi semplici tocchi, nel rispetto delle politiche di cancellazione del singolo locale. </div></details><details class="group bg-gray-50 rounded-xl border border-gray-100 open:bg-white open:ring-2 open:ring-primary/20 transition-all duration-200"><summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 text-gray-900"> Le recensioni sono reali? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg></span></summary><div class="text-muted p-5 pt-0 leading-relaxed"> Sì. Solo gli utenti che hanno effettivamente prenotato e onorato la loro prenotazione tramite l'app possono lasciare una recensione per quel ristorante. Questo garantisce che tutte le valutazioni siano autentiche al 100%. </div></details></div></div></div></section><section id="download" class="py-16 md:py-24 bg-gray-900 text-white relative overflow-hidden"><div class="absolute inset-0 opacity-10"><svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#grid)" /></svg></div><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"><div class="mb-8 inline-flex items-center justify-center p-4 bg-white/10 rounded-full backdrop-blur-md border border-white/20"><svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg></div><h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-white">L'App Avatable ti aspetta.</h2><p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-sans"> Unisciti a migliaia di amanti del cibo. Inizia a esplorare, leggere le recensioni e prenota il tuo prossimo tavolo memorabile oggi stesso. </p><div class="flex flex-col sm:flex-row justify-center items-center gap-6"><a href="#" class="store-badge transform hover:scale-105 transition-transform"><svg viewBox="0 0 135 40" class="h-12 w-auto"><rect width="135" height="40" rx="6" fill="#fff"/><path d="M29.9 14.6c-.1-2.5 2-3.8 2.1-3.8-1.2-1.7-3-1.9-3.7-1.9-1.6-.1-3.1 1-3.9 1-1 0-2.2-1-3.5-1-1.8 0-3.5 1-4.4 2.6-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 1.9 2.7 3.4 2.7 1.4 0 2-.8 3.6-.8 1.6 0 2.1.8 3.6.8 1.5 0 2.4-1.3 3.3-2.6.9-1.3 1.3-2.6 1.3-2.7-.1-.1-2.4-.9-2.5-3.6zM26.4 7.6c.8-1 1.3-2.3 1.1-3.6-1.1.1-2.5.7-3.3 1.7-.7.8-1.3 2.1-1.1 3.4 1.2.1 2.5-.5 3.3-1.5z" fill="#000"/><text x="45" y="16" fill="#000" font-family="sans-serif" font-size="9">Download on the</text><text x="45" y="30" fill="#000" font-family="sans-serif" font-size="14" font-weight="bold">App Store</text></svg></a><a href="#" class="store-badge transform hover:scale-105 transition-transform"><svg viewBox="0 0 135 40" class="h-12 w-auto"><rect width="135" height="40" rx="6" fill="#fff"/><path d="M12.4 8.7L25.3 16l-3.3 3.5L12.4 8.7zm0 22.6l9.6-10.8 3.3 3.5-12.9 7.3zM10 9.8v20.4c0 .8.9 1.2 1.5.7l14.8-10.9-14.8-10.9c-.6-.5-1.5-.1-1.5.7z" fill="#000"/><text x="35" y="16" fill="#000" font-family="sans-serif" font-size="9">GET IT ON</text><text x="35" y="30" fill="#000" font-family="sans-serif" font-size="14" font-weight="bold">Google Play</text></svg></a></div><p class="mt-8 text-sm text-gray-400">Richiede iOS 13.0 o versioni successive / Android 8.0 o versioni successive.</p></div></section></main><footer class="bg-white border-t border-gray-200 py-12"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-8"><p class="text-gray-900 font-bold text-xl mb-2">Rosibu Zocais</p><p class="text-sm text-gray-500 mb-6 font-semibold bg-gray-100 inline-block px-4 py-2 rounded-lg"> Questa è una pagina promozionale indipendente gestita da Rosibu Zocais, per l'app Avatable di Avatable Inc. </p></div><div class="space-y-4 max-w-3xl mx-auto text-left mb-8"><details class="bg-gray-50 p-4 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer text-sm text-gray-700 hover:text-primary transition-colors">Informativa sulla Privacy (Privacy Policy)</summary><div class="mt-4 text-xs text-gray-600 space-y-2 h-48 overflow-y-auto pr-2 custom-scrollbar"><p>La presente Informativa sulla Privacy descrive le modalità con cui Rosibu Zocais raccoglie, utilizza e protegge le informazioni personali degli utenti che visitano questa pagina promozionale. La tutela della tua privacy è per noi di fondamentale importanza e ci impegniamo ad operare nel pieno rispetto delle normative vigenti in materia di protezione dei dati personali. Navigando su questo sito web, acconsenti alle pratiche descritte in questa informativa. Raccogliamo esclusivamente i dati tecnici necessari per garantire il corretto funzionamento della pagina e analizzare in forma aggregata il traffico web.</p><p>I dati raccolti possono includere l'indirizzo IP, il tipo di browser, i tempi di accesso e le pagine visitate. Queste informazioni vengono utilizzate al solo scopo di migliorare l'esperienza utente e comprendere le preferenze dei nostri visitatori. Non raccogliamo dati personali sensibili né informazioni che possano identificare direttamente l'utente, a meno che non vengano fornite volontariamente attraverso eventuali moduli di contatto o interazioni specifiche. I tuoi dati non verranno in alcun modo venduti, affittati o ceduti a terze parti per scopi commerciali o di marketing senza il tuo esplicito consenso.</p><p>Utilizziamo cookie tecnici essenziali per il funzionamento del sito e, previo tuo consenso, cookie analitici per fini statistici. Hai il diritto di disabilitare i cookie attraverso le impostazioni del tuo browser, sebbene ciò potrebbe limitare alcune funzionalità del sito. Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i dati raccolti da accessi non autorizzati, alterazioni, divulgazione o distruzione. I dati vengono conservati per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti. Questa informativa riguarda esclusivamente la pagina promozionale di Rosibu Zocais e non si applica all'applicazione mobile promossa o ai servizi di terze parti ad essa collegati. Ti invitiamo a consultare la privacy policy specifica dell'applicazione mobile una volta scaricata. Per qualsiasi richiesta relativa alla gestione dei tuoi dati su questa pagina promozionale, ti preghiamo di utilizzare i canali di comunicazione standard (non via email) messi a disposizione dalla piattaforma di hosting. Ci riserviamo il diritto di aggiornare questa informativa in qualsiasi momento; le modifiche avranno effetto immediato al momento della pubblicazione su questa pagina. Ti invitiamo pertanto a consultare periodicamente questa sezione per rimanere informato sulle nostre pratiche di tutela della privacy.</p></div></details><details class="bg-gray-50 p-4 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer text-sm text-gray-700 hover:text-primary transition-colors">Termini e Condizioni (Terms of Service)</summary><div class="mt-4 text-xs text-gray-600 space-y-2 h-48 overflow-y-auto pr-2 custom-scrollbar"><p>I presenti Termini e Condizioni regolano l'utilizzo della pagina web promozionale gestita da Rosibu Zocais. L'accesso e la navigazione su questo sito implicano l'accettazione integrale e incondizionata delle presenti disposizioni. Se non accetti questi termini, ti preghiamo di interrompere immediatamente l'utilizzo del sito. Questa piattaforma ha il solo scopo di promuovere l'applicazione mobile indicata e di fornire informazioni generali sulle sue funzionalità. Rosibu Zocais opera come promotore indipendente e non è lo sviluppatore ufficiale, né il proprietario dell'applicazione promossa.</p><p>Tutti i contenuti presenti su questa pagina, inclusi testi, grafiche, loghi, icone e immagini, sono forniti a scopo puramente informativo e promozionale. Pur impegnandoci a mantenere le informazioni aggiornate e accurate, non garantiamo la completezza, l'affidabilità o l'assoluta precisione dei contenuti relativi all'applicazione mobile, che potrebbero essere soggetti a modifiche da parte dello sviluppatore originale. Non ci assumiamo alcuna responsabilità per eventuali malfunzionamenti dell'applicazione scaricata, per l'inesattezza delle informazioni fornite o per danni derivanti dall'utilizzo dell'app stessa. L'utente scarica e utilizza l'applicazione mobile a proprio rischio e pericolo, sottostando ai termini di servizio e alle licenze d'uso imposte dallo sviluppatore originale negli appositi store digitali.</p><p>È severamente vietato riprodurre, distribuire, modificare o utilizzare per scopi commerciali qualsiasi elemento di questa pagina web senza la nostra esplicita autorizzazione scritta. Eventuali marchi registrati, nomi di prodotti e loghi di terze parti menzionati su questo sito appartengono ai rispettivi proprietari e sono utilizzati esclusivamente a scopo identificativo e descrittivo. Ci riserviamo il diritto di modificare, sospendere o interrompere l'accesso a questa pagina promozionale in qualsiasi momento e senza preavviso. L'utente si impegna a utilizzare il sito in conformità alle leggi vigenti e a non compiere azioni che possano comprometterne la sicurezza o il corretto funzionamento. Qualsiasi tentativo di accesso non autorizzato ai nostri sistemi informatici sarà perseguito a norma di legge. Le presenti condizioni sono regolate dalla legislazione vigente; eventuali controversie derivanti dall'utilizzo di questa pagina saranno di competenza esclusiva del foro stabilito dalla normativa applicabile. La mancata applicazione di una o più clausole dei presenti termini non costituisce rinuncia ai nostri diritti. Continuando a utilizzare il sito, l'utente conferma di aver letto, compreso e accettato integralmente questi Termini e Condizioni.</p></div></details><details class="bg-gray-50 p-4 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer text-sm text-gray-700 hover:text-primary transition-colors">Politica di Rimborso (Refund Policy)</summary><div class="mt-4 text-xs text-gray-600 space-y-2 h-48 overflow-y-auto pr-2 custom-scrollbar"><p>La presente Politica di Rimborso chiarisce la posizione di Rosibu Zocais in merito alle transazioni finanziarie. È fondamentale comprendere che questa pagina web funge esclusivamente da vetrina promozionale e non elabora, gestisce o riceve alcun tipo di pagamento diretto da parte degli utenti. Non vendiamo prodotti direttamente, né offriamo abbonamenti a pagamento tramite questo sito. Pertanto, Rosibu Zocais non è in grado di emettere rimborsi, storni o compensazioni di natura economica in nessuna circostanza.</p><p>L'applicazione mobile promossa su questa pagina viene scaricata tramite piattaforme di terze parti ufficiali, quali l'Apple App Store o il Google Play Store. Qualsiasi transazione finanziaria, inclusi acquisti in-app, abbonamenti premium o costi di download (se previsti), avviene interamente all'interno degli ecosistemi gestiti da queste aziende tecnologiche o direttamente con lo sviluppatore dell'applicazione. Di conseguenza, tutte le richieste di rimborso, le contestazioni di addebito o le problematiche relative alla fatturazione devono essere indirizzate direttamente al servizio clienti dello store digitale utilizzato per il download o allo sviluppatore ufficiale dell'app. Ti invitiamo a consultare attentamente le politiche di rimborso specifiche di Apple o Google prima di effettuare qualsiasi acquisto digitale.</p><p>Non possiamo intervenire, mediare o facilitare le procedure di rimborso tra l'utente e i fornitori terzi dei servizi a pagamento. Se ritieni di aver subito un addebito non autorizzato o se l'applicazione non soddisfa le tue aspettative dopo un acquisto in-app, devi seguire le procedure ufficiali di reclamo previste dal tuo fornitore di servizi mobili o dallo store digitale. Rosibu Zocais declina ogni responsabilità per perdite finanziarie, insoddisfazione riguardo ai servizi a pagamento dell'app o per il rifiuto di rimborsi da parte degli enti preposti. Le informazioni sui prezzi o sulle funzionalità a pagamento eventualmente menzionate su questa pagina sono fornite a titolo indicativo e potrebbero variare nel tempo a discrezione dello sviluppatore dell'app. Consigliamo sempre agli utenti di verificare i costi effettivi e le condizioni di abbonamento direttamente all'interno dell'applicazione prima di procedere con qualsiasi pagamento. L'utilizzo della nostra pagina promozionale implica l'accettazione e la comprensione totale della presente politica di assenza di rimborsi diretti da parte nostra.</p></div></details></div><div class="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"><p class="text-sm text-gray-500"> &copy; 2026 Rosibu Zocais. Tutti i diritti riservati. </p><div class="flex space-x-6"><a href="#" class="text-gray-400 hover:text-primary transition-colors"><span class="sr-only">Facebook</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg></a><a href="#" class="text-gray-400 hover:text-primary transition-colors"><span class="sr-only">Instagram</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg></a></div></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-2xl transform translate-y-full transition-transform duration-500 z-50"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-300"> Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito web e analizzare il traffico in forma aggregata. Continuando a navigare, accetti il nostro utilizzo dei cookie. </div><div class="flex gap-3 flex-shrink-0"><button onclick="acceptCookies()" class="bg-primary hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold text-sm transition-colors"> Accetta Tutti </button></div></div></div> <script>
+        // Smart Routing Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
             
-            if (!localStorage.getItem('cookiesAccepted')) {
-                banner.style.display = 'block';
-            }
-
-            acceptBtn.addEventListener('click', () => {
-                localStorage.setItem('cookiesAccepted', 'true');
-                banner.style.display = 'none';
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Element exists, smooth scroll to it
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Close mobile menu if open
+                        document.getElementById('mobile-menu').classList.add('hidden');
+                    } else {
+                        // Element doesn't exist, fallback to #download
+                        const downloadSection = document.getElementById('download');
+                        if (downloadSection) {
+                            downloadSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
             });
+
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
         });
-    </script>
-</body>
-</html>
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+    </script> </body></html>
