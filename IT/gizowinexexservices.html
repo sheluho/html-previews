@@ -1,484 +1,181 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gizowinex Design | Arredamento e Progettazione d'Interni</title>
-    <meta name="description" content="Servizi di progettazione d'interni e vendita arredamento di alta gamma. Trasforma la tua casa con Gizowinex Design.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <style>
-        /* DNA CALCULATIONS:
-           Target: https://www.mobilissimo.it (14 chars) -> 14 % 3 = 2 -> VAR A (Radius): 24px (Pill)
-           First Char: 'm' (109) -> 109 % 3 = 1 -> VAR B (Shadow): Material
-           Last Char: 't' (116) -> 116 % 3 = 2 -> VAR C (Surface): Cool (#f8fafc)
-           Niche: Interior Design/Furniture -> VAR D (Palette): Deep Cyan/Petrol (#0e7490)
-        */
-
+<!DOCTYPE html><html lang="it" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Scarica l'App Eventi e Sagre | Gizowinex</title><meta name="description" content="Scopri cosa fare nel weekend con l'app Eventi e Sagre. La tua guida a eventi locali, festival in Italia e concerti, presentata da Gizowinex."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Fraunces:wght@700;800&display=swap" rel="stylesheet"> <style>
         :root {
-            --primary: #0e7490;
-            --surface: #f8fafc;
+            --primary: #4f46e5;
+            --secondary: #dc2626;
             --radius: 24px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --card-radius: 24px;
+            --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+            --body-bg: #fffbeb;
+            --card-bg: #ffffff;
+            --text: #1c1917;
+            --muted: #78716c;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Work Sans', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fraunces', serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.3s;
-            font-weight: bold;
-            display: inline-block;
-            text-align: center;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Work Sans', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translateY(-2px); 
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
 
-        /* UTILITY */
         .text-primary { color: var(--primary); }
-        
-        details summary::-webkit-details-marker { display:none; }
-        details > summary { list-style: none; cursor: pointer; }
-        
-        /* Smooth fade for legal text */
-        .legal-text { font-size: 0.8rem; color: #6b7280; line-height: 1.5; }
-    </style>
-</head>
-<body class="flex flex-col min-h-screen">
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
 
-    <!-- NAV -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center">
-                    <span class="text-2xl font-bold text-gray-800">Gizowinex<span class="text-primary"> Design</span></span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary transition font-medium">Servizi</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary transition font-medium">Recensioni</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary transition font-medium">FAQ</a>
-                    <a href="#contact" class="btn-primary">Prenota Consulenza</a>
-                </div>
-                <div class="-mr-2 flex items-center md:hidden">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
-                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div class="hidden md:hidden bg-white border-t" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Servizi</a>
-                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Recensioni</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-bold text-primary bg-gray-50 rounded-md">Contattaci</a>
-            </div>
-        </div>
-    </nav>
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
 
-    <!-- HERO SECTION -->
-    <header class="relative bg-gray-900 overflow-hidden">
-        <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" 
-                 src="https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                 alt="Italian Interior Design Living Room"
-                 referrerpolicy="no-referrer"
-                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Design+Arredamento'">
-            <div class="absolute inset-0 bg-black opacity-60"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-                Il Tuo Spazio, Il Nostro Servizio:<br>
-                <span class="text-primary text-opacity-90" style="color: #22d3ee;">Arredamento Senza Compromessi</span>
-            </h1>
-            <p class="mt-4 max-w-2xl text-xl text-gray-200">
-                Uniamo l'eccellenza dell'arredamento Mobilissimo con il nostro servizio di progettazione esclusiva. Trasformiamo case in dimore di lusso.
-            </p>
-            <div class="mt-10 flex gap-4">
-                <a href="#contact" class="btn-primary border-2 border-transparent">
-                    Richiedi Progetto
-                </a>
-                <a href="#features" class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm border-2 border-white text-white rounded-[24px] px-8 py-4 font-bold hover:bg-opacity-20 transition">
-                    Scopri di più
-                </a>
-            </div>
-        </div>
-    </header>
+        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+        main, main + footer { scroll-margin-top: 5rem; }
 
-    <!-- TRUST BADGES -->
-    <section class="py-8 bg-white border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">I migliori marchi di design italiano</p>
-            <div class="flex flex-wrap justify-center gap-8 opacity-60 grayscale">
-                <span class="text-xl font-bold text-gray-500">LUBE Cucine</span>
-                <span class="text-xl font-bold text-gray-500">CREO Kitchens</span>
-                <span class="text-xl font-bold text-gray-500">Scavolini</span>
-                <span class="text-xl font-bold text-gray-500">Moretti Compact</span>
-                <span class="text-xl font-bold text-gray-500">Tomasella</span>
-            </div>
-        </div>
-    </section>
+        /* Form inputs — consistent styling regardless of Gemini output */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+        }
 
-    <!-- MAIN CONTENT WRAPPER -->
-    <main class="flex-grow pt-16 pb-12 px-4 sm:px-6">
+        /* Links — readable on any theme */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
 
-        <!-- SERVICES SECTION -->
-        <section id="features" class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                    I Nostri <span class="text-primary">Servizi Esclusivi</span>
-                </h2>
-                <p class="mt-4 text-lg text-gray-500">
-                    Dal singolo mobile alla ristrutturazione completa, offriamo un servizio chiavi in mano basato sulla qualità.
-                </p>
-            </div>
+        /* Section divider — subtle visual rhythm */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(79,70,229,0.12), transparent);
+            margin: 0;
+        }
 
-            <div class="grid gap-10 lg:grid-cols-3">
-                <!-- Feature 1 -->
-                <div class="flex flex-col items-center text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-50 text-primary mb-6 shadow-sm">
-                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Progettazione d'Interni</h3>
-                    <p class="text-gray-600">
-                        Consulenza completa con rendering 3D fotorealistici. I nostri architetti studiano gli spazi per ottimizzare funzionalità ed estetica, garantendo che ogni centimetro della tua casa sia valorizzato.
-                    </p>
-                </div>
+        /* App Store Badge Styles */
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #000;
+            color: #fff !important;
+            border-radius: 8px;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            height: 48px;
+        }
+        .store-badge:hover { opacity: 0.8; }
+        .store-badge svg { height: 24px; width: auto; margin-right: 8px; fill: currentColor; }
+        .store-badge .text-xs { font-size: 10px; line-height: 1; margin-bottom: 2px; }
+        .store-badge .text-lg { font-size: 16px; font-weight: 600; line-height: 1; }
 
-                <!-- Feature 2 -->
-                <div class="flex flex-col items-center text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-50 text-primary mb-6 shadow-sm">
-                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Cucine e Living</h3>
-                    <p class="text-gray-600">
-                        Una selezione curata dei migliori marchi italiani. Dalle cucine moderne e tecnologiche alle soluzioni living integrate, creiamo ambienti conviviali e raffinati che durano nel tempo.
-                    </p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="flex flex-col items-center text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-50 text-primary mb-6 shadow-sm">
-                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Zona Notte e Relax</h3>
-                    <p class="text-gray-600">
-                        Camere da letto matrimoniali, cabine armadio su misura e camerette sicure per i più piccoli. Il riposo è fondamentale: offriamo soluzioni ergonomiche che uniscono stile e comfort assoluto.
-                    </p>
-                </div>
-            </div>
+        .hero-bg {
+            background-image: linear-gradient(rgba(28, 25, 23, 0.8), rgba(28, 25, 23, 0.9)), url('https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+    </style> </head><body class="antialiased flex flex-col min-h-screen"><nav class="fixed w-full z-50 top-0 left-0 shadow-sm transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16 items-center"><div class="flex-shrink-0 flex items-center gap-2"><svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span class="font-bold text-xl tracking-tight" style="font-family: 'Fraunces', serif;">Gizowinex</span></div><div class="hidden md:flex space-x-8 items-center"><a href="#features" class="text-sm font-medium">Funzionalità</a><a href="#how-it-works" class="text-sm font-medium">Come Funziona</a><a href="#reviews" class="text-sm font-medium">Recensioni</a><a href="#faq" class="text-sm font-medium">FAQ</a><a href="#download" class="btn-primary text-sm px-4 py-2">Scarica l'App</a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg pb-4 px-4"><div class="flex flex-col space-y-4 pt-4"><a href="#features" class="block text-base font-medium text-gray-800">Funzionalità</a><a href="#how-it-works" class="block text-base font-medium text-gray-800">Come Funziona</a><a href="#reviews" class="block text-base font-medium text-gray-800">Recensioni</a><a href="#faq" class="block text-base font-medium text-gray-800">FAQ</a><a href="#download" class="btn-primary justify-center w-full mt-2">Scarica l'App</a></div></div></nav><main class="flex-grow"><section class="hero-bg py-20 md:py-32 mt-[-4rem] pt-[8rem] relative overflow-hidden"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"><span class="inline-block py-1 px-3 rounded-full bg-secondary bg-opacity-90 text-white text-xs font-bold tracking-wider mb-6 uppercase">La tua app guida eventi</span><h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-white"> Vivi ogni weekend al massimo. La tua guida definitiva agli <span class="text-secondary">eventi locali</span>. </h1><p class="text-lg md:text-xl mb-10 text-gray-200"> Gizowinex presenta l'app ufficiale <strong>Eventi e Sagre</strong>. Scopri festival in Italia, concerti e tradizioni culinarie direttamente dal tuo smartphone. Non chiederti più cosa fare nel weekend. </p><div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="flex flex-col items-start"><span class="text-xs">Scarica su</span><span class="text-lg">App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="flex flex-col items-start"><span class="text-xs">DISPONIBILE SU</span><span class="text-lg">Google Play</span></div></a></div><div class="relative mx-auto w-full max-w-[280px] mt-8"><div class="absolute inset-0 bg-primary rounded-[2.5rem] blur opacity-30 animate-pulse"></div><img src="https://placehold.co/400x800/ffffff/4f46e5?text=App+Eventi+e+Sagre" alt="Anteprima App Eventi e Sagre" class="relative rounded-[2.5rem] shadow-2xl border-4 border-gray-800" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/400x800/4f46e5/ffffff?text=Anteprima+App'"></div></div></section><section class="py-12 bg-white border-b border-gray-100"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><p class="text-sm font-semibold text-muted uppercase tracking-widest mb-6">L'app indispensabile per scoprire il tuo territorio</p><div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70"><div class="flex items-center gap-2"><svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg><span class="font-medium text-lg text-gray-800">Migliaia di eventi mappati</span></div><div class="flex items-center gap-2"><svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="font-medium text-lg text-gray-800">Aggiornamenti quotidiani</span></div><div class="flex items-center gap-2"><svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><span class="font-medium text-lg text-gray-800">Consigliata dagli utenti</span></div></div></div></section><hr class="section-divider"><section id="features" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Tutto il divertimento nel palmo della tua mano</h2><p class="text-lg text-muted max-w-2xl mx-auto">L'app ti offre strumenti potenti e intuitivi per esplorare le tradizioni e il divertimento della tua regione.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="dna-card hover:border-primary transition-colors duration-300"><div class="w-14 h-14 rounded-full bg-indigo-50 flex items-center justify-center mb-6 border border-indigo-100"><svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Geolocalizzazione Eventi</h3><p class="text-muted leading-relaxed">Trova istantaneamente <strong class="text-gray-800">eventi locali</strong> vicino alla tua posizione. Che tu stia cercando una fiera di paese o un mercatino artigianale, la mappa interattiva ti guida a destinazione.</p></div><div class="dna-card hover:border-primary transition-colors duration-300 relative overflow-hidden"><div class="absolute top-0 right-0 w-2 h-full bg-secondary"></div><div class="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center mb-6 border border-red-100"><svg class="w-8 h-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Calendario Sagre e Festival</h3><p class="text-muted leading-relaxed">Esplora il database più completo dedicato alle <strong class="text-gray-800">sagre</strong> gastronomiche e ai <strong class="text-gray-800">festival in Italia</strong>. Pianifica in anticipo e non perderti le specialità tipiche regionali.</p></div><div class="dna-card hover:border-primary transition-colors duration-300"><div class="w-14 h-14 rounded-full bg-indigo-50 flex items-center justify-center mb-6 border border-indigo-100"><svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg></div><h3 class="text-xl font-semibold mb-3">Notifiche Concerti</h3><p class="text-muted leading-relaxed">Rimani aggiornato sulla scena musicale. Ricevi avvisi in tempo reale per <strong class="text-gray-800">concerti</strong> live, band locali e spettacoli in piazza nella tua provincia.</p></div><div class="dna-card hover:border-primary transition-colors duration-300"><div class="w-14 h-14 rounded-full bg-indigo-50 flex items-center justify-center mb-6 border border-indigo-100"><svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Salva i tuoi Preferiti</h3><p class="text-muted leading-relaxed">Crea la tua lista dei desideri. Salva gli eventi che ti interessano e condividili con gli amici per decidere velocemente <strong class="text-gray-800">cosa fare nel weekend</strong>.</p></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-16 md:py-20 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card bg-body-bg border-none"><h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Inizia in tre semplici passi</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"><div class="relative"><div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center text-2xl font-bold text-primary shadow-md mb-4 border-2 border-primary">1</div><h4 class="text-xl font-semibold mb-2">Scarica l'App</h4><p class="text-muted">Disponibile gratuitamente per dispositivi iOS e Android. L'installazione richiede pochi secondi.</p><div class="hidden md:block absolute top-8 left-[60%] w-[80%] h-0.5 bg-gray-200"></div></div><div class="relative"><div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center text-2xl font-bold text-primary shadow-md mb-4 border-2 border-primary">2</div><h4 class="text-xl font-semibold mb-2">Scegli la Zona</h4><p class="text-muted">Attiva il GPS o inserisci manualmente la provincia che desideri esplorare per filtrare i risultati.</p><div class="hidden md:block absolute top-8 left-[60%] w-[80%] h-0.5 bg-gray-200"></div></div><div class="relative"><div class="w-16 h-16 mx-auto bg-secondary rounded-full flex items-center justify-center text-2xl font-bold text-white shadow-md mb-4">3</div><h4 class="text-xl font-semibold mb-2">Vivi l'Evento</h4><p class="text-muted">Ottieni indicazioni stradali, orari, dettagli sul menu delle sagre e goditi la tua giornata fuori porta.</p></div></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-16 md:py-20"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Cosa dicono i nostri utenti</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card p-6"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><h4 class="font-bold text-lg mb-2">Perfetta per i weekend</h4><p class="text-muted text-sm italic mb-4">"Uso questa app ogni venerdì sera per decidere dove andare la domenica. Ho scoperto sagre di paese che non conoscevo affatto pur abitando a 20 km di distanza. Consigliatissima!"</p><div class="text-xs text-gray-500 font-semibold">Marco T. - <span class="font-normal">12 Gennaio 2025</span></div></div><div class="dna-card p-6"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><h4 class="font-bold text-lg mb-2">Sempre aggiornata</h4><p class="text-muted text-sm italic mb-4">"L'interfaccia è pulita e le informazioni sui concerti locali sono precisissime. Mi piace molto la funzione per salvare i festival preferiti."</p><div class="text-xs text-gray-500 font-semibold">Giulia R. - <span class="font-normal">28 Novembre 2024</span></div></div><div class="dna-card p-6 border-t-4 border-secondary"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><h4 class="font-bold text-lg mb-2">Un must-have per chi viaggia</h4><p class="text-muted text-sm italic mb-4">"Viaggiando spesso in camper, questa applicazione è diventata la mia bussola per trovare eventi enogastronomici e feste popolari. Non posso farne a meno."</p><div class="text-xs text-gray-500 font-semibold">Roberto F. - <span class="font-normal">5 Ottobre 2024</span></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-16 md:py-20 bg-white"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Domande Frequenti</h2><div class="dna-card space-y-4"><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>L'applicazione è gratuita?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Sì, il download e l'utilizzo delle funzioni principali per cercare eventi locali e sagre sono completamente gratuiti per tutti gli utenti.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>Quali dispositivi sono supportati?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">L'app Eventi e Sagre è disponibile per tutti gli smartphone iOS (tramite Apple App Store) e Android (tramite Google Play Store).</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>Posso utilizzare l'app offline?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Per fornire aggiornamenti in tempo reale su concerti ed eventi, l'app richiede una connessione internet. Tuttavia, puoi salvare i tuoi eventi preferiti per consultarli rapidamente in caso di scarsa copertura di rete.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>I miei dati personali sono al sicuro?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">Assolutamente sì. Rispettiamo rigorosamente le normative sulla privacy. La geolocalizzazione viene utilizzata esclusivamente per mostrarti gli eventi vicini a te e puoi disattivarla in qualsiasi momento.</p></details><details class="group"><summary class="flex justify-between items-center font-medium cursor-pointer list-none text-lg"><span>Come posso segnalare un evento non presente?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 group-open:animate-fadeIn">All'interno dell'app troverai un'apposita sezione "Segnala Evento" dove potrai inviare i dettagli di festival, sagre o fiere non ancora in elenco per farli inserire dal nostro team.</p></details></div></div></section><hr class="section-divider"><section id="download" class="py-16 md:py-24 bg-body-bg relative overflow-hidden"><div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#4f46e5 1px, transparent 1px); background-size: 20px 20px;"></div><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"><div class="dna-card border-4 border-white shadow-2xl bg-white"><div class="w-20 h-20 mx-auto bg-primary rounded-2xl flex items-center justify-center mb-6 shadow-lg transform -rotate-3"><svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">Scarica Eventi e Sagre</h2><p class="text-xl text-muted mb-10 max-w-2xl mx-auto">Unisciti alla community. Trova subito le migliori sagre, i festival e gli eventi locali della tua città. Non restare a casa questo weekend.</p><div class="flex flex-col sm:flex-row items-center justify-center gap-6"><a href="#download" class="store-badge scale-110 transform transition-transform hover:scale-105"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="flex flex-col items-start"><span class="text-xs">Scarica su</span><span class="text-lg">App Store</span></div></a><a href="#download" class="store-badge scale-110 transform transition-transform hover:scale-105"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="flex flex-col items-start"><span class="text-xs">DISPONIBILE SU</span><span class="text-lg">Google Play</span></div></a></div></div></div></section></main><footer class="bg-white border-t border-gray-200 py-12 text-sm text-center"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="mb-6"><span class="font-bold text-xl tracking-tight text-primary" style="font-family: 'Fraunces', serif;">Gizowinex</span></div><p class="text-gray-500 mb-8 italic max-w-2xl mx-auto border border-gray-100 p-4 rounded-lg bg-gray-50"> Questa è una pagina promozionale indipendente gestita da Gizowinex, per l'app Eventi e Sagre di Eventi & Sagre Italia. Non siamo lo sviluppatore dell'applicazione. </p><div class="space-y-4 max-w-3xl mx-auto text-left"><details class="bg-gray-50 p-4 rounded-lg cursor-pointer"><summary class="font-semibold text-gray-700">Informativa sulla Privacy</summary><div class="mt-4 text-gray-600 text-xs space-y-2"><p>La presente Informativa sulla Privacy descrive le modalità di raccolta, utilizzo e protezione delle informazioni personali attraverso questa pagina promozionale. Rispettiamo la tua privacy e ci impegniamo a salvaguardare i tuoi dati. I dati raccolti sono limitati a quelli strettamente necessari per il funzionamento di base della pagina, come i cookie tecnici. Non raccogliamo dati sensibili o informazioni personali identificabili senza il tuo consenso esplicito. Qualora decidessi di navigare su questa pagina, accetti i termini descritti in questo documento. Utilizziamo tecnologie standard di settore per proteggere le informazioni da accessi non autorizzati. I tuoi dati non verranno venduti, scambiati o trasferiti a terze parti per scopi di marketing senza la tua autorizzazione. Questa pagina potrebbe contenere collegamenti all'applicazione principale; ti invitiamo a leggere l'informativa sulla privacy dello sviluppatore dell'app per comprendere come gestiscono i tuoi dati una volta che hai scaricato l'applicazione. Ci riserviamo il diritto di aggiornare questa informativa in qualsiasi momento. Le modifiche saranno effettive immediatamente dopo la pubblicazione sulla pagina. È responsabilità dell'utente rivedere periodicamente questa informativa. Se hai dubbi sulla nostra gestione dei dati, ti invitiamo a non utilizzare questa pagina promozionale. Il titolare del trattamento per questa specifica pagina di atterraggio è Gizowinex. La navigazione continua implica l'accettazione di queste pratiche. Proteggere la tua esperienza online è una nostra priorità. Per ulteriori dettagli tecnici sui cookie, consulta l'apposito banner.</p></div></details><details class="bg-gray-50 p-4 rounded-lg cursor-pointer"><summary class="font-semibold text-gray-700">Termini di Servizio</summary><div class="mt-4 text-gray-600 text-xs space-y-2"><p>I presenti Termini di Servizio regolano l'accesso e l'utilizzo di questa pagina web promozionale gestita da Gizowinex. Accedendo a questo sito, accetti di essere vincolato da questi termini. Se non sei d'accordo con una qualsiasi parte di questi termini, sei pregato di non utilizzare la nostra pagina. Questo sito ha il solo scopo di promuovere l'applicazione di terze parti menzionata. Non siamo responsabili per il funzionamento, i contenuti o la disponibilità dell'applicazione promossa. L'utente accetta di utilizzare il sito solo per scopi leciti e in modo da non violare i diritti altrui. Tutto il contenuto originale di questa pagina, inclusi testi e grafica generati per la promozione, è proprietà di Gizowinex, salvo i marchi registrati dell'applicazione che appartengono ai rispettivi proprietari. Non garantiamo che il sito sarà privo di errori o interruzioni. Gizowinex declina ogni responsabilità per eventuali danni diretti o indiretti derivanti dall'uso di questa pagina promozionale o dall'installazione dell'applicazione promossa. L'uso dell'applicazione scaricata è soggetto ai termini e condizioni stabiliti dallo sviluppatore originale. Ci riserviamo il diritto di modificare o interrompere il servizio di questa pagina in qualsiasi momento senza preavviso. L'utente è tenuto a verificare regolarmente eventuali aggiornamenti a questi termini. L'accesso continuato al sito dopo eventuali modifiche costituisce accettazione delle stesse. Qualsiasi controversia derivante dall'uso di questa pagina sarà soggetta alle leggi applicabili nel foro competente. L'utente esonera Gizowinex da qualsiasi reclamo legato all'utilizzo dell'app di terzi.</p></div></details><details class="bg-gray-50 p-4 rounded-lg cursor-pointer"><summary class="font-semibold text-gray-700">Politica sui Rimborsi</summary><div class="mt-4 text-gray-600 text-xs space-y-2"><p>Questa sezione chiarisce la politica relativa agli acquisti e ai rimborsi. Essendo Gizowinex esclusivamente il gestore di questa pagina promozionale indipendente, non elaboriamo alcun pagamento, abbonamento o transazione finanziaria. L'applicazione promossa potrebbe essere gratuita o contenere acquisti in-app e abbonamenti premium gestiti dallo sviluppatore originale. Qualsiasi transazione economica avviene direttamente attraverso le piattaforme ufficiali di distribuzione (Apple App Store o Google Play Store). Pertanto, Gizowinex non è in grado di emettere rimborsi, annullare abbonamenti o gestire reclami finanziari. Per qualsiasi richiesta di rimborso relativa all'applicazione, l'utente deve rivolgersi direttamente all'assistenza clienti di Apple o Google, seguendo le rispettive procedure standard. Le politiche di rimborso sono dettate esclusivamente dagli store digitali e dallo sviluppatore dell'app. Ti consigliamo di leggere attentamente i termini di acquisto all'interno dell'applicazione prima di procedere a qualsiasi transazione. Non siamo responsabili per addebiti non autorizzati, rinnovi automatici o malfunzionamenti legati a funzionalità a pagamento dell'app. Qualsiasi comunicazione riguardante questioni economiche inviata a Gizowinex non potrà essere processata. Scaricando l'app, accetti che Gizowinex sia sollevata da ogni responsabilità finanziaria. Questa politica è fissa e non soggetta a deroghe da parte nostra. Per dubbi prima dell'acquisto, consulta le recensioni e le informazioni fornite sugli store ufficiali. La trasparenza è fondamentale per noi, per questo ribadiamo il nostro ruolo di soli promotori.</p></div></details></div><p class="mt-8 text-gray-400">&copy; 2026 Gizowinex. Tutti i diritti riservati.</p></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 transform translate-y-full transition-transform duration-300 z-50"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm text-gray-300 text-center sm:text-left"> Utilizziamo i cookie per migliorare la tua esperienza su questa pagina promozionale. Navigando, accetti il nostro utilizzo dei cookie. </p><button id="accept-cookies" class="whitespace-nowrap bg-primary hover:bg-indigo-500 text-white font-medium py-2 px-6 rounded-full transition-colors"> Accetta e chiudi </button></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
             
-            <div class="mt-10 text-center">
-                 <img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                      class="rounded-lg shadow-lg mx-auto w-full object-cover max-h-96" 
-                      alt="Modern Kitchen Design"
-                      referrerpolicy="no-referrer">
-            </div>
-        </section>
-
-        <!-- REVIEWS SECTION -->
-        <section id="reviews" class="max-w-5xl mx-auto dna-card mt-16">
-            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">Cosa dicono i <span class="text-primary">Nostri Clienti</span></h2>
-            <div class="grid gap-8 md:grid-cols-3">
-                
-                <!-- Review 1 -->
-                <div class="bg-gray-50 p-6 rounded-2xl relative">
-                    <div class="text-primary text-4xl absolute top-2 left-4">"</div>
-                    <p class="text-gray-600 italic mt-4 mb-4">
-                        Abbiamo arredato l'intera casa affidandoci a loro. La progettazione della cucina è stata impeccabile, sfruttando uno spazio difficile che altri non sapevano gestire. Servizio eccellente.
-                    </p>
-                    <div class="font-bold text-gray-900">- Marco Rossi</div>
-                    <div class="text-sm text-yellow-500">★★★★★</div>
-                </div>
-
-                <!-- Review 2 -->
-                <div class="bg-gray-50 p-6 rounded-2xl relative">
-                    <div class="text-primary text-4xl absolute top-2 left-4">"</div>
-                    <p class="text-gray-600 italic mt-4 mb-4">
-                        Professionalità e cortesia. I mobili sono di una qualità tangibile e i montatori sono stati precisissimi e puliti. Gizowinex Services ha reso tutto molto semplice.
-                    </p>
-                    <div class="font-bold text-gray-900">- Elena Bianchi</div>
-                    <div class="text-sm text-yellow-500">★★★★★</div>
-                </div>
-
-                <!-- Review 3 -->
-                <div class="bg-gray-50 p-6 rounded-2xl relative">
-                    <div class="text-primary text-4xl absolute top-2 left-4">"</div>
-                    <p class="text-gray-600 italic mt-4 mb-4">
-                        La cameretta per i miei figli è splendida. Materiali robusti e sicuri. Grazie per la pazienza nel trovare la soluzione giusta per il nostro budget.
-                    </p>
-                    <div class="font-bold text-gray-900">- Luca Esposito</div>
-                    <div class="text-sm text-yellow-500">★★★★★</div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- FAQ SECTION -->
-        <section id="faq" class="max-w-5xl mx-auto dna-card mt-16">
-            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-8">Domande Frequenti</h2>
-            <div class="space-y-4">
-                
-                <details class="group">
-                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                        <span>Offrite il servizio di montaggio?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 mt-3 px-4 pb-4">
-                        Assolutamente sì. Ci avvaliamo di squadre di montatori esperti e qualificati per garantire che ogni mobile sia installato alla perfezione e duri nel tempo.
-                    </div>
-                </details>
-
-                <details class="group">
-                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                        <span>Fate progetti su misura?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 mt-3 px-4 pb-4">
-                        Sì, il su misura è la nostra specialità. I nostri arredatori utilizzano software avanzati per creare progetti personalizzati in base alle dimensioni esatte della tua casa.
-                    </div>
-                </details>
-
-                <details class="group">
-                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                        <span>Quali sono i tempi di consegna?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 mt-3 px-4 pb-4">
-                        I tempi variano a seconda del fornitore e della complessità del progetto, generalmente dai 30 ai 60 giorni lavorativi per cucine e armadiature personalizzate. Vi forniremo una stima precisa in fase di preventivo.
-                    </div>
-                </details>
-
-                <details class="group">
-                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                        <span>Posso richiedere un finanziamento?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 mt-3 px-4 pb-4">
-                        Certamente. Offriamo diverse soluzioni di pagamento rateale e finanziamenti personalizzati per aiutarti a realizzare la casa dei tuoi sogni senza pensieri.
-                    </div>
-                </details>
-
-                <details class="group">
-                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                        <span>Dove vi trovate?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 mt-3 px-4 pb-4">
-                        La nostra sede di riferimento è a Cernusco sul Naviglio (MI), Via Torino 15/17. Riceviamo preferibilmente su appuntamento per dedicarvi la massima attenzione.
-                    </div>
-                </details>
-
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="max-w-5xl mx-auto dna-card mt-16">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <!-- Contact Info -->
-                <div class="flex flex-col justify-center">
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Inizia il Tuo Progetto</h2>
-                    <p class="text-gray-600 mb-8">
-                        Compila il modulo per richiedere una consulenza gratuita. Uno dei nostri esperti ti contatterà al più presto per discutere le tue esigenze.
-                    </p>
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
                     
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-blue-50 p-3 rounded-full text-primary">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            </div>
-                            <span class="text-gray-700 font-medium">Via Torino 15/17, Cernusco sul Naviglio (MI)</span>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-blue-50 p-3 rounded-full text-primary">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                            </div>
-                            <a href="tel:+390292141557" class="text-gray-700 font-medium hover:text-primary transition">+39 02 9214 1557</a>
-                        </div>
-                    </div>
-                </div>
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    if (targetElement) {
+                        // Target exists, smooth scroll
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        // Fallback: target doesn't exist, scroll to download section
+                        const downloadSection = document.getElementById('download');
+                        if (downloadSection) {
+                            downloadSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
 
-                <!-- Form -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nome Completo</label>
-                            <input class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-primary transition" id="name" type="text" placeholder="Mario Rossi" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">Telefono</label>
-                            <input class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-primary transition" id="phone" type="tel" placeholder="+39 333 1234567" required>
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Di cosa hai bisogno?</label>
-                            <select class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="message">
-                                <option>Progettazione Cucina</option>
-                                <option>Arredamento Soggiorno</option>
-                                <option>Camera da Letto / Cameretta</option>
-                                <option>Ristrutturazione Completa</option>
-                                <option>Altro</option>
-                            </select>
-                        </div>
-                        <button class="btn-primary w-full" type="submit">
-                            Richiedi Appuntamento
-                        </button>
-                    </form>
-
-                    <!-- Success Message -->
-                    <div id="success-msg" style="display:none" class="text-center py-10">
-                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
-                            <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900">Grazie!</h3>
-                        <p class="text-gray-600 mt-2">La tua richiesta è stata ricevuta. Ti contatteremo a breve per fissare il tuo appuntamento.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-800 text-gray-300 py-12 border-t border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div>
-                    <span class="text-2xl font-bold text-white">Gizowinex<span class="text-primary"> Design</span></span>
-                    <p class="mt-4 text-sm text-gray-400 max-w-xs">
-                        Il partner ideale per il design della tua casa. Qualità, professionalità e stile italiano al tuo servizio.
-                    </p>
-                </div>
-                <div class="md:text-right">
-                    <p class="text-xs text-gray-500 mb-2">
-                        Questo è un sito promozionale indipendente gestito da Gizowinex Services, operante come affiliato per Mobilissimo.
-                    </p>
-                    <p class="text-sm">© 2026 Gizowinex Services. Tutti i diritti riservati.</p>
-                </div>
-            </div>
-
-            <!-- LEGAL BLOCKS -->
-            <div class="border-t border-gray-700 pt-8 space-y-4">
-                
-                <details class="group">
-                    <summary class="text-xs text-gray-500 hover:text-white transition uppercase tracking-wider font-semibold">Informativa sulla Privacy (Privacy Policy)</summary>
-                    <div class="mt-4 text-xs text-gray-400 space-y-2 legal-text text-justify">
-                        <p>La presente Informativa sulla Privacy descrive come Gizowinex Services ("Noi", "L'Azienda") raccoglie, utilizza e protegge i dati personali degli utenti che visitano questo sito web. Ci impegniamo a proteggere la tua privacy e a garantire che i tuoi dati personali siano trattati in conformità con il Regolamento Generale sulla Protezione dei Dati (GDPR) e le leggi italiane vigenti in materia.</p>
-                        <p>Raccogliamo informazioni che ci fornisci volontariamente tramite i moduli di contatto, come nome e numero di telefono. Questi dati vengono utilizzati esclusivamente per ricontattarti al fine di fornirti le informazioni richieste sui servizi di arredamento e progettazione. Non vendiamo, scambiamo o affittiamo i tuoi dati personali a terze parti per scopi di marketing senza il tuo esplicito consenso.</p>
-                        <p>Il sito utilizza cookie tecnici necessari per il corretto funzionamento della piattaforma e cookie analitici anonimi per migliorare l'esperienza utente. Continuando a navigare sul sito, acconsenti all'uso di tali tecnologie. Puoi gestire le tue preferenze sui cookie direttamente dalle impostazioni del tuo browser.</p>
-                        <p>Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, alterazioni, divulgazioni o distruzioni. I dati sono conservati per il tempo strettamente necessario a soddisfare le finalità per cui sono stati raccolti o come richiesto dalla legge.</p>
-                        <p>Hai il diritto di accedere, rettificare, cancellare o limitare il trattamento dei tuoi dati personali in qualsiasi momento. Per esercitare tali diritti, puoi contattarci tramite i canali ufficiali indicati sul sito. Ci riserviamo il diritto di aggiornare questa informativa in qualsiasi momento; le modifiche saranno pubblicate su questa pagina.</p>
-                    </div>
-                </details>
-
-                <details class="group">
-                    <summary class="text-xs text-gray-500 hover:text-white transition uppercase tracking-wider font-semibold">Termini e Condizioni</summary>
-                    <div class="mt-4 text-xs text-gray-400 space-y-2 legal-text text-justify">
-                        <p>Benvenuto sul sito web di Gizowinex Services. L'accesso e l'uso di questo sito sono regolati dai seguenti Termini e Condizioni. Accedendo al sito, accetti di essere vincolato da questi termini. Se non accetti parte di questi termini, ti invitiamo a non utilizzare i nostri servizi.</p>
-                        <p>Il contenuto di questo sito è fornito a scopo informativo e promozionale per presentare servizi di arredamento e design d'interni. Pur impegnandoci a fornire informazioni accurate e aggiornate, non garantiamo che tutte le informazioni siano prive di errori o complete. Le immagini dei prodotti sono a scopo illustrativo e potrebbero differire leggermente dalla realtà.</p>
-                        <p>L'utente si impegna a utilizzare il sito in modo lecito e a non compiere azioni che possano danneggiare la sicurezza o il funzionamento del sito stesso. È vietato tentare di accedere a aree riservate o utilizzare sistemi automatizzati per estrarre dati senza autorizzazione.</p>
-                        <p>La proprietà intellettuale di tutti i contenuti (testi, loghi, grafica) appartiene a Gizowinex Services o ai legittimi proprietari dei marchi citati (come Mobilissimo). È vietata la riproduzione non autorizzata di qualsiasi parte del sito.</p>
-                        <p>Non siamo responsabili per danni diretti o indiretti derivanti dall'uso o dall'impossibilità di utilizzare il sito. Questo include, ma non è limitato a, perdite di dati o interruzioni dell'attività. Ci riserviamo il diritto di modificare o sospendere il servizio in qualsiasi momento senza preavviso.</p>
-                        <p>Questi termini sono regolati dalla legge italiana. Qualsiasi controversia relativa all'uso del sito sarà di competenza esclusiva del foro competente relativo alla sede legale dell'operatore.</p>
-                    </div>
-                </details>
-
-                <details class="group">
-                    <summary class="text-xs text-gray-500 hover:text-white transition uppercase tracking-wider font-semibold">Politica di Rimborso e Resi</summary>
-                    <div class="mt-4 text-xs text-gray-400 space-y-2 legal-text text-justify">
-                        <p>Data la natura dei nostri servizi (intermediazione e consulenza di design), la politica di rimborso si applica principalmente ai prodotti fisici acquistati tramite i nostri partner o fornitori, in conformità con le leggi italiane a tutela del consumatore.</p>
-                        <p>Per i beni realizzati su misura o chiaramente personalizzati (come cucine progettate su specifiche del cliente), il diritto di recesso è escluso ai sensi dell'art. 59 del Codice del Consumo. Una volta confermato l'ordine e avviata la produzione, non è possibile annullare l'acquisto senza incorrere in penali o nella perdita dell'acconto versato.</p>
-                        <p>In caso di difetti di conformità o danni al momento della consegna, il cliente deve segnalare immediatamente l'anomalia. I nostri partner garantiscono la sostituzione o la riparazione dei componenti difettosi secondo i termini della garanzia legale di 24 mesi.</p>
-                        <p>Per i servizi di progettazione puramente intellettuale (consulenze, render 3D), non è previsto alcun rimborso una volta che il servizio è stato erogato, in quanto la prestazione si considera conclusa. Eventuali reclami sulla qualità del servizio saranno valutati singolarmente per trovare una soluzione amichevole.</p>
-                        <p>Vi invitiamo a leggere attentamente i contratti di fornitura specifici al momento dell'acquisto di mobili, poiché conterranno i dettagli precisi relativi alle garanzie del produttore e alle modalità specifiche di reso o sostituzione per quella specifica categoria di prodotto.</p>
-                    </div>
-                </details>
-
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t shadow-2xl p-4 z-50 hidden">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-sm text-gray-600">
-                Utilizziamo i cookie per migliorare la tua esperienza. Continuando a navigare accetti la nostra <a href="#" class="text-primary underline">Privacy Policy</a>.
-            </p>
-            <div class="flex gap-2">
-                <button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm rounded-[24px]">Accetta Tutto</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCRIPTS -->
-    <script>
-        // Smooth Scroll Logic with Fallback
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    // Fallback to Contact if ID is missing
-                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-                }
-                
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
+            // Cookie Banner Logic
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    cookieBanner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+            
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieBanner.classList.add('translate-y-full');
             });
         });
-
-        // Cookie Banner Logic
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'true');
-            document.getElementById('cookie-banner').style.display = 'none';
-        }
-
-        window.onload = function() {
-            if (!localStorage.getItem('cookieConsent')) {
-                document.getElementById('cookie-banner').style.display = 'block';
-            }
-        };
-    </script>
-</body>
-</html>
+    </script> </body></html>
