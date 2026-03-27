@@ -1,436 +1,161 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Piattaforma corsi professionali e certificazioni. Accelera la tua carriera e acquisisci competenze certificate per il mondo del lavoro e della scuola.">
-    <title>Sosuis Solutions - Formazione e Certificazioni</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
-    <style>
-        /* PHASE 2: DESIGN DNA */
-        :root {
-            /* VAR D: Palette (Education/Growth) -> Teal */
-            --primary: #0D9488;
-            /* VAR C: Surface (Code 115 % 3 = 1) -> Warm Cream */
-            --surface: #fffdf5;
-            /* VAR A: Geometry (Length 26 % 3 = 2) -> Pill/Round */
-            --radius: 24px;
-            /* VAR B: Physics (Code 99 % 3 = 0) -> Flat/Border */
-            --shadow: 0 0 0 1px #e5e7eb;
-        }
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Coseso Swiss Solutions | Scopri e Prenota Ristoranti</title><meta name="description" content="L'app per scoprire ristoranti e prenotare il tuo tavolo ideale. Leggi le recensioni e trova i migliori ristoranti dove mangiare."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet"> <style>
+      :root {
+        --primary: #7c3aed;
+        --secondary: #0d9488;
+        --radius: 0px;
+        --card-radius: 0px;
+        --shadow: 0 1px 3px rgba(0,0,0,0.08);
+        --body-bg: #f0f9ff;
+        --card-bg: #ffffff;
+        --text: #0c4a6e;
+        --muted: #64748b;
+      }
 
-        /* GLOBAL CONTRAST BASE */
-        body {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'Nunito Sans', sans-serif;
+      }
 
-        /* BRAND COMPONENT: The DNA Card */
-        .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Lora', serif;
+      }
 
-        /* BRAND COMPONENT: Primary Button */
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s;
-            font-weight: 700;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
 
-        /* UTILITY */
-        .text-primary { color: var(--primary); }
-        .bg-primary { background-color: var(--primary); }
-        
-        /* Smooth Scroll Behavior */
-        html { scroll-behavior: smooth; }
+      nav {
+        background-color: var(--body-bg);
+      }
 
-        /* Mobile Menu Transition */
-        #mobile-menu { transition: max-height 0.3s ease-in-out; }
-    </style>
-</head>
-<body class="flex flex-col min-h-screen">
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'Nunito Sans', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    <!-- NAVIGATION -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold text-gray-900 tracking-tight">Sosuis<span class="text-primary">Solutions</span></span>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium">Corsi e Servizi</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium">Recensioni</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium">Domande Frequenti</a>
-                    <a href="#contact" class="btn-primary">Contattaci</a>
-                </div>
-                <div class="-mr-2 flex items-center md:hidden">
-                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">Apri menu</span>
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
 
-        <!-- Mobile Menu -->
-        <div class="hidden md:hidden bg-white border-t border-gray-100" id="mobile-menu">
-            <div class="pt-2 pb-3 space-y-1 px-4">
-                <a href="#features" class="block py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Corsi</a>
-                <a href="#reviews" class="block py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Recensioni</a>
-                <a href="#contact" class="block py-2 text-base font-bold text-primary hover:bg-gray-50 rounded-md">Contattaci</a>
-            </div>
-        </div>
-    </nav>
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
 
-    <!-- HERO SECTION -->
-    <!-- Bridging Slogan Logic: Connecting "Solutions" brand with "Training/Education" -->
-    <header class="relative bg-gray-900 h-screen-80 flex items-center" style="min-height: 600px;">
-        <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" 
-                 src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                 alt="Professional team meeting for career growth"
-                 referrerpolicy="no-referrer"
-                 loading="lazy"
-                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=Career+Growth'">
-            <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center md:text-left">
-            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
-                Investire nella formazione è la <br><span class="text-primary">soluzione</span> migliore per la tua carriera.
-            </h1>
-            <p class="mt-4 max-w-3xl text-xl text-gray-200 mx-auto md:mx-0">
-                Accedi a una piattaforma di corsi professionali e certificazioni d'eccellenza. 
-                Dalla scuola alla sicurezza sul lavoro: costruisci il tuo percorso di competenze certificate oggi stesso.
-            </p>
-            <div class="mt-8 flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                <a href="#contact" class="btn-primary text-lg">Inizia il tuo Percorso</a>
-                <a href="#features" class="px-8 py-3 border border-white text-white font-bold rounded-full hover:bg-white hover:text-gray-900 transition shadow-lg text-lg text-center">
-                    Scopri l'Offerta
-                </a>
-            </div>
-        </div>
-    </header>
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
 
-    <!-- TRUST BADGES -->
-    <section class="bg-white py-8 border-b border-gray-200">
-        <div class="max-w-6xl mx-auto px-4">
-            <p class="text-center text-sm font-semibold text-gray-500 uppercase tracking-wide mb-6">Standard Riconosciuti da</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 grayscale opacity-60">
-                <span class="text-xl font-bold text-gray-600">MIUR</span>
-                <span class="text-xl font-bold text-gray-600">EIPASS</span>
-                <span class="text-xl font-bold text-gray-600">PEKIT</span>
-                <span class="text-xl font-bold text-gray-600">D.Lgs 81/08</span>
-                <span class="text-xl font-bold text-gray-600">ACCREDIA</span>
-            </div>
-        </div>
-    </section>
+      /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+      main, main + footer { scroll-margin-top: 5rem; }
+      body { padding-top: 4rem; }
 
-    <!-- MAIN SERVICES SECTION -->
-    <section id="features" class="py-16 px-4">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-900">La nostra offerta formativa</h2>
-                <p class="mt-4 text-lg text-gray-600">Un ampio catalogo di corsi studiati per ogni esigenza professionale.</p>
-            </div>
+      /* Form inputs — consistent styling regardless of Gemini output */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+      }
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service 1: Mondo Scuola -->
-                <article class="dna-card hover:shadow-lg transition">
-                    <div class="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Mondo Scuola & GPS</h3>
-                    <p class="text-gray-600 mb-4">
-                        Aumenta il tuo punteggio in graduatoria con certificazioni informatiche (EIPASS, PEKIT), corsi CLIL e certificazioni linguistiche. Fondamentale per docenti e personale ATA.
-                    </p>
-                    <ul class="text-sm text-gray-500 list-disc list-inside space-y-1">
-                        <li>Certificazioni Informatiche</li>
-                        <li>Certificazioni Linguistiche</li>
-                        <li>Corsi CLIL e Master</li>
-                    </ul>
-                </article>
+      /* Links — readable on any theme */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
 
-                <!-- Service 2: Sicurezza -->
-                <article class="dna-card hover:shadow-lg transition">
-                    <div class="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Sicurezza sul Lavoro</h3>
-                    <p class="text-gray-600 mb-4">
-                        Formazione obbligatoria ai sensi del D.Lgs 81/08. Corsi online per lavoratori, preposti, RLS, RSPP e aggiornamenti periodici essenziali per la conformità aziendale.
-                    </p>
-                    <ul class="text-sm text-gray-500 list-disc list-inside space-y-1">
-                        <li>Formazione Lavoratori</li>
-                        <li>HACCP Alimentaristi</li>
-                        <li>Aggiornamenti RLS/RSPP</li>
-                    </ul>
-                </article>
-
-                <!-- Service 3: Lauree e Professioni -->
-                <article class="dna-card hover:shadow-lg transition">
-                    <div class="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Università & Professioni</h3>
-                    <p class="text-gray-600 mb-4">
-                        Consegui la tua laurea online o iscriviti a corsi di alta formazione professionale. Un percorso di studio flessibile pensato per chi lavora e vuole crescere.
-                    </p>
-                    <ul class="text-sm text-gray-500 list-disc list-inside space-y-1">
-                        <li>Corsi di Laurea</li>
-                        <li>Master Universitari</li>
-                        <li>Crediti Formativi (CFU)</li>
-                    </ul>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROMOTIONAL IMAGE BREAK -->
-    <section class="py-4 px-4">
-        <div class="max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl relative h-64 md:h-80">
-            <img src="https://images.pexels.com/photos/1181605/pexels-photo-1181605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                 alt="Online learning" 
-                 class="w-full h-full object-cover"
-                 referrerpolicy="no-referrer"
-                 loading="lazy">
-            <div class="absolute inset-0 bg-primary bg-opacity-80 flex flex-col items-center justify-center text-center p-6">
-                <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">Il tuo futuro inizia oggi</h3>
-                <p class="text-white text-lg max-w-2xl mb-6">Unisciti a migliaia di studenti e professionisti che hanno scelto la qualità per il loro studio.</p>
-                <a href="#contact" class="bg-white text-primary px-8 py-3 rounded-full font-bold shadow hover:bg-gray-100 transition">Richiedi Info</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="reviews" class="py-16 px-4">
-        <div class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">Cosa dicono i nostri corsisti</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
-                         <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=200" class="object-cover w-full h-full" alt="Reviewer">
-                    </div>
-                    <p class="text-gray-600 italic mb-4">"Ho ottenuto la certificazione EIPASS in tempi brevissimi. Piattaforma intuitiva e servizio clienti eccellente. Fondamentale per le GPS."</p>
-                    <p class="font-bold text-gray-900">- Marco R., Insegnante</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=200" class="object-cover w-full h-full" alt="Reviewer">
-                    </div>
-                    <p class="text-gray-600 italic mb-4">"Avevo bisogno dell'attestato di sicurezza per un nuovo appalto. Corso chiaro e certificato valido subito. Consigliatissimi."</p>
-                    <p class="font-bold text-gray-900">- Laura B., Architetto</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
-                         <img src="https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=200" class="object-cover w-full h-full" alt="Reviewer">
-                    </div>
-                    <p class="text-gray-600 italic mb-4">"Ottima scelta per il mio master. Ho potuto studiare lavorando e ho acquisito competenze reali per la mia carriera."</p>
-                    <p class="font-bold text-gray-900">- Giuseppe V., Impiegato PA</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="py-8 px-4">
-        <div class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Domande Frequenti</h2>
-            <div class="space-y-4">
-                <details class="bg-gray-50 rounded-lg p-4 cursor-pointer border border-gray-100">
-                    <summary class="font-semibold text-gray-800">I corsi sono riconosciuti dal MIUR?</summary>
-                    <p class="mt-2 text-gray-600">Sì, la maggior parte dei nostri corsi per il mondo scuola, incluse le certificazioni informatiche e linguistiche, sono riconosciuti dal MIUR e validi per le graduatorie GPS.</p>
-                </details>
-                <details class="bg-gray-50 rounded-lg p-4 cursor-pointer border border-gray-100">
-                    <summary class="font-semibold text-gray-800">Come si svolgono gli esami?</summary>
-                    <p class="mt-2 text-gray-600">Gli esami si svolgono prevalentemente online in modalità sicura, permettendoti di conseguire il titolo comodamente da casa.</p>
-                </details>
-                <details class="bg-gray-50 rounded-lg p-4 cursor-pointer border border-gray-100">
-                    <summary class="font-semibold text-gray-800">Quanto dura l'accesso alla piattaforma?</summary>
-                    <p class="mt-2 text-gray-600">L'accesso ai materiali di studio è garantito H24 fino al completamento del corso, offrendo massima flessibilità per chi lavora.</p>
-                </details>
-                <details class="bg-gray-50 rounded-lg p-4 cursor-pointer border border-gray-100">
-                    <summary class="font-semibold text-gray-800">Rilasciate la fattura per i corsi?</summary>
-                    <p class="mt-2 text-gray-600">Assolutamente sì. Per ogni acquisto viene emessa regolare fattura, scaricabile anche ai fini fiscali per i professionisti.</p>
-                </details>
-                <details class="bg-gray-50 rounded-lg p-4 cursor-pointer border border-gray-100">
-                    <summary class="font-semibold text-gray-800">Ci sono corsi obbligatori per le aziende?</summary>
-                    <p class="mt-2 text-gray-600">Offriamo l'intera gamma di corsi obbligatori sulla Sicurezza sul Lavoro (D.Lgs 81/08), inclusi Primo Soccorso, Antincendio e formazione generale lavoratori.</p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-16 px-4">
-        <div class="max-w-5xl mx-auto dna-card">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Contattaci Ora</h2>
-                    <p class="text-gray-600 mb-8">
-                        Hai bisogno di orientamento? Il nostro team è pronto ad aiutarti a scegliere il corso o la certificazione più adatta al tuo percorso di crescita professionale.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Sede Operativa</h4>
-                                <p class="text-gray-600">Via San Paolo, 24<br>84022 Campagna (SA)</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <svg class="w-6 h-6 text-primary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Orari</h4>
-                                <p class="text-gray-600">Lun - Ven: 09:00 - 18:00</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div class="mb-4">
-                            <label class="block text-sm font-bold text-gray-700 mb-2">Nome Completo</label>
-                            <input type="text" required class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-bold text-gray-700 mb-2">Interesse Principale</label>
-                            <select class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
-                                <option>Certificazioni Scuola (EIPASS/PEKIT)</option>
-                                <option>Sicurezza sul Lavoro</option>
-                                <option>Università e Master</option>
-                                <option>Altro</option>
-                            </select>
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-sm font-bold text-gray-700 mb-2">Messaggio</label>
-                            <textarea rows="4" required class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                        </div>
-                        <button type="submit" class="w-full btn-primary text-center">Richiedi Informazioni</button>
-                    </form>
-                    <!-- Success Message -->
-                    <div id="success-msg" class="text-center py-10" style="display:none;">
-                        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900">Grazie!</h3>
-                        <p class="text-gray-600 mt-2">La tua richiesta è stata ricevuta. Un consulente ti contatterà a breve.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER & LEGAL -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-8">
-                <span class="text-2xl font-bold text-white">Sosuis<span class="text-primary">Solutions</span></span>
-                <p class="mt-4 text-sm text-gray-400">
-                    Il partner ideale per la tua formazione continua e professionale.
-                </p>
-                <p class="mt-4 text-xs text-gray-500 max-w-2xl mx-auto border-t border-gray-700 pt-4">
-                    Questo è un sito promozionale indipendente gestito da Sosuis Solutions, che agisce in qualità di affiliato per Alteredu. Tutti i marchi citati appartengono ai legittimi proprietari.
-                </p>
-            </div>
-
-            <!-- Legal Sections inside Details -->
-            <div class="max-w-4xl mx-auto space-y-4 text-xs text-justify">
-                <details>
-                    <summary class="cursor-pointer text-gray-400 hover:text-white mb-2">Privacy Policy (Clicca per leggere)</summary>
-                    <p>
-                        La presente Informativa sulla Privacy descrive come Sosuis Solutions raccoglie, utilizza e protegge le informazioni personali dell'utente. Ci impegniamo a garantire che la tua privacy sia protetta in conformità con il Regolamento Generale sulla Protezione dei Dati (GDPR) e altre leggi applicabili. Quando utilizzi questo sito web, potremmo chiederti di fornire alcune informazioni tramite le quali puoi essere identificato, come nome, numero di telefono e dati professionali necessari per fornire informazioni sui corsi. Queste informazioni saranno utilizzate esclusivamente per le finalità indicate, ovvero rispondere alle richieste di informazioni relative ai corsi professionali e alle certificazioni offerte. Non venderemo, distribuiremo o affitteremo le tue informazioni personali a terze parti senza il tuo consenso, salvo i casi previsti dalla legge o necessari per l'esecuzione del servizio richiesto (ad esempio, comunicazione con l'ente erogatore Alteredu per finalizzare l'iscrizione). Adottiamo misure di sicurezza tecniche e organizzative adeguate per prevenire l'accesso non autorizzato o la divulgazione dei dati. L'utente ha il diritto di richiedere i dettagli delle informazioni personali che deteniamo su di lui e di chiederne la correzione o la cancellazione contattandoci direttamente. La conservazione dei dati avverrà per il tempo strettamente necessario a esaudire la richiesta. Utilizzando questo sito, acconsenti alla raccolta e all'uso delle informazioni come descritto in questa politica.
-                    </p>
-                </details>
-
-                <details>
-                    <summary class="cursor-pointer text-gray-400 hover:text-white mb-2">Termini e Condizioni (Clicca per leggere)</summary>
-                    <p>
-                        Benvenuto sul sito web di Sosuis Solutions. Continuando a navigare e utilizzare questo sito web, accetti di rispettare e di essere vincolato dai seguenti termini e condizioni d'uso, che insieme alla nostra informativa sulla privacy governano il rapporto di Sosuis Solutions con te in relazione a questo sito web. Il termine 'Sosuis Solutions' o 'noi' si riferisce al proprietario del sito web. Il termine 'tu' si riferisce all'utente o al visitatore del nostro sito web. L'uso di questo sito web è soggetto alle seguenti condizioni d'uso: Il contenuto delle pagine di questo sito web è solo per tua informazione generale e uso promozionale. È soggetto a modifiche senza preavviso. Né noi né terze parti forniamo alcuna garanzia o assicurazione circa l'accuratezza, la tempestività, la prestazione, la completezza o l'idoneità delle informazioni e dei materiali trovati o offerti su questo sito web per uno scopo particolare. Riconosci che tali informazioni e materiali possono contenere inesattezze o errori ed escludiamo espressamente la responsabilità per eventuali inesattezze o errori nella misura massima consentita dalla legge. L'uso di qualsiasi informazione o materiale su questo sito web è interamente a tuo rischio, per il quale non saremo responsabili. Sarà tua responsabilità assicurarti che qualsiasi prodotto, servizio o informazione disponibile attraverso questo sito web soddisfi le tue specifiche esigenze. Questo sito web contiene materiale che è di nostra proprietà o concesso in licenza a noi o al nostro partner Alteredu. La riproduzione è vietata se non in conformità con l'avviso di copyright, che fa parte di questi termini e condizioni.
-                    </p>
-                </details>
-
-                <details>
-                    <summary class="cursor-pointer text-gray-400 hover:text-white mb-2">Politica di Rimborso (Clicca per leggere)</summary>
-                    <p>
-                        Poiché Sosuis Solutions opera come intermediario promozionale e affiliato, le transazioni finanziarie per l'acquisto dei corsi avvengono direttamente sulla piattaforma del fornitore ufficiale (Alteredu) o tramite accordi diretti successivi al contatto. Di conseguenza, la politica di rimborso applicabile è quella dell'ente erogatore del corso. In generale, il consumatore ha diritto di recedere dal contratto di acquisto di corsi online entro 14 giorni dalla conclusione dello stesso, a condizione che non abbia già iniziato a fruire del servizio (ad esempio, effettuando l'accesso alla piattaforma di e-learning e visualizzando i contenuti o scaricando materiale). Se il corso è stato già fruito anche parzialmente, il diritto di recesso decade come previsto dalla normativa vigente sui contenuti digitali. Per richiedere un rimborso, l'utente deve rivolgersi direttamente all'assistenza clienti indicata nella conferma d'ordine ricevuta. Sosuis Solutions non gestisce direttamente i pagamenti né i rimborsi, ma si impegna a fornire all'utente tutte le informazioni necessarie per esercitare i propri diritti presso il fornitore del servizio. Vi invitiamo a leggere attentamente i termini di vendita specifici prima di completare qualsiasi acquisto.
-                    </p>
-                </details>
-            </div>
-            
-            <div class="mt-8 text-center text-sm text-gray-500">
-                &copy; 2026 Sosuis Solutions. Tutti i diritti riservati.
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50 hidden border-t border-primary">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0 text-sm mr-4">
-                Utilizziamo i cookie per migliorare la tua esperienza di navigazione. Continuando a utilizzare il sito accetti la nostra politica sui cookie.
-            </div>
-            <button onclick="acceptCookies()" class="bg-primary hover:opacity-90 text-white font-bold py-2 px-6 rounded-full text-sm transition">
-                Accetto
-            </button>
-        </div>
-    </div>
-
-    <!-- JS INTERACTIVITY -->
-    <script>
-        // SMART ROUTING: Self-healing anchor tags
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                    // Close mobile menu if open
-                    document.getElementById('mobile-menu').classList.add('hidden');
-                } else {
-                    // Fallback to Contact
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            });
+      /* Section divider — subtle visual rhythm */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(124,58,237,0.12), transparent);
+        margin: 0;
+      }
+      
+      /* Custom utility for icons */
+      .icon-accent {
+        color: var(--secondary);
+      }
+    </style> </head><body class="antialiased"><nav class="fixed w-full z-50 top-0 left-0 border-b border-gray-200" style="background-color: var(--card-bg);"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16"><div class="flex items-center"><a href="#" class="text-xl font-extrabold text-primary tracking-tight" style="font-family: 'Lora', serif;"> Coseso Swiss Solutions </a></div><div class="hidden md:flex items-center space-x-8"><a href="#features" class="font-semibold text-sm uppercase tracking-wider">Caratteristiche</a><a href="#how-it-works" class="font-semibold text-sm uppercase tracking-wider">Come Funziona</a><a href="#reviews" class="font-semibold text-sm uppercase tracking-wider">Recensioni</a><a href="#download" class="btn-primary text-sm">Scarica l'App</a></div><div class="flex items-center md:hidden"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg pb-4 px-4 pt-2"><a href="#features" class="block py-3 font-semibold text-base border-b border-gray-100">Caratteristiche</a><a href="#how-it-works" class="block py-3 font-semibold text-base border-b border-gray-100">Come Funziona</a><a href="#reviews" class="block py-3 font-semibold text-base border-b border-gray-100">Recensioni</a><a href="#download" class="block py-3 font-semibold text-primary">Scarica l'App</a></div></nav><main><section class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><div class="w-full md:w-1/2 flex flex-col items-start text-left"><div class="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-gray-200 text-sm font-semibold text-secondary uppercase tracking-widest" style="border-radius: var(--radius);"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> App in evidenza sugli Store </div><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-gray-900"> Soluzioni perfette per la tua cena. <span class="text-primary block mt-2">Trova e prenota i migliori ristoranti.</span></h1><p class="text-lg md:text-xl text-muted mb-8 font-light leading-relaxed"> L'app definitiva per <strong>scoprire ristoranti</strong>, leggere recensioni autentiche e prenotare il tuo tavolo in pochi secondi. Goditi sconti esclusivi e vivi esperienze culinarie indimenticabili. </p><div class="flex flex-wrap gap-4 mb-8"><a href="#download" class="hover:opacity-90 transition-opacity"><svg class="h-12" viewBox="0 0 135 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="135" height="40" rx="0" fill="black"/><path d="M28.019 14.195C28.019 11.531 30.156 10.332 30.273 10.254C28.988 8.418 27.004 8.145 26.34 8.067C24.664 7.872 22.988 9.044 22.133 9.044C21.238 9.044 19.875 8.067 18.473 8.106C16.645 8.145 14.973 9.16 14.039 10.762C12.133 14.082 13.535 18.965 15.402 21.621C16.336 22.949 17.426 24.434 18.867 24.356C20.269 24.277 20.814 23.418 22.488 23.418C24.162 23.418 24.629 24.356 26.109 24.316C27.627 24.277 28.56 22.949 29.455 21.621C30.506 20.137 30.934 18.691 30.973 18.613C30.895 18.574 28.019 17.519 28.019 14.195Z" fill="white"/><path d="M25.449 5.84C26.226 4.902 26.732 3.613 26.576 2.363C25.486 2.402 24.084 3.105 23.267 4.043C22.568 4.824 21.984 6.152 22.179 7.363C23.386 7.441 24.671 6.777 25.449 5.84Z" fill="white"/><text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial, sans-serif" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="42" y="16">Download on the</tspan><tspan x="42" y="28" font-size="14">App Store</tspan></text></svg></a><a href="#download" class="hover:opacity-90 transition-opacity"><svg class="h-12" viewBox="0 0 135 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="135" height="40" rx="0" fill="black"/><path d="M12.5 10L24.5 17.5L12.5 25V10Z" fill="url(#paint0_linear)"/><path d="M12.5 10L24.5 17.5L12.5 25V10Z" fill="url(#paint1_linear)"/><path d="M12.5 10L24.5 17.5L12.5 25V10Z" fill="url(#paint2_linear)"/><text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial, sans-serif" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="42" y="16">GET IT ON</tspan><tspan x="42" y="28" font-size="14">Google Play</tspan></text><defs><linearGradient id="paint0_linear" x1="18.5" y1="10" x2="18.5" y2="25" gradientUnits="userSpaceOnUse"><stop stop-color="#00E676"/><stop offset="1" stop-color="#00C853"/></linearGradient><linearGradient id="paint1_linear" x1="12.5" y1="17.5" x2="24.5" y2="17.5" gradientUnits="userSpaceOnUse"><stop stop-color="#29B6F6"/><stop offset="1" stop-color="#0288D1"/></linearGradient><linearGradient id="paint2_linear" x1="18.5" y1="25" x2="18.5" y2="10" gradientUnits="userSpaceOnUse"><stop stop-color="#FF1744"/><stop offset="1" stop-color="#D50000"/></linearGradient></defs></svg></a></div><div class="flex items-center gap-4 text-sm font-semibold text-gray-700"><div class="flex text-secondary"> ★★★★★ </div><span>4.8/5 (Oltre 20M di utenti)</span></div></div><div class="w-full md:w-1/2 relative"><div class="absolute inset-0 bg-primary transform translate-x-4 translate-y-4 -z-10" style="border-radius: var(--radius);"></div><img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Persona che usa l'app per prenotare ristorante" class="w-full h-auto object-cover shadow-2xl" style="border-radius: var(--radius);" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/7c3aed/ffffff?text=App+Scoprire+Ristoranti'"></div></div></section><hr class="section-divider"><section id="features" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Tutto ciò che ti serve per la serata perfetta</h2><p class="text-lg text-muted max-w-2xl mx-auto">Non chiederti più <strong>dove mangiare</strong>. La nostra piattaforma ti offre strumenti avanzati per esplorare la scena culinaria locale.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="dna-card hover:-translate-y-1 transition-transform duration-300"><div class="w-14 h-14 bg-blue-50 flex items-center justify-center mb-6" style="border-radius: var(--radius); border: 1px solid var(--secondary);"><svg class="w-8 h-8 icon-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Scoprire ristoranti nascosti</h3><p class="text-muted leading-relaxed">Trova i <strong>migliori ristoranti</strong> intorno a te grazie alla geolocalizzazione intelligente. Filtra per tipo di cucina, prezzo o atmosfera per trovare sempre il locale perfetto per ogni occasione.</p></div><div class="dna-card hover:-translate-y-1 transition-transform duration-300"><div class="w-14 h-14 bg-blue-50 flex items-center justify-center mb-6" style="border-radius: var(--radius); border: 1px solid var(--secondary);"><svg class="w-8 h-8 icon-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Prenotare ristorante in un clic</h3><p class="text-muted leading-relaxed">Dimentica le lunghe attese al telefono. Puoi <strong>prenotare ristorante</strong> direttamente dall'app in pochi secondi, con conferma immediata e gestione facile della tua prenotazione.</p></div><div class="dna-card hover:-translate-y-1 transition-transform duration-300"><div class="w-14 h-14 bg-blue-50 flex items-center justify-center mb-6" style="border-radius: var(--radius); border: 1px solid var(--secondary);"><svg class="w-8 h-8 icon-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Recensioni ristoranti verificate</h3><p class="text-muted leading-relaxed">Fidati della community. Leggi migliaia di <strong>recensioni ristoranti</strong> scritte solo da clienti che hanno effettivamente cenato nel locale. La trasparenza prima di tutto.</p></div><div class="dna-card hover:-translate-y-1 transition-transform duration-300"><div class="w-14 h-14 bg-blue-50 flex items-center justify-center mb-6" style="border-radius: var(--radius); border: 1px solid var(--secondary);"><svg class="w-8 h-8 icon-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg></div><h3 class="text-xl font-semibold mb-3">Sconti e promozioni fino al 50%</h3><p class="text-muted leading-relaxed">Mangia meglio, spendi meno. Accedi a sconti esclusivi applicati direttamente alla cassa, semplicemente prenotando tramite la nostra app. Nessun coupon da stampare.</p></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card bg-primary text-white border-none relative overflow-hidden"><div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 transform rotate-45 translate-x-16 -translate-y-16"></div><div class="text-center mb-12 relative z-10"><h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Come funziona l'App?</h2><p class="text-lg opacity-90">In tre semplici passi sei pronto a sederti a tavola.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10"><div class="text-center"><div class="w-16 h-16 mx-auto bg-white text-primary flex items-center justify-center text-2xl font-bold mb-4" style="border-radius: var(--radius);">1</div><h4 class="text-xl font-semibold mb-2 text-white">Scarica l'App</h4><p class="opacity-80">Disponibile gratuitamente per iOS e Android. Crea il tuo account in pochi istanti.</p></div><div class="text-center"><div class="w-16 h-16 mx-auto bg-white text-primary flex items-center justify-center text-2xl font-bold mb-4" style="border-radius: var(--radius);">2</div><h4 class="text-xl font-semibold mb-2 text-white">Scegli dove mangiare</h4><p class="opacity-80">Sfoglia le foto, il menù, i prezzi e le <strong>recensioni ristoranti</strong> della community.</p></div><div class="text-center"><div class="w-16 h-16 mx-auto bg-white text-primary flex items-center justify-center text-2xl font-bold mb-4" style="border-radius: var(--radius);">3</div><h4 class="text-xl font-semibold mb-2 text-white">Prenota e Gusta</h4><p class="opacity-80">Seleziona data, ora e numero di persone. Ricevi subito la conferma e goditi la cena!</p></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa dicono i nostri Foodies</h2><p class="text-lg text-muted">Scopri perché milioni di persone usano l'app per <strong>prenotare ristorante</strong>.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card !p-6"><div class="flex text-secondary mb-3 text-lg">★★★★★</div><h4 class="font-bold text-lg mb-2">Indispensabile!</h4><p class="text-muted text-sm mb-4">"Non esco più a cena senza prima aver consultato quest'app. Trovare <strong>dove mangiare</strong> in città sconosciute è diventato facilissimo e gli sconti sono reali."</p><div class="text-xs text-gray-400 font-semibold uppercase tracking-wider">— Marco T. • Gennaio 2025</div></div><div class="dna-card !p-6"><div class="flex text-secondary mb-3 text-lg">★★★★★</div><h4 class="font-bold text-lg mb-2">Comodità assoluta</h4><p class="text-muted text-sm mb-4">"Odio dover chiamare per prenotare. Con un clic ho il tavolo riservato. Inoltre, le <strong>recensioni ristoranti</strong> sono molto più affidabili rispetto ad altri siti."</p><div class="text-xs text-gray-400 font-semibold uppercase tracking-wider">— Giulia R. • Febbraio 2025</div></div><div class="dna-card !p-6"><div class="flex text-secondary mb-3 text-lg">★★★★★</div><h4 class="font-bold text-lg mb-2">Le migliori cene</h4><p class="text-muted text-sm mb-4">"Ho potuto <strong>scoprire ristoranti</strong> stupendi che non avrei mai notato passeggiando. L'interfaccia è pulita e le foto dei piatti ti fanno venire l'acquolina in bocca."</p><div class="text-xs text-gray-400 font-semibold uppercase tracking-wider">— Alessandro F. • Marzo 2025</div></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card"><h2 class="text-3xl font-bold mb-8 text-center border-b pb-6 border-gray-100">Domande Frequenti sull'App</h2><div class="space-y-4"><details class="group border border-gray-200 p-4 cursor-pointer" style="border-radius: var(--radius);"><summary class="font-semibold text-lg list-none flex justify-between items-center text-gray-800"> L'app è gratuita da scaricare e utilizzare? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Assolutamente sì. Puoi scaricare l'app, <strong>scoprire ristoranti</strong> e prenotare i tuoi tavoli in modo totalmente gratuito. Non ci sono costi nascosti per l'utente.</p></details><details class="group border border-gray-200 p-4 cursor-pointer" style="border-radius: var(--radius);"><summary class="font-semibold text-lg list-none flex justify-between items-center text-gray-800"> Come funzionano gli sconti sui ristoranti? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Molti dei <strong>migliori ristoranti</strong> offrono promozioni esclusive (dal 20% al 50%) se prenoti in determinati orari tramite l'app. Lo sconto viene applicato direttamente sul conto finale alla cassa, senza dover mostrare coupon imbarazzanti.</p></details><details class="group border border-gray-200 p-4 cursor-pointer" style="border-radius: var(--radius);"><summary class="font-semibold text-lg list-none flex justify-between items-center text-gray-800"> Le recensioni dei ristoranti sono vere? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Sì, la nostra politica è ferrea: solo gli utenti che hanno effettivamente prenotato e onorato la loro prenotazione possono lasciare <strong>recensioni ristoranti</strong>. Questo garantisce opinioni 100% autentiche e affidabili.</p></details><details class="group border border-gray-200 p-4 cursor-pointer" style="border-radius: var(--radius);"><summary class="font-semibold text-lg list-none flex justify-between items-center text-gray-800"> Posso cancellare o modificare una prenotazione? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-4 leading-relaxed">Certamente. Puoi gestire tutte le tue prenotazioni direttamente dalla sezione "Le mie prenotazioni" dell'app. Puoi annullare o modificare il numero di ospiti con un semplice tocco, informando il ristorante in tempo reale.</p></details><details class="group border border-gray-200 p-4 cursor-pointer" style="border-radius: var(--radius);"><summary class="font-semibold text-lg list-none flex justify-between items-center text-gray-800"> Quali dispositivi sono supportati? <span class="transition group-open:rotate-180 text-secondary"><svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><p class="text-muted mt-4 leading-relaxed">L'app è disponibile su tutti gli smartphone moderni. Puoi scaricarla dall'Apple App Store per dispositivi iOS (iPhone e iPad) e dal Google Play Store per dispositivi Android.</p></details></div></div></section><hr class="section-divider"><section id="download" class="py-24 md:py-36 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card text-center border-t-4" style="border-top-color: var(--secondary);"><h2 class="text-4xl font-extrabold mb-6">Pronto a scoprire il tuo prossimo piatto preferito?</h2><p class="text-xl text-muted mb-10 max-w-2xl mx-auto">Unisciti a oltre 20 milioni di buongustai. Scarica l'app ufficiale, inizia a <strong>scoprire ristoranti</strong> e prenota il tuo tavolo in un attimo.</p><div class="flex flex-col sm:flex-row justify-center items-center gap-6"><a href="#" class="hover:-translate-y-1 transition-transform"><svg class="h-16" viewBox="0 0 135 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="135" height="40" rx="0" fill="black"/><path d="M28.019 14.195C28.019 11.531 30.156 10.332 30.273 10.254C28.988 8.418 27.004 8.145 26.34 8.067C24.664 7.872 22.988 9.044 22.133 9.044C21.238 9.044 19.875 8.067 18.473 8.106C16.645 8.145 14.973 9.16 14.039 10.762C12.133 14.082 13.535 18.965 15.402 21.621C16.336 22.949 17.426 24.434 18.867 24.356C20.269 24.277 20.814 23.418 22.488 23.418C24.162 23.418 24.629 24.356 26.109 24.316C27.627 24.277 28.56 22.949 29.455 21.621C30.506 20.137 30.934 18.691 30.973 18.613C30.895 18.574 28.019 17.519 28.019 14.195Z" fill="white"/><path d="M25.449 5.84C26.226 4.902 26.732 3.613 26.576 2.363C25.486 2.402 24.084 3.105 23.267 4.043C22.568 4.824 21.984 6.152 22.179 7.363C23.386 7.441 24.671 6.777 25.449 5.84Z" fill="white"/><text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial, sans-serif" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="42" y="16">Download on the</tspan><tspan x="42" y="28" font-size="14">App Store</tspan></text></svg></a><a href="#" class="hover:-translate-y-1 transition-transform"><svg class="h-16" viewBox="0 0 135 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="135" height="40" rx="0" fill="black"/><path d="M12.5 10L24.5 17.5L12.5 25V10Z" fill="url(#p0_linear)"/><path d="M12.5 10L24.5 17.5L12.5 25V10Z" fill="url(#p1_linear)"/><path d="M12.5 10L24.5 17.5L12.5 25V10Z" fill="url(#p2_linear)"/><text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial, sans-serif" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="42" y="16">GET IT ON</tspan><tspan x="42" y="28" font-size="14">Google Play</tspan></text><defs><linearGradient id="p0_linear" x1="18.5" y1="10" x2="18.5" y2="25" gradientUnits="userSpaceOnUse"><stop stop-color="#00E676"/><stop offset="1" stop-color="#00C853"/></linearGradient><linearGradient id="p1_linear" x1="12.5" y1="17.5" x2="24.5" y2="17.5" gradientUnits="userSpaceOnUse"><stop stop-color="#29B6F6"/><stop offset="1" stop-color="#0288D1"/></linearGradient><linearGradient id="p2_linear" x1="18.5" y1="25" x2="18.5" y2="10" gradientUnits="userSpaceOnUse"><stop stop-color="#FF1744"/><stop offset="1" stop-color="#D50000"/></linearGradient></defs></svg></a></div></div></section></main><footer class="bg-gray-900 text-gray-300 py-16 border-t-4" style="border-top-color: var(--primary);"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="mb-8 text-center md:text-left"><h3 class="text-xl font-bold text-white mb-2" style="font-family: 'Lora', serif;">Coseso Swiss Solutions</h3><p class="text-sm text-gray-400 italic">Questa è una pagina promozionale indipendente gestita da Coseso Swiss Solutions, per l'app TheFork sviluppata da LaFourchette SAS.</p></div><div class="space-y-4 mb-8"><details class="group bg-gray-800 p-4" style="border-radius: var(--radius);"><summary class="font-semibold cursor-pointer outline-none flex justify-between items-center text-white"> Informativa sulla Privacy <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span></summary><div class="mt-4 text-sm text-gray-400 space-y-2 leading-relaxed"><p>La presente Informativa sulla Privacy descrive come Coseso Swiss Solutions ("noi", "nostro" o "ci") raccoglie, utilizza e protegge le informazioni personali che fornisci durante la visita del nostro sito web promozionale. Rispettiamo la tua privacy e ci impegniamo a proteggere i tuoi dati personali. Questa pagina ha il solo scopo di promuovere l'applicazione mobile per scoprire e prenotare ristoranti. Nessun dato sensibile viene raccolto direttamente su questa piattaforma. I sistemi di analisi web possono raccogliere automaticamente informazioni anonime come l'indirizzo IP, il tipo di browser e il comportamento di navigazione generale per migliorare l'esperienza utente. Queste informazioni aggregate non identificano personalmente nessun utente. Non condividiamo, vendiamo, scambiamo o affittiamo le tue informazioni personali a terze parti senza il tuo esplicito consenso, a meno che non sia richiesto dalla legge. Se scegli di cliccare sui link per il download dell'app, verrai reindirizzato agli store ufficiali, ciascuno dei quali ha la propria politica sulla privacy indipendente. Ti invitiamo a leggere le loro informative sulla privacy separatamente. Implementiamo misure di sicurezza ragionevoli per proteggere i dati analitici raccolti da accessi non autorizzati. Tuttavia, nessuna trasmissione di dati su Internet è sicura al 100%. L'utilizzo di questo sito implica l'accettazione delle pratiche descritte in questo documento. I cookie vengono utilizzati solo per le funzionalità di base del sito web e per l'analisi del traffico aggregato. Puoi disabilitare i cookie tramite le impostazioni del tuo browser. Ci riserviamo il diritto di aggiornare periodicamente questa politica sulla privacy. Eventuali modifiche saranno pubblicate su questa pagina senza preavviso diretto agli utenti. Se hai dubbi sulla nostra gestione dei dati anonimi, ti invitiamo a cessare l'utilizzo di questo sito promozionale. Questa politica è effettiva a partire dall'anno 2026. L'operatore del sito non assume responsabilità per la gestione dei dati effettuata dall'applicazione finale o dai rispettivi app store.</p></div></details><details class="group bg-gray-800 p-4" style="border-radius: var(--radius);"><summary class="font-semibold cursor-pointer outline-none flex justify-between items-center text-white"> Termini e Condizioni <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span></summary><div class="mt-4 text-sm text-gray-400 space-y-2 leading-relaxed"><p>I presenti Termini e Condizioni regolano l'accesso e l'uso di questo sito web promozionale gestito da Coseso Swiss Solutions. Accedendo o utilizzando il sito, accetti di essere vincolato dai presenti termini. Se non sei d'accordo con qualsiasi parte di questi termini, ti preghiamo di non utilizzare il nostro sito. Questo sito web è fornito "così com'è" esclusivamente per scopi informativi e di marketing. Promuoviamo un'applicazione di terze parti per la prenotazione di ristoranti, ma non possediamo, gestiamo o controlliamo tale applicazione. Coseso Swiss Solutions non si assume alcuna responsabilità per l'accuratezza delle informazioni fornite dagli sviluppatori dell'app, per eventuali malfunzionamenti dell'app stessa o per le esperienze culinarie derivanti dall'utilizzo del servizio promosso. Le recensioni, le valutazioni, i prezzi e gli sconti menzionati su questa pagina sono a scopo illustrativo, basati su dati disponibili pubblicamente, e possono variare in qualsiasi momento senza preavviso. Non garantiamo la disponibilità di tavoli o la validità delle offerte presso specifici ristoranti. Gli utenti sono tenuti a verificare tutte le condizioni direttamente all'interno dell'applicazione ufficiale dopo averla scaricata. Qualsiasi reclamo relativo alla prenotazione, alla qualità del cibo o al servizio del ristorante deve essere indirizzato direttamente al fornitore del servizio o allo sviluppatore dell'app, non a noi. Il contenuto di questo sito web, inclusi testi, grafiche e layout, è protetto da copyright e non può essere riprodotto senza previa autorizzazione scritta. L'utente accetta di utilizzare questo sito web solo per scopi legali e in un modo che non infranga i diritti di terzi. Ci riserviamo il diritto di limitare, sospendere o terminare l'accesso al sito in qualsiasi momento per qualsiasi motivo. Questi termini costituiscono l'intero accordo tra l'utente e Coseso Swiss Solutions in relazione all'uso di questo sito. Qualsiasi controversia derivante dall'uso di questo sito promozionale sarà soggetta alle leggi della giurisdizione in cui opera la nostra entità. L'uso continuato del sito dopo eventuali modifiche ai termini costituirà l'accettazione di tali modifiche. Per questioni legali riguardanti l'app reale, si prega di fare riferimento ai termini di servizio ufficiali forniti da LaFourchette SAS.</p></div></details><details class="group bg-gray-800 p-4" style="border-radius: var(--radius);"><summary class="font-semibold cursor-pointer outline-none flex justify-between items-center text-white"> Politica di Rimborso <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span></summary><div class="mt-4 text-sm text-gray-400 space-y-2 leading-relaxed"><p>La presente Politica di Rimborso chiarisce le disposizioni relative a rimborsi, resi e transazioni finanziarie. Coseso Swiss Solutions gestisce esclusivamente questa pagina web promozionale e non elabora alcun tipo di pagamento, transazione o prenotazione a pagamento. Poiché l'accesso a questa pagina informativa è completamente gratuito, non vi è alcuna base per richiedere un rimborso a noi. Qualsiasi transazione monetaria, pagamento per prenotazioni, addebito per no-show o acquisto in-app avviene unicamente attraverso la piattaforma ufficiale dell'applicazione TheFork o presso il ristorante selezionato. Pertanto, tutte le richieste di rimborso relative ai pasti consumati, alle prenotazioni cancellate o agli addebiti imprevisti devono essere inoltrate direttamente al ristorante coinvolto o all'assistenza clienti ufficiale dell'app. Non abbiamo accesso ai tuoi dettagli di pagamento, alla cronologia delle prenotazioni o agli scontrini fiscali. Non possiamo mediare dispute tra te, il ristorante e lo sviluppatore dell'app. Ti consigliamo vivamente di leggere attentamente i termini di cancellazione e le politiche di rimborso all'interno dell'applicazione ufficiale prima di confermare qualsiasi prenotazione. Se un ristorante addebita una penale per mancata presentazione (no-show), Coseso Swiss Solutions è totalmente estranea a questa procedura e non fornirà compensazioni. Analogamente, eventuali discrepanze sugli sconti applicati al conto o offerte non onorate dal ristoratore sono escluse dalle nostre responsabilità. Promuoviamo un servizio che mira a migliorare la tua esperienza gastronomica, ma il rapporto commerciale si instaura esclusivamente tra te e il fornitore finale. Nel raro caso in cui l'applicazione ufficiale diventi a pagamento sugli app store in futuro, i rimborsi per l'acquisto dell'app dovranno essere richiesti secondo le politiche di Apple App Store o Google Play Store. Riteniamo che questa politica sia chiara e definitiva per proteggere l'operatore di questa pagina da reclami non pertinenti. Utilizzando il nostro portale per scoprire l'applicazione, accetti integralmente questa esenzione di responsabilità finanziaria.</p></div></details></div><div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"><p class="text-sm text-gray-500"> &copy; 2026 Coseso Swiss Solutions. Tutti i diritti riservati. </p></div></div></footer><div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 text-white p-4 shadow-2xl z-50 transform transition-transform translate-y-full flex flex-col sm:flex-row justify-between items-center gap-4"><p class="text-sm">Questo sito utilizza cookie per migliorare la tua esperienza di navigazione. Continuando a visitare il sito, accetti il nostro utilizzo dei cookie in conformità con la nostra Informativa sulla Privacy.</p><div class="flex gap-2 whitespace-nowrap"><button onclick="acceptCookies()" class="btn-primary py-2 px-4 text-sm bg-primary border-none">Accetta</button><button onclick="acceptCookies()" class="btn-secondary py-2 px-4 text-sm border-gray-500 text-gray-300 hover:text-white">Rifiuta</button></div></div> <script>
+        // Cookie Banner Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("cookiesAccepted")) {
+                setTimeout(() => {
+                    const banner = document.getElementById("cookie-banner");
+                    banner.classList.remove("translate-y-full");
+                }, 1000);
+            }
         });
 
-        // COOKIE LOGIC
         function acceptCookies() {
-            document.getElementById('cookie-banner').style.display = 'none';
-            localStorage.setItem('cookieConsent', 'true');
+            localStorage.setItem("cookiesAccepted", "true");
+            document.getElementById("cookie-banner").classList.add("translate-y-full");
         }
 
-        window.onload = function() {
-            if (!localStorage.getItem('cookieConsent')) {
-                document.getElementById('cookie-banner').classList.remove('hidden');
+        // Smart Routing Strategy (Self-Healing Navigation)
+        document.addEventListener('click', function(e) {
+            // Check if click is on an anchor tag with href starting with '#'
+            const anchor = e.target.closest('a[href^="#"]');
+            
+            if (anchor) {
+                e.preventDefault();
+                const targetId = anchor.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                if (targetElement) {
+                    // ID exists -> Smooth scroll
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Fallback -> Force scroll to #download
+                    const downloadSection = document.getElementById('download');
+                    if (downloadSection) {
+                        downloadSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
             }
-        };
-    </script>
-</body>
-</html>
+        });
+    </script> </body></html>
