@@ -1,558 +1,188 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LamugiDeex Investments | Portale Bonus Statali e Agevolazioni Fiscali</title>
-    
-    <!-- SEO & Context Meta Tags -->
-    <meta name="description" content="Scopri ogni nuovo decreto, i requisiti per accedere ai bonus e come ottenere un concreto risparmio. Il tuo portale per le agevolazioni fiscali per i cittadini.">
-    <meta name="keywords" content="bonus, agevolazione, decreto, requisiti, cittadini, risparmio">
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Lamugideex - L'App per Scoprire e Prenotare Ristoranti</title><meta name="description" content="Scopri i migliori ristoranti, leggi recensioni verificate e prenota il tuo tavolo in pochi secondi. Lamugideex presenta l'app Avatable."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #dc2626;
+            --secondary: #0891b2;
+            --radius: 8px;
+            --card-radius: 8px;
+            --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
+            --body-bg: #fefce8;
+            --card-bg: #ffffff;
+            --text: #1a2e05;
+            --muted: #71717a;
+        }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+        body {
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Nunito Sans', sans-serif;
+            padding-top: 4rem; /* Fixed navbar compensation */
+        }
 
-    <!-- DNA Design System Injection -->
-    <style>
-      :root {
-        --primary: #dc2626;
-        --secondary: #0891b2;
-        --radius: 8px;
-        --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.04);
-        --body-bg: #fefce8;
-        --card-bg: #ffffff;
-        --text: #1a2e05;
-        --muted: #71717a;
-      }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+        }
 
-      body {
-        background-color: var(--body-bg);
-        color: var(--text);
-        font-family: 'Nunito Sans', sans-serif;
-        overflow-x: hidden;
-      }
+        .dna-card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
 
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Lora', serif;
-      }
+        nav {
+            background-color: var(--body-bg);
+            border-bottom: 1px solid rgba(220,38,38,0.1);
+        }
 
-      .dna-card {
-        background-color: var(--card-bg);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 2.5rem;
-        margin-bottom: 2rem;
-        border: 1px solid rgba(0,0,0,0.05);
-      }
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Nunito Sans', sans-serif;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-      .btn-primary {
-        background-color: var(--primary);
-        color: #ffffff !important;
-        border-radius: var(--radius);
-        padding: 0.875rem 2rem;
-        font-weight: 600;
-        font-family: 'Nunito Sans', sans-serif;
-        transition: all 0.2s;
-        display: inline-block;
-        text-decoration: none;
-      }
-      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
 
-      .btn-secondary {
-        background-color: transparent;
-        color: var(--primary);
-        border: 2px solid var(--primary);
-        border-radius: var(--radius);
-        padding: 0.875rem 2rem;
-        font-weight: 600;
-        transition: all 0.2s;
-        display: inline-block;
-        text-decoration: none;
-      }
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
 
-      .text-primary { color: var(--primary); }
-      .text-secondary { color: var(--secondary); }
-      .text-muted { color: var(--muted); }
-      .bg-primary { background-color: var(--primary); }
+        /* Mobile menu — always opaque */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
+        }
 
-      /* Section divider — subtle visual rhythm */
-      .section-divider {
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, transparent, rgba(0,0,0,0.08), transparent);
-        margin: 0;
-      }
+        /* Fixed navbar compensation */
+        main, main + footer { scroll-margin-top: 5rem; }
 
-      /* Native Accordion Polish */
-      details > summary {
-        list-style: none;
-        cursor: pointer;
-      }
-      details > summary::-webkit-details-marker {
-        display: none;
-      }
-    </style>
-</head>
-<body class="antialiased selection:bg-red-600 selection:text-white">
+        /* Form inputs */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220,38,38,0.15);
+        }
 
-    <!-- Navigation -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Brand -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="font-bold text-2xl font-serif text-gray-900 tracking-tight">
-                        LamugiDeex <span class="text-primary">Investments</span>
-                    </a>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-primary font-semibold transition-colors">Servizi & Bonus</a>
-                    <a href="#reviews" class="text-gray-600 hover:text-primary font-semibold transition-colors">Testimonianze</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-semibold transition-colors">FAQ Agevolazioni</a>
-                </nav>
+        /* Links */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
 
-                <!-- CTA Desktop -->
-                <div class="hidden md:flex items-center">
-                    <a href="#contact" class="btn-primary shadow-lg">Richiedi Analisi</a>
-                </div>
+        /* Section divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(220,38,38,0.12), transparent);
+            margin: 0;
+        }
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-6 space-y-2">
-            <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Servizi & Bonus</a>
-            <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Testimonianze</a>
-            <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">FAQ Agevolazioni</a>
-            <a href="#contact" class="block mt-4 text-center btn-primary w-full">Richiedi Analisi</a>
-        </div>
-    </header>
-
-    <!-- Hero Section (Centered Hero) -->
-    <section class="py-20 md:py-28 relative overflow-hidden">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto">
-                <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-sm font-bold tracking-wider mb-6 border border-red-200">
-                    PORTALE INFORMATIVO FISCALE INDIPENDENTE
-                </span>
-                <!-- H1: Bridging Slogan -->
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-8">
-                    La conoscenza della giusta <span class="text-primary relative inline-block">agevolazione<svg class="absolute w-full h-3 -bottom-1 left-0 text-secondary opacity-60" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="transparent"/></svg></span> è il miglior investimento per il tuo futuro.
-                </h1>
-                
-                <p class="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed">
-                    Siamo il portale dedicato ad aiutarti a comprendere ogni <strong>decreto</strong> normativo. Aiutiamo migliaia di <strong>cittadini</strong> a orientarsi nella giungla fiscale: verifica i <strong>requisiti</strong>, accedi al tuo <strong>bonus</strong> statale e inizia a generare un vero <strong>risparmio</strong> documentato con LamugiDeex Investments.
-                </p>
-
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#features" class="btn-primary text-lg">Scopri le Misure Attive</a>
-                    <a href="#contact" class="btn-secondary text-lg bg-white">Ricevi Aggiornamenti</a>
-                </div>
-
-                <div class="mt-14 max-w-2xl mx-auto">
-                    <!-- Image handling: Attempt Direct Placehold for abstract context, reliable and styled -->
-                    <img src="https://placehold.co/1000x500/e2e8f0/1a2e05?text=Analisi+Normative+e+Documentazione" 
-                         alt="Documentazione per bonus e agevolazioni fiscali" 
-                         class="rounded-xl shadow-2xl mx-auto w-full object-cover h-64 border-4 border-white"
-                         loading="lazy">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust indicators -->
-    <div class="bg-white border-y border-gray-100 py-8">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <p class="text-sm font-bold text-muted uppercase tracking-widest mb-4">Analizziamo le fonti ufficiali in tempo reale:</p>
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 font-serif font-bold text-lg md:text-xl text-gray-500">
-                <span>GAZZETTA UFFICIALE</span>
-                <span>AGENZIA DELLE ENTRATE</span>
-                <span>MINISTERO ECONOMIA</span>
-                <span>INPS</span>
-            </div>
-        </div>
-    </div>
-
-    <hr class="section-divider">
-
-    <!-- Features Section (Icon List) -->
-    <section id="features" class="py-20 md:py-28">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">I nostri servizi di orientamento</h2>
-                <p class="text-muted text-lg max-w-2xl mx-auto">
-                    Navigare tra le normative è complesso. Il nostro portale destruttura le informazioni pubbliche per fornirti guide pratiche ed efficienti.
-                </p>
-            </div>
-
-            <!-- Features Grid - Icon List -->
-            <div class="max-w-2xl mx-auto flex flex-col gap-6">
-                
-                <!-- Feature 1 -->
-                <div class="dna-card m-0 flex flex-col sm:flex-row items-start gap-6 hover:border-red-200 transition-colors duration-300">
-                    <div class="flex-shrink-0 mt-1">
-                        <div class="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center">
-                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Monitoraggio Nuovi Bonus</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            Mappiamo ogni singolo <strong class="text-gray-900">bonus</strong> governativo non appena pubblicato. Che si tratti di agevolazioni per la casa, le famiglie o i lavoratori autonomi, troverai una guida chiara sulle tempistiche e i portali di domanda ufficiali.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="dna-card m-0 flex flex-col sm:flex-row items-start gap-6 hover:border-red-200 transition-colors duration-300">
-                    <div class="flex-shrink-0 mt-1">
-                        <div class="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center">
-                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Decodifica di Ogni Decreto Legge</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            Non dovrai più leggere pagine di testo burocratico incomprensibile. Il nostro team estrae il succo di ogni <strong class="text-gray-900">decreto</strong> attuativo, spiegandoti i veri impatti pratici e i <strong class="text-gray-900">requisiti</strong> specifici da soddisfare.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="dna-card m-0 flex flex-col sm:flex-row items-start gap-6 hover:border-red-200 transition-colors duration-300">
-                    <div class="flex-shrink-0 mt-1">
-                        <div class="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center">
-                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Massimizzazione del Risparmio Fiscale</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            L'obiettivo finale del nostro hub d'informazione è mettere al centro i <strong class="text-gray-900">cittadini</strong> per assisterli nella strategia fiscale famigliare, generando un calcolo accurato del potenziale <strong class="text-gray-900">risparmio</strong> sulle tasse o nelle dichiarazioni dei redditi.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- Social Proof / Reviews -->
-    <section id="reviews" class="py-20 md:py-28 bg-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Le esperienze dei nostri lettori (2026)</h2>
-                <div class="w-16 h-1 bg-secondary mx-auto rounded"></div>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="dna-card h-full flex flex-col">
-                    <div class="flex text-yellow-400 mb-4">
-                        ★★★★★
-                    </div>
-                    <p class="text-gray-700 italic flex-grow mb-6">
-                        "Grazie alle loro guide sono riuscito a capire esattamente quali documenti mi servissero per richiedere il bonus per la ristrutturazione edilizia. Una spiegazione chiara di un decreto altrimenti indecifrabile."
-                    </p>
-                    <div>
-                        <p class="font-bold text-gray-900">Marco R.</p>
-                        <p class="text-sm text-secondary">Libero Professionista</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="dna-card h-full flex flex-col">
-                    <div class="flex text-yellow-400 mb-4">
-                        ★★★★★
-                    </div>
-                    <p class="text-gray-700 italic flex-grow mb-6">
-                        "L'aggiornamento costante su ogni singola agevolazione fiscale per le famiglie numerose è eccezionale. Ho ottenuto un risparmio notevole compilando correttamente l'ISEE basandomi sui loro articoli e check-list dei requisiti."
-                    </p>
-                    <div>
-                        <p class="font-bold text-gray-900">Eleonora T.</p>
-                        <p class="text-sm text-secondary">Insegnante</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="dna-card h-full flex flex-col">
-                    <div class="flex text-yellow-400 mb-4">
-                        ★★★★★
-                    </div>
-                    <p class="text-gray-700 italic flex-grow mb-6">
-                        "Sono un piccolo artigiano e stare dietro ai cambiamenti della legge di bilancio era impossibile. Questo portale trasforma norme ostiche in consigli diretti su come investire ed ottenere i rimborsi."
-                    </p>
-                    <div>
-                        <p class="font-bold text-gray-900">Giovanni B.</p>
-                        <p class="text-sm text-secondary">Imprenditore Artigiano</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-20 md:py-28">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Domande Frequenti (FAQ)</h2>
-                <p class="text-muted">Risposte rapide alle domande più comuni in materia di fisco.</p>
-            </div>
-
-            <div class="dna-card m-0 p-8 space-y-6">
-                <details class="group bg-gray-50 rounded-lg p-4 border border-gray-100 open:bg-white open:border-red-100 transition-all">
-                    <summary class="flex justify-between items-center font-bold text-lg text-gray-900 focus:outline-none">
-                        <span>Come capisco se possiedo i requisiti per un determinato bonus?</span>
-                        <span class="text-primary group-open:rotate-45 transition-transform text-2xl">+</span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 leading-relaxed border-t pt-4">
-                        Il nostro team elabora schede sintetiche per ogni nuovo incentivo emanato. All'interno della piattaforma, potrai inserire la tua fascia di reddito (ISEE) e lo status occupazionale per visualizzare, nero su bianco, i parametri richiesti dai documenti normativi ufficiali.
-                    </p>
-                </details>
-
-                <details class="group bg-gray-50 rounded-lg p-4 border border-gray-100 open:bg-white open:border-red-100 transition-all">
-                    <summary class="flex justify-between items-center font-bold text-lg text-gray-900 focus:outline-none">
-                        <span>Quando entra in vigore una nuova agevolazione fiscale?</span>
-                        <span class="text-primary group-open:rotate-45 transition-transform text-2xl">+</span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 leading-relaxed border-t pt-4">
-                        L'ufficialità si ottiene con la pubblicazione in Gazzetta Ufficiale del relativo decreto ministeriale o legge. Noi pubblichiamo allerte preventive prima dell'approvazione per permettere ai cittadini di preparare in anticipo la documentazione necessaria, accelerando l'ottenimento del beneficio.
-                    </p>
-                </details>
-
-                <details class="group bg-gray-50 rounded-lg p-4 border border-gray-100 open:bg-white open:border-red-100 transition-all">
-                    <summary class="flex justify-between items-center font-bold text-lg text-gray-900 focus:outline-none">
-                        <span>Fornite assistenza personalizzata per il calcolo del risparmio?</span>
-                        <span class="text-primary group-open:rotate-45 transition-transform text-2xl">+</span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 leading-relaxed border-t pt-4">
-                        Siamo un portale informativo indipendente volto a educare e orientare. Offriamo strumenti di simulazione e calcolo gratuiti sul sito, ma per presentare fisicamente le domande vi invitiamo ad appoggiarvi ai professionisti abilitati (CAF o commercialisti), consegnando loro le schede informative che avete consultato sul nostro portale.
-                    </p>
-                </details>
-
-                <details class="group bg-gray-50 rounded-lg p-4 border border-gray-100 open:bg-white open:border-red-100 transition-all">
-                    <summary class="flex justify-between items-center font-bold text-lg text-gray-900 focus:outline-none">
-                        <span>È un servizio a pagamento?</span>
-                        <span class="text-primary group-open:rotate-45 transition-transform text-2xl">+</span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 leading-relaxed border-t pt-4">
-                        L'accesso ai nostri articoli generali, alle guide essenziali sulle scadenze e ai chiarimenti ministeriali è completamente gratuito per tutti i lettori interessati a curare i propri interessi finanziari in modo legale e responsabile.
-                    </p>
-                </details>
-
-                <details class="group bg-gray-50 rounded-lg p-4 border border-gray-100 open:bg-white open:border-red-100 transition-all">
-                    <summary class="flex justify-between items-center font-bold text-lg text-gray-900 focus:outline-none">
-                        <span>I decreti analizzati riguardano anche liberi professionisti o solo dipendenti?</span>
-                        <span class="text-primary group-open:rotate-45 transition-transform text-2xl">+</span>
-                    </summary>
-                    <p class="text-gray-600 mt-4 leading-relaxed border-t pt-4">
-                        Il nostro orizzonte analitico copre tutte le tipologie di contribuenti. Dagli incentivi assunzione per le aziende, passando per l'assegno unico famigliare, fino ad arrivare alle rottamazioni delle cartelle o al regime forfettario. Se esiste un vantaggio normativo per abbassare il carico fiscale, lo recensiamo.
-                    </p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- Contact & Lead Form -->
-    <section id="contact" class="py-20 md:py-28 bg-white relative">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="dna-card shadow-2xl relative overflow-hidden border-t-4 border-t-red-600">
-                <div class="grid md:grid-cols-2 gap-10">
+        /* App Store Badges */
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #000;
+            color: #fff !important;
+            border-radius: 8px;
+            padding: 6px 12px;
+            height: 40px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            min-width: 135px;
+        }
+        .store-badge:hover {
+            transform: scale(1.05);
+        }
+        .store-badge svg {
+            height: 24px;
+            width: 24px;
+            margin-right: 8px;
+            fill: currentColor;
+        }
+        .store-badge .badge-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+        .store-badge .badge-small {
+            font-size: 10px;
+            font-family: sans-serif;
+        }
+        .store-badge .badge-large {
+            font-size: 14px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+    </style> </head><body><nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center gap-2"><svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg><span class="font-extrabold text-xl tracking-tight text-primary">Lamugideex</span></div><div class="hidden md:flex items-center space-x-8"><a href="#features" class="font-semibold text-sm transition-colors">Funzionalità</a><a href="#how-it-works" class="font-semibold text-sm transition-colors">Come Funziona</a><a href="#reviews" class="font-semibold text-sm transition-colors">Recensioni</a><a href="#faq" class="font-semibold text-sm transition-colors">FAQ</a><a href="#download" class="btn-primary py-2 px-4 text-sm"> Ottieni l'App </a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 py-4 px-4 space-y-4"><a href="#features" class="block font-semibold py-2">Funzionalità</a><a href="#how-it-works" class="block font-semibold py-2">Come Funziona</a><a href="#reviews" class="block font-semibold py-2">Recensioni</a><a href="#faq" class="block font-semibold py-2">FAQ</a><a href="#download" class="btn-primary w-full justify-center mt-4">Ottieni l'App</a></div></nav><main><section class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-3xl mx-auto"><span class="inline-block py-1 px-3 rounded-full bg-primary bg-opacity-10 text-primary font-bold text-sm mb-6 border border-primary border-opacity-20"> L'App #1 per Scoprire e Prenotare Ristoranti </span><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-text"> Il Tuo Investimento nel Gusto. <br><span class="text-primary">Trova e prenota in un istante.</span></h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> Smetti di chiederti continuamente dove mangiare. Usa l'app Avatable tramite Lamugideex per scoprire ristoranti esclusivi, leggere autentiche recensioni ristoranti e assicurarti il tavolo perfetto in pochi secondi. </p><div class="flex flex-wrap justify-center gap-4 mb-12"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="badge-text"><span class="badge-small">Scarica su</span><span class="badge-large">App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="badge-text"><span class="badge-small">DISPONIBILE SU</span><span class="badge-large">Google Play</span></div></a></div><div class="relative mx-auto mt-8 max-w-2xl rounded-xl overflow-hidden shadow-2xl border-4 border-white" style="box-shadow: var(--shadow);"><img src="https://images.pexels.com/photos/4109850/pexels-photo-4109850.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Prenotare ristorante con l'app" class="w-full h-auto object-cover rounded-lg" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/dc2626/ffffff?text=App+Scoprire+Ristoranti'"></div></div></section><hr class="section-divider"><section class="py-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div class="flex flex-wrap justify-center items-center gap-8 md:gap-16"><div><div class="flex items-center justify-center text-yellow-400 mb-2"><svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><p class="font-bold text-lg">4.9/5 Stelle</p><p class="text-sm text-muted">Basato su migliaia di recensioni</p></div><div><h3 class="font-extrabold text-2xl text-primary mb-1">100.000+</h3><p class="text-sm text-muted font-bold uppercase tracking-wider">Download Globali</p></div><div><h3 class="font-extrabold text-xl text-text mb-1 flex items-center gap-2 justify-center"><svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg> App in Evidenza </h3><p class="text-sm text-muted">Scelta dai migliori chef</p></div></div></section><hr class="section-divider"><section id="features" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4 text-text">Perché è l'App Preferita dai Foodies</h2><p class="text-lg text-muted max-w-2xl mx-auto">Tutto ciò che ti serve per scoprire ristoranti unici e gestire le tue serate, comodamente dal tuo smartphone.</p></div><div class="dna-card max-w-2xl mx-auto"><div class="flex flex-col gap-8"><div class="flex flex-col md:flex-row gap-6 items-start"><div class="flex-shrink-0 w-14 h-14 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary border border-primary border-opacity-20"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><h3 class="text-xl font-bold mb-2">Disponibilità in Tempo Reale</h3><p class="text-muted leading-relaxed"> Vuoi sapere dove mangiare stasera senza fare decine di chiamate a vuoto? La nostra app mostra istantaneamente i tavoli liberi nei migliori ristoranti della tua zona. Prenotare ristorante all'ultimo minuto non è mai stato così semplice e garantito. </p></div></div><hr class="border-gray-100"><div class="flex flex-col md:flex-row gap-6 items-start"><div class="flex-shrink-0 w-14 h-14 rounded-full bg-secondary bg-opacity-10 flex items-center justify-center text-secondary border border-secondary border-opacity-20"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div><div><h3 class="text-xl font-bold mb-2">Le Migliori Recensioni Ristoranti</h3><p class="text-muted leading-relaxed"> Affidati a una community appassionata. Leggi recensioni ristoranti scritte da veri clienti e critici gastronomici. Filtra per atmosfera, prezzo o tipo di cucina per scoprire ristoranti che si adattano perfettamente all'occasione. </p></div></div><hr class="border-gray-100"><div class="flex flex-col md:flex-row gap-6 items-start"><div class="flex-shrink-0 w-14 h-14 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary border border-primary border-opacity-20"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><div><h3 class="text-xl font-bold mb-2">Prenotazioni in un Tap</h3><p class="text-muted leading-relaxed"> Dimentica le lunghe attese telefoniche. Gestisci tutto dal tuo profilo: conferma, modifica o cancella con un semplice tap. Avatable ti invierà promemoria utili e ti permetterà di invitare gli amici direttamente dalla schermata di prenotazione. </p></div></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4 text-text">Come Funziona Avatable</h2><p class="text-lg text-muted">Il tuo percorso dal telefono alla tavola in 3 semplici passi.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center"><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-primary text-white font-extrabold text-2xl flex items-center justify-center mb-6 shadow-lg"> 1 </div><h3 class="text-xl font-bold mb-3">Scarica l'App</h3><p class="text-muted">Ottieni l'app gratuitamente su App Store o Google Play e crea il tuo profilo gastronomico in pochi secondi.</p></div><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-secondary text-white font-extrabold text-2xl flex items-center justify-center mb-6 shadow-lg"> 2 </div><h3 class="text-xl font-bold mb-3">Scopri e Scegli</h3><p class="text-muted">Esplora la mappa, leggi le recensioni ristoranti e trova il locale perfetto che risponde alla tua voglia del momento.</p></div><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-primary text-white font-extrabold text-2xl flex items-center justify-center mb-6 shadow-lg"> 3 </div><h3 class="text-xl font-bold mb-3">Prenota e Gusta</h3><p class="text-muted">Seleziona l'orario, conferma per prenotare ristorante e preparati a goderti un'esperienza culinaria indimenticabile.</p></div></div></div></section><hr class="section-divider"><section id="reviews" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4 text-text">Cosa Dicono i Nostri Utenti</h2><p class="text-lg text-muted">Migliaia di persone usano la nostra app ogni giorno per decidere dove mangiare.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card p-6 flex flex-col h-full border-t-4 border-t-primary"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">Mai più senza!</h4><p class="text-muted flex-grow mb-4 italic">"Scaricata per caso, ora è l'unica app che uso per scoprire ristoranti in città. La funzione di disponibilità in tempo reale mi ha salvato la cena innumerevoli volte."</p><div class="mt-auto"><p class="font-semibold text-text">Marco Rossi</p><p class="text-sm text-gray-400">12 Gennaio 2025</p></div></div><div class="dna-card p-6 flex flex-col h-full border-t-4 border-t-secondary"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">Recensioni affidabili</h4><p class="text-muted flex-grow mb-4 italic">"Le recensioni ristoranti qui sono vere. Ho provato 3 posti nuovi questo mese basandomi sull'app e sono stati tutti incredibili. Prenotare ristorante è velocissimo."</p><div class="mt-auto"><p class="font-semibold text-text">Giulia Bianchi</p><p class="text-sm text-gray-400">28 Febbraio 2025</p></div></div><div class="dna-card p-6 flex flex-col h-full border-t-4 border-t-primary"><div class="flex text-yellow-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current text-gray-300" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold text-lg mb-2">Interfaccia stupenda</h4><p class="text-muted flex-grow mb-4 italic">"Semplice e intuitiva. I migliori ristoranti della mia zona sono tutti qui. L'unica pecca è che a volte i locali più gettonati si riempiono troppo in fretta, ma l'app funziona a meraviglia."</p><div class="mt-auto"><p class="font-semibold text-text">Luca F.</p><p class="text-sm text-gray-400">10 Marzo 2025</p></div></div></div></section><hr class="section-divider"><section id="faq" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4 text-text">Domande Frequenti</h2><p class="text-lg text-muted">Tutto quello che devi sapere sulla nostra app per scoprire ristoranti.</p></div><div class="dna-card max-w-3xl mx-auto"><div class="space-y-4"><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>L'app è gratuita?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Sì, il download e l'utilizzo dell'app per scoprire ristoranti e prenotare i tuoi tavoli sono completamente gratuiti per gli utenti.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>Su quali dispositivi è disponibile?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Puoi scaricare la nostra app sia su dispositivi iOS (tramite Apple App Store) che su dispositivi Android (tramite Google Play Store).</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>I miei dati sono al sicuro?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Assolutamente sì. Utilizziamo crittografia avanzata per proteggere le tue informazioni personali e i dettagli del tuo account. La tua privacy è la nostra priorità.</p></details><details class="group border-b border-gray-100 pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>Come posso iniziare a usarla?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Basta scaricare l'app, creare un account gratuito utilizzando il tuo numero di telefono o i tuoi profili social, e sei pronto per esplorare le migliori recensioni ristoranti e prenotare il tuo tavolo.</p></details><details class="group pb-4"><summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg"><span>Posso usarla offline?</span><span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed">Per vedere la disponibilità in tempo reale e prenotare ristorante, è necessaria una connessione internet attiva. Tuttavia, puoi visualizzare i dettagli delle tue prenotazioni confermate anche offline.</p></details></div></div></section><hr class="section-divider"><section id="download" class="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="dna-card text-center bg-primary text-white border-none relative overflow-hidden"><div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div><div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-secondary opacity-20 rounded-full blur-2xl"></div><div class="relative z-10 py-8"><h2 class="text-3xl md:text-5xl font-extrabold mb-6 text-white font-serif"> Scarica Avatable Ora </h2><p class="text-xl mb-10 text-white opacity-90 max-w-2xl mx-auto"> Inizia subito a scoprire ristoranti straordinari, leggere recensioni autentiche e prenotare i tuoi tavoli preferiti senza stress. Il tuo prossimo pasto indimenticabile è a un tap di distanza. </p><div class="flex flex-wrap justify-center gap-6"><a href="#download" class="store-badge bg-white text-black !important" style="color: black !important;"><svg viewBox="0 0 384 512" style="fill: black;"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="badge-text" style="color: black;"><span class="badge-small">Scarica su</span><span class="badge-large">App Store</span></div></a><a href="#download" class="store-badge bg-white text-black !important" style="color: black !important;"><svg viewBox="0 0 512 512" style="fill: black;"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="badge-text" style="color: black;"><span class="badge-small">DISPONIBILE SU</span><span class="badge-large">Google Play</span></div></a></div></div></div></section></main><footer class="bg-white border-t border-gray-100 py-12 mt-10"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-8"><span class="font-extrabold text-2xl tracking-tight text-primary">Lamugideex</span><p class="mt-4 text-sm text-muted max-w-2xl mx-auto font-semibold p-4 bg-gray-50 rounded-lg border border-gray-100"> Questa è una pagina promozionale indipendente gestita da Lamugideex, per l'app Avatable di Avatable Inc. Non rappresentiamo ufficialmente gli sviluppatori dell'app, ma promuoviamo i loro servizi per aiutarti a scoprire ristoranti in modo efficiente. </p></div><div class="max-w-3xl mx-auto mt-8 space-y-4"><details class="bg-gray-50 rounded-lg p-4 border border-gray-100"><summary class="font-bold cursor-pointer text-text outline-none">Informativa sulla Privacy</summary><div class="mt-4 text-sm text-muted space-y-2 leading-relaxed"><p>La presente Informativa sulla Privacy descrive le modalità con cui raccogliamo, utilizziamo e proteggiamo i tuoi dati personali. Utilizzando la nostra landing page promozionale, accetti le pratiche descritte in questa pagina. Raccogliamo esclusivamente i dati necessari per fornirti una navigazione sicura e ottimizzata. Non memorizziamo informazioni sensibili senza il tuo esplicito consenso. I dati di navigazione, come l'indirizzo IP e il tipo di browser, vengono raccolti in forma anonima per scopi statistici. Utilizziamo i cookie per migliorare la tua esperienza e per analizzare il traffico del sito. Non vendiamo, affittiamo o cediamo i tuoi dati personali a terzi per finalità di marketing. I tuoi dati sono conservati su server sicuri e protetti da misure tecniche e organizzative adeguate. Se decidi di scaricare l'app Avatable, sarai soggetto alla loro specifica privacy policy. Ci riserviamo il diritto di modificare questa informativa in qualsiasi momento per adeguarla alle normative vigenti. Eventuali modifiche saranno pubblicate su questa pagina con la data di aggiornamento. Hai il diritto di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati personali in nostro possesso. Per la tutela dei minori, non raccogliamo intenzionalmente dati da persone di età inferiore ai 18 anni. La navigazione su questo sito implica l'accettazione della raccolta dati limitata sopra descritta. Assicuriamo il massimo impegno per mantenere i tuoi dati al sicuro in ogni momento. L'utilizzo continuato del sito costituisce accettazione dei termini di privacy. Ti invitiamo a leggere periodicamente questa pagina per rimanere informato su come proteggiamo le tue informazioni.</p></div></details><details class="bg-gray-50 rounded-lg p-4 border border-gray-100"><summary class="font-bold cursor-pointer text-text outline-none">Termini di Servizio</summary><div class="mt-4 text-sm text-muted space-y-2 leading-relaxed"><p>I presenti Termini di Servizio regolano l'utilizzo della nostra landing page promozionale Lamugideex. Accedendo a questo sito, accetti di essere vincolato dai presenti termini. Se non accetti questi termini, ti preghiamo di non utilizzare il nostro sito web. Questo sito ha lo scopo esclusivo di promuovere l'applicazione mobile per scoprire ristoranti e prenotare tavoli. Non siamo i creatori o gli sviluppatori dell'applicazione promossa. Non ci assumiamo la responsabilità per eventuali malfunzionamenti dell'applicazione di terze parti. Tutti i marchi, i loghi e i contenuti relativi all'applicazione appartengono ai rispettivi proprietari. L'utilizzo dell'app scaricata è soggetto ai termini e alle condizioni imposti dagli sviluppatori originali. Ci sforziamo di mantenere le informazioni su questo sito accurate e aggiornate, ma non garantiamo l'assenza di errori. Non siamo responsabili per eventuali danni diretti, indiretti o consequenziali derivanti dall'uso di questo sito promozionale. L'utente si impegna a non utilizzare il sito per scopi illegali o non autorizzati. È severamente vietato tentare di compromettere la sicurezza del sito tramite hacking o altre attività dannose. Ci riserviamo il diritto di sospendere o interrompere l'accesso al sito senza preavviso in caso di violazione dei termini. I presenti termini possono essere modificati in qualsiasi momento e senza preavviso. È responsabilità dell'utente rivedere regolarmente i Termini di Servizio. Qualsiasi controversia derivante dall'uso di questo sito sarà regolata dalle leggi in vigore. La tua continuazione nell'uso del sito dopo eventuali modifiche costituisce accettazione dei nuovi termini.</p></div></details><details class="bg-gray-50 rounded-lg p-4 border border-gray-100"><summary class="font-bold cursor-pointer text-text outline-none">Politica di Rimborso</summary><div class="mt-4 text-sm text-muted space-y-2 leading-relaxed"><p>La presente Politica di Rimborso chiarisce le condizioni relative a qualsiasi transazione economica legata ai servizi promossi. Poiché questa è una pagina puramente promozionale, non elaboriamo pagamenti diretti per l'applicazione. L'app per prenotare ristorante menzionata è generalmente gratuita per il download, ma potrebbe contenere acquisti in-app. Tutti i pagamenti effettuati per servizi premium all'interno dell'app vengono gestiti tramite l'Apple App Store o il Google Play Store. Pertanto, qualsiasi richiesta di rimborso deve essere indirizzata direttamente alla piattaforma in cui è stato effettuato l'acquisto. Noi di Lamugideex non abbiamo accesso ai tuoi dati di pagamento né alle tue transazioni. Non possiamo emettere rimborsi per servizi o abbonamenti acquistati tramite l'applicazione di terze parti. Ti consigliamo di leggere attentamente la politica di rimborso specifica degli sviluppatori dell'app. In caso di addebiti non autorizzati, contatta immediatamente il fornitore della tua carta di credito o il rispettivo App Store. Assicurati di annullare gli abbonamenti indesiderati prima della data di rinnovo automatico per evitare addebiti non voluti. Non offriamo compensazioni finanziarie per eventuali disservizi causati dall'applicazione. Se riscontri problemi tecnici con l'app, ti invitiamo a contattare il supporto tecnico degli sviluppatori originali. Questa politica è intesa a chiarire la nostra posizione come promotori indipendenti e non come venditori. Ti ricordiamo che la nostra responsabilità si limita esclusivamente al contenuto informativo di questa landing page. Ci impegniamo a promuovere solo applicazioni di alta qualità, ma la decisione finale di acquisto spetta unicamente all'utente.</p></div></details></div><div class="mt-12 text-center text-sm text-muted"> &copy; 2026 Lamugideex. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-2xl transform translate-y-full transition-transform duration-300 z-50"><div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm text-muted text-center sm:text-left"> Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito e per analizzare il traffico. Continuando a navigare, accetti il nostro utilizzo dei cookie. </p><div class="flex gap-2 flex-shrink-0"><button onclick="acceptCookies()" class="btn-primary py-2 px-6 text-sm">Accetta Tutti</button></div></div></div> <script>
+        // Gravity Well Protocol: Smart Routing
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    <!-- Left Column -->
-                    <div class="flex flex-col justify-center">
-                        <h2 class="text-3xl font-bold mb-4">Non perdere le ultime scadenze</h2>
-                        <p class="text-gray-600 mb-6">
-                            L'interpretazione burocratica può essere una sfida. Ricevi in modo prioritario l'estratto pratico sui nuovi sconti fiscali dedicati alle persone fisiche e tutela i tuoi interessi prima dell'esaurimento dei fondi nazionali.
-                        </p>
-                        
-                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                            <div class="flex items-center gap-3 mb-3">
-                                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                                <div>
-                                    <p class="font-bold text-gray-900">Sede Redazionale Fisco & Agevolazioni</p>
-                                    <p class="text-sm text-gray-500">Milano, Italia (Elaborazione Dati Indipendente)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column (Form) -->
-                    <div>
-                        <div id="success-msg" class="hidden bg-green-50 border border-green-200 text-green-800 p-6 rounded-lg h-full flex flex-col justify-center text-center">
-                            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Richiesta Ricevuta!</h3>
-                            <p>Le informazioni e la guida personalizzata sui benefici fiscali arriveranno a breve. Il nostro team elaborativo è già all'opera.</p>
-                        </div>
-
-                        <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Analisi in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='flex'}, 1500);">
-                            <div>
-                                <label for="name" class="block text-sm font-semibold text-gray-700 mb-1">Nome e Cognome *</label>
-                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow" placeholder="Mario Rossi">
-                            </div>
-                            
-                            <div>
-                                <label for="category" class="block text-sm font-semibold text-gray-700 mb-1">Quale categoria ti interessa analizzare?</label>
-                                <select id="category" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white">
-                                    <option>Edilizia, Case e Ristrutturazioni</option>
-                                    <option>Famiglia, ISEE, Maternità</option>
-                                    <option>Partite IVA, Regimi Semplificati</option>
-                                    <option>Sconti Energia e Bollette</option>
-                                </select>
-                            </div>
-
-                            <div class="flex items-start mt-2 mb-4">
-                                <input id="privacy-checkbox" type="checkbox" required class="mt-1 mr-2 cursor-pointer w-4 h-4 text-primary focus:ring-primary border-gray-300 rounded">
-                                <label for="privacy-checkbox" class="text-xs text-gray-500">
-                                    Dichiaro di aver preso visione della normativa sul trattamento dati e acconsento alla ricezione della guida sul recupero dei requisiti e risparmio.
-                                </label>
-                            </div>
-
-                            <button type="submit" class="w-full btn-primary text-lg mt-2">Ricevi Guida Informativa</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer & Legal Zone -->
-    <footer class="bg-gray-900 text-gray-300 py-16 border-t-8 border-primary">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h4 class="text-2xl font-serif font-bold text-white mb-2">LamugiDeex Investments</h4>
-                <p class="text-sm text-gray-500 max-w-xl mx-auto">
-                    *Questo è un sito promozionale indipendente gestito da LamugiDeex Investments, che agisce in qualità di partner affiliato per contenuti correlati al portale Fiscoetasse (e relativi fornitori di network). Non rappresentiamo direttamente enti governativi, Agenzia delle Entrate o servizi pubblici istituzionali.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-1 gap-6 text-sm text-gray-400 mt-10">
-                
-                <details class="bg-gray-800 rounded p-4 group">
-                    <summary class="font-bold text-gray-200 uppercase tracking-wider focus:outline-none flex justify-between">
-                        Politica sulla Privacy
-                        <span class="text-gray-500 group-open:hidden">▼</span>
-                        <span class="text-gray-500 hidden group-open:inline">▲</span>
-                    </summary>
-                    <div class="mt-4 pt-4 border-t border-gray-700 space-y-3 leading-relaxed">
-                        <p>La presente Politica sulla Privacy illustra i meccanismi con i quali le tue informazioni vengono elaborate quando utilizzi il nostro portale incentrato sulle agevolazioni fiscali. In conformità al Regolamento Generale sulla Protezione dei Dati Europeo (GDPR), ribadiamo la massima centralità del riserbo della tua identità. Noi elaboriamo dati puramente tecnici quali l'indirizzo internet temporaneo e le statistiche di transito interno alle nostre pagine. Quando digiti il tuo appellativo all'interno dei box del modulo per chiedere approfondimenti sui decreti o sulle tempistiche governative, stai fornendo libero consenso alle nostre metodologie. Nessuno di tali campi, né identità fisiche dirette vengono trasmessi da noi a venditori sprovvisti di permessi regolari per compravendite illegali. Ricorda che ci interfacciamo con i database esclusivamente al fine di garantire l'esperienza d'uso che stai sollecitando tramite interazioni fisiche sul touch screen o sul cursore. Conserveremo le metriche comportamentali non nominative per un massimo di anni tre, onde implementare ottimizzazioni all'infrastruttura di visualizzazione dei bonus statali. LamugiDeex Investments utilizza tecnologie protettive allo stato dell'arte ed implementa filtri per prevenire furti d'identità telematica e intercettazione passiva in fase di inserimento testo. Puoi chiedere di revocare ogni interazione ed essere obliato mediante semplice interruzione della permanenza del nostro portale oppure interagendo tramite vie formali postali in Italia presso le entità da cui promani l'affiliazione. Il responsabile della sicurezza dei sistemi informatici vigila attivamente tramite scanner antimalware giornalieri sulle vulnerabilità degli host per assicurarti una navigazione serena. Si raccomanda di non incollare dettagli circa conti bancari nei normali box per la richiesta generica o per i calcoli sui sussidi poiché nessun impiegato è autorizzato a visionare dati bancari diretti non cifrati durante le procedure d'ascolto informative. Gli aggiornamenti legislativi di questo avviso legale verranno pubblicati qui.</p>
-                    </div>
-                </details>
-
-                <details class="bg-gray-800 rounded p-4 group">
-                    <summary class="font-bold text-gray-200 uppercase tracking-wider focus:outline-none flex justify-between">
-                        Termini di Utilizzo del Servizio
-                        <span class="text-gray-500 group-open:hidden">▼</span>
-                        <span class="text-gray-500 hidden group-open:inline">▲</span>
-                    </summary>
-                    <div class="mt-4 pt-4 border-t border-gray-700 space-y-3 leading-relaxed">
-                        <p>Impiegando i canali di questo spazio web e fruendo dei testi pubblicati riguardanti le decodifiche legislative o il potenziale risparmio in Italia, dichiari tacitamente di acconsentire in pieno ad ogni singola clausola contenuta nel seguente atto contrattuale normativo digitale. Il presente aggregato documentale online di natura giornalistica o accademica, compresi logotipi, slogan promozionali, diagrammi matematici di calcolo sul redditometro, non può essere scaricato in via definitiva senza concessioni controfirmate da parte dell'editore LamugiDeex Investments. Benché profonde risorse intellettive vengono versate dai nostri curatori per analizzare rigorosamente i requisiti statali emessi tramite le piattaforme degli enti regolatori finanziari, dichiariamo l'impossibilità di assicurare percentuali del 100% per infallibilità o preveggenza normativa causa continue deroghe introdotte ai tavoli tecnici istituzionali senza preavvisi. I naviganti sollevano le società editrici da ogni onere causato dalla disapplicazione tempestiva di eventuali nuovi moduli cartacei rilasciati sul suolo peninsulare dopo la prima redazione online dell'articolo di nostro pugno. Oltretutto viene inibito severamente l'impiego massivo automatico tramite macchine astratte intelligenti note al mondo accademico col termine di spider e crawler dei nostri report sul patrimonio e su altre sfere civili. La nostra amministrazione detiene poteri assoluti sull'esilio tecnologico immediato tramite firewall contro postazioni in sospetto atteggiamento lesivo verso l'infrastruttura di erogazione e la fruizione di massa. L'applicabilità di ogni interpretazione redazionale dovrà essere asseverata con diligenza ulteriore unicamente ricorrendo ai notai, giuslavoristi o periti finanziari debitamente iscritti agli albi presso i fori di competenza regionale dell'utente. Resta categorico divieto trasporre con malizia concetti scritti alterandone le percentuali di rientro o mentendo riguardo agevolazioni d'imposta per confondere minorenni, categorie fragili del paese.</p>
-                    </div>
-                </details>
-
-                <details class="bg-gray-800 rounded p-4 group">
-                    <summary class="font-bold text-gray-200 uppercase tracking-wider focus:outline-none flex justify-between">
-                        Informativa sulle Garanzie Finanziarie & Rimborsi
-                        <span class="text-gray-500 group-open:hidden">▼</span>
-                        <span class="text-gray-500 hidden group-open:inline">▲</span>
-                    </summary>
-                    <div class="mt-4 pt-4 border-t border-gray-700 space-y-3 leading-relaxed">
-                        <p>Dal momento in cui il perno d'esistenza di questo progetto online è prettamente imperniato sulla veicolazione testuale gratuita atta alla disambiguazione pubblica inerente l'imposizione delle trattenute erariali ed i sostegni della cittadinanza e del welfare nazionale, evidenziamo con la massima e totale trasparenza come non sorgano in capo al lettore fatturazioni pecuniarie transazionali. Dunque in assoluta armonia del codice del commercio a distanza, si esplica qui in maniera chiara che l'assenza totale di barriere doganali tramite prelievo di fondi preclude radicalmente, a monte di qualsiasi pretesa, qualsivoglia diritto in tema di retrocessioni di quote monetarie perché oggettivamente esse non sono giammai state chieste in entrata sui nostri apparati. Qualora venissi ipoteticamente direzionato verso sistemi per l'elaborazione del modello ISEE offerto in differita e dislocato altrove sui pannelli finali della azienda partner Fiscoetasse ed eseguissi da tale spazio acquisti diretti, sappi e riconosci le disposizioni in cui codesta ditta Fiscoetasse sarà giuridicamente riconosciuta in totale grado quale controparte ultima venditrice verso te per i recessi fisici d'abbonamenti su libri di testo informativi manualistici sull'ufficio imposte e simili. Sollecitiamo di percorrere attentamente e consultare la letteratura amministrativa presso i lori rispettivi botteghini web ufficiali qualora ci fossero transazioni completate extra-mura con pagamenti telematici a monte di queste nostre guide promozionali in tale dominio base. Ti tuteliamo invero indicando che nessuna frode ti sarà perpetrata sui server controllati interamente qui. Pertanto ci riserviamo facoltà unanime di spegnere vertenze inerenti bonifici e movimenti sui bancomat smarriti in modo arbitrario inviate agli sportelli generici senza prova di estorsione provata, difendendo le infrastrutture informatiche con pronte reazioni tecniche idonee nei tempi più rapidi in assoluto compatibilmente al caso tecnico.</p>
-                    </div>
-                </details>
-            </div>
-
-            <div class="text-center mt-12 pt-8 border-t border-gray-800 text-sm">
-                <p>&copy; 2026 LamugiDeex Investments - Promozione Bonus ed Educazione per Cittadini.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 inset-x-0 pb-2 sm:pb-5 z-50 transform translate-y-full transition-transform duration-500">
-        <div class="max-w-5xl mx-auto px-2 sm:px-6 lg:px-8">
-            <div class="p-4 rounded-lg bg-gray-900 border border-gray-700 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex-1 flex items-center">
-                    <span class="flex p-2 rounded-lg bg-gray-800">
-                        <svg class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                        </svg>
-                    </span>
-                    <p class="ml-3 font-medium text-white text-sm">
-                        Usiamo tecnologie analitiche essenziali per fornirti una navigazione coerente ai servizi fiscali erogati, garantendo sicurezza ed efficienza nell'informazione. Nessuna profilazione commerciale invasiva.
-                    </p>
-                </div>
-                <div class="flex-shrink-0 w-full sm:w-auto">
-                    <button onclick="acceptCookies()" class="w-full sm:w-auto flex items-center justify-center px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-bold text-gray-900 bg-yellow-400 hover:bg-yellow-300 focus:outline-none transition-colors">
-                        Conferma Selezione
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JS Logic Scripts -->
-    <script>
-        // Self-Healing Routing (Gravity Well Protocol)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                const mobileMenu = document.getElementById('mobile-menu');
-
-                // Close mobile menu on click
-                if(!mobileMenu.classList.contains('hidden')){
-                    mobileMenu.classList.add('hidden');
-                }
-
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                } else {
-                    console.warn(`Anchor target #${targetId} missing. Redirecting to gravity well (#contact).`);
-                    const fallback = document.getElementById('contact');
-                    if (fallback) {
-                        fallback.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
                     }
-                }
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        // Fallback to #download
+                        const fallback = document.getElementById('download');
+                        if (fallback) {
+                            fallback.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
             });
-        });
 
-        // Cookie Banner Logic
-        document.addEventListener("DOMContentLoaded", () => {
-            if (!localStorage.getItem("cookie_consent_fisco")) {
+            // Cookie Banner Logic
+            if (!localStorage.getItem('cookiesAccepted')) {
                 setTimeout(() => {
                     const banner = document.getElementById('cookie-banner');
                     banner.classList.remove('translate-y-full');
@@ -561,9 +191,8 @@
         });
 
         function acceptCookies() {
-            localStorage.setItem("cookie_consent_fisco", "true");
-            document.getElementById('cookie-banner').classList.add('translate-y-full');
+            localStorage.setItem('cookiesAccepted', 'true');
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
         }
-    </script>
-</body>
-</html>
+    </script> </body></html>
