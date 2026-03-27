@@ -1,460 +1,199 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Imparare l'Intelligenza Artificiale da zero. Corsi gratuiti per principianti e professionisti. Iscrizione aperta per il tuo futuro digitale.">
-    <title>Bevenegum Collective | Formazione AI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* PHASE 2: DESIGN DNA VARIABLES 
-           Source: https://www.almarete.it/corsi-di-intelligenza-artificiale-gratuiti
-           Length: 66 chars % 3 = 0 -> Sharp Radius
-           First Char 'h' (104) % 3 = 2 -> Hard Shadow (Neo-Brutalist)
-           Last Char 'i' (105) % 3 = 0 -> Clean Surface (Pure White)
-           Niche: AI/Tech -> Indigo
-        */
-        :root {
-            --primary: #4F46E5; /* Indigo-600 */
-            --surface: #ffffff;
-            --radius: 0px;
-            --shadow: 4px 4px 0px 0px #000;
-        }
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Bevenegum News | Il Tuo Aggregatore Notizie</title><meta name="description" content="Scarica l'app aggregatore notizie per la tua rassegna stampa quotidiana. Leggi le prime pagine dei giornali italiani e scopri le news oggi."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
+      :root {
+        --primary: #ea580c;
+        --secondary: #4f46e5;
+        --radius: 16px;
+        --card-radius: 16px;
+        --shadow: 0 1px 3px rgba(0,0,0,0.08);
+        --body-bg: #1e1e2e;
+        --card-bg: #2a2a3d;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+      }
 
-        /* GLOBAL CONTRAST BASE */
-        body {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
+      body {
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+      }
 
-        /* BRAND COMPONENT: The DNA Card */
-        .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 2px solid #000; /* Adjusted for Brutalist Logic */
-        }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Inter', sans-serif;
+      }
 
-        /* BRAND COMPONENT: Primary Button */
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
-            transition: all 0.2s;
-            font-weight: 800;
-            border: 2px solid #000;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: inline-block;
-        }
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px 0px #000;
-        }
-        .btn-primary:active {
-            transform: translate(2px, 2px);
-            box-shadow: 0px 0px 0px 0px #000;
-        }
+      .dna-card {
+        background-color: var(--card-bg);
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255,255,255,0.08);
+      }
 
-        /* UTILITY: Text Accent */
-        .text-primary { color: var(--primary); }
+      nav {
+        background-color: var(--body-bg);
+      }
 
-        /* LEGAL & DETAILS */
-        details {
-            border: 1px solid #000;
-            background: #fff;
-            margin-bottom: 1rem;
-            cursor: pointer;
-        }
-        summary {
-            padding: 1rem;
-            font-weight: bold;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        summary::after {
-            content: '+';
-            font-size: 1.5rem;
-        }
-        details[open] summary::after {
-            content: '-';
-        }
-        details > div, details > p {
-            padding: 1rem;
-            border-top: 1px solid #eee;
-        }
-        
-        /* SCROLL BAR */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #000; }
-        
-        .hero-overlay {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8));
-        }
-    </style>
-</head>
-<body class="flex flex-col min-h-screen">
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    <!-- NAVIGATION -->
-    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-black uppercase tracking-tighter">Bevenegum<span class="text-primary">Collective</span></span>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#services" class="font-bold text-gray-900 hover:text-primary">Corsi</a>
-                    <a href="#reviews" class="font-bold text-gray-900 hover:text-primary">Recensioni</a>
-                    <a href="#faq" class="font-bold text-gray-900 hover:text-primary">FAQ</a>
-                    <a href="#contact" class="btn-primary text-sm">Accesso Immediato</a>
-                </div>
-                <!-- Mobile button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-black p-2 focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black p-4 absolute w-full shadow-xl">
-            <a href="#services" class="block py-2 font-bold text-gray-900">Corsi</a>
-            <a href="#reviews" class="block py-2 font-bold text-gray-900">Recensioni</a>
-            <a href="#faq" class="block py-2 font-bold text-gray-900">FAQ</a>
-            <a href="#contact" class="block py-2 text-primary font-black uppercase">Iscrizione Ora</a>
-        </div>
-    </nav>
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
 
-    <!-- HERO SECTION -->
-    <header class="relative bg-gray-900 h-[600px] flex items-center justify-center text-center px-4 overflow-hidden">
-        <!-- Abstract Tech Background -->
-        <img 
-            src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-            alt="E-learning Platform Future" 
-            class="absolute inset-0 w-full h-full object-cover opacity-60"
-            referrerpolicy="no-referrer"
-            loading="lazy"
-            onerror="this.onerror=null; this.src='https://placehold.co/1920x1080?text=AI+Future+Learning'"
-        >
-        <div class="hero-overlay absolute inset-0"></div>
-        
-        <div class="relative z-10 max-w-4xl mx-auto p-6">
-            <h1 class="text-4xl md:text-6xl font-black text-white mb-6 uppercase leading-tight tracking-tight">
-                Investi nella tua conoscenza:<br>
-                <span class="text-primary bg-white px-2 mt-2 inline-block">Il Futuro è qui.</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-8 font-medium">
-                Sblocca il potenziale dell'Intelligenza Artificiale. Corsi gratuiti per principianti pensati per trasformare la tua carriera. Imparare non è mai stato così essenziale.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contact" class="btn-primary text-xl">Inizia a Imparare</a>
-                <a href="#services" class="px-8 py-4 bg-white text-black font-bold border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#000] transition-all">Scopri i Dettagli</a>
-            </div>
-        </div>
-    </header>
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .text-muted { color: var(--muted); }
+      .bg-primary { background-color: var(--primary); }
 
-    <!-- MAIN CONTENT -->
-    <main class="py-16 px-4">
-        
-        <!-- PROOF -->
-        <div class="max-w-5xl mx-auto text-center mb-16">
-            <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6">Partner formativi e Tecnologie trattate</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale">
-                <span class="text-2xl font-black text-gray-400">OPENAI</span>
-                <span class="text-2xl font-black text-gray-400">MIDJOURNEY</span>
-                <span class="text-2xl font-black text-gray-400">PYTHON BASE</span>
-                <span class="text-2xl font-black text-gray-400">CHATGPT PRO</span>
-            </div>
-        </div>
+      /* Mobile menu — always opaque, never transparent */
+      #mobile-menu {
+        background-color: var(--card-bg);
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
 
-        <!-- SERVICES SECTION -->
-        <section id="services" class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-black uppercase mb-4">Percorsi Formativi</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">La nostra E-learning Platform offre un accesso privilegiato alle competenze più richieste del mercato. Ecco cosa puoi imparare.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-gray-50 border-2 border-gray-200 p-6">
-                    <div class="text-4xl mb-4">🤖</div>
-                    <h3 class="text-xl font-bold mb-3">Fondamenti di AI</h3>
-                    <p class="text-gray-600 text-sm mb-4">Un corso ideale per principianti assoluti. Comprendi i concetti base, la storia e le potenzialità delle reti neurali senza bisogno di codice complesso.</p>
-                </div>
+      /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+      main, main + footer { scroll-margin-top: 5rem; }
+      body { padding-top: 4rem; }
 
-                <!-- Service 2 -->
-                <div class="bg-gray-50 border-2 border-gray-200 p-6 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-2 py-1">POPOLARE</div>
-                    <div class="text-4xl mb-4">🎨</div>
-                    <h3 class="text-xl font-bold mb-3">Generative AI Creativa</h3>
-                    <p class="text-gray-600 text-sm mb-4">Impara a padroneggiare strumenti come Midjourney e DALL-E per creare contenuti visivi. Il futuro del design digitale parte da qui.</p>
-                </div>
+      /* Form inputs — consistent styling regardless of Gemini output */
+      input[type="text"], input[type="email"], input[type="tel"],
+      input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: var(--card-radius);
+        background-color: var(--body-bg);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(234,88,12,0.15);
+      }
 
-                <!-- Service 3 -->
-                <div class="bg-gray-50 border-2 border-gray-200 p-6">
-                    <div class="text-4xl mb-4">⚡</div>
-                    <h3 class="text-xl font-bold mb-3">Produttività Avanzata</h3>
-                    <p class="text-gray-600 text-sm mb-4">Sfrutta la potenza di ChatGPT e dei LLM per automatizzare il lavoro d'ufficio, scrivere email e analizzare dati in secondi.</p>
-                </div>
-            </div>
+      /* Links — readable on any theme */
+      a { color: var(--primary); }
+      nav a, footer a { color: var(--text); text-decoration: none; }
+      nav a:hover, footer a:hover { color: var(--primary); }
 
-            <div class="mt-8 text-center">
-                <p class="italic text-gray-500 mb-4">Programma conforme agli standard del mercato del lavoro 2025.</p>
-            </div>
-        </section>
+      /* Section divider — subtle visual rhythm */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(234,88,12,0.2), transparent);
+        margin: 0;
+      }
 
-        <!-- VALUE PROPOSITION -->
-        <section class="max-w-5xl mx-auto dna-card bg-black text-white !border-black">
-            <div class="grid md:grid-cols-2 gap-10 items-center">
-                <div>
-                    <h2 class="text-3xl font-black uppercase mb-4 text-white">Perché Scegliere Bevenegum?</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            <span><strong class="text-white">Accesso Gratuito:</strong> Corsi finanziati per aventi diritto e disoccupati.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            <span><strong class="text-white">Certificazione Finale:</strong> Attestato di competenza valido a livello nazionale.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            <span><strong class="text-white">Modalità Flessibile:</strong> Lezioni online e on-demand per gestire il tuo tempo.</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="h-64 relative border-2 border-white">
-                     <img 
-                        src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                        class="absolute inset-0 w-full h-full object-cover" 
-                        alt="Programmatrice al lavoro"
-                        loading="lazy"
-                    >
-                </div>
-            </div>
-        </section>
-
-        <!-- REVIEWS SECTION -->
-        <section id="reviews" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-black uppercase text-center mb-10">Cosa dicono gli studenti</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="p-6 bg-gray-50 border border-gray-200">
-                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"Non avevo mai usato l'AI prima. Grazie a questo corso ho trovato lavoro in un'agenzia web. Istruttori preparatissimi."</p>
-                    <p class="font-bold text-sm">— Marco Rossi, Roma</p>
-                </div>
-                <div class="p-6 bg-gray-50 border border-gray-200">
-                    <div class="flex text-yellow-400 mb-2">★★★★★</div>
-                    <p class="text-gray-700 italic mb-4">"Finalmente un corso chiaro per principianti. L'approccio pratico su ChatGPT mi ha fatto risparmiare ore di lavoro ogni giorno."</p>
-                    <p class="font-bold text-sm">— Elena Bianchi, Latina</p>
-                </div>
-                <div class="p-6 bg-gray-50 border border-gray-200">
-                    <div class="flex text-yellow-400 mb-2">★★★★☆</div>
-                    <p class="text-gray-700 italic mb-4">"Iscrizione semplice e materiale didattico di alta qualità. Consiglio vivamente a chi vuole investire sul proprio futuro."</p>
-                    <p class="font-bold text-sm">— Luca Verdi, Frosinone</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ SECTION -->
-        <section id="faq" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-black uppercase mb-8">Domande Frequenti (FAQ)</h2>
-            <div class="space-y-4">
-                <details>
-                    <summary>I corsi sono davvero gratuiti?</summary>
-                    <p class="text-gray-600">Sì, la maggior parte dei nostri corsi è finanziata tramite fondi regionali o nazionali (es. programma GOL) per disoccupati e categorie specifiche. Verificheremo la tua idoneità dopo la richiesta.</p>
-                </details>
-                <details>
-                    <summary>Serve esperienza di programmazione?</summary>
-                    <p class="text-gray-600">Assolutamente no. I nostri corsi per principianti partono dalle basi. Non serve saper scrivere codice per usare l'Intelligenza Artificiale oggi.</p>
-                </details>
-                <details>
-                    <summary>Le lezioni sono online o in presenza?</summary>
-                    <p class="text-gray-600">Offriamo modalità miste. Molti moduli teorici sono accessibili online da casa, mentre i laboratori specifici possono richiedere presenza o aule virtuali sincrone.</p>
-                </details>
-                <details>
-                    <summary>Rilasciate un attestato?</summary>
-                    <p class="text-gray-600">Sì, al termine del percorso e superato il test finale, riceverai una certificazione delle competenze acquisite, valida per il tuo CV.</p>
-                </details>
-                <details>
-                    <summary>Come faccio l'iscrizione?</summary>
-                    <p class="text-gray-600">Compila il modulo qui sotto. Un nostro consulente ti contatterà per verificare i requisiti e completare l'accesso alla piattaforma.</p>
-                </details>
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="max-w-5xl mx-auto dna-card border-4 border-primary">
-            <div class="grid md:grid-cols-2 gap-10">
-                <div>
-                    <h2 class="text-4xl font-black uppercase mb-4 text-gray-900">Il Tuo Futuro Inizia Qui</h2>
-                    <p class="text-lg text-gray-700 mb-6">
-                        I posti sono limitati per ogni sessione. Compila il form per bloccare la tua priorità di accesso e parlare con un tutor orientativo.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center text-gray-700 font-bold">
-                            <span class="w-8 h-8 bg-primary text-white rounded-none flex items-center justify-center mr-3 font-mono">1</span>
-                            Compila il modulo
-                        </div>
-                        <div class="flex items-center text-gray-700 font-bold">
-                            <span class="w-8 h-8 bg-primary text-white rounded-none flex items-center justify-center mr-3 font-mono">2</span>
-                            Verifica idoneità telefonica
-                        </div>
-                        <div class="flex items-center text-gray-700 font-bold">
-                            <span class="w-8 h-8 bg-primary text-white rounded-none flex items-center justify-center mr-3 font-mono">3</span>
-                            Accesso alla piattaforma
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gray-100 p-8 border-2 border-gray-300">
-                    <form id="lead-form" onsubmit="event.preventDefault(); document.getElementById('submit-btn').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div class="mb-4">
-                            <label class="block text-sm font-bold mb-2">Nome e Cognome</label>
-                            <input type="text" required class="w-full p-3 border-2 border-gray-300 focus:border-primary focus:outline-none" placeholder="Mario Rossi">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-bold mb-2">Numero di Telefono</label>
-                            <input type="tel" required class="w-full p-3 border-2 border-gray-300 focus:border-primary focus:outline-none" placeholder="+39 333 1234567">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-bold mb-2">Situazione Attuale</label>
-                            <select class="w-full p-3 border-2 border-gray-300 focus:border-primary focus:outline-none bg-white">
-                                <option>Disoccupato</option>
-                                <option>Studente</option>
-                                <option>Lavoratore</option>
-                                <option>Altro</option>
-                            </select>
-                        </div>
-                        <div class="mb-6">
-                            <label class="flex items-start">
-                                <input type="checkbox" required class="mt-1 mr-2">
-                                <span class="text-xs text-gray-600">Accetto la politica sulla privacy e acconsento al trattamento dei dati per finalità di contatto informativo sui corsi.</span>
-                            </label>
-                        </div>
-                        <button type="submit" id="submit-btn" class="w-full btn-primary text-center">RICHIEDI INFO ORA</button>
-                    </form>
-
-                    <!-- Success Message -->
-                    <div id="success-msg" style="display:none;" class="text-center py-10">
-                        <div class="text-5xl mb-4 text-green-500">✓</div>
-                        <h3 class="text-2xl font-bold mb-2">Richiesta Ricevuta!</h3>
-                        <p class="text-gray-600">Grazie per il tuo interesse. Un nostro consulente ti contatterà al numero fornito entro 24 ore lavorative.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white py-12 border-t-4 border-primary">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div>
-                    <h3 class="text-2xl font-black uppercase mb-4">Bevenegum<span class="text-primary">Collective</span></h3>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-                        La piattaforma di riferimento per chi vuole imparare e costruire il proprio futuro digitale attraverso l'Intelligenza Artificiale.
-                    </p>
-                </div>
-                <div class="text-right md:text-right">
-                    <p class="font-bold mb-2">Provider Didattico:</p>
-                    <p class="text-gray-400">Almarete / Fondazione Alma</p>
-                    <p class="text-gray-400">Via Barberini 86, Roma (RM)</p>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-700 pt-8 text-sm text-gray-500 text-center mb-8">
-                <p class="mb-4">© 2026 Bevenegum Collective. Tutti i diritti riservati.</p>
-                <p class="italic max-w-2xl mx-auto">
-                    "Questo è un sito promozionale indipendente gestito da Bevenegum Collective, che agisce come affiliato per Almarete. Tutti i marchi registrati appartengono ai legittimi proprietari."
-                </p>
-            </div>
-
-            <!-- LEGAL BLOCKS -->
-            <div class="max-w-3xl mx-auto space-y-2">
-                <details class="bg-gray-800 border-none text-left">
-                    <summary class="text-gray-300 hover:text-white">Privacy Policy</summary>
-                    <div class="text-gray-400 text-xs leading-relaxed">
-                        <p><strong>1. Titolare del Trattamento:</strong> Il trattamento dei dati personali raccolti tramite questo sito web è svolto da Bevenegum Collective in conformità con il Regolamento UE 2016/679 (GDPR). I dati raccolti sono utilizzati esclusivamente per fornire le informazioni richieste sui corsi di formazione.</p>
-                        <p><strong>2. Dati Raccolti:</strong> Raccogliamo dati identificativi e di contatto (nome, cognome, numero di telefono) forniti volontariamente dall'utente tramite i moduli di contatto. Non raccogliamo dati sensibili o giudiziari.</p>
-                        <p><strong>3. Finalità del Trattamento:</strong> I dati sono trattati per: a) rispondere alle richieste di informazioni; b) valutare l'idoneità ai corsi gratuiti finanziati; c) comunicazioni di servizio relative all'avvio dei corsi. La base giuridica è il consenso dell'interessato.</p>
-                        <p><strong>4. Condivisione dei Dati:</strong> I dati potrebbero essere condivisi con l'ente formatore Almarete (Fondazione Alma) esclusivamente per finalità organizzative e didattiche legate all'erogazione del corso. Non cediamo dati a terzi per scopi di marketing non correlati.</p>
-                        <p><strong>5. Conservazione:</strong> I dati saranno conservati per il tempo strettamente necessario a gestire la richiesta e, in caso di iscrizione, per la durata del corso e gli obblighi di legge successivi. In assenza di iscrizione, i dati saranno cancellati dopo 12 mesi.</p>
-                        <p><strong>6. Diritti dell'Interessato:</strong> L'utente ha diritto di accedere, rettificare, cancellare i propri dati, limitarne il trattamento o opporsi allo stesso. Per esercitare tali diritti, è possibile inviare una richiesta formale attraverso i canali di contatto ufficiali indicati.</p>
-                        <p><strong>7. Sicurezza:</strong> Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i dati da accessi non autorizzati, perdita o distruzione.</p>
-                    </div>
-                </details>
-
-                <details class="bg-gray-800 border-none text-left">
-                    <summary class="text-gray-300 hover:text-white">Termini e Condizioni</summary>
-                    <div class="text-gray-400 text-xs leading-relaxed">
-                        <p><strong>1. Accettazione dei Termini:</strong> L'accesso e l'utilizzo di questo sito web implicano l'accettazione integrale dei presenti Termini e Condizioni. Se non si accettano tali termini, si prega di non utilizzare il sito.</p>
-                        <p><strong>2. Scopo del Servizio:</strong> Bevenegum Collective fornisce un servizio di informazione e pre-iscrizione per corsi di formazione professionale. Il sito funge da intermediario promozionale e non è l'ente erogatore finale della certificazione, salvo diversa indicazione.</p>
-                        <p><strong>3. Accuratezza delle Informazioni:</strong> Sebbene ci impegniamo a mantenere le informazioni aggiornate, i dettagli sui corsi (date, programmi, requisiti di accesso gratuito) possono subire variazioni decise dall'ente finanziatore o organizzatore. Non garantiamo l'accuratezza assoluta in tempo reale.</p>
-                        <p><strong>4. Requisiti di Accesso:</strong> L'accesso ai corsi gratuiti è subordinato alla verifica dei requisiti (es. stato di disoccupazione, residenza) da parte degli enti competenti. La compilazione del modulo su questo sito non garantisce l'ammissione automatica.</p>
-                        <p><strong>5. Limitazione di Responsabilità:</strong> Bevenegum Collective non è responsabile per danni diretti o indiretti derivanti dall'uso del sito, inclusi ma non limitati a interruzioni del servizio, errori tecnici o mancata ammissione ai corsi per assenza di requisiti.</p>
-                        <p><strong>6. Proprietà Intellettuale:</strong> Tutti i contenuti del sito (testi, loghi, grafica) sono protetti dalle leggi sul diritto d'autore. È vietata la riproduzione non autorizzata.</p>
-                        <p><strong>7. Modifiche:</strong> Ci riserviamo il diritto di modificare i presenti Termini in qualsiasi momento. Le modifiche saranno efficaci dalla pubblicazione sul sito.</p>
-                    </div>
-                </details>
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-black p-6 shadow-2xl z-50 hidden flex-col md:flex-row justify-between items-center">
-        <p class="text-sm text-gray-700 mb-4 md:mb-0 max-w-4xl mr-4">
-            Utilizziamo cookie tecnici essenziali per garantire il funzionamento del sito. Continuando a navigare accetti la nostra politica sui cookie per migliorare la tua esperienza di apprendimento.
-        </p>
-        <div class="flex gap-4">
-            <button onclick="acceptCookies()" class="btn-primary text-xs py-2 px-4">ACCETTA TUTTI</button>
-            <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-xs font-bold underline">Rifiuta</button>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // SMART ROUTING & SMOOTH SCROLL
+      /* Custom App Store Badges */
+      .store-badge {
+        display: inline-flex;
+        align-items: center;
+        background-color: #000;
+        color: #fff !important;
+        border-radius: 8px;
+        padding: 8px 16px;
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.2);
+        transition: transform 0.2s, background-color 0.2s;
+        height: 48px;
+      }
+      .store-badge:hover {
+        transform: translateY(-2px);
+        background-color: #111;
+      }
+      .store-badge svg {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+      }
+      .store-badge-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1;
+      }
+      .store-badge-small {
+        font-size: 10px;
+        opacity: 0.8;
+      }
+      .store-badge-large {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    </style> </head><body><nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-800 shadow-sm"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center gap-2"><svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg><a href="#" class="font-bold text-xl tracking-tight text-white">Bevenegum News</a></div><div class="hidden md:flex items-center space-x-8"><a href="#features" class="text-sm font-medium transition-colors">Caratteristiche</a><a href="#how-it-works" class="text-sm font-medium transition-colors">Come Funziona</a><a href="#reviews" class="text-sm font-medium transition-colors">Recensioni</a><a href="#faq" class="text-sm font-medium transition-colors">FAQ</a><a href="#download" class="btn-primary text-sm px-4 py-2">Scarica Ora</a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden shadow-lg pb-4 px-4 pt-2"><a href="#features" class="block py-3 text-base font-medium border-b border-gray-700">Caratteristiche</a><a href="#how-it-works" class="block py-3 text-base font-medium border-b border-gray-700">Come Funziona</a><a href="#reviews" class="block py-3 text-base font-medium border-b border-gray-700">Recensioni</a><a href="#faq" class="block py-3 text-base font-medium border-b border-gray-700">FAQ</a><a href="#download" class="block py-3 mt-2 text-center btn-primary w-full justify-center">Scarica Ora</a></div></nav><main><section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><div class="w-full md:w-1/2 flex flex-col items-start text-left"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-900/30 border border-indigo-500/30 text-secondary text-sm font-semibold mb-6"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span> Nuova App Disponibile </div><h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-white"> L'informazione che conta, in un'unica app. </h1><p class="text-lg text-muted mb-8 max-w-lg"> Scopri il miglior <strong class="text-white font-semibold">aggregatore notizie</strong> per avere la tua <strong class="text-white font-semibold">rassegna stampa</strong> quotidiana sempre a portata di tap. Leggi le notizie che ti interessano, senza distrazioni. </p><div class="flex flex-wrap gap-4 mt-2"><a href="#download" class="store-badge"><svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span class="store-badge-small">Scarica su</span><span class="store-badge-large">App Store</span></div></a><a href="#download" class="store-badge"><svg viewBox="0 0 512 512" fill="currentColor"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span class="store-badge-small">DISPONIBILE SU</span><span class="store-badge-large">Google Play</span></div></a></div><div class="mt-8 flex items-center gap-2 text-sm text-muted"><div class="flex text-primary"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><span>Scelta da migliaia di lettori attenti.</span></div></div><div class="w-full md:w-1/2 relative"><div class="absolute inset-0 bg-primary rounded-full blur-3xl opacity-20 transform -translate-x-10 translate-y-10"></div><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/800x1200/2a2a3d/ea580c?text=App+Mockup'" alt="Smartphone con app aggregatore notizie" class="relative z-10 w-full max-w-sm mx-auto rounded-[2rem] shadow-2xl border-4 border-gray-800" loading="lazy" referrerpolicy="no-referrer"></div></div></section><hr class="section-divider"><section id="features" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Tutto il Mondo nel Tuo Telefono</h2><p class="text-lg text-muted max-w-2xl mx-auto">Abbiamo progettato l'app perfetta per chi non vuole perdersi nulla. Analizza, filtra e scopri le informazioni più rilevanti per te.</p></div><div class="dna-card p-8 md:p-12"><div class="flex flex-col gap-20"><div class="flex flex-col md:flex-row items-center gap-10"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/600x400/2a2a3d/ea580c?text=Rassegna+Stampa'" alt="Persona che legge notizie sul telefono" class="rounded-2xl shadow-lg w-full object-cover aspect-video border border-gray-700" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2"><div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-900/30 text-secondary mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg></div><h3 class="text-2xl font-bold mb-4">La tua <span class="text-primary">Rassegna Stampa</span> su Misura</h3><p class="text-muted leading-relaxed"> Sfoglia le <strong>prime pagine</strong> dei principali <strong>giornali italiani</strong> e internazionali direttamente dal tuo smartphone, appena vengono pubblicate. Crea il tuo feed personalizzato selezionando solo le fonti, i quotidiani e le riviste di cui ti fidi di più. Niente rumore di fondo, solo giornalismo di qualità. </p></div></div><div class="flex flex-col md:flex-row-reverse items-center gap-10"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/5082560/pexels-photo-5082560.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/600x400/2a2a3d/ea580c?text=News+Oggi'" alt="Aggiornamenti in tempo reale su schermo" class="rounded-2xl shadow-lg w-full object-cover aspect-video border border-gray-700" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2"><div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-900/30 text-secondary mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Tutte le <span class="text-primary">News Oggi</span> in Tempo Reale</h3><p class="text-muted leading-relaxed"> Il nostro potente algoritmo lavora 24 ore su 24. Scopri le <strong>news oggi</strong> con notifiche push intelligenti per le ultime ore (breaking news). Non perderti mai un aggiornamento cruciale di politica, economia, sport o cronaca, ovunque tu sia. </p></div></div><div class="flex flex-col md:flex-row items-center gap-10"><div class="w-full md:w-1/2"><img src="https://images.pexels.com/photos/1766604/pexels-photo-1766604.jpeg?auto=compress&cs=tinysrgb&w=800" onerror="this.onerror=null; this.src='https://placehold.co/600x400/2a2a3d/ea580c?text=Modalita+Scura'" alt="Interfaccia pulita in modalità scura" class="rounded-2xl shadow-lg w-full object-cover aspect-video border border-gray-700" loading="lazy" referrerpolicy="no-referrer"></div><div class="w-full md:w-1/2"><div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-900/30 text-secondary mb-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg></div><h3 class="text-2xl font-bold mb-4">Lettura Offline e Modalità Scura</h3><p class="text-muted leading-relaxed"> Viaggi in treno o in aereo? Nessun problema. Salva i tuoi articoli preferiti per leggerli in modalità offline. Inoltre, l'interfaccia elegante e la modalità scura nativa proteggono i tuoi occhi durante la lettura serale, garantendo un'esperienza immersiva. </p></div></div></div></div></section><hr class="section-divider"><section id="how-it-works" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="dna-card text-center"><h2 class="text-3xl md:text-4xl font-bold mb-12">Inizia in 3 Semplici Passi</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative"><div class="hidden md:block absolute top-1/2 left-1/6 right-1/6 h-0.5 bg-gray-700 -z-10 transform -translate-y-1/2"></div><div class="bg-gray-800 rounded-2xl p-6 relative z-10 border border-gray-700"><div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-lg shadow-orange-500/30">1</div><h4 class="text-xl font-semibold mb-2">Scarica l'App</h4><p class="text-sm text-muted">Disponibile gratuitamente su App Store e Google Play Store. Installazione rapida in pochi secondi.</p></div><div class="bg-gray-800 rounded-2xl p-6 relative z-10 border border-gray-700"><div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-lg shadow-orange-500/30">2</div><h4 class="text-xl font-semibold mb-2">Scegli le Fonti</h4><p class="text-sm text-muted">Seleziona i tuoi giornali italiani preferiti, le testate internazionali e gli argomenti di interesse.</p></div><div class="bg-gray-800 rounded-2xl p-6 relative z-10 border border-gray-700"><div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-lg shadow-orange-500/30">3</div><h4 class="text-xl font-semibold mb-2">Leggi e Condividi</h4><p class="text-sm text-muted">Goditi la tua rassegna stampa personalizzata e condividi gli articoli più interessanti con un tap.</p></div></div></div></section><hr class="section-divider"><section id="reviews" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa Dicono i Nostri Lettori</h2><p class="text-lg text-muted">Migliaia di utenti si affidano a Bevenegum News ogni mattina.</p></div><div class="dna-card"><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="bg-gray-800 p-6 rounded-2xl border border-gray-700"><div class="flex text-primary mb-3"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold mb-2">La migliore rassegna stampa</h4><p class="text-sm text-muted mb-4">"Uso quest'app ogni mattina con il caffè. Sfogliare le prime pagine dei giornali italiani è diventato facilissimo e veloce. Consigliatissima."</p><div class="flex justify-between items-center text-xs text-gray-500"><span class="font-semibold text-gray-300">Marco R.</span><span>Ottobre 2025</span></div></div><div class="bg-gray-800 p-6 rounded-2xl border border-gray-700"><div class="flex text-primary mb-3"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold mb-2">Perfetta per le news oggi</h4><p class="text-sm text-muted mb-4">"Come aggregatore notizie non ha rivali. Le notifiche sono pertinenti e non invadenti. Molto utile per chi lavora e deve tenersi informato."</p><div class="flex justify-between items-center text-xs text-gray-500"><span class="font-semibold text-gray-300">Elena B.</span><span>Novembre 2025</span></div></div><div class="bg-gray-800 p-6 rounded-2xl border border-gray-700"><div class="flex text-primary mb-3"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div><h4 class="font-bold mb-2">Interfaccia pulitissima</h4><p class="text-sm text-muted mb-4">"Senza pubblicità invasive. Leggere gli articoli qui è un piacere. La modalità scura è implementata in modo eccellente. 5 stelle meritate."</p><div class="flex justify-between items-center text-xs text-gray-500"><span class="font-semibold text-gray-300">Giovanni T.</span><span>Gennaio 2026</span></div></div></div></div></section><hr class="section-divider"><section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-lg text-muted">Tutto quello che devi sapere sulla nostra app aggregatore notizie.</p></div><div class="dna-card space-y-4"><details class="group bg-gray-800 rounded-xl border border-gray-700 open:border-primary transition-all"><summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg"><span>L'app è gratuita?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="text-muted mt-2 p-5 pt-0 leading-relaxed border-t border-gray-700"> Sì, l'app base è completamente gratuita. Puoi scaricarla, impostare le tue fonti preferite e leggere la rassegna stampa quotidiana senza alcun costo. Offriamo anche un piano Premium opzionale per chi desidera funzionalità avanzate come la lettura illimitata offline e l'assenza totale di banner pubblicitari (sebbene la versione base sia già molto pulita). </div></details><details class="group bg-gray-800 rounded-xl border border-gray-700 open:border-primary transition-all"><summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg"><span>Quali dispositivi sono supportati?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="text-muted mt-2 p-5 pt-0 leading-relaxed border-t border-gray-700"> Bevenegum News è disponibile per tutti gli smartphone e tablet recenti. Supportiamo nativamente sia iOS (iPhone e iPad con iOS 14.0 o superiore) sia Android (dispositivi con Android 8.0 o superiore). L'interfaccia si adatta perfettamente a qualsiasi dimensione di schermo per garantirti sempre la migliore esperienza di lettura. </div></details><details class="group bg-gray-800 rounded-xl border border-gray-700 open:border-primary transition-all"><summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg"><span>I miei dati sono al sicuro?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="text-muted mt-2 p-5 pt-0 leading-relaxed border-t border-gray-700"> Assolutamente sì. La tua privacy è una nostra priorità. Non vendiamo i tuoi dati personali a terzi. Raccogliamo solo informazioni anonimizzate sull'utilizzo per migliorare l'algoritmo che ti suggerisce le news oggi più rilevanti. Puoi gestire le tue preferenze sulla privacy direttamente dalle impostazioni dell'app in qualsiasi momento. </div></details><details class="group bg-gray-800 rounded-xl border border-gray-700 open:border-primary transition-all"><summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg"><span>Come inizio a usarla?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="text-muted mt-2 p-5 pt-0 leading-relaxed border-t border-gray-700"> È facilissimo. Tocca uno dei pulsanti di download presenti in questa pagina per essere reindirizzato all'App Store o a Google Play. Una volta installata, apri l'app: un breve tutorial ti guiderà nella selezione dei tuoi interessi (politica, sport, tecnologia, ecc.) e dei giornali italiani che preferisci seguire per creare la tua prima rassegna stampa. </div></details><details class="group bg-gray-800 rounded-xl border border-gray-700 open:border-primary transition-all"><summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-lg"><span>Posso usarla offline?</span><span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="text-muted mt-2 p-5 pt-0 leading-relaxed border-t border-gray-700"> Sì. L'app dispone di una potente funzione di salvataggio. Quando sei connesso al Wi-Fi o alla rete dati, puoi scaricare intere edizioni o singoli articoli. Questi verranno salvati nella sezione "Archivio Offline", permettendoti di leggerli comodamente anche quando sei in aereo, in metropolitana o in zone senza copertura di rete. </div></details></div></section><hr class="section-divider"><section id="download" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="dna-card text-center relative overflow-hidden"><div class="absolute top-0 left-0 w-64 h-64 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-10 transform -translate-x-1/2 -translate-y-1/2"></div><div class="absolute bottom-0 right-0 w-64 h-64 bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-10 transform translate-x-1/2 translate-y-1/2"></div><div class="relative z-10"><h2 class="text-4xl md:text-5xl font-extrabold mb-6">Scarica Bevenegum News</h2><p class="text-xl text-muted mb-10 max-w-2xl mx-auto"> Porta la tua rassegna stampa sempre con te. Unisciti oggi stesso alla nostra community e rivoluziona il modo in cui leggi le notizie. </p><div class="flex flex-col sm:flex-row justify-center items-center gap-6"><a href="#download" class="store-badge" style="height: 60px; padding: 10px 24px;"><svg viewBox="0 0 384 512" fill="currentColor" style="width: 32px; height: 32px; margin-right: 12px;"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><div class="store-badge-text"><span class="store-badge-small" style="font-size: 12px;">Scarica su</span><span class="store-badge-large" style="font-size: 20px;">App Store</span></div></a><a href="#download" class="store-badge" style="height: 60px; padding: 10px 24px;"><svg viewBox="0 0 512 512" fill="currentColor" style="width: 32px; height: 32px; margin-right: 12px;"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><div class="store-badge-text"><span class="store-badge-small" style="font-size: 12px;">DISPONIBILE SU</span><span class="store-badge-large" style="font-size: 20px;">Google Play</span></div></a></div></div></div></section></main><footer class="bg-[#1a1a27] border-t border-gray-800 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4"><div class="flex items-center gap-2"><svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg><span class="font-bold text-lg text-white">Bevenegum Collective Ltd</span></div><div class="text-sm text-muted"> &copy; 2026 Bevenegum Collective Ltd. Tutti i diritti riservati. </div></div><div class="p-4 bg-gray-800/50 rounded-lg border border-gray-700 mb-8 text-center text-sm text-gray-400"> Questa è una pagina promozionale indipendente gestita da Bevenegum Collective Ltd, per l'app Bevenegum News. </div><div class="space-y-4"><details class="text-sm text-muted bg-gray-800/30 rounded-lg border border-gray-800"><summary class="cursor-pointer p-4 font-semibold hover:text-white transition-colors list-none flex justify-between items-center"> Informativa sulla Privacy <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 pt-0 border-t border-gray-800 mt-2 space-y-3"><p>La tua privacy è di fondamentale importanza per Bevenegum Collective Ltd. Questa Informativa sulla Privacy descrive come raccogliamo, utilizziamo, conserviamo e proteggiamo le tue informazioni personali quando utilizzi la nostra applicazione mobile. Raccogliamo solo i dati strettamente necessari per il funzionamento dell'app, come le preferenze di lettura e i log di crash per migliorare la stabilità. Non richiediamo la registrazione obbligatoria per le funzioni di base. Se decidi di creare un account, conserveremo in modo sicuro le tue credenziali. Utilizziamo tecnologie di crittografia standard del settore per proteggere la trasmissione dei dati tra il tuo dispositivo e i nostri server. I tuoi dati non vengono mai venduti a terze parti per scopi di marketing. Potremmo condividere informazioni anonimizzate con partner analitici per comprendere meglio come viene utilizzata l'app. Hai il diritto di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati personali in qualsiasi momento. L'app potrebbe richiedere permessi specifici, come l'accesso alla rete o allo storage locale, esclusivamente per fornire i servizi richiesti (es. salvataggio articoli offline). I minori di 13 anni non dovrebbero utilizzare l'app senza il consenso dei genitori. Ci riserviamo il diritto di aggiornare questa politica in futuro; gli aggiornamenti significativi verranno notificati all'interno dell'app. Utilizzando l'applicazione, acconsenti al trattamento dei tuoi dati come descritto in questo documento. Per qualsiasi richiesta relativa alla privacy, ti preghiamo di utilizzare l'apposita sezione "Supporto Privacy" all'interno delle impostazioni dell'app. Ci impegniamo a rispondere a tutte le richieste relative ai dati entro i termini previsti dalla legge. La tua fiducia è la base del nostro servizio.</p></div></details><details class="text-sm text-muted bg-gray-800/30 rounded-lg border border-gray-800"><summary class="cursor-pointer p-4 font-semibold hover:text-white transition-colors list-none flex justify-between items-center"> Termini e Condizioni <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 pt-0 border-t border-gray-800 mt-2 space-y-3"><p>I presenti Termini e Condizioni regolano l'utilizzo dell'applicazione mobile fornita da Bevenegum Collective Ltd. Scaricando o utilizzando l'app, accetti di essere vincolato da questi termini. L'app è fornita "così com'è", senza garanzie esplicite o implicite di alcun tipo riguardo alla continuità o all'assenza di errori. L'utente si impegna a utilizzare l'applicazione in modo lecito e conforme alle leggi vigenti in Italia e nel proprio paese di residenza. I contenuti mostrati nell'app (articoli, immagini, titoli) appartengono ai rispettivi editori e autori; la nostra app funge unicamente da aggregatore e motore di ricerca. Non ci assumiamo la responsabilità per l'accuratezza, la veridicità o la completezza delle notizie di terze parti visualizzate. È severamente vietato tentare di decodificare, decompilare o manomettere il codice sorgente dell'applicazione. Bevenegum Collective Ltd si riserva il diritto di sospendere o interrompere il servizio in qualsiasi momento per manutenzione o per altre ragioni operative. L'utente è responsabile della sicurezza del proprio dispositivo e della propria connessione internet. Eventuali costi di traffico dati derivanti dall'utilizzo dell'app sono a carico dell'utente. Ci riserviamo il diritto di modificare questi termini in qualsiasi momento; l'uso continuato dell'app costituisce accettazione delle modifiche. In caso di violazione di questi termini, ci riserviamo il diritto di bloccare l'accesso dell'utente ai nostri servizi. L'applicazione potrebbe contenere link a siti web esterni su cui non abbiamo alcun controllo. Qualsiasi controversia legale derivante dall'uso dell'applicazione sarà soggetta alla giurisdizione esclusiva dei tribunali competenti. Ti invitiamo a leggere periodicamente questa sezione per rimanere aggiornato sulle nostre condizioni d'uso.</p></div></details><details class="text-sm text-muted bg-gray-800/30 rounded-lg border border-gray-800"><summary class="cursor-pointer p-4 font-semibold hover:text-white transition-colors list-none flex justify-between items-center"> Politica di Rimborso <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 pt-0 border-t border-gray-800 mt-2 space-y-3"><p>La nostra Politica di Rimborso si applica esclusivamente agli acquisti in-app e agli abbonamenti Premium effettuati tramite l'applicazione. Poiché l'app di base è gratuita, questa politica riguarda solo le transazioni finanziarie volontarie. Tutti gli acquisti vengono elaborati tramite i rispettivi store (Apple App Store o Google Play Store). Pertanto, la gestione dei rimborsi è subordinata alle politiche specifiche di tali piattaforme. Se hai effettuato un acquisto su iOS, dovrai richiedere il rimborso direttamente tramite il supporto Apple, utilizzando la cronologia degli acquisti del tuo ID Apple. Se hai effettuato l'acquisto su Android tramite Google Play, puoi richiedere il rimborso direttamente dal Play Store entro 48 ore dall'acquisto. Dopo tale periodo, valuteremo le richieste di rimborso caso per caso, qualora il servizio Premium risulti difettoso o non funzionante come descritto. I rimborsi non sono garantiti per "cambiamenti di idea" successivi all'attivazione del servizio. Se un abbonamento viene rinnovato automaticamente, è responsabilità dell'utente annullarlo prima della data di rinnovo tramite le impostazioni dello store del proprio dispositivo. Non possiamo rimborsare rate di abbonamento già fatturate se l'annullamento avviene in ritardo. In caso di problemi tecnici che impediscono l'accesso alle funzionalità acquistate, ti invitiamo a segnalare il problema tramite la funzione di supporto integrata nell'app prima di richiedere un rimborso. Ci impegneremo a risolvere il problema tecnico nel minor tempo possibile. Qualora non fossimo in grado di ripristinare il servizio, autorizzeremo il rimborso per la frazione di servizio non goduta. I rimborsi approvati verranno riaccreditati sul metodo di pagamento originale utilizzato durante l'acquisto. L'elaborazione del rimborso da parte delle banche o degli store può richiedere da 5 a 10 giorni lavorativi. Ci riserviamo il diritto di rifiutare richieste di rimborso se rileviamo un abuso del sistema o violazioni dei nostri Termini e Condizioni.</p></div></details></div></div></footer><div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-4 md:p-6 z-50 transform transition-transform duration-300 translate-y-full"><div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-300 flex-1"> Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito promozionale. Continuando a navigare, accetti la nostra politica sui cookie. </div><div class="flex gap-4"><button onclick="acceptCookies()" class="btn-primary text-sm whitespace-nowrap py-2">Accetta Tutto</button></div></div></div> <script>
+        // Smart Routing (Self-Healing Navigation)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    // Fallback to Contact if ID missing
-                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                    // Fallback to #download
+                    const downloadSection = document.querySelector('#download');
+                    if(downloadSection) {
+                        downloadSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
                 
                 // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
             });
         });
 
-        // COOKIE LOGIC
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'true');
-            document.getElementById('cookie-banner').style.display = 'none';
+        // Details Polyfill for smooth opening (optional visual polish)
+        document.querySelectorAll('details').forEach((el) => {
+            const summary = el.querySelector('summary');
+            summary.addEventListener('click', (e) => {
+                // Add minor interaction logic if needed
+            });
+        });
+
+        // Cookie Banner Logic
+        function initCookies() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 1000);
+            }
         }
 
-        if (!localStorage.getItem('cookieConsent')) {
-            document.getElementById('cookie-banner').style.display = 'flex';
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
         }
-    </script>
-</body>
-</html>
+
+        // Initialize
+        window.onload = initCookies;
+    </script> </body></html>
