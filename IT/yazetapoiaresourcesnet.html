@@ -1,414 +1,133 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Yaze Resources - Il servizio di confronto tariffe intelligente per gas, luce e internet. Trova le migliori offerte e inizia a risparmiare oggi stesso.">
-    <title>Yaze Resources | Confronto Tariffe Gas e Luce</title>
-    
-    <!-- TAILWIND CSS CDN -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-
-    <!-- DESIGN DNA & CUSTOM STYLES -->
-    <style>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Yazeta Poia Resources | Blog di Esperienze Enogastronomiche Italiane</title><meta name="description" content="Scopri le vere risorse d'Italia attraverso il nostro blog di esperienze enogastronomiche. Recensioni di cantine italiane, tour e prodotti tipici."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
         :root {
-            /* VAR D: Palette (Energy/Savings Niche -> Emerald) */
-            --primary: #059669;
-            /* VAR C: Surface (Code 47 % 3 = 2 -> Cool/Slate White) */
-            --surface: #f8fafc;
-            /* VAR A: Geometry (Length 26 % 3 = 2 -> Pill/Round) */
-            --radius: 24px;
-            /* VAR B: Physics (Code 104 % 3 = 2 -> Hard/Neo-Brutalist) */
-            --shadow: 4px 4px 0px 0px #000;
+            --primary: #2563eb;
+            --secondary: #dc2626;
+            --radius: 16px;
+            --card-radius: 16px;
+            --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.05);
+            --body-bg: #faf5ff;
+            --card-bg: #ffffff;
+            --text: #1e1b4b;
+            --muted: #6b7280;
         }
 
-        /* GLOBAL CONTRAST BASE */
         body {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            font-family: system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding-top: 4rem;
         }
 
-        /* BRAND COMPONENT: The DNA Card */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
         .dna-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
-            border: 2px solid #000000; /* Adjusted for Neo-Brutalist border feel */
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* BRAND COMPONENT: Primary Button */
+        nav {
+            background-color: var(--body-bg);
+        }
+
         .btn-primary {
             background-color: var(--primary);
             color: #ffffff !important;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1rem 2rem;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             transition: all 0.2s;
-            font-weight: bold;
-            display: inline-block;
-            border: 2px solid #000000;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             text-decoration: none;
-            text-align: center;
         }
-        
-        .btn-primary:hover { 
-            opacity: 0.9; 
-            transform: translate(2px, 2px); 
-            box-shadow: 2px 2px 0px 0px #000;
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
         }
-        
-        .btn-primary:active {
-            transform: translate(4px, 4px);
-            box-shadow: 0px 0px 0px 0px #000;
+        .btn-secondary:hover {
+            background-color: rgba(37,99,235,0.05);
         }
 
-        /* UTILITY: Text Accent */
         .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-muted { color: var(--muted); }
+        .bg-primary { background-color: var(--primary); }
 
-        /* HERO OVERLAY */
-        .hero-bg {
-            background-image: url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1600'); 
-            background-size: cover;
-            background-position: center;
-            position: relative;
+        /* Mobile menu — always opaque, never transparent */
+        #mobile-menu {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
+
+        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
+        main, main + footer { scroll-margin-top: 5rem; }
         
-        .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.65);
+
+        /* Form inputs — consistent styling regardless of Gemini output */
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--card-radius);
+            background-color: var(--body-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
         }
 
-        /* DETAILS SUMMARY FIX */
+        /* Links — readable on any theme */
+        a { color: var(--primary); }
+        nav a, footer a { color: var(--text); text-decoration: none; }
+        nav a:hover, footer a:hover { color: var(--primary); }
+
+        /* Section divider — subtle visual rhythm */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(37,99,235,0.12), transparent);
+            margin: 0;
+        }
+
+        /* Custom utility for 5% opacity primary background */
+        .bg-primary-5 { background-color: rgba(37,99,235,0.05); }
+        
+        /* Details/Summary styling for FAQ and Legal */
         details > summary {
             list-style: none;
             cursor: pointer;
-            font-weight: 600;
-            padding: 0.5rem;
-            border-radius: 8px;
         }
         details > summary::-webkit-details-marker {
             display: none;
         }
-        details[open] > summary {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        
-        /* FORM INPUT STYLES FOR BRUTALISM */
-        .input-dna {
-            border: 2px solid #000;
-            border-radius: 12px;
-            padding: 0.75rem;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-    </style>
-</head>
-<body class="antialiased">
-
-    <!-- NAVIGATION -->
-    <nav class="bg-white border-b-2 border-black sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <!-- Brand Name from "yazetapoiaresourcesnet.forum" -->
-                <div class="flex items-center">
-                    <span class="font-bold text-2xl tracking-tight text-black">Yaze Resources</span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-700 hover:text-primary font-medium">Servizi</a>
-                    <a href="#reviews" class="text-gray-700 hover:text-primary font-medium">Recensioni</a>
-                    <a href="#faq" class="text-gray-700 hover:text-primary font-medium">FAQ</a>
-                    <a href="#contact" class="btn-primary text-sm">Richiedi Confronto</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 focus:outline-none">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t-2 border-black p-4">
-            <a href="#features" class="block py-2 text-gray-700 font-medium">Servizi</a>
-            <a href="#reviews" class="block py-2 text-gray-700 font-medium">Recensioni</a>
-            <a href="#faq" class="block py-2 text-gray-700 font-medium">FAQ</a>
-            <a href="#contact" class="block py-2 text-primary font-bold">Richiedi Confronto</a>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <div class="hero-bg h-screen max-h-[700px] flex items-center justify-center">
-        <div class="absolute inset-0 hero-overlay"></div>
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-                La Gestione Intelligente delle Tue <span class="text-primary bg-white px-2 rounded-lg">Risorse Domestiche</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
-                Confronta le tariffe di luce e gas. Ottimizza le tue spese e trova l'offerta migliore per la tua casa con il nostro servizio di analisi imparziale.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#features" class="btn-primary text-lg">Scopri le Offerte</a>
-                <a href="#contact" class="bg-white text-gray-900 border-2 border-black rounded-[24px] px-8 py-4 font-bold shadow-[4px_4px_0px_0px_#000] hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_#000] transition-all">Consulenza Gratuita</a>
-            </div>
-            
-            <p class="mt-6 text-sm text-gray-300">
-                Oltre 15.000 famiglie italiane hanno già risparmiato sulla bolletta questo mese.
-            </p>
-        </div>
-    </div>
-
-    <!-- LOGO STRIP (Proof) -->
-    <div class="bg-white py-6 border-b-2 border-gray-200">
-        <div class="max-w-6xl mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale">
-            <span class="text-xl font-bold text-gray-500">ENEL ENERGIA</span>
-            <span class="text-xl font-bold text-gray-500">ENI PLENITUDE</span>
-            <span class="text-xl font-bold text-gray-500">EDISON</span>
-            <span class="text-xl font-bold text-gray-500">IREN</span>
-            <span class="text-xl font-bold text-gray-500">A2A</span>
-        </div>
-    </div>
-
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="py-16 px-4">
-
-        <!-- FEATURES SECTION -->
-        <div id="features" class="max-w-5xl mx-auto dna-card">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">I Nostri Servizi di Confronto</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Analizziamo il mercato per offrirti solo le tariffe che garantiscono un reale risparmio.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="text-center">
-                    <img src="https://images.pexels.com/photos/356036/pexels-photo-356036.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Luce ed Elettricità" class="w-full h-48 object-cover rounded-2xl mb-4 border-2 border-black" loading="lazy">
-                    <h3 class="text-xl font-bold mb-2">Energia Elettrica</h3>
-                    <p class="text-gray-600 mb-4">Trova la tariffa luce più adatta ai tuoi consumi, bloccando il prezzo al riparo dai rincari di mercato.</p>
-                    <a href="#contact" class="text-primary font-bold hover:underline">Confronta Luce &rarr;</a>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="text-center">
-                    <img src="https://images.pexels.com/photos/220994/pexels-photo-220994.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Gas e Riscaldamento" class="w-full h-48 object-cover rounded-2xl mb-4 border-2 border-black" loading="lazy">
-                    <h3 class="text-xl font-bold mb-2">Gas e Riscaldamento</h3>
-                    <p class="text-gray-600 mb-4">Confronta le migliori offerte gas per riscaldare la tua casa spendendo meno, senza interruzioni di servizio.</p>
-                    <a href="#contact" class="text-primary font-bold hover:underline">Confronta Gas &rarr;</a>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="text-center">
-                    <img src="https://images.pexels.com/photos/3943716/pexels-photo-3943716.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Analisi Bollette" class="w-full h-48 object-cover rounded-2xl mb-4 border-2 border-black" loading="lazy">
-                    <h3 class="text-xl font-bold mb-2">Check-up Bollette</h3>
-                    <p class="text-gray-600 mb-4">Inviaci una bolletta recente: i nostri esperti analizzeranno i costi nascosti per proporti alternative migliori.</p>
-                    <a href="#contact" class="text-primary font-bold hover:underline">Richiedi Check-up &rarr;</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- REVIEWS SECTION -->
-        <div id="reviews" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-bold text-center mb-10">Cosa dicono i nostri utenti</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 flex">★★★★★</div>
-                    </div>
-                    <p class="text-gray-600 italic mb-4">"Grazie a Yaze Resources ho risparmiato circa 200€ all'anno sulla bolletta del gas. Servizio rapido e trasparente."</p>
-                    <p class="font-bold text-sm">— Marco B., Milano</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                    <div class="text-yellow-400 flex mb-4">★★★★★</div>
-                    <p class="text-gray-600 italic mb-4">"Non sapevo orientarmi tra le mille offerte. Qui ho trovato subito la tariffa luce perfetta per la mia famiglia."</p>
-                    <p class="font-bold text-sm">— Elena R., Roma</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                    <div class="text-yellow-400 flex mb-4">★★★★☆</div>
-                    <p class="text-gray-600 italic mb-4">"Facile da usare. Ho compilato il modulo e sono stato contattato con proposte concrete, senza spam."</p>
-                    <p class="font-bold text-sm">— Luca S., Torino</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ SECTION -->
-        <div id="faq" class="max-w-5xl mx-auto dna-card">
-            <h2 class="text-3xl font-bold text-center mb-8">Domande Frequenti (FAQ)</h2>
-            <div class="space-y-4">
-                <details class="bg-white border-2 border-gray-100 rounded-xl p-2">
-                    <summary class="text-lg">Cambiare fornitore costa qualcosa?</summary>
-                    <div class="px-4 pb-4 pt-2 text-gray-600">
-                        No, il cambio di fornitore per luce e gas è completamente gratuito e non prevede penali, a meno che non siano specificate clausole particolari nel tuo contratto attuale (casi rari).
-                    </div>
-                </details>
-                <details class="bg-white border-2 border-gray-100 rounded-xl p-2">
-                    <summary class="text-lg">C'è interruzione del servizio durante il passaggio?</summary>
-                    <div class="px-4 pb-4 pt-2 text-gray-600">
-                        Assolutamente no. Il passaggio tecnico avviene senza alcuna interruzione dell'erogazione di energia elettrica o gas. Non è necessario cambiare il contatore.
-                    </div>
-                </details>
-                <details class="bg-white border-2 border-gray-100 rounded-xl p-2">
-                    <summary class="text-lg">Quanto tempo serve per il cambio?</summary>
-                    <div class="px-4 pb-4 pt-2 text-gray-600">
-                        Le tempistiche tecniche per il cambio fornitore variano dai 30 ai 60 giorni, a seconda della data in cui viene sottoscritta la nuova offerta.
-                    </div>
-                </details>
-                <details class="bg-white border-2 border-gray-100 rounded-xl p-2">
-                    <summary class="text-lg">Posso tornare al vecchio fornitore se non sono soddisfatto?</summary>
-                    <div class="px-4 pb-4 pt-2 text-gray-600">
-                        Sì, il mercato libero ti permette di cambiare fornitore in qualsiasi momento. Hai sempre il diritto di recedere e scegliere un'altra offerta.
-                    </div>
-                </details>
-                <details class="bg-white border-2 border-gray-100 rounded-xl p-2">
-                    <summary class="text-lg">Come funziona il servizio di confronto?</summary>
-                    <div class="px-4 pb-4 pt-2 text-gray-600">
-                        Compila il modulo sottostante con i tuoi dati di consumo approssimativi. Noi analizziamo le tariffe disponibili nel database e ti mostriamo le soluzioni più convenienti per il tuo profilo.
-                    </div>
-                </details>
-            </div>
-        </div>
-
-        <!-- CONTACT SECTION -->
-        <div id="contact" class="max-w-5xl mx-auto dna-card">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-3xl font-bold mb-4">Inizia a risparmiare oggi</h2>
-                    <p class="text-gray-600 mb-6">Compila il modulo per ricevere un'analisi gratuita delle tue utenze. Un nostro consulente ti aiuterà a trovare la tariffa su misura per te.</p>
-                    
-                    <ul class="space-y-4 text-gray-700">
-                        <li class="flex items-center">
-                            <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">✓</span>
-                            Consulenza 100% Gratuita
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">✓</span>
-                            Nessun impegno di acquisto
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">✓</span>
-                            Analisi indipendente e trasparente
-                        </li>
-                    </ul>
-
-                    <div class="mt-8 bg-gray-50 p-6 rounded-xl border border-dashed border-gray-400">
-                        <p class="font-bold text-sm text-gray-500 uppercase mb-2">Indirizzo Sede Legale</p>
-                        <p>Via Alberico II, 33</p>
-                        <p>00193 Roma (RM), Italia</p>
-                        <!-- No phone available in source text scan, relying on form -->
-                    </div>
-                </div>
-
-                <div>
-                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-4">
-                        
-                        <div>
-                            <label class="block font-medium mb-1">Nome e Cognome</label>
-                            <input type="text" class="input-dna" placeholder="Mario Rossi" required>
-                        </div>
-
-                        <div>
-                            <label class="block font-medium mb-1">Tipologia Utenza</label>
-                            <select class="input-dna">
-                                <option>Solo Luce</option>
-                                <option>Solo Gas</option>
-                                <option>Luce e Gas (Dual Fuel)</option>
-                                <option>Internet Casa</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block font-medium mb-1">Comune di residenza</label>
-                            <input type="text" class="input-dna" placeholder="Es. Milano" required>
-                        </div>
-                        
-                        <!-- Honeypot -->
-                        <input type="text" style="display:none" name="honeypot">
-
-                        <button type="submit" class="w-full btn-primary text-lg mt-4">Richiedi Preventivo Gratuito</button>
-                        <p class="text-xs text-gray-500 text-center mt-3">I tuoi dati sono al sicuro. Cliccando accetti la Privacy Policy.</p>
-                    </form>
-
-                    <!-- SUCCESS MESSAGE -->
-                    <div id="success-msg" style="display:none;" class="bg-green-50 border-2 border-green-500 rounded-xl p-8 text-center">
-                        <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Richiesta Inviata!</h3>
-                        <p class="text-gray-600">Grazie per averci contattato. Un nostro esperto analizzerà la tua richiesta e ti contatterà a breve con le migliori opzioni di risparmio.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <div class="text-2xl font-bold mb-4 md:mb-0">Yaze Resources</div>
-                <div class="text-sm text-gray-400 max-w-md text-center md:text-right">
-                    Questo è un sito promozionale indipendente gestito da Yaze Resources, che agisce in qualità di affiliato per confrontatariffe.it. Tutti i marchi citati appartengono ai rispettivi proprietari.
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-700 pt-8 text-sm text-gray-400">
-                <p class="mb-4">&copy; 2026 Yaze Resources. Tutti i diritti riservati.</p>
-                
-                <div class="space-y-4">
-                    <details>
-                        <summary>Informativa sulla Privacy</summary>
-                        <div class="p-4 bg-gray-700 rounded mt-2">
-                            <p>Yaze Resources si impegna a proteggere la tua privacy. La presente Informativa sulla privacy descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.</p>
-                            <p class="mt-2">1. Raccolta dati: Raccogliamo solo le informazioni strettamente necessarie per fornire il servizio di confronto tariffe richiesto dall'utente, come nome e dati di consumo energetico.</p>
-                            <p class="mt-2">2. Utilizzo: I dati vengono utilizzati esclusivamente per elaborare preventivi e mettere in contatto l'utente con le migliori offerte di energia e gas.</p>
-                            <p class="mt-2">3. Sicurezza: Adottiamo misure di sicurezza tecniche per proteggere i tuoi dati da accessi non autorizzati o divulgazione impropria.</p>
-                            <p class="mt-2">4. Terze parti: Potremmo condividere i tuoi dati con i fornitori di energia partner esclusivamente al fine di attivare il contratto richiesto.</p>
-                            <p class="mt-2">5. Diritti: Hai il diritto di accedere, rettificare o richiedere la cancellazione dei tuoi dati in qualsiasi momento contattandoci tramite il modulo presente sul sito.</p>
-                            <p class="mt-2">6. Conservazione: I dati verranno conservati solo per il tempo necessario a erogare il servizio e adempiere agli obblighi legali.</p>
-                            <p class="mt-2">7. Cookie: Utilizziamo cookie tecnici per migliorare la navigazione e l'esperienza utente.</p>
-                            <p class="mt-2">8. Modifiche: Ci riserviamo il diritto di modificare questa policy. Le modifiche saranno pubblicate su questa pagina.</p>
-                        </div>
-                    </details>
-                    
-                    <details>
-                        <summary>Termini e Condizioni</summary>
-                        <div class="p-4 bg-gray-700 rounded mt-2">
-                            <p>L'utilizzo del sito Yaze Resources è soggetto ai seguenti Termini e Condizioni.</p>
-                            <p class="mt-2">1. Accettazione: Accedendo a questo sito, l'utente accetta di essere vincolato da questi termini.</p>
-                            <p class="mt-2">2. Servizio: Offriamo un servizio di confronto tariffe a scopo informativo. Non garantiamo la precisione assoluta dei prezzi, che possono subire variazioni dai fornitori.</p>
-                            <p class="mt-2">3. Responsabilità: Yaze Resources non è responsabile per eventuali discrepanze tra i prezzi mostrati e quelli finali applicati dal fornitore di energia.</p>
-                            <p class="mt-2">4. Utilizzo lecito: L'utente si impegna a utilizzare il sito solo per scopi legittimi e a non inviare dati falsi o fraudolenti.</p>
-                            <p class="mt-2">5. Proprietà intellettuale: Tutti i contenuti del sito sono protetti da copyright e non possono essere riprodotti senza permesso.</p>
-                            <p class="mt-2">6. Limitazione di responsabilità: Non saremo responsabili per danni diretti o indiretti derivanti dall'uso o dall'impossibilità di usare il sito.</p>
-                            <p class="mt-2">7. Link esterni: Il sito può contenere link a siti terzi sui quali non abbiamo alcun controllo.</p>
-                            <p class="mt-2">8. Legge applicabile: Questi termini sono regolati dalla legge italiana. Per ogni controversia è competente il foro di residenza dell'utente.</p>
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 transform translate-y-full transition-transform duration-300">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
-            <p class="text-sm mb-4 md:mb-0 mr-4">
-                Utilizziamo i cookie per garantirti la migliore esperienza sul nostro sito. Continuando a navigare accetti la nostra Privacy Policy.
-            </p>
-            <div class="flex space-x-4">
-                <button onclick="document.getElementById('cookie-banner').style.transform='translateY(100%)'; localStorage.setItem('cookiesAccepted', 'true');" class="bg-primary px-4 py-2 rounded font-bold text-sm">Accetta</button>
-                <button onclick="document.getElementById('cookie-banner').style.transform='translateY(100%)'" class="text-gray-400 text-sm underline">Rifiuta</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // Smooth Scroll & Navigation Fix
+    </style> </head><body><nav class="fixed w-full top-0 z-50 border-b border-gray-100 transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold text-primary tracking-tight"> Yazeta Poia<span class="text-secondary">.</span></a></div><div class="hidden md:flex items-center space-x-8"><a href="#esperienze" class="font-medium text-sm uppercase tracking-wide">Esperienze</a><a href="#recensioni" class="font-medium text-sm uppercase tracking-wide">Recensioni</a><a href="#faq" class="font-medium text-sm uppercase tracking-wide">Domande</a><a href="#contact" class="btn-primary text-sm"> Inizia il Viaggio <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full px-4 pt-2 pb-4 space-y-1"><a href="#esperienze" class="block px-3 py-2 rounded-md text-base font-medium">Esperienze</a><a href="#recensioni" class="block px-3 py-2 rounded-md text-base font-medium">Recensioni</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium">Domande</a><a href="#contact" class="block px-3 py-2 mt-4 text-center btn-primary w-full justify-center">Contattaci</a></div></nav><main><section class="relative pt-12 pb-24 md:pt-20 md:pb-36"><div class="absolute inset-0 bg-primary-5 h-[80%] md:h-[90%] top-0 z-0"></div><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="flex flex-col md:flex-row items-center"><div class="w-full md:w-1/2 pr-0 md:pr-8 lg:pr-12 pt-10 pb-16"><span class="inline-block py-1 px-3 rounded-full bg-white text-secondary text-sm font-bold tracking-wider mb-6 shadow-sm border border-gray-100"> BLOG UFFICIALE </span><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6"> Scopri le vere <span class="text-primary">Risorse</span> d'Italia. </h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> Il tuo blog di riferimento per esperienze indimenticabili. Esplora le migliori cantine italiane, organizza il tuo prossimo tour enogastronomico e assapora la vera essenza del nostro territorio. </p><div class="flex flex-col sm:flex-row gap-4"><a href="#esperienze" class="btn-primary justify-center"> Esplora gli Articoli <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></a></div><div class="mt-10 flex items-center gap-4 text-sm font-medium text-muted"><div class="flex -space-x-2"><div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs">ITA</div><div class="w-8 h-8 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs">VINO</div><div class="w-8 h-8 rounded-full bg-gray-500 border-2 border-white flex items-center justify-center text-xs">CIBO</div></div><p>Oltre 10.000 lettori appassionati</p></div></div><div class="w-full md:w-1/2 mt-8 md:mt-0 relative"><div class="dna-card p-2 md:-ml-8 lg:-ml-12 relative z-20 transform hover:-translate-y-2 transition-transform duration-500"><img src="https://images.pexels.com/photos/290316/pexels-photo-290316.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Degustazione vini in Italia" class="w-full h-auto object-cover rounded-xl" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/2563eb/ffffff?text=Esperienza+Vino'"><div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3"><div class="bg-red-100 p-2 rounded-lg text-secondary"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg></div><div><p class="text-xs text-muted font-bold uppercase">Passione</p><p class="font-bold text-text">100% Italiana</p></div></div></div></div></div></div></section><hr class="section-divider"><section id="esperienze" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa Troverai nel Nostro Blog</h2><p class="text-lg text-muted max-w-2xl mx-auto">Guide dettagliate, recensioni oneste e consigli pratici per vivere al meglio la tua passione per l'enogastronomia.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card group"><div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Degustazione Vini</h3><p class="text-muted leading-relaxed">Esploriamo le più rinomate cantine italiane. Leggi le nostre recensioni approfondite per scegliere la tua prossima degustazione vini perfetta, dai grandi classici alle piccole produzioni artigianali.</p></div><div class="dna-card group"><div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg></div><h3 class="text-xl font-semibold mb-3">Tour Enogastronomico</h3><p class="text-muted leading-relaxed">Itinerari studiati nei minimi dettagli. Ti guidiamo passo passo nella creazione del tuo tour enogastronomico ideale, tra paesaggi mozzafiato e soste golose irrinunciabili.</p></div><div class="dna-card group"><div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Sagre e Festival</h3><p class="text-muted leading-relaxed">Rimani aggiornato sugli eventi locali. Dai prodotti tipici alle grandi manifestazioni regionali, copriamo sagre e festival per farti vivere l'autentica convivialità italiana.</p></div></div></div></section><hr class="section-divider"><section id="recensioni" class="py-24 md:py-36 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row gap-12 items-center"><div class="w-full md:w-1/3"><h2 class="text-3xl md:text-4xl font-bold mb-4">I Nostri Lettori</h2><p class="text-muted mb-6">La community di Yazeta Poia cresce ogni giorno. Ecco cosa dicono coloro che seguono i nostri consigli per i loro viaggi di gusto.</p><div class="flex items-center gap-2 text-secondary font-bold"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><span>Valutazione 4.9/5 (2026)</span></div></div><div class="w-full md:w-2/3 space-y-6"><div class="dna-card !mb-0 border-l-4 border-l-primary"><p class="text-lg italic text-text mb-4">"Grazie agli articoli di questo blog ho organizzato un tour enogastronomico in Toscana perfetto. Le indicazioni sulle cantine italiane meno note ma di altissima qualità sono state preziose."</p><div class="flex items-center gap-3"><div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-primary">M</div><div><p class="font-semibold">Marco V.</p><p class="text-sm text-muted">Appassionato di Vini</p></div></div></div><div class="dna-card !mb-0 border-l-4 border-l-secondary"><p class="text-lg italic text-text mb-4">"Cercavo informazioni sui prodotti tipici siciliani prima del mio viaggio e ho trovato una miniera d'oro. Le guide sulle sagre locali mi hanno fatto scoprire sapori indimenticabili."</p><div class="flex items-center gap-3"><div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center font-bold text-secondary">E</div><div><p class="font-semibold">Elena R.</p><p class="text-sm text-muted">Food Blogger</p></div></div></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-muted">Tutto quello che devi sapere sulle nostre guide e articoli.</p></div><div class="dna-card space-y-4"><details class="group bg-body-bg p-4 rounded-lg border border-gray-100"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Cos'è un tour enogastronomico tipico recensito sul blog? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed"> Un tour enogastronomico tipico che descriviamo include visite guidate presso cantine italiane selezionate, passeggiate tra i vigneti, e degustazioni abbinate a prodotti tipici del territorio. Forniamo itinerari dettagliati per permetterti di replicare l'esperienza. </p></details><details class="group bg-body-bg p-4 rounded-lg border border-gray-100"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Come scelgo la migliore degustazione vini tra quelle proposte? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed"> Ogni nostro articolo sulla degustazione vini include parametri chiari: atmosfera della cantina, competenza del sommelier, rapporto qualità-prezzo e tipologia di vini offerti. Puoi filtrare le nostre guide in base alla regione o al tuo livello di esperienza. </p></details><details class="group bg-body-bg p-4 rounded-lg border border-gray-100"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Quali cantine italiane recensite? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed"> Spaziamo dalle storiche cantine italiane del Piemonte e della Toscana, fino alle giovani realtà emergenti del Sud Italia. Il nostro obiettivo è dare voce sia ai grandi nomi che ai piccoli produttori artigianali che meritano di essere scoperti. </p></details><details class="group bg-body-bg p-4 rounded-lg border border-gray-100"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Coprite anche sagre e festival locali? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed"> Assolutamente sì. Crediamo che l'anima dell'enogastronomia risieda nelle tradizioni popolari. Pubblichiamo regolarmente calendari e reportage su sagre e festival dedicati ai prodotti di stagione, dal tartufo bianco all'olio nuovo. </p></details><details class="group bg-body-bg p-4 rounded-lg border border-gray-100"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Dove trovo informazioni sui prodotti tipici? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed"> Abbiamo una sezione interamente dedicata ai prodotti tipici regionali. Qui spieghiamo la storia, i metodi di produzione (come DOP e IGP) e suggeriamo i migliori abbinamenti con i vini locali per esaltarne i sapori. </p></details></div></div></section><hr class="section-divider"><section id="contact" class="py-24 md:py-36 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row gap-12"><div class="w-full md:w-1/2"><h2 class="text-3xl md:text-4xl font-bold mb-4">Collabora con Noi</h2><p class="text-muted mb-8 text-lg">Sei un produttore, gestisci una cantina o vuoi segnalarci un evento? Compila il modulo per entrare in contatto con la redazione del blog.</p><div class="space-y-6"><div class="flex items-start gap-4"><div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-primary flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></div><div><h4 class="font-bold text-text">Sede Editoriale</h4><p class="text-muted">Redazione indipendente focalizzata sul territorio italiano.</p></div></div><div class="flex items-start gap-4"><div class="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center text-secondary flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><h4 class="font-bold text-text">Tempi di Risposta</h4><p class="text-muted">Il nostro team legge tutti i messaggi e risponde entro 48 ore lavorative alle proposte in linea con il nostro piano editoriale.</p></div></div></div></div><div class="w-full md:w-1/2"><div class="dna-card !mb-0"><form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div><label class="block text-sm font-semibold text-text mb-1">Nome Completo o Azienda</label><input type="text" required placeholder="Es. Cantine Rossi"></div><div><label class="block text-sm font-semibold text-text mb-1">Motivo del Contatto</label><select required><option value="">Seleziona un'opzione</option><option value="recensione">Proposta Recensione Cantina</option><option value="evento">Segnalazione Evento/Sagra</option><option value="tour">Collaborazione per Tour</option><option value="altro">Altro</option></select></div><div><label class="block text-sm font-semibold text-text mb-1">Il tuo Messaggio</label><textarea rows="4" required placeholder="Descrivi la tua proposta o il tuo evento..."></textarea></div><button type="submit" class="btn-primary w-full justify-center mt-2"> Invia Richiesta <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button><p class="text-xs text-muted text-center mt-3">Compilando il modulo accetti i nostri termini di servizio.</p></form><div id="success-msg" style="display:none" class="text-center py-8"><div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-4"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold text-text mb-2">Messaggio Inviato!</h3><p class="text-muted">Grazie per averci contattato. La nostra redazione valuterà la tua proposta al più presto.</p></div></div></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4"><div class="text-2xl font-extrabold text-primary tracking-tight"> Yazeta Poia<span class="text-secondary">.</span></div><div class="flex space-x-6"><a href="#esperienze" class="text-sm text-muted hover:text-primary font-medium">Esperienze</a><a href="#recensioni" class="text-sm text-muted hover:text-primary font-medium">Recensioni</a><a href="#faq" class="text-sm text-muted hover:text-primary font-medium">FAQ</a></div></div><div class="bg-blue-50 p-4 rounded-lg mb-8 border border-blue-100 text-sm text-muted text-center leading-relaxed"><strong>Disclaimer Obbligatorio:</strong> Questo è un sito promozionale indipendente gestito da Yazeta Poia Resources, che agisce in qualità di affiliato per degustiamo.com. Non siamo i proprietari diretti del marchio degustiamo.com, ma curiamo contenuti editoriali per promuovere le loro guide e i loro servizi. </div><div class="space-y-4 mb-8"><details class="text-sm text-muted"><summary class="cursor-pointer hover:text-primary font-medium">Informativa sulla Privacy (Privacy Policy)</summary><div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100 h-48 overflow-y-auto"><p>La presente informativa sulla privacy descrive come Yazeta Poia Resources raccoglie, utilizza e protegge i dati personali degli utenti che visitano il nostro blog. Consideriamo la privacy dei nostri lettori una priorità assoluta e ci impegniamo a trattare ogni informazione con la massima cura. Quando visiti il nostro sito, potremmo raccogliere automaticamente alcune informazioni tecniche, come il tuo indirizzo IP, il tipo di browser utilizzato e le pagine visitate. Questi dati vengono utilizzati esclusivamente a fini statistici per migliorare la tua esperienza di navigazione. Se decidi di contattarci tramite l'apposito modulo, ti chiederemo di fornire il tuo nome e il motivo del contatto. Utilizzeremo queste informazioni solo per rispondere alla tua specifica richiesta editoriale o di collaborazione. Non condividiamo, vendiamo o affittiamo i tuoi dati personali a terze parti per scopi di marketing. I tuoi dati sono conservati su server sicuri protetti da misure tecniche avanzate per prevenire accessi non autorizzati. Collaboriamo con degustiamo.com in qualità di affiliati, pertanto alcuni link presenti sul nostro blog potrebbero reindirizzarti al loro sito, che dispone di una propria politica sulla privacy indipendente. Ti invitiamo a leggere attentamente l'informativa sulla privacy di qualsiasi sito web di terze parti che visiti. Yazeta Poia Resources si riserva il diritto di aggiornare periodicamente questa informativa per riflettere eventuali cambiamenti normativi. Continuando a utilizzare il nostro sito dopo tali modifiche, accetti la nuova versione della privacy policy. Hai il diritto di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati personali in qualsiasi momento. Per esercitare questi diritti, ti preghiamo di utilizzare il modulo di contatto presente sul sito. Assicuriamo che ogni richiesta verrà gestita nel rispetto delle normative vigenti sulla protezione dei dati. La tua fiducia è fondamentale per noi e lavoriamo costantemente per mantenerla.</p></div></details><details class="text-sm text-muted"><summary class="cursor-pointer hover:text-primary font-medium">Termini di Servizio (Terms of Service)</summary><div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100 h-48 overflow-y-auto"><p>I presenti Termini di Servizio regolano l'utilizzo del blog gestito da Yazeta Poia Resources. Accedendo e navigando su questo sito, accetti di essere vincolato da questi termini nella loro interezza. Il nostro sito offre contenuti informativi, recensioni e guide legate al mondo dell'enogastronomia italiana. Tutto il materiale pubblicato, inclusi testi, grafiche e layout, è di proprietà intellettuale di Yazeta Poia Resources, ove non diversamente specificato. È severamente vietata la riproduzione, la distribuzione o la modifica dei nostri contenuti senza un'esplicita autorizzazione scritta. In qualità di blog indipendente, esprimiamo opinioni personali e recensioni basate sulle nostre esperienze dirette o su ricerche accurate. Tuttavia, non possiamo garantire l'assoluta accuratezza o tempestività di ogni singola informazione fornita, specialmente riguardo a prezzi o orari di cantine e festival, che possono subire variazioni. L'utente utilizza le informazioni presenti sul sito a proprio rischio. Yazeta Poia Resources funge da portale affiliato per degustiamo.com; pertanto, potremmo ricevere una commissione se prenoti servizi tramite i link forniti, senza alcun costo aggiuntivo per te. Non siamo responsabili per la qualità dei servizi finali erogati dalle cantine o dagli organizzatori di tour recensiti. Qualsiasi controversia relativa ai servizi prenotati tramite siti terzi deve essere risolta direttamente con il fornitore del servizio. Ci riserviamo il diritto di modificare, sospendere o interrompere qualsiasi parte del sito in qualsiasi momento e senza preavviso. L'utente si impegna a utilizzare il sito in modo lecito, astenendosi da comportamenti che potrebbero danneggiare l'infrastruttura tecnica o la reputazione del blog. L'invio di messaggi spam o contenuti inappropriati tramite il nostro modulo di contatto comporterà il blocco immediato. Questi termini sono regolati dalle leggi vigenti e qualsiasi disputa sarà soggetta alla giurisdizione competente. Ti invitiamo a consultare regolarmente questa pagina per eventuali aggiornamenti.</p></div></details><details class="text-sm text-muted"><summary class="cursor-pointer hover:text-primary font-medium">Politica di Rimborso (Refund Policy)</summary><div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100 h-48 overflow-y-auto"><p>Poiché Yazeta Poia Resources opera esclusivamente come blog di informazione e portale promozionale affiliato, non vendiamo direttamente prodotti fisici o biglietti per tour enogastronomici. Di conseguenza, non elaboriamo pagamenti diretti da parte degli utenti sul nostro sito web. La nostra politica di rimborso si applica solo nel contesto della natura del nostro servizio editoriale. Se hai cliccato su un link affiliato presente sul nostro blog e hai effettuato un acquisto o una prenotazione sul sito di degustiamo.com o di un altro partner, qualsiasi richiesta di rimborso, cancellazione o modifica della prenotazione deve essere indirizzata direttamente a loro. Noi non abbiamo accesso ai dettagli delle tue transazioni finanziarie effettuate su piattaforme terze. Le politiche di cancellazione per le degustazioni vini o i tour variano a seconda della singola cantina o del tour operator. Consigliamo vivamente di leggere i termini e le condizioni specifiche del fornitore prima di finalizzare qualsiasi acquisto. Nel caso in cui avessi attivato una partnership commerciale diretta con la nostra redazione (ad esempio per contenuti sponsorizzati sul blog), i termini di rimborso saranno stabiliti in un contratto separato firmato da entrambe le parti. In generale, per i servizi editoriali già pubblicati non è previsto alcun rimborso, a meno che non vi sia stata una grave inadempienza da parte nostra. Ci impegniamo a fornire descrizioni trasparenti e oneste per aiutarti a prendere decisioni informate, riducendo al minimo il rischio di insoddisfazione. Se ritieni che una nostra recensione contenga informazioni fattualmente inesatte che ti hanno indotto in errore, ti preghiamo di segnalarcelo tramite il modulo di contatto. Valuteremo la segnalazione e, se opportuno, correggeremo l'articolo, ma non potremo offrire compensazioni finanziarie. La tua soddisfazione come lettore è importante, ma le nostre responsabilità legali sono limitate all'accuratezza ragionevole dei contenuti informativi gratuiti che offriamo.</p></div></details></div><div class="text-center text-sm text-muted"> &copy; 2026 Yazeta Poia Resources. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t border-gray-200 p-4 shadow-lg z-50 transform transition-transform translate-y-full"><div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"><p class="text-sm text-muted text-center md:text-left"> Utilizziamo i cookie per offrirti la migliore esperienza sul nostro blog di enogastronomia. Continuando a navigare, accetti la nostra politica sui cookie. </p><div class="flex gap-2 flex-shrink-0"><button onclick="acceptCookies()" class="btn-primary !py-2 !px-4 text-sm">Accetta Tutti</button><button onclick="acceptCookies()" class="btn-secondary !py-2 !px-4 text-sm">Solo Necessari</button></div></div></div> <script>
+        // Smart Routing Script
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -418,27 +137,29 @@
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    // Fallback to contact if section missing
+                    // Fallback to contact
                     const contactSection = document.getElementById('contact');
-                    if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
-
+                
                 // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobile-menu');
-                if(!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
+                document.getElementById('mobile-menu').classList.add('hidden');
             });
         });
 
         // Cookie Banner Logic
-        window.addEventListener('DOMContentLoaded', () => {
-            if (!localStorage.getItem('cookiesAccepted')) {
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("cookiesAccepted")) {
                 setTimeout(() => {
-                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                    document.getElementById("cookie-banner").classList.remove("translate-y-full");
                 }, 1000);
             }
         });
-    </script>
-</body>
-</html>
+
+        function acceptCookies() {
+            localStorage.setItem("cookiesAccepted", "true");
+            document.getElementById("cookie-banner").classList.add("translate-y-full");
+        }
+    </script> </body></html>
