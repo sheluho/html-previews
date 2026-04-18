@@ -1,165 +1,554 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Yazeta Poia Resources | Blog di Esperienze Enogastronomiche Italiane</title><meta name="description" content="Scopri le vere risorse d'Italia attraverso il nostro blog di esperienze enogastronomiche. Recensioni di cantine italiane, tour e prodotti tipici."><link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #dc2626;
-            --radius: 16px;
-            --card-radius: 16px;
-            --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.05);
-            --body-bg: #faf5ff;
-            --card-bg: #ffffff;
-            --text: #1e1b4b;
-            --muted: #6b7280;
-        }
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YazeTapoia Travel | Rivista di Viaggi e Itinerari</title>
+    <meta name="description" content="Scopri le migliori destinazioni turistiche, itinerari di viaggio esclusivi e consigli per le tue vacanze in Italia. Esplora borghi italiani e città d'arte.">
+    
+    <!-- Tailwind CSS v2.2.19 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Mandatory CSS Injection -->
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #dc2626;
+        --radius: 16px;
+        --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.05);
+      }
+    
+      body {
+        background-color: #fffbeb;
+        color: #1c1917;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    
+      .dna-card {
+        background-color: #ffffff;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
+    
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+      }
+      .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .bg-primary { background-color: var(--primary); }
+    
+      #mobile-menu { background-color: #ffffff; }
+    
+      footer { background-color: #111827; color: #d1d5db; }
+      footer a { color: #d1d5db; text-decoration: none; }
+      footer a:hover { color: #ffffff; }
 
-        body {
-            background-color: var(--body-bg);
-            color: var(--text);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            padding-top: 4rem;
-        }
+      /* Additional utilities for layout */
+      .section-divider {
+          border: 0;
+          height: 1px;
+          background: rgba(0,0,0,0.05);
+          margin: 0 auto;
+          width: 80%;
+      }
+      
+      /* Overlap Hero specifics */
+      .hero-band {
+          background-color: var(--primary);
+          opacity: 0.05;
+          height: 75%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: -1;
+      }
+    </style>
+</head>
+<body class="antialiased">
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center gap-2 text-2xl font-bold text-gray-900">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        YazeTapoia <span class="text-primary">Travel</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Esplora</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Recensioni</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">FAQ</a>
+                    <a href="#contact" class="btn-primary">Richiedi Info</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-        .dna-card {
-            background-color: var(--card-bg);
-            border-radius: var(--card-radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full shadow-lg border-t border-gray-100 z-50">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#features" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Esplora</a>
+                <a href="#reviews" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Recensioni</a>
+                <a href="#faq" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">FAQ</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-medium text-primary font-bold hover:bg-gray-50 rounded-md">Contattaci</a>
+            </div>
+        </div>
+    </nav>
 
-        nav {
-            background-color: var(--body-bg);
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            border-radius: var(--radius);
-            padding: 0.875rem 2rem;
-            font-weight: 600;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            border-radius: var(--radius);
-            padding: 0.875rem 2rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-        .btn-secondary:hover {
-            background-color: rgba(37,99,235,0.05);
-        }
-
-        .text-primary { color: var(--primary); }
-        .text-secondary { color: var(--secondary); }
-        .text-muted { color: var(--muted); }
-        .bg-primary { background-color: var(--primary); }
-
-        /* Mobile menu — always opaque, never transparent */
-        #mobile-menu {
-            background-color: var(--card-bg);
-            border-top: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Fixed navbar compensation — prevent hero hidden behind opaque nav */
-        main, main + footer { scroll-margin-top: 5rem; }
+    <!-- Main Content -->
+    <main class="pt-20">
         
+        <!-- Overlap Hero Section -->
+        <section class="relative pt-24 pb-24 md:pt-36 md:pb-36 overflow-visible z-10">
+            <div class="hero-band"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
+                    
+                    <!-- Text Content (Left) -->
+                    <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left mb-12 lg:mb-0">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-primary font-semibold text-sm mb-6">
+                            <span class="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
+                            La tua bussola per l'avventura
+                        </div>
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl lg:leading-tight mb-6">
+                            Le migliori <span class="text-primary">risorse</span> per i tuoi itinerari di viaggio.
+                        </h1>
+                        <p class="mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0 mb-8">
+                            Scopri le <strong>destinazioni turistiche</strong> più affascinanti, organizza le tue perfette <strong>vacanze in Italia</strong> e lasciati ispirare dai nostri reportage sui luoghi più belli del mondo.
+                        </p>
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                            <div class="rounded-md shadow">
+                                <a href="#features" class="btn-primary w-full flex items-center justify-center">
+                                    Inizia l'esplorazione
+                                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Overlapping Image Card (Right) -->
+                    <div class="relative sm:max-w-lg sm:mx-auto lg:max-w-none lg:mx-0 lg:col-span-6 z-20">
+                        <div class="relative mx-auto w-full rounded-2xl shadow-2xl lg:max-w-md bg-white p-2" style="transform: translateY(2rem);">
+                            <img class="w-full rounded-xl object-cover" style="height: 400px;" src="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg" alt="Paesaggio italiano mozzafiato per ispirazione viaggio" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/2563eb/ffffff?text=Destinazioni+Turistiche'">
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4 border border-gray-100">
+                                <div class="bg-blue-100 p-3 rounded-full text-primary">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 font-medium">Itinerari Verificati</p>
+                                    <p class="text-lg font-bold text-gray-900">+500 Guide</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        /* Form inputs — consistent styling regardless of Gemini output */
-        input[type="text"], input[type="email"], input[type="tel"],
-        input[type="number"], input[type="url"], textarea, select {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 0.75rem 1rem;
-            border: 1px solid rgba(0,0,0,0.05);
-            border-radius: var(--card-radius);
-            background-color: var(--body-bg);
-            color: var(--text);
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
-        }
+        <hr class="section-divider">
 
-        /* Links — readable on any theme */
-        a { color: var(--primary); }
-        nav a, footer a { color: var(--text); text-decoration: none; }
-        nav a:hover, footer a:hover { color: var(--primary); }
+        <!-- Features Section (3-Column Cards) -->
+        <section id="features" class="py-24 md:py-36 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-base text-secondary font-semibold tracking-wide uppercase">Cosa Offriamo</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        La Tua Finestra Sul Mondo
+                    </p>
+                    <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                        Dalle vette alpine alle coste assolate, curiamo contenuti editoriali di altissima qualità per trasformare ogni tua partenza in un'esperienza memorabile.
+                    </p>
+                </div>
 
-        /* Section divider — subtle visual rhythm */
-        .section-divider {
-            border: none;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(37,99,235,0.12), transparent);
-            margin: 0;
-        }
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="dna-card flex flex-col h-full transform transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+                        <div class="bg-blue-50 w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-primary">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Destinazioni Turistiche</h3>
+                        <p class="text-gray-600 flex-grow">
+                            Esplora recensioni dettagliate, consigli pratici e segreti locali per le mete più ambite. Che tu cerchi metropoli vibranti o angoli remoti, ti forniamo tutte le informazioni per viaggiare preparato.
+                        </p>
+                    </div>
 
-        /* Custom utility for 5% opacity primary background */
-        .bg-primary-5 { background-color: rgba(37,99,235,0.05); }
-        
-        /* Details/Summary styling for FAQ and Legal */
-        details > summary {
-            list-style: none;
-            cursor: pointer;
-        }
-        details > summary::-webkit-details-marker {
-            display: none;
-        }
-    </style> </head><body><nav class="fixed w-full top-0 z-50 border-b border-gray-100 transition-all duration-300"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0 flex items-center"><a href="#" class="text-2xl font-extrabold text-primary tracking-tight"> Yazeta Poia<span class="text-secondary">.</span></a></div><div class="hidden md:flex items-center space-x-8"><a href="#esperienze" class="font-medium text-sm uppercase tracking-wide">Esperienze</a><a href="#recensioni" class="font-medium text-sm uppercase tracking-wide">Recensioni</a><a href="#faq" class="font-medium text-sm uppercase tracking-wide">Domande</a><a href="#contact" class="btn-primary text-sm"> Inizia il Viaggio <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a></div><div class="md:hidden flex items-center"><button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-text hover:text-primary focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></div><div id="mobile-menu" class="hidden md:hidden absolute w-full px-4 pt-2 pb-4 space-y-1"><a href="#esperienze" class="block px-3 py-2 rounded-md text-base font-medium">Esperienze</a><a href="#recensioni" class="block px-3 py-2 rounded-md text-base font-medium">Recensioni</a><a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium">Domande</a><a href="#contact" class="block px-3 py-2 mt-4 text-center btn-primary w-full justify-center">Contattaci</a></div></nav><main><section class="relative pt-12 pb-24 md:pt-20 md:pb-36"><div class="absolute inset-0 bg-primary-5 h-[80%] md:h-[90%] top-0 z-0"></div><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="flex flex-col md:flex-row items-center"><div class="w-full md:w-1/2 pr-0 md:pr-8 lg:pr-12 pt-10 pb-16"><span class="inline-block py-1 px-3 rounded-full bg-white text-secondary text-sm font-bold tracking-wider mb-6 shadow-sm border border-gray-100"> BLOG UFFICIALE </span><h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6"> Scopri le vere <span class="text-primary">Risorse</span> d'Italia. </h1><p class="text-lg md:text-xl text-muted mb-8 leading-relaxed"> Il tuo blog di riferimento per esperienze indimenticabili. Esplora le migliori cantine italiane, organizza il tuo prossimo tour enogastronomico e assapora la vera essenza del nostro territorio. </p><div class="flex flex-col sm:flex-row gap-4"><a href="#esperienze" class="btn-primary justify-center"> Esplora gli Articoli <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></a></div><div class="mt-10 flex items-center gap-4 text-sm font-medium text-muted"><div class="flex -space-x-2"><div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs">ITA</div><div class="w-8 h-8 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs">VINO</div><div class="w-8 h-8 rounded-full bg-gray-500 border-2 border-white flex items-center justify-center text-xs">CIBO</div></div><p>Oltre 10.000 lettori appassionati</p></div></div><div class="w-full md:w-1/2 mt-8 md:mt-0 relative"><div class="dna-card p-2 md:-ml-8 lg:-ml-12 relative z-20 transform hover:-translate-y-2 transition-transform duration-500"><img src="https://images.pexels.com/photos/290316/pexels-photo-290316.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Degustazione vini in Italia" class="w-full h-auto object-cover rounded-xl" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/2563eb/ffffff?text=Esperienza+Vino'"><div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3"><div class="bg-red-100 p-2 rounded-lg text-secondary"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg></div><div><p class="text-xs text-muted font-bold uppercase">Passione</p><p class="font-bold text-text">100% Italiana</p></div></div></div></div></div></div></section><hr class="section-divider"><section id="esperienze" class="py-24 md:py-36"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa Troverai nel Nostro Blog</h2><p class="text-lg text-muted max-w-2xl mx-auto">Guide dettagliate, recensioni oneste e consigli pratici per vivere al meglio la tua passione per l'enogastronomia.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="dna-card group"><div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Degustazione Vini</h3><p class="text-muted leading-relaxed">Esploriamo le più rinomate cantine italiane. Leggi le nostre recensioni approfondite per scegliere la tua prossima degustazione vini perfetta, dai grandi classici alle piccole produzioni artigianali.</p></div><div class="dna-card group"><div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg></div><h3 class="text-xl font-semibold mb-3">Tour Enogastronomico</h3><p class="text-muted leading-relaxed">Itinerari studiati nei minimi dettagli. Ti guidiamo passo passo nella creazione del tuo tour enogastronomico ideale, tra paesaggi mozzafiato e soste golose irrinunciabili.</p></div><div class="dna-card group"><div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div><h3 class="text-xl font-semibold mb-3">Sagre e Festival</h3><p class="text-muted leading-relaxed">Rimani aggiornato sugli eventi locali. Dai prodotti tipici alle grandi manifestazioni regionali, copriamo sagre e festival per farti vivere l'autentica convivialità italiana.</p></div></div></div></section><hr class="section-divider"><section id="recensioni" class="py-24 md:py-36 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row gap-12 items-center"><div class="w-full md:w-1/3"><h2 class="text-3xl md:text-4xl font-bold mb-4">I Nostri Lettori</h2><p class="text-muted mb-6">La community di Yazeta Poia cresce ogni giorno. Ecco cosa dicono coloro che seguono i nostri consigli per i loro viaggi di gusto.</p><div class="flex items-center gap-2 text-secondary font-bold"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><span>Valutazione 4.9/5 (2026)</span></div></div><div class="w-full md:w-2/3 space-y-6"><div class="dna-card !mb-0 border-l-4 border-l-primary"><p class="text-lg italic text-text mb-4">"Grazie agli articoli di questo blog ho organizzato un tour enogastronomico in Toscana perfetto. Le indicazioni sulle cantine italiane meno note ma di altissima qualità sono state preziose."</p><div class="flex items-center gap-3"><div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-primary">M</div><div><p class="font-semibold">Marco V.</p><p class="text-sm text-muted">Appassionato di Vini</p></div></div></div><div class="dna-card !mb-0 border-l-4 border-l-secondary"><p class="text-lg italic text-text mb-4">"Cercavo informazioni sui prodotti tipici siciliani prima del mio viaggio e ho trovato una miniera d'oro. Le guide sulle sagre locali mi hanno fatto scoprire sapori indimenticabili."</p><div class="flex items-center gap-3"><div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center font-bold text-secondary">E</div><div><p class="font-semibold">Elena R.</p><p class="text-sm text-muted">Food Blogger</p></div></div></div></div></div></div></section><hr class="section-divider"><section id="faq" class="py-24 md:py-36"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold mb-4">Domande Frequenti</h2><p class="text-muted">Tutto quello che devi sapere sulle nostre guide e articoli.</p></div><div class="dna-card space-y-4"><details class="group bg-body-bg p-4 rounded-lg border border-gray-100"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Cos'è un tour enogastronomico tipico recensito sul blog? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed"> Un tour enogastronomico tipico che descriviamo include visite guidate presso cantine italiane selezionate, passeggiate tra i vigneti, e degustazioni abbinate a prodotti tipici del territorio. Forniamo itinerari dettagliati per permetterti di replicare l'esperienza. </p></details><details class="group bg-body-bg p-4 rounded-lg border border-gray-100"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Come scelgo la migliore degustazione vini tra quelle proposte? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed"> Ogni nostro articolo sulla degustazione vini include parametri chiari: atmosfera della cantina, competenza del sommelier, rapporto qualità-prezzo e tipologia di vini offerti. Puoi filtrare le nostre guide in base alla regione o al tuo livello di esperienza. </p></details><details class="group bg-body-bg p-4 rounded-lg border border-gray-100"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Quali cantine italiane recensite? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed"> Spaziamo dalle storiche cantine italiane del Piemonte e della Toscana, fino alle giovani realtà emergenti del Sud Italia. Il nostro obiettivo è dare voce sia ai grandi nomi che ai piccoli produttori artigianali che meritano di essere scoperti. </p></details><details class="group bg-body-bg p-4 rounded-lg border border-gray-100"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Coprite anche sagre e festival locali? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed"> Assolutamente sì. Crediamo che l'anima dell'enogastronomia risieda nelle tradizioni popolari. Pubblichiamo regolarmente calendari e reportage su sagre e festival dedicati ai prodotti di stagione, dal tartufo bianco all'olio nuovo. </p></details><details class="group bg-body-bg p-4 rounded-lg border border-gray-100"><summary class="flex justify-between items-center font-semibold text-lg text-text"> Dove trovo informazioni sui prodotti tipici? <span class="transition group-open:rotate-180 text-primary"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span></summary><p class="text-muted mt-3 leading-relaxed"> Abbiamo una sezione interamente dedicata ai prodotti tipici regionali. Qui spieghiamo la storia, i metodi di produzione (come DOP e IGP) e suggeriamo i migliori abbinamenti con i vini locali per esaltarne i sapori. </p></details></div></div></section><hr class="section-divider"><section id="contact" class="py-24 md:py-36 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row gap-12"><div class="w-full md:w-1/2"><h2 class="text-3xl md:text-4xl font-bold mb-4">Collabora con Noi</h2><p class="text-muted mb-8 text-lg">Sei un produttore, gestisci una cantina o vuoi segnalarci un evento? Compila il modulo per entrare in contatto con la redazione del blog.</p><div class="space-y-6"><div class="flex items-start gap-4"><div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-primary flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></div><div><h4 class="font-bold text-text">Sede Editoriale</h4><p class="text-muted">Redazione indipendente focalizzata sul territorio italiano.</p></div></div><div class="flex items-start gap-4"><div class="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center text-secondary flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><h4 class="font-bold text-text">Tempi di Risposta</h4><p class="text-muted">Il nostro team legge tutti i messaggi e risponde entro 48 ore lavorative alle proposte in linea con il nostro piano editoriale.</p></div></div></div></div><div class="w-full md:w-1/2"><div class="dna-card !mb-0"><form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);"><div><label class="block text-sm font-semibold text-text mb-1">Nome Completo o Azienda</label><input type="text" required placeholder="Es. Cantine Rossi"></div><div><label class="block text-sm font-semibold text-text mb-1">Motivo del Contatto</label><select required><option value="">Seleziona un'opzione</option><option value="recensione">Proposta Recensione Cantina</option><option value="evento">Segnalazione Evento/Sagra</option><option value="tour">Collaborazione per Tour</option><option value="altro">Altro</option></select></div><div><label class="block text-sm font-semibold text-text mb-1">Il tuo Messaggio</label><textarea rows="4" required placeholder="Descrivi la tua proposta o il tuo evento..."></textarea></div><button type="submit" class="btn-primary w-full justify-center mt-2"> Invia Richiesta <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button><p class="text-xs text-muted text-center mt-3">Compilando il modulo accetti i nostri termini di servizio.</p></form><div id="success-msg" style="display:none" class="text-center py-8"><div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-4"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h3 class="text-2xl font-bold text-text mb-2">Messaggio Inviato!</h3><p class="text-muted">Grazie per averci contattato. La nostra redazione valuterà la tua proposta al più presto.</p></div></div></div></div></div></section></main><footer class="bg-white border-t border-gray-100 pt-16 pb-8"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4"><div class="text-2xl font-extrabold text-primary tracking-tight"> Yazeta Poia<span class="text-secondary">.</span></div><div class="flex space-x-6"><a href="#esperienze" class="text-sm text-muted hover:text-primary font-medium">Esperienze</a><a href="#recensioni" class="text-sm text-muted hover:text-primary font-medium">Recensioni</a><a href="#faq" class="text-sm text-muted hover:text-primary font-medium">FAQ</a></div></div><div class="bg-blue-50 p-4 rounded-lg mb-8 border border-blue-100 text-sm text-muted text-center leading-relaxed"><strong>Disclaimer Obbligatorio:</strong> Questo è un sito promozionale indipendente gestito da Yazeta Poia Resources, che agisce in qualità di affiliato per degustiamo.com. Non siamo i proprietari diretti del marchio degustiamo.com, ma curiamo contenuti editoriali per promuovere le loro guide e i loro servizi. </div><div class="space-y-4 mb-8"><details class="text-sm text-muted"><summary class="cursor-pointer hover:text-primary font-medium">Informativa sulla Privacy (Privacy Policy)</summary><div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100 h-48 overflow-y-auto"><p>La presente informativa sulla privacy descrive come Yazeta Poia Resources raccoglie, utilizza e protegge i dati personali degli utenti che visitano il nostro blog. Consideriamo la privacy dei nostri lettori una priorità assoluta e ci impegniamo a trattare ogni informazione con la massima cura. Quando visiti il nostro sito, potremmo raccogliere automaticamente alcune informazioni tecniche, come il tuo indirizzo IP, il tipo di browser utilizzato e le pagine visitate. Questi dati vengono utilizzati esclusivamente a fini statistici per migliorare la tua esperienza di navigazione. Se decidi di contattarci tramite l'apposito modulo, ti chiederemo di fornire il tuo nome e il motivo del contatto. Utilizzeremo queste informazioni solo per rispondere alla tua specifica richiesta editoriale o di collaborazione. Non condividiamo, vendiamo o affittiamo i tuoi dati personali a terze parti per scopi di marketing. I tuoi dati sono conservati su server sicuri protetti da misure tecniche avanzate per prevenire accessi non autorizzati. Collaboriamo con degustiamo.com in qualità di affiliati, pertanto alcuni link presenti sul nostro blog potrebbero reindirizzarti al loro sito, che dispone di una propria politica sulla privacy indipendente. Ti invitiamo a leggere attentamente l'informativa sulla privacy di qualsiasi sito web di terze parti che visiti. Yazeta Poia Resources si riserva il diritto di aggiornare periodicamente questa informativa per riflettere eventuali cambiamenti normativi. Continuando a utilizzare il nostro sito dopo tali modifiche, accetti la nuova versione della privacy policy. Hai il diritto di richiedere l'accesso, la rettifica o la cancellazione dei tuoi dati personali in qualsiasi momento. Per esercitare questi diritti, ti preghiamo di utilizzare il modulo di contatto presente sul sito. Assicuriamo che ogni richiesta verrà gestita nel rispetto delle normative vigenti sulla protezione dei dati. La tua fiducia è fondamentale per noi e lavoriamo costantemente per mantenerla.</p></div></details><details class="text-sm text-muted"><summary class="cursor-pointer hover:text-primary font-medium">Termini di Servizio (Terms of Service)</summary><div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100 h-48 overflow-y-auto"><p>I presenti Termini di Servizio regolano l'utilizzo del blog gestito da Yazeta Poia Resources. Accedendo e navigando su questo sito, accetti di essere vincolato da questi termini nella loro interezza. Il nostro sito offre contenuti informativi, recensioni e guide legate al mondo dell'enogastronomia italiana. Tutto il materiale pubblicato, inclusi testi, grafiche e layout, è di proprietà intellettuale di Yazeta Poia Resources, ove non diversamente specificato. È severamente vietata la riproduzione, la distribuzione o la modifica dei nostri contenuti senza un'esplicita autorizzazione scritta. In qualità di blog indipendente, esprimiamo opinioni personali e recensioni basate sulle nostre esperienze dirette o su ricerche accurate. Tuttavia, non possiamo garantire l'assoluta accuratezza o tempestività di ogni singola informazione fornita, specialmente riguardo a prezzi o orari di cantine e festival, che possono subire variazioni. L'utente utilizza le informazioni presenti sul sito a proprio rischio. Yazeta Poia Resources funge da portale affiliato per degustiamo.com; pertanto, potremmo ricevere una commissione se prenoti servizi tramite i link forniti, senza alcun costo aggiuntivo per te. Non siamo responsabili per la qualità dei servizi finali erogati dalle cantine o dagli organizzatori di tour recensiti. Qualsiasi controversia relativa ai servizi prenotati tramite siti terzi deve essere risolta direttamente con il fornitore del servizio. Ci riserviamo il diritto di modificare, sospendere o interrompere qualsiasi parte del sito in qualsiasi momento e senza preavviso. L'utente si impegna a utilizzare il sito in modo lecito, astenendosi da comportamenti che potrebbero danneggiare l'infrastruttura tecnica o la reputazione del blog. L'invio di messaggi spam o contenuti inappropriati tramite il nostro modulo di contatto comporterà il blocco immediato. Questi termini sono regolati dalle leggi vigenti e qualsiasi disputa sarà soggetta alla giurisdizione competente. Ti invitiamo a consultare regolarmente questa pagina per eventuali aggiornamenti.</p></div></details><details class="text-sm text-muted"><summary class="cursor-pointer hover:text-primary font-medium">Politica di Rimborso (Refund Policy)</summary><div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100 h-48 overflow-y-auto"><p>Poiché Yazeta Poia Resources opera esclusivamente come blog di informazione e portale promozionale affiliato, non vendiamo direttamente prodotti fisici o biglietti per tour enogastronomici. Di conseguenza, non elaboriamo pagamenti diretti da parte degli utenti sul nostro sito web. La nostra politica di rimborso si applica solo nel contesto della natura del nostro servizio editoriale. Se hai cliccato su un link affiliato presente sul nostro blog e hai effettuato un acquisto o una prenotazione sul sito di degustiamo.com o di un altro partner, qualsiasi richiesta di rimborso, cancellazione o modifica della prenotazione deve essere indirizzata direttamente a loro. Noi non abbiamo accesso ai dettagli delle tue transazioni finanziarie effettuate su piattaforme terze. Le politiche di cancellazione per le degustazioni vini o i tour variano a seconda della singola cantina o del tour operator. Consigliamo vivamente di leggere i termini e le condizioni specifiche del fornitore prima di finalizzare qualsiasi acquisto. Nel caso in cui avessi attivato una partnership commerciale diretta con la nostra redazione (ad esempio per contenuti sponsorizzati sul blog), i termini di rimborso saranno stabiliti in un contratto separato firmato da entrambe le parti. In generale, per i servizi editoriali già pubblicati non è previsto alcun rimborso, a meno che non vi sia stata una grave inadempienza da parte nostra. Ci impegniamo a fornire descrizioni trasparenti e oneste per aiutarti a prendere decisioni informate, riducendo al minimo il rischio di insoddisfazione. Se ritieni che una nostra recensione contenga informazioni fattualmente inesatte che ti hanno indotto in errore, ti preghiamo di segnalarcelo tramite il modulo di contatto. Valuteremo la segnalazione e, se opportuno, correggeremo l'articolo, ma non potremo offrire compensazioni finanziarie. La tua soddisfazione come lettore è importante, ma le nostre responsabilità legali sono limitate all'accuratezza ragionevole dei contenuti informativi gratuiti che offriamo.</p></div></details></div><div class="text-center text-sm text-muted"> &copy; 2026 Yazeta Poia Resources. Tutti i diritti riservati. </div></div></footer><div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t border-gray-200 p-4 shadow-lg z-50 transform transition-transform translate-y-full"><div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"><p class="text-sm text-muted text-center md:text-left"> Utilizziamo i cookie per offrirti la migliore esperienza sul nostro blog di enogastronomia. Continuando a navigare, accetti la nostra politica sui cookie. </p><div class="flex gap-2 flex-shrink-0"><button onclick="acceptCookies()" class="btn-primary !py-2 !px-4 text-sm">Accetta Tutti</button><button onclick="acceptCookies()" class="btn-secondary !py-2 !px-4 text-sm">Solo Necessari</button></div></div></div> <script>
-        // Smart Routing Script
+                    <!-- Card 2 -->
+                    <div class="dna-card flex flex-col h-full transform transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+                        <div class="bg-red-50 w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-secondary">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Itinerari Viaggio</h3>
+                        <p class="text-gray-600 flex-grow">
+                            Non sai da dove iniziare? I nostri esperti creano percorsi "day-by-day" ottimizzati. Dalle fughe di un weekend ai viaggi on the road di diverse settimane, segui le nostre tracce collaudate.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="dna-card flex flex-col h-full transform transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+                        <div class="bg-blue-50 w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-primary">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Focus: Vacanze Italia</h3>
+                        <p class="text-gray-600 flex-grow">
+                            Celebriamo la bellezza del nostro paese. Scopri guide esclusive dedicate alle maestose <strong>città d'arte</strong> e perditi nella magia senza tempo dei piccoli <strong>borghi italiani</strong>.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Image Break Section -->
+        <section class="py-12 bg-white">
+             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                 <div class="rounded-2xl overflow-hidden shadow-2xl relative" style="height: 400px;">
+                     <img src="https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg" alt="Esplorazione borghi italiani" class="w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/1200x400/dc2626/ffffff?text=Vacanze+Italia'">
+                     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                         <h2 class="text-3xl md:text-5xl font-bold text-white text-center px-4">
+                             L'ispirazione per il tuo prossimo viaggio inizia qui.
+                         </h2>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="py-24 md:py-36 bg-gray-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">La Voce dei Viaggiatori</h2>
+                    <p class="mt-4 text-lg text-gray-600">Migliaia di lettori si affidano alle nostre guide per organizzare le loro partenze.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="dna-card relative">
+                        <div class="text-yellow-400 flex mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-gray-600 italic mb-6">"Grazie ai loro articoli ho scoperto dei borghi italiani in Umbria che non conoscevo affatto. L'itinerario suggerito era perfetto e dettagliato in ogni singolo giorno."</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-primary font-bold">M</div>
+                            <div class="ml-3">
+                                <p class="text-sm font-bold text-gray-900">Marco R.</p>
+                                <p class="text-xs text-gray-500">Viaggiatore appassionato</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="dna-card relative">
+                         <div class="text-yellow-400 flex mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-gray-600 italic mb-6">"La sezione dedicata alle città d'arte è una vera miniera d'oro. Ho organizzato il mio tour a Firenze seguendo i loro consigli su cosa visitare fuori dai soliti circuiti turistici."</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-secondary font-bold">E</div>
+                            <div class="ml-3">
+                                <p class="text-sm font-bold text-gray-900">Elena T.</p>
+                                <p class="text-xs text-gray-500">Lettrice affezionata</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="dna-card relative">
+                         <div class="text-yellow-400 flex mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-gray-600 italic mb-6">"Le migliori destinazioni turistiche recensite in modo onesto e trasparente. Uso questo sito come unica risorsa ogni volta che devo pianificare le mie ferie estive."</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-primary font-bold">L</div>
+                            <div class="ml-3">
+                                <p class="text-sm font-bold text-gray-900">Luca B.</p>
+                                <p class="text-xs text-gray-500">Fotografo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-24 md:py-36 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Domande Frequenti</h2>
+                    <p class="mt-4 text-lg text-gray-500">Tutto ciò che devi sapere sui nostri contenuti di viaggio.</p>
+                </div>
+                
+                <div class="dna-card space-y-4">
+                    <details class="group border-b border-gray-100 pb-4">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                            <span>Come scegliete le destinazioni turistiche da recensire?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Le nostre destinazioni turistiche vengono selezionate dalla nostra redazione in base ai trend di viaggio attuali, alla ricchezza culturale del luogo e alle segnalazioni della nostra community. Ogni luogo viene analizzato per offrire consigli pratici e aggiornati.
+                        </p>
+                    </details>
+                    
+                    <details class="group border-b border-gray-100 pb-4">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                            <span>I vostri itinerari di viaggio sono gratuiti?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Sì, la maggior parte dei nostri itinerari di viaggio online è accessibile gratuitamente. Crediamo che l'ispirazione per viaggiare debba essere condivisa. Occasionalmente offriamo guide premium scaricabili per percorsi altamente specializzati.
+                        </p>
+                    </details>
+
+                    <details class="group border-b border-gray-100 pb-4">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                            <span>Avete una sezione dedicata esclusivamente alle vacanze in Italia?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Assolutamente sì. Abbiamo una rubrica speciale dedicata alle vacanze in Italia, dove esploriamo non solo le mete classiche, ma anche percorsi enogastronomici e itinerari naturalistici da nord a sud della penisola.
+                        </p>
+                    </details>
+
+                    <details class="group border-b border-gray-100 pb-4">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                            <span>Come posso scoprire nuovi borghi italiani meno conosciuti?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Ogni mese pubblichiamo speciali dedicati ai "Borghi Italiani Nascosti". Iscrivendoti alla nostra redazione o consultando la sezione apposita del sito, troverai articoli dettagliati su piccoli centri ricchi di storia, arte e tradizioni autentiche, lontani dal turismo di massa.
+                        </p>
+                    </details>
+
+                    <details class="group">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                            <span>Troverò guide per le principali città d'arte?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                            Certamente. Le città d'arte italiane e internazionali sono uno dei nostri focus principali. Forniamo consigli su come evitare le code ai musei, quali quartieri storici esplorare a piedi e dove assaporare la vera cucina locale durante la tua visita culturale.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 md:py-36 bg-gray-50">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Inizia a Pianificare</h2>
+                    <p class="mt-4 text-lg text-gray-600">Hai una destinazione in mente ma non sai da dove iniziare? Scrivici, la nostra redazione è pronta a ispirarti.</p>
+                </div>
+
+                <div class="dna-card">
+                    <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="grid grid-cols-1 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo</label>
+                                <input type="text" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-3 border" placeholder="Es. Mario Rossi">
+                            </div>
+                            <div>
+                                <label for="destination" class="block text-sm font-medium text-gray-700">Destinazione di Interesse</label>
+                                <select id="destination" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-3 border">
+                                    <option>Seleziona un'opzione</option>
+                                    <option>Vacanze Italia</option>
+                                    <option>Città d'Arte</option>
+                                    <option>Borghi Italiani</option>
+                                    <option>Destinazioni Internazionali</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700">Come possiamo aiutarti?</label>
+                                <textarea id="message" rows="4" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-3 border" placeholder="Raccontaci che tipo di itinerario stai cercando..."></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full btn-primary flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                                    Richiedi Ispirazione
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="success-msg" style="display:none" class="text-center py-12">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                            <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Ricevuta!</h3>
+                        <p class="text-gray-600">Grazie per averci contattato. Prepareremo i migliori suggerimenti per il tuo prossimo viaggio e ti risponderemo al più presto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <div>
+                    <span class="text-2xl font-bold text-white flex items-center gap-2 mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        YazeTapoia Travel
+                    </span>
+                    <p class="text-gray-400 max-w-sm">
+                        La tua rivista digitale di riferimento per esplorare il mondo, scoprire itinerari inediti e vivere l'essenza delle migliori destinazioni.
+                    </p>
+                </div>
+                <div class="md:text-right">
+                    <p class="text-gray-400 text-sm mb-4">
+                        <strong>DISCLAIMER OBBLIGATORIO:</strong> Questo è un sito promozionale indipendente gestito da YazeTapoia Travel, che agisce come affiliato per SiViaggia (Italiaonline S.p.A.).
+                    </p>
+                </div>
+            </div>
+
+            <hr class="border-gray-800 mb-8">
+
+            <!-- Legal Accordions -->
+            <div class="space-y-4 mb-12">
+                <details class="bg-gray-800 rounded-lg p-4 cursor-pointer text-sm">
+                    <summary class="font-semibold text-gray-300">Informativa sulla Privacy (Privacy Policy)</summary>
+                    <div class="mt-4 text-gray-400 space-y-2">
+                        <p>La presente Informativa sulla Privacy descrive le modalità di gestione del sito web in riferimento al trattamento dei dati personali degli utenti che lo consultano. L'informativa è resa ai sensi della normativa vigente in materia di protezione dei dati personali, incluso il Regolamento (UE) 2016/679 (GDPR). Il Titolare del trattamento dei dati è YazeTapoia Travel, operatore indipendente. I dati personali forniti dagli utenti attraverso i moduli di contatto presenti sul sito sono utilizzati al solo fine di eseguire il servizio o la prestazione richiesta. Nessun dato derivante dal servizio web viene comunicato o diffuso a terzi se non strettamente necessario per l'esecuzione del servizio stesso. I tipi di dati trattati includono dati di navigazione, i cui sistemi informatici acquisiscono nel corso del loro normale esercizio, e dati forniti volontariamente dall'utente, come nome e richieste specifiche. L'invio facoltativo, esplicito e volontario di messaggi ai recapiti indicati su questo sito comporta la successiva acquisizione dei dati del mittente necessari per rispondere alle richieste. I dati personali sono trattati con strumenti automatizzati per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti. Specifiche misure di sicurezza sono osservate per prevenire la perdita dei dati, usi illeciti o non corretti ed accessi non autorizzati. I soggetti cui si riferiscono i dati personali hanno il diritto in qualunque momento di ottenere la conferma dell'esistenza o meno dei medesimi dati e di conoscerne il contenuto e l'origine, verificarne l'esattezza o chiederne l'integrazione o l'aggiornamento, oppure la rettificazione. Hanno inoltre il diritto di chiedere la cancellazione, la trasformazione in forma anonima o il blocco dei dati trattati in violazione di legge, nonché di opporsi in ogni caso, per motivi legittimi, al loro trattamento. Le richieste vanno rivolte al Titolare del trattamento utilizzando i canali di contatto forniti sul sito web. La presente privacy policy può subire modifiche nel tempo, si consiglia pertanto di consultare periodicamente questa pagina. L'utilizzo continuato del sito dopo eventuali modifiche costituisce accettazione delle stesse. Ribadiamo che questo sito agisce in qualità di affiliato e non è il fornitore diretto dei servizi finali recensiti.</p>
+                    </div>
+                </details>
+                
+                <details class="bg-gray-800 rounded-lg p-4 cursor-pointer text-sm">
+                    <summary class="font-semibold text-gray-300">Termini e Condizioni (Terms of Service)</summary>
+                    <div class="mt-4 text-gray-400 space-y-2">
+                        <p>I presenti Termini e Condizioni regolano l'accesso e l'utilizzo del sito web gestito da YazeTapoia Travel. Accedendo al sito, l'utente accetta integralmente e senza riserve i presenti Termini. Se non si accettano tali termini, si è pregati di non utilizzare il sito. Il sito ha finalità puramente informative e promozionali, operando come vetrina affiliata per conto di terzi fornitori di contenuti editoriali e servizi turistici. I contenuti presenti sul sito (testi, immagini, loghi) sono protetti dalle leggi sul diritto d'autore e non possono essere riprodotti, modificati, distribuiti o utilizzati per scopi commerciali senza esplicito consenso scritto. L'utente si impegna a utilizzare il sito esclusivamente per scopi leciti e in modo da non ledere i diritti di terzi o limitare l'utilizzo e il godimento del sito da parte di altri. YazeTapoia Travel si riserva il diritto di modificare in qualsiasi momento e senza preavviso i contenuti del sito e i presenti Termini. È responsabilità dell'utente controllare regolarmente la presenza di aggiornamenti. Nonostante l'impegno a fornire informazioni accurate e aggiornate, non si garantisce l'assoluta completezza o esattezza dei contenuti. L'operatore non potrà essere ritenuto responsabile per eventuali danni diretti o indiretti derivanti dall'utilizzo del sito o dall'affidamento posto sulle informazioni in esso contenute. Il sito può contenere link a siti web di terze parti; YazeTapoia Travel non ha alcun controllo su tali siti e non si assume alcuna responsabilità per i loro contenuti o per le loro politiche di privacy. Qualsiasi transazione o accordo stipulato tra l'utente e i fornitori di servizi finali recensiti sul sito avviene esclusivamente tra le parti coinvolte, esonerando il gestore di questo sito da ogni responsabilità in merito. Per qualsiasi controversia legale derivante dall'utilizzo di questo sito, sarà competente il foro stabilito dalla legislazione applicabile. L'invalidità di una o più clausole dei presenti Termini non comporta l'invalidità delle restanti. L'accettazione di questi Termini è condizione essenziale per la navigazione e l'interazione con le funzionalità del sito promozionale.</p>
+                    </div>
+                </details>
+
+                <details class="bg-gray-800 rounded-lg p-4 cursor-pointer text-sm">
+                    <summary class="font-semibold text-gray-300">Politica di Rimborso e Resi (Refund Policy)</summary>
+                    <div class="mt-4 text-gray-400 space-y-2">
+                        <p>Essendo YazeTapoia Travel un sito esclusivamente promozionale e di natura editoriale che agisce in qualità di affiliato, non effettuiamo vendite dirette di prodotti fisici, biglietti, pacchetti vacanza o servizi a pagamento direttamente riscuotibili su questo dominio. Pertanto, la nostra struttura non gestisce pagamenti diretti da parte degli utenti e, di conseguenza, non elabora politiche di rimborso dirette. Qualsiasi acquisto, prenotazione o transazione economica effettuata dall'utente in seguito alla consultazione delle nostre guide o cliccando su link affiliati avviene sui siti web dei fornitori terzi (come agenzie di viaggio, compagnie aeree, hotel o l'editore principale SiViaggia). Invitiamo gli utenti a leggere attentamente i Termini e le Condizioni di vendita e le Politiche di Rimborso specifiche dei partner presso cui finalizzano l'acquisto. Nel caso in cui l'utente riscontri problemi con una prenotazione o con un servizio acquistato tramite un partner recensito, dovrà rivolgersi esclusivamente al servizio clienti di tale partner. YazeTapoia Travel non può intervenire in dispute commerciali, richieste di cancellazione, resi o rimborsi per servizi erogati da terze parti. Il nostro ruolo si limita a fornire ispirazione, itinerari di viaggio e recensioni di destinazioni turistiche. Se l'utente dovesse riscontrare informazioni palesemente errate sui nostri articoli che hanno portato a un disagio, preghiamo di segnalarlo tramite il nostro modulo di contatto affinché la redazione possa correggere il contenuto, ma ribadiamo che non sussiste alcuna responsabilità finanziaria da parte nostra. La trasparenza è fondamentale per noi, ed è per questo che chiariamo il nostro ruolo di intermediari informativi. Consigliamo sempre di stipulare un'assicurazione di viaggio indipendente per tutelarsi contro imprevisti o cancellazioni quando si pianificano vacanze in Italia o all'estero. Questa politica è redatta per fare assoluta chiarezza sui limiti delle nostre responsabilità in ambito transazionale e per indirizzare correttamente le aspettative degli utenti del nostro portale.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="text-center text-sm">
+                <p>&copy; 2026 YazeTapoia Travel. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 text-white p-4 shadow-2xl z-50 transform transition-transform duration-500 translate-y-full">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-sm">
+                <p>Utilizziamo i cookie per migliorare la tua esperienza di navigazione, analizzare il traffico del sito e personalizzare i contenuti sulle migliori destinazioni turistiche. Continuando a navigare, accetti la nostra politica sui cookie.</p>
+            </div>
+            <div class="flex gap-4 shrink-0">
+                <button onclick="acceptCookies()" class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">
+                    Accetta
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Smart Routing & Logic Scripts -->
+    <script>
+        // Smooth Scroll & Fallback Routing
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
                 
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
                 if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 } else {
-                    // Fallback to contact
+                    // Fallback to contact section
                     const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    if(contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        console.warn('Target ID non trovato, reindirizzamento alla sezione contatti.');
                     }
                 }
-                
-                // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
             });
         });
 
         // Cookie Banner Logic
         document.addEventListener("DOMContentLoaded", function() {
-            if (!localStorage.getItem("cookiesAccepted")) {
+            const banner = document.getElementById('cookie-banner');
+            if (!localStorage.getItem('cookies_accepted')) {
                 setTimeout(() => {
-                    document.getElementById("cookie-banner").classList.remove("translate-y-full");
+                    banner.classList.remove('translate-y-full');
                 }, 1000);
             }
         });
 
         function acceptCookies() {
-            localStorage.setItem("cookiesAccepted", "true");
-            document.getElementById("cookie-banner").classList.add("translate-y-full");
+            localStorage.setItem('cookies_accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
         }
-    </script> </body></html>
+    </script>
+</body>
+</html>
