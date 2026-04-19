@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<!-- revision 4821 -->
+<html lang="it">
+<head>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longful Studio | Progetta il futuro della tua casa intelligente</title>
+    <meta name="description" content="La tua rivista di riferimento per domotica, casa intelligente e dispositivi connessi. Scopri guide, recensioni e news sull'automazione casa.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&family=Fraunces:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+
+    <style>
+      :root {
+        --primary: #0c4a6e;
+        --secondary: #7c2d12;
+        --radius: 4px;
+        --card-radius: 4px;
+        --shadow: none;
+      }
+
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #fefaf3;
+        color: #1c1917;
+        font-family: 'Source Serif Pro', serif;
+      }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', serif; }
+
+      .frame-6790 {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 3rem 0;
+        margin-bottom: 0;
+        border-top: 1px solid rgba(0,0,0,0.12);
+      }
+
+      .btn-primary {
+        background-color: transparent;
+        color: var(--primary) !important;
+        border: 1px solid var(--primary);
+        border-radius: 0;
+        padding: 0.875rem 2.5rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .bg-primary { background-color: var(--primary); }
+
+      .section-divider { display: none; }
+
+      #mobile-menu { background-color: #fefaf3; }
+
+      footer { background-color: #fefaf3; color: #1c1917; }
+      footer a { color: #7c2d12; text-decoration: none; }
+      footer a:hover { color: #1c1917; }
+      footer { border-top: 1px solid rgba(0,0,0,0.12); padding-top: 3rem; padding-bottom: 2rem; } footer .container { max-width: 800px; }
+      .btn-primary:hover { background-color: var(--primary); color: #ffffff !important; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed top-0 inset-x-0 z-50 bg-gray-100 border-b border-gray-200 py-3 px-4 sm:px-6 lg:px-8 text-sm flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-gray-700">Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito editoriale dedicato alla domotica. Continuando a navigare, accetti il nostro utilizzo dei cookie.</p>
+        <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('longfulstudio_cookies_accepted','1')" class="whitespace-nowrap px-4 py-2 bg-gray-800 text-white font-medium hover:bg-gray-700 transition-colors cursor-pointer" style="border-radius: var(--radius)">
+            Accetta e Chiudi
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-40 border-b border-gray-200 mt-12 sm:mt-0">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold tracking-tight text-primary font-serif">
+                        Longful Studio
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-primary transition-colors font-medium">Chi Siamo</a>
+                    <a href="#features" class="text-gray-600 hover:text-primary transition-colors font-medium">Contenuti</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary transition-colors font-medium">Lettori</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary transition-colors font-medium">FAQ</a>
+                </nav>
+                <div class="hidden md:flex">
+                    <a href="#contact" class="btn-primary">Iscriviti</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full shadow-lg border-b border-gray-200 z-50">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 border-b border-gray-100">Chi Siamo</a>
+                <a href="#features" class="block px-3 py-3 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 border-b border-gray-100">Contenuti</a>
+                <a href="#reviews" class="block px-3 py-3 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 border-b border-gray-100">Lettori</a>
+                <a href="#faq" class="block px-3 py-3 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 border-b border-gray-100">FAQ</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-medium text-secondary mt-4">Iscriviti alla Newsletter</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="w-full py-16 md:py-24 lg:py-32">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
+                    <div class="md:w-1/2 flex flex-col justify-center">
+                        <span class="text-secondary font-semibold tracking-wider uppercase text-sm mb-4 block">Rivista Domotica & Smart Home</span>
+                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6 text-gray-900">
+                            Progetta il futuro: la guida essenziale alla casa intelligente.
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                            Longful Studio seleziona e analizza le migliori soluzioni di domotica per trasformare i tuoi spazi abitativi. Scopri recensioni indipendenti, guide pratiche e le ultime novità sui dispositivi connessi per un'automazione casa perfetta.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#features" class="btn-primary text-center">Scopri i Contenuti</a>
+                            <a href="#about" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium text-gray-600 hover:text-primary transition-colors">
+                                Leggi la nostra missione &rarr;
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="./assets/img/hero.jpg" alt="Tablet che controlla i dispositivi della casa intelligente" loading="lazy" class="w-full h-full object-cover" style="min-height: 420px; border-radius: var(--card-radius); box-shadow: var(--shadow);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 frame-6790">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="md:w-5/12 order-2 md:order-1">
+                        <img src="./assets/img/about.jpg" alt="Donna che utilizza uno smart speaker in soggiorno" loading="lazy" class="w-full h-auto object-cover" style="border-radius: var(--card-radius);">
+                    </div>
+                    <div class="md:w-7/12 order-1 md:order-2">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">La nostra visione editoriale</h2>
+                        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                            La missione di Longful Studio è rendere l'ecosistema della <strong>casa intelligente</strong> comprensibile e accessibile a tutti. Viviamo in un'epoca in cui l'<strong>automazione casa</strong> non è più un lusso per pochi, ma una realtà che migliora la qualità della vita quotidiana.
+                        </p>
+                        <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                            Attraverso la nostra rivista online, analizziamo in profondità le tecnologie più avanzate: dai sistemi di sicurezza integrati all'illuminazione intelligente, fino alla gestione energetica. Forniamo ai nostri lettori recensioni oneste, guide all'installazione e approfondimenti sulle tendenze della <strong>domotica</strong> per aiutarli a creare ambienti più sicuri, efficienti e confortevoli.
+                        </p>
+                        <div class="flex items-center text-secondary font-medium">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Informazione indipendente e autorevole
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 md:py-28 bg-white bg-opacity-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 frame-6790">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">I nostri contenuti principali</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">Tutto ciò che ti serve per orientarti nel vasto mondo dei dispositivi connessi.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+                    <!-- Feature 1 -->
+                    <div class="flex flex-col">
+                        <div class="mb-6 overflow-hidden" style="border-radius: var(--card-radius);">
+                            <img src="./assets/img/feature1.jpg" alt="Telecamera di sicurezza per smart home" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-900">Recensioni Dispositivi Connessi</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Testiamo rigorosamente sul campo le ultime novità hardware. Dalle telecamere di videosorveglianza agli assistenti vocali, analizziamo pro, contro, facilità di installazione e reale utilità quotidiana per guidarti verso l'acquisto migliore.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="flex flex-col">
+                        <div class="mb-6 overflow-hidden" style="border-radius: var(--card-radius);">
+                            <img src="./assets/img/feature2.jpg" alt="Termostato intelligente a parete" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-900">Guide all'Automazione Casa</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Tutorial passo-passo scritti dai nostri esperti per configurare la tua domotica. Impara a creare routine efficienti, ottimizzare i consumi energetici con i termostati intelligenti e far comunicare tra loro dispositivi di marche diverse in un unico ecosistema.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="flex flex-col md:col-span-2 md:w-2/3 mx-auto mt-4 text-center">
+                        <div class="mb-6 overflow-hidden mx-auto" style="border-radius: var(--card-radius); max-width: 500px;">
+                            <img src="./assets/img/feature3.jpg" alt="Robot aspirapolvere in azione sul pavimento" loading="lazy" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-900">News e Tendenze Smart Home</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Rimani costantemente aggiornato sulle innovazioni che cambieranno il modo di vivere gli spazi domestici. Dalle fiere internazionali della tecnologia agli aggiornamenti dei protocolli di comunicazione, portiamo le notizie più rilevanti direttamente sul tuo schermo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section id="reviews" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 frame-6790">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-900">Cosa dicono i nostri lettori</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="p-8 border border-gray-200" style="border-radius: var(--card-radius); background-color: #fff;">
+                        <div class="flex text-secondary mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-6">"Le guide di Longful Studio sono state fondamentali per configurare il mio primo sistema di illuminazione smart. Spiegazioni chiare e dritte al punto, senza troppi tecnicismi inutili."</p>
+                        <p class="font-bold text-gray-900">— Marco T., 2026</p>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="p-8 border border-gray-200" style="border-radius: var(--card-radius); background-color: #fff;">
+                        <div class="flex text-secondary mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-6">"Leggo sempre le loro recensioni prima di acquistare un nuovo dispositivo connesso. Sono oggettivi e segnalano sempre se un prodotto ha problemi di compatibilità."</p>
+                        <p class="font-bold text-gray-900">— Elena V., 2026</p>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="p-8 border border-gray-200" style="border-radius: var(--card-radius); background-color: #fff;">
+                        <div class="flex text-secondary mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-6">"Una risorsa eccellente. L'articolo sulle tendenze della smart home mi ha dato ottime idee per modernizzare la mia abitazione in modo efficiente dal punto di vista energetico."</p>
+                        <p class="font-bold text-gray-900">— Roberto G., 2026</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 md:py-28 bg-white bg-opacity-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 frame-6790">
+                <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center text-gray-900">Domande Frequenti sulla Domotica</h2>
+                <div class="space-y-4 max-w-3xl mx-auto">
+                    
+                    <details class="group border border-gray-200 bg-white p-6" style="border-radius: var(--card-radius);">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                            Cos'è esattamente la domotica?
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-700 mt-4 leading-relaxed">
+                            La domotica è l'applicazione dell'informatica e dell'elettronica alla gestione dell'abitazione. Consiste in una serie di tecnologie che permettono di automatizzare e controllare a distanza vari impianti della casa intelligente, come luci, riscaldamento, sicurezza ed elettrodomestici, migliorando il comfort e riducendo gli sprechi energetici.
+                        </p>
+                    </details>
+
+                    <details class="group border border-gray-200 bg-white p-6" style="border-radius: var(--card-radius);">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                            Quali sono i primi dispositivi connessi da acquistare per iniziare?
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-700 mt-4 leading-relaxed">
+                            Per chi si avvicina per la prima volta alla smart home, consigliamo di iniziare con dispositivi semplici e di grande impatto quotidiano. Uno smart speaker (assistente vocale), alcune lampadine intelligenti e delle prese smart sono ottimi punti di partenza. Richiedono un investimento minimo e offrono subito i vantaggi dell'automazione casa di base.
+                        </p>
+                    </details>
+
+                    <details class="group border border-gray-200 bg-white p-6" style="border-radius: var(--card-radius);">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                            L'automazione casa è sicura contro gli attacchi informatici?
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-700 mt-4 leading-relaxed">
+                            La sicurezza dipende molto da come viene configurata la rete. È fondamentale utilizzare password complesse, mantenere sempre aggiornato il firmware dei dispositivi e utilizzare una rete Wi-Fi protetta, possibilmente separando i dispositivi IoT su una rete ospiti. Nelle nostre guide approfondiamo regolarmente le migliori pratiche per proteggere la tua casa intelligente.
+                        </p>
+                    </details>
+
+                    <details class="group border border-gray-200 bg-white p-6" style="border-radius: var(--card-radius);">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                            Quanto costa rendere una casa intelligente?
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-700 mt-4 leading-relaxed">
+                            Il costo è estremamente variabile. Si può iniziare con poche decine di euro per una singola lampadina smart, fino ad arrivare a diverse migliaia di euro per un sistema di domotica integrato a livello strutturale in tutta l'abitazione. Il vantaggio attuale è la scalabilità: puoi aggiungere dispositivi connessi nel tempo, dilazionando la spesa in base alle tue esigenze.
+                        </p>
+                    </details>
+
+                    <details class="group border border-gray-200 bg-white p-6" style="border-radius: var(--card-radius);">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                            Come posso integrare diversi sistemi smart home?
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-700 mt-4 leading-relaxed">
+                            L'integrazione è uno dei temi centrali della nostra rivista. Esistono piattaforme centralizzate (come gli ecosistemi dei principali assistenti vocali) o hub dedicati che permettono a dispositivi di marche diverse di comunicare. Inoltre, il nuovo standard Matter promette di semplificare notevolmente l'interoperabilità tra i vari dispositivi connessi in futuro.
+                        </p>
+                    </details>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 frame-6790">
+                <div class="flex flex-col md:flex-row gap-12">
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Resta Aggiornato</h2>
+                        <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                            Vuoi ricevere le ultime novità sulla domotica, recensioni esclusive sui dispositivi connessi e guide pratiche direttamente nella tua casella di posta? Iscriviti alla newsletter gratuita di Longful Studio.
+                        </p>
+                        
+                        <div class="bg-white p-6 border border-gray-200" style="border-radius: var(--card-radius);">
+                            <h3 class="font-bold text-gray-900 mb-4 font-serif text-xl">Informazioni Editoriali</h3>
+                            <p class="text-gray-700 mb-2"><strong>Redazione:</strong> Longful Studio</p>
+                            <p class="text-gray-700 mb-2"><strong>Settore:</strong> Editoria Tecnologica / Smart Home</p>
+                            <p class="text-gray-700"><strong>Sede:</strong> Italia (Rivista Online)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2">
+                        <div class="bg-white p-8 border border-gray-200" style="border-radius: var(--card-radius);">
+                            <h3 class="text-2xl font-bold mb-6 text-gray-900">Richiedi Informazioni</h3>
+                            
+                            <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                                    <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 focus:ring-primary focus:border-primary bg-gray-50 text-gray-900" style="border-radius: var(--radius)">
+                                </div>
+                                <div>
+                                    <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Argomento di Interesse</label>
+                                    <select id="interest" class="w-full px-4 py-3 border border-gray-300 focus:ring-primary focus:border-primary bg-gray-50 text-gray-900" style="border-radius: var(--radius)">
+                                        <option>Recensioni Dispositivi</option>
+                                        <option>Guide Installazione</option>
+                                        <option>News e Tendenze</option>
+                                        <option>Altro</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Messaggio o Domanda</label>
+                                    <textarea id="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 focus:ring-primary focus:border-primary bg-gray-50 text-gray-900" style="border-radius: var(--radius)"></textarea>
+                                </div>
+                                <button type="submit" class="w-full btn-primary mt-2">
+                                    Invia Richiesta
+                                </button>
+                            </form>
+                            
+                            <div id="success-msg" style="display:none" class="bg-green-50 border border-green-200 text-green-800 px-6 py-8 text-center" style="border-radius: var(--card-radius);">
+                                <svg class="w-12 h-12 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <h4 class="text-xl font-bold mb-2 font-serif">Messaggio Ricevuto!</h4>
+                                <p>Grazie per aver contattato la redazione di Longful Studio. Elaboreremo la tua richiesta e ti risponderemo al più presto con le informazioni sulla domotica che cerchi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <p class="text-xl font-bold text-gray-900 font-serif mb-4">Longful Studio</p>
+                <p class="text-sm text-gray-600 mb-2">Questo è un sito promozionale indipendente gestito da Longful Studio, che opera come affiliato per Domotica.it.</p>
+                <p class="text-sm text-gray-600 mb-6">Longful Studio è un operatore editoriale e promozionale. Non siamo un fornitore di servizi finanziari, broker, consulente per gli investimenti, gestore di patrimoni o consulente autorizzato di alcun tipo.</p>
+            </div>
+
+            <div class="space-y-4 text-sm text-gray-600 text-left max-w-3xl mx-auto">
+                <details class="bg-white border border-gray-200 p-4" style="border-radius: var(--radius);">
+                    <summary class="font-bold cursor-pointer text-gray-800">Informativa sulla Privacy</summary>
+                    <div class="mt-4 space-y-2 text-gray-600">
+                        <p>Rispettiamo profondamente la tua privacy e ci impegniamo a proteggere i tuoi dati personali. Questa informativa spiega in dettaglio come raccogliamo, utilizziamo e gestiamo le informazioni quando visiti il nostro sito dedicato alla domotica. Quando compili il modulo di contatto per richiedere informazioni o iscriverti ai nostri aggiornamenti, memorizziamo esclusivamente i dati forniti per poter rispondere in modo adeguato e tempestivo alle tue richieste. Sottolineiamo che non vendiamo, affittiamo o cediamo in alcun modo i tuoi dati personali a società terze per scopi di marketing non autorizzato. Utilizziamo i cookie tecnici per garantire il corretto funzionamento del sito e migliorare la tua esperienza di navigazione complessiva sulle nostre pagine editoriali. Hai il diritto e la possibilità di disabilitare l'uso dei cookie direttamente dalle impostazioni del tuo browser in qualsiasi momento tu lo desideri. I tuoi dati sono conservati in archivi digitali sicuri e protetti, nel pieno rispetto delle normative vigenti sulla protezione dei dati personali. Se desideri in qualsiasi momento richiedere l'accesso, la modifica o la cancellazione definitiva dei tuoi dati dai nostri sistemi, ti preghiamo di inviare una richiesta tramite il modulo di contatto presente sul sito.</p>
+                    </div>
+                </details>
+
+                <details class="bg-white border border-gray-200 p-4" style="border-radius: var(--radius);">
+                    <summary class="font-bold cursor-pointer text-gray-800">Termini e Condizioni</summary>
+                    <div class="mt-4 space-y-2 text-gray-600">
+                        <p>L'utilizzo di questo sito web editoriale implica la totale accettazione dei seguenti termini e condizioni di utilizzo. L'intero contenuto di questo portale dedicato alla casa intelligente è fornito esclusivamente a scopo informativo, educativo e di intrattenimento generale. Sebbene ci impegniamo per mantenere le informazioni aggiornate, non garantiamo in alcun modo l'assoluta accuratezza, tempestività o completezza delle informazioni presentate nei nostri articoli e recensioni. La redazione di Longful Studio si riserva il diritto insindacabile di modificare, aggiornare o rimuovere i contenuti pubblicati in qualsiasi momento e senza alcun preavviso agli utenti. L'utente accetta esplicitamente di utilizzare il sito e le informazioni in esso contenute a proprio esclusivo rischio e pericolo. Eventuali collegamenti ipertestuali a siti di terze parti o a produttori di dispositivi connessi sono forniti unicamente per comodità del lettore e non implicano una nostra approvazione incondizionata dei loro contenuti. Non potremo essere ritenuti responsabili per eventuali danni, diretti o indiretti, derivanti dall'uso di questo sito o dall'applicazione delle guide in esso contenute. L'accesso al portale può subire temporanee interruzioni per necessari interventi di manutenzione ordinaria o per altri motivi tecnici imprevisti.</p>
+                    </div>
+                </details>
+
+                <details class="bg-white border border-gray-200 p-4" style="border-radius: var(--radius);">
+                    <summary class="font-bold cursor-pointer text-gray-800">Disclaimer Promozionale</summary>
+                    <div class="mt-4 space-y-2 text-gray-600">
+                        <p>Questo portale è un sito promozionale ed editoriale indipendente, interamente gestito e curato da Longful Studio. Operiamo in qualità di partner promozionale e affiliato con il preciso scopo di introdurre, analizzare e presentare i servizi, le guide e le informazioni originali fornite da Domotica.it. È fondamentale chiarire che su queste pagine non vendiamo direttamente alcun prodotto hardware, software o servizio di installazione menzionato negli articoli. Qualsiasi eventuale acquisto, transazione economica, richiesta di supporto tecnico sui dispositivi o procedura di reso deve essere rigorosamente indirizzata al fornitore originale o al produttore del dispositivo stesso. Longful Studio non offre garanzie di alcun tipo, né esplicite né implicite, sui prodotti di terze parti che vengono recensiti, testati o semplicemente presentati nei nostri contenuti. Il nostro unico obiettivo è fornire un giornalismo di settore utile e approfondito per orientare l'utente nel complesso mercato dell'automazione casa. Tutte le informazioni, i giudizi e i consigli riportati si basano esclusivamente sulle nostre ricerche editoriali e valutazioni indipendenti. Invitiamo sempre tutti i lettori a verificare scrupolosamente le specifiche tecniche e i dettagli commerciali direttamente con i produttori ufficiali prima di prendere qualsiasi decisione di acquisto definitiva.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-12 text-center text-sm text-gray-500 border-t border-gray-200 pt-8">
+                <p>&copy; 2026 Longful Studio. Tutti i diritti riservati.</p>
+                <p class="mt-2 text-xs">Operatore promozionale indipendente &middot; Longful Studio</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      if (localStorage.getItem('longfulstudio_cookies_accepted')) {
+        document.getElementById('cookie-banner').classList.add('hidden');
+      }
+    </script>
+</body>
+</html>
