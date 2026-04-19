@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<!-- v1.0 · 2026 -->
+<html lang="it">
+<head>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overfrettech | La tua lente sulle notizie di attualità</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS v2.2.19 (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+
+    <!-- Design DNA (Mandatory) -->
+    <style>
+        :root {
+            --primary: #9f8b7a;
+            --secondary: #7a8a9f;
+            --radius: 0px;
+            --card-radius: 0px;
+            --shadow: none;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: #f5f5f4;
+            color: #0c0a09;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Cormorant Garamond', serif; }
+
+        .tile-cefe {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 4rem 0;
+            margin-bottom: 0;
+            border-top: 1px solid #0a0a0a;
+        }
+
+        .btn-primary {
+            background-color: #0a0a0a;
+            color: #ffffff !important;
+            border-radius: 0;
+            padding: 1rem 2.5rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: opacity 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .bg-primary { background-color: var(--primary); }
+
+        .section-divider { display: none; }
+
+        #mobile-menu { background-color: #ffffff; }
+
+        footer { background-color: #ffffff; color: #0a0a0a; }
+        footer a { color: #0a0a0a; text-decoration: none; }
+        footer a:hover { color: #525252; }
+        footer { border-top: 1px solid #0a0a0a; padding-top: 2rem; padding-bottom: 2rem; text-align: center; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; }
+        .btn-primary:hover { opacity: 0.85; }
+
+        /* Custom utilities avoiding JIT brackets */
+        .hero-band { background-color: rgba(159, 139, 122, 0.05); }
+        .hero-img-overlap { transform: translateX(2rem); }
+        @media (max-width: 768px) {
+            .hero-img-overlap { transform: translateX(0); margin-top: 2rem; }
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold tracking-wider uppercase font-serif" style="color: var(--primary);">Overfrettech</a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-sm font-medium text-gray-900 hover:text-gray-500 uppercase tracking-widest">Chi Siamo</a>
+                    <a href="#features" class="text-sm font-medium text-gray-900 hover:text-gray-500 uppercase tracking-widest">Tematiche</a>
+                    <a href="#reviews" class="text-sm font-medium text-gray-900 hover:text-gray-500 uppercase tracking-widest">Voci</a>
+                    <a href="#faq" class="text-sm font-medium text-gray-900 hover:text-gray-500 uppercase tracking-widest">FAQ</a>
+                    <a href="#contact" class="btn-primary">Contattaci</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 hover:text-gray-500 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full shadow-lg border-b border-gray-200" style="background-color: #ffffff;">
+            <div class="px-4 pt-4 pb-6 space-y-2 text-center">
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 uppercase tracking-widest border-b border-gray-100">Chi Siamo</a>
+                <a href="#features" class="block px-3 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 uppercase tracking-widest border-b border-gray-100">Tematiche</a>
+                <a href="#reviews" class="block px-3 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 uppercase tracking-widest border-b border-gray-100">Voci</a>
+                <a href="#faq" class="block px-3 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 uppercase tracking-widest border-b border-gray-100">FAQ</a>
+                <a href="#contact" class="block px-3 py-4 text-base font-medium text-gray-900 hover:bg-gray-50 uppercase tracking-widest">Contattaci</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        
+        <!-- 1. Hero Section (Full Width, Overlap Layout) -->
+        <section class="w-full relative hero-band overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="relative flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16 py-16 md:py-24">
+                    <!-- Text Column -->
+                    <div class="md:w-1/2 flex flex-col justify-center z-10">
+                        <span class="text-sm font-bold uppercase tracking-widest mb-4" style="color: var(--secondary);">Rivista di Attualità</span>
+                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-gray-900 mb-6">
+                            Approfondimenti e inchieste: la tua lente sul mondo contemporaneo.
+                        </h1>
+                        <p class="text-lg text-gray-700 mb-8 leading-relaxed max-w-lg">
+                            Overfrettech ti guida attraverso le notizie di attualità con reportage esclusivi ed editoriali incisivi. Scopri l'informazione che va oltre la superficie.
+                        </p>
+                        <div>
+                            <a href="#features" class="btn-primary">Esplora le Tematiche</a>
+                        </div>
+                    </div>
+                    <!-- Image Column (Overlap) -->
+                    <div class="md:w-1/2 z-20 flex items-center justify-center">
+                        <img src="./assets/img/hero.jpg" alt="Persona che legge una rivista di attualità e notizie" loading="lazy" class="w-full h-full object-cover hero-img-overlap" style="min-height: 420px; border-radius: var(--card-radius); box-shadow: var(--shadow);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. About / Mission -->
+        <section id="about" class="w-full py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="tile-cefe">
+                    <div class="flex flex-col md:flex-row gap-12 items-center">
+                        <div class="md:w-1/2">
+                            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight">Il rigore dell'informazione indipendente</h2>
+                            <p class="text-gray-700 mb-4 leading-relaxed">
+                                Overfrettech è il tuo portale di riferimento per orientarti nel complesso panorama delle notizie di attualità. Selezioniamo e promuoviamo i migliori contenuti giornalistici, focalizzandoci su inchieste approfondite ed editoriali che stimolano il pensiero critico.
+                            </p>
+                            <p class="text-gray-700 leading-relaxed">
+                                La nostra missione è portare alla luce le dinamiche sociali e politiche che plasmano il nostro tempo, offrendo ai lettori strumenti per comprendere la realtà oltre i titoli di prima pagina. Collaboriamo per diffondere il giornalismo d'autore e l'analisi politica di altissimo livello.
+                            </p>
+                        </div>
+                        <div class="md:w-1/2 w-full">
+                            <img src="./assets/img/about.jpg" alt="Team editoriale al lavoro su inchieste e reportage" loading="lazy" class="w-full object-cover grayscale opacity-90" style="height: 400px; border-radius: var(--card-radius);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="section-divider">
+
+        <!-- 3. Social Proof / Testimonials -->
+        <section id="reviews" class="w-full py-20 md:py-28" style="background-color: #ffffff;">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="tile-cefe">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">La voce dei lettori</h2>
+                        <p class="text-gray-600 uppercase tracking-widest text-sm">Cosa dicono del nostro approccio all'informazione</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <!-- Review 1 -->
+                        <div class="p-8 border border-gray-200">
+                            <div class="flex items-center mb-4 text-yellow-600">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-6 leading-relaxed">"Le inchieste proposte offrono sempre uno spunto di riflessione inedito. Un punto di riferimento essenziale per chi cerca giornalismo di qualità e non si accontenta dei titoli."</p>
+                            <p class="font-bold text-sm uppercase tracking-widest text-gray-900">— Marco V., 2026</p>
+                        </div>
+                        <!-- Review 2 -->
+                        <div class="p-8 border border-gray-200">
+                            <div class="flex items-center mb-4 text-yellow-600">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-6 leading-relaxed">"L'analisi politica è sempre puntuale e mai banale. Finalmente un approccio serio alle notizie di attualità che aiuta a comprendere le dinamiche del potere."</p>
+                            <p class="font-bold text-sm uppercase tracking-widest text-gray-900">— Elena R., 2026</p>
+                        </div>
+                        <!-- Review 3 -->
+                        <div class="p-8 border border-gray-200">
+                            <div class="flex items-center mb-4 text-yellow-600">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-6 leading-relaxed">"I reportage mi hanno permesso di scoprire realtà che i media tradizionali spesso ignorano. Lettura imprescindibile per chi vuole restare informato."</p>
+                            <p class="font-bold text-sm uppercase tracking-widest text-gray-900">— Giovanni T., 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 4. Value/Services (Features) - Icon List Layout -->
+        <section id="features" class="w-full py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Le nostre coordinate editoriali</h2>
+                    <p class="text-gray-600 uppercase tracking-widest text-sm">Cosa troverai nelle nostre selezioni</p>
+                </div>
+                
+                <!-- Icon List Container -->
+                <div class="flex flex-col gap-10 max-w-2xl mx-auto">
+                    
+                    <!-- Feature 1 -->
+                    <div class="flex flex-row items-start border-b border-gray-200 pb-8">
+                        <div class="flex-shrink-0 mr-6 mt-1">
+                            <svg class="w-8 h-8" fill="none" stroke="var(--secondary)" viewBox="0 0 24 24">
+                                <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Notizie di Attualità</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Aggiornamenti costanti sui fatti salienti e le vicende più rilevanti del panorama nazionale e internazionale, curati per garantirti un'informazione tempestiva e libera da sensazionalismi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="flex flex-row items-start border-b border-gray-200 pb-8">
+                        <div class="flex-shrink-0 mr-6 mt-1">
+                            <svg class="w-8 h-8" fill="none" stroke="var(--secondary)" viewBox="0 0 24 24">
+                                <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Analisi Politica ed Editoriali</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Approfondimenti critici firmati da esperti del settore e grandi firme. Decodifichiamo gli eventi politici per aiutarti a comprendere le strategie, i retroscena e le conseguenze delle decisioni di potere.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="flex flex-row items-start">
+                        <div class="flex-shrink-0 mr-6 mt-1">
+                            <svg class="w-8 h-8" fill="none" stroke="var(--secondary)" viewBox="0 0 24 24">
+                                <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Reportage e Inchieste</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Giornalismo investigativo sul campo. Promuoviamo storie inedite, indagini rigorose e testimonianze dirette per svelare verità nascoste e documentare la realtà senza filtri.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 5. FAQ -->
+        <section id="faq" class="w-full py-20 md:py-28" style="background-color: #ffffff;">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="tile-cefe">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Domande Frequenti</h2>
+                        <p class="text-gray-600 uppercase tracking-widest text-sm">Chiarimenti sul nostro servizio</p>
+                    </div>
+                    
+                    <div class="max-w-3xl mx-auto space-y-4">
+                        <details class="group border border-gray-200 bg-white p-6 cursor-pointer rounded-none">
+                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
+                                <span>Che tipo di contenuti promuovete?</span>
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="text-gray-700 mt-4 leading-relaxed">Promuoviamo principalmente notizie di attualità, inchieste giornalistiche, reportage esclusivi ed editoriali di approfondimento politico e sociale, selezionati per il loro valore informativo.</p>
+                        </details>
+
+                        <details class="group border border-gray-200 bg-white p-6 cursor-pointer rounded-none">
+                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
+                                <span>Siete una testata giornalistica indipendente?</span>
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="text-gray-700 mt-4 leading-relaxed">Overfrettech opera come portale promozionale indipendente. Non redigiamo le notizie direttamente, ma selezioniamo e aggreghiamo i migliori contenuti dalle principali riviste di attualità, come L'Espresso.</p>
+                        </details>
+
+                        <details class="group border border-gray-200 bg-white p-6 cursor-pointer rounded-none">
+                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
+                                <span>Come vengono selezionate le inchieste?</span>
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="text-gray-700 mt-4 leading-relaxed">Scegliamo inchieste e reportage basandoci sul rigore giornalistico, sull'impatto sociale della tematica trattata e sulla capacità di offrire prospettive originali e documentate sui fatti.</p>
+                        </details>
+
+                        <details class="group border border-gray-200 bg-white p-6 cursor-pointer rounded-none">
+                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
+                                <span>Posso abbonarmi alle riviste tramite questo sito?</span>
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="text-gray-700 mt-4 leading-relaxed">Questo sito ha uno scopo puramente promozionale e informativo. Le eventuali sottoscrizioni, abbonamenti o acquisti di contenuti avvengono esclusivamente sui siti ufficiali dei nostri partner editoriali.</p>
+                        </details>
+
+                        <details class="group border border-gray-200 bg-white p-6 cursor-pointer rounded-none">
+                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
+                                <span>Con quale frequenza aggiornate i suggerimenti di lettura?</span>
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="text-gray-700 mt-4 leading-relaxed">Le nostre selezioni di notizie di attualità, analisi politica e reportage vengono aggiornate regolarmente per seguire l'evoluzione dei principali eventi mondiali e le uscite editoriali più significative.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 6. Contact / Lead Form -->
+        <section id="contact" class="w-full py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="tile-cefe">
+                    <div class="flex flex-col md:flex-row gap-16">
+                        <div class="md:w-1/2">
+                            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Richiedi informazioni</h2>
+                            <p class="text-gray-700 mb-8 leading-relaxed">
+                                Sei interessato a scoprire di più sulle nostre selezioni editoriali o sulle inchieste che promuoviamo? Compila il modulo per ricevere aggiornamenti sulle tematiche di attualità e analisi politica curati da Overfrettech.
+                            </p>
+                            
+                            <!-- Address Info (Real Donor Location if known, else generic professional) -->
+                            <div class="space-y-4 text-gray-700">
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 mr-4 mt-1 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    <div>
+                                        <p class="font-bold uppercase tracking-widest text-sm text-gray-900">Sede Redazionale Partner</p>
+                                        <p>Via Cristoforo Colombo, 90</p>
+                                        <p>00147 Roma (RM)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md:w-1/2 bg-white p-8 border border-gray-200">
+                            <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                                <div class="mb-6">
+                                    <label for="name" class="block text-sm font-bold text-gray-900 uppercase tracking-widest mb-2">Nome Completo</label>
+                                    <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 bg-gray-50 text-gray-900 rounded-none">
+                                </div>
+                                <div class="mb-6">
+                                    <label for="interest" class="block text-sm font-bold text-gray-900 uppercase tracking-widest mb-2">Area di Interesse</label>
+                                    <select id="interest" class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 bg-gray-50 text-gray-900 rounded-none">
+                                        <option>Analisi Politica</option>
+                                        <option>Inchieste</option>
+                                        <option>Reportage</option>
+                                        <option>Notizie di Attualità Generali</option>
+                                    </select>
+                                </div>
+                                <div class="mb-8">
+                                    <label class="flex items-start">
+                                        <input type="checkbox" required class="mt-1 mr-3 border-gray-300 rounded-none">
+                                        <span class="text-sm text-gray-600">Acconsento al trattamento dei dati per la gestione della richiesta promozionale.</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="w-full btn-primary py-4 text-center">Richiedi Informazioni</button>
+                            </form>
+                            
+                            <div id="success-msg" style="display:none" class="text-center py-12">
+                                <svg class="w-16 h-16 mx-auto text-green-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Richiesta Inviata</h3>
+                                <p class="text-gray-700">Grazie per il tuo interesse. Il nostro team elaborerà la tua richiesta al più presto.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 7. Footer -->
+    <footer>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <a href="#" class="text-2xl font-bold tracking-wider uppercase font-serif" style="color: var(--primary);">Overfrettech</a>
+            </div>
+            
+            <div class="text-gray-500 mb-8 space-y-2 text-xs leading-relaxed max-w-3xl mx-auto">
+                <p>Questo è un sito promozionale indipendente gestito da Overfrettech, che opera come affiliato per L'Espresso.</p>
+                <p>Overfrettech è un operatore editoriale e promozionale. Non siamo un fornitore di servizi finanziari, broker, consulente per gli investimenti, gestore patrimoniale o consulente autorizzato di alcun tipo.</p>
+            </div>
+
+            <!-- Legal Details -->
+            <div class="max-w-2xl mx-auto space-y-4 mb-10 text-left">
+                <details class="text-xs text-gray-500 border border-gray-200 p-4 bg-gray-50">
+                    <summary class="cursor-pointer font-bold uppercase tracking-widest hover:text-gray-900">Informativa sulla Privacy</summary>
+                    <div class="mt-4 space-y-2 normal-case tracking-normal">
+                        <p>La tutela della tua privacy è una nostra priorità assoluta. Raccogliamo esclusivamente i dati strettamente necessari per il funzionamento di questo sito promozionale e per gestire le tue richieste di contatto. Le informazioni fornite tramite i moduli di contatto vengono elaborate con la massima riservatezza e nel rispetto delle normative vigenti. Non condividiamo i tuoi dati personali con terze parti per scopi di marketing senza il tuo esplicito consenso. Implementiamo misure di sicurezza tecniche e organizzative adeguate per proteggere le tue informazioni da accessi non autorizzati o alterazioni. Hai il diritto di richiedere in qualsiasi momento l'accesso, la modifica o la cancellazione dei tuoi dati personali dai nostri archivi. Ti invitiamo a consultare periodicamente questa pagina per eventuali aggiornamenti sulle nostre pratiche di gestione dei dati.</p>
+                    </div>
+                </details>
+
+                <details class="text-xs text-gray-500 border border-gray-200 p-4 bg-gray-50">
+                    <summary class="cursor-pointer font-bold uppercase tracking-widest hover:text-gray-900">Termini di Servizio</summary>
+                    <div class="mt-4 space-y-2 normal-case tracking-normal">
+                        <p>L'utilizzo di questo sito web implica l'accettazione dei presenti termini e condizioni. Overfrettech opera come piattaforma informativa e promozionale, offrendo selezioni e approfondimenti legati al mondo dell'editoria e delle notizie di attualità. I contenuti presentati hanno scopo puramente illustrativo e non costituiscono in alcun modo consulenza professionale, legale o finanziaria. Ci impegniamo a mantenere le informazioni aggiornate, tuttavia non garantiamo l'assoluta accuratezza o completezza dei testi pubblicati in ogni momento, dati i rapidi mutamenti dell'attualità. L'utente si impegna a utilizzare il sito in modo lecito e a non interferire con il suo corretto funzionamento tecnico. Ci riserviamo il diritto di modificare, sospendere o interrompere l'accesso al sito senza preavviso. Per qualsiasi controversia derivante dall'uso di questa piattaforma, si farà riferimento alla giurisdizione competente per legge.</p>
+                    </div>
+                </details>
+
+                <details class="text-xs text-gray-500 border border-gray-200 p-4 bg-gray-50">
+                    <summary class="cursor-pointer font-bold uppercase tracking-widest hover:text-gray-900">Disclaimer Promozionale</summary>
+                    <div class="mt-4 space-y-2 normal-case tracking-normal">
+                        <p>Questo sito è gestito da Overfrettech e funge esclusivamente da portale promozionale indipendente. Operiamo in qualità di partner promozionali per L'Espresso e altri editori di rilevanza nazionale nel campo delle inchieste e dell'analisi politica. Non gestiamo direttamente la vendita di abbonamenti, riviste cartacee o contenuti digitali a pagamento. Qualsiasi transazione, acquisto o richiesta di assistenza tecnica relativa ai prodotti editoriali deve essere indirizzata direttamente al fornitore originale del servizio. Overfrettech non offre garanzie esplicite o implicite sui prodotti o servizi di terze parti promossi su queste pagine. Le opinioni espresse negli editoriali e nei reportage recensiti appartengono ai rispettivi autori e alle testate giornalistiche di origine. Il nostro ruolo è unicamente quello di facilitare la scoperta di contenuti di alta qualità nel vasto panorama dell'informazione contemporanea.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="pt-8 border-t border-gray-200">
+                <p>&copy; 2026 Overfrettech. Tutti i diritti riservati.</p>
+                <p class="mt-2 text-gray-400" style="font-size: 0.7rem;">Operatore promozionale indipendente &middot; Overfrettech</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t border-gray-200 shadow-2xl z-50 p-4 md:p-6">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-sm text-gray-700 text-center md:text-left">
+                Utilizziamo i cookie per assicurarti la migliore esperienza sul nostro sito promozionale. Continuando la navigazione, accetti il nostro utilizzo dei cookie per scopi analitici e di funzionamento tecnico.
+            </div>
+            <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('overfrettech_cookies_accepted','1')" class="btn-primary whitespace-nowrap">
+                Accetta e Continua
+            </button>
+        </div>
+    </div>
+
+    <!-- Cookie Script (Mandatory) -->
+    <script>
+      if (localStorage.getItem('overfrettech_cookies_accepted')) {
+        document.getElementById('cookie-banner').classList.add('hidden');
+      }
+    </script>
+</body>
+</html>
