@@ -7,17 +7,19 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Everyflow Digital - Cultura Contemporanea</title>
-    <meta name="description" content="Esplora la cultura contemporanea e la società italiana attraverso la nostra selezione editoriale.">
+    <title>Everyflow Digital | La tua guida alla gastronomia locale</title>
+    <meta name="description" content="Esplora i migliori ristoranti consigliati, le osterie e le trattorie che celebrano la cucina tradizionale. La tua guida alla gastronomia locale con Everyflow Digital.">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     
-    <!-- Tailwind CSS v2.2.19 CDN -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS v2.2.19 (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 
-    <!-- CSS Injection (MANDATORY) -->
+    <!-- Design DNA (Mandatory Injection) -->
     <style>
       :root {
         --primary: #7c2d12;
@@ -75,98 +77,115 @@
       
       .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.05); }
 
-      /* Details/Summary styling */
-      details > summary { cursor: pointer; list-style: none; }
-      details > summary::-webkit-details-marker { display: none; }
+      /* Details/Summary styling for FAQ & Legal */
+      details > summary {
+        list-style: none;
+        cursor: pointer;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
     <!-- Navigation -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-white sticky top-0 z-50" style="box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
+            <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-black text-primary tracking-tight" style="font-family: 'Merriweather', serif;">
-                        Everyflow Digital
+                    <a href="#" class="text-2xl font-black tracking-tighter text-primary" style="font-family: 'Merriweather', serif;">
+                        Everyflow<span class="text-secondary">Digital</span>
                     </a>
                 </div>
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#about" class="text-gray-700 hover:text-primary font-semibold transition-colors">Chi Siamo</a>
-                    <a href="#features" class="text-gray-700 hover:text-primary font-semibold transition-colors">Contenuti</a>
-                    <a href="#faq" class="text-gray-700 hover:text-primary font-semibold transition-colors">FAQ</a>
-                    <a href="#contact" class="btn-primary">Partecipa</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary font-semibold text-sm uppercase tracking-wide transition-colors">La Missione</a>
+                    <a href="#features" class="text-gray-600 hover:text-primary font-semibold text-sm uppercase tracking-wide transition-colors">La Guida</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-semibold text-sm uppercase tracking-wide transition-colors">Domande Frequenti</a>
+                    <a href="#contact" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Segnala un Locale</a>
                 </div>
-                <div class="flex items-center md:hidden">
-                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute w-full shadow-lg border-t border-gray-100 z-50 px-4 pt-2 pb-6 space-y-2">
-            <a href="#about" class="block px-3 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-md">Chi Siamo</a>
-            <a href="#features" class="block px-3 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-md">Contenuti</a>
-            <a href="#faq" class="block px-3 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-md">FAQ</a>
-            <a href="#contact" class="block px-3 py-3 text-base font-bold text-primary hover:bg-gray-50 rounded-md">Partecipa</a>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full border-b border-gray-100 shadow-lg" style="z-index: 100;">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+                <a href="#about" class="block px-3 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-md">La Missione</a>
+                <a href="#features" class="block px-3 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-md">La Guida</a>
+                <a href="#faq" class="block px-3 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-md">Domande Frequenti</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-bold text-primary hover:bg-gray-50 rounded-md">Segnala un Locale</a>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <main class="flex-grow">
         
-        <!-- Hero Section (Full Width, Overlap Layout) -->
-        <section class="relative w-full overflow-hidden">
-            <!-- Tinted Background Band -->
-            <div class="absolute inset-0 w-full h-full" style="background-color: var(--primary); opacity: 0.05;"></div>
+        <!-- 1. HERO SECTION -->
+        <section class="relative w-full overflow-hidden bg-white">
+            <!-- Tinted Band Background for Overlap Layout -->
+            <div class="absolute top-0 left-0 h-full w-full md:w-2/3" style="background-color: rgba(124, 45, 18, 0.05);"></div>
             
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
                 <div class="relative flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16 py-16 md:py-24">
                     
                     <!-- Text Column -->
-                    <div class="md:w-1/2 flex flex-col justify-center">
-                        <span class="text-secondary font-bold tracking-wider uppercase text-sm mb-4 inline-block">Progetto Editoriale</span>
-                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6 text-gray-900">
-                            Il taccuino della cultura contemporanea.
+                    <div class="md:w-1/2 flex flex-col justify-center z-10">
+                        <span class="inline-block py-1 px-3 rounded-full bg-white text-secondary text-xs font-bold uppercase tracking-widest mb-6 self-start shadow-sm" style="border: 1px solid rgba(161, 98, 7, 0.2);">Editoriale Gastronomico</span>
+                        
+                        <!-- MANDATORY H1 TYPOGRAPHY -->
+                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-gray-900 mb-6">
+                            Scopri le Eccellenze della Gastronomia Locale
                         </h1>
-                        <p class="text-lg text-gray-700 mb-8 leading-relaxed">
-                            Everyflow Digital è un gruppo di media digitali focalizzato sulle tendenze e la narrazione moderna. Questa pagina presenta la nostra partnership promozionale con Frammenti Rivista, esplorando la cultura contemporanea e la società italiana.
+                        
+                        <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                            Everyflow Digital ti accompagna in un viaggio sensoriale tra i <strong>ristoranti consigliati</strong>, le eccellenze del territorio e le <strong>trattorie</strong> che custodiscono i segreti della <strong>cucina tradizionale</strong> italiana.
                         </p>
-                        <div>
-                            <a href="#features" class="btn-primary">Esplora i Contenuti</a>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#features" class="btn-primary text-center">Inizia l'Esplorazione</a>
+                            <a href="#about" class="px-6 py-3 font-bold text-primary hover:text-secondary transition-colors flex items-center justify-center uppercase tracking-wide text-sm">Scopri di più &rarr;</a>
                         </div>
                     </div>
                     
-                    <!-- Image Column (Overlapping Right Edge) -->
-                    <div class="md:w-1/2 flex items-center relative">
-                        <img src="./assets/img/hero.jpg" alt="Persona che legge un magazine di cultura contemporanea in un caffè" loading="lazy" class="w-full h-full object-cover relative z-20" style="min-height: 420px; border-radius: var(--card-radius); box-shadow: var(--shadow); transform: translateX(1rem);">
+                    <!-- Image Column (Overlapping) -->
+                    <div class="md:w-1/2 transform md:translate-x-8 z-20 mt-8 md:mt-0">
+                        <img src="./assets/img/hero.jpg" alt="Chef che impiatta con cura un piatto gourmet" loading="lazy" class="w-full h-full object-cover" style="min-height: 420px; border-radius: var(--card-radius); box-shadow: var(--shadow);">
                     </div>
-
+                    
                 </div>
             </div>
         </section>
 
         <hr class="section-divider">
 
-        <!-- About Section -->
+        <!-- 2. ABOUT / MISSION SECTION -->
         <section id="about" class="py-20 md:py-28">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="pane-8b2b">
-                    <div class="flex flex-col lg:flex-row gap-10 items-center">
-                        <div class="lg:w-1/2">
-                            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">La Nostra Visione Culturale</h2>
-                            <p class="text-gray-700 leading-relaxed mb-4">
-                                Everyflow Digital è un gruppo di media digitali focalizzato sulle tendenze e la narrazione moderna. Questa pagina presenta la nostra partnership promozionale con Frammenti Rivista, esplorando la cultura contemporanea e la società italiana. Crediamo fermamente che la narrazione sia il fulcro fondamentale per la comprensione del nostro tempo e delle sue complessità.
-                            </p>
-                            <p class="text-gray-700 leading-relaxed">
-                                Attraverso questa collaborazione indipendente, ci impegniamo a offrire uno sguardo approfondito e curato su letteratura, teatro e dinamiche sociali emergenti. Il nostro obiettivo primario è connettere lettori curiosi ed esigenti con voci autentiche, promuovendo un dialogo costruttivo e un'analisi puntuale delle arti visive e del panorama culturale odierno.
-                            </p>
-                        </div>
-                        <div class="lg:w-1/2 w-full">
-                            <img src="./assets/img/about.jpg" alt="Gruppo di scrittori creativi che discutono idee sulla società" loading="lazy" class="w-full h-auto object-cover" style="border-radius: var(--radius); box-shadow: var(--shadow);">
-                        </div>
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Chi Siamo e la Nostra Missione</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Celebriamo l'arte culinaria e i luoghi che rendono unico il nostro patrimonio gastronomico.</p>
+                </div>
+                
+                <div class="pane-8b2b flex flex-col md:flex-row gap-8 items-center">
+                    <div class="md:w-1/2">
+                        <img src="./assets/img/about.jpg" alt="Team di chef sorridenti in una cucina professionale" loading="lazy" class="w-full h-auto object-cover rounded-md shadow-sm">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Il Cuore della Gastronomia Locale</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            Benvenuti nel mondo di Everyflow Digital, il punto di riferimento editoriale per chi ama la buona tavola e la ricerca dell'autenticità. La nostra missione è esplorare, documentare e raccontare l'evoluzione della <strong>gastronomia locale</strong>, valorizzando chi lavora con passione dietro i fornelli.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            Selezioniamo con cura i luoghi dove il cibo diventa cultura, offrendo ai nostri lettori una panoramica onesta e dettagliata sulle migliori <strong>osterie</strong>, i locali d'avanguardia e i ristoranti che mantengono viva l'anima della <strong>cucina tradizionale</strong>. Una bussola affidabile per orientarsi tra i sapori veri.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -174,65 +193,65 @@
 
         <hr class="section-divider">
 
-        <!-- Features Section (Icon List + Supporting Assets) -->
+        <!-- 3. VALUE / SERVICES SECTION (Icon List Layout) -->
         <section id="features" class="py-20 md:py-28 bg-white">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Indagine e Narrazione</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Scopri i percorsi tematici che definiscono il nostro viaggio attraverso le espressioni artistiche e il pensiero moderno.</p>
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">La Nostra Guida Editoriale</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Tutto ciò che ti serve per scoprire la prossima meta della tua esperienza culinaria.</p>
                 </div>
 
-                <div class="flex flex-col lg:flex-row gap-16 items-start">
+                <!-- Feature 1 Image break -->
+                <div class="max-w-2xl mx-auto mb-12">
+                    <img src="./assets/img/feature1.jpg" alt="Presentazione elegante di un piatto gourmet" loading="lazy" class="w-full h-64 object-cover rounded-md shadow-sm" style="border: 1px solid rgba(0,0,0,0.05);">
+                </div>
+
+                <!-- Icon List Layout -->
+                <div class="flex flex-col gap-10 max-w-2xl mx-auto">
                     
-                    <!-- Icon List (Single Column) -->
-                    <div class="flex flex-col gap-8 w-full lg:w-1/2 max-w-2xl mx-auto">
-                        
-                        <div class="flex items-start gap-5">
-                            <div class="flex-shrink-0 mt-1">
-                                <div class="w-12 h-12 rounded-full flex items-center justify-center bg-primary" style="background-color: var(--primary); opacity: 0.1; position: absolute;"></div>
-                                <svg class="w-12 h-12 p-3 relative z-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Letteratura e Teatro</h3>
-                                <p class="text-gray-600 leading-relaxed">Recensioni editoriali, approfondimenti sulle ultime uscite e uno sguardo attento alle produzioni teatrali che animano i palcoscenici nazionali.</p>
+                    <!-- Feature Item 1 -->
+                    <div class="flex flex-row items-start gap-6">
+                        <div class="flex-shrink-0 mt-1">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-primary bg-opacity-10 text-primary">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
                             </div>
                         </div>
-
-                        <div class="flex items-start gap-5">
-                            <div class="flex-shrink-0 mt-1">
-                                <div class="w-12 h-12 rounded-full flex items-center justify-center bg-primary" style="background-color: var(--primary); opacity: 0.1; position: absolute;"></div>
-                                <svg class="w-12 h-12 p-3 relative z-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Arti Visive</h3>
-                                <p class="text-gray-600 leading-relaxed">Un viaggio critico attraverso le mostre più rilevanti, le gallerie indipendenti e l'evoluzione continua delle espressioni artistiche visive.</p>
-                            </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Recensioni Ristoranti Approfondite</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Analizziamo minuziosamente i menu, la qualità del servizio e l'atmosfera per offrirti <strong>recensioni ristoranti</strong> indipendenti, oneste e ricche di dettagli utili per la tua scelta.
+                            </p>
                         </div>
-
-                        <div class="flex items-start gap-5">
-                            <div class="flex-shrink-0 mt-1">
-                                <div class="w-12 h-12 rounded-full flex items-center justify-center bg-primary" style="background-color: var(--primary); opacity: 0.1; position: absolute;"></div>
-                                <svg class="w-12 h-12 p-3 relative z-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Società Italiana</h3>
-                                <p class="text-gray-600 leading-relaxed">Analisi critica, inchieste e riflessioni profonde sui cambiamenti, le sfide e le peculiarità che plasmano la nostra società contemporanea.</p>
-                            </div>
-                        </div>
-
                     </div>
 
-                    <!-- Supporting Images Gallery -->
-                    <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4">
-                        <img src="./assets/img/feature1.jpg" alt="Esibizione in una galleria d'arte moderna" loading="lazy" class="col-span-2 w-full object-cover" style="height: 240px; border-radius: var(--radius); box-shadow: var(--shadow);">
-                        <img src="./assets/img/feature2.jpg" alt="Folla diversificata in una strada cittadina" loading="lazy" class="w-full object-cover" style="height: 180px; border-radius: var(--radius); box-shadow: var(--shadow);">
-                        <img src="./assets/img/feature3.jpg" alt="Lettura di un articolo culturale su tablet" loading="lazy" class="w-full object-cover" style="height: 180px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                    <!-- Feature Item 2 -->
+                    <div class="flex flex-row items-start gap-6">
+                        <div class="flex-shrink-0 mt-1">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-primary bg-opacity-10 text-primary">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Guida alle Trattorie e Osterie</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Un viaggio affascinante alla scoperta dei sapori di una volta. Diamo voce alle <strong>trattorie</strong> storiche e alle <strong>osterie</strong> di paese dove la vera <strong>cucina tradizionale</strong> viene tramandata di generazione in generazione.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature Item 3 -->
+                    <div class="flex flex-row items-start gap-6">
+                        <div class="flex-shrink-0 mt-1">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-primary bg-opacity-10 text-primary">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">La Selezione dei Ristoranti Consigliati</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Curiamo liste tematiche e aggiornate dei <strong>ristoranti consigliati</strong> per ogni occasione: dalla cena romantica all'incontro d'affari, fino al pranzo domenicale in famiglia all'insegna del buon cibo.
+                            </p>
+                        </div>
                     </div>
 
                 </div>
@@ -241,71 +260,75 @@
 
         <hr class="section-divider">
 
-        <!-- FAQ Section -->
+        <!-- 4. FAQ SECTION -->
         <section id="faq" class="py-20 md:py-28">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="pane-8b2b">
-                    <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">Domande Frequenti</h2>
-                    <div class="space-y-4 max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Domande Frequenti</h2>
+                    <p class="text-lg text-gray-600">Le risposte alle curiosità dei nostri lettori.</p>
+                </div>
+
+                <div class="pane-8b2b max-w-3xl mx-auto">
+                    <div class="space-y-4">
                         
-                        <details class="group border border-gray-200 rounded-md bg-gray-50">
-                            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:text-primary transition-colors">
-                                <span>Che tipo di contenuti promuovete in questa pagina?</span>
-                                <span class="transition group-open:rotate-180 text-secondary">
-                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        <details class="group border-b border-gray-100 pb-4">
+                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 hover:text-primary transition-colors">
+                                Come selezionate i ristoranti consigliati?
+                                <span class="text-secondary group-open:rotate-180 transition-transform duration-200">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </span>
                             </summary>
-                            <div class="text-gray-600 mt-2 p-5 pt-0 leading-relaxed border-t border-gray-200 mt-2">
-                                Promuoviamo articoli, recensioni e saggi dedicati alla cultura contemporanea, con un focus specifico su arti visive, teatro, letteratura e l'evoluzione della società italiana, in collaborazione con Frammenti Rivista.
-                            </div>
+                            <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-gray-200">
+                                La nostra selezione si basa su criteri rigorosi: la qualità e la freschezza degli ingredienti, il rispetto per le materie prime, la maestria tecnica in cucina e l'accoglienza in sala. Valutiamo l'esperienza nel suo complesso.
+                            </p>
                         </details>
 
-                        <details class="group border border-gray-200 rounded-md bg-gray-50">
-                            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:text-primary transition-colors">
-                                <span>Qual è il ruolo di Everyflow Digital?</span>
-                                <span class="transition group-open:rotate-180 text-secondary">
-                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        <details class="group border-b border-gray-100 pb-4">
+                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 hover:text-primary transition-colors">
+                                Le vostre recensioni ristoranti sono indipendenti?
+                                <span class="text-secondary group-open:rotate-180 transition-transform duration-200">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </span>
                             </summary>
-                            <div class="text-gray-600 mt-2 p-5 pt-0 leading-relaxed border-t border-gray-200 mt-2">
-                                Everyflow Digital opera come partner promozionale editoriale. Curiamo la presentazione e la diffusione di contenuti culturali di alto valore, indirizzando i lettori verso le fonti originali per la lettura completa.
-                            </div>
+                            <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-gray-200">
+                                Assolutamente sì. La nostra linea editoriale impone che le visite ai locali avvengano spesso in forma anonima e che le valutazioni siano espressione libera dei nostri critici gastronomici, senza influenze commerciali.
+                            </p>
                         </details>
 
-                        <details class="group border border-gray-200 rounded-md bg-gray-50">
-                            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:text-primary transition-colors">
-                                <span>Gli articoli e le recensioni sono a pagamento?</span>
-                                <span class="transition group-open:rotate-180 text-secondary">
-                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        <details class="group border-b border-gray-100 pb-4">
+                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 hover:text-primary transition-colors">
+                                Coprite solo l'alta cucina o anche le trattorie?
+                                <span class="text-secondary group-open:rotate-180 transition-transform duration-200">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </span>
                             </summary>
-                            <div class="text-gray-600 mt-2 p-5 pt-0 leading-relaxed border-t border-gray-200 mt-2">
-                                La disponibilità e le modalità di accesso ai contenuti completi dipendono dalle politiche dell'editore originale, Frammenti Rivista. Il nostro sito fornisce un'introduzione e una guida alla scoperta di tali opere.
-                            </div>
+                            <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-gray-200">
+                                Crediamo fermamente che l'eccellenza non risieda solo nel fine dining. Diamo grandissimo spazio e valore alle <strong>trattorie</strong> e alle <strong>osterie</strong> che portano avanti con fierezza la vera <strong>cucina tradizionale</strong>.
+                            </p>
                         </details>
 
-                        <details class="group border border-gray-200 rounded-md bg-gray-50">
-                            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:text-primary transition-colors">
-                                <span>Trattate solo argomenti legati all'Italia?</span>
-                                <span class="transition group-open:rotate-180 text-secondary">
-                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        <details class="group border-b border-gray-100 pb-4">
+                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 hover:text-primary transition-colors">
+                                Come posso segnalare un locale di gastronomia locale?
+                                <span class="text-secondary group-open:rotate-180 transition-transform duration-200">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </span>
                             </summary>
-                            <div class="text-gray-600 mt-2 p-5 pt-0 leading-relaxed border-t border-gray-200 mt-2">
-                                Sebbene ci sia una forte attenzione alla società italiana e alle sue dinamiche interne, la cultura contemporanea è globale. Promuoviamo anche riflessioni su correnti artistiche e letterarie internazionali che influenzano il nostro panorama.
-                            </div>
+                            <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-gray-200">
+                                Incoraggiamo i nostri lettori a condividere le loro scoperte! Puoi utilizzare il modulo di contatto presente in fondo a questa pagina per segnalarci il tuo locale preferito. La nostra redazione valuterà la segnalazione.
+                            </p>
                         </details>
 
-                        <details class="group border border-gray-200 rounded-md bg-gray-50">
-                            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-gray-800 hover:text-primary transition-colors">
-                                <span>Come posso rimanere aggiornato sulle nuove pubblicazioni?</span>
-                                <span class="transition group-open:rotate-180 text-secondary">
-                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        <details class="group pb-2">
+                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 hover:text-primary transition-colors">
+                                La guida è aggiornata regolarmente?
+                                <span class="text-secondary group-open:rotate-180 transition-transform duration-200">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </span>
                             </summary>
-                            <div class="text-gray-600 mt-2 p-5 pt-0 leading-relaxed border-t border-gray-200 mt-2">
-                                Puoi iscriverti tramite il modulo di contatto presente in questa pagina per ricevere segnalazioni editoriali periodiche curate da Everyflow Digital.
-                            </div>
+                            <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-gray-200">
+                                Sì, il panorama della ristorazione è in continua evoluzione. Aggiorniamo costantemente le nostre liste, seguendo i cambi di stagione nei menu, le nuove aperture e l'evoluzione dei locali storici.
+                            </p>
                         </details>
 
                     </div>
@@ -315,91 +338,96 @@
 
         <hr class="section-divider">
 
-        <!-- Social Proof Section -->
+        <!-- 5. SOCIAL PROOF / REVIEWS -->
         <section id="reviews" class="py-20 md:py-28 bg-white">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="pane-8b2b">
-                    <h2 class="text-3xl font-bold mb-10 text-center text-gray-900">Prospettive dei Lettori</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        
-                        <div class="bg-gray-50 p-6 rounded-md border border-gray-100">
-                            <div class="flex items-center mb-4">
-                                <div class="text-secondary flex">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 italic mb-4">"Una fonte inesauribile di spunti. La selezione di articoli proposti mi permette di scoprire nuove prospettive sulla cultura contemporanea che altrimenti mi sfuggirebbero."</p>
-                            <div class="font-bold text-gray-900">— Giulia M., 2026</div>
-                        </div>
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Cosa Dicono i Nostri Lettori</h2>
+                    <p class="text-lg text-gray-600">L'opinione di chi utilizza la nostra guida per scoprire nuovi sapori.</p>
+                </div>
 
-                        <div class="bg-gray-50 p-6 rounded-md border border-gray-100">
-                            <div class="flex items-center mb-4">
-                                <div class="text-secondary flex">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 italic mb-4">"Le riflessioni sul teatro e sulle arti visive sono sempre puntuali e ben scritte. È uno spazio digitale raro dove l'approfondimento prevale sulla superficialità."</p>
-                            <div class="font-bold text-gray-900">— Marco T., 2026</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="pane-8b2b" style="margin-bottom: 0;">
+                        <div class="flex text-secondary mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                         </div>
-
-                        <div class="bg-gray-50 p-6 rounded-md border border-gray-100">
-                            <div class="flex items-center mb-4">
-                                <div class="text-secondary flex">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 italic mb-4">"Un ottimo punto di riferimento per capire la società italiana oggi. Le analisi sono chiare, documentate e invitano sempre a una riflessione personale."</p>
-                            <div class="font-bold text-gray-900">— Elena R., 2026</div>
-                        </div>
-
+                        <p class="text-gray-700 italic mb-6">"Grazie a questa guida ho scoperto un'osteria fuori città che serve i piatti tradizionali esattamente come li faceva mia nonna. Le recensioni sono precise e veritiere, senza fronzoli. Un punto di riferimento."</p>
+                        <p class="font-bold text-gray-900 text-sm uppercase tracking-wide">— Marco T., Appassionato di cucina</p>
                     </div>
+
+                    <div class="pane-8b2b" style="margin-bottom: 0;">
+                        <div class="flex text-secondary mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-6">"Uso regolarmente le liste dei ristoranti consigliati per organizzare cene di lavoro. Non mi hanno mai deluso. Le descrizioni dell'atmosfera e del servizio sono sempre azzeccate."</p>
+                        <p class="font-bold text-gray-900 text-sm uppercase tracking-wide">— Elena R., Consulente</p>
+                    </div>
+
+                    <div class="pane-8b2b" style="margin-bottom: 0;">
+                        <div class="flex text-secondary mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-6">"Il modo in cui raccontano le storie degli chef e la filosofia dietro i piatti mi ha fatto innamorare ancora di più della gastronomia locale. Lettura obbligatoria per i foodie."</p>
+                        <p class="font-bold text-gray-900 text-sm uppercase tracking-wide">— Giulia M., Food Blogger</p>
+                    </div>
+
                 </div>
             </div>
         </section>
 
         <hr class="section-divider">
 
-        <!-- Contact Section -->
+        <!-- 6. CONTACT SECTION -->
         <section id="contact" class="py-20 md:py-28">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="pane-8b2b">
-                    <div class="max-w-2xl mx-auto text-center">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Iscriviti alle Segnalazioni Editoriali</h2>
-                        <p class="text-gray-600 mb-8 leading-relaxed">Entra a far parte della nostra rete di lettori. Inserisci i tuoi dati per ricevere aggiornamenti periodici sulle migliori letture, mostre e analisi della società contemporanea curate dal nostro network.</p>
-                        
-                        <form id="lead-form" class="space-y-4 text-left" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome completo</label>
-                                <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary">
-                            </div>
-                            <div>
-                                <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Area di interesse principale</label>
-                                <select id="interest" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary bg-white">
-                                    <option>Arti Visive e Mostre</option>
-                                    <option>Letteratura e Teatro</option>
-                                    <option>Analisi della Società Italiana</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn-primary w-full mt-4">Iscriviti Ora</button>
-                            <p class="text-xs text-gray-500 mt-3 text-center">Iscrivendoti, accetti di ricevere comunicazioni promozionali editoriali. I tuoi dati sono al sicuro.</p>
-                        </form>
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Segnala un Locale o Contattaci</h2>
+                    <p class="text-lg text-gray-600">Hai scoperto una trattoria imperdibile o vuoi inviarci un suggerimento per la redazione? Scrivici.</p>
+                </div>
 
-                        <div id="success-msg" style="display:none" class="bg-green-50 border border-green-200 text-green-800 p-6 rounded-md text-center">
-                            <h3 class="text-xl font-bold mb-2">Iscrizione confermata!</h3>
-                            <p>Grazie per esserti unito a noi. Riceverai presto le nostre selezioni culturali.</p>
+                <div class="pane-8b2b">
+                    <form id="lead-form" class="space-y-6" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-bold text-gray-700 mb-1">Nome e Cognome</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-bold text-gray-700 mb-1">Telefono (Opzionale)</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow">
+                            </div>
                         </div>
+                        <div>
+                            <label for="locale" class="block text-sm font-bold text-gray-700 mb-1">Nome del Locale / Ristorante</label>
+                            <input type="text" id="locale" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-bold text-gray-700 mb-1">Il tuo messaggio</label>
+                            <textarea id="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full text-center">Invia Messaggio</button>
+                    </form>
+                    
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="success-msg" style="display:none" class="text-center py-8">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Messaggio Inviato!</h3>
+                        <p class="text-gray-600">Grazie per la tua segnalazione. La nostra redazione valuterà il tuo suggerimento al più presto.</p>
                     </div>
                 </div>
             </div>
@@ -407,84 +435,71 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="pt-16 pb-10 border-t border-gray-800">
+    <!-- 7. FOOTER -->
+    <footer class="pt-16 pb-8 border-t-4 border-primary">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="space-y-6 text-sm text-gray-300">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+                <div>
+                    <span class="text-2xl font-black tracking-tighter text-white" style="font-family: 'Merriweather', serif;">
+                        Everyflow<span class="text-secondary">Digital</span>
+                    </span>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-sm opacity-80 mb-1">Questo è un sito promozionale indipendente gestito da Everyflow Digital, che agisce come affiliato per Identità Golose.</p>
+                    <p class="text-sm opacity-80 font-semibold">Everyflow Digital è un operatore editoriale e promozionale. Non siamo un fornitore di servizi finanziari, broker, consulente per gli investimenti, gestore di patrimoni o consulente autorizzato di alcun tipo.</p>
+                </div>
+            </div>
+
+            <!-- Legal Documents in Details -->
+            <div class="space-y-4 mb-12 border-t border-gray-700 pt-8">
                 
-                <!-- 1. Brand Legend Paragraph -->
-                <p>
-                    Everyflow Digital è un gruppo di media digitali focalizzato sulle tendenze e la narrazione moderna. Questa pagina presenta la nostra partnership promozionale con Frammenti Rivista, esplorando la cultura contemporanea e la società italiana.
-                </p>
+                <details class="group">
+                    <summary class="text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">Informativa sulla Privacy</summary>
+                    <div class="mt-4 text-sm opacity-80 leading-relaxed bg-black bg-opacity-20 p-4 rounded-md">
+                        <p>La tua privacy è di fondamentale importanza per Everyflow Digital. Raccogliamo esclusivamente i dati strettamente necessari per gestire le tue richieste tramite il modulo di contatto presente su questa pagina. Le informazioni fornite non verranno mai cedute a terze parti per scopi di marketing o profilazione commerciale. Tutti i dati sono conservati su server sicuri e protetti secondo le normative vigenti in materia di protezione dei dati personali. Hai il diritto di richiedere in qualsiasi momento la cancellazione o la modifica delle tue informazioni dai nostri archivi. La navigazione su questo sito avviene in modo sicuro e anonimo, ad eccezione dei dati che decidi volontariamente di condividere. Per qualsiasi dubbio relativo al trattamento dei dati, ti invitiamo a non utilizzare il modulo se non accetti queste condizioni. Ci impegniamo a mantenere la massima trasparenza su come gestiamo e proteggiamo le tue informazioni personali in ogni momento.</p>
+                    </div>
+                </details>
 
-                <!-- 2. Non-financial Role Line -->
-                <p>
-                    Everyflow Digital è un operatore editoriale e promozionale. Non siamo un fornitore di servizi finanziari, un broker, un consulente per gli investimenti, un gestore patrimoniale o un consulente autorizzato di alcun tipo.
-                </p>
+                <details class="group">
+                    <summary class="text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">Termini e Condizioni</summary>
+                    <div class="mt-4 text-sm opacity-80 leading-relaxed bg-black bg-opacity-20 p-4 rounded-md">
+                        <p>L'utilizzo di questo sito web costituisce l'accettazione esplicita dei presenti termini e condizioni da parte dell'utente. Everyflow Digital offre questo spazio digitale esclusivamente a scopo informativo e promozionale. I contenuti, inclusi testi e immagini, sono forniti senza alcuna garanzia di assoluta accuratezza, sebbene ci impegniamo costantemente a mantenerli aggiornati e verificati. L'utente si impegna a navigare il sito in modo lecito e a non utilizzare i moduli di contatto per inviare spam, materiale offensivo o non pertinente allo scopo della pagina. Ci riserviamo il diritto inappellabile di modificare in qualsiasi momento la struttura del sito e le informazioni in esso contenute senza alcun preavviso. Questo sito funge unicamente da vetrina editoriale e non gestisce transazioni dirette di alcun tipo. Continuando la navigazione su queste pagine, confermi di aver letto, compreso e accettato integralmente queste disposizioni operative.</p>
+                    </div>
+                </details>
 
-                <!-- 3. Affiliate Disclaimer -->
-                <p>
-                    Questo è un sito promozionale indipendente gestito da Everyflow Digital, che agisce come affiliato per Frammenti Rivista.
-                </p>
-
-                <!-- 4. Copyright -->
-                <p>
-                    © 2026 Everyflow Digital. Tutti i diritti riservati.
-                </p>
-
-                <!-- 5. Operator Line -->
-                <p class="text-xs text-gray-500 mt-8">
-                    Operatore promozionale indipendente · Everyflow Digital
-                </p>
+                <details class="group">
+                    <summary class="text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">Disclaimer Affiliazione e Responsabilità</summary>
+                    <div class="mt-4 text-sm opacity-80 leading-relaxed bg-black bg-opacity-20 p-4 rounded-md">
+                        <p>Questo sito è gestito da Everyflow Digital in qualità di operatore promozionale indipendente e partner affiliato. Il nostro ruolo è esclusivamente editoriale e di presentazione dei servizi, guide o eventi offerti originariamente da Identità Golose. Non vendiamo direttamente alcun prodotto, servizio, biglietto o abbonamento menzionato su queste pagine. Tutte le transazioni economiche, l'assistenza clienti e la fornitura effettiva dei servizi sono gestite interamente ed esclusivamente dal fornitore originale sulla propria piattaforma. Pertanto, Everyflow Digital non si assume alcuna responsabilità legale per la qualità, la puntualità o eventuali disservizi legati ai prodotti di terze parti presentati. Non offriamo garanzie di rimborso o promesse di soddisfazione, in quanto tali politiche appartengono esclusivamente al fornitore finale. Invitiamo gli utenti a verificare sempre le condizioni di vendita, i prezzi e le politiche sul sito ufficiale del fornitore prima di effettuare qualsiasi acquisto o prenotazione.</p>
+                    </div>
+                </details>
 
             </div>
 
-            <!-- Legal Details -->
-            <div class="mt-12 space-y-4 border-t border-gray-700 pt-8">
-                
-                <details class="group">
-                    <summary class="text-sm font-semibold text-gray-400 hover:text-white cursor-pointer list-none">Informativa sulla Privacy</summary>
-                    <div class="mt-4 text-xs text-gray-400 leading-relaxed space-y-2 pb-4">
-                        <p>Rispettiamo la tua privacy e proteggiamo i tuoi dati con la massima serietà. Questo sito raccoglie esclusivamente le informazioni strettamente necessarie per il funzionamento tecnico della piattaforma e per l'invio di aggiornamenti editoriali tramite il modulo di contatto volontario. Non vendiamo, non cediamo e non condividiamo i tuoi dati personali con terze parti per scopi commerciali non autorizzati. I dati raccolti vengono utilizzati unicamente per scopi promozionali, informativi e per migliorare la tua esperienza di lettura. Puoi richiedere la visualizzazione, la modifica o la cancellazione permanente dei tuoi dati dai nostri archivi in qualsiasi momento contattandoci tramite i form predisposti. Utilizziamo cookie tecnici essenziali per garantire una navigazione fluida e sicura sul nostro portale. La continuazione della navigazione sul sito implica la comprensione e l'accettazione della nostra politica di gestione delle informazioni. La sicurezza delle tue informazioni e la trasparenza delle nostre operazioni sono una nostra priorità assoluta in conformità alle normative vigenti.</p>
-                    </div>
-                </details>
-
-                <details class="group">
-                    <summary class="text-sm font-semibold text-gray-400 hover:text-white cursor-pointer list-none">Termini di Servizio</summary>
-                    <div class="mt-4 text-xs text-gray-400 leading-relaxed space-y-2 pb-4">
-                        <p>Utilizzando questo sito web, accetti implicitamente e integralmente i nostri termini di servizio. Questo portale ha uno scopo puramente informativo, culturale e promozionale, fungendo da aggregatore e segnalatore di contenuti. I testi, i riassunti e i materiali presentati riflettono la nostra partnership indipendente con l'editore originale e sono elaborati a scopo divulgativo. Pur impegnandoci per mantenere elevati standard di qualità, non ci assumiamo responsabilità per eventuali errori, imprecisioni temporali o omissioni nei testi presentati. L'uso delle informazioni fornite è a totale discrezione e rischio dell'utente finale. Ci riserviamo il diritto insindacabile di modificare, aggiornare o rimuovere i contenuti della pagina in qualsiasi momento, senza alcun obbligo di preavviso. Tutti i marchi, i loghi e le opere citate appartengono ai rispettivi e legittimi proprietari e sono utilizzati qui a solo scopo descrittivo. La fruizione continuativa del sito costituisce l'accettazione vincolante di queste condizioni generali di utilizzo.</p>
-                    </div>
-                </details>
-
-                <details class="group">
-                    <summary class="text-sm font-semibold text-gray-400 hover:text-white cursor-pointer list-none">Disclaimer Promozionale</summary>
-                    <div class="mt-4 text-xs text-gray-400 leading-relaxed space-y-2 pb-4">
-                        <p>Questo sito funge esclusivamente da vetrina promozionale ed editoriale indipendente. Presentiamo articoli, servizi e contenuti culturali di terze parti agendo unicamente in qualità di partner affiliati. Nessuna transazione commerciale, acquisto di abbonamenti o erogazione di servizi diretti avviene su questa piattaforma. Tutte le interazioni dirette, gli abbonamenti editoriali e l'eventuale supporto tecnico ai lettori sono gestiti in via esclusiva dall'editore originale, Frammenti Rivista. Non elaboriamo pagamenti, non gestiamo rimborsi né offriamo garanzie dirette sulla continuità o sulla natura dei contenuti forniti da terzi. Il nostro ruolo è rigorosamente limitato alla promozione, alla curation e all'indirizzamento verso progetti culturali che riteniamo validi. Per qualsiasi problematica relativa al servizio finale, all'accesso agli articoli originali o alle policy commerciali, l'utente deve rivolgersi direttamente al fornitore originale del servizio. Non forniamo consulenza professionale, finanziaria o legale di alcun tipo attraverso le nostre pubblicazioni.</p>
-                    </div>
-                </details>
-
+            <div class="text-center text-xs opacity-60 flex flex-col items-center gap-2">
+                <p>&copy; 2026 Everyflow Digital. Tutti i diritti riservati.</p>
+                <p>Operatore promozionale indipendente &middot; Everyflow Digital</p>
             </div>
         </div>
     </footer>
 
     <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white shadow-2xl border-t border-gray-200 z-50 p-4 sm:p-6 transition-transform duration-300">
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white shadow-2xl border-t border-gray-200 z-50 p-4 sm:p-6" style="box-shadow: 0 -4px 15px rgba(0,0,0,0.05);">
         <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p class="text-sm text-gray-600 leading-relaxed text-center sm:text-left">
-                Utilizziamo i cookie per offrirti la migliore esperienza di navigazione, analizzare il traffico e presentare contenuti culturali pertinenti. Navigando sul sito, accetti il nostro utilizzo dei cookie.
+            <p class="text-sm text-gray-700 text-center sm:text-left">
+                Questo sito utilizza cookie tecnici per garantire una navigazione fluida e anonima. Non utilizziamo cookie di profilazione invadenti. Continuando a navigare, accetti il nostro utilizzo essenziale dei cookie.
             </p>
-            <button type="button" onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('everyflowdigital_cookies_accepted','1')" class="btn-primary whitespace-nowrap">
+            <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('everyflowdigital_cookies_accepted','1')" class="btn-primary whitespace-nowrap text-sm px-6 py-2">
                 Accetta e Chiudi
             </button>
         </div>
     </div>
 
-    <!-- Mandatory Cookie Script -->
+    <!-- Mandatory Cookie Script exactly 5 lines -->
     <script>
       if (localStorage.getItem('everyflowdigital_cookies_accepted')) {
         document.getElementById('cookie-banner').classList.add('hidden');
       }
     </script>
-
 </body>
 </html>
