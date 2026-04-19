@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!-- compiled v3.2.7 -->
+<html lang="it">
+<head>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MooterCore | La Tua Guida Indipendente nel Mondo Tech</title>
+    <meta name="description" content="Blog indipendente dedicato a recensioni smartphone, test prodotti tech, confronto laptop e scoperta di gadget nuovi.">
+    
+    <!-- Tailwind CSS v2 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon (Fallback) -->
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+
+    <!-- Design DNA CSS Injection -->
+    <style>
+      :root {
+        --primary: #a16e8a;
+        --secondary: #a18962;
+        --radius: 32px;
+        --card-radius: 32px;
+        --shadow: 0 8px 30px rgba(47,66,52,0.08);
+      }
+
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #f7f5ee;
+        color: #2f4234;
+        font-family: 'Nunito', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Nunito', sans-serif; }
+
+      .frame-bfa5 {
+        background-color: #ffffff;
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border: none;
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: 9999px;
+        padding: 0.875rem 2.25rem;
+        font-weight: 600;
+        transition: all 0.25s;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .bg-primary { background-color: var(--primary); }
+
+      .section-divider { border: none; border-top: 1px solid rgba(47,66,52,0.1); margin: 0; }
+
+      #mobile-menu { background-color: #ffffff; }
+
+      footer { background-color: #f7f5ee; color: #2f4234; }
+      footer a { color: #2f4234; text-decoration: none; }
+      footer a:hover { color: #0f3d24; }
+      footer { border-top: 1px solid rgba(47,66,52,0.1); padding-top: 2.5rem; padding-bottom: 2rem; }
+      .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed top-0 inset-x-0 z-50 bg-gray-900 text-white text-sm py-3 px-4 shadow-md flex flex-col sm:flex-row items-center justify-between">
+        <p class="mb-2 sm:mb-0 text-center sm:text-left">Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito editoriale. Continuando a navigare, accetti la nostra policy.</p>
+        <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('mootercore_cookies_accepted','1')" class="bg-white text-gray-900 px-4 py-1.5 rounded-full font-semibold hover:bg-gray-200 transition-colors whitespace-nowrap">
+            Accetta e Chiudi
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40 mt-12 sm:mt-0">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-black text-primary tracking-tight">MooterCore</a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-gray-700 hover:text-primary font-medium transition-colors">Chi Siamo</a>
+                    <a href="#features" class="text-gray-700 hover:text-primary font-medium transition-colors">Recensioni</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-medium transition-colors">Opinioni</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-medium transition-colors">FAQ</a>
+                    <a href="#contact" class="btn-primary" style="padding: 0.5rem 1.5rem;">Contattaci</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full border-b border-gray-100 shadow-lg z-50">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-md">Chi Siamo</a>
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-md">Recensioni</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-md">Opinioni</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-md">FAQ</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold hover:bg-gray-50 rounded-md">Contattaci</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION (Bold Color Hero) -->
+    <section class="bg-primary w-full relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white py-24 md:py-32 max-w-4xl mx-auto">
+                <span class="inline-block py-1 px-3 rounded-full text-sm font-semibold tracking-wider mb-6" style="background-color: rgba(255,255,255,0.2);">BLOG EDITORIALE INDIPENDENTE</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-8">
+                    La Tua Bussola nel Mondo della Tecnologia
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 text-white text-opacity-90 leading-relaxed max-w-3xl mx-auto">
+                    MooterCore esplora, testa e analizza i migliori dispositivi sul mercato. Dalle recensioni smartphone ai wearable, ti aiutiamo a scegliere con consapevolezza e chiarezza.
+                </p>
+                <div>
+                    <a href="#features" class="btn-primary text-lg" style="background-color: #ffffff; color: var(--primary) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        Esplora le Recensioni
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. ABOUT SECTION -->
+    <section id="about" class="py-20 md:py-28">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="frame-bfa5">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <svg class="w-6 h-6 text-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <h2 class="text-sm font-bold text-secondary uppercase tracking-wider">La Nostra Missione</h2>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-extrabold mb-6 text-gray-900 leading-tight">Chiarezza, competenza e passione per l'innovazione.</h3>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            Benvenuti su MooterCore, il portale dedicato a chi ama l'innovazione senza compromessi. La nostra missione è esplorare il vasto universo dei <strong>gadget nuovi</strong> e fornire valutazioni oneste, trasparenti e facili da comprendere.
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Ogni giorno, il nostro team si dedica a rigorosi <strong>test prodotti tech</strong>, mettendo alla prova le ultime novità del mercato. Che tu stia cercando di orientarti tra le complesse specifiche tecniche o semplicemente cercando un consiglio pratico, noi traduciamo la tecnologia in soluzioni reali per la tua vita quotidiana.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="./assets/img/hero.jpg" alt="Scrivania con gadget tecnologici e dispositivi" loading="lazy" class="rounded-2xl object-cover w-full h-48 md:h-64 shadow-md" style="border-radius: var(--card-radius);">
+                        <img src="./assets/img/about.jpg" alt="Blogger di tecnologia al lavoro su una recensione" loading="lazy" class="rounded-2xl object-cover w-full h-48 md:h-64 shadow-md mt-8" style="border-radius: var(--card-radius);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 3. SOCIAL PROOF / REVIEWS SECTION -->
+    <section id="reviews" class="py-20 md:py-28">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Cosa Dicono i Nostri Lettori</h2>
+                <p class="mt-4 text-xl text-gray-600">La community che si fida delle nostre analisi editoriali.</p>
+            </div>
+            
+            <div class="frame-bfa5">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                        <div class="flex text-secondary mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"Le loro <strong>recensioni smartphone</strong> sono le più oneste e dettagliate che abbia mai letto. Mi hanno salvato da un acquisto sbagliato e mi hanno guidato verso il dispositivo perfetto per me."</p>
+                        <p class="font-bold text-gray-900">— Marco R., 2026</p>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                        <div class="flex text-secondary mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"Il <strong>confronto laptop</strong> pubblicato il mese scorso è stato fondamentale. Grazie ai loro articoli ho scelto la macchina perfetta per il mio studio di grafica."</p>
+                        <p class="font-bold text-gray-900">— Elena S., 2026</p>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                        <div class="flex text-secondary mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"Leggo sempre i loro articoli e i <strong>test prodotti tech</strong> prima di comprare <strong>gadget nuovi</strong>. MooterCore è diventato il mio punto di riferimento quotidiano per la tecnologia."</p>
+                        <p class="font-bold text-gray-900">— Giovanni T., 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 4. FEATURES / SERVICES SECTION (3-Column Cards) -->
+    <section id="features" class="py-20 md:py-28">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4">Le Nostre Aree di Analisi</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Esploriamo ogni categoria tecnologica per offrirti una panoramica completa e indipendente sulle ultime uscite.</p>
+            </div>
+
+            <div class="frame-bfa5">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="text-center group">
+                        <div class="overflow-hidden rounded-2xl mb-6 shadow-sm">
+                            <img src="./assets/img/feature1.jpg" alt="Persona che tiene in mano un moderno smartphone Android" loading="lazy" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary bg-opacity-10 text-primary mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Recensioni Smartphone</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Analisi approfondite su fotocamera, durata della batteria, qualità del display e prestazioni generali dei modelli più recenti sul mercato. Scopri quale dispositivo mobile si adatta realmente alle tue esigenze quotidiane senza farti ingannare dal marketing.
+                        </p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="text-center group">
+                        <div class="overflow-hidden rounded-2xl mb-6 shadow-sm">
+                            <img src="./assets/img/feature2.jpg" alt="Smartwatch indossato al polso durante un test" loading="lazy" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary bg-opacity-10 text-primary mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Ecosistema Tech & Wearable</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Dal fondamentale <strong>confronto laptop</strong> per trovare il portatile perfetto per lavoro o studio, ai rigorosi <strong>test prodotti tech</strong> su smartwatch e accessori intelligenti. Valutiamo l'utilità reale di ogni strumento tecnologico.
+                        </p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="text-center group">
+                        <div class="overflow-hidden rounded-2xl mb-6 shadow-sm">
+                            <img src="./assets/img/feature3.jpg" alt="Custodia di ricarica per auricolari wireless" loading="lazy" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary bg-opacity-10 text-primary mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Audio & Gadget Nuovi</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Esploriamo le ultime tendenze nel settore audio, provando auricolari wireless, speaker bluetooth e tutti i <strong>gadget nuovi</strong> che promettono di rivoluzionare il tuo modo di ascoltare musica e interagire con la casa intelligente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 5. FAQ SECTION -->
+    <section id="faq" class="py-20 md:py-28">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Domande Frequenti</h2>
+                <p class="text-lg text-gray-600">Tutto ciò che devi sapere sul nostro metodo di lavoro e sulle nostre recensioni editoriali.</p>
+            </div>
+
+            <div class="frame-bfa5 space-y-4">
+                <!-- FAQ 1 -->
+                <details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-800 hover:text-primary transition-colors">
+                        Come realizzate le vostre recensioni smartphone?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">
+                        Per ogni recensione, utilizziamo il dispositivo come nostro telefono principale per diverse settimane. Questo ci permette di valutare non solo le specifiche tecniche sulla carta, ma soprattutto l'esperienza d'uso reale: tenuta della batteria in giornate stressanti, qualità del segnale, affidabilità del software e resa fotografica in diverse condizioni di luce.
+                    </p>
+                </details>
+                <!-- FAQ 2 -->
+                <details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-800 hover:text-primary transition-colors">
+                        I gadget nuovi che recensite vi vengono regalati dalle aziende?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">
+                        Manteniamo una rigorosa indipendenza editoriale. Spesso riceviamo i prodotti in prestito temporaneo per i test, ma non accettiamo alcun compenso in cambio di recensioni positive. Qualora un articolo sia sponsorizzato, questo viene sempre dichiarato in modo chiaro all'inizio della pagina. La nostra priorità è fornire informazioni trasparenti ai nostri lettori.
+                    </p>
+                </details>
+                <!-- FAQ 3 -->
+                <details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-800 hover:text-primary transition-colors">
+                        Quanto spesso aggiornate le guide al confronto laptop?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">
+                        Le nostre guide all'acquisto e gli articoli di confronto laptop vengono revisionati mensilmente. Inoltre, effettuiamo aggiornamenti straordinari non appena vengono annunciati e immessi sul mercato nuovi modelli rilevanti, per assicurarci che tu abbia sempre a disposizione le opzioni più valide e moderne per la tua scelta.
+                    </p>
+                </details>
+                <!-- FAQ 4 -->
+                <details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-800 hover:text-primary transition-colors">
+                        Come eseguite i test prodotti tech in modo oggettivo?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">
+                        Il nostro metodo si basa su un mix di benchmark software (per avere dati numerici confrontabili sulle prestazioni grezze) e rigorose prove empiriche sul campo. Valutiamo l'ergonomia, la qualità dei materiali, la reattività dell'interfaccia e la stabilità termica, creando un quadro completo che va oltre i semplici numeri dichiarati dai produttori.
+                    </p>
+                </details>
+                <!-- FAQ 5 -->
+                <details class="group border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-800 hover:text-primary transition-colors">
+                        Vendete direttamente i dispositivi recensiti sul sito?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">
+                        No, MooterCore è esclusivamente un portale editoriale e promozionale. Non gestiamo vendite dirette, spedizioni o assistenza post-vendita per l'hardware. I link presenti nei nostri articoli rimandano ai siti ufficiali o ai principali store online (incluso TuttoAndroid) dove potrai completare l'acquisto in totale sicurezza e gestire eventuali garanzie con i venditori diretti.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 6. CONTACT SECTION -->
+    <section id="contact" class="py-20 md:py-28">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="frame-bfa5">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Mettiti in Contatto</h2>
+                    <p class="text-gray-600">Hai suggerimenti per i nostri prossimi articoli o vuoi proporci un dispositivo da testare? Compila il modulo sottostante per comunicare con la nostra redazione.</p>
+                </div>
+                
+                <!-- Lead Form Simulation -->
+                <form id="lead-form" class="space-y-6" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                    <div>
+                        <label for="name" class="block text-sm font-semibold text-gray-700 mb-1">Nome Completo</label>
+                        <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow" placeholder="Il tuo nome">
+                    </div>
+                    <div>
+                        <label for="topic" class="block text-sm font-semibold text-gray-700 mb-1">Argomento</label>
+                        <select id="topic" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow bg-white">
+                            <option>Suggerimento per recensioni smartphone</option>
+                            <option>Richiesta confronto laptop</option>
+                            <option>Segnalazione gadget nuovi</option>
+                            <option>Altro / Editoriale</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-semibold text-gray-700 mb-1">Messaggio</label>
+                        <textarea id="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow" placeholder="Scrivi qui il tuo messaggio per la redazione..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full btn-primary text-center">
+                        Invia Messaggio alla Redazione
+                    </button>
+                </form>
+
+                <!-- Success Message (Hidden by default) -->
+                <div id="success-msg" class="hidden text-center py-10">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Messaggio Inviato!</h3>
+                    <p class="text-gray-600">Grazie per aver contattato la redazione di MooterCore. Prenderemo in considerazione i tuoi suggerimenti per i nostri prossimi contenuti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <span class="text-2xl font-black text-primary tracking-tight">MooterCore</span>
+                    <p class="text-sm text-gray-500 mt-1">Esploratori dell'innovazione tecnologica.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#about" class="text-sm font-medium">Chi Siamo</a>
+                    <a href="#features" class="text-sm font-medium">Recensioni</a>
+                    <a href="#faq" class="text-sm font-medium">FAQ</a>
+                </div>
+            </div>
+
+            <!-- Legal Documents (Details tags) -->
+            <div class="border-t border-gray-200 py-8 space-y-4">
+                <details class="text-sm text-gray-500">
+                    <summary class="cursor-pointer font-semibold hover:text-gray-800">Privacy Policy</summary>
+                    <div class="mt-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 text-gray-600 leading-relaxed space-y-2">
+                        <p>La tua privacy è una priorità assoluta per MooterCore. Raccogliamo esclusivamente i dati strettamente necessari per migliorare la tua esperienza di navigazione sul nostro sito promozionale e informativo.</p>
+                        <p>Nessun dato personale viene venduto a terze parti o utilizzato per profilazione occulta. Le informazioni inviate volontariamente tramite i moduli di contatto vengono utilizzate al solo scopo di rispondere alle tue richieste editoriali.</p>
+                        <p>Utilizziamo sistemi di sicurezza standard del settore per proteggere le informazioni raccolte da accessi non autorizzati o alterazioni. I cookie impiegati hanno finalità puramente tecniche e di analisi aggregata del traffico.</p>
+                        <p>Navigando su questo sito, accetti le nostre pratiche di gestione dei dati come descritto in questa sezione. Qualora desiderassi revocare il consenso ai cookie, puoi farlo ripulendo la cache del tuo browser.</p>
+                        <p>Per qualsiasi dubbio relativo al trattamento delle tue informazioni durante la navigazione sul nostro portale, ti invitiamo a consultare le normative vigenti in materia di protezione dei dati personali. Il nostro impegno è garantire un ambiente digitale sicuro e trasparente.</p>
+                    </div>
+                </details>
+
+                <details class="text-sm text-gray-500">
+                    <summary class="cursor-pointer font-semibold hover:text-gray-800">Termini di Servizio</summary>
+                    <div class="mt-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 text-gray-600 leading-relaxed space-y-2">
+                        <p>L'utilizzo del sito web MooterCore è soggetto alla piena accettazione dei presenti termini e condizioni da parte dell'utente. I contenuti pubblicati, inclusi articoli, recensioni, test e guide all'acquisto, hanno scopo puramente informativo, editoriale e promozionale.</p>
+                        <p>Il nostro team si impegna a fornire informazioni accurate e aggiornate; tuttavia, non ci assumiamo alcuna responsabilità per eventuali inesattezze tecniche o per scelte di acquisto effettuate basandosi esclusivamente sui nostri testi.</p>
+                        <p>L'utente si impegna a navigare nel sito rispettando le leggi vigenti e a non utilizzare i contenuti per scopi illeciti, fraudolenti o lesivi dei diritti di terzi. Tutti i testi e le analisi sono frutto del lavoro della nostra redazione e non possono essere riprodotti senza autorizzazione.</p>
+                        <p>Ci riserviamo il diritto insindacabile di modificare in qualsiasi momento l'aspetto, i contenuti e le funzionalità del portale, senza alcun preavviso. L'accesso continuato al sito in seguito a tali modifiche costituisce l'accettazione implicita delle stesse.</p>
+                        <p>Tutti i marchi di prodotti, loghi aziendali e nomi di dispositivi citati all'interno dei nostri articoli appartengono ai rispettivi e legittimi proprietari e sono utilizzati a solo scopo descrittivo e identificativo.</p>
+                    </div>
+                </details>
+
+                <details class="text-sm text-gray-500">
+                    <summary class="cursor-pointer font-semibold hover:text-gray-800">Disclaimer Promozionale (Affiliazione)</summary>
+                    <div class="mt-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 text-gray-600 leading-relaxed space-y-2">
+                        <p>Questo sito web opera esclusivamente come piattaforma editoriale e promozionale indipendente, interamente gestita dal team di MooterCore. Non siamo i venditori diretti, né i produttori dei dispositivi tecnologici, degli smartphone o dei laptop recensiti o menzionati nelle nostre pagine.</p>
+                        <p>Il nostro ruolo specifico è quello di presentare prodotti, servizi e approfondimenti offerti da terze parti, in particolare agendo come partner affiliato per TuttoAndroid. L'obiettivo è facilitare la scoperta di nuovi dispositivi ai nostri lettori.</p>
+                        <p>È fondamentale comprendere che qualsiasi transazione economica, richiesta di assistenza tecnica sul prodotto, gestione della garanzia legale o applicazione della politica di reso deve essere effettuata e gestita direttamente con il fornitore originale del prodotto stesso.</p>
+                        <p>MooterCore non offre alcuna garanzia, né implicita né esplicita, sui prodotti fisici o sui servizi digitali di terze parti presentati attraverso i nostri articoli. Non gestiamo rimborsi o resi di alcun tipo.</p>
+                        <p>Invitiamo caldamente tutti gli utenti a verificare sempre le specifiche tecniche aggiornate e le condizioni di vendita sul sito ufficiale del venditore finale prima di procedere a qualsiasi esborso economico. La nostra redazione si impegna a fornire opinioni oneste, ma le decisioni finali di acquisto rimangono di esclusiva e totale responsabilità dell'utente.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 mt-4 text-center text-sm text-gray-500">
+                <p class="mb-2">Questo è un sito promozionale indipendente gestito da MooterCore, che opera come affiliato per TuttoAndroid.</p>
+                <p class="mb-4">MooterCore è un operatore editoriale e promozionale. Non siamo un fornitore di servizi finanziari, un broker, un consulente per gli investimenti, un gestore patrimoniale o un consulente autorizzato di alcun tipo.</p>
+                <p>&copy; 2026 MooterCore. Tutti i diritti riservati.</p>
+                <p class="mt-2 text-xs text-gray-400">Operatore promozionale indipendente &middot; MooterCore</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Check Script (MUST be exactly here, exactly this logic) -->
+    <script>
+      if (localStorage.getItem('mootercore_cookies_accepted')) {
+        document.getElementById('cookie-banner').classList.add('hidden');
+      }
+    </script>
+</body>
+</html>
