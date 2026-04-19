@@ -7,19 +7,16 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Everyflow Digital | La tua guida alla gastronomia locale</title>
-    <meta name="description" content="Esplora i migliori ristoranti consigliati, le osterie e le trattorie che celebrano la cucina tradizionale. La tua guida alla gastronomia locale con Everyflow Digital.">
+    <title>Everyflow | Il portale delle recensioni tech</title>
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS v2.2.19 (CDN) -->
+    <!-- Tailwind CSS v2.2.19 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 
-    <!-- Design DNA (Mandatory Injection) -->
+    <!-- Design DNA CSS -->
     <style>
       :root {
         --primary: #7c2d12;
@@ -77,260 +74,221 @@
       
       .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.05); }
 
-      /* Details/Summary styling for FAQ & Legal */
-      details > summary {
-        list-style: none;
-        cursor: pointer;
-      }
-      details > summary::-webkit-details-marker {
-        display: none;
-      }
+      /* Details/Summary enhancements */
+      details > summary { cursor: pointer; list-style: none; outline: none; }
+      details > summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
     <!-- Navigation -->
-    <nav class="bg-white sticky top-0 z-50" style="box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-black tracking-tighter text-primary" style="font-family: 'Merriweather', serif;">
-                        Everyflow<span class="text-secondary">Digital</span>
-                    </a>
+                    <a href="#" class="text-2xl font-black text-primary font-serif tracking-tight">Everyflow</a>
                 </div>
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#about" class="text-gray-600 hover:text-primary font-semibold text-sm uppercase tracking-wide transition-colors">La Missione</a>
-                    <a href="#features" class="text-gray-600 hover:text-primary font-semibold text-sm uppercase tracking-wide transition-colors">La Guida</a>
-                    <a href="#faq" class="text-gray-600 hover:text-primary font-semibold text-sm uppercase tracking-wide transition-colors">Domande Frequenti</a>
-                    <a href="#contact" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Segnala un Locale</a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-primary font-semibold transition-colors">Chi Siamo</a>
+                    <a href="#features" class="text-gray-700 hover:text-primary font-semibold transition-colors">Recensioni</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-semibold transition-colors">FAQ</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-semibold transition-colors">Opinioni</a>
+                </nav>
+                <div class="hidden md:flex">
+                    <a href="#contact" class="btn-primary">Iscriviti</a>
                 </div>
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="flex md:hidden items-center">
+                    <button type="button" class="text-gray-700 hover:text-primary focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden absolute w-full border-b border-gray-100 shadow-lg" style="z-index: 100;">
-            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
-                <a href="#about" class="block px-3 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-md">La Missione</a>
-                <a href="#features" class="block px-3 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-md">La Guida</a>
-                <a href="#faq" class="block px-3 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-md">Domande Frequenti</a>
-                <a href="#contact" class="block px-3 py-3 text-base font-bold text-primary hover:bg-gray-50 rounded-md">Segnala un Locale</a>
-            </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full shadow-lg border-t border-gray-100 z-50 px-4 pt-2 pb-6 space-y-2">
+            <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-50 rounded-md">Chi Siamo</a>
+            <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-50 rounded-md">Recensioni</a>
+            <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-50 rounded-md">FAQ</a>
+            <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-50 rounded-md">Opinioni</a>
+            <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold hover:bg-gray-50 rounded-md">Iscriviti Ora</a>
         </div>
-    </nav>
+    </header>
 
     <main class="flex-grow">
         
-        <!-- 1. HERO SECTION -->
-        <section class="relative w-full overflow-hidden bg-white">
-            <!-- Tinted Band Background for Overlap Layout -->
-            <div class="absolute top-0 left-0 h-full w-full md:w-2/3" style="background-color: rgba(124, 45, 18, 0.05);"></div>
-            
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-                <div class="relative flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16 py-16 md:py-24">
-                    
-                    <!-- Text Column -->
-                    <div class="md:w-1/2 flex flex-col justify-center z-10">
-                        <span class="inline-block py-1 px-3 rounded-full bg-white text-secondary text-xs font-bold uppercase tracking-widest mb-6 self-start shadow-sm" style="border: 1px solid rgba(161, 98, 7, 0.2);">Editoriale Gastronomico</span>
-                        
-                        <!-- MANDATORY H1 TYPOGRAPHY -->
-                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-gray-900 mb-6">
-                            Scopri le Eccellenze della Gastronomia Locale
-                        </h1>
-                        
-                        <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                            Everyflow Digital ti accompagna in un viaggio sensoriale tra i <strong>ristoranti consigliati</strong>, le eccellenze del territorio e le <strong>trattorie</strong> che custodiscono i segreti della <strong>cucina tradizionale</strong> italiana.
-                        </p>
-                        
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#features" class="btn-primary text-center">Inizia l'Esplorazione</a>
-                            <a href="#about" class="px-6 py-3 font-bold text-primary hover:text-secondary transition-colors flex items-center justify-center uppercase tracking-wide text-sm">Scopri di più &rarr;</a>
-                        </div>
+        <!-- 1. Hero Section -->
+        <section class="w-full" style="background-color: rgba(124, 45, 18, 0.05);">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16 py-16 md:py-24">
+                <div class="md:w-1/2 flex flex-col justify-center">
+                    <span class="text-secondary font-bold uppercase tracking-wider text-sm mb-3">Blog Recensioni Tecnologia e Gadget</span>
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-gray-900 mb-6">
+                        Il Flusso dell'Innovazione Tech
+                    </h1>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        Affidati a Everyflow per scoprire le ultime novità. Analizziamo, confrontiamo e testiamo i dispositivi per aiutarti a scegliere la tecnologia migliore con assoluta consapevolezza.
+                    </p>
+                    <div>
+                        <a href="#features" class="btn-primary">Scopri i nostri test</a>
                     </div>
-                    
-                    <!-- Image Column (Overlapping) -->
-                    <div class="md:w-1/2 transform md:translate-x-8 z-20 mt-8 md:mt-0">
-                        <img src="./assets/img/hero.jpg" alt="Chef che impiatta con cura un piatto gourmet" loading="lazy" class="w-full h-full object-cover" style="min-height: 420px; border-radius: var(--card-radius); box-shadow: var(--shadow);">
-                    </div>
-                    
+                </div>
+                <div class="md:w-1/2 relative mt-8 md:mt-0">
+                    <img src="./assets/img/hero.jpg" alt="Postazione tecnologica moderna con dispositivi e schermo" loading="lazy" class="w-full h-full object-cover z-10 relative" style="min-height: 420px; border-radius: var(--card-radius); box-shadow: var(--shadow); transform: translateX(2rem);">
                 </div>
             </div>
         </section>
 
-        <hr class="section-divider">
-
-        <!-- 2. ABOUT / MISSION SECTION -->
+        <!-- 2. About / Mission Section -->
         <section id="about" class="py-20 md:py-28">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Chi Siamo e la Nostra Missione</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Celebriamo l'arte culinaria e i luoghi che rendono unico il nostro patrimonio gastronomico.</p>
-                </div>
-                
-                <div class="pane-8b2b flex flex-col md:flex-row gap-8 items-center">
+                <div class="pane-8b2b flex flex-col md:flex-row gap-10 items-center">
                     <div class="md:w-1/2">
-                        <img src="./assets/img/about.jpg" alt="Team di chef sorridenti in una cucina professionale" loading="lazy" class="w-full h-auto object-cover rounded-md shadow-sm">
-                    </div>
-                    <div class="md:w-1/2">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Il Cuore della Gastronomia Locale</h3>
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            Benvenuti nel mondo di Everyflow Digital, il punto di riferimento editoriale per chi ama la buona tavola e la ricerca dell'autenticità. La nostra missione è esplorare, documentare e raccontare l'evoluzione della <strong>gastronomia locale</strong>, valorizzando chi lavora con passione dietro i fornelli.
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">La nostra missione nel mondo digitale</h2>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            Benvenuti su Everyflow. La nostra missione è esplorare il vasto mondo digitale per portarti analisi dettagliate, imparziali e dirette. Siamo un team di appassionati specializzati in recensioni smartphone e mettiamo regolarmente alla prova i gadget nuovi più interessanti sul mercato.
                         </p>
                         <p class="text-gray-700 leading-relaxed">
-                            Selezioniamo con cura i luoghi dove il cibo diventa cultura, offrendo ai nostri lettori una panoramica onesta e dettagliata sulle migliori <strong>osterie</strong>, i locali d'avanguardia e i ristoranti che mantengono viva l'anima della <strong>cucina tradizionale</strong>. Una bussola affidabile per orientarsi tra i sapori veri.
+                            Che tu stia cercando il dispositivo perfetto per aumentare la tua produttività o per il puro intrattenimento, vivisezioniamo ogni caratteristica hardware e software. Lavoriamo quotidianamente per offrirti contenuti chiari, precisi e sempre aggiornati, aiutandoti a navigare nel mare delle offerte tecnologiche.
                         </p>
                     </div>
+                    <div class="md:w-1/2">
+                        <img src="./assets/img/about.jpg" alt="Blogger tecnologico che digita su un laptop" loading="lazy" class="w-full object-cover" style="border-radius: var(--radius);">
+                    </div>
                 </div>
             </div>
         </section>
 
         <hr class="section-divider">
 
-        <!-- 3. VALUE / SERVICES SECTION (Icon List Layout) -->
-        <section id="features" class="py-20 md:py-28 bg-white">
+        <!-- 3. Value/Services Section -->
+        <section id="features" class="py-20 md:py-28">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">La Nostra Guida Editoriale</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Tutto ciò che ti serve per scoprire la prossima meta della tua esperienza culinaria.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Cosa Analizziamo per Te</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">I nostri formati editoriali principali per guidarti nelle scelte tecnologiche.</p>
                 </div>
-
-                <!-- Feature 1 Image break -->
-                <div class="max-w-2xl mx-auto mb-12">
-                    <img src="./assets/img/feature1.jpg" alt="Presentazione elegante di un piatto gourmet" loading="lazy" class="w-full h-64 object-cover rounded-md shadow-sm" style="border: 1px solid rgba(0,0,0,0.05);">
-                </div>
-
-                <!-- Icon List Layout -->
-                <div class="flex flex-col gap-10 max-w-2xl mx-auto">
-                    
-                    <!-- Feature Item 1 -->
-                    <div class="flex flex-row items-start gap-6">
+                
+                <div class="flex flex-col gap-6 max-w-2xl mx-auto">
+                    <!-- Feature 1 -->
+                    <div class="flex flex-row gap-5 items-start p-4 hover:bg-white hover:shadow-sm rounded-lg transition-all border border-transparent hover:border-gray-100">
                         <div class="flex-shrink-0 mt-1">
-                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-primary bg-opacity-10 text-primary">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-                            </div>
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Recensioni Ristoranti Approfondite</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Analizziamo minuziosamente i menu, la qualità del servizio e l'atmosfera per offrirti <strong>recensioni ristoranti</strong> indipendenti, oneste e ricche di dettagli utili per la tua scelta.
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Recensioni Smartphone</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Analisi approfondite su fotocamere, qualità dei display, autonomia della batteria e prestazioni reali dei dispositivi mobili più richiesti del momento.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Feature Item 2 -->
-                    <div class="flex flex-row items-start gap-6">
+                    <!-- Feature 2 -->
+                    <div class="flex flex-row gap-5 items-start p-4 hover:bg-white hover:shadow-sm rounded-lg transition-all border border-transparent hover:border-gray-100">
                         <div class="flex-shrink-0 mt-1">
-                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-primary bg-opacity-10 text-primary">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                            </div>
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                            </svg>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Guida alle Trattorie e Osterie</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Un viaggio affascinante alla scoperta dei sapori di una volta. Diamo voce alle <strong>trattorie</strong> storiche e alle <strong>osterie</strong> di paese dove la vera <strong>cucina tradizionale</strong> viene tramandata di generazione in generazione.
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Test Prodotti Tech e Gadget Nuovi</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Mettiamo alla prova smartwatch, auricolari wireless, sistemi di domotica e tutti i gadget nuovi per valutarne la reale utilità e affidabilità quotidiana.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Feature Item 3 -->
-                    <div class="flex flex-row items-start gap-6">
+                    <!-- Feature 3 -->
+                    <div class="flex flex-row gap-5 items-start p-4 hover:bg-white hover:shadow-sm rounded-lg transition-all border border-transparent hover:border-gray-100">
                         <div class="flex-shrink-0 mt-1">
-                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-primary bg-opacity-10 text-primary">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                            </div>
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">La Selezione dei Ristoranti Consigliati</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Curiamo liste tematiche e aggiornate dei <strong>ristoranti consigliati</strong> per ogni occasione: dalla cena romantica all'incontro d'affari, fino al pranzo domenicale in famiglia all'insegna del buon cibo.
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Confronto Laptop</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Affianchiamo i migliori portatili sul mercato, evidenziando pro e contro, benchmark e qualità costruttiva per aiutarti a trovare la macchina perfetta per le tue esigenze.
                             </p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
         <hr class="section-divider">
 
-        <!-- 4. FAQ SECTION -->
+        <!-- 4. FAQ Section -->
         <section id="faq" class="py-20 md:py-28">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Domande Frequenti</h2>
-                    <p class="text-lg text-gray-600">Le risposte alle curiosità dei nostri lettori.</p>
-                </div>
-
-                <div class="pane-8b2b max-w-3xl mx-auto">
-                    <div class="space-y-4">
-                        
-                        <details class="group border-b border-gray-100 pb-4">
-                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 hover:text-primary transition-colors">
-                                Come selezionate i ristoranti consigliati?
-                                <span class="text-secondary group-open:rotate-180 transition-transform duration-200">
+                <div class="pane-8b2b flex flex-col md:flex-row gap-10">
+                    <div class="md:w-1/3">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Domande Frequenti</h2>
+                        <p class="text-gray-600 mb-6">Tutto quello che c'è da sapere sul nostro metodo di lavoro e sulle nostre recensioni.</p>
+                        <img src="./assets/img/feature2.jpg" alt="Smartwatch e auricolari wireless in test" loading="lazy" class="w-full object-cover hidden md:block" style="border-radius: var(--radius);">
+                    </div>
+                    <div class="md:w-2/3 space-y-4">
+                        <details class="bg-gray-50 rounded-lg border border-gray-200 group">
+                            <summary class="flex justify-between items-center font-bold font-serif text-lg p-5 text-gray-900">
+                                Come realizzate le recensioni smartphone?
+                                <span class="text-primary group-open:rotate-180 transition-transform duration-200">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </span>
                             </summary>
-                            <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-gray-200">
-                                La nostra selezione si basa su criteri rigorosi: la qualità e la freschezza degli ingredienti, il rispetto per le materie prime, la maestria tecnica in cucina e l'accoglienza in sala. Valutiamo l'esperienza nel suo complesso.
-                            </p>
+                            <div class="p-5 pt-0 text-gray-700 border-t border-gray-200 mt-2">
+                                Testiamo i dispositivi quotidianamente per almeno una settimana. Li usiamo come telefoni principali per valutare l'ergonomia, la durata della batteria nell'uso reale, la fluidità del software e la qualità degli scatti fotografici in diverse condizioni di luce.
+                            </div>
                         </details>
 
-                        <details class="group border-b border-gray-100 pb-4">
-                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 hover:text-primary transition-colors">
-                                Le vostre recensioni ristoranti sono indipendenti?
-                                <span class="text-secondary group-open:rotate-180 transition-transform duration-200">
+                        <details class="bg-gray-50 rounded-lg border border-gray-200 group">
+                            <summary class="flex justify-between items-center font-bold font-serif text-lg p-5 text-gray-900">
+                                Coprite solo i marchi più famosi?
+                                <span class="text-primary group-open:rotate-180 transition-transform duration-200">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </span>
                             </summary>
-                            <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-gray-200">
-                                Assolutamente sì. La nostra linea editoriale impone che le visite ai locali avvengano spesso in forma anonima e che le valutazioni siano espressione libera dei nostri critici gastronomici, senza influenze commerciali.
-                            </p>
+                            <div class="p-5 pt-0 text-gray-700 border-t border-gray-200 mt-2">
+                                No, il nostro obiettivo è esplorare l'intero panorama tecnologico. Oltre ai giganti del settore, dedichiamo molto spazio a brand emergenti e testiamo regolarmente gadget nuovi e accessori curiosi che spesso passano inosservati al grande pubblico.
+                            </div>
                         </details>
 
-                        <details class="group border-b border-gray-100 pb-4">
-                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 hover:text-primary transition-colors">
-                                Coprite solo l'alta cucina o anche le trattorie?
-                                <span class="text-secondary group-open:rotate-180 transition-transform duration-200">
+                        <details class="bg-gray-50 rounded-lg border border-gray-200 group">
+                            <summary class="flex justify-between items-center font-bold font-serif text-lg p-5 text-gray-900">
+                                Come funziona il vostro confronto laptop?
+                                <span class="text-primary group-open:rotate-180 transition-transform duration-200">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </span>
                             </summary>
-                            <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-gray-200">
-                                Crediamo fermamente che l'eccellenza non risieda solo nel fine dining. Diamo grandissimo spazio e valore alle <strong>trattorie</strong> e alle <strong>osterie</strong> che portano avanti con fierezza la vera <strong>cucina tradizionale</strong>.
-                            </p>
+                            <div class="p-5 pt-0 text-gray-700 border-t border-gray-200 mt-2">
+                                Selezioniamo portatili della stessa fascia di prezzo o categoria d'uso. Eseguiamo benchmark sintetici per le prestazioni pure, ma ci concentriamo soprattutto sull'esperienza d'uso: tastiera, trackpad, fedeltà del display, dissipazione del calore e rapporto qualità-prezzo.
+                            </div>
                         </details>
 
-                        <details class="group border-b border-gray-100 pb-4">
-                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 hover:text-primary transition-colors">
-                                Come posso segnalare un locale di gastronomia locale?
-                                <span class="text-secondary group-open:rotate-180 transition-transform duration-200">
+                        <details class="bg-gray-50 rounded-lg border border-gray-200 group">
+                            <summary class="flex justify-between items-center font-bold font-serif text-lg p-5 text-gray-900">
+                                I vostri test prodotti tech sono imparziali?
+                                <span class="text-primary group-open:rotate-180 transition-transform duration-200">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </span>
                             </summary>
-                            <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-gray-200">
-                                Incoraggiamo i nostri lettori a condividere le loro scoperte! Puoi utilizzare il modulo di contatto presente in fondo a questa pagina per segnalarci il tuo locale preferito. La nostra redazione valuterà la segnalazione.
-                            </p>
+                            <div class="p-5 pt-0 text-gray-700 border-t border-gray-200 mt-2">
+                                Assolutamente sì. Operiamo in totale indipendenza editoriale. I prodotti recensiti vengono acquistati da noi o forniti in prestito dalle aziende, ma non accettiamo mai pagamenti o compensi per alterare i nostri giudizi o nascondere i difetti di un dispositivo.
+                            </div>
                         </details>
 
-                        <details class="group pb-2">
-                            <summary class="flex justify-between items-center font-bold text-lg text-gray-900 hover:text-primary transition-colors">
-                                La guida è aggiornata regolarmente?
-                                <span class="text-secondary group-open:rotate-180 transition-transform duration-200">
+                        <details class="bg-gray-50 rounded-lg border border-gray-200 group">
+                            <summary class="flex justify-between items-center font-bold font-serif text-lg p-5 text-gray-900">
+                                Con quale frequenza pubblicate nuovi contenuti?
+                                <span class="text-primary group-open:rotate-180 transition-transform duration-200">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </span>
                             </summary>
-                            <p class="text-gray-600 mt-4 leading-relaxed pl-2 border-l-2 border-gray-200">
-                                Sì, il panorama della ristorazione è in continua evoluzione. Aggiorniamo costantemente le nostre liste, seguendo i cambi di stagione nei menu, le nuove aperture e l'evoluzione dei locali storici.
-                            </p>
+                            <div class="p-5 pt-0 text-gray-700 border-t border-gray-200 mt-2">
+                                Il nostro blog viene aggiornato quotidianamente con le ultime notizie dal mondo tech. Le recensioni complete e i confronti approfonditi vengono pubblicati settimanalmente, per garantire il tempo necessario a condurre test rigorosi e accurati.
+                            </div>
                         </details>
-
                     </div>
                 </div>
             </div>
@@ -338,96 +296,93 @@
 
         <hr class="section-divider">
 
-        <!-- 5. SOCIAL PROOF / REVIEWS -->
-        <section id="reviews" class="py-20 md:py-28 bg-white">
+        <!-- 5. Social Proof Section -->
+        <section id="reviews" class="py-20 md:py-28">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Cosa Dicono i Nostri Lettori</h2>
-                    <p class="text-lg text-gray-600">L'opinione di chi utilizza la nostra guida per scoprire nuovi sapori.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="pane-8b2b">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Cosa dicono i nostri lettori</h2>
+                        <p class="text-gray-600">Le opinioni di chi ci legge ogni giorno per rimanere aggiornato.</p>
+                    </div>
                     
-                    <div class="pane-8b2b" style="margin-bottom: 0;">
-                        <div class="flex text-secondary mb-4">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                            <div class="flex text-secondary mb-4">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"Le loro recensioni smartphone sono incredibilmente dettagliate. Mi hanno letteralmente salvato da un acquisto sbagliato, facendomi notare difetti della fotocamera che altri siti avevano ignorato."</p>
+                            <p class="font-bold text-gray-900">— Marco T. <span class="text-sm font-normal text-gray-500 block">Febbraio 2026</span></p>
                         </div>
-                        <p class="text-gray-700 italic mb-6">"Grazie a questa guida ho scoperto un'osteria fuori città che serve i piatti tradizionali esattamente come li faceva mia nonna. Le recensioni sono precise e veritiere, senza fronzoli. Un punto di riferimento."</p>
-                        <p class="font-bold text-gray-900 text-sm uppercase tracking-wide">— Marco T., Appassionato di cucina</p>
-                    </div>
-
-                    <div class="pane-8b2b" style="margin-bottom: 0;">
-                        <div class="flex text-secondary mb-4">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                            <div class="flex text-secondary mb-4">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"Il miglior sito per il confronto laptop. Sono molto chiari nello spiegare concetti tecnici difficili e mi hanno aiutato a scegliere il computer perfetto per l'università."</p>
+                            <p class="font-bold text-gray-900">— Giulia F. <span class="text-sm font-normal text-gray-500 block">Gennaio 2026</span></p>
                         </div>
-                        <p class="text-gray-700 italic mb-6">"Uso regolarmente le liste dei ristoranti consigliati per organizzare cene di lavoro. Non mi hanno mai deluso. Le descrizioni dell'atmosfera e del servizio sono sempre azzeccate."</p>
-                        <p class="font-bold text-gray-900 text-sm uppercase tracking-wide">— Elena R., Consulente</p>
-                    </div>
 
-                    <div class="pane-8b2b" style="margin-bottom: 0;">
-                        <div class="flex text-secondary mb-4">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                            <div class="flex text-secondary mb-4">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"Sempre aggiornati sui gadget nuovi e le ultime uscite tech. Leggo Everyflow ogni mattina con il caffè per non perdermi nessuna novità del settore."</p>
+                            <p class="font-bold text-gray-900">— Luca R. <span class="text-sm font-normal text-gray-500 block">Dicembre 2025</span></p>
                         </div>
-                        <p class="text-gray-700 italic mb-6">"Il modo in cui raccontano le storie degli chef e la filosofia dietro i piatti mi ha fatto innamorare ancora di più della gastronomia locale. Lettura obbligatoria per i foodie."</p>
-                        <p class="font-bold text-gray-900 text-sm uppercase tracking-wide">— Giulia M., Food Blogger</p>
                     </div>
-
                 </div>
             </div>
         </section>
 
         <hr class="section-divider">
 
-        <!-- 6. CONTACT SECTION -->
+        <!-- 6. Contact Section -->
         <section id="contact" class="py-20 md:py-28">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Segnala un Locale o Contattaci</h2>
-                    <p class="text-lg text-gray-600">Hai scoperto una trattoria imperdibile o vuoi inviarci un suggerimento per la redazione? Scrivici.</p>
-                </div>
-
-                <div class="pane-8b2b">
-                    <form id="lead-form" class="space-y-6" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="pane-8b2b flex flex-col md:flex-row gap-10 items-center">
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Resta sempre aggiornato</h2>
+                        <p class="text-gray-700 mb-8 leading-relaxed">
+                            Non perderti i nostri ultimi test prodotti tech. Iscriviti per ricevere aggiornamenti sulle nuove recensioni, i confronti dettagliati e le notizie più importanti dal mondo dell'innovazione.
+                        </p>
+                        
+                        <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Invio in corso...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
                             <div>
-                                <label for="name" class="block text-sm font-bold text-gray-700 mb-1">Nome e Cognome</label>
-                                <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow">
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
                             </div>
                             <div>
-                                <label for="phone" class="block text-sm font-bold text-gray-700 mb-1">Telefono (Opzionale)</label>
-                                <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow">
+                                <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Argomento di interesse</label>
+                                <select id="interest" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white">
+                                    <option value="">Seleziona...</option>
+                                    <option value="smartphone">Recensioni Smartphone</option>
+                                    <option value="laptop">Confronto Laptop</option>
+                                    <option value="gadget">Gadget Nuovi</option>
+                                </select>
                             </div>
+                            <button type="submit" class="btn-primary w-full text-center mt-2">Iscriviti agli aggiornamenti</button>
+                        </form>
+                        
+                        <div id="success-msg" style="display:none" class="bg-green-50 border-l-4 border-green-500 p-6 rounded-md">
+                            <h3 class="text-lg font-bold text-green-800 mb-2">Iscrizione completata!</h3>
+                            <p class="text-green-700">Grazie per il tuo interesse. Ti informeremo non appena pubblicheremo nuove recensioni e test.</p>
                         </div>
-                        <div>
-                            <label for="locale" class="block text-sm font-bold text-gray-700 mb-1">Nome del Locale / Ristorante</label>
-                            <input type="text" id="locale" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-bold text-gray-700 mb-1">Il tuo messaggio</label>
-                            <textarea id="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow"></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary w-full text-center">Invia Messaggio</button>
-                    </form>
-                    
-                    <!-- Success Message (Hidden by default) -->
-                    <div id="success-msg" style="display:none" class="text-center py-8">
-                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-4">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Messaggio Inviato!</h3>
-                        <p class="text-gray-600">Grazie per la tua segnalazione. La nostra redazione valuterà il tuo suggerimento al più presto.</p>
+                    </div>
+                    <div class="md:w-1/2 flex flex-col gap-4">
+                        <img src="./assets/img/feature3.jpg" alt="Videocamera che registra una recensione tecnologica" loading="lazy" class="w-full object-cover shadow-sm" style="border-radius: var(--radius);">
+                        <img src="./assets/img/feature1.jpg" alt="Mani che tengono in uso uno smartphone Android" loading="lazy" class="w-full object-cover shadow-sm" style="border-radius: var(--radius);">
                     </div>
                 </div>
             </div>
@@ -435,69 +390,62 @@
 
     </main>
 
-    <!-- 7. FOOTER -->
-    <footer class="pt-16 pb-8 border-t-4 border-primary">
+    <!-- Footer -->
+    <footer class="pt-16 pb-8">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
-                <div>
-                    <span class="text-2xl font-black tracking-tighter text-white" style="font-family: 'Merriweather', serif;">
-                        Everyflow<span class="text-secondary">Digital</span>
-                    </span>
-                </div>
-                <div class="text-center md:text-right">
-                    <p class="text-sm opacity-80 mb-1">Questo è un sito promozionale indipendente gestito da Everyflow Digital, che agisce come affiliato per Identità Golose.</p>
-                    <p class="text-sm opacity-80 font-semibold">Everyflow Digital è un operatore editoriale e promozionale. Non siamo un fornitore di servizi finanziari, broker, consulente per gli investimenti, gestore di patrimoni o consulente autorizzato di alcun tipo.</p>
-                </div>
+            <div class="mb-10 text-center md:text-left">
+                <span class="text-2xl font-black text-white font-serif tracking-tight">Everyflow</span>
+                <p class="mt-4 text-sm opacity-80 max-w-3xl">
+                    Questo è un sito promozionale indipendente gestito da Everyflow, che opera come affiliato per TuttoAndroid.
+                </p>
+                <p class="mt-2 text-sm opacity-80 max-w-3xl">
+                    Everyflow è un operatore editoriale e promozionale. Non siamo un fornitore di servizi finanziari, broker, consulente per gli investimenti, gestore di patrimoni o consulente autorizzato di alcun tipo.
+                </p>
+            </div>
+            
+            <div class="space-y-4 mb-10 text-sm border-t border-yellow-900 pt-8">
+                <details class="group">
+                    <summary class="font-bold cursor-pointer hover:text-white transition-colors">Informativa sulla Privacy</summary>
+                    <div class="mt-3 text-gray-300 space-y-2 opacity-90 pb-4">
+                        <p>La tua privacy è fondamentale per Everyflow. Raccogliamo i dati inseriti nel modulo di contatto esclusivamente per inviarti aggiornamenti sulle nostre recensioni e test di prodotti tecnologici. Non cediamo, vendiamo o affittiamo le tue informazioni personali a terze parti per scopi commerciali o di profilazione esterna. I dati raccolti sono conservati su server sicuri e protetti da accessi non autorizzati mediante protocolli di crittografia standard del settore. Hai il diritto di richiedere la cancellazione, la modifica o l'esportazione dei tuoi dati in qualsiasi momento contattandoci tramite i canali ufficiali del fornitore originale. Navigando su questo sito, accetti le nostre modalità di gestione delle informazioni e l'uso dei cookie tecnici necessari. Utilizziamo i cookie esclusivamente per garantire il corretto funzionamento della piattaforma e memorizzare le tue preferenze di navigazione. Per qualsiasi dubbio o perplessità sulla gestione della privacy, ti invitiamo a non utilizzare il modulo di iscrizione e a interrompere la navigazione.</p>
+                    </div>
+                </details>
+
+                <details class="group">
+                    <summary class="font-bold cursor-pointer hover:text-white transition-colors">Termini e Condizioni</summary>
+                    <div class="mt-3 text-gray-300 space-y-2 opacity-90 pb-4">
+                        <p>L'utilizzo del sito Everyflow è soggetto ai seguenti termini e condizioni che l'utente accetta integralmente proseguendo la navigazione. Il nostro portale offre contenuti informativi, recensioni smartphone e opinioni su gadget tecnologici di vario genere. Tutto il materiale pubblicato, compresi i testi e le immagini, è da intendersi a scopo puramente divulgativo e non costituisce in alcun modo una consulenza tecnica o professionale. Ci riserviamo il diritto di modificare, aggiornare o rimuovere i contenuti delle nostre pagine in qualsiasi momento e senza alcun preavviso. L'utente si impegna a utilizzare il sito rispettando le normative vigenti e si astiene dall'inserire dati falsi o fuorvianti nel modulo di contatto. I marchi, i loghi e i nomi dei prodotti citati nelle nostre recensioni appartengono ai rispettivi proprietari e sono utilizzati unicamente a scopo descrittivo. Everyflow non si assume alcuna responsabilità per eventuali inesattezze temporanee, errori tipografici o per l'uso improprio delle informazioni fornite sulle nostre pagine.</p>
+                    </div>
+                </details>
+
+                <details class="group">
+                    <summary class="font-bold cursor-pointer hover:text-white transition-colors">Disclaimer Legale e Affiliazioni</summary>
+                    <div class="mt-3 text-gray-300 space-y-2 opacity-90 pb-4">
+                        <p>Everyflow opera esclusivamente come portale promozionale indipendente e partner affiliato di TuttoAndroid. Il nostro unico obiettivo è presentare recensioni, confronti, test e notizie sul mondo della tecnologia e dei gadget nuovi. Non vendiamo direttamente alcun prodotto, dispositivo, software o servizio tecnologico menzionato sulle nostre pagine. Qualsiasi acquisto, transazione economica, richiesta di garanzia o di assistenza tecnica deve essere gestita direttamente ed esclusivamente con il fornitore originale o il produttore del dispositivo. Non offriamo garanzie di rimborso, politiche di sostituzione o servizi di assistenza post-vendita per nessuno dei prodotti recensiti, in quanto non gestiamo la vendita diretta. Le opinioni espresse nei nostri articoli derivano dai nostri rigorosi test sui prodotti tech, ma l'esperienza finale dell'utente può variare a seconda dell'utilizzo. Ti invitiamo pertanto a verificare sempre e con attenzione le specifiche tecniche, i prezzi e le condizioni di vendita sui siti ufficiali dei produttori prima di effettuare qualsiasi acquisto.</p>
+                    </div>
+                </details>
             </div>
 
-            <!-- Legal Documents in Details -->
-            <div class="space-y-4 mb-12 border-t border-gray-700 pt-8">
-                
-                <details class="group">
-                    <summary class="text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">Informativa sulla Privacy</summary>
-                    <div class="mt-4 text-sm opacity-80 leading-relaxed bg-black bg-opacity-20 p-4 rounded-md">
-                        <p>La tua privacy è di fondamentale importanza per Everyflow Digital. Raccogliamo esclusivamente i dati strettamente necessari per gestire le tue richieste tramite il modulo di contatto presente su questa pagina. Le informazioni fornite non verranno mai cedute a terze parti per scopi di marketing o profilazione commerciale. Tutti i dati sono conservati su server sicuri e protetti secondo le normative vigenti in materia di protezione dei dati personali. Hai il diritto di richiedere in qualsiasi momento la cancellazione o la modifica delle tue informazioni dai nostri archivi. La navigazione su questo sito avviene in modo sicuro e anonimo, ad eccezione dei dati che decidi volontariamente di condividere. Per qualsiasi dubbio relativo al trattamento dei dati, ti invitiamo a non utilizzare il modulo se non accetti queste condizioni. Ci impegniamo a mantenere la massima trasparenza su come gestiamo e proteggiamo le tue informazioni personali in ogni momento.</p>
-                    </div>
-                </details>
-
-                <details class="group">
-                    <summary class="text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">Termini e Condizioni</summary>
-                    <div class="mt-4 text-sm opacity-80 leading-relaxed bg-black bg-opacity-20 p-4 rounded-md">
-                        <p>L'utilizzo di questo sito web costituisce l'accettazione esplicita dei presenti termini e condizioni da parte dell'utente. Everyflow Digital offre questo spazio digitale esclusivamente a scopo informativo e promozionale. I contenuti, inclusi testi e immagini, sono forniti senza alcuna garanzia di assoluta accuratezza, sebbene ci impegniamo costantemente a mantenerli aggiornati e verificati. L'utente si impegna a navigare il sito in modo lecito e a non utilizzare i moduli di contatto per inviare spam, materiale offensivo o non pertinente allo scopo della pagina. Ci riserviamo il diritto inappellabile di modificare in qualsiasi momento la struttura del sito e le informazioni in esso contenute senza alcun preavviso. Questo sito funge unicamente da vetrina editoriale e non gestisce transazioni dirette di alcun tipo. Continuando la navigazione su queste pagine, confermi di aver letto, compreso e accettato integralmente queste disposizioni operative.</p>
-                    </div>
-                </details>
-
-                <details class="group">
-                    <summary class="text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">Disclaimer Affiliazione e Responsabilità</summary>
-                    <div class="mt-4 text-sm opacity-80 leading-relaxed bg-black bg-opacity-20 p-4 rounded-md">
-                        <p>Questo sito è gestito da Everyflow Digital in qualità di operatore promozionale indipendente e partner affiliato. Il nostro ruolo è esclusivamente editoriale e di presentazione dei servizi, guide o eventi offerti originariamente da Identità Golose. Non vendiamo direttamente alcun prodotto, servizio, biglietto o abbonamento menzionato su queste pagine. Tutte le transazioni economiche, l'assistenza clienti e la fornitura effettiva dei servizi sono gestite interamente ed esclusivamente dal fornitore originale sulla propria piattaforma. Pertanto, Everyflow Digital non si assume alcuna responsabilità legale per la qualità, la puntualità o eventuali disservizi legati ai prodotti di terze parti presentati. Non offriamo garanzie di rimborso o promesse di soddisfazione, in quanto tali politiche appartengono esclusivamente al fornitore finale. Invitiamo gli utenti a verificare sempre le condizioni di vendita, i prezzi e le politiche sul sito ufficiale del fornitore prima di effettuare qualsiasi acquisto o prenotazione.</p>
-                    </div>
-                </details>
-
-            </div>
-
-            <div class="text-center text-xs opacity-60 flex flex-col items-center gap-2">
-                <p>&copy; 2026 Everyflow Digital. Tutti i diritti riservati.</p>
-                <p>Operatore promozionale indipendente &middot; Everyflow Digital</p>
+            <div class="text-center text-xs opacity-60 border-t border-yellow-900 pt-6 flex flex-col items-center gap-2">
+                <p>&copy; 2026 Everyflow. Tutti i diritti riservati.</p>
+                <p>Operatore promozionale indipendente · Everyflow</p>
             </div>
         </div>
     </footer>
 
     <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white shadow-2xl border-t border-gray-200 z-50 p-4 sm:p-6" style="box-shadow: 0 -4px 15px rgba(0,0,0,0.05);">
-        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p class="text-sm text-gray-700 text-center sm:text-left">
-                Questo sito utilizza cookie tecnici per garantire una navigazione fluida e anonima. Non utilizziamo cookie di profilazione invadenti. Continuando a navigare, accetti il nostro utilizzo essenziale dei cookie.
-            </p>
-            <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('everyflowdigital_cookies_accepted','1')" class="btn-primary whitespace-nowrap text-sm px-6 py-2">
-                Accetta e Chiudi
-            </button>
-        </div>
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-white border-t border-gray-200 px-4 py-4 md:py-5 flex flex-col md:flex-row justify-between items-center gap-4 transition-transform">
+        <p class="text-sm text-gray-700 text-center md:text-left max-w-4xl">
+            Utilizziamo cookie tecnici per garantire le funzionalità di base del sito e memorizzare le tue preferenze. Nessun dato personale viene profilato a scopi di marketing. Continuando la navigazione, accetti l'uso dei cookie.
+        </p>
+        <button type="button" class="btn-primary whitespace-nowrap text-sm px-6 py-2" onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('everyflow_cookies_accepted','1')">
+            Accetta e Chiudi
+        </button>
     </div>
 
-    <!-- Mandatory Cookie Script exactly 5 lines -->
+    <!-- Cookie Check Script -->
     <script>
-      if (localStorage.getItem('everyflowdigital_cookies_accepted')) {
+      if (localStorage.getItem('everyflow_cookies_accepted')) {
         document.getElementById('cookie-banner').classList.add('hidden');
       }
     </script>
