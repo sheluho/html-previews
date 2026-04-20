@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<!-- page template v1.9 -->
+<html lang="en">
+<head>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dufflebase | The base for extraordinary event experiences</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    
+<style>
+  :root {
+    --primary: #2563eb;
+    --secondary: #4f46e5;
+    --radius: 16px;
+    --card-radius: 16px;
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #f0f9ff;
+    color: #0c4a6e;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; }
+
+  .box-1a2d {
+    background-color: #ffffff;
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .btn-primary {
+    background-color: var(--primary);
+    color: #ffffff !important;
+    border-radius: var(--radius);
+    padding: 0.875rem 2rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .text-primary { color: var(--primary); }
+  .text-secondary { color: var(--secondary); }
+  .bg-primary { background-color: var(--primary); }
+
+  .section-divider { border: none; border-top: 1px solid rgba(0,0,0,0.06); margin: 0; }
+
+  #mobile-menu { background-color: #ffffff; }
+
+  footer { background-color: #111827; color: #d1d5db; }
+  footer a { color: #d1d5db; text-decoration: none; }
+  footer a:hover { color: #ffffff; }
+  
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+</style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed top-0 inset-x-0 z-50 bg-gray-900 text-white text-sm py-3 px-4 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-center sm:text-left">We use cookies to ensure you get the best experience on our website. By continuing to browse, you accept our privacy policy.</p>
+        <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('dufflebase_cookies_accepted','1')" class="bg-white text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap">
+            Accept
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 mt-14 sm:mt-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-extrabold text-primary tracking-tight">Dufflebase</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Services</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary font-medium transition-colors">About</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Testimonials</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">FAQ</a>
+                </nav>
+                <div class="hidden md:flex items-center">
+                    <a href="#contact" class="btn-primary">Inquire Now</a>
+                </div>
+                <div class="flex md:hidden items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 shadow-lg absolute w-full left-0 z-50 p-4">
+            <div class="flex flex-col space-y-4">
+                <a href="#features" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-gray-800 font-medium hover:text-primary block px-2 py-1">Services</a>
+                <a href="#about" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-gray-800 font-medium hover:text-primary block px-2 py-1">About</a>
+                <a href="#reviews" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-gray-800 font-medium hover:text-primary block px-2 py-1">Testimonials</a>
+                <a href="#faq" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-gray-800 font-medium hover:text-primary block px-2 py-1">FAQ</a>
+                <a href="#contact" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="btn-primary text-center mt-4">Inquire Now</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- 1. Hero Section -->
+        <section class="w-full py-20 md:py-28 relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
+                    <div class="md:w-1/2 flex flex-col justify-center">
+                        <span class="text-secondary font-semibold tracking-wider uppercase text-sm mb-4 block">Premium Culinary Experiences</span>
+                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
+                            The essential base for unforgettable event catering.
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                            Dufflebase brings visionary culinary experiences to your most important moments, specializing in premium wedding catering and highly tailored corporate events.
+                        </p>
+                        <div>
+                            <a href="#contact" class="btn-primary text-lg shadow-lg">Start Planning</a>
+                        </div>
+                        <div class="mt-8 flex items-center text-sm text-gray-600 font-medium">
+                            <svg class="w-5 h-5 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Custom Menus & Flawless Execution
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 relative">
+                        <img src="./assets/img/hero.jpg" alt="Elegant wedding reception table setup with fine dining details" loading="lazy" class="w-full h-full object-cover" style="min-height: 420px; border-radius: var(--card-radius); box-shadow: var(--shadow);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 2. Value/Services Section -->
+        <section id="features" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Crafting Exceptional Gatherings</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">From intimate celebrations to grand affairs, our comprehensive catering services are designed to elevate every occasion.</p>
+                </div>
+                
+                <div class="box-1a2d">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- Service 1 -->
+                        <div class="flex flex-col gap-4 p-4">
+                            <div class="h-48 w-full rounded-xl overflow-hidden mb-2">
+                                <img src="./assets/img/feature1.jpg" alt="Waiter serving elegant appetizers at an event" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="bg-blue-100 p-3 rounded-full text-primary">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900">Wedding Catering</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">
+                                Your special day deserves a culinary experience that reflects your unique love story. Our wedding catering focuses on exquisite flavors, stunning presentation, and impeccable service, ensuring your celebration is flawless from the first bite to the final toast.
+                            </p>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="flex flex-col gap-4 p-4">
+                            <div class="h-48 w-full rounded-xl overflow-hidden mb-2">
+                                <img src="./assets/img/feature2.jpg" alt="Pouring champagne glasses for a corporate toast" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="bg-blue-100 p-3 rounded-full text-primary">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900">Corporate Catering</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">
+                                Impress clients, reward employees, and elevate your brand with our professional corporate catering. Whether it is a high-stakes board meeting, a multi-day conference, or a festive holiday gala, we deliver sophisticated menus that leave a lasting impression.
+                            </p>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="flex flex-col gap-4 p-4">
+                             <div class="flex items-center gap-3">
+                                <div class="bg-blue-100 p-3 rounded-full text-primary">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900">Dynamic Buffet Catering</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">
+                                Create an interactive and abundant dining atmosphere with our premium buffet catering. Perfect for large social gatherings and relaxed corporate events, our buffets offer diverse flavor profiles and beautifully styled stations that encourage guests to mingle and indulge.
+                            </p>
+                        </div>
+
+                        <!-- Service 4 -->
+                        <div class="flex flex-col gap-4 p-4">
+                             <div class="flex items-center gap-3">
+                                <div class="bg-blue-100 p-3 rounded-full text-primary">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900">Elegant Plated Dinner</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">
+                                For a truly refined event atmosphere, our plated dinner service offers sophisticated, multi-course dining. With meticulous presentation and synchronized service, we bring the experience of a world-class restaurant directly to your chosen venue.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 3. About / Mission Section -->
+        <section id="about" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="box-1a2d">
+                    <div class="flex flex-col md:flex-row items-center gap-10">
+                        <div class="md:w-1/2">
+                            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">The Culinary Foundation</h2>
+                            <p class="text-lg text-gray-600 mb-4 leading-relaxed">
+                                At Dufflebase, we believe the foundation of any great gathering is extraordinary food and impeccable hospitality. Drawing inspiration from the esteemed legacy of The Catered Affair, this promotional platform highlights how visionary culinary teams elevate event catering through innovative menus and flawless execution.
+                            </p>
+                            <p class="text-lg text-gray-600 leading-relaxed">
+                                Whether you are planning a dream wedding, a milestone celebration, or a high-stakes corporate gala, we showcase the expertise required to deliver an unforgettable experience. Our mission is to connect you with premier catering concepts that transform your exact vision into a breathtaking reality.
+                            </p>
+                        </div>
+                        <div class="md:w-1/2 w-full h-80 rounded-xl overflow-hidden shadow-md">
+                            <img src="./assets/img/about.jpg" alt="Chef meticulously plating gourmet food in a professional kitchen" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 4. Social Proof / Reviews Section -->
+        <section id="reviews" class="py-20 md:py-28 bg-gray-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Moments to Remember</h2>
+                    <p class="text-lg text-gray-600">Hear from those who have experienced the transformative power of exceptional catering.</p>
+                </div>
+                
+                <div class="box-1a2d mb-0">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <!-- Review 1 -->
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                            <div class="flex text-yellow-400 mb-4">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"The wedding catering was absolutely phenomenal. The attention to detail in the plated dinner was beyond our expectations, and every guest raved about the flavors."</p>
+                            <div class="font-semibold text-gray-900">— Sarah M., 2026</div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                            <div class="flex text-yellow-400 mb-4">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"Our corporate catering needs were handled with the utmost professionalism. The buffet catering setup was not only visually stunning but incredibly delicious."</p>
+                            <div class="font-semibold text-gray-900">— James T., 2026</div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                            <div class="flex text-yellow-400 mb-4">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"Dufflebase showcased the perfect culinary foundation for our anniversary gala. Truly a masterpiece in event catering that our guests are still talking about."</p>
+                            <div class="font-semibold text-gray-900">— Elena R., 2026</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 5. FAQ Section -->
+        <section id="faq" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                    <p class="text-lg text-gray-600">Common inquiries about our premium event catering services.</p>
+                </div>
+
+                <div class="box-1a2d">
+                    <div class="space-y-4">
+                        <details class="group border-b border-gray-100 pb-4">
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                                What types of events do you cater?
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="text-gray-600 mt-3 leading-relaxed group-open:animate-fadeIn">
+                                We specialize in a wide range of premium events. Our primary focus is on exquisite wedding catering and professional corporate catering, but we also provide exceptional service for social galas, private milestone parties, and large-scale charity events.
+                            </p>
+                        </details>
+
+                        <details class="group border-b border-gray-100 pb-4">
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                                Do you offer both buffet catering and plated dinners?
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="text-gray-600 mt-3 leading-relaxed group-open:animate-fadeIn">
+                                Yes, we offer highly customizable dining formats. You can choose from an elegant plated dinner for a formal atmosphere, dynamic buffet catering for varied flavor profiles, or even interactive food stations depending on the flow of your specific event.
+                            </p>
+                        </details>
+
+                        <details class="group border-b border-gray-100 pb-4">
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                                Can you accommodate specific dietary restrictions?
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="text-gray-600 mt-3 leading-relaxed group-open:animate-fadeIn">
+                                Absolutely. We believe every guest should enjoy an extraordinary meal. Our culinary teams are experienced in designing menus that accommodate vegan, vegetarian, gluten-free, and other specific dietary requirements without compromising on taste or presentation.
+                            </p>
+                        </details>
+
+                        <details class="group border-b border-gray-100 pb-4">
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                                How far in advance should we book for wedding catering?
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="text-gray-600 mt-3 leading-relaxed group-open:animate-fadeIn">
+                                Because premium dates fill up quickly, we recommend securing your wedding catering services 9 to 12 months in advance. This allows ample time for menu tastings, detailed planning, and ensuring every culinary element aligns with your vision.
+                            </p>
+                        </details>
+
+                        <details class="group pb-4">
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-900">
+                                Do you handle event rentals and staffing?
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="text-gray-600 mt-3 leading-relaxed group-open:animate-fadeIn">
+                                Yes, the catering partners we showcase provide comprehensive, full-service solutions. This typically includes coordinating necessary rentals like tables, premium linens, and glassware, as well as providing a highly trained staff of servers, bartenders, and culinary professionals.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 6. Contact Section -->
+        <section id="contact" class="py-20 md:py-28 bg-primary">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="box-1a2d mb-0 shadow-2xl">
+                    <div class="flex flex-col md:flex-row gap-12">
+                        
+                        <div class="md:w-1/2">
+                            <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Start Planning Your Event</h2>
+                            <p class="text-gray-600 mb-8 leading-relaxed">
+                                Ready to elevate your next gathering with exceptional event catering? Reach out to discover how we can tailor our culinary expertise to your unique vision.
+                            </p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 bg-blue-50 p-3 rounded-full">
+                                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-bold text-gray-900">Phone</h4>
+                                        <p class="text-gray-600 mt-1">
+                                            <a href="tel:781-762-2332" class="hover:text-primary transition-colors">781-762-2332</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 bg-blue-50 p-3 rounded-full">
+                                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-bold text-gray-900">Headquarters</h4>
+                                        <p class="text-gray-600 mt-1">
+                                            70 Ledgewood Place<br>
+                                            Rockland, MA 02370
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md:w-1/2 bg-gray-50 p-8 rounded-xl border border-gray-100">
+                            <form id="lead-form" class="space-y-4" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Submitting Request...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                    <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label for="event_type" class="block text-sm font-medium text-gray-700 mb-1">Event Type</label>
+                                    <select id="event_type" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                                        <option value="">Select Event Type...</option>
+                                        <option value="wedding">Wedding Catering</option>
+                                        <option value="corporate">Corporate Event</option>
+                                        <option value="social">Social Gala / Party</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                    <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                                </div>
+                                <button type="submit" class="w-full btn-primary text-center mt-2">Request Proposal</button>
+                            </form>
+                            
+                            <div id="success-msg" style="display:none" class="bg-green-50 border border-green-200 text-green-800 rounded-lg p-6 text-center">
+                                <svg class="w-12 h-12 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <h3 class="text-xl font-bold mb-2">Request Received!</h3>
+                                <p>Thank you for reaching out. A catering specialist will review your event details and contact you shortly to discuss menu options.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-16 pb-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="mb-12">
+                <span class="text-2xl font-extrabold text-white tracking-tight block mb-4">Dufflebase</span>
+                <p class="text-gray-400 max-w-xl text-sm leading-relaxed mb-6">
+                    This is an independent promotional site managed by Dufflebase, acting as an affiliate for The Catered Affair. Dufflebase is an editorial and promotional operator. We are not a financial services provider, broker, investment advisor, asset or wealth manager, or licensed advisor of any kind.
+                </p>
+            </div>
+
+            <div class="space-y-4 mb-12 border-t border-gray-800 pt-8">
+                <details class="group">
+                    <summary class="text-gray-300 font-medium cursor-pointer list-none hover:text-white transition-colors flex items-center">
+                        Privacy Policy
+                        <svg class="ml-2 w-4 h-4 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <div class="mt-4 text-gray-400 text-sm leading-relaxed space-y-2 pb-4">
+                        <p>We are committed to protecting the privacy of our visitors while they browse this promotional platform. Information collected through our contact forms is used solely for the purpose of connecting you with the requested catering services. We do not sell, rent, or unauthorizedly share your personal data with unrelated third parties. Our site utilizes standard analytics to understand visitor behavior and improve our editorial content. By interacting with this site, you consent to our basic data collection practices as outlined here. We maintain appropriate technical safeguards to protect any information submitted. You retain the right to request the deletion of your submitted data at any time by contacting the original service provider directly.</p>
+                    </div>
+                </details>
+
+                <details class="group">
+                    <summary class="text-gray-300 font-medium cursor-pointer list-none hover:text-white transition-colors flex items-center">
+                        Terms of Service
+                        <summary class="hidden"></summary> <!-- Fix for Safari flex bug on summary -->
+                        <svg class="ml-2 w-4 h-4 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <div class="mt-4 text-gray-400 text-sm leading-relaxed space-y-2 pb-4">
+                        <p>By accessing and using this website, you agree to be bound by these general terms of use. This website serves strictly as an informational and promotional resource regarding event catering services. We strive to present accurate and up-to-date descriptions of the featured culinary offerings, but we do not guarantee the absolute accuracy of all details. Users should independently verify all service terms, menus, and pricing with the actual catering provider before signing any contracts. We reserve the right to modify or discontinue any aspect of this promotional site without prior notice. Your continued use of the site following any changes constitutes acceptance of those modified terms. Any disputes arising from the use of this site shall be governed by standard commercial laws applicable to digital publishers.</p>
+                    </div>
+                </details>
+
+                <details class="group">
+                    <summary class="text-gray-300 font-medium cursor-pointer list-none hover:text-white transition-colors flex items-center">
+                        Disclaimer
+                        <svg class="ml-2 w-4 h-4 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <div class="mt-4 text-gray-400 text-sm leading-relaxed space-y-2 pb-4">
+                        <p>This website operates exclusively as an independent promotional partner and affiliate for The Catered Affair. We do not directly provide catering services, prepare food, or manage event logistics. All inquiries, bookings, contracts, and financial transactions are handled solely by The Catered Affair. Dufflebase makes no warranties, express or implied, regarding the quality, safety, or exact delivery of the third-party services promoted herein. Any issues regarding event execution, menu changes, or service satisfaction must be addressed directly with the actual catering provider. We receive compensation for promotional efforts, which may influence the placement of content, but does not alter the independent operational status of the service provider. We disclaim any liability for damages or dissatisfaction resulting from services booked through our referrals.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm text-center md:text-left">
+                    &copy; 2026 Dufflebase. All rights reserved.
+                </p>
+                <p class="text-gray-600 text-xs text-center md:text-right">
+                    Independent promotional operator &middot; Dufflebase
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      if (localStorage.getItem('dufflebase_cookies_accepted')) {
+        document.getElementById('cookie-banner').classList.add('hidden');
+      }
+    </script>
+</body>
+</html>
