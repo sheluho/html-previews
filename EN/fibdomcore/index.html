@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<!-- studio template modern-2.1 -->
+<html lang="en">
+<head>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibdom Core | The Core of Your Living Space</title>
+    
+    <!-- Tailwind CSS v2.2.19 (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+
+    <!-- Design DNA CSS Injection -->
+    <style>
+      :root {
+        --primary: #0e7490;
+        --secondary: #7f1d1d;
+        --radius: 6px;
+        --card-radius: 6px;
+        --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+      }
+
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #f8fafc;
+        color: #0f172a;
+        font-family: 'IBM Plex Sans', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 { font-family: 'IBM Plex Sans', sans-serif; }
+
+      .block-576b {
+        background-color: #ffffff;
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(15,23,42,0.08);
+        border-top: 3px solid var(--primary);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.75rem 1.75rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        transition: background-color 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .bg-primary { background-color: var(--primary); }
+
+      .section-divider { border: none; border-top: 1px solid rgba(15,23,42,0.08); margin: 0; }
+
+      #mobile-menu { background-color: #ffffff; }
+
+      footer { background-color: #0f172a; color: #cbd5e1; }
+      footer a { color: #cbd5e1; text-decoration: none; }
+      footer a:hover { color: #ffffff; }
+      footer { padding-top: 3rem; padding-bottom: 1.5rem; border-top: 4px solid var(--primary); }
+      .btn-primary:hover { filter: brightness(1.1); }
+      
+      /* Utility for SVG icons */
+      .icon-secondary { color: var(--secondary); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed top-0 w-full bg-gray-900 text-white text-sm py-3 px-4 z-50 flex flex-col sm:flex-row justify-between items-center shadow-md">
+        <p class="mb-2 sm:mb-0 text-center sm:text-left">We use cookies to ensure you get the best experience on our promotional website.</p>
+        <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('fibdomcore_cookies_accepted','1')" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-1 rounded border border-gray-600 transition-colors">
+            Accept
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40 mt-12 sm:mt-0" style="margin-top: 3rem;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-gray-900 tracking-tight">Fibdom <span class="text-primary">Core</span></a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Collections</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary font-medium transition-colors">Craftsmanship</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary font-medium transition-colors">Testimonials</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">FAQ</a>
+                    <a href="#contact" class="btn-primary">Visit Showroom</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 shadow-lg absolute w-full left-0">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#features" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Collections</a>
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Craftsmanship</a>
+                <a href="#reviews" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Testimonials</a>
+                <a href="#faq" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">FAQ</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-medium text-primary font-bold hover:bg-gray-50 rounded-md">Visit Showroom</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="w-full bg-gray-50 border-b border-gray-200 relative overflow-hidden">
+        <!-- Subtle background pattern decoration -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style="background-image: radial-gradient(var(--primary) 1px, transparent 1px); background-size: 24px 24px;"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="py-24 md:py-40 max-w-4xl mx-auto text-center">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-primary font-semibold text-sm mb-6 tracking-wide uppercase border border-blue-100">Bespoke Woodwork</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-gray-900 mb-8">
+                    The Core of Your Living Space, <span class="text-primary block mt-2">Masterfully Crafted.</span>
+                </h1>
+                <p class="mt-4 text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+                    Fibdom Core presents an exclusive collection of <strong class="font-medium text-gray-800">custom furniture</strong>, designed to elevate your home. Discover the art of <strong class="font-medium text-gray-800">handmade furniture</strong> tailored to your exact lifestyle and aesthetic vision.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#features" class="btn-primary text-lg px-8 py-4 shadow-md">Explore Collections</a>
+                    <a href="#contact" class="text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 font-semibold py-4 px-8 rounded shadow-sm transition-colors text-lg" style="border-radius: var(--radius);">Inquire Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 2. Value/Services Section -->
+    <section id="features" class="py-20 md:py-28">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Signature Collections</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">As a premier custom furniture maker and showroom, we specialize in pieces that define the character of your home.</p>
+            </div>
+
+            <div class="block-576b">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="flex flex-col group">
+                        <div class="mb-5 overflow-hidden rounded bg-gray-100" style="border-radius: var(--radius);">
+                            <img src="./assets/img/feature1.jpg" alt="Beautifully crafted custom dining table in a modern dining room" loading="lazy" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <svg class="w-6 h-6 icon-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            <h3 class="text-xl font-bold text-gray-900">Custom Dining Table</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed flex-grow">Gather around a masterpiece. Our solid wood dining tables are built to your exact specifications, becoming the enduring focal point of your dining room for generations.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="flex flex-col group">
+                        <div class="mb-5 overflow-hidden rounded bg-gray-100" style="border-radius: var(--radius);">
+                            <img src="./assets/img/feature2.jpg" alt="Luxurious custom sofa and seating arrangement" loading="lazy" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <svg class="w-6 h-6 icon-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                            <h3 class="text-xl font-bold text-gray-900">Bespoke Seating</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed flex-grow">Experience unparalleled comfort and style. We design and craft a <strong class="font-medium text-gray-800">custom sofa</strong> or lounge chair that perfectly matches your space, posture, and aesthetic preferences.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="flex flex-col group">
+                        <div class="mb-5 overflow-hidden rounded bg-gray-100" style="border-radius: var(--radius);">
+                            <img src="./assets/img/feature3.jpg" alt="Handmade bespoke furniture and wooden storage case goods" loading="lazy" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <svg class="w-6 h-6 icon-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                            <h3 class="text-xl font-bold text-gray-900">Handmade Storage</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed flex-grow">From elegant shelving to functional credenzas, our <strong class="font-medium text-gray-800">bespoke furniture</strong> solutions are meticulously crafted to organize your life while adding architectural beauty.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 3. About Section -->
+    <section id="about" class="py-20 md:py-28 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="block-576b border-none shadow-none bg-transparent p-0 mb-0">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Preserving the Art of Woodworking</h2>
+                        <div class="w-16 h-1 bg-primary mb-6 rounded"></div>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            At Fibdom Core, we believe that your home deserves pieces that tell a story of dedication and skill. As a dedicated promotional platform for premium custom furniture, we highlight the exceptional quality delivered by master craftsmen like Parkman Woodworks.
+                        </p>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Every piece of <strong class="font-medium text-gray-800">handmade furniture</strong> featured here is a testament to traditional techniques seamlessly blended with modern design sensibilities. Whether you are seeking a statement piece for your dining room or a tailored <strong class="font-medium text-gray-800">custom sofa</strong>, exploring our curated collections is your gateway to unparalleled craftsmanship.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-gray-700">Locally sourced, premium hardwoods.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-gray-700">Tailored dimensions for a perfect fit.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-gray-700">Heirloom quality built to last generations.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="./assets/img/hero.jpg" alt="Modern wood furniture showroom displaying various bespoke pieces" loading="lazy" class="w-full h-64 object-cover rounded shadow-md mt-8" style="border-radius: var(--radius);">
+                        <img src="./assets/img/about.jpg" alt="Master carpenter working meticulously in a woodworking workshop" loading="lazy" class="w-full h-64 object-cover rounded shadow-md" style="border-radius: var(--radius);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 4. Social Proof Section -->
+    <section id="reviews" class="py-20 md:py-28 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Client Experiences</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Hear from those who have transformed their spaces with our featured craftsmanship.</p>
+            </div>
+
+            <div class="block-576b">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="bg-gray-50 p-6 rounded border border-gray-100" style="border-radius: var(--radius);">
+                        <div class="flex text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"The custom dining table we ordered completely transformed our space. The grain of the wood is stunning, and the craftsmanship is evident in every joint. It's truly a piece we will pass down to our children."</p>
+                        <p class="text-sm font-bold text-gray-900">— Sarah M., 2026</p>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="bg-gray-50 p-6 rounded border border-gray-100" style="border-radius: var(--radius);">
+                        <div class="flex text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"Finding a custom sofa that fit our awkward living room layout seemed impossible until we visited the showroom. The design process was seamless, and the final result is both beautiful and incredibly comfortable."</p>
+                        <p class="text-sm font-bold text-gray-900">— James T., 2026</p>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="bg-gray-50 p-6 rounded border border-gray-100" style="border-radius: var(--radius);">
+                        <div class="flex text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"I appreciate the dedication to traditional woodworking techniques. The bespoke furniture case goods we commissioned for our home office are sturdy, functional, and serve as an impressive focal point."</p>
+                        <p class="text-sm font-bold text-gray-900">— Elena R., 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 5. FAQ Section -->
+    <section id="faq" class="py-20 md:py-28">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                <p class="text-lg text-gray-600">Details regarding the bespoke ordering process.</p>
+            </div>
+
+            <div class="block-576b">
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <details class="group bg-gray-50 rounded p-4 border border-gray-100 cursor-pointer" style="border-radius: var(--radius);">
+                        <summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
+                            <span>What is the process for ordering custom furniture?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-4 leading-relaxed">The process begins with a consultation at the showroom or via a design request form. You will discuss your vision, dimensions, and material preferences. Following this, a design proposal is created. Once approved, the master craftsmen begin the build process.</p>
+                    </details>
+
+                    <!-- FAQ 2 -->
+                    <details class="group bg-gray-50 rounded p-4 border border-gray-100 cursor-pointer" style="border-radius: var(--radius);">
+                        <summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
+                            <span>How long does it take to build a custom dining table?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-4 leading-relaxed">Lead times vary depending on the complexity of the design and current workshop capacity. Typically, a custom dining table requires between 8 to 12 weeks from the finalization of the design to completion.</p>
+                    </details>
+
+                    <!-- FAQ 3 -->
+                    <details class="group bg-gray-50 rounded p-4 border border-gray-100 cursor-pointer" style="border-radius: var(--radius);">
+                        <summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
+                            <span>Can I choose the fabric for a custom sofa?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-4 leading-relaxed">Absolutely. The showroom offers a wide selection of premium, durable fabrics and leathers. You can also provide your own material (COM - Customer's Own Material) if you have a specific textile in mind for your bespoke seating.</p>
+                    </details>
+
+                    <!-- FAQ 4 -->
+                    <details class="group bg-gray-50 rounded p-4 border border-gray-100 cursor-pointer" style="border-radius: var(--radius);">
+                        <summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
+                            <span>Do you arrange delivery for bespoke furniture?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-4 leading-relaxed">Yes, professional white-glove delivery services are coordinated for all handmade furniture pieces. This ensures that your items are transported safely and installed correctly in your home by experienced handlers.</p>
+                    </details>
+
+                    <!-- FAQ 5 -->
+                    <details class="group bg-gray-50 rounded p-4 border border-gray-100 cursor-pointer" style="border-radius: var(--radius);">
+                        <summary class="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
+                            <span>What types of wood are used for the handmade furniture?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-4 leading-relaxed">A variety of premium hardwoods are utilized, including White Oak, Walnut, Maple, and Cherry. The choice of wood depends on your aesthetic preference and the functional requirements of the piece being crafted.</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 6. Contact Section -->
+    <section id="contact" class="py-20 md:py-28 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="block-576b">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <!-- Info Left -->
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-6">Begin Your Project</h2>
+                        <p class="text-gray-600 mb-8 leading-relaxed">Submit an inquiry to learn more about the custom furniture process or to schedule a consultation at the showroom. We are dedicated to helping you realize your vision for bespoke woodwork.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <svg class="w-6 h-6 icon-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-gray-900">Showroom Location</h4>
+                                    <p class="text-gray-600 mt-1">Visit our collaborative showroom spaces to view selected pieces and discuss your custom project. (By Appointment)</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <svg class="w-6 h-6 icon-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-gray-900">Consultation Hours</h4>
+                                    <p class="text-gray-600 mt-1">Monday - Friday: 9:00 AM - 5:00 PM<br>Saturday: 10:00 AM - 2:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Right -->
+                    <div class="bg-gray-50 p-8 rounded border border-gray-100" style="border-radius: var(--radius);">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Request Information</h3>
+                        
+                        <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Sending Request...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary outline-none" style="border-radius: var(--radius);">
+                            </div>
+                            <div>
+                                <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Area of Interest</label>
+                                <select id="interest" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary outline-none bg-white" style="border-radius: var(--radius);">
+                                    <option value="">Select an option</option>
+                                    <option value="dining">Custom Dining Table</option>
+                                    <option value="seating">Custom Sofa / Seating</option>
+                                    <option value="storage">Bespoke Storage / Case Goods</option>
+                                    <option value="other">Other Woodwork Project</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Project Details</label>
+                                <textarea id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary outline-none resize-none" style="border-radius: var(--radius);"></textarea>
+                            </div>
+                            <button type="submit" class="w-full btn-primary text-center">Submit Inquiry</button>
+                        </form>
+
+                        <div id="success-msg" style="display:none" class="bg-green-50 border-l-4 border-green-500 p-6 rounded shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <h4 class="text-lg font-bold text-green-800">Inquiry Received</h4>
+                            </div>
+                            <p class="text-green-700">Thank you for your interest in our custom furniture collections. A representative will review your project details and contact you shortly to discuss the next steps.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer -->
+    <footer>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 pb-8 border-b border-gray-800">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4 tracking-tight">Fibdom <span class="text-primary">Core</span></h3>
+                    <p class="text-sm text-gray-400 mb-4 max-w-sm">Curating exceptional custom furniture and bespoke woodwork for discerning homeowners and designers.</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <!-- Privacy Details -->
+                    <details class="group">
+                        <summary class="text-sm font-semibold cursor-pointer hover:text-white transition-colors list-none flex items-center">
+                            <span class="mr-2 border border-gray-600 rounded-full w-4 h-4 flex items-center justify-center text-xs group-open:bg-gray-600">+</span> Privacy Policy
+                        </summary>
+                        <div class="pt-3 pb-2 text-xs text-gray-400 leading-relaxed border-l-2 border-gray-700 pl-3 mt-2">
+                            This privacy policy outlines how Fibdom Core collects and utilizes information on this promotional website. We gather basic analytics data to understand how visitors interact with our landing page and to improve user experience. Any information submitted through our contact forms is used solely to connect you with the appropriate service provider or craftsman. We do not sell, rent, or distribute your personal details to unauthorized third-party marketers under any circumstances. Data is stored securely using industry-standard protocols to prevent unauthorized access or disclosure. By using this site, you consent to the basic data collection practices described herein. If you have concerns about your data privacy, please refrain from using the contact forms provided on this promotional domain.
+                        </div>
+                    </details>
+
+                    <!-- Terms Details -->
+                    <details class="group">
+                        <summary class="text-sm font-semibold cursor-pointer hover:text-white transition-colors list-none flex items-center">
+                            <span class="mr-2 border border-gray-600 rounded-full w-4 h-4 flex items-center justify-center text-xs group-open:bg-gray-600">+</span> Terms of Use
+                        </summary>
+                        <div class="pt-3 pb-2 text-xs text-gray-400 leading-relaxed border-l-2 border-gray-700 pl-3 mt-2">
+                            Welcome to the Fibdom Core promotional landing page. By accessing this website, you agree to be bound by these general terms of use. The content provided here is strictly for informational and promotional purposes regarding custom furniture. We reserve the right to modify, update, or remove the information on this site at any time without prior notice. Users are expressly prohibited from attempting to disrupt the site's functionality or extract data using automated scraping means. All intellectual property, including text descriptions and site design, belongs to Fibdom Core unless otherwise noted as third-party material. Your continued use of the site following any modifications signifies your acceptance of the updated terms. If you do not agree with these terms, please navigate away from this page.
+                        </div>
+                    </details>
+
+                    <!-- Disclaimer Details -->
+                    <details class="group">
+                        <summary class="text-sm font-semibold cursor-pointer hover:text-white transition-colors list-none flex items-center">
+                            <span class="mr-2 border border-gray-600 rounded-full w-4 h-4 flex items-center justify-center text-xs group-open:bg-gray-600">+</span> Disclaimer
+                        </summary>
+                        <div class="pt-3 pb-2 text-xs text-gray-400 leading-relaxed border-l-2 border-gray-700 pl-3 mt-2">
+                            This website is an independent promotional platform managed by Fibdom Core. We act solely as a promotional affiliate for Parkman Woodworks and are not the direct manufacturers, builders, or sellers of the bespoke products shown. All purchases, customer service inquiries, custom design finalizations, and product fulfillments are handled entirely and directly by the original provider. Fibdom Core is an editorial and promotional operator, not a financial advisor, broker, licensed retail entity, or manufacturing workshop. We make no direct warranties, guarantees, or representations regarding the specific quality or delivery timelines of the custom furniture provided by third parties. Any claims regarding product satisfaction, refunds, or structural integrity must be directed to the original manufacturer. By using this site, you explicitly acknowledge our limited role as an independent promotional partner.
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="text-center sm:text-left">
+                <p class="text-xs text-gray-500 mb-2">
+                    This is an independent promotional site managed by Fibdom Core, acting as an affiliate for Parkman Woodworks.
+                </p>
+                <p class="text-xs text-gray-500 mb-4">
+                    Fibdom Core is an editorial and promotional operator. We are not a financial services provider, broker, investment advisor, asset or wealth manager, or licensed advisor of any kind.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-between items-center mt-6">
+                    <p class="text-sm text-gray-400">&copy; 2026 Fibdom Core. All rights reserved.</p>
+                    <p class="text-xs text-gray-600 mt-2 sm:mt-0">Independent promotional operator &middot; Fibdom Core</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner Logic -->
+    <script>
+      if (localStorage.getItem('fibdomcore_cookies_accepted')) {
+        document.getElementById('cookie-banner').classList.add('hidden');
+      }
+    </script>
+</body>
+</html>
