@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!-- CMS rev 0142 -->
+<html lang="en">
+<head>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dollship Flow | Control the Flow of Energy</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS v2.2.19 (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+
+    <!-- Design DNA -->
+    <style>
+      :root {
+        --primary: #15803d;
+        --secondary: #991b1b;
+        --radius: 8px;
+        --card-radius: 8px;
+        --shadow: 0 2px 8px rgba(67,20,7,0.08);
+      }
+
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #fff7ed;
+        color: #431407;
+        font-family: 'Open Sans', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Merriweather', serif; }
+
+      .block-6b25 {
+        background-color: #ffffff;
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        border: 2px solid var(--primary);
+        border-color: rgba(0,0,0,0.08);
+        border-left: 4px solid var(--primary);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 0.95rem;
+        transition: transform 0.15s, filter 0.15s;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+      }
+
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .bg-primary { background-color: var(--primary); }
+
+      .section-divider { border: none; border-top: 2px dashed rgba(67,20,7,0.15); margin: 0; }
+
+      #mobile-menu { background-color: #ffffff; }
+
+      footer { background-color: #3f2d04; color: #fef3c7; }
+      footer a { color: #fef3c7; text-decoration: none; }
+      footer a:hover { color: #ffffff; }
+      
+      .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-black text-primary tracking-tight font-serif">Dollship Flow</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-primary font-semibold transition-colors">About</a>
+                    <a href="#features" class="text-gray-700 hover:text-primary font-semibold transition-colors">Services</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-semibold transition-colors">FAQ</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary font-semibold transition-colors">Contact</a>
+                </nav>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full border-b border-gray-200 shadow-lg z-50 p-4">
+            <div class="flex flex-col space-y-4">
+                <a href="#about" class="text-gray-800 font-semibold block px-3 py-2 rounded-md hover:bg-gray-50" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About</a>
+                <a href="#features" class="text-gray-800 font-semibold block px-3 py-2 rounded-md hover:bg-gray-50" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>
+                <a href="#faq" class="text-gray-800 font-semibold block px-3 py-2 rounded-md hover:bg-gray-50" onclick="document.getElementById('mobile-menu').classList.add('hidden')">FAQ</a>
+                <a href="#contact" class="text-gray-800 font-semibold block px-3 py-2 rounded-md hover:bg-gray-50" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- 1. Hero Section -->
+        <section class="w-full py-20 md:py-28 relative overflow-hidden" style="background: linear-gradient(135deg, #fff7ed 0%, #fde68a 100%);">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
+                    <div class="md:w-1/2 flex flex-col justify-center">
+                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-gray-900 mb-6">
+                            Control the Flow of Energy with Premium Insulation & Siding
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-800 mb-8 font-medium leading-relaxed">
+                            Dollship Flow brings you top-tier home insulation and siding solutions to maximize comfort, protect your exterior, and drastically improve your home's energy efficiency.
+                        </p>
+                        <div>
+                            <a href="#contact" class="btn-primary text-center w-full md:w-auto">Request a Consultation</a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="./assets/img/hero.jpg" alt="Modern house exterior showing quality siding and energy efficiency" loading="lazy" class="w-full h-full object-cover" style="min-height: 420px; border-radius: var(--card-radius); box-shadow: var(--shadow);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 2. About / Mission -->
+        <section id="about" class="w-full py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="block-6b25 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="md:w-1/3">
+                        <img src="./assets/img/about.jpg" alt="Professional construction worker smiling" loading="lazy" class="w-full object-cover rounded shadow-sm" style="height: 250px;">
+                    </div>
+                    <div class="md:w-2/3">
+                        <h2 class="text-3xl font-bold text-primary mb-4">About Dollship Flow</h2>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            Dollship Flow is your dedicated resource for finding exceptional home insulation and siding contractor services. We focus on connecting homeowners with professionals who understand the critical importance of a properly sealed and protected home. Whether your goal is to eliminate drafts with specialized spray foam or enhance your property's durability with robust house siding, we highlight solutions built to last.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            We know that upgrading your attic insulation or installing new vinyl siding is a significant decision. That is why our platform focuses exclusively on showcasing high-performance exterior and interior energy solutions designed to keep your living space comfortable in every season.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 3. Value/Services (Alternating Rows) -->
+        <section id="features" class="w-full py-20 md:py-28 bg-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Comprehensive Contractor Solutions</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">Discover how the right materials and expert installation can transform your home's performance.</p>
+                </div>
+
+                <div class="flex flex-col gap-12">
+                    <!-- Feature 1: Image Left, Text Right -->
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="md:w-1/2">
+                            <img src="./assets/img/feature1.jpg" alt="Attic insulation installation process" loading="lazy" class="w-full object-cover rounded-lg shadow-md" style="height: 300px;">
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold text-primary mb-3">High-Performance Home Insulation</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Keep your home comfortable year-round while reducing energy waste. Professional contractors specialize in comprehensive attic insulation and advanced spray foam applications. These targeted methods create an airtight seal in hard-to-reach areas, preventing significant energy loss and helping to stabilize indoor temperatures during extreme weather.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Text Left, Image Right (flex-row-reverse) -->
+                    <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+                        <div class="md:w-1/2">
+                            <img src="./assets/img/feature2.jpg" alt="House exterior featuring new vinyl siding" loading="lazy" class="w-full object-cover rounded-lg shadow-md" style="height: 300px;">
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold text-primary mb-3">Premium Vinyl & House Siding</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Transform your home's exterior with top-quality vinyl siding. A full house siding replacement not only provides an instant boost to your curb appeal but also wraps your home in a low-maintenance, weather-resistant shield. Modern siding materials are designed to resist fading, cracking, and moisture damage, ensuring your exterior looks pristine with minimal upkeep.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Image Left, Text Right -->
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="md:w-1/2">
+                            <img src="./assets/img/feature3.jpg" alt="Cozy, warm, and well-insulated living room interior" loading="lazy" class="w-full object-cover rounded-lg shadow-md" style="height: 300px;">
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold text-primary mb-3">Durable Fiber Cement Siding</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                For homeowners seeking the ultimate combination of protection and architectural style, fiber cement siding is the premier choice. This heavy-duty material offers unmatched durability against harsh weather conditions, pests, and fire. It mimics the natural look of wood without the associated maintenance, keeping your home secure and stunning for decades to come.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 4. FAQ -->
+        <section id="faq" class="w-full py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="block-6b25">
+                    <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Frequently Asked Questions</h2>
+                    <div class="space-y-4">
+                        <details class="group bg-gray-50 rounded p-4 cursor-pointer border border-gray-200">
+                            <summary class="font-semibold text-lg text-gray-800 list-none flex justify-between items-center">
+                                What are the main benefits of spray foam insulation?
+                                <span class="text-secondary group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="text-gray-600 mt-3 leading-relaxed">Spray foam provides an exceptional airtight seal that traditional materials often miss. It boasts a high R-value, significantly reduces moisture intrusion, helps block outdoor noise, and creates a highly energy-efficient envelope for your home.</p>
+                        </details>
+                        
+                        <details class="group bg-gray-50 rounded p-4 cursor-pointer border border-gray-200">
+                            <summary class="font-semibold text-lg text-gray-800 list-none flex justify-between items-center">
+                                How do I know if my home needs new attic insulation?
+                                <span class="text-secondary group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="text-gray-600 mt-3 leading-relaxed">Common signs include noticeable drafts, uneven temperatures between rooms, unusually high heating or cooling bills, and issues with ice dams on your roof during winter. A professional inspection can determine your exact needs.</p>
+                        </details>
+
+                        <details class="group bg-gray-50 rounded p-4 cursor-pointer border border-gray-200">
+                            <summary class="font-semibold text-lg text-gray-800 list-none flex justify-between items-center">
+                                Is vinyl siding a durable option for house siding?
+                                <span class="text-secondary group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="text-gray-600 mt-3 leading-relaxed">Yes, modern vinyl siding is highly durable, cost-effective, and engineered to withstand strong winds and impacts. It requires very little maintenance, never needs painting, and is resistant to rot and pests.</p>
+                        </details>
+
+                        <details class="group bg-gray-50 rounded p-4 cursor-pointer border border-gray-200">
+                            <summary class="font-semibold text-lg text-gray-800 list-none flex justify-between items-center">
+                                What is the difference between vinyl and fiber cement siding?
+                                <span class="text-secondary group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="text-gray-600 mt-3 leading-relaxed">While vinyl is lighter and generally more affordable, fiber cement siding is significantly thicker and heavier. Fiber cement offers superior fire resistance, can mimic wood textures more closely, and typically has a longer lifespan under extreme conditions.</p>
+                        </details>
+
+                        <details class="group bg-gray-50 rounded p-4 cursor-pointer border border-gray-200">
+                            <summary class="font-semibold text-lg text-gray-800 list-none flex justify-between items-center">
+                                How long does a typical home insulation project take?
+                                <span class="text-secondary group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="text-gray-600 mt-3 leading-relaxed">Most residential attic insulation or spray foam projects can be completed within 1 to 3 days. The exact timeframe depends on the size of your home, the accessibility of the spaces, and the specific type of insulation being installed.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 5. Social Proof -->
+        <section id="reviews" class="w-full py-20 md:py-28 bg-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="block-6b25">
+                    <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Homeowner Experiences</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 p-6 rounded border border-gray-100">
+                            <div class="flex text-secondary mb-3">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"The spray foam in our attic completely changed our home's temperature. It feels so much more consistent now, and the installation process was very straightforward. Highly recommend this upgrade."</p>
+                            <p class="text-sm font-bold text-gray-900">— Sarah T., 2026</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded border border-gray-100">
+                            <div class="flex text-secondary mb-3">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"Our new fiber cement siding looks incredible. The crew was professional, efficient, and left the property spotless. We finally have the curb appeal we wanted."</p>
+                            <p class="text-sm font-bold text-gray-900">— Mark R., 2026</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded border border-gray-100">
+                            <div class="flex text-secondary mb-3">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"Great experience upgrading our home insulation. There was a noticeable drop in our heating bills this winter, and the house feels much less drafty."</p>
+                            <p class="text-sm font-bold text-gray-900">— Emily J., 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 6. Contact -->
+        <section id="contact" class="w-full py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="block-6b25">
+                    <div class="flex flex-col md:flex-row gap-12">
+                        <div class="md:w-1/2">
+                            <h2 class="text-3xl font-bold text-primary mb-4">Request a Consultation</h2>
+                            <p class="text-gray-700 mb-8 leading-relaxed">
+                                Ready to upgrade your home's efficiency and exterior protection? Fill out the form to express your interest in our home insulation or siding services. We will connect you with the appropriate professionals to discuss your specific needs.
+                            </p>
+                        </div>
+                        <div class="md:w-1/2 bg-gray-50 p-6 rounded-lg border border-gray-100">
+                            <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Sending...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                                <div class="mb-4">
+                                    <label for="name" class="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
+                                    <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="phone" class="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
+                                    <input type="tel" id="phone" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="service" class="block text-sm font-semibold text-gray-700 mb-1">Service of Interest</label>
+                                    <select id="service" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-white">
+                                        <option value="">Select a service...</option>
+                                        <option value="insulation">Home Insulation / Spray Foam</option>
+                                        <option value="siding">Vinyl or Fiber Cement Siding</option>
+                                        <option value="both">Both Insulation and Siding</option>
+                                    </select>
+                                </div>
+                                <div class="mb-6">
+                                    <label for="message" class="block text-sm font-semibold text-gray-700 mb-1">Project Details</label>
+                                    <textarea id="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary w-full text-center">Submit Request</button>
+                            </form>
+                            <div id="success-msg" style="display:none" class="text-center py-8">
+                                <svg class="w-16 h-16 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Request Received!</h3>
+                                <p class="text-gray-600">Thank you for your interest. We will be in touch shortly regarding your home improvement needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-16 pb-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-black tracking-tight font-serif text-white mb-2">Dollship Flow</h3>
+                <p class="text-sm opacity-80 max-w-2xl mx-auto">Control the Flow of Energy with Premium Insulation & Siding.</p>
+            </div>
+            
+            <div class="space-y-4 mb-8 text-sm opacity-80 border-t border-yellow-900 pt-8">
+                <details class="cursor-pointer">
+                    <summary class="font-semibold outline-none">Privacy Policy</summary>
+                    <div class="mt-4 p-4 bg-yellow-900 bg-opacity-30 rounded text-left">
+                        <p class="mb-2">This Privacy Policy outlines how Dollship Flow collects, uses, and protects any information you provide while using this website. We are committed to ensuring that your privacy is protected at all times. Should we ask you to provide certain information by which you can be identified when using this website, you can be assured that it will only be used in accordance with this privacy statement. We may collect your name, contact information including phone number, and details regarding your property's insulation or siding needs. This information is used solely to understand your requirements, provide you with better service, and connect you with appropriate contractors. We are committed to ensuring that your information is secure. In order to prevent unauthorized access or disclosure, we have put in place suitable physical and electronic procedures to safeguard the information we collect online. We do not sell, distribute, or lease your personal information to third parties unless we have your permission or are required by law to do so.</p>
+                    </div>
+                </details>
+                <details class="cursor-pointer">
+                    <summary class="font-semibold outline-none">Terms of Service</summary>
+                    <div class="mt-4 p-4 bg-yellow-900 bg-opacity-30 rounded text-left">
+                        <p class="mb-2">By accessing and using the Dollship Flow website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service. The content of the pages of this website is for your general information and use only. It is subject to change without notice. Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness, or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors, and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law. Your use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services, or information available through this website meet your specific home improvement requirements.</p>
+                    </div>
+                </details>
+                <details class="cursor-pointer">
+                    <summary class="font-semibold outline-none">Disclaimer</summary>
+                    <div class="mt-4 p-4 bg-yellow-900 bg-opacity-30 rounded text-left">
+                        <p class="mb-2">This website acts as an independent promotional site managed by Dollship Flow. We operate as an affiliate and lead generation partner for Foam South. We do not directly perform insulation installation, spray foam application, or siding replacement services ourselves. Any requests submitted through this site are forwarded to the original service provider who will handle all estimates, contracting, fulfillment, and customer support. Dollship Flow makes no direct warranties or guarantees regarding the quality of work, materials, or timelines of the third-party contractors. All agreements, warranties, and financial transactions occur directly between the homeowner and the service provider. We encourage all users to verify the licensing and insurance of any contractor before commencing home improvement projects. By using this site, you acknowledge our role strictly as a promotional operator connecting you with external home service professionals.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="text-center text-xs opacity-60 space-y-2 border-t border-yellow-900 pt-8">
+                <p>This is an independent promotional site managed by Dollship Flow, acting as an affiliate for Foam South.</p>
+                <p>Dollship Flow is an editorial and promotional operator. We are not a financial services provider, broker, investment advisor, asset or wealth manager, or licensed advisor of any kind.</p>
+                <p>&copy; 2026 Dollship Flow. All rights reserved.</p>
+                <p class="mt-4 font-bold">Independent promotional operator &middot; Dollship Flow</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-4 right-4 bg-white rounded-lg shadow-xl border border-gray-200 p-5 max-w-sm z-50 flex flex-col gap-3">
+        <p class="text-sm text-gray-700">We use cookies to improve your browsing experience and analyze site traffic. By continuing to use this site, you consent to our use of cookies.</p>
+        <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('dollshipflow_cookies_accepted','1')" class="bg-gray-900 text-white text-sm font-bold py-2 px-4 rounded hover:bg-gray-800 transition-colors w-full text-center">
+            Accept Cookies
+        </button>
+    </div>
+
+    <!-- Cookie Script -->
+    <script>
+      if (localStorage.getItem('dollshipflow_cookies_accepted')) {
+        document.getElementById('cookie-banner').classList.add('hidden');
+      }
+    </script>
+</body>
+</html>
