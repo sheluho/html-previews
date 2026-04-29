@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<!-- DeployTag: prod-edge-12 -->
+<html lang="en">
+<head>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oasis Studio | Crafting your perfect outdoor oasis</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    
+    <!-- Tailwind CSS v2.2.19 (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Design DNA (Mandatory Injection) -->
+    <style>
+      :root {
+        --primary: #a16207;
+        --secondary: #7c2d12;
+        --radius: 8px;
+        --card-radius: 8px;
+        --shadow: 0 2px 8px rgba(67,20,7,0.08);
+      }
+
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #fef3c7;
+        color: #3f2d04;
+        font-family: 'Open Sans', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Merriweather', serif; }
+
+      .wrap-7c4c {
+        background-color: #ffffff;
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        border: 2px solid var(--primary);
+        border-color: rgba(0,0,0,0.08);
+        border-left: 4px solid var(--primary);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 0.95rem;
+        transition: transform 0.15s, filter 0.15s;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+      }
+
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .bg-primary { background-color: var(--primary); }
+
+      .section-divider { border: none; border-top: 2px dashed rgba(67,20,7,0.15); margin: 0; }
+
+      #mobile-menu { background-color: #ffffff; }
+
+      footer { background-color: #3f2d04; color: #fef3c7; }
+      footer a { color: #fef3c7; text-decoration: none; }
+      footer a:hover { color: #ffffff; }
+      
+      .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed top-0 inset-x-0 z-50 bg-gray-900 text-white text-sm py-3 px-4 shadow-md flex flex-col sm:flex-row items-center justify-center gap-4 transition-opacity">
+        <p class="text-center sm:text-left">We use cookies to improve your browsing experience and analyze site traffic. By continuing to use this site, you consent to our use of cookies.</p>
+        <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('oasisstudio_cookies_accepted','1')" class="bg-white text-gray-900 font-bold py-1.5 px-4 rounded hover:bg-gray-200 transition-colors whitespace-nowrap">
+            Accept
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 mt-12 sm:mt-0" style="margin-top: env(safe-area-inset-top);">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-black text-primary tracking-tight font-serif">Oasis Studio</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-primary font-semibold transition-colors">About</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-semibold transition-colors">Reviews</a>
+                    <a href="#features" class="text-gray-700 hover:text-primary font-semibold transition-colors">Services</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-semibold transition-colors">FAQ</a>
+                </nav>
+                <div class="hidden md:flex items-center">
+                    <a href="#contact" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Get a Quote</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full border-t border-gray-100 shadow-lg z-50">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-md">About</a>
+                <a href="#reviews" class="block px-3 py-3 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-md">Reviews</a>
+                <a href="#features" class="block px-3 py-3 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-md">Services</a>
+                <a href="#faq" class="block px-3 py-3 text-base font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-md">FAQ</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-bold text-primary hover:bg-gray-50 rounded-md mt-4">Get a Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- 1. Hero Section (Overlap Hero) -->
+        <section class="w-full relative" style="background-color: rgba(161, 98, 7, 0.05);">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16 py-16 md:py-24">
+                
+                <!-- Text Column -->
+                <div class="md:w-1/2 flex flex-col justify-center z-10">
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-gray-900 mb-6">
+                        Crafting your perfect outdoor oasis.
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                        We are a dedicated landscaping and lawn care company committed to transforming your residential property into a vibrant, healthy living space. From lush green grass to structured garden beds, we bring nature's best to your doorstep.
+                    </p>
+                    <div>
+                        <a href="#contact" class="btn-primary">Transform Your Yard</a>
+                    </div>
+                </div>
+
+                <!-- Image Column -->
+                <div class="md:w-1/2 z-10" style="transform: translateX(1rem);">
+                    <img src="./assets/img/hero.jpg" alt="Beautifully manicured green lawn and landscape design" loading="lazy" class="w-full h-full object-cover" style="min-height: 420px; border-radius: var(--card-radius); box-shadow: var(--shadow);">
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 2. About / Mission Section -->
+        <section id="about" class="py-16 md:py-20">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="wrap-7c4c flex flex-col md:flex-row gap-10 items-center">
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Rooted in Quality Landscaping</h2>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            At Oasis Studio, we understand that your yard is an extension of your home—a place for family gatherings, quiet mornings, and lasting memories. As an experienced landscaping and lawn care company, we focus on delivering exceptional garden design, precise landscape installation, and comprehensive lawn care solutions tailored to your local environment.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            Our approach is built on understanding the unique biology of your soil and the specific needs of your plants. Whether you require seasonal lawn mowing to keep things tidy or an intensive recovery program for struggling turf, our team works closely with nature to ensure every blade of grass and every planted shrub thrives throughout the year.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 w-full">
+                        <img src="./assets/img/about.jpg" alt="Lawn care professional inspecting healthy green grass" loading="lazy" class="w-full h-auto object-cover rounded shadow-sm" style="border-radius: var(--radius);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 3. Social Proof Section -->
+        <section id="reviews" class="py-16 md:py-20">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What Our Clients Say</h2>
+                    <p class="mt-4 text-gray-600">Hear from homeowners who have transformed their outdoor spaces.</p>
+                </div>
+                
+                <div class="wrap-7c4c">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Review 1 -->
+                        <div class="flex flex-col">
+                            <div class="flex text-primary mb-3">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4 flex-grow">"The landscape installation completely changed our backyard. The team was professional, clean, and brought our vision to life beautifully."</p>
+                            <p class="font-bold text-gray-900">— Sarah M., Homeowner</p>
+                        </div>
+                        <!-- Review 2 -->
+                        <div class="flex flex-col">
+                            <div class="flex text-primary mb-3">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4 flex-grow">"Finding a reliable service for weekly lawn mowing and occasional tree service was tough until we found Oasis Studio. Highly recommended."</p>
+                            <p class="font-bold text-gray-900">— David R., Resident</p>
+                        </div>
+                        <!-- Review 3 -->
+                        <div class="flex flex-col">
+                            <div class="flex text-primary mb-3">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4 flex-grow">"Best lawn care investment we've made. The weed control is effective, and our grass has never looked thicker or greener."</p>
+                            <p class="font-bold text-gray-900">— Elena T., Homeowner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 4. Value/Services Section (3-Column Cards) -->
+        <section id="features" class="py-16 md:py-20">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Comprehensive Outdoor Solutions</h2>
+                    <p class="mt-4 text-gray-600">Everything your property needs to stand out and thrive.</p>
+                </div>
+                
+                <div class="wrap-7c4c p-0 overflow-hidden bg-transparent border-none shadow-none">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        
+                        <!-- Card 1 -->
+                        <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm flex flex-col h-full" style="border-radius: var(--card-radius);">
+                            <img src="./assets/img/feature1.jpg" alt="Technician applying weed control treatment to lawn" loading="lazy" class="w-full h-48 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="text-primary mb-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Expert Lawn Care</h3>
+                                <p class="text-gray-600 flex-grow">
+                                    Comprehensive lawn mowing, targeted weed control, and seasonal fertilization programs designed to keep your grass thick, resilient, and deeply green all year round.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm flex flex-col h-full" style="border-radius: var(--card-radius);">
+                            <img src="./assets/img/feature2.jpg" alt="Professional pushing a lawn mower across fresh grass" loading="lazy" class="w-full h-48 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="text-primary mb-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Landscape Installation</h3>
+                                <p class="text-gray-600 flex-grow">
+                                    Transform your property with custom garden design and structural landscape installation tailored to enhance your home's unique architecture and natural terrain.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm flex flex-col h-full" style="border-radius: var(--card-radius);">
+                            <img src="./assets/img/feature3.jpg" alt="Watering green grass and maintaining healthy soil" loading="lazy" class="w-full h-48 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="text-primary mb-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Tree Service & Health</h3>
+                                <p class="text-gray-600 flex-grow">
+                                    Specialized tree service and ongoing shrub care. We assess plant health, provide necessary pruning, and ensure the long-term vitality of your property's larger plants.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 5. FAQ Section -->
+        <section id="faq" class="py-16 md:py-20">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Frequently Asked Questions</h2>
+                </div>
+                
+                <div class="wrap-7c4c">
+                    <div class="space-y-4">
+                        <details class="group bg-gray-50 rounded-md p-4 cursor-pointer">
+                            <summary class="font-bold text-gray-900 text-lg flex justify-between items-center outline-none">
+                                What does your basic lawn care program include?
+                                <span class="text-primary group-open:rotate-180 transition-transform">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="mt-4 text-gray-700 leading-relaxed">
+                                Our core program focuses on the foundational health of your grass. It typically includes regular lawn mowing, scheduled fertilization treatments, and proactive weed control. We assess the specific soil conditions of your yard to determine the exact nutrients needed for optimal growth.
+                            </p>
+                        </details>
+
+                        <details class="group bg-gray-50 rounded-md p-4 cursor-pointer">
+                            <summary class="font-bold text-gray-900 text-lg flex justify-between items-center outline-none">
+                                Do you provide custom garden design?
+                                <span class="text-primary group-open:rotate-180 transition-transform">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="mt-4 text-gray-700 leading-relaxed">
+                                Yes, garden design is a significant part of what we do. Before any landscape installation begins, our team works with you to select plants, materials, and layouts that complement your home while thriving in your specific climate and light conditions.
+                            </p>
+                        </details>
+
+                        <details class="group bg-gray-50 rounded-md p-4 cursor-pointer">
+                            <summary class="font-bold text-gray-900 text-lg flex justify-between items-center outline-none">
+                                How often should I schedule lawn mowing?
+                                <span class="text-primary group-open:rotate-180 transition-transform">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="mt-4 text-gray-700 leading-relaxed">
+                                The frequency of lawn mowing depends heavily on the season and the type of grass you have. During peak growing seasons in spring and early summer, weekly mowing is generally recommended to maintain an even height and promote lateral growth. In slower seasons, bi-weekly schedules may be sufficient.
+                            </p>
+                        </details>
+
+                        <details class="group bg-gray-50 rounded-md p-4 cursor-pointer">
+                            <summary class="font-bold text-gray-900 text-lg flex justify-between items-center outline-none">
+                                Is tree service included in general landscaping?
+                                <span class="text-primary group-open:rotate-180 transition-transform">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="mt-4 text-gray-700 leading-relaxed">
+                                Basic shrub trimming is often part of standard maintenance, but specialized tree service—such as canopy reduction, deep root feeding, or disease management—is usually handled as a separate service to ensure it receives the expert attention required for large plant health.
+                            </p>
+                        </details>
+
+                        <details class="group bg-gray-50 rounded-md p-4 cursor-pointer">
+                            <summary class="font-bold text-gray-900 text-lg flex justify-between items-center outline-none">
+                                What makes your landscaping and lawn care company different?
+                                <span class="text-primary group-open:rotate-180 transition-transform">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </span>
+                            </summary>
+                            <p class="mt-4 text-gray-700 leading-relaxed">
+                                Our difference lies in our comprehensive approach. We don't just cut grass; we manage the entire ecosystem of your yard. By combining expert garden design with consistent, science-based lawn care, we ensure your outdoor space remains healthy, vibrant, and structurally sound year after year.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 6. Contact Section -->
+        <section id="contact" class="py-16 md:py-20">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="wrap-7c4c">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-gray-900">Request a Consultation</h2>
+                        <p class="mt-3 text-gray-600">Fill out the form below to discuss your property's needs with our landscaping experts.</p>
+                    </div>
+
+                    <form id="lead-form" class="space-y-5" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Sending Request...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                <input type="text" id="firstName" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                <input type="text" id="lastName" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition-colors">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label for="service" class="block text-sm font-medium text-gray-700 mb-1">Service Needed</label>
+                            <select id="service" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition-colors bg-white">
+                                <option>General Lawn Care</option>
+                                <option>Landscape Installation</option>
+                                <option>Garden Design</option>
+                                <option>Tree Service</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Property Details</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition-colors"></textarea>
+                        </div>
+                        <div class="pt-2">
+                            <button type="submit" class="btn-primary w-full text-center cursor-pointer">Submit Request</button>
+                        </div>
+                    </form>
+
+                    <div id="success-msg" style="display:none" class="bg-green-50 border-l-4 border-green-500 p-6 rounded-md text-center">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">Request Received!</h3>
+                        <p class="text-green-700">Thank you for reaching out to Oasis Studio. A member of our team will review your property details and contact you shortly to schedule an assessment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-16 pb-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+                <div class="text-2xl font-black text-white tracking-tight font-serif">Oasis Studio</div>
+                <nav class="flex flex-wrap justify-center gap-6">
+                    <a href="#about" class="text-sm font-medium opacity-80 hover:opacity-100 transition-opacity">About</a>
+                    <a href="#features" class="text-sm font-medium opacity-80 hover:opacity-100 transition-opacity">Services</a>
+                    <a href="#faq" class="text-sm font-medium opacity-80 hover:opacity-100 transition-opacity">FAQ</a>
+                    <a href="#contact" class="text-sm font-medium opacity-80 hover:opacity-100 transition-opacity">Contact</a>
+                </nav>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 mb-8 space-y-4 text-xs text-gray-400">
+                <p>This is an independent promotional site managed by Oasis Studio, acting as an affiliate for Weed Man.</p>
+                <p>Oasis Studio is an editorial and promotional operator. We are not a financial services provider, broker, investment advisor, asset or wealth manager, or licensed advisor of any kind.</p>
+            </div>
+
+            <!-- Legal Documents in Details tags -->
+            <div class="space-y-4 mb-10 text-sm">
+                <details class="group bg-black bg-opacity-20 rounded p-4 cursor-pointer">
+                    <summary class="font-semibold text-gray-300 outline-none">Privacy Policy</summary>
+                    <div class="mt-4 text-gray-400 space-y-2 leading-relaxed">
+                        <p>This Privacy Policy outlines how Oasis Studio collects, utilizes, and protects any information gathered through your use of this promotional landing page. When you interact with our forms, we may collect basic contact details necessary to facilitate a connection regarding landscaping services. We are committed to ensuring that your privacy is respected and that any data provided is handled with appropriate care. The information collected is used strictly for the purpose of connecting you with relevant outdoor service providers and improving the functionality of this site. We do not sell, distribute, or lease your personal information to unassociated third parties unless required by law. We implement basic security measures to maintain the safety of your submitted data. By using this site, you acknowledge and consent to these data collection practices. This policy may be updated periodically, and any changes will be reflected directly in this section.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-black bg-opacity-20 rounded p-4 cursor-pointer">
+                    <summary class="font-semibold text-gray-300 outline-none">Terms of Service</summary>
+                    <div class="mt-4 text-gray-400 space-y-2 leading-relaxed">
+                        <p>These Terms of Service govern your access to and use of the Oasis Studio promotional website. By accessing this site, you agree to be bound by these terms, as well as all applicable laws and local regulations. The materials and information contained on this website are provided for general informational and promotional purposes only. We strive to present accurate descriptions of lawn care and landscaping services, but we do not warrant that all content is entirely error-free or complete. Use of any information or materials on this website is entirely at your own risk, for which we shall not be held liable. It shall be your own responsibility to ensure that any services or information available through this website meet your specific requirements. We reserve the right to modify or discontinue the site or any portion of it without prior notice. Continued use of the site following any modifications implies acceptance of those changes.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-black bg-opacity-20 rounded p-4 cursor-pointer">
+                    <summary class="font-semibold text-gray-300 outline-none">Disclaimer</summary>
+                    <div class="mt-4 text-gray-400 space-y-2 leading-relaxed">
+                        <p>This website operates solely as an independent promotional and affiliate landing page managed by Oasis Studio. We do not directly provide lawn care, landscape installation, or tree services ourselves. Our purpose is to introduce users to third-party providers, specifically Weed Man, who fulfill these outdoor services. Any requests for service, consultations, or subsequent purchases are handled entirely by the original service provider. Oasis Studio does not process transactions, manage customer service, or oversee the physical execution of landscaping work. Consequently, we cannot offer warranties, guarantees, or refunds regarding the quality, timeliness, or outcome of the services provided by third parties. Users should direct all inquiries concerning service satisfaction, scheduling, or billing directly to the official provider. By utilizing this site, you understand and agree to our role strictly as a promotional intermediary.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="text-center text-xs text-gray-500">
+                <p>&copy; 2026 Oasis Studio. All rights reserved.</p>
+                <p class="mt-2">Independent promotional operator &middot; Oasis Studio</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner Logic -->
+    <script>
+      if (localStorage.getItem('oasisstudio_cookies_accepted')) {
+        document.getElementById('cookie-banner').classList.add('hidden');
+      }
+    </script>
+</body>
+</html>
