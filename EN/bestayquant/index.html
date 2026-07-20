@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!-- revision 4821 -->
+<html lang="en">
+<head>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bestay | Elevating Your Daily Routine</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS v2.2.19 (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+
+    <!-- Design DNA CSS Injection -->
+    <style>
+      :root {
+        --primary: #7c2d12;
+        --secondary: #15803d;
+        --radius: 8px;
+        --card-radius: 8px;
+        --shadow: 0 2px 8px rgba(67,20,7,0.08);
+      }
+
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #fff7ed;
+        color: #431407;
+        font-family: 'PT Sans', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 { font-family: 'PT Serif', serif; }
+
+      .pane-b1b9 {
+        background-color: #ffffff;
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        border: 2px solid var(--primary);
+        border-color: rgba(0,0,0,0.08);
+        border-left: 4px solid var(--primary);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 0.95rem;
+        transition: transform 0.15s, filter 0.15s;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+      }
+
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .bg-primary { background-color: var(--primary); }
+
+      .section-divider { border: none; border-top: 2px dashed rgba(67,20,7,0.15); margin: 0; }
+
+      #mobile-menu { background-color: #ffffff; }
+
+      footer { background-color: #3f2d04; color: #fef3c7; }
+      footer a { color: #fef3c7; text-decoration: none; }
+      footer a:hover { color: #ffffff; }
+      
+      .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="bg-gray-200 border-b border-gray-300 text-sm py-3 px-4 flex justify-between items-center z-50 relative text-gray-800">
+        <span>We use cookies to ensure you get the best experience on our website.</span>
+        <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('bestay_cookies_accepted','1')" class="ml-4 bg-gray-400 hover:bg-gray-500 text-white py-1 px-4 rounded font-bold transition-colors">Accept</button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold text-primary font-serif">Bestay</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-primary font-bold">Services</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-bold">Reviews</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary font-bold">About Us</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-bold">FAQ</a>
+                </div>
+                <div class="hidden md:flex">
+                    <a href="#contact" class="btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.875rem;">Get Estimate</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 shadow-lg absolute w-full left-0 z-50 px-4 py-6 space-y-4">
+            <a href="#features" class="block text-base font-bold text-gray-800 hover:text-primary">Services</a>
+            <a href="#reviews" class="block text-base font-bold text-gray-800 hover:text-primary">Reviews</a>
+            <a href="#about" class="block text-base font-bold text-gray-800 hover:text-primary">About Us</a>
+            <a href="#faq" class="block text-base font-bold text-gray-800 hover:text-primary">FAQ</a>
+            <a href="#contact" class="block text-base font-bold text-primary">Get Estimate</a>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section (Full Width) -->
+    <section class="w-full relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
+            <div class="md:w-1/2 flex flex-col justify-center">
+                <div class="inline-flex items-center space-x-2 mb-4">
+                    <span class="w-8 h-1 bg-secondary rounded"></span>
+                    <span class="text-sm font-bold text-secondary uppercase tracking-wider">Premium Renovations</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6 text-primary">
+                    Elevating Your Daily Routine with Premium Bathroom Renovations
+                </h1>
+                <p class="text-lg md:text-xl mb-8 text-gray-700 leading-relaxed">
+                    Plan every detail before you build. As a full-service bathroom remodeling company, we transform outdated spaces into modern sanctuaries. From custom tile work to luxurious upgrades, we handle it all.
+                </p>
+                <div>
+                    <a href="#contact" class="btn-primary">Start Your Project</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative">
+                <img src="./assets/img/hero.jpg" alt="Luxury modern bathroom interior design" loading="lazy" class="w-full h-full object-cover" style="min-height: 420px; border-radius: var(--card-radius); box-shadow: var(--shadow);">
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-5xl mx-auto">
+
+    <!-- 2. Value/Services Section -->
+    <section id="features" class="w-full">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Our Signature Services</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">Discover how our comprehensive approach to bathroom remodeling ensures a seamless process and a breathtaking final result.</p>
+            </div>
+            
+            <div class="pane-b1b9">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="flex flex-col h-full">
+                        <div class="mb-4 rounded overflow-hidden" style="height: 200px;">
+                            <img src="./assets/img/feature1.jpg" alt="Modern glass walk-in shower installation" loading="lazy" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Walk-In Showers
+                        </h3>
+                        <p class="text-gray-600 flex-grow text-sm">
+                            Upgrade your daily routine with a sleek, accessible walk-in shower. We specialize in seamless tub-to-shower conversions that maximize space and enhance the modern aesthetic of your home.
+                        </p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="flex flex-col h-full">
+                        <div class="mb-4 rounded overflow-hidden" style="height: 200px;">
+                            <img src="./assets/img/feature2.jpg" alt="Elegant bathroom sink vanity" loading="lazy" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Complete Bathroom Remodel
+                        </h3>
+                        <p class="text-gray-600 flex-grow text-sm">
+                            Experience a total transformation with our full-service bathroom remodel solutions. From demolition to final fixtures, we manage every aspect of the project to deliver a cohesive, luxurious space.
+                        </p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="flex flex-col h-full">
+                        <div class="mb-4 rounded overflow-hidden" style="height: 200px;">
+                            <img src="./assets/img/feature3.jpg" alt="Professional installing bathroom floor tiles" loading="lazy" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Custom Tile Installation
+                        </h3>
+                        <p class="text-gray-600 flex-grow text-sm">
+                            Precision tile installation is the foundation of a stunning bathroom. Whether it's intricate mosaic floors, classic subway tile walls, or elegant backsplashes, our craftsmanship ensures a flawless finish.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-5xl mx-auto">
+
+    <!-- 3. Social Proof Section -->
+    <section id="reviews" class="w-full">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary">Client Experiences</h2>
+            </div>
+            
+            <div class="pane-b1b9">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                        <div class="flex text-yellow-500 mb-3">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-4 text-sm">"The team handled our master bathroom remodel flawlessly. The new walk-in shower is exactly what we wanted, and the tile installation is impeccable. Highly recommend for any renovation needs."</p>
+                        <p class="font-bold text-primary">— Sarah M., 2026</p>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                        <div class="flex text-yellow-500 mb-3">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-4 text-sm">"We needed a bathtub replacement done quickly but didn't want to sacrifice quality. The crew was professional, clean, and delivered a beautiful new soaking tub that has completely changed the room."</p>
+                        <p class="font-bold text-primary">— David R., 2026</p>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                        <div class="flex text-yellow-500 mb-3">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-gray-700 italic mb-4 text-sm">"Finding a reliable contractor for a full bathroom renovation is tough, but this team exceeded expectations. The layout changes and custom vanity installation were executed perfectly."</p>
+                        <p class="font-bold text-primary">— Elena K., 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-5xl mx-auto">
+
+    <!-- 4. About / Mission Section -->
+    <section id="about" class="w-full">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <div class="pane-b1b9 flex flex-col md:flex-row gap-10 items-center">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-primary mb-6">Dedicated to Superior Craftsmanship</h2>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        As a premier full-service bathroom remodeling company, we are committed to bringing your vision to life. This platform highlights comprehensive renovation services designed for homeowners who value meticulous design and expert construction.
+                    </p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Whether you are planning a sprawling master bath upgrade or an efficient guest bath refresh, the focus remains on high-quality materials and skilled execution. From the initial tear-down to the final tile installation, every step is managed with precision.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed font-bold">
+                        Our goal is to ensure your bathroom renovation is not just an improvement, but a lasting investment in your home's comfort and value.
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="./assets/img/about.jpg" alt="Professional contractor working on a bathroom remodel project" loading="lazy" class="w-full rounded-lg shadow-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-5xl mx-auto">
+
+    <!-- 5. FAQ Section -->
+    <section id="faq" class="w-full">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="pane-b1b9">
+                <div class="space-y-4">
+                    <details class="group bg-gray-50 border border-gray-100 rounded p-4 cursor-pointer">
+                        <summary class="font-bold text-lg text-gray-800 list-none flex justify-between items-center">
+                            How long does a typical bathroom renovation take?
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
+                            The timeline for a bathroom renovation varies depending on the scope of work. A straightforward bathtub replacement might take a few days, while a complete, down-to-the-studs bathroom remodel can take several weeks. An accurate timeline is provided after a detailed consultation.
+                        </p>
+                    </details>
+                    
+                    <details class="group bg-gray-50 border border-gray-100 rounded p-4 cursor-pointer">
+                        <summary class="font-bold text-lg text-gray-800 list-none flex justify-between items-center">
+                            Can you convert my old tub into a walk-in shower?
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
+                            Yes, tub-to-shower conversions are one of the most requested services. Replacing an unused tub with a spacious, modern walk-in shower is an excellent way to update the space, improve accessibility, and increase the overall appeal of the room.
+                        </p>
+                    </details>
+
+                    <details class="group bg-gray-50 border border-gray-100 rounded p-4 cursor-pointer">
+                        <summary class="font-bold text-lg text-gray-800 list-none flex justify-between items-center">
+                            What is included in a full bathroom remodel?
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
+                            As a full-service bathroom remodeling company, a complete overhaul typically includes demolition, updated plumbing and electrical work, drywall repair, waterproofing, custom tile installation, new cabinetry, countertops, fixtures, and final painting.
+                        </p>
+                    </details>
+
+                    <details class="group bg-gray-50 border border-gray-100 rounded p-4 cursor-pointer">
+                        <summary class="font-bold text-lg text-gray-800 list-none flex justify-between items-center">
+                            Do you handle the tile installation yourselves?
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
+                            Absolutely. Professional tile installation is critical for both the waterproofing integrity and the visual finish of your bathroom. Experienced craftsmen handle all tile work, from simple ceramic floors to complex glass mosaic accents in the shower.
+                        </p>
+                    </details>
+
+                    <details class="group bg-gray-50 border border-gray-100 rounded p-4 cursor-pointer">
+                        <summary class="font-bold text-lg text-gray-800 list-none flex justify-between items-center">
+                            Is a bathtub replacement a messy process?
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
+                            Any construction involves some level of dust, but strict measures are taken to minimize the mess. Drop cloths, dust barriers, and daily cleanups ensure that the rest of your home remains protected while the bathtub replacement or renovation is underway.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-5xl mx-auto">
+
+    <!-- 6. Contact Section -->
+    <section id="contact" class="w-full">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <div class="pane-b1b9 max-w-2xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-primary mb-2">Request an Estimate</h2>
+                    <p class="text-gray-600">Fill out the form below to discuss your upcoming bathroom renovation project.</p>
+                </div>
+
+                <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Sending...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-bold text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary outline-none transition-colors">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-bold text-gray-700 mb-1">Phone Number</label>
+                        <input type="tel" id="phone" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary outline-none transition-colors">
+                    </div>
+                    <div>
+                        <label for="service" class="block text-sm font-bold text-gray-700 mb-1">Service of Interest</label>
+                        <select id="service" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary outline-none transition-colors bg-white">
+                            <option>Complete Bathroom Remodel</option>
+                            <option>Walk-in Shower Installation</option>
+                            <option>Bathtub Replacement</option>
+                            <option>Tile Installation</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-bold text-gray-700 mb-1">Project Details</label>
+                        <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary outline-none transition-colors"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full text-center">Submit Request</button>
+                </form>
+
+                <div id="success-msg" style="display:none" class="text-center py-10">
+                    <svg class="w-16 h-16 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Thank You!</h3>
+                    <p class="text-gray-600">Your request has been received. A representative will contact you shortly to discuss your project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer -->
+    <footer class="pt-12 pb-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <p class="text-lg font-serif font-bold mb-2">Bestay</p>
+                <p class="text-sm opacity-80 max-w-2xl mx-auto mb-4">
+                    This is an independent promotional site managed by Bestay, acting as an affiliate for Morgan Kitchen and Bath.
+                </p>
+                <p class="text-sm opacity-80 max-w-2xl mx-auto mb-6">
+                    Bestay is an editorial and promotional operator. We are not a financial services provider, broker, investment advisor, asset or wealth manager, or licensed advisor of any kind.
+                </p>
+            </div>
+
+            <div class="space-y-4 max-w-3xl mx-auto mb-8 border-t border-opacity-20 border-white pt-8">
+                <!-- Privacy Policy -->
+                <details class="group cursor-pointer">
+                    <summary class="font-bold text-sm uppercase tracking-wider list-none flex justify-between items-center opacity-90 hover:opacity-100">
+                        Privacy Policy
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="16" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="16"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-xs opacity-80 space-y-2 leading-relaxed">
+                        <p>This Privacy Policy outlines how information is collected, used, and safeguarded when you visit this promotional website. We collect standard technical data, such as browser type and IP address, to ensure the site functions correctly. If you choose to submit information through our contact forms, that specific data is collected solely to connect you with the relevant service providers. We do not sell, rent, or trade your personal information to unassociated third parties. Your submitted information is securely transmitted to the actual service provider, Morgan Kitchen and Bath, so they can address your inquiry. We employ industry-standard security measures to protect the data submitted through this site. By using this website, you consent to the data collection practices described in this document. You maintain the right to request the deletion of any personal data you have submitted via our forms at any time. This policy may be updated periodically, and continued use of the site implies acceptance of those changes.</p>
+                    </div>
+                </details>
+
+                <!-- Terms of Service -->
+                <details class="group cursor-pointer">
+                    <summary class="font-bold text-sm uppercase tracking-wider list-none flex justify-between items-center opacity-90 hover:opacity-100">
+                        Terms of Service
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="16" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="16"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-xs opacity-80 space-y-2 leading-relaxed">
+                        <p>By accessing and using this website, you agree to be bound by these Terms of Service. This site is provided for informational and promotional purposes only. The content displayed here is intended to introduce users to home renovation services and does not constitute a binding contract or professional advice. Users agree to use the site and its forms responsibly and not to submit false, misleading, or malicious information. All text, layout, and graphic content on this promotional interface is the property of the operator and may not be reproduced without permission. We reserve the right to modify or discontinue any aspect of this site at any time without prior notice. The operator of this site shall not be held liable for any direct, indirect, or incidental damages arising from the use or inability to use this website. Any disputes arising from the use of this promotional site will be governed by the applicable local laws of the operator's jurisdiction. Please read the accompanying disclaimer for further clarification on our role.</p>
+                    </div>
+                </details>
+
+                <!-- Disclaimer -->
+                <details class="group cursor-pointer">
+                    <summary class="font-bold text-sm uppercase tracking-wider list-none flex justify-between items-center opacity-90 hover:opacity-100">
+                        Disclaimer
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="16" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="16"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-xs opacity-80 space-y-2 leading-relaxed">
+                        <p>This website operates strictly as an independent promotional and affiliate platform managed by Bestay. We do not directly provide construction, remodeling, or contractor services. The purpose of this site is to showcase the types of services offered by Morgan Kitchen and Bath and to facilitate initial contact. No financial transactions, service contracts, or scheduling occur directly on this web page. All inquiries submitted through our forms are routed to the actual service provider, who will handle all estimates, customer support, and project fulfillment. Bestay makes no warranties or guarantees regarding the quality, timelines, or outcomes of the services provided by third-party contractors. Any satisfaction promises, warranties on workmanship, or refund policies belong solely to the original service provider and must be discussed directly with them. Users are encouraged to verify all contractor licenses, insurance, and references independently before beginning any home renovation project.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="text-center text-xs opacity-60 mt-8">
+                <p>&copy; 2026 Bestay. All rights reserved.</p>
+                <p class="mt-1">Independent promotional operator &middot; Bestay</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner Script -->
+    <script>
+      if (localStorage.getItem('bestay_cookies_accepted')) {
+        document.getElementById('cookie-banner').classList.add('hidden');
+      }
+    </script>
+</body>
+</html>
