@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<!-- build-id 2a9f3 -->
+<html lang="en">
+<head>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryostat Grid | Precision Light Control & Custom Window Treatments</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS v2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+
+    <!-- Design DNA -->
+    <style>
+      :root {
+        --primary: #7c2d12;
+        --secondary: #c2410c;
+        --radius: 6px;
+        --card-radius: 6px;
+        --shadow: 0 2px 8px rgba(67,20,7,0.08);
+      }
+
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #f5f5f4;
+        color: #1c1917;
+        font-family: 'PT Sans', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 { font-family: 'PT Serif', serif; }
+
+      .wrap-89cf {
+        background-color: #ffffff;
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        border: 2px solid var(--primary);
+        border-color: rgba(0,0,0,0.08);
+        border-left: 4px solid var(--primary);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        border-radius: var(--radius);
+        padding: 0.875rem 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 0.95rem;
+        transition: transform 0.15s, filter 0.15s;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+      }
+
+      .text-primary { color: var(--primary); }
+      .text-secondary { color: var(--secondary); }
+      .bg-primary { background-color: var(--primary); }
+
+      .section-divider { border: none; border-top: 2px dashed rgba(67,20,7,0.15); margin: 0; }
+
+      #mobile-menu { background-color: #ffffff; }
+
+      footer { background-color: #3f2d04; color: #fef3c7; }
+      footer a { color: #fef3c7; text-decoration: none; }
+      footer a:hover { color: #ffffff; }
+      
+      .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+      /* Custom Utilities */
+      .bg-overlay {
+          background-color: rgba(0, 0, 0, 0.65);
+      }
+      details > summary {
+          list-style: none;
+      }
+      details > summary::-webkit-details-marker {
+          display: none;
+      }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed top-0 inset-x-0 z-50 bg-gray-900 text-white text-sm py-3 px-4 shadow-md flex flex-col sm:flex-row items-center justify-between">
+        <p class="mb-2 sm:mb-0 text-center sm:text-left">
+            We use cookies to ensure you get the best experience on our website, analyze site traffic, and assist in our marketing efforts. By continuing to use this site, you consent to our use of cookies.
+        </p>
+        <button onclick="this.closest('#cookie-banner').classList.add('hidden'); localStorage.setItem('cryostatgrid_cookies_accepted','1')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-4 rounded whitespace-nowrap transition-colors">
+            Accept & Continue
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 mt-12 sm:mt-0">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-extrabold text-primary tracking-tight">Cryostat Grid</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-primary font-bold transition-colors">About</a>
+                    <a href="#features" class="text-gray-700 hover:text-primary font-bold transition-colors">Services</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-primary font-bold transition-colors">Reviews</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-bold transition-colors">FAQ</a>
+                </nav>
+                <div class="hidden md:flex">
+                    <a href="#contact" class="btn-primary">Get a Quote</a>
+                </div>
+                <div class="flex md:hidden items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-700 hover:text-primary focus:outline-none p-2">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full shadow-lg border-t border-gray-100 z-50">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#about" class="block px-3 py-3 text-base font-bold text-gray-800 hover:bg-gray-50 rounded-md">About</a>
+                <a href="#features" class="block px-3 py-3 text-base font-bold text-gray-800 hover:bg-gray-50 rounded-md">Services</a>
+                <a href="#reviews" class="block px-3 py-3 text-base font-bold text-gray-800 hover:bg-gray-50 rounded-md">Reviews</a>
+                <a href="#faq" class="block px-3 py-3 text-base font-bold text-gray-800 hover:bg-gray-50 rounded-md">FAQ</a>
+                <a href="#contact" class="block px-3 py-3 text-center btn-primary w-full mt-4">Get a Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- 1. Hero Section -->
+        <section id="hero" class="relative w-full" style="background-image: url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-overlay"></div>
+            <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto py-24 md:py-32">
+                    <span class="inline-block py-1 px-3 rounded-full bg-primary text-white text-sm font-bold tracking-wider mb-6 uppercase shadow-sm">Premium Window Coverings</span>
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-white mb-6">
+                        Precision Light Control for Your Home
+                    </h1>
+                    <p class="text-xl text-gray-200 mb-10 leading-relaxed">
+                        Cryostat Grid connects you with Austin's premier custom window treatment experts. From elegant plantation shutters to modern roller shades, transform your home's lighting, privacy, and aesthetic appeal with perfectly tailored solutions.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="#contact" class="btn-primary w-full sm:w-auto text-center shadow-lg">Schedule a Consultation</a>
+                        <a href="#features" class="text-white font-bold hover:text-gray-300 underline py-2 px-4 transition-colors">Explore Options</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. About / Mission -->
+        <section id="about" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="wrap-89cf flex flex-col md:flex-row items-center gap-10">
+                    <div class="w-full md:w-1/2">
+                        <img src="https://images.pexels.com/photos/2082087/pexels-photo-2082087.jpeg" alt="Custom window treatments in a modern home" class="rounded-lg shadow-md w-full object-cover" style="height: 350px;" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://placehold.co/800x600/7c2d12/ffffff?text=Premium+Blinds'">
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Elevating Austin Interiors</h2>
+                        <h3 class="text-xl text-secondary font-bold mb-6">The Perfect Balance of Style and Function</h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            At Cryostat Grid, we believe that your home deserves the finest finishing touches. We serve as an independent promotional platform dedicated to connecting homeowners with top-tier providers of custom blinds, shades, and comprehensive window treatments. 
+                        </p>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Whether you are renovating a historic property or putting the final details on a new build, the right window coverings are essential. Our featured partners specialize in delivering exceptional craftsmanship, from the timeless beauty of plantation shutters to the soft elegance of custom drapes, ensuring a flawless fit for every unique window.
+                        </p>
+                        <a href="#contact" class="text-primary font-bold flex items-center hover:text-secondary transition-colors">
+                            Discover the difference today
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider max-w-5xl mx-auto">
+
+        <!-- 3. Value / Services -->
+        <section id="features" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Tailored Window Solutions</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Explore our curated selection of premium window treatments designed to enhance your home's architecture, improve energy efficiency, and provide ultimate privacy.</p>
+                </div>
+                
+                <div class="wrap-89cf">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- Feature 1 -->
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Plantation Shutters</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Experience timeless elegance and unmatched durability. Custom plantation shutters offer superior light control, exceptional insulation, and a significant boost to your home's resale value. Available in premium wood and moisture-resistant faux wood options perfect for Texas climates.
+                            </p>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Blinds & Roller Shades</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Achieve a sleek, modern aesthetic with our versatile selection of blinds and roller shades. From light-filtering solar shades that preserve your view to blackout options for media rooms and bedrooms, these treatments combine clean lines with high-performance functionality.
+                            </p>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Custom Drapes</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Soften the geometry of your rooms with beautifully tailored custom drapes. Available in hundreds of luxurious fabrics, patterns, and pleat styles, drapery adds texture, warmth, and a sophisticated layer to any space, perfectly complementing underlying blinds or shades.
+                            </p>
+                        </div>
+
+                        <!-- Feature 4 -->
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Motorization & Smart Tech</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Bring your window treatments into the modern age. Many of our shades and blinds can be equipped with advanced motorization, allowing you to control natural light with the touch of a button, a smartphone app, or voice commands through your existing smart home system.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider max-w-5xl mx-auto">
+
+        <!-- 4. FAQ -->
+        <section id="faq" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                    <p class="text-lg text-gray-600">Everything you need to know about customizing your home's natural light.</p>
+                </div>
+
+                <div class="wrap-89cf space-y-4">
+                    
+                    <details class="group bg-gray-50 rounded-lg border border-gray-200 open:bg-white open:ring-2 open:ring-primary open:ring-opacity-20 transition-all duration-200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-gray-900">
+                            <span>What types of window treatments do your partners offer?</span>
+                            <span class="transition group-open:rotate-180 text-secondary">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 p-5 pt-0 leading-relaxed border-t border-gray-100 mt-2">
+                            Our featured network provides a comprehensive range of custom window coverings. This includes premium plantation shutters, cellular shades, roller shades, horizontal wood and faux-wood blinds, as well as elegant custom drapes and top treatments designed to fit any architectural style.
+                        </div>
+                    </details>
+
+                    <details class="group bg-gray-50 rounded-lg border border-gray-200 open:bg-white open:ring-2 open:ring-primary open:ring-opacity-20 transition-all duration-200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-gray-900">
+                            <span>How long does the custom installation process typically take?</span>
+                            <span class="transition group-open:rotate-180 text-secondary">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 p-5 pt-0 leading-relaxed border-t border-gray-100 mt-2">
+                            Because every product is made to order for your exact window dimensions, timelines vary based on the materials selected. Generally, standard blinds and roller shades take about 3 to 4 weeks from the date of final measurement, while custom plantation shutters and specialized drapes may take 6 to 8 weeks to manufacture and install.
+                        </div>
+                    </details>
+
+                    <details class="group bg-gray-50 rounded-lg border border-gray-200 open:bg-white open:ring-2 open:ring-primary open:ring-opacity-20 transition-all duration-200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-gray-900">
+                            <span>Are your window treatments energy efficient?</span>
+                            <span class="transition group-open:rotate-180 text-secondary">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 p-5 pt-0 leading-relaxed border-t border-gray-100 mt-2">
+                            Yes, significantly. Products like cellular honeycomb shades trap air to provide excellent insulation against Texas heat. Plantation shutters also create a solid barrier against solar heat gain. We can guide you toward the best materials to help lower your cooling costs and protect your interiors from UV damage.
+                        </div>
+                    </details>
+
+                    <details class="group bg-gray-50 rounded-lg border border-gray-200 open:bg-white open:ring-2 open:ring-primary open:ring-opacity-20 transition-all duration-200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-gray-900">
+                            <span>Can roller shades be motorized and linked to a smart home?</span>
+                            <span class="transition group-open:rotate-180 text-secondary">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 p-5 pt-0 leading-relaxed border-t border-gray-100 mt-2">
+                            Absolutely. Motorization is one of the most popular upgrades for roller shades and blinds. The systems offered by our partners can be operated via remote control, smartphone apps, or integrated seamlessly with smart home hubs like Amazon Alexa, Google Assistant, or Apple HomeKit for automated scheduling.
+                        </div>
+                    </details>
+
+                    <details class="group bg-gray-50 rounded-lg border border-gray-200 open:bg-white open:ring-2 open:ring-primary open:ring-opacity-20 transition-all duration-200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-gray-900">
+                            <span>How do I clean and maintain plantation shutters?</span>
+                            <span class="transition group-open:rotate-180 text-secondary">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 p-5 pt-0 leading-relaxed border-t border-gray-100 mt-2">
+                            Plantation shutters are incredibly easy to maintain compared to traditional fabric curtains. For regular upkeep, simply wipe the louvers with a dry microfiber cloth or a feather duster. For deeper cleaning, a slightly damp cloth with mild soap works perfectly. Never use harsh chemicals or abrasive cleaners on the finish.
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider max-w-5xl mx-auto">
+
+        <!-- 5. Social Proof -->
+        <section id="reviews" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Client Experiences</h2>
+                    <p class="text-lg text-gray-600">See how custom window treatments transform local homes.</p>
+                </div>
+
+                <div class="wrap-89cf">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <!-- Review 1 -->
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                            <div class="flex text-secondary mb-4">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4 leading-relaxed">"The plantation shutters we had installed through the team recommended by Cryostat Grid completely changed the look of our living room. The light control is fantastic, and the quality of the wood is top-notch."</p>
+                            <div class="font-bold text-gray-900">- Michael T., Austin <span class="text-gray-400 text-sm font-normal ml-2">Feb 2026</span></div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                            <div class="flex text-secondary mb-4">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4 leading-relaxed">"We wanted something sleek for our modern home and went with motorized roller shades. The process was seamless, from the initial consultation to the final setup on our smart home app. Highly recommend!"</p>
+                            <div class="font-bold text-gray-900">- Sarah Jenkins <span class="text-gray-400 text-sm font-normal ml-2">Jan 2026</span></div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                            <div class="flex text-secondary mb-4">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            </div>
+                            <p class="text-gray-700 italic mb-4 leading-relaxed">"I was struggling to find the right window treatments for our unusually shaped bedroom windows. The custom drapes and underlying blinds they crafted fit perfectly and look incredibly elegant."</p>
+                            <div class="font-bold text-gray-900">- Robert & Elena V. <span class="text-gray-400 text-sm font-normal ml-2">Nov 2025</span></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider max-w-5xl mx-auto">
+
+        <!-- 6. Contact -->
+        <section id="contact" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="wrap-89cf">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        
+                        <!-- Info -->
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900 mb-6">Start Your Project</h2>
+                            <p class="text-gray-600 mb-8 leading-relaxed">
+                                Ready to upgrade your home with premium blinds, shades, or custom drapes? Fill out the form to request a design consultation. Our partners will bring samples directly to your home, measure your windows precisely, and provide a detailed estimate.
+                            </p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-bold text-gray-900">Service Area</h4>
+                                        <p class="text-gray-600 mt-1">Austin, Texas & Surrounding Communities</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-bold text-gray-900">Business Hours</h4>
+                                        <p class="text-gray-600 mt-1">Monday - Friday: 9:00 AM - 5:00 PM<br>Saturday: By Appointment Only</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form -->
+                        <div class="bg-gray-50 p-8 rounded-lg border border-gray-100 shadow-inner">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Request a Consultation</h3>
+                            
+                            <form id="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Sending Request...'; setTimeout(()=>{document.getElementById('lead-form').style.display='none';document.getElementById('success-msg').style.display='block'}, 1500);" class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-bold text-gray-700 mb-1">Full Name</label>
+                                    <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition-colors">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-bold text-gray-700 mb-1">Phone Number</label>
+                                    <input type="tel" id="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition-colors">
+                                </div>
+                                <div>
+                                    <label for="interest" class="block text-sm font-bold text-gray-700 mb-1">Primary Interest</label>
+                                    <select id="interest" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition-colors bg-white">
+                                        <option>Plantation Shutters</option>
+                                        <option>Blinds & Roller Shades</option>
+                                        <option>Custom Drapes</option>
+                                        <option>Motorization / Smart Tech</option>
+                                        <option>Unsure / Need Advice</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-bold text-gray-700 mb-1">Project Details (Optional)</label>
+                                    <textarea id="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary outline-none transition-colors"></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary w-full mt-4">Submit Request</button>
+                            </form>
+                            
+                            <div id="success-msg" style="display:none" class="text-center py-10">
+                                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <h4 class="text-2xl font-bold text-gray-900 mb-2">Request Received!</h4>
+                                <p class="text-gray-600">Thank you for your interest. A window treatment specialist will contact you shortly to schedule your consultation.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-16 pb-8 border-t-4 border-primary">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div>
+                    <h3 class="text-2xl font-extrabold text-white mb-4 tracking-tight">Cryostat Grid</h3>
+                    <p class="text-sm opacity-80 mb-4 max-w-sm leading-relaxed">
+                        Connecting homeowners with exceptional custom window treatments, from elegant plantation shutters to modern, motorized roller shades.
+                    </p>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="text-lg font-bold text-white mb-4">Legal & Compliance</h4>
+                    
+                    <details class="group">
+                        <summary class="text-sm font-bold cursor-pointer hover:text-white transition-colors list-none flex items-center">
+                            Privacy Policy
+                            <svg class="w-4 h-4 ml-1 opacity-70 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="mt-3 text-xs opacity-80 leading-relaxed pl-2 border-l-2 border-secondary bg-black bg-opacity-20 p-3 rounded">
+                            This Privacy Policy outlines how we collect, use, and protect your personal information when you visit our website. We are committed to ensuring that your privacy is protected and respected at all times. Any information you provide through our contact forms, such as your name, phone number, and project details, is used strictly to facilitate your request for a consultation. We do not sell, rent, or lease your personal data to unauthorized third parties. Your information is shared only with our specific service partners who will fulfill your window treatment inquiry. We implement standard security measures to maintain the safety of your personal information. By using this site, you consent to the data practices described in this statement. You have the right to request the deletion of your data from our promotional records at any time.
+                        </div>
+                    </details>
+
+                    <details class="group">
+                        <summary class="text-sm font-bold cursor-pointer hover:text-white transition-colors list-none flex items-center">
+                            Terms of Service
+                            <svg class="w-4 h-4 ml-1 opacity-70 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="mt-3 text-xs opacity-80 leading-relaxed pl-2 border-l-2 border-secondary bg-black bg-opacity-20 p-3 rounded">
+                            By accessing and using this website, you accept and agree to be bound by the terms and provisions of this agreement. This website is provided for informational and promotional purposes only. The content regarding custom blinds, shades, and window treatments is intended to give a general overview of available services. We reserve the right to modify or discontinue, temporarily or permanently, the website or any features without prior notice. Users agree not to use the site for any unlawful purpose or in any way that might harm, damage, or disparage any other party. Information submitted through our forms must be accurate and truthful. We are not liable for any disruptions in service or inaccuracies in the content provided by third-party partners. Continued use of the site constitutes acceptance of any modifications to these terms.
+                        </div>
+                    </details>
+
+                    <details class="group">
+                        <summary class="text-sm font-bold cursor-pointer hover:text-white transition-colors list-none flex items-center">
+                            Disclaimer
+                            <svg class="w-4 h-4 ml-1 opacity-70 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="mt-3 text-xs opacity-80 leading-relaxed pl-2 border-l-2 border-secondary bg-black bg-opacity-20 p-3 rounded">
+                            This website operates as an independent promotional landing page managed by Cryostat Grid. We act strictly as an affiliate and promotional partner for Southern Shutters Austin and do not directly manufacture, sell, or install window treatments. All product purchases, custom installations, warranties, and customer support are handled entirely by the original service provider. We make no direct representations or warranties regarding the specific outcomes, exact pricing, or manufacturing timelines of the third-party products featured here. Any contractual agreements for shades, blinds, or plantation shutters are formed directly between the consumer and the providing company. Cryostat Grid assumes no liability for the performance or quality of the physical products installed. Users are encouraged to verify all product details and service terms directly with the provider during their consultation.
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center sm:text-left">
+                <p class="text-xs opacity-70 mb-2">
+                    This is an independent promotional site managed by Cryostat Grid, acting as an affiliate for Southern Shutters Austin.
+                </p>
+                <p class="text-xs opacity-70 mb-4">
+                    Cryostat Grid is an editorial and promotional operator. We are not a financial services provider, broker, investment advisor, asset or wealth manager, or licensed advisor of any kind.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-2">
+                    <p class="text-sm font-bold">&copy; 2026 Cryostat Grid. All rights reserved.</p>
+                    <p class="text-xs opacity-50 uppercase tracking-widest">Independent promotional operator &middot; Cryostat Grid</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Script -->
+    <script>
+      if (localStorage.getItem('cryostatgrid_cookies_accepted')) {
+        document.getElementById('cookie-banner').classList.add('hidden');
+      }
+    </script>
+</body>
+</html>
